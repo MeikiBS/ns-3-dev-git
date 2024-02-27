@@ -1,0 +1,3 @@
+[submodule "src/lorawan/lorawan"]
+	path = src/lorawan/lorawan
+	url = https://github.com/signetlabdei/lorawan.git
