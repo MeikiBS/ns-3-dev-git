@@ -1,16 +1,17 @@
 #include "dect-channel.h"
 
-
-
 namespace ns3
 {
 namespace dect2020
 {
+
+NS_OBJECT_ENSURE_REGISTERED(Dect2020Channel);
+
 TypeId
 Dect2020Channel::GetTypeId()
 {
     static TypeId tid =
-        TypeId("ns3::Dect2020Channel").SetParent<Channel>().SetGroupName("dect2020");
+        TypeId("ns3::dect2020::Dect2020Channel").SetParent<SimpleChannel>().SetGroupName("dect2020");
     return tid;
 }
 
@@ -23,36 +24,30 @@ Dect2020Channel::~Dect2020Channel()
     m_phyList.clear();
 }
 
-std::size_t
-Dect2020Channel::GetNDevices() const
+void
+Dect2020Channel::Send(Ptr<Packet> p,
+                      uint16_t protocol,
+                      Mac48Address to,
+                      Mac48Address from,
+                      Ptr<SimpleNetDevice> sender)
 {
-    return m_phyList.size();
-}
-
-Ptr<NetDevice>
-Dect2020Channel::GetDevice(std::size_t i) const
-{
-    return m_phyList[i]->GetDevice()->GetObject<NetDevice>();
 }
 
 void
-Dect2020Channel::Add(Ptr<DectPhy> phy)
+Dect2020Channel::Add(Ptr<SimpleNetDevice> device)
 {
-
 }
 
 void
-Dect2020Channel::Add(Ptr<DectMac> mac)
+Dect2020Channel::BlackList(Ptr<SimpleNetDevice> from, Ptr<SimpleNetDevice> to)
 {
-
 }
 
 void
-Send(Ptr<DectPhy> sender, Ptr<Packet> packet, Time duration, double frequencyMHz)
+Dect2020Channel::UnBlackList(Ptr<SimpleNetDevice> from, Ptr<SimpleNetDevice> to)
 {
-
 }
+
 
 } // namespace dect2020
 } // namespace ns3
-

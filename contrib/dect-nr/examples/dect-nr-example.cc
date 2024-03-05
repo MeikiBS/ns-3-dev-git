@@ -16,7 +16,7 @@ using namespace dect2020;
 int
 main(int argc, char* argv[])
 {
-    NS_LOG_COMPONENT_DEFINE("MeinSimulationsName"); // Define a component for logging
+    NS_LOG_COMPONENT_DEFINE("Dect2020Example"); // Define a component for logging
 
     bool verbose = true;
 

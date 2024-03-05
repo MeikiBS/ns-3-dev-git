@@ -1,10 +1,13 @@
 #include "dect-phy.h"
-#include "ns3/net-device.h"
+
 
 namespace ns3
 {
 namespace dect2020
 {
+
+NS_OBJECT_ENSURE_REGISTERED(DectPhy);
+
 
 TypeId
 DectPhy::GetTypeId()
@@ -22,7 +25,7 @@ DectPhy::~DectPhy()
 {
 }
 
-Ptr<NetDevice>
+Ptr<SimpleNetDevice>
 DectPhy::GetDevice() const
 {
     return m_device;

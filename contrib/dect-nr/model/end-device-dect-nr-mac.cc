@@ -9,7 +9,8 @@ namespace dect2020
 TypeId
 EndDeviceDect2020Mac::GetTypeId()
 {
-    static TypeId tid = TypeId("ns3::EndDeviceDect2020Mac");
+    static TypeId tid = TypeId("ns3::EndDeviceDect2020Mac")
+                        .SetParent<DectMac>();
     return tid;
 }
 
