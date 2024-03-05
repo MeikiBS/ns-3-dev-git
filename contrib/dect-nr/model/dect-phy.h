@@ -3,8 +3,9 @@
 
 #include "ns3/object.h"
 #include "ns3/simple-net-device.h"
+#include "ns3/node.h"
 #include "dect-channel.h"
-#include "dect-channel.h"
+#include "ns3/ptr.h"
 
 // Add a doxygen group for this module.
 // If you have more than one file, this should be in only one of them.
@@ -16,6 +17,8 @@ namespace ns3
 {
 namespace dect2020
 {
+class Dect2020Channel;
+
 class DectPhy : public Object
 {
   public:

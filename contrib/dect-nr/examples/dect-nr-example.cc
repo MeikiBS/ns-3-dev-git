@@ -27,7 +27,8 @@ main(int argc, char* argv[])
 
     /* ... */
     NS_LOG_INFO("Hello World");
-    //Ptr<Dect2020Channel> channel = CreateObject<Dect2020Channel>();
+    Ptr<Dect2020Channel> channel = CreateObject<Dect2020Channel>();
+    NS_LOG_INFO("Chanel created");
 
     Simulator::Run();
     Simulator::Destroy();

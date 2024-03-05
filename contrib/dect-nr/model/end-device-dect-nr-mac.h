@@ -27,11 +27,6 @@ class EndDeviceDect2020Mac : public DectMac
     EndDeviceDect2020Mac();
     ~EndDeviceDect2020Mac() override;
 
-    void SendPacket(Ptr<Packet> packet);
-    void DoSend(Ptr<Packet> packet);
-    void SendToPhy(Ptr<Packet> packet);
-
-    void Receive(Ptr<const Packet> packet);
 
   protected:
     uint8_t m_macVersion = 0;

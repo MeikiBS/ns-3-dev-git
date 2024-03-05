@@ -2,6 +2,8 @@
 #define DECT_MAC_H
 
 #include "ns3/object.h"
+#include "ns3/log.h"
+
 
 // Add a doxygen group for this module.
 // If you have more than one file, this should be in only one of them.

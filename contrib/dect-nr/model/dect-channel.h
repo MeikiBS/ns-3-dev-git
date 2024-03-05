@@ -9,6 +9,7 @@
 #include "ns3/propagation-delay-model.h"
 #include "ns3/propagation-loss-model.h"
 #include "ns3/simple-channel.h"
+#include "ns3/ptr.h"
 
 // Add a doxygen group for this module.
 // If you have more than one file, this should be in only one of them.
@@ -20,6 +21,7 @@ namespace ns3
 {
 namespace dect2020
 {
+class DectPhy;
 
 class Dect2020Channel : public SimpleChannel
 {

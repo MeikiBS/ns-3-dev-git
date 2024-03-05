@@ -4,7 +4,10 @@
 
 #include "ns3/log.h"
 #include "ns3/simple-net-device.h"
-#include "ns3/pointer.h"
+#include "ns3/ptr.h"
+#include "ns3/error-model.h"
+#include "ns3/packet.h"
+#include "ns3/queue.h"
 
 #include "dect-net-device.h"
 #include "dect-mac.h"
