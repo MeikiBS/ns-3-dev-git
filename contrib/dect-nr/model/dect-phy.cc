@@ -25,10 +25,22 @@ DectPhy::~DectPhy()
 {
 }
 
+void
+DectPhy::SetDevice(Ptr<SimpleNetDevice> device)
+{
+    m_device = device;
+}
+
 Ptr<SimpleNetDevice>
 DectPhy::GetDevice() const
 {
     return m_device;
+}
+
+void
+DectPhy::SetChannel(Ptr<Dect2020Channel> channel)
+{
+    m_channel = channel;
 }
 
 Ptr<Dect2020Channel>

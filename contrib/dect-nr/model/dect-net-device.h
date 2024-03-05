@@ -1,17 +1,16 @@
 #ifndef DECT_NET_DEVICE_H
 #define DECT_NET_DEVICE_H
 
-
-#include "ns3/log.h"
-#include "ns3/simple-net-device.h"
-#include "ns3/ptr.h"
-#include "ns3/error-model.h"
-#include "ns3/packet.h"
-#include "ns3/queue.h"
-
-#include "dect-net-device.h"
 #include "dect-mac.h"
+#include "dect-net-device.h"
 #include "dect-phy.h"
+
+#include "ns3/error-model.h"
+#include "ns3/log.h"
+#include "ns3/packet.h"
+#include "ns3/ptr.h"
+#include "ns3/queue.h"
+#include "ns3/simple-net-device.h"
 
 // Add a doxygen group for this module.
 // If you have more than one file, this should be in only one of them.
@@ -24,6 +23,9 @@ namespace ns3
 namespace dect2020
 {
 
+class DectPhy;
+class Dect2020Channel;
+
 class DectNetDevice : public SimpleNetDevice
 {
   public:
@@ -33,7 +35,12 @@ class DectNetDevice : public SimpleNetDevice
 
     void SetMac(Ptr<DectMac> mac);
     void SetPhy(Ptr<DectPhy> phy);
+    void SetChannel(Ptr<Dect2020Channel> channel);
 
+  protected:
+    Ptr<DectMac> m_mac;
+    Ptr<DectPhy> m_phy;
+    Ptr<Dect2020Channel> m_channel;
 
 }; // class DectNetDevice
 
@@ -41,4 +48,3 @@ class DectNetDevice : public SimpleNetDevice
 } // namespace ns3
 
 #endif /* DECT_NET_DEVICE_H */
-

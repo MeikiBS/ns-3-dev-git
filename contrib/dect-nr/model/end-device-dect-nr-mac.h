@@ -9,9 +9,9 @@
 
 #include "ns3/application.h"
 #include "ns3/attribute.h"
+#include "ns3/dect-mac.h"
 #include "ns3/nstime.h"
 #include "ns3/point-to-point-net-device.h"
-#include "ns3/dect-mac.h"
 
 #include <cstdint> // für uint8_t
 
@@ -27,6 +27,7 @@ class EndDeviceDect2020Mac : public DectMac
     EndDeviceDect2020Mac();
     ~EndDeviceDect2020Mac() override;
 
+    Mac48Address m_macAddress;  // Nur zum ausprobieren für Simple Channel/Device
 
   protected:
     uint8_t m_macVersion = 0;
@@ -100,4 +101,3 @@ class Dect2020MacMultiplexingHeaderShortSdu : public Dect2020MacMultiplexingHead
 } // namespace ns3
 
 #endif /* END_DEVICE_DECT_NR_MAC_H */
-

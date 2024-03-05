@@ -28,11 +28,19 @@ DectNetDevice::GetTypeId()
 void
 DectNetDevice::SetMac(Ptr<DectMac> mac)
 {
+    m_mac = mac;
 }
 
 void
 DectNetDevice::SetPhy(Ptr<DectPhy> phy)
 {
+    m_phy = phy;
+}
+
+void
+DectNetDevice::SetChannel(Ptr<Dect2020Channel> channel)
+{
+    m_channel = channel;
 }
 
 

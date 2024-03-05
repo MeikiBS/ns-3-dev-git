@@ -4,8 +4,11 @@
 #include "ns3/object.h"
 #include "ns3/simple-net-device.h"
 #include "ns3/node.h"
-#include "dect-channel.h"
 #include "ns3/ptr.h"
+
+#include "dect-channel.h"
+#include "dect-net-device.h"
+
 
 // Add a doxygen group for this module.
 // If you have more than one file, this should be in only one of them.
@@ -26,7 +29,9 @@ class DectPhy : public Object
     DectPhy();
     ~DectPhy() override;
 
+    void SetDevice(Ptr<SimpleNetDevice> device);
     Ptr<SimpleNetDevice> GetDevice() const;
+    void SetChannel(Ptr<Dect2020Channel> channel);
     Ptr<Dect2020Channel> GetChannel() const;
 
   protected:
