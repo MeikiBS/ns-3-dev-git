@@ -10,12 +10,11 @@ TypeId
 EndDeviceDect2020Mac::GetTypeId()
 {
     static TypeId tid = TypeId("ns3::EndDeviceDect2020Mac");
+    return tid;
 }
 
-Dect2020MacMultiplexingHeaderShortSdu::~Dect2020MacMultiplexingHeaderShortSdu()
-{
-}
 
 }   // namespace dect2020
 
 }
+

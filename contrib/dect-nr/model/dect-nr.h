@@ -18,3 +18,4 @@ namespace ns3
 }
 
 #endif /* DECT_NR_H */
+

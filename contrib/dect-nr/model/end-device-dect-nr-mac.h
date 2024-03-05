@@ -11,6 +11,7 @@
 #include "ns3/attribute.h"
 #include "ns3/nstime.h"
 #include "ns3/point-to-point-net-device.h"
+#include "ns3/dect-mac.h"
 
 #include <cstdint> // für uint8_t
 
@@ -19,7 +20,7 @@ namespace ns3
 namespace dect2020
 {
 
-class EndDeviceDect2020Mac : public Object
+class EndDeviceDect2020Mac : public DectMac
 {
   public:
     static TypeId GetTypeId();
@@ -104,3 +105,4 @@ class Dect2020MacMultiplexingHeaderShortSdu : public Dect2020MacMultiplexingHead
 } // namespace ns3
 
 #endif /* END_DEVICE_DECT_NR_MAC_H */
+
