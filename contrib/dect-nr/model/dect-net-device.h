@@ -4,6 +4,7 @@
 #include "dect-mac.h"
 #include "dect-net-device.h"
 #include "dect-phy.h"
+#include "end-device-dect-nr-mac.h"
 
 #include "ns3/error-model.h"
 #include "ns3/log.h"
@@ -34,8 +35,12 @@ class DectNetDevice : public SimpleNetDevice
     ~DectNetDevice() override;
 
     void SetMac(Ptr<DectMac> mac);
+    Ptr<DectMac> GetMac() const;
     void SetPhy(Ptr<DectPhy> phy);
     void SetChannel(Ptr<Dect2020Channel> channel);
+
+    bool Send(Ptr<Packet> packet, const Address& dest, uint16_t protocolNumber) override;
+    void Test();
 
   protected:
     Ptr<DectMac> m_mac;

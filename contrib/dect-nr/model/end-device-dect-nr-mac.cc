@@ -18,6 +18,7 @@ EndDeviceDect2020Mac::GetTypeId()
 
 EndDeviceDect2020Mac::EndDeviceDect2020Mac()
 {
+    m_macAddress = Mac48Address::Allocate();
 }
 
 EndDeviceDect2020Mac::~EndDeviceDect2020Mac()

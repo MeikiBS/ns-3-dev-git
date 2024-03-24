@@ -194,8 +194,15 @@ main(int argc, char* argv[])
         params.m_dstExtAddr = Mac64Address("00:00:00:00:00:00:00:02");
     }
     params.m_msduHandle = 0;
-    params.m_txOptions = TX_OPTION_ACK;
-    //  dev0->GetMac ()->McpsDataRequest (params, p0);
+    params.m_txOptions = TX_OPTION_ACK; //  dev0->GetMac ()->McpsDataRequest (params, p0);
+    if (dev1->GetMac() != nullptr)
+    {
+        params.m_msduHandle = 1;
+    }
+    else
+    {
+        params.m_msduHandle = 1;
+    }
     Simulator::ScheduleWithContext(1,
                                    Seconds(0.0),
                                    &LrWpanMac::McpsDataRequest,

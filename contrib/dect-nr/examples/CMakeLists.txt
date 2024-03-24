@@ -5,3 +5,10 @@ build_lib_example(
             ${libnetwork}        
             ${libdect-nr}
 )
+
+build_lib_example(
+  NAME simple-net-device-example
+  SOURCE_FILES simple-net-device-example.cc
+  LIBRARIES_TO_LINK ${libnetwork}
+                    ${libdect-nr}
+)

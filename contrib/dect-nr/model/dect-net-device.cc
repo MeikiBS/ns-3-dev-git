@@ -31,6 +31,12 @@ DectNetDevice::SetMac(Ptr<DectMac> mac)
     m_mac = mac;
 }
 
+Ptr<DectMac>
+DectNetDevice::GetMac() const
+{
+    return m_mac;
+}
+
 void
 DectNetDevice::SetPhy(Ptr<DectPhy> phy)
 {
@@ -41,6 +47,19 @@ void
 DectNetDevice::SetChannel(Ptr<Dect2020Channel> channel)
 {
     m_channel = channel;
+}
+
+bool
+DectNetDevice::Send(Ptr<Packet> packet, const Address& dest, uint16_t protocolNumber)
+{
+    m_channel = nullptr;
+    return true;
+}
+
+void
+DectNetDevice::Test()
+{
+    std::cout << "Test" << std::endl;
 }
 
 

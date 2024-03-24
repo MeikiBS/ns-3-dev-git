@@ -42,7 +42,6 @@ main(int argc, char* argv[])
 
     // Erstelle ein DECT-MAC-TX-Objekt
     Ptr<EndDeviceDect2020Mac> macTx = CreateObject<EndDeviceDect2020Mac>();
-    macTx->m_macAddress = macTx->m_macAddress.Allocate();
 
     // Weise dem PHY-TX-Objekt einen Channel zu
     phyTx->SetChannel(channel);
@@ -62,7 +61,6 @@ main(int argc, char* argv[])
 
     // Erstelle ein DECT-MAC-RX-Objekt
     Ptr<EndDeviceDect2020Mac> macRx = CreateObject<EndDeviceDect2020Mac>();
-    macRx->m_macAddress = macRx->m_macAddress.Allocate();
 
     // Weise dem PHY-RX-Objekt einen Channel zu
     phyRx->SetChannel(channel);
@@ -86,10 +84,22 @@ main(int argc, char* argv[])
     // dectDeviceTx->Send(packet, macRx->m_macAddress, 0);
 
     // Ptr<Mac48Address> newMac = CreateObject<Mac48Address>("MEIKEL");
-
-    auto macAddr = macRx->m_macAddress.ConvertTo();
-    if (1) // macRx->m_macAddress != nullptr
+    if (packet != nullptr)
     {
+        NS_LOG_INFO("Packet is not null");
+    }
+    else
+    {
+        NS_LOG_ERROR("Packet is null");
+    }
+
+    // auto macAddr = dectDeviceRx->GetMac()->m_macAddress;
+    Mac48Address macAddr("01:02:03:04:05:06");
+
+    if (dectDeviceTx != nullptr) // macRx->m_macAddress != nullptr
+    {
+        std::cout << "dectDeviceTx: " << dectDeviceTx << std::endl;
+        dectDeviceTx->Test();
         dectDeviceTx->Send(packet, macAddr, 0x0800);
     }
     else

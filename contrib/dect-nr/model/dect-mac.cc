@@ -16,6 +16,7 @@ DectMac::GetTypeId()
 
 DectMac::DectMac()
 {
+    m_macAddress = Mac48Address::Allocate();
 }
 
 DectMac::~DectMac()
