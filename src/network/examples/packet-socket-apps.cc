@@ -90,6 +90,9 @@ main(int argc, char* argv[])
     server->SetLocal(socketAddr);
     nodes.Get(1)->AddApplication(server);
 
+    // DEBUG
+    std::cout << "Ich war hier" << std::endl;
+
     Simulator::Run();
     Simulator::Destroy();
     return 0;

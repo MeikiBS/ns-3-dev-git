@@ -58,6 +58,10 @@ main(int argc, char* argv[])
 
     Ipv4InterfaceContainer interfaces = address.Assign(devices);
 
+    std::cout << "interfaces.GetAddress(0): " << interfaces.GetAddress(0) << std::endl;
+    std::cout << "interfaces.GetAddress(1): " << interfaces.GetAddress(1) << std::endl;
+
+
     UdpEchoServerHelper echoServer(9);
 
     ApplicationContainer serverApps = echoServer.Install(nodes.Get(1));

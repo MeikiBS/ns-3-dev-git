@@ -5,6 +5,7 @@
 #include "ns3/simple-net-device.h"
 #include "ns3/node.h"
 #include "ns3/ptr.h"
+#include <ns3/spectrum-phy.h>
 
 #include "dect-channel.h"
 #include "dect-net-device.h"
@@ -20,7 +21,6 @@ namespace ns3
 {
 namespace dect2020
 {
-class Dect2020Channel;
 
 class DectPhy : public Object
 {
@@ -29,14 +29,15 @@ class DectPhy : public Object
     DectPhy();
     ~DectPhy() override;
 
-    void SetDevice(Ptr<SimpleNetDevice> device);
-    Ptr<SimpleNetDevice> GetDevice() const;
-    void SetChannel(Ptr<Dect2020Channel> channel);
-    Ptr<Dect2020Channel> GetChannel() const;
+    void SetDevice(Ptr<NetDevice> device);
+    Ptr<NetDevice> GetDevice() const;
+    
+    void SetChannel(Ptr<SpectrumChannel> channel);
+    Ptr<SpectrumChannel> GetChannel() const;
 
   protected:
-    Ptr<SimpleNetDevice> m_device; //!< The net device this PHY is attached to.
-    Ptr<Dect2020Channel> m_channel; //!< The channel this PHY is attached to.
+    Ptr<NetDevice> m_device;        //!< The net device this PHY is attached to.
+    Ptr<SpectrumChannel> m_channel; //!< The channel this PHY is attached to.
 
 }; // class DectPhy
 

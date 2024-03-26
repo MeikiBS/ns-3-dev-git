@@ -31,7 +31,7 @@ main(int argc, char* argv[])
     NS_LOG_INFO("Hello World");
 
     // Erstelle einen DECT Kanal
-    Ptr<Dect2020Channel> channel = CreateObject<Dect2020Channel>();
+    Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
 
     // ############################
     // ###### DECT TX DEVICE ######
@@ -77,8 +77,8 @@ main(int argc, char* argv[])
     nodes.Get(0)->AddDevice(dectDeviceTx);
     nodes.Get(1)->AddDevice(dectDeviceRx);
 
-    SimpleNetDeviceHelper helper = SimpleNetDeviceHelper();
-    helper.Install(nodes, channel);
+    // SimpleNetDeviceHelper helper = SimpleNetDeviceHelper();
+    // helper.Install(nodes, channel);
 
     Ptr<Packet> packet = Create<Packet>(1024);
     // dectDeviceTx->Send(packet, macRx->m_macAddress, 0);

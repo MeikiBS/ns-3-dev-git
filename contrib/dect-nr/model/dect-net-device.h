@@ -8,10 +8,12 @@
 
 #include "ns3/error-model.h"
 #include "ns3/log.h"
+#include "ns3/multi-model-spectrum-channel.h"
+#include "ns3/net-device.h"
 #include "ns3/packet.h"
 #include "ns3/ptr.h"
 #include "ns3/queue.h"
-#include "ns3/simple-net-device.h"
+#include "ns3/single-model-spectrum-channel.h"
 
 // Add a doxygen group for this module.
 // If you have more than one file, this should be in only one of them.
@@ -27,7 +29,7 @@ namespace dect2020
 class DectPhy;
 class Dect2020Channel;
 
-class DectNetDevice : public SimpleNetDevice
+class DectNetDevice : public NetDevice
 {
   public:
     static TypeId GetTypeId();
@@ -37,15 +39,47 @@ class DectNetDevice : public SimpleNetDevice
     void SetMac(Ptr<DectMac> mac);
     Ptr<DectMac> GetMac() const;
     void SetPhy(Ptr<DectPhy> phy);
-    void SetChannel(Ptr<Dect2020Channel> channel);
+    Ptr<Channel> GetChannel() const;
+    void SetChannel(Ptr<SpectrumChannel> channel);
 
-    bool Send(Ptr<Packet> packet, const Address& dest, uint16_t protocolNumber) override;
     void Test();
+
+    // inherited from NetDevice
+    void SetIfIndex(const uint32_t index) override;
+    uint32_t GetIfIndex() const override;
+    void SetAddress(Address address) override;
+    Address GetAddress() const override;
+    bool SetMtu(const uint16_t mtu) override;
+    uint16_t GetMtu() const override;
+    bool IsLinkUp() const override;
+    void AddLinkChangeCallback(Callback<void> callback) override;
+    bool IsBroadcast() const override;
+    Address GetBroadcast() const override;
+    bool IsMulticast() const override;
+    Address GetMulticast(Ipv4Address multicastGroup) const override;
+    Address GetMulticast(Ipv6Address multicastGroup) const override;
+
+    bool IsBridge() const override;
+
+    bool IsPointToPoint() const override;
+    bool Send(Ptr<Packet> packet, const Address& dest, uint16_t protocolNumber);
+    bool SendFrom(Ptr<Packet> packet,
+                  const Address& source,
+                  const Address& dest,
+                  uint16_t protocolNumber);
+    Ptr<Node> GetNode() const override;
+    void SetNode(Ptr<Node> node) override;
+    bool NeedsArp() const override;
+    void SetReceiveCallback(ReceiveCallback cb) override;
+    void SetPromiscReceiveCallback(PromiscReceiveCallback cb) override;
+    bool SupportsSendFrom() const override;
 
   protected:
     Ptr<DectMac> m_mac;
     Ptr<DectPhy> m_phy;
-    Ptr<Dect2020Channel> m_channel;
+    Ptr<SpectrumChannel> m_channel;
+
+    Address m_address;
 
 }; // class DectNetDevice
 

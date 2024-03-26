@@ -11,4 +11,7 @@ build_lib_example(
   SOURCE_FILES simple-net-device-example.cc
   LIBRARIES_TO_LINK ${libnetwork}
                     ${libdect-nr}
+                    ${libpoint-to-point}
+                    ${libinternet}
+                    ${libapplications}
 )
