@@ -15,3 +15,13 @@ build_lib_example(
                     ${libinternet}
                     ${libapplications}
 )
+
+build_lib_example(
+  NAME dect2020-simulation
+  SOURCE_FILES dect2020-simulation.cc
+  LIBRARIES_TO_LINK ${libnetwork}
+                    ${libdect-nr}
+                    ${libpoint-to-point}
+                    ${libinternet}
+                    ${libapplications}
+)

@@ -17,6 +17,10 @@ set(source_files
     model/dect-mac.cc
     model/end-device-dect-nr-mac.cc
     model/dect-net-device.cc
+    model/dect2020-net-device.cc
+    model/dect2020-mac.cc
+    model/dect2020-phy.cc
+    model/dect2020-channel.cc
     helper/dect-nr-helper.cc)
 
 set(header_files
@@ -26,6 +30,11 @@ set(header_files
     model/dect-mac.h
     model/end-device-dect-nr-mac.h
     model/dect-net-device.h
+    model/dect2020-net-device.h
+    model/dect2020-mac.h
+    model/dect2020-phy.h
+    model/dect2020-channel.h
+    model/dect2020-module.h
     helper/dect-nr-helper.h)
 
 build_lib(
