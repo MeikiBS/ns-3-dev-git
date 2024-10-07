@@ -25,9 +25,7 @@ Dect2020NetDevice::GetTypeId (void)
   static TypeId tid = TypeId ("ns3::Dect2020NetDevice")
     .SetParent<NetDevice> ()
     .SetGroupName ("Dect2020")
-    .AddConstructor<Dect2020NetDevice> ()
-    // Hier können weitere Attribute und Trace-Quellen hinzugefügt werden
-  ;
+    .AddConstructor<Dect2020NetDevice> ();
   return tid;
 }
 
@@ -35,7 +33,8 @@ Dect2020NetDevice::Dect2020NetDevice ()
   : m_node (nullptr),
     m_ifIndex (0),
     m_mtu (1500),
-    m_linkUp (false)
+    m_linkUp (false),
+    m_terminationPointType (PT)
 {
   NS_LOG_FUNCTION (this);
 }
@@ -43,6 +42,18 @@ Dect2020NetDevice::Dect2020NetDevice ()
 Dect2020NetDevice::~Dect2020NetDevice ()
 {
   NS_LOG_FUNCTION (this);
+}
+
+void
+Dect2020NetDevice::SetTerminationPointType(TerminationPointType tpm)
+{
+  m_terminationPointType = tpm;
+}
+
+Dect2020NetDevice::TerminationPointType
+Dect2020NetDevice::GetTerminationPointType()
+{
+  return m_terminationPointType;
 }
 
 void

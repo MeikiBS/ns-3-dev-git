@@ -1,80 +1,3 @@
-// #include "ns3/core-module.h"
-// #include "ns3/network-module.h"
-// #include "ns3/dect2020-module.h"
-
-// using namespace ns3;
-
-// int main(int argc, char *argv[])
-// {
-//   // Erstellen der Knoten
-//   Ptr<Node> node1 = CreateObject<Node>();
-//   Ptr<Node> node2 = CreateObject<Node>();
-
-//   // Erstellen der NetDevices
-//   Ptr<Dect2020NetDevice> dev1 = CreateObject<Dect2020NetDevice>();
-//   Ptr<Dect2020NetDevice> dev2 = CreateObject<Dect2020NetDevice>();
-
-//   // Erstellen der MAC-Schichten
-//   Ptr<Dect2020Mac> mac1 = CreateObject<Dect2020Mac>();
-//   Ptr<Dect2020Mac> mac2 = CreateObject<Dect2020Mac>();
-
-//   // Erstellen der PHY-Schichten
-//   Ptr<Dect2020Phy> phy1 = CreateObject<Dect2020Phy>();
-//   Ptr<Dect2020Phy> phy2 = CreateObject<Dect2020Phy>();
-
-//   // Erstellen des Kanals
-//   Ptr<Dect2020Channel> channel = CreateObject<Dect2020Channel>();
-
-//   // Verbinden der Komponenten für Gerät 1
-//   dev1->SetMac(mac1);
-//   dev1->SetPhy(phy1);
-//   mac1->SetNetDevice(dev1);
-//   mac1->SetPhy(phy1);
-//   phy1->SetMac(mac1);
-//   phy1->SetNetDevice(dev1);
-//   phy1->SetChannel(channel);
-
-//   // Verbinden der Komponenten für Gerät 2
-//   dev2->SetMac(mac2);
-//   dev2->SetPhy(phy2);
-//   mac2->SetNetDevice(dev2);
-//   mac2->SetPhy(phy2);
-//   phy2->SetMac(mac2);
-//   phy2->SetNetDevice(dev2);
-//   phy2->SetChannel(channel);
-
-//   // Hinzufügen der PHYs zum Kanal
-//   channel->AddPhy(phy1);
-//   channel->AddPhy(phy2);
-
-//   // Setzen der Adressen
-//   dev1->SetAddress(Mac48Address::Allocate());
-//   dev2->SetAddress(Mac48Address::Allocate());
-
-//   // Hinzufügen der Geräte zu den Knoten
-//   node1->AddDevice(dev1);
-//   node2->AddDevice(dev2);
-
-//   // Manuelles Setzen des Link-Status
-//   dev1->SetLinkUp();
-//   dev2->SetLinkUp();
-
-//   // Empfangs-Callback für Gerät 2
-//   dev2->SetReceiveCallback(MakeCallback([](Ptr<NetDevice> device, Ptr<const Packet> packet, uint16_t protocol, const Address& sender) {
-//     NS_LOG_UNCOND("Gerät 2 hat ein Paket empfangen von " << Mac48Address::ConvertFrom(sender));
-//   }));
-
-//   dev2->SetReceiveCallback(MakeCallback(&ReceivePacket));
-
-//   // Senden eines Pakets von Gerät 1 zu Gerät 2 nach 1 Sekunde
-//   Simulator::Schedule(Seconds(1.0), &Dect2020NetDevice::Send, dev1, Create<Packet>(100), dev2->GetAddress(), 0);
-
-//   Simulator::Run();
-//   Simulator::Destroy();
-//   return 0;
-// }
-
-
 #include "ns3/core-module.h"
 #include "ns3/network-module.h"
 #include "ns3/dect2020-module.h"
@@ -162,7 +85,7 @@ int main (int argc, char *argv[])
 
   // Erstellen der Anwendung auf Knoten 0 (Sender)
   UdpEchoClientHelper client (interfaces.GetAddress (1), port);
-  client.SetAttribute ("MaxPackets", UintegerValue (1));
+  client.SetAttribute ("MaxPackets", UintegerValue (5));
   client.SetAttribute ("Interval", TimeValue (Seconds (1.0)));
   client.SetAttribute ("PacketSize", UintegerValue (1024));
 

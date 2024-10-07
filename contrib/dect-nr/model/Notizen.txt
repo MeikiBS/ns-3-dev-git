@@ -1,0 +1,1 @@
+- Beim Erstellen eines Dect2020 NetDevices wird angenommen, dass es ein Gerät vom Typ PT ist. Für ein FT muss die Setter-Methode verwendet werden
