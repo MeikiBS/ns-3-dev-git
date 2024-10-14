@@ -179,4 +179,18 @@ Dect2020Mac::GetNetworkId() const
     return m_networkId;
 }
 
+uint32_t
+Dect2020Mac::GenerateLongRadioDeviceId()
+{
+    Ptr<UniformRandomVariable> randomVar = CreateObject<UniformRandomVariable>();
+    uint32_t rdId = 0;
+
+    do
+    {
+        rdId = randomVar->GetValue(1, 0xFFFFFFFD); // Range 0x00000001 bis 0xFFFFFFFD
+    } while (rdId == 0x00000000 || rdId == 0xFFFFFFFE || rdId == 0xFFFFFFFF);
+
+    return rdId;
+}
+
 } // namespace ns3

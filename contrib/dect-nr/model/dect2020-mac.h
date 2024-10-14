@@ -75,6 +75,12 @@ class Dect2020Mac : public Object
      * Starts sending a beacon periodically.
      */
     void StartBeaconTransmission();
+    /**
+     * Generates the Long Radio Device ID for the Radio Device as described in
+     * ETSI TS 103 636-4 V 1.51 #4.2.3.2
+     * \return 32 Bit Radio Device ID
+     */
+    uint32_t GenerateLongRadioDeviceId();
 
   private:
     // Membervariablen
@@ -89,7 +95,8 @@ class Dect2020Mac : public Object
     TracedCallback<Ptr<const Packet>> m_txPacketTrace;
     TracedCallback<Ptr<const Packet>> m_rxPacketTrace;
 
-    uint32_t m_networkId; // See ETSI TS 103 636-4 V 1.51 #4.2.3.1
+    uint32_t m_networkId;         // ETSI TS 103 636-4 V 1.51 #4.2.3.1
+    uint32_t m_longRadioDeviceId; // ETSI TS 103 636-4 V 1.51 #4.2.3.2
 };
 
 } // namespace ns3
