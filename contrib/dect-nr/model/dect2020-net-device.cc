@@ -1,304 +1,317 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
 #include "dect2020-net-device.h"
-#include "ns3/log.h"
-#include "ns3/packet.h"
-#include "ns3/simulator.h"
-#include "ns3/channel.h"
-
-#include "dect2020-mac.h"
-#include "dect2020-phy.h"
 
 #include "dect2020-channel.h"
 #include "dect2020-mac.h"
-#include "dect2020-phy.h"
 #include "dect2020-module.h"
+#include "dect2020-phy.h"
 
-NS_LOG_COMPONENT_DEFINE ("Dect2020NetDevice");
+#include "ns3/channel.h"
+#include "ns3/log.h"
+#include "ns3/packet.h"
+#include "ns3/simulator.h"
 
-namespace ns3 {
+namespace ns3
+{
 
-NS_OBJECT_ENSURE_REGISTERED (Dect2020NetDevice);
+NS_LOG_COMPONENT_DEFINE("Dect2020NetDevice");
+NS_OBJECT_ENSURE_REGISTERED(Dect2020NetDevice);
 
 TypeId
-Dect2020NetDevice::GetTypeId (void)
+Dect2020NetDevice::GetTypeId(void)
 {
-  static TypeId tid = TypeId ("ns3::Dect2020NetDevice")
-    .SetParent<NetDevice> ()
-    .SetGroupName ("Dect2020")
-    .AddConstructor<Dect2020NetDevice> ();
-  return tid;
+    static TypeId tid = TypeId("ns3::Dect2020NetDevice")
+                            .SetParent<NetDevice>()
+                            .SetGroupName("Dect2020")
+                            .AddConstructor<Dect2020NetDevice>();
+    return tid;
 }
 
-Dect2020NetDevice::Dect2020NetDevice ()
-  : m_node (nullptr),
-    m_ifIndex (0),
-    m_mtu (1500),
-    m_linkUp (false),
-    m_terminationPointType (PT)
+Dect2020NetDevice::Dect2020NetDevice()
+    : m_node(nullptr),
+      m_ifIndex(0),
+      m_mtu(1500),
+      m_linkUp(false)
+//   m_terminationPointType(PT)
 {
-  NS_LOG_FUNCTION (this);
+    NS_LOG_FUNCTION(this);
 }
 
-Dect2020NetDevice::~Dect2020NetDevice ()
+Dect2020NetDevice::~Dect2020NetDevice()
 {
-  NS_LOG_FUNCTION (this);
+    NS_LOG_FUNCTION(this);
 }
 
 void
-Dect2020NetDevice::SetTerminationPointType(TerminationPointType tpm)
+Dect2020NetDevice::SetTerminationPointType(TerminationPointType tpt)
 {
-  m_terminationPointType = tpm;
+    NS_LOG_FUNCTION(this << tpt);
+    if (tpt != PT && tpt != FT)
+    {
+        NS_LOG_ERROR("Invalid TerminationPointType");
+        return;
+    }
+    m_terminationPointType = tpt;
+    NS_LOG_INFO("Set TerminationPointType to: " << (tpt == PT ? "PT" : "FT"));
+
+    m_terminationPointType = tpt;
 }
 
 Dect2020NetDevice::TerminationPointType
 Dect2020NetDevice::GetTerminationPointType()
 {
-  return m_terminationPointType;
+    return m_terminationPointType;
 }
 
 void
-Dect2020NetDevice::DoInitialize (void)
+Dect2020NetDevice::DoInitialize(void)
 {
-  NS_LOG_FUNCTION (this);
-  if (m_mac)
+    NS_LOG_FUNCTION(this);
+    if (m_mac)
     {
-      m_mac->SetNetDevice (this);
+        m_mac->SetNetDevice(this);
     }
-  if (m_phy)
+    if (m_phy)
     {
-      m_phy->SetNetDevice (this);
+        m_phy->SetNetDevice(this);
     }
-  NetDevice::DoInitialize ();
+    NetDevice::DoInitialize();
 }
 
 void
-Dect2020NetDevice::SetIfIndex (const uint32_t index)
+Dect2020NetDevice::SetIfIndex(const uint32_t index)
 {
-  m_ifIndex = index;
+    m_ifIndex = index;
 }
 
 uint32_t
-Dect2020NetDevice::GetIfIndex (void) const
+Dect2020NetDevice::GetIfIndex(void) const
 {
-  return m_ifIndex;
+    return m_ifIndex;
 }
 
 Ptr<Channel>
-Dect2020NetDevice::GetChannel (void) const
+Dect2020NetDevice::GetChannel(void) const
 {
-  return m_phy->GetChannel ();
+    return m_phy->GetChannel();
 }
 
 void
-Dect2020NetDevice::SetAddress (Address address)
+Dect2020NetDevice::SetAddress(Address address)
 {
-  m_address = Mac48Address::ConvertFrom (address);
+    m_address = Mac48Address::ConvertFrom(address);
 }
 
 Address
-Dect2020NetDevice::GetAddress (void) const
+Dect2020NetDevice::GetAddress(void) const
 {
-  return m_address;
+    return m_address;
 }
 
 bool
-Dect2020NetDevice::SetMtu (const uint16_t mtu)
+Dect2020NetDevice::SetMtu(const uint16_t mtu)
 {
-  m_mtu = mtu;
-  return true;
+    m_mtu = mtu;
+    return true;
 }
 
 uint16_t
-Dect2020NetDevice::GetMtu (void) const
+Dect2020NetDevice::GetMtu(void) const
 {
-  return m_mtu;
+    return m_mtu;
 }
 
 bool
-Dect2020NetDevice::IsLinkUp (void) const
+Dect2020NetDevice::IsLinkUp(void) const
 {
-  return m_linkUp;
+    return m_linkUp;
 }
 
 void
-Dect2020NetDevice::AddLinkChangeCallback (Callback<void> callback)
+Dect2020NetDevice::AddLinkChangeCallback(Callback<void> callback)
 {
-  m_linkChanges.ConnectWithoutContext (callback);
+    m_linkChanges.ConnectWithoutContext(callback);
 }
 
 bool
-Dect2020NetDevice::IsBroadcast (void) const
+Dect2020NetDevice::IsBroadcast(void) const
 {
-  return true;
+    return true;
 }
 
 Address
-Dect2020NetDevice::GetBroadcast (void) const
+Dect2020NetDevice::GetBroadcast(void) const
 {
-  return Mac48Address ("ff:ff:ff:ff:ff:ff");
+    return Mac48Address("ff:ff:ff:ff:ff:ff");
 }
 
 bool
-Dect2020NetDevice::IsMulticast (void) const
+Dect2020NetDevice::IsMulticast(void) const
 {
-  return true;
+    return true;
 }
 
 Address
-Dect2020NetDevice::GetMulticast (Ipv4Address multicastGroup) const
+Dect2020NetDevice::GetMulticast(Ipv4Address multicastGroup) const
 {
-  return Mac48Address::GetMulticast (multicastGroup);
+    return Mac48Address::GetMulticast(multicastGroup);
 }
 
 Address
-Dect2020NetDevice::GetMulticast (Ipv6Address multicastGroup) const
+Dect2020NetDevice::GetMulticast(Ipv6Address multicastGroup) const
 {
-  return Mac48Address::GetMulticast (multicastGroup);
+    return Mac48Address::GetMulticast(multicastGroup);
 }
 
 bool
-Dect2020NetDevice::IsBridge (void) const
+Dect2020NetDevice::IsBridge(void) const
 {
-  return false;
+    return false;
 }
 
 bool
-Dect2020NetDevice::IsPointToPoint (void) const
+Dect2020NetDevice::IsPointToPoint(void) const
 {
-  return false;
+    return false;
 }
 
 bool
-Dect2020NetDevice::Send (Ptr<Packet> packet, const Address& dest, uint16_t protocolNumber)
+Dect2020NetDevice::Send(Ptr<Packet> packet, const Address& dest, uint16_t protocolNumber)
 {
-  NS_LOG_FUNCTION (this << packet << dest << protocolNumber);
+    NS_LOG_FUNCTION(this << packet << dest << protocolNumber);
 
-  if (!m_linkUp)
+    if (!m_linkUp)
     {
-      NS_LOG_ERROR ("Link is down");
-      return false;
+        NS_LOG_ERROR("Link is down");
+        return false;
     }
 
-  // Übergabe an die MAC-Schicht
-  m_mac->Enqueue (packet, dest, protocolNumber);
-  return true;
+    // Übergabe an die MAC-Schicht
+    m_mac->Enqueue(packet, dest, protocolNumber);
+    return true;
 }
 
 bool
-Dect2020NetDevice::SendFrom (Ptr<Packet> packet, const Address& source, const Address& dest, uint16_t protocolNumber)
+Dect2020NetDevice::SendFrom(Ptr<Packet> packet,
+                            const Address& source,
+                            const Address& dest,
+                            uint16_t protocolNumber)
 {
-  NS_LOG_FUNCTION (this << packet << source << dest << protocolNumber);
+    NS_LOG_FUNCTION(this << packet << source << dest << protocolNumber);
 
-  if (!m_linkUp)
+    if (!m_linkUp)
     {
-      NS_LOG_ERROR ("Link is down");
-      return false;
+        NS_LOG_ERROR("Link is down");
+        return false;
     }
 
-  // Für die minimale Implementierung ignorieren wir die Quelladresse
-  return Send (packet, dest, protocolNumber);
+    // Für die minimale Implementierung ignorieren wir die Quelladresse
+    return Send(packet, dest, protocolNumber);
 }
 
 Ptr<Node>
-Dect2020NetDevice::GetNode (void) const
+Dect2020NetDevice::GetNode(void) const
 {
-  return m_node;
+    return m_node;
 }
 
 void
-Dect2020NetDevice::SetNode (Ptr<Node> node)
+Dect2020NetDevice::SetNode(Ptr<Node> node)
 {
-  m_node = node;
+    m_node = node;
 }
 
 bool
-Dect2020NetDevice::NeedsArp (void) const
+Dect2020NetDevice::NeedsArp(void) const
 {
-  return false;
+    return false;
 }
 
 void
-Dect2020NetDevice::SetReceiveCallback (NetDevice::ReceiveCallback cb)
+Dect2020NetDevice::SetReceiveCallback(NetDevice::ReceiveCallback cb)
 {
-  m_rxCallback = cb;
+    m_rxCallback = cb;
 }
 
 void
-Dect2020NetDevice::SetPromiscReceiveCallback (NetDevice::PromiscReceiveCallback cb)
+Dect2020NetDevice::SetPromiscReceiveCallback(NetDevice::PromiscReceiveCallback cb)
 {
-  m_promiscRxCallback = cb;
+    m_promiscRxCallback = cb;
 }
 
 bool
-Dect2020NetDevice::SupportsSendFrom (void) const
+Dect2020NetDevice::SupportsSendFrom(void) const
 {
-  return true;
+    return true;
 }
 
 void
-Dect2020NetDevice::SetMac (Ptr<Dect2020Mac> mac)
+Dect2020NetDevice::SetMac(Ptr<Dect2020Mac> mac)
 {
-  m_mac = mac;
-  m_mac->SetNetDevice (this);
+    m_mac = mac;
+    m_mac->SetNetDevice(this);
 }
 
 Ptr<Dect2020Mac>
-Dect2020NetDevice::GetMac (void) const
+Dect2020NetDevice::GetMac(void) const
 {
-  return m_mac;
+    return m_mac;
 }
 
 void
-Dect2020NetDevice::SetPhy (Ptr<Dect2020Phy> phy)
+Dect2020NetDevice::SetPhy(Ptr<Dect2020Phy> phy)
 {
-  m_phy = phy;
-  m_phy->SetNetDevice (this);
+    m_phy = phy;
+    m_phy->SetNetDevice(this);
 }
 
 Ptr<Dect2020Phy>
-Dect2020NetDevice::GetPhy (void) const
+Dect2020NetDevice::GetPhy(void) const
 {
-  return m_phy;
+    return m_phy;
 }
 
 void
-Dect2020NetDevice::Receive (Ptr<Packet> packet)
+Dect2020NetDevice::Receive(Ptr<Packet> packet)
 {
-  NS_LOG_FUNCTION (this << packet);
+    NS_LOG_FUNCTION(this << packet);
 
-  if (!m_rxCallback.IsNull ())
+    if (!m_rxCallback.IsNull())
     {
-      // Für die minimale Implementierung setzen wir die Protokollnummer auf 0
-      m_rxCallback (this, packet, 0, GetAddress ());
+        // Für die minimale Implementierung setzen wir die Protokollnummer auf 0
+        m_rxCallback(this, packet, 0, GetAddress());
     }
 }
 
 bool
-ReceivePacket(Ptr<NetDevice> device, Ptr<const Packet> packet, uint16_t protocol, const Address& sender)
+ReceivePacket(Ptr<NetDevice> device,
+              Ptr<const Packet> packet,
+              uint16_t protocol,
+              const Address& sender)
 {
-  NS_LOG_UNCOND("Gerät 2 hat ein Paket empfangen von " << Mac48Address::ConvertFrom(sender));
-  return true; // Paket wurde erfolgreich empfangen
+    NS_LOG_UNCOND("Gerät 2 hat ein Paket empfangen von " << Mac48Address::ConvertFrom(sender));
+    return true; // Paket wurde erfolgreich empfangen
 }
 
 void
-Dect2020NetDevice::SetLinkUp (void)
+Dect2020NetDevice::SetLinkUp(void)
 {
-  NS_LOG_FUNCTION (this);
-  if (!m_linkUp)
+    NS_LOG_FUNCTION(this);
+    if (!m_linkUp)
     {
-      m_linkUp = true;
-      m_linkChanges ();
+        m_linkUp = true;
+        m_linkChanges();
     }
 }
 
 void
-Dect2020NetDevice::SetLinkDown (void)
+Dect2020NetDevice::SetLinkDown(void)
 {
-  NS_LOG_FUNCTION (this);
-  if (m_linkUp)
+    NS_LOG_FUNCTION(this);
+    if (m_linkUp)
     {
-      m_linkUp = false;
-      m_linkChanges ();
+        m_linkUp = false;
+        m_linkChanges();
     }
 }
 

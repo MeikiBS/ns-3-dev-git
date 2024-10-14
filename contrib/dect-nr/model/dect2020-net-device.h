@@ -50,10 +50,6 @@ class Dect2020NetDevice : public NetDevice
     /**
      * \brief Gets the termination point type of the device.
      * \return The termination point type of the device (PT or FT)
-     * Note: In typical DECT implementations, the termination point type
-     * (PT or FT) would be dynamically determined by the device. However,
-     * for simplicity and initial testing purposes, the type is set manually
-     * during device creation in this simulation.
      */
     TerminationPointType GetTerminationPointType();
 

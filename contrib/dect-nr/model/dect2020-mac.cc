@@ -1,88 +1,182 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
 #include "dect2020-mac.h"
-#include "ns3/log.h"
-#include "ns3/simulator.h"
 
 #include "dect2020-net-device.h"
 #include "dect2020-phy.h"
 
-NS_LOG_COMPONENT_DEFINE ("Dect2020Mac");
+#include "ns3/log.h"
+#include "ns3/simulator.h"
 
-namespace ns3 {
+#include <iomanip> // Für std::setw und std::setfill
 
-NS_OBJECT_ENSURE_REGISTERED (Dect2020Mac);
+NS_LOG_COMPONENT_DEFINE("Dect2020Mac");
+
+namespace ns3
+{
+
+NS_OBJECT_ENSURE_REGISTERED(Dect2020Mac);
 
 TypeId
-Dect2020Mac::GetTypeId (void)
+Dect2020Mac::GetTypeId(void)
 {
-  static TypeId tid = TypeId ("ns3::Dect2020Mac")
-    .SetParent<Object> ()
-    .SetGroupName ("Dect2020")
-    .AddConstructor<Dect2020Mac> ()
-    // Hier können weitere Attribute und Trace-Quellen hinzugefügt werden
-  ;
-  return tid;
+    static TypeId tid = TypeId("ns3::Dect2020Mac")
+                            .SetParent<Object>()
+                            .SetGroupName("Dect2020")
+                            .AddConstructor<Dect2020Mac>()
+        // Hier können weitere Attribute und Trace-Quellen hinzugefügt werden
+        ;
+    return tid;
 }
 
-Dect2020Mac::Dect2020Mac ()
+Dect2020Mac::Dect2020Mac()
 {
-  NS_LOG_FUNCTION (this);
+    NS_LOG_FUNCTION(this);
 }
 
-Dect2020Mac::~Dect2020Mac ()
+Dect2020Mac::~Dect2020Mac()
 {
-  NS_LOG_FUNCTION (this);
-}
-
-void
-Dect2020Mac::SetNetDevice (Ptr<Dect2020NetDevice> device)
-{
-  NS_LOG_FUNCTION (this << device);
-  m_device = device;
-  m_address = Mac48Address::ConvertFrom (device->GetAddress ());
+    NS_LOG_FUNCTION(this);
 }
 
 void
-Dect2020Mac::SetPhy (Ptr<Dect2020Phy> phy)
+Dect2020Mac::SetNetDevice(Ptr<Dect2020NetDevice> device)
 {
-  NS_LOG_FUNCTION (this << phy);
-  m_phy = phy;
+    NS_LOG_FUNCTION(this << device);
+    m_device = device;
+    m_address = Mac48Address::ConvertFrom(device->GetAddress());
 }
 
 void
-Dect2020Mac::Enqueue (Ptr<Packet> packet, const Address& dest, uint16_t protocolNumber)
+Dect2020Mac::SetPhy(Ptr<Dect2020Phy> phy)
 {
-  NS_LOG_FUNCTION (this << packet << dest << protocolNumber);
-
-  // Hier können MAC-Header hinzugefügt werden
-  // Für die minimale Implementierung lassen wir den Header weg
-
-  // Senden des Pakets über die PHY-Schicht
-  m_phy->Send (packet);
-  
-  // Trace-Aufruf
-  m_txPacketTrace (packet);
+    NS_LOG_FUNCTION(this << phy);
+    m_phy = phy;
 }
 
 void
-Dect2020Mac::ReceiveFromPhy (Ptr<Packet> packet)
+Dect2020Mac::Enqueue(Ptr<Packet> packet, const Address& dest, uint16_t protocolNumber)
 {
-  NS_LOG_FUNCTION (this << packet);
+    NS_LOG_FUNCTION(this << packet << dest << protocolNumber);
 
-  // Hier können MAC-Header entfernt und überprüft werden
-  // Für die minimale Implementierung gehen wir davon aus, dass kein Header vorhanden ist
+    // Hier können MAC-Header hinzugefügt werden
+    // Für die minimale Implementierung lassen wir den Header weg
 
-  // Weiterleitung des Pakets an das NetDevice
-  m_device->Receive (packet);
+    // Senden des Pakets über die PHY-Schicht
+    m_phy->Send(packet);
 
-  // Trace-Aufruf
-  m_rxPacketTrace (packet);
+    // Trace-Aufruf
+    m_txPacketTrace(packet);
+}
+
+void
+Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
+{
+    NS_LOG_FUNCTION(this << packet);
+
+    // Hier können MAC-Header entfernt und überprüft werden
+    // Für die minimale Implementierung gehen wir davon aus, dass kein Header vorhanden ist
+
+    // Weiterleitung des Pakets an das NetDevice
+    m_device->Receive(packet);
+
+    // Trace-Aufruf
+    m_rxPacketTrace(packet);
 }
 
 Address
-Dect2020Mac::GetAddress (void) const
+Dect2020Mac::GetAddress(void) const
 {
-  return m_address;
+    return m_address;
+}
+
+void
+Dect2020Mac::Start()
+{
+    if (this->m_device->GetTerminationPointType() == Dect2020NetDevice::TerminationPointType::FT)
+    {
+        InitializeNetwork();
+    }
+    else if (this->m_device->GetTerminationPointType() ==
+             Dect2020NetDevice::TerminationPointType::PT)
+    {
+        // DEBUG: Network ID auf festen Wert setzen, später mit Beacon empfangen
+        m_networkId = 123456;
+        JoinNetwork(m_networkId);
+    }
+}
+
+void
+Dect2020Mac::InitializeNetwork()
+{
+    uint32_t networkId = GenerateValidNetworkId();
+    SetNetworkId(networkId);
+
+    NS_LOG_INFO("FT-Device started a new Network with the Network ID: " << std::hex << networkId);
+
+    StartBeaconTransmission();
+}
+
+void
+Dect2020Mac::JoinNetwork(uint32_t networkId)
+{
+    SetNetworkId(networkId);
+
+    NS_LOG_INFO("PT-Device joined a Network with the Network ID: " << std::hex << networkId);
+
+    // TODO: Unter welchen Umständen kann einem Network beigetreten/nicht beigetreten werden?
+}
+
+void
+Dect2020Mac::StartBeaconTransmission()
+{
+    // tbd
+}
+
+uint32_t
+Dect2020Mac::GenerateValidNetworkId()
+{
+    Ptr<UniformRandomVariable> randomVar = CreateObject<UniformRandomVariable>();
+    uint32_t networkId = 0;
+    uint8_t lsb;
+    uint32_t msb;
+    do
+    {
+        networkId = randomVar->GetValue(1, std::numeric_limits<uint32_t>::max());
+        lsb = networkId & 0xFF;
+        msb = (networkId >> 8) & 0xFFFFFF;
+    } while (lsb == 0x00 || msb == 0x000000);
+
+    // DEBUG: networkId auf festen Wert setzen. Später random erstellen und PT Device Beacon
+    // empfangen lassen
+    networkId = 123456;
+    return networkId;
+}
+
+void
+Dect2020Mac::SetNetworkId(uint32_t networkId)
+{
+    NS_LOG_FUNCTION(this << networkId);
+
+    // Check for valid Network Ids
+    uint8_t lsb = networkId & 0xFF;             // Short Network ID (last 8 Bit)
+    uint32_t msb = (networkId >> 8) & 0xFFFFFF; // First 24 Bit of the Network ID (globally unique)
+
+    if (lsb == 0x00 || msb == 0x000000)
+    {
+        NS_LOG_ERROR("Invalid Network ID: LSB and MSB have to be greater zero.");
+        return;
+    }
+
+    m_networkId = networkId;
+
+    NS_LOG_INFO("Network ID set: 0x" << std::hex << std::setw(8) << std::setfill('0')
+                                     << m_networkId);
+}
+
+uint32_t
+Dect2020Mac::GetNetworkId() const
+{
+    return m_networkId;
 }
 
 } // namespace ns3
