@@ -11,31 +11,17 @@ if(${ENABLE_EXAMPLES})
 endif()
 
 set(source_files
-    model/dect-channel.cc
-    model/dect-nr.cc
-    model/dect-phy.cc
-    model/dect-mac.cc
-    model/end-device-dect-nr-mac.cc
-    model/dect-net-device.cc
     model/dect2020-net-device.cc
     model/dect2020-mac.cc
     model/dect2020-phy.cc
-    model/dect2020-channel.cc
-    helper/dect-nr-helper.cc)
+    model/dect2020-channel.cc)
 
 set(header_files
-    model/dect-channel.h
-    model/dect-nr.h
-    model/dect-phy.h
-    model/dect-mac.h
-    model/end-device-dect-nr-mac.h
-    model/dect-net-device.h
     model/dect2020-net-device.h
     model/dect2020-mac.h
     model/dect2020-phy.h
     model/dect2020-channel.h
-    model/dect2020-module.h
-    helper/dect-nr-helper.h)
+    model/dect2020-module.h)
 
 build_lib(
     LIBNAME dect-nr
