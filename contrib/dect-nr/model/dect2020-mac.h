@@ -48,18 +48,18 @@ class Dect2020Mac : public Object
     Address GetAddress(void) const;
 
     /**
-     * Initializes a new Network
+     * Initialize a new Network
      */
     void InitializeNetwork();
     /**
      * Join a existing Network
      */
     /**
-     * Generates a valid Network ID.
+     * Generate a valid Network ID.
      */
     uint32_t GenerateValidNetworkId();
     /**
-     * Joins an existing Network.
+     * Join an existing Network.
      */
     void JoinNetwork(uint32_t networkId);
     /**
@@ -72,15 +72,37 @@ class Dect2020Mac : public Object
      */
     uint32_t GetNetworkId() const;
     /**
-     * Starts sending a beacon periodically.
+     * Start sending a beacon periodically.
      */
     void StartBeaconTransmission();
     /**
-     * Generates the Long Radio Device ID for the Radio Device as described in
+     * Generate the Long Radio Device ID as described in
      * ETSI TS 103 636-4 V 1.51 #4.2.3.2
      * \return 32 Bit Radio Device ID
      */
     uint32_t GenerateLongRadioDeviceId();
+    /**
+     * Set the Long Radio Device ID.
+     */
+    void SetLongRadioDeviceId(uint32_t rdId);
+    /**
+     * Get the Long Radio Device ID.
+     */
+    uint32_t GetLongRadioDeviceId() const;
+    /**
+     * Generate the Short Radio Device ID as described in
+     * ETSI TS 103 636-4 V 1.51 #4.2.3.3
+     * \return 16 Bit Radio Device ID
+     */
+    void GenerateShortRadioDeviceId();
+    /**
+     * Set the Short Radio Device ID.
+     */
+    void SetShortRadioDeviceId(uint16_t rdId);
+    /**
+     * Get the Short Radio Device ID.
+     */
+    uint16_t GetShortRadioDeviceId() const;
 
   private:
     // Membervariablen
@@ -95,8 +117,9 @@ class Dect2020Mac : public Object
     TracedCallback<Ptr<const Packet>> m_txPacketTrace;
     TracedCallback<Ptr<const Packet>> m_rxPacketTrace;
 
-    uint32_t m_networkId;         // ETSI TS 103 636-4 V 1.51 #4.2.3.1
-    uint32_t m_longRadioDeviceId; // ETSI TS 103 636-4 V 1.51 #4.2.3.2
+    uint32_t m_networkId;          // ETSI TS 103 636-4 V 1.51 #4.2.3.1
+    uint32_t m_longRadioDeviceId;  // ETSI TS 103 636-4 V 1.51 #4.2.3.2
+    uint16_t m_shortRadioDeviceId; // ETSI TS 103 636-4 V 1.51 #4.2.3.3
 };
 
 } // namespace ns3

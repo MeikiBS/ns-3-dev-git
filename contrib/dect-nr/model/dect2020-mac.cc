@@ -123,6 +123,8 @@ Dect2020Mac::JoinNetwork(uint32_t networkId)
 
     NS_LOG_INFO("PT-Device joined a Network with the Network ID: " << std::hex << networkId);
 
+    SetLongRadioDeviceId(GenerateLongRadioDeviceId());
+    SetShortRadioDeviceId(GenerateShortRadioDeviceId());
     // TODO: Unter welchen Umständen kann einem Network beigetreten/nicht beigetreten werden?
 }
 
@@ -190,7 +192,67 @@ Dect2020Mac::GenerateLongRadioDeviceId()
         rdId = randomVar->GetValue(1, 0xFFFFFFFD); // Range 0x00000001 bis 0xFFFFFFFD
     } while (rdId == 0x00000000 || rdId == 0xFFFFFFFE || rdId == 0xFFFFFFFF);
 
+    NS_LOG_DEBUG("Long Radio Device ID " << rdId << "generated.");
+
     return rdId;
+}
+
+void
+Dect2020Mac::SetLongRadioDeviceId(uint32_t rdId)
+{
+    if (!(rdId == 0x00000000))
+    {
+        m_longRadioDeviceId = rdId;
+    }
+    else
+    {
+        NS_LOG_WARN("Invalid Long Radio Device ID detected. Generate a new one.");
+
+        SetLongRadioDeviceId(GenerateLongRadioDeviceId());
+    }
+}
+
+uint32_t
+Dect2020Mac::GetLongRadioDeviceId()
+{
+    return m_longRadioDeviceId;
+}
+
+uint16_t
+Dect2020Mac::GenerateShortRadioDeviceId()
+{
+    Ptr<UniformRandomVariable> randomVar = CreateObject<UniformRandomVariable>();
+    uint16_t rdId = 0;
+
+    do
+    {
+        rdId = randomVar->GetValue(1, 0xFFFE); // Range 0x0001 bis 0xFFFE
+    } while (rdId == 0x0000 || rdId == 0xFFFF);
+
+    NS_LOG_DEBUG("Short Radio Device ID " << rdId << "generated.");
+
+    return rdId;
+}
+
+void
+Dect2020Mac::SetShortRadioDeviceId(uint16_t rdId)
+{
+    if (!(rdId == 0x0000))
+    {
+        m_shortRadioDeviceId = rdId;
+    }
+    else
+    {
+        NS_LOG_WARN("Invalid Short Radio Device ID detected. Generate a new one.");
+
+        SetShortRadioDeviceId(GenerateShortRadioDeviceId());
+    }
+}
+
+uint16_t
+Dect2020Mac::GetShortRadioDeviceId()
+{
+    return m_shortRadioDeviceId;
 }
 
 } // namespace ns3
