@@ -31,6 +31,7 @@ Dect2020Mac::GetTypeId(void)
 Dect2020Mac::Dect2020Mac()
 {
     NS_LOG_FUNCTION(this);
+    InitializeDevice(); // Initialize the Device
 }
 
 Dect2020Mac::~Dect2020Mac()
@@ -111,7 +112,8 @@ Dect2020Mac::InitializeNetwork()
     uint32_t networkId = GenerateValidNetworkId();
     SetNetworkId(networkId);
 
-    NS_LOG_INFO("FT-Device started a new Network with the Network ID: " << std::hex << networkId);
+    NS_LOG_INFO("FT-Device " << this << " started a new Network with the Network ID: " << std::hex
+                             << networkId);
 
     StartBeaconTransmission();
 }
@@ -123,7 +125,6 @@ Dect2020Mac::JoinNetwork(uint32_t networkId)
 
     NS_LOG_INFO("PT-Device joined a Network with the Network ID: " << std::hex << networkId);
 
-    SetLongRadioDeviceId(GenerateLongRadioDeviceId());
     SetShortRadioDeviceId(GenerateShortRadioDeviceId());
     // TODO: Unter welchen Umständen kann einem Network beigetreten/nicht beigetreten werden?
 }
@@ -171,8 +172,8 @@ Dect2020Mac::SetNetworkId(uint32_t networkId)
 
     m_networkId = networkId;
 
-    NS_LOG_INFO("Network ID set: 0x" << std::hex << std::setw(8) << std::setfill('0')
-                                     << m_networkId);
+    NS_LOG_DEBUG("Network ID set: 0x" << std::hex << std::setw(8) << std::setfill('0')
+                                      << m_networkId << " on Device " << this);
 }
 
 uint32_t
@@ -192,8 +193,8 @@ Dect2020Mac::GenerateLongRadioDeviceId()
         rdId = randomVar->GetValue(1, 0xFFFFFFFD); // Range 0x00000001 bis 0xFFFFFFFD
     } while (rdId == 0x00000000 || rdId == 0xFFFFFFFE || rdId == 0xFFFFFFFF);
 
-    NS_LOG_DEBUG("Long Radio Device ID " << rdId << "generated.");
-
+    NS_LOG_INFO("Generated Long Radio Device ID: 0x" << std::hex << std::setw(8)
+                                                     << std::setfill('0') << rdId);
     return rdId;
 }
 
@@ -203,6 +204,9 @@ Dect2020Mac::SetLongRadioDeviceId(uint32_t rdId)
     if (!(rdId == 0x00000000))
     {
         m_longRadioDeviceId = rdId;
+
+        NS_LOG_INFO("Set Long Radio Device ID: 0x" << std::hex << std::setw(8) << std::setfill('0')
+                                                   << rdId << " on Device " << this);
     }
     else
     {
@@ -213,7 +217,7 @@ Dect2020Mac::SetLongRadioDeviceId(uint32_t rdId)
 }
 
 uint32_t
-Dect2020Mac::GetLongRadioDeviceId()
+Dect2020Mac::GetLongRadioDeviceId() const
 {
     return m_longRadioDeviceId;
 }
@@ -250,9 +254,14 @@ Dect2020Mac::SetShortRadioDeviceId(uint16_t rdId)
 }
 
 uint16_t
-Dect2020Mac::GetShortRadioDeviceId()
+Dect2020Mac::GetShortRadioDeviceId() const
 {
     return m_shortRadioDeviceId;
 }
 
+void
+Dect2020Mac::InitializeDevice()
+{
+    SetLongRadioDeviceId(GenerateLongRadioDeviceId());
+}
 } // namespace ns3

@@ -1,5 +1,6 @@
 #include "ns3/applications-module.h"
 #include "ns3/core-module.h"
+#include "ns3/dect2020-beacon-header.h"
 #include "ns3/dect2020-module.h"
 #include "ns3/internet-module.h"
 #include "ns3/network-module.h"
@@ -9,6 +10,52 @@ using Dect2020NetDevice::TerminationPointType::FT;
 using Dect2020NetDevice::TerminationPointType::PT;
 
 NS_LOG_COMPONENT_DEFINE("Dect2020Simulation");
+
+void
+TestBeaconHeader()
+{
+    // Originalwerte
+    uint32_t originalNetworkId = 0x123456;       // Beispielwert
+    uint32_t originalTransmitterId = 0xABCDEF01; // Beispielwert
+
+    // Erstellen und Setzen des Headers
+    Dect2020BeaconHeader header;
+    header.SetNetworkId(originalNetworkId);
+    header.SetTransmitterAddress(originalTransmitterId);
+
+    // Serialisieren
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(header);
+
+    // Deserialisieren
+    Dect2020BeaconHeader deserializedHeader;
+    packet->RemoveHeader(deserializedHeader);
+
+    // Überprüfen der Werte
+    uint32_t deserializedNetworkId = deserializedHeader.GetNetworkId();
+    uint32_t deserializedTransmitterId = deserializedHeader.GetTransmitterAddress();
+
+    NS_LOG_INFO("originalNetworkId: " << originalNetworkId);
+    NS_LOG_INFO("deserializedNetworkId: " << deserializedNetworkId);
+
+    if (originalNetworkId == deserializedNetworkId)
+    {
+        NS_LOG_INFO("true");
+    }
+    else
+    {
+        NS_LOG_INFO("false");
+    }
+
+    if (originalTransmitterId == deserializedTransmitterId)
+    {
+        NS_LOG_INFO("true");
+    }
+    else
+    {
+        NS_LOG_INFO("false");
+    }
+}
 
 // Empfangsfunktion definieren
 bool
@@ -114,5 +161,8 @@ main(int argc, char* argv[])
     // Simulation ausführen
     Simulator::Run();
     Simulator::Destroy();
+
+    TestBeaconHeader();
+
     return 0;
 }

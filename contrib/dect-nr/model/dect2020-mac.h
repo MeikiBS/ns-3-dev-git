@@ -94,7 +94,7 @@ class Dect2020Mac : public Object
      * ETSI TS 103 636-4 V 1.51 #4.2.3.3
      * \return 16 Bit Radio Device ID
      */
-    void GenerateShortRadioDeviceId();
+    uint16_t GenerateShortRadioDeviceId();
     /**
      * Set the Short Radio Device ID.
      */
@@ -103,6 +103,10 @@ class Dect2020Mac : public Object
      * Get the Short Radio Device ID.
      */
     uint16_t GetShortRadioDeviceId() const;
+    /*
+     * Initialize the MAC-Layer of the Device
+     */
+    void InitializeDevice();
 
   private:
     // Membervariablen
