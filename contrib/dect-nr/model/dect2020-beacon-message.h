@@ -33,7 +33,7 @@ class Dect2020BeaconMessage : public Header
     void SetNetworkBeaconPeriod(uint8_t networkBeaconPeriod);
     uint8_t GetNetworkBeaconPeriod() const;
 
-    void SetClusterBeaconperiod(uint8_t clusterBeaconPeriod);
+    void SetClusterBeaconPeriod(uint8_t clusterBeaconPeriod);
     uint8_t GetClusterBeaconPeriod() const;
 
     void SetNextClusterChannel(uint16_t nextClusterChannel);
@@ -69,7 +69,7 @@ class Dect2020BeaconMessage : public Header
     uint16_t m_nextClusterChannel;
     uint32_t m_timeToNext;
     uint8_t m_clustersMaxTxPower;
-    uint16_t m_currenClusterChannel;
+    uint16_t m_currentClusterChannel;
     uint16_t m_additionalNetworkBeaconChannels;
 }
 
