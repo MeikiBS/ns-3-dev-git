@@ -254,13 +254,47 @@ Dect2020BeaconMessage::Serialize(Buffer::Iterator start) const
     // Byte 4-7
     start.WriteHtonU32(m_timeToNext);
 
-    // Byte 8
-    uint8_t byte8 = 0;
+    if (m_txPowerIncluded)
+    {
+        // Byte 8
+        uint8_t byte8 = 0;
+        // Bit 0-3 Reserved
+        byte8 |= (m_clustersMaxTxPower & 0x0F); // Bit 4-7
 
-    // TODO: rest tbd nach Rücksprache mit Fr. Pérez
-    start.WriteU8(byte8);
-    uint32_t temp = 0;
-    start.WriteHtonU32(temp);
+        start.WriteU8(byte8);
+    }
+
+    if (m_currentClusterChannelIncluded)
+    {
+        // Byte 9
+        uint8_t byte9 = 0;
+        // Bit 0-2 Reserved
+        byte9 |= (m_currentClusterChannel >> 8) & 0x1F; // Bit 3-7
+
+        start.WriteU8(byte9);
+
+        // Byte 10
+        uint8_t byte10 = 0;
+        byte10 |= (m_currentClusterChannel & 0xFF); // Bit 0-7
+
+        start.WriteU8(byte10);
+    }
+
+    if (m_networkBeaconChannels > 0)
+    {
+        // Byte 11
+        uint8_t byte11 = 0;
+        // Bit 0-2 Reserved
+        byte11 |= (m_additionalNetworkBeaconChannels >> 8) & 0x1F; // Bit 3-7
+
+        start.WriteU8(byte11);
+
+        // Byte 12
+        uint8_t byte12 = 0;
+
+        byte12 |= (m_additionalNetworkBeaconChannels & 0xFF); // Bit 0-7
+        start.WriteU8(byte11);
+    }
 }
 
 uint32_t
