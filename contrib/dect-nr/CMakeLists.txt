@@ -15,7 +15,8 @@ set(source_files
     model/dect2020-mac.cc
     model/dect2020-phy.cc
     model/dect2020-channel.cc
-    model/dect2020-beacon-header.cc)
+    model/dect2020-beacon-header.cc
+    model/dect2020-beacon-message.cc)
 
 set(header_files
     model/dect2020-net-device.h
@@ -23,7 +24,8 @@ set(header_files
     model/dect2020-phy.h
     model/dect2020-channel.h
     model/dect2020-module.h
-    model/dect2020-beacon-header.h)
+    model/dect2020-beacon-header.h
+    model/dect2020-beacon-message.h)
 
 build_lib(
     LIBNAME dect-nr

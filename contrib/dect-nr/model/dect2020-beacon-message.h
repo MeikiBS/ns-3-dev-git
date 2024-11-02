@@ -6,8 +6,6 @@
 
 #include <vector>
 
-NS_LOG_COMPONENT_DEFINE("Dect2020BeaconMessage");
-
 namespace ns3
 {
 
@@ -48,11 +46,12 @@ class Dect2020BeaconMessage : public Header
     void SetCurrentClusterChannel(uint16_t currentClusterChannel);
     uint16_t GetCurrentClusterChannel() const;
 
-    void SetAdditionalNetworkBeaconChannels(uint16_t additionalNetworkBeaconChannels);
-    uint16_t GetAdditionalNetworkBeaconChannels() const;
+    void SetAdditionalNetworkBeaconChannels(uint16_t additionalNetworkBeaconChannels[3]);
+    uint16_t* GetAdditionalNetworkBeaconChannels();
 
     // Überladene Methoden vom Header
     static TypeId GetTypeId();
+    virtual TypeId GetInstanceTypeId() const override;
     virtual uint32_t GetSerializedSize() const;
     virtual void Serialize(Buffer::Iterator start) const;
     virtual uint32_t Deserialize(Buffer::Iterator start);
@@ -70,8 +69,8 @@ class Dect2020BeaconMessage : public Header
     uint32_t m_timeToNext;
     uint8_t m_clustersMaxTxPower;
     uint16_t m_currentClusterChannel;
-    uint16_t m_additionalNetworkBeaconChannels;
-}
+    uint16_t m_additionalNetworkBeaconChannels[3]{};
+};
 
 } // namespace ns3
 

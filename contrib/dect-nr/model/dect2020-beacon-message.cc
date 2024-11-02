@@ -4,11 +4,14 @@
 
 #include "ns3/log.h"
 
+#include <algorithm> // für std::copy
+#include <cstdint>
+
 namespace ns3
 {
 
-NS_LOG_COMPONENT_DEFINE("Dect2020BeaconHeader");
-NS_OBJECT_ENSURE_REGISTERED(Dect2020BeaconHeader);
+NS_LOG_COMPONENT_DEFINE("Dect2020BeaconMessage");
+NS_OBJECT_ENSURE_REGISTERED(Dect2020BeaconMessage);
 
 TypeId
 Dect2020BeaconMessage::GetTypeId(void)
@@ -18,6 +21,12 @@ Dect2020BeaconMessage::GetTypeId(void)
                             .SetGroupName("Dect2020")
                             .AddConstructor<Dect2020BeaconMessage>();
     return tid;
+}
+
+TypeId
+Dect2020BeaconMessage::GetInstanceTypeId() const
+{
+    return GetTypeId();
 }
 
 Dect2020BeaconMessage::Dect2020BeaconMessage()
@@ -45,7 +54,7 @@ Dect2020BeaconMessage::SetTxPowerIncluded(bool txPowerIncluded)
     m_txPowerIncluded = txPowerIncluded;
 }
 
-void
+bool
 Dect2020BeaconMessage::GetTxPowerIncluded() const
 {
     return m_txPowerIncluded;
@@ -75,9 +84,22 @@ Dect2020BeaconMessage::GetCurrentClusterChannelIncluded() const
     return m_currentClusterChannelIncluded;
 }
 
+/**
+ * Set the number of additional Network Channels
+ *
+ * @param value Value between 0 and 3
+ * @throws std::invalid_argument if the value is outside the valid range.
+ */
 void
 Dect2020BeaconMessage::SetNetworkBeaconChannels(uint8_t networkBeaconChannels)
 {
+    if ((networkBeaconChannels < 0) || (networkBeaconChannels > 3))
+    {
+        throw std::invalid_argument("Error in " + std::string(__func__) + " at " +
+                                    std::string(__FILE__) + ":" + std::to_string(__LINE__) +
+                                    " - Network Beacon Channels must be between 0 and 3");
+    }
+
     m_networkBeaconChannels = networkBeaconChannels;
 }
 
@@ -87,9 +109,22 @@ Dect2020BeaconMessage::GetNetworkBeaconChannels() const
     return m_networkBeaconChannels;
 }
 
+/**
+ * Set the Network Beacon Period
+ *
+ * @param value Value between 0 and 15
+ * @throws std::invalid_argument if the value is outside the valid range.
+ */
 void
 Dect2020BeaconMessage::SetNetworkBeaconPeriod(uint8_t networkBeaconPeriod)
 {
+    if ((networkBeaconPeriod < 0) || (networkBeaconPeriod > 15))
+    {
+        throw std::invalid_argument("Error in " + std::string(__func__) + " at " +
+                                    std::string(__FILE__) + ":" + std::to_string(__LINE__) +
+                                    " - Network Beacon Period must be between 0 and 15");
+    }
+
     m_networkBeaconPeriod = networkBeaconPeriod;
 }
 
@@ -99,9 +134,22 @@ Dect2020BeaconMessage::GetNetworkBeaconPeriod() const
     return m_networkBeaconPeriod;
 }
 
+/**
+ * Set the Cluster Beacon Period
+ *
+ * @param value Value between 0 and 15
+ * @throws std::invalid_argument if the value is outside the valid range.
+ */
 void
 Dect2020BeaconMessage::SetClusterBeaconPeriod(uint8_t clusterBeaconPeriod)
 {
+    if ((clusterBeaconPeriod < 0) || (clusterBeaconPeriod > 15))
+    {
+        throw std::invalid_argument("Error in " + std::string(__func__) + " at " +
+                                    std::string(__FILE__) + ":" + std::to_string(__LINE__) +
+                                    " - Cluster Beacon Period must be between 0 and 15");
+    }
+
     m_clusterBeaconPeriod = clusterBeaconPeriod;
 }
 
@@ -111,9 +159,22 @@ Dect2020BeaconMessage::GetClusterBeaconPeriod() const
     return m_clusterBeaconPeriod;
 }
 
+/**
+ * Set the Next Cluster Channel
+ *
+ * @param value Value between 0 and 65535
+ * @throws std::invalid_argument if the value is outside the valid range.
+ */
 void
 Dect2020BeaconMessage::SetNextClusterChannel(uint16_t nextClusterChannel)
 {
+    if ((nextClusterChannel < 0) || (nextClusterChannel > 65535))
+    {
+        throw std::invalid_argument("Error in " + std::string(__func__) + " at " +
+                                    std::string(__FILE__) + ":" + std::to_string(__LINE__) +
+                                    " - Next Cluster Channel must be between 0 and 65535");
+    }
+
     m_nextClusterChannel = nextClusterChannel;
 }
 
@@ -123,9 +184,22 @@ Dect2020BeaconMessage::GetNextClusterChannel() const
     return m_nextClusterChannel;
 }
 
+/**
+ * Set the Time To Next
+ *
+ * @param value Value between 0 and 2^32-1
+ * @throws std::invalid_argument if the value is outside the valid range.
+ */
 void
 Dect2020BeaconMessage::SetTimeToNext(uint32_t timeToNext)
 {
+    if ((timeToNext < 0) || (timeToNext > UINT32_MAX))
+    {
+        throw std::invalid_argument("Error in " + std::string(__func__) + " at " +
+                                    std::string(__FILE__) + ":" + std::to_string(__LINE__) +
+                                    " - Time To Next must be between 0 and 2^32-1");
+    }
+
     m_timeToNext = timeToNext;
 }
 
@@ -160,13 +234,16 @@ Dect2020BeaconMessage::GetCurrentClusterChannel() const
 }
 
 void
-Dect2020BeaconMessage::SetAdditionalNetworkBeaconChannels(uint16_t additionalNetworkBeaconChannels)
+Dect2020BeaconMessage::SetAdditionalNetworkBeaconChannels(uint16_t* additionalNetworkBeaconChannels)
 {
-    m_additionalNetworkBeaconChannels = additionalNetworkBeaconChannels;
+    std::copy(additionalNetworkBeaconChannels,
+              additionalNetworkBeaconChannels + 3,
+              m_additionalNetworkBeaconChannels);
+    // m_additionalNetworkBeaconChannels = additionalNetworkBeaconChannels;
 }
 
-uint16_t
-Dect2020BeaconMessage::GetAdditionalNetworkBeaconChannels() const
+uint16_t*
+Dect2020BeaconMessage::GetAdditionalNetworkBeaconChannels()
 {
     return m_additionalNetworkBeaconChannels;
 }
@@ -181,13 +258,13 @@ Dect2020BeaconMessage::GetSerializedSize() const
     if (m_txPowerIncluded == 1)
     {
         sizeInBits += 4; // Reserved
-        sizeInBits += 8; // Clusters Max TX Power Field
+        sizeInBits += 4; // Clusters Max TX Power Field
     }
 
     if (m_currentClusterChannelIncluded == 1)
     {
         sizeInBits += 3;  // Reserved
-        sizeInBits += 16; // Current Cluster Channel Field
+        sizeInBits += 13; // Current Cluster Channel Field
     }
 
     if (m_networkBeaconChannels > 0)
@@ -205,16 +282,18 @@ Dect2020BeaconMessage::GetSerializedSize() const
 void
 Dect2020BeaconMessage::Print(std::ostream& os) const
 {
-    os << "TX power = " << (bool)m_txPowerIncluded << "Power const = " << (bool)m_powerConstraints
-       << "Current cluster channel = " << (bool)m_currentClusterChannelIncluded
-       << "Network Beacon channels = " << (uint8_t)m_networkBeaconChannels
-       << "Network Beacon period = " << (uint8_t)m_networkBeaconPeriod
-       << "Cluster Beacon period = " << (uint8_t)m_clusterBeaconPeriod
-       << "Next Cluster Channel = " << (uint16_t)m_nextClusterChannel
-       << "Time to Next = " << (uint32_t)m_timeToNext
-       << "Clusters Max TX Power = " << (uint8_t)m_clustersMaxTxPower << "Current cluster channel "
-       << (uint16_t)m_currentClusterChannel << "Additional Network Beacon Channels "
-       << (uint16_t)m_additionalNetworkBeaconChannels;
+    os << "TX power = " << (bool)m_txPowerIncluded << std::endl
+       << "Power const = " << (bool)m_powerConstraints << std::endl
+       << "Current cluster channel = " << (bool)m_currentClusterChannelIncluded << std::endl
+       << "Network Beacon channels = " << static_cast<int>(m_networkBeaconChannels) << std::endl
+       << "Network Beacon period = " << static_cast<int>(m_networkBeaconPeriod) << std::endl
+       << "Cluster Beacon period = " << static_cast<int>(m_clusterBeaconPeriod) << std::endl
+       << "Next Cluster Channel = " << static_cast<int>(m_nextClusterChannel) << std::endl
+       << "Time to Next = " << static_cast<int>(m_timeToNext) << std::endl
+       << "Clusters Max TX Power = " << static_cast<int>(m_clustersMaxTxPower) << std::endl
+       << "Current cluster channel " << static_cast<int>(m_currentClusterChannel) << std::endl
+       << "Additional Network Beacon Channels " << (uint16_t*)m_additionalNetworkBeaconChannels
+       << std::endl;
 }
 
 void
@@ -282,24 +361,100 @@ Dect2020BeaconMessage::Serialize(Buffer::Iterator start) const
 
     if (m_networkBeaconChannels > 0)
     {
-        // Byte 11
-        uint8_t byte11 = 0;
-        // Bit 0-2 Reserved
-        byte11 |= (m_additionalNetworkBeaconChannels >> 8) & 0x1F; // Bit 3-7
-
-        start.WriteU8(byte11);
-
-        // Byte 12
-        uint8_t byte12 = 0;
-
-        byte12 |= (m_additionalNetworkBeaconChannels & 0xFF); // Bit 0-7
-        start.WriteU8(byte11);
+        for (int idx = 0; idx < m_networkBeaconChannels; idx++)
+        {
+            start.WriteU16(m_additionalNetworkBeaconChannels[idx] & 0x1FFF);
+        }
     }
 }
 
 uint32_t
 Dect2020BeaconMessage::Deserialize(Buffer::Iterator start)
 {
+    // See ETSI Doc. 103 636-4 Figure 6.4.2.2-1 for more Information
+
+    uint32_t bytesRead = 0;
+
+    // Byte 0
+    uint8_t byte0 = 0;
+
+    byte0 = start.ReadU8();
+    bytesRead++;
+
+    // Bits 0-2: Reserved
+    m_txPowerIncluded = (byte0 & (1 << 4)) != 0;               // Bit 3
+    m_powerConstraints = (byte0 & (1 << 3)) != 0;              // Bit 4
+    m_currentClusterChannelIncluded = (byte0 & (1 << 2)) != 0; // Bit 5
+    m_networkBeaconChannels = byte0 & 0x03;                    // Bit 5-6
+
+    // Byte 1
+    uint8_t byte1 = 0;
+    byte1 = start.ReadU8();
+    bytesRead++;
+
+    m_networkBeaconPeriod = (byte1 >> 4) & 0x0F; // Bit 0-3
+    m_clusterBeaconPeriod = byte1 & 0x0F;        // Bit 4-7
+
+    // Byte 2
+    uint8_t byte2 = 0;
+    byte2 = start.ReadU8();
+    bytesRead++;
+
+    // Bit 0-2: Reserved
+    // Bit 3-7: Next Cluster Channel
+    uint16_t nextClusterChannelHigh = (byte2 & 0x1F) << 8;
+
+    // Byte 3
+    uint8_t byte3 = 0;
+    byte3 = start.ReadU8();
+    bytesRead++;
+
+    uint16_t nextClusterChannelLow = byte3;
+    m_nextClusterChannel = nextClusterChannelHigh | nextClusterChannelLow;
+
+    // Byte 4-7: Time To next
+    m_timeToNext = start.ReadNtohU32();
+    bytesRead += 4;
+
+    // Optional Fields
+    if (m_txPowerIncluded)
+    {
+        // Byte 8
+        uint8_t byte8 = 0;
+        byte8 = start.ReadU8();
+        bytesRead++;
+
+        // Bit 0-3: Reserved
+        m_clustersMaxTxPower = byte8 & 0x0F;
+    }
+
+    if (m_currentClusterChannelIncluded)
+    {
+        // Byte 9
+        uint8_t byte9 = 0;
+        byte9 = start.ReadU8();
+        bytesRead++;
+
+        uint16_t currentClusterChannelHigh = (byte9 & 0x1F) << 8;
+
+        // Byte 10
+        uint8_t byte10 = 0;
+        byte10 = start.ReadU8();
+        bytesRead++;
+
+        m_currentClusterChannel = currentClusterChannelHigh | byte10;
+    }
+
+    if (m_networkBeaconChannels > 0)
+    {
+        for (int idx = 0; idx < m_networkBeaconChannels; idx++)
+        {
+            m_additionalNetworkBeaconChannels[idx] = start.ReadU16() & 0x1FFF;
+            bytesRead += 2;
+        }
+    }
+
+    return bytesRead;
 }
 
 } // namespace ns3

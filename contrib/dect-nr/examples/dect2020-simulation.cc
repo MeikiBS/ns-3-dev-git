@@ -1,6 +1,7 @@
 #include "ns3/applications-module.h"
 #include "ns3/core-module.h"
 #include "ns3/dect2020-beacon-header.h"
+#include "ns3/dect2020-beacon-message.h"
 #include "ns3/dect2020-module.h"
 #include "ns3/internet-module.h"
 #include "ns3/network-module.h"
@@ -10,6 +11,31 @@ using Dect2020NetDevice::TerminationPointType::FT;
 using Dect2020NetDevice::TerminationPointType::PT;
 
 NS_LOG_COMPONENT_DEFINE("Dect2020Simulation");
+
+void
+TestBeaconMessage()
+{
+    Dect2020BeaconMessage originalMessage;
+
+    originalMessage.SetTxPowerIncluded(0);
+    originalMessage.SetPowerConstraints(1);
+    originalMessage.SetCurrentClusterChannelIncluded(0);
+    originalMessage.SetNetworkBeaconChannels(4);
+    originalMessage.SetNetworkBeaconPeriod(16);
+    originalMessage.SetClusterBeaconPeriod(15);
+    originalMessage.SetNextClusterChannel(12345);
+    originalMessage.SetTimeToNext(9999);
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(originalMessage);
+
+    Dect2020BeaconMessage receivedMessage;
+    packet->RemoveHeader(receivedMessage);
+
+    originalMessage.Print(std::cout);
+    std::cout << std::endl << std::endl;
+    receivedMessage.Print(std::cout);
+}
 
 void
 TestBeaconHeader()
@@ -162,7 +188,8 @@ main(int argc, char* argv[])
     Simulator::Run();
     Simulator::Destroy();
 
-    TestBeaconHeader();
+    // TestBeaconHeader();
+    TestBeaconMessage();
 
     return 0;
 }
