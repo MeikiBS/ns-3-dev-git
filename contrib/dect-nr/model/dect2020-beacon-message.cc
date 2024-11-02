@@ -162,17 +162,17 @@ Dect2020BeaconMessage::GetClusterBeaconPeriod() const
 /**
  * Set the Next Cluster Channel
  *
- * @param value Value between 0 and 65535
+ * @param value Value between 0 and 8191 (2^13-1)
  * @throws std::invalid_argument if the value is outside the valid range.
  */
 void
 Dect2020BeaconMessage::SetNextClusterChannel(uint16_t nextClusterChannel)
 {
-    if ((nextClusterChannel < 0) || (nextClusterChannel > 65535))
+    if ((nextClusterChannel < 0) || (nextClusterChannel > 8191))
     {
         throw std::invalid_argument("Error in " + std::string(__func__) + " at " +
                                     std::string(__FILE__) + ":" + std::to_string(__LINE__) +
-                                    " - Next Cluster Channel must be between 0 and 65535");
+                                    " - Next Cluster Channel must be between 0 and 8191");
     }
 
     m_nextClusterChannel = nextClusterChannel;
@@ -291,9 +291,12 @@ Dect2020BeaconMessage::Print(std::ostream& os) const
        << "Next Cluster Channel = " << static_cast<int>(m_nextClusterChannel) << std::endl
        << "Time to Next = " << static_cast<int>(m_timeToNext) << std::endl
        << "Clusters Max TX Power = " << static_cast<int>(m_clustersMaxTxPower) << std::endl
-       << "Current cluster channel " << static_cast<int>(m_currentClusterChannel) << std::endl
-       << "Additional Network Beacon Channels " << (uint16_t*)m_additionalNetworkBeaconChannels
-       << std::endl;
+       << "Current cluster channel " << static_cast<int>(m_currentClusterChannel) << std::endl;
+
+    for (uint16_t channel : m_additionalNetworkBeaconChannels)
+    {
+        os << "Additional Network Beacon Channel: " << static_cast<int>(channel) << std::endl;
+    }
 }
 
 void
@@ -320,13 +323,13 @@ Dect2020BeaconMessage::Serialize(Buffer::Iterator start) const
 
     // Byte 2
     uint8_t byte2 = 0;
-    byte1 |= (m_nextClusterChannel & 0x1F); // Bit 3-7
+    byte2 |= (m_nextClusterChannel >> 8) & 0x1F; // Bit 3-7
 
     start.WriteU8(byte2);
 
     // Byte 3
     uint8_t byte3 = 0;
-    byte3 = m_nextClusterChannel; // Bit 0-7
+    byte3 = m_nextClusterChannel & 0xFF; // Bit 0-7
 
     start.WriteU8(byte3);
 

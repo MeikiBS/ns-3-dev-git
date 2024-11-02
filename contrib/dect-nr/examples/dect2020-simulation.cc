@@ -20,10 +20,10 @@ TestBeaconMessage()
     originalMessage.SetTxPowerIncluded(0);
     originalMessage.SetPowerConstraints(1);
     originalMessage.SetCurrentClusterChannelIncluded(0);
-    originalMessage.SetNetworkBeaconChannels(4);
-    originalMessage.SetNetworkBeaconPeriod(16);
+    originalMessage.SetNetworkBeaconChannels(3);
+    originalMessage.SetNetworkBeaconPeriod(15);
     originalMessage.SetClusterBeaconPeriod(15);
-    originalMessage.SetNextClusterChannel(12345);
+    originalMessage.SetNextClusterChannel(8191);
     originalMessage.SetTimeToNext(9999);
 
     Ptr<Packet> packet = Create<Packet>();
