@@ -34,8 +34,8 @@ Dect2020BeaconMessage::Dect2020BeaconMessage()
       m_powerConstraints(false),
       m_currentClusterChannelIncluded(false),
       m_networkBeaconChannels(0),
-      m_networkBeaconPeriod(0),
-      m_clusterBeaconPeriod(0),
+      m_networkBeaconPeriod(NETWORK_PERIOD_100MS),
+      m_clusterBeaconPeriod(CLUSTER_PERIOD_10MS),
       m_nextClusterChannel(0),
       m_timeToNext(0),
       m_clustersMaxTxPower(0),
@@ -112,23 +112,23 @@ Dect2020BeaconMessage::GetNetworkBeaconChannels() const
 /**
  * Set the Network Beacon Period
  *
- * @param value Value between 0 and 15
+ * @param value Value between 0 and 2^4-1
  * @throws std::invalid_argument if the value is outside the valid range.
  */
 void
-Dect2020BeaconMessage::SetNetworkBeaconPeriod(uint8_t networkBeaconPeriod)
+Dect2020BeaconMessage::SetNetworkBeaconPeriod(NetworkBeaconPeriod networkBeaconPeriod)
 {
     if ((networkBeaconPeriod < 0) || (networkBeaconPeriod > 15))
     {
         throw std::invalid_argument("Error in " + std::string(__func__) + " at " +
                                     std::string(__FILE__) + ":" + std::to_string(__LINE__) +
-                                    " - Network Beacon Period must be between 0 and 15");
+                                    " - Network Beacon Period must be between 0 and 2^4-1");
     }
 
     m_networkBeaconPeriod = networkBeaconPeriod;
 }
 
-uint8_t
+ns3::Dect2020BeaconMessage::NetworkBeaconPeriod
 Dect2020BeaconMessage::GetNetworkBeaconPeriod() const
 {
     return m_networkBeaconPeriod;
@@ -137,23 +137,23 @@ Dect2020BeaconMessage::GetNetworkBeaconPeriod() const
 /**
  * Set the Cluster Beacon Period
  *
- * @param value Value between 0 and 15
+ * @param value Value between 0 and 2^4-1
  * @throws std::invalid_argument if the value is outside the valid range.
  */
 void
-Dect2020BeaconMessage::SetClusterBeaconPeriod(uint8_t clusterBeaconPeriod)
+Dect2020BeaconMessage::SetClusterBeaconPeriod(ClusterBeaconPeriod clusterBeaconPeriod)
 {
     if ((clusterBeaconPeriod < 0) || (clusterBeaconPeriod > 15))
     {
         throw std::invalid_argument("Error in " + std::string(__func__) + " at " +
                                     std::string(__FILE__) + ":" + std::to_string(__LINE__) +
-                                    " - Cluster Beacon Period must be between 0 and 15");
+                                    " - Cluster Beacon Period must be between 0 and 2^4-1");
     }
 
     m_clusterBeaconPeriod = clusterBeaconPeriod;
 }
 
-uint8_t
+Dect2020BeaconMessage::ClusterBeaconPeriod
 Dect2020BeaconMessage::GetClusterBeaconPeriod() const
 {
     return m_clusterBeaconPeriod;
@@ -285,13 +285,13 @@ Dect2020BeaconMessage::Print(std::ostream& os) const
     os << "TX power = " << (bool)m_txPowerIncluded << std::endl
        << "Power const = " << (bool)m_powerConstraints << std::endl
        << "Current cluster channel = " << (bool)m_currentClusterChannelIncluded << std::endl
-       << "Network Beacon channels = " << static_cast<int>(m_networkBeaconChannels) << std::endl
-       << "Network Beacon period = " << static_cast<int>(m_networkBeaconPeriod) << std::endl
-       << "Cluster Beacon period = " << static_cast<int>(m_clusterBeaconPeriod) << std::endl
-       << "Next Cluster Channel = " << static_cast<int>(m_nextClusterChannel) << std::endl
-       << "Time to Next = " << static_cast<int>(m_timeToNext) << std::endl
-       << "Clusters Max TX Power = " << static_cast<int>(m_clustersMaxTxPower) << std::endl
-       << "Current cluster channel " << static_cast<int>(m_currentClusterChannel) << std::endl;
+       << "Network Beacon channels = " << static_cast<uint8_t>(m_networkBeaconChannels) << std::endl
+       << "Network Beacon period = " << static_cast<uint8_t>(m_networkBeaconPeriod) << std::endl
+       << "Cluster Beacon period = " << static_cast<uint8_t>(m_clusterBeaconPeriod) << std::endl
+       << "Next Cluster Channel = " << static_cast<uint16_t>(m_nextClusterChannel) << std::endl
+       << "Time to Next = " << static_cast<uint32_t>(m_timeToNext) << std::endl
+       << "Clusters Max TX Power = " << static_cast<uint8_t>(m_clustersMaxTxPower) << std::endl
+       << "Current cluster channel " << static_cast<uint16_t>(m_currentClusterChannel) << std::endl;
 
     for (uint16_t channel : m_additionalNetworkBeaconChannels)
     {
@@ -395,8 +395,8 @@ Dect2020BeaconMessage::Deserialize(Buffer::Iterator start)
     byte1 = start.ReadU8();
     bytesRead++;
 
-    m_networkBeaconPeriod = (byte1 >> 4) & 0x0F; // Bit 0-3
-    m_clusterBeaconPeriod = byte1 & 0x0F;        // Bit 4-7
+    m_networkBeaconPeriod = static_cast<NetworkBeaconPeriod>((byte1 >> 4) & 0x0F); // Bit 0-3
+    m_clusterBeaconPeriod = static_cast<ClusterBeaconPeriod>(byte1 & 0x0F);        // Bit 4-7
 
     // Byte 2
     uint8_t byte2 = 0;

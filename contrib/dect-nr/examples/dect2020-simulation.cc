@@ -21,10 +21,13 @@ TestBeaconMessage()
     originalMessage.SetPowerConstraints(1);
     originalMessage.SetCurrentClusterChannelIncluded(0);
     originalMessage.SetNetworkBeaconChannels(3);
-    originalMessage.SetNetworkBeaconPeriod(15);
-    originalMessage.SetClusterBeaconPeriod(15);
+    originalMessage.SetNetworkBeaconPeriod(Dect2020BeaconMessage::NETWORK_PERIOD_2000MS);
+    originalMessage.SetClusterBeaconPeriod(Dect2020BeaconMessage::CLUSTER_PERIOD_16000MS);
     originalMessage.SetNextClusterChannel(8191);
-    originalMessage.SetTimeToNext(9999);
+    originalMessage.SetTimeToNext(UINT32_MAX - 1);
+
+    uint16_t tempArr[3] = {123, 456, 789};
+    originalMessage.SetAdditionalNetworkBeaconChannels(tempArr);
 
     Ptr<Packet> packet = Create<Packet>();
     packet->AddHeader(originalMessage);
