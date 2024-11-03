@@ -2,6 +2,7 @@
 #include "ns3/core-module.h"
 #include "ns3/dect2020-beacon-header.h"
 #include "ns3/dect2020-beacon-message.h"
+#include "ns3/dect2020-mac-header-type.h"
 #include "ns3/dect2020-module.h"
 #include "ns3/internet-module.h"
 #include "ns3/network-module.h"
@@ -11,6 +12,25 @@ using Dect2020NetDevice::TerminationPointType::FT;
 using Dect2020NetDevice::TerminationPointType::PT;
 
 NS_LOG_COMPONENT_DEFINE("Dect2020Simulation");
+
+void
+TestMacHeaderField()
+{
+    Dect2020MacHeaderType originalMessage;
+    originalMessage.SetVersion(0);
+    originalMessage.SetMacSecurity(Dect2020MacHeaderType::MAC_SECURITY_NOT_USED);
+    originalMessage.SetMacHeaderTypeField(Dect2020MacHeaderType::BEACON_HEADER);
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(originalMessage);
+
+    Dect2020MacHeaderType receivedMessage;
+    packet->RemoveHeader(receivedMessage);
+
+    originalMessage.Print(std::cout);
+    std::cout << std::endl << std::endl;
+    receivedMessage.Print(std::cout);
+}
 
 void
 TestBeaconMessage()
@@ -192,7 +212,8 @@ main(int argc, char* argv[])
     Simulator::Destroy();
 
     // TestBeaconHeader();
-    TestBeaconMessage();
+    // TestBeaconMessage();
+    TestMacHeaderField();
 
     return 0;
 }

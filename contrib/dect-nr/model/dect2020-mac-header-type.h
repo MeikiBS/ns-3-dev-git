@@ -30,6 +30,13 @@ class Dect2020MacHeaderType : public Header
     Dect2020MacHeaderType();
     virtual ~Dect2020MacHeaderType();
 
+    void SetVersion(uint8_t version);
+    uint8_t GetVersion() const;
+    void SetMacSecurity(MacSecurityField macSecurity);
+    MacSecurityField GetMacSecurity() const;
+    void SetMacHeaderTypeField(MacHeaderTypeField macHeaderTypeField);
+    MacHeaderTypeField GetMacHeaderTypeField() const;
+
     // Überladene Methoden von Header
     static TypeId GetTypeId(void);
     virtual TypeId GetInstanceTypeId(void) const;
