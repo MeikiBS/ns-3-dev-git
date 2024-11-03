@@ -20,7 +20,7 @@ TestBeaconMessage()
     originalMessage.SetTxPowerIncluded(0);
     originalMessage.SetPowerConstraints(1);
     originalMessage.SetCurrentClusterChannelIncluded(0);
-    originalMessage.SetNetworkBeaconChannels(3);
+    originalMessage.SetNetworkBeaconChannels(1);
     originalMessage.SetNetworkBeaconPeriod(Dect2020BeaconMessage::NETWORK_PERIOD_2000MS);
     originalMessage.SetClusterBeaconPeriod(Dect2020BeaconMessage::CLUSTER_PERIOD_16000MS);
     originalMessage.SetNextClusterChannel(8191);

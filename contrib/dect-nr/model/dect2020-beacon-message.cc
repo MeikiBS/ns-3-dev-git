@@ -285,17 +285,22 @@ Dect2020BeaconMessage::Print(std::ostream& os) const
     os << "TX power = " << (bool)m_txPowerIncluded << std::endl
        << "Power const = " << (bool)m_powerConstraints << std::endl
        << "Current cluster channel = " << (bool)m_currentClusterChannelIncluded << std::endl
-       << "Network Beacon channels = " << static_cast<uint8_t>(m_networkBeaconChannels) << std::endl
-       << "Network Beacon period = " << static_cast<uint8_t>(m_networkBeaconPeriod) << std::endl
-       << "Cluster Beacon period = " << static_cast<uint8_t>(m_clusterBeaconPeriod) << std::endl
+       << "Network Beacon channels = " << static_cast<int>(m_networkBeaconChannels) << std::endl
+       << "Network Beacon period = " << static_cast<int>(m_networkBeaconPeriod) << std::endl
+       << "Cluster Beacon period = " << static_cast<int>(m_clusterBeaconPeriod) << std::endl
        << "Next Cluster Channel = " << static_cast<uint16_t>(m_nextClusterChannel) << std::endl
        << "Time to Next = " << static_cast<uint32_t>(m_timeToNext) << std::endl
-       << "Clusters Max TX Power = " << static_cast<uint8_t>(m_clustersMaxTxPower) << std::endl
+       << "Clusters Max TX Power = " << static_cast<int>(m_clustersMaxTxPower) << std::endl
        << "Current cluster channel " << static_cast<uint16_t>(m_currentClusterChannel) << std::endl;
 
-    for (uint16_t channel : m_additionalNetworkBeaconChannels)
+    // for (uint16_t channel : m_additionalNetworkBeaconChannels)
+    // {
+    //     os << "Additional Network Beacon Channel: " << static_cast<int>(channel) << std::endl;
+    // }
+    for (int idx = 0; idx < m_networkBeaconChannels; idx++)
     {
-        os << "Additional Network Beacon Channel: " << static_cast<int>(channel) << std::endl;
+        os << "Additional Network Beacon Channel: "
+           << static_cast<int>(m_additionalNetworkBeaconChannels[idx]) << std::endl;
     }
 }
 
