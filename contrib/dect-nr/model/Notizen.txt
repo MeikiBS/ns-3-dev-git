@@ -1,0 +1,6 @@
+- Beim Erstellen eines Dect2020 NetDevices wird angenommen, dass es ein Gerät vom Typ PT ist. Für ein FT muss die Setter-Methode verwendet werden
+- Wird ein neues FT Device erstellt, dann wird beim Erstellen ein neues Netzwerk erstellt
+
+- Wenn bei der Network Beacon Message pro "Network Beacon Channel" jeweils eine Frequenz mit 13 Bit drangehangen werden, dann muss der Datentyp von "Additional Network Beacon Channels" angepasst werden zu einem Array?! Dann uA "Print" anpassen
+
+- Vergleiche LRWPAN MLME Start Request / Scan Request fürs Beacon senden/empfangen bzw. Verbindung aufbauen
