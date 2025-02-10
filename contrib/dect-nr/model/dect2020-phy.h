@@ -49,7 +49,7 @@ class Dect2020Phy : public Object
 
     void InitializeBand(uint8_t bandNumber);
     void StartFrameTimer();
-    void ProcessSlot(uint32_t slot, uint64_t slotStartTime);
+    void ProcessSlot(uint32_t slot, double slotStartTime);
     void ProcessSubslot(uint32_t slot, uint32_t subslot);
     Slot* GetCurrentSlot(uint32_t channelId) const;
     Subslot* GetCurrentSubslot(uint32_t channelId) const;
@@ -57,6 +57,7 @@ class Dect2020Phy : public Object
     // static const std::vector<Channel>& GetChannels();
 
   private:
+    static bool m_isFrameTimerRunning;
     void ReceiveDelayed(Ptr<Packet> packet);
 
     // Membervariablen

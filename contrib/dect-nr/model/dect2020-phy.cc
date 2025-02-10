@@ -10,6 +10,7 @@
 #include "ns3/simulator.h"
 
 #include <algorithm>
+#include <iomanip>
 
 NS_LOG_COMPONENT_DEFINE("Dect2020Phy");
 
@@ -19,6 +20,7 @@ namespace ns3
 NS_OBJECT_ENSURE_REGISTERED(Dect2020Phy);
 
 std::vector<Dect2020Channel> Dect2020Phy::m_channels;
+bool Dect2020Phy::m_isFrameTimerRunning = false;
 
 TypeId
 Dect2020Phy::GetTypeId(void)
@@ -38,7 +40,12 @@ Dect2020Phy::Dect2020Phy()
     {
         InitializeChannels(1, 1);
     }
-    StartFrameTimer();
+
+    if (!m_isFrameTimerRunning)
+    {
+        m_isFrameTimerRunning = true;
+        StartFrameTimer();
+    }
     NS_LOG_FUNCTION(this);
 }
 
@@ -172,35 +179,36 @@ Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFac
 void
 Dect2020Phy::StartFrameTimer()
 {
-    NS_LOG_INFO("StartFrameTimer()");
+    NS_LOG_INFO("StartFrameTimer() called at time " << Simulator::Now().GetMicroSeconds());
 
-    uint64_t currentTime = Simulator::Now().GetMicroSeconds();
-    uint32_t slotDuration = 416.67;    // 0,41667 ms in µs
-    uint64_t frameDuration = 10000000; // 10 ms in µs
+    auto currentTime = Simulator::Now().GetMicroSeconds();
+    double slotDuration = 416.67;   // 0,41667 ms in µs
+    uint16_t frameDuration = 10000; // 10 ms in µs
 
     for (uint32_t slot = 0; slot < 24; slot++)
     {
-
         double slotStartTime = currentTime + slot * slotDuration;
-        NS_LOG_INFO("Schedule::ProcessSlot --> slotStartTime = " << slotStartTime);
+        NS_LOG_INFO("Schedule::ProcessSlot Slot " << slot << " at slotStartTime " << std::fixed
+                                                  << std::setprecision(2) << slotStartTime);
         Simulator::Schedule(MicroSeconds(slotStartTime),
                             &Dect2020Phy::ProcessSlot,
                             this,
                             slot,
                             slotStartTime);
     }
-    NS_LOG_INFO("Schedule::StartFrameTimer --> currentTime + frameDuration = " << currentTime + frameDuration);
+    NS_LOG_INFO("Schedule::StartFrameTimer --> currentTime + frameDuration = "
+                << std::fixed << currentTime + frameDuration);
     Simulator::Schedule(MicroSeconds(currentTime + frameDuration),
                         &Dect2020Phy::StartFrameTimer,
                         this);
 }
 
 void
-Dect2020Phy::ProcessSlot(uint32_t slot, uint64_t slotStartTime)
+Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 {
     m_currentSlot = slot;
 
-    NS_LOG_INFO("Processing Slot " << slot);
+    NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed <<Simulator::Now().GetMicroSeconds());
 
     // TODO: Klären, wie mit unterschiedlichen subcarrier scaling Factors umgegangen wird
     // bzw. wo er definiert wird
@@ -210,11 +218,14 @@ Dect2020Phy::ProcessSlot(uint32_t slot, uint64_t slotStartTime)
                                   : (subcarrierScalingFactor == 4) ? 8
                                                                    : 16;
 
-    uint32_t subslotDuration = 416.67 / numSubslotsPerSlot; // Subslot Duration in µs
+    double subslotDuration = 416.67 / numSubslotsPerSlot; // Subslot Duration in µs
 
     for (uint32_t subslot = 0; subslot < numSubslotsPerSlot; subslot++)
     {
-        Simulator::Schedule(MicroSeconds(slotStartTime + subslot * subslotDuration),
+        NS_LOG_INFO("Schedule::ProcessSubslot Subslot " << subslot << " in Slot "
+                    << slot << " at Time " << std::fixed << (slotStartTime + subslot * subslotDuration)
+                    << " and subslotDuration " << subslotDuration);
+        Simulator::Schedule(MicroSeconds(slotStartTime + (subslot * subslotDuration)),
                             &Dect2020Phy::ProcessSubslot,
                             this,
                             slot,
@@ -227,7 +238,8 @@ Dect2020Phy::ProcessSubslot(uint32_t slot, uint32_t subslot)
 {
     m_currenSubslot = subslot;
 
-    NS_LOG_INFO("Processing Subslot " << subslot << " in Slot " << slot);
+    NS_LOG_INFO("Processing Subslot " << std::fixed << subslot << " in Slot " << slot << " at time "
+                                      << std::fixed << Simulator::Now().GetMicroSeconds());
 }
 
 Slot*
@@ -235,13 +247,13 @@ Dect2020Phy::GetCurrentSlot(uint32_t channelId) const
 {
     NS_LOG_INFO("DEBUG: GetCurrentSlot() channelId = " << channelId);
 
-    for(Dect2020Channel& channel : m_channels)
+    for (Dect2020Channel& channel : m_channels)
     {
-        if(channel.m_channelId == channelId)
+        if (channel.m_channelId == channelId)
         {
-            for(Slot& slot : channel.m_slots)
+            for (Slot& slot : channel.m_slots)
             {
-                if(slot.slotId == m_currentSlot)
+                if (slot.slotId == m_currentSlot)
                 {
                     return &slot;
                 }
@@ -257,20 +269,20 @@ Dect2020Phy::GetCurrentSubslot(uint32_t channelId) const
 {
     NS_LOG_INFO("DEBUG: GetCurrentSubslot() channelId = " << channelId);
 
-    for(Dect2020Channel& channel : m_channels)
+    for (Dect2020Channel& channel : m_channels)
     {
-        if(channel.m_channelId == channelId)
+        if (channel.m_channelId == channelId)
         {
-            for(Slot& slot : channel.m_slots)
+            for (Slot& slot : channel.m_slots)
             {
-                for(Subslot& subslot : slot.subslots)
+                for (Subslot& subslot : slot.subslots)
                 {
-                    if(subslot.subslotId == m_currenSubslot)
+                    if (subslot.subslotId == m_currenSubslot)
                     {
                         return &subslot;
                     }
                 }
-            }   
+            }
         }
     }
 

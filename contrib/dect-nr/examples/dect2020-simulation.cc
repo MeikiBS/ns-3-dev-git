@@ -125,6 +125,8 @@ ReceivePacket(Ptr<NetDevice> device,
 int
 main(int argc, char* argv[])
 {
+    Simulator::Stop(Seconds(1));
+
     // Protokollierung aktivieren
     LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
