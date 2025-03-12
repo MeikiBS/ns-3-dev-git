@@ -24,6 +24,14 @@ class Dect2020Phy;
 class Dect2020Mac : public Object
 {
   public:
+    enum Dect2020PacketType
+    {
+        DATA = 0,
+        BEACON = 1,
+        UNICAST = 2,
+        RD_BROADCAST = 3
+    };
+
     static TypeId GetTypeId(void);
 
     Dect2020Mac();
@@ -38,8 +46,8 @@ class Dect2020Mac : public Object
     void SetNetDevice(Ptr<Dect2020NetDevice> device);
     void SetPhy(Ptr<Dect2020Phy> phy);
 
-    // Methoden zum Enqueue und Dequeue von Paketen
-    void Enqueue(Ptr<Packet> packet, const Address& dest, uint16_t protocolNumber);
+    // Send a MAC PDU
+    void Send(Ptr<Packet> packet, const Address& dest, Dect2020PacketType type);
 
     // Empfang von Paketen von der PHY-Schicht
     void ReceiveFromPhy(Ptr<Packet> packet);

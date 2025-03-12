@@ -12,7 +12,7 @@ NS_OBJECT_ENSURE_REGISTERED(Dect2020BeaconHeader);
 
 Dect2020BeaconHeader::Dect2020BeaconHeader()
     : m_networkId(0),
-      m_transmitterAddress(0)
+      m_transmitterAddress(Address())
 {
 }
 
@@ -49,12 +49,12 @@ Dect2020BeaconHeader::GetNetworkId() const
 }
 
 void
-Dect2020BeaconHeader::SetTransmitterAddress(uint32_t transmitterId)
+Dect2020BeaconHeader::SetTransmitterAddress(Address transmitterId)
 {
     m_transmitterAddress = transmitterId;
 }
 
-uint32_t
+Address
 Dect2020BeaconHeader::GetTransmitterAddress() const
 {
     return m_transmitterAddress;

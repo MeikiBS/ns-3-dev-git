@@ -3,10 +3,12 @@
 #include "ns3/dect2020-beacon-header.h"
 #include "ns3/dect2020-beacon-message.h"
 #include "ns3/dect2020-mac-header-type.h"
-#include "ns3/dect2020-module.h"
 #include "ns3/internet-module.h"
 #include "ns3/network-module.h"
 #include "ns3/single-model-spectrum-channel.h"
+#include "ns3/dect2020-net-device.h"
+#include "ns3/dect2020-mac.h"
+#include "ns3/dect2020-phy.h"
 
 // using namespace ns3;
 // using Dect2020NetDevice::TerminationPointType::FT;

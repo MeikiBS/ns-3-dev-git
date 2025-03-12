@@ -25,7 +25,6 @@ set(header_files
     model/dect2020-mac.h
     model/dect2020-phy.h
     model/dect2020-channel.h
-    model/dect2020-module.h
     model/dect2020-beacon-header.h
     model/dect2020-beacon-message.h
     model/dect2020-mac-header-type.h

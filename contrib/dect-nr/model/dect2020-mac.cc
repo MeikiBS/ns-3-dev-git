@@ -3,6 +3,8 @@
 
 #include "dect2020-net-device.h"
 #include "dect2020-phy.h"
+#include "dect2020-beacon-header.h"
+#include "dect2020-beacon-message.h"
 
 #include "ns3/log.h"
 #include "ns3/simulator.h"
@@ -55,12 +57,17 @@ Dect2020Mac::SetPhy(Ptr<Dect2020Phy> phy)
 }
 
 void
-Dect2020Mac::Enqueue(Ptr<Packet> packet, const Address& dest, uint16_t protocolNumber)
+Dect2020Mac::Send(Ptr<Packet> packet, const Address& dest, Dect2020PacketType type)
 {
-    NS_LOG_FUNCTION(this << packet << dest << protocolNumber);
+    NS_LOG_FUNCTION(this << packet << dest << type);
 
     // Hier können MAC-Header hinzugefügt werden
-    // Für die minimale Implementierung lassen wir den Header weg
+    if(type == BEACON)
+    {
+        Dect2020BeaconHeader beaconHeader;
+        beaconHeader.SetNetworkId(this->GetNetworkId());
+        beaconHeader.SetTransmitterAddress(this->GetAddress());
+    }
 
     // Senden des Pakets über die PHY-Schicht
     m_phy->Send(packet);
@@ -75,7 +82,6 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
     NS_LOG_FUNCTION(this << packet);
 
     // Hier können MAC-Header entfernt und überprüft werden
-    // Für die minimale Implementierung gehen wir davon aus, dass kein Header vorhanden ist
 
     // Weiterleitung des Pakets an das NetDevice
     m_device->Receive(packet);

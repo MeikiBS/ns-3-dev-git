@@ -3,7 +3,6 @@
 
 #include "dect2020-channel.h"
 #include "dect2020-mac.h"
-#include "dect2020-module.h"
 #include "dect2020-phy.h"
 
 #include "ns3/channel.h"
@@ -187,7 +186,7 @@ Dect2020NetDevice::Send(Ptr<Packet> packet, const Address& dest, uint16_t protoc
     }
 
     // Übergabe an die MAC-Schicht
-    m_mac->Enqueue(packet, dest, protocolNumber);
+    m_mac->Send(packet, dest, protocolNumber);
     return true;
 }
 

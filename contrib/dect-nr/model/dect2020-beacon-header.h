@@ -17,8 +17,8 @@ class Dect2020BeaconHeader : public Header
     void SetNetworkId(uint32_t networkId);
     uint32_t GetNetworkId() const;
 
-    void SetTransmitterAddress(uint32_t transmitterId);
-    uint32_t GetTransmitterAddress() const;
+    void SetTransmitterAddress(Address transmitterId);
+    Address GetTransmitterAddress() const;
 
     // Überladene Methoden von Header
     static TypeId GetTypeId(void);
@@ -30,7 +30,7 @@ class Dect2020BeaconHeader : public Header
 
   private:
     uint32_t m_networkId;          // 24 Bits relevant
-    uint32_t m_transmitterAddress; // 32 Bits
+    Address m_transmitterAddress; // 32 Bits
 };
 
 } // namespace ns3
