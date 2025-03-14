@@ -3,6 +3,7 @@
 
 #include "ns3/header.h"
 #include "ns3/nstime.h"
+#include "ns3/address.h"
 
 namespace ns3
 {
@@ -17,8 +18,8 @@ class Dect2020BeaconHeader : public Header
     void SetNetworkId(uint32_t networkId);
     uint32_t GetNetworkId() const;
 
-    void SetTransmitterAddress(Address transmitterId);
-    Address GetTransmitterAddress() const;
+    void SetTransmitterAddress(uint32_t transmitterId);
+    uint32_t GetTransmitterAddress() const;
 
     // Überladene Methoden von Header
     static TypeId GetTypeId(void);
@@ -30,7 +31,7 @@ class Dect2020BeaconHeader : public Header
 
   private:
     uint32_t m_networkId;          // 24 Bits relevant
-    Address m_transmitterAddress; // 32 Bits
+    uint32_t m_transmitterAddress; // 32 Bits
 };
 
 } // namespace ns3

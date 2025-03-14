@@ -67,51 +67,51 @@ TestBeaconMessage()
     receivedMessage.Print(std::cout);
 }
 
-void
-TestBeaconHeader()
-{
-    // Originalwerte
-    uint32_t originalNetworkId = 0x123456;       // Beispielwert
-    uint32_t originalTransmitterId = 0xABCDEF01; // Beispielwert
+// void
+// TestBeaconHeader()
+// {
+//     // Originalwerte
+//     uint32_t originalNetworkId = 0x123456;       // Beispielwert
+//     uint32_t originalTransmitterId = 0xABCDEF01; // Beispielwert
 
-    // Erstellen und Setzen des Headers
-    Dect2020BeaconHeader header;
-    header.SetNetworkId(originalNetworkId);
-    header.SetTransmitterAddress(originalTransmitterId);
+//     // Erstellen und Setzen des Headers
+//     Dect2020BeaconHeader header;
+//     header.SetNetworkId(originalNetworkId);
+//     header.SetTransmitterAddress(originalTransmitterId);
 
-    // Serialisieren
-    Ptr<Packet> packet = Create<Packet>();
-    packet->AddHeader(header);
+//     // Serialisieren
+//     Ptr<Packet> packet = Create<Packet>();
+//     packet->AddHeader(header);
 
-    // Deserialisieren
-    Dect2020BeaconHeader deserializedHeader;
-    packet->RemoveHeader(deserializedHeader);
+//     // Deserialisieren
+//     Dect2020BeaconHeader deserializedHeader;
+//     packet->RemoveHeader(deserializedHeader);
 
-    // Überprüfen der Werte
-    uint32_t deserializedNetworkId = deserializedHeader.GetNetworkId();
-    uint32_t deserializedTransmitterId = deserializedHeader.GetTransmitterAddress();
+//     // Überprüfen der Werte
+//     uint32_t deserializedNetworkId = deserializedHeader.GetNetworkId();
+//     uint32_t deserializedTransmitterId = deserializedHeader.GetTransmitterAddress();
 
-    NS_LOG_INFO("originalNetworkId: " << originalNetworkId);
-    NS_LOG_INFO("deserializedNetworkId: " << deserializedNetworkId);
+//     NS_LOG_INFO("originalNetworkId: " << originalNetworkId);
+//     NS_LOG_INFO("deserializedNetworkId: " << deserializedNetworkId);
 
-    if (originalNetworkId == deserializedNetworkId)
-    {
-        NS_LOG_INFO("true");
-    }
-    else
-    {
-        NS_LOG_INFO("false");
-    }
+//     if (originalNetworkId == deserializedNetworkId)
+//     {
+//         NS_LOG_INFO("true");
+//     }
+//     else
+//     {
+//         NS_LOG_INFO("false");
+//     }
 
-    if (originalTransmitterId == deserializedTransmitterId)
-    {
-        NS_LOG_INFO("true");
-    }
-    else
-    {
-        NS_LOG_INFO("false");
-    }
-}
+//     if (originalTransmitterId == deserializedTransmitterId)
+//     {
+//         NS_LOG_INFO("true");
+//     }
+//     else
+//     {
+//         NS_LOG_INFO("false");
+//     }
+// }
 
 // Empfangsfunktion definieren
 bool
@@ -135,6 +135,14 @@ main(int argc, char* argv[])
     LogComponentEnable("Dect2020Phy", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Channel", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Simulation", LOG_LEVEL_INFO);
+
+
+    // Transmitter Address (32 Bits)
+    Address addr;
+    Mac48Address mac = ns3::Mac48Address::ConvertFrom(Mac48Address::Allocate());
+    uint8_t macBytes[6];
+    mac.CopyTo(macBytes);
+
 
     // Erstellen der Knoten
     NodeContainer nodes;

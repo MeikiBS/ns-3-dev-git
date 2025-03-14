@@ -53,7 +53,7 @@ class Dect2020Mac : public Object
     void ReceiveFromPhy(Ptr<Packet> packet);
 
     // Zugriff auf die Mac-Adresse des NetDevice
-    Address GetAddress(void) const;
+    Mac48Address GetAddress(void) const;
 
     /**
      * Initialize a new Network

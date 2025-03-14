@@ -66,7 +66,7 @@ Dect2020Mac::Send(Ptr<Packet> packet, const Address& dest, Dect2020PacketType ty
     {
         Dect2020BeaconHeader beaconHeader;
         beaconHeader.SetNetworkId(this->GetNetworkId());
-        beaconHeader.SetTransmitterAddress(this->GetAddress());
+        beaconHeader.SetTransmitterAddress(this->GetLongRadioDeviceId());
     }
 
     // Senden des Pakets über die PHY-Schicht
@@ -90,7 +90,7 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
     m_rxPacketTrace(packet);
 }
 
-Address
+Mac48Address
 Dect2020Mac::GetAddress(void) const
 {
     return m_address;

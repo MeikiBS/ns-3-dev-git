@@ -186,7 +186,24 @@ Dect2020NetDevice::Send(Ptr<Packet> packet, const Address& dest, uint16_t protoc
     }
 
     // Übergabe an die MAC-Schicht
-    m_mac->Send(packet, dest, protocolNumber);
+    Dect2020Mac::Dect2020PacketType packetType;
+    switch (protocolNumber)
+    {
+    case 0:
+        packetType = Dect2020Mac::Dect2020PacketType::DATA;
+        break;
+    case 1:
+        packetType = Dect2020Mac::Dect2020PacketType::BEACON;
+        break;
+    case 2:
+        packetType = Dect2020Mac::Dect2020PacketType::UNICAST;
+        break;
+    case 3:
+        packetType = Dect2020Mac::Dect2020PacketType::RD_BROADCAST;
+        break;
+    }
+
+    m_mac->Send(packet, dest, packetType);
     return true;
 }
 
