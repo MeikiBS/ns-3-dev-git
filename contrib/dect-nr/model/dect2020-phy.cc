@@ -62,7 +62,7 @@ Dect2020Phy::SetMac(Ptr<Dect2020Mac> mac)
 }
 
 void
-Dect2020Phy::SetNetDevice(Ptr<Dect2020NetDevice> device)
+Dect2020Phy::SetDevice(Ptr<NetDevice> device)
 {
     NS_LOG_FUNCTION(this << device);
     m_device = device;
@@ -73,6 +73,13 @@ Dect2020Phy::SetChannel(Ptr<SpectrumChannel> channel)
 {
     NS_LOG_FUNCTION(this << channel);
     m_channel = channel;
+
+    // TODO: Funktion prüfen.
+    // Add the Dect2020Phy to the Spectrum Channel, so it can receive Packets
+    if (m_channel)
+    {
+        m_channel->AddRx(this);
+    }
 }
 
 Ptr<SpectrumChannel>
@@ -81,16 +88,38 @@ Dect2020Phy::GetChannel(void) const
     return m_channel;
 }
 
-Ptr<Dect2020NetDevice>
-Dect2020Phy::GetNetDevice(void) const
+Ptr<NetDevice>
+Dect2020Phy::GetDevice(void) const
 {
     return m_device;
 }
 
 void
-Dect2020Phy::Send(Ptr<Packet> packet)
+Dect2020Phy::Send(Ptr<Packet> packet) // TODO? Zieladresse festlegen
 {
     NS_LOG_FUNCTION(this << packet);
+
+    Ptr<Dect2020SpectrumSignalParameters> params = Create<Dect2020SpectrumSignalParameters>();
+
+    params->txPhy = this;
+    params->txPacket = packet;
+
+    Dect2020OperatingBand band = Dect2020OperatingBand(1);
+    BandParameters bp = band.InitializeBandParameters(1);
+
+    std::vector<double> centerFreqs;
+
+    for(int i = bp.nStart; i <= bp.nEnd; i++)
+    {
+        double currentFreq = bp.startFrequency + i * bp.frequencyStep;
+        centerFreqs.push_back(currentFreq);
+    }
+
+    Ptr<const SpectrumModel> specModel = Create<const SpectrumModel>(centerFreqs);
+    Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
+    params->psd = psd;
+
+    m_channel->StartTx(params);
 
     // Trace-Aufruf
     m_phyTxBeginTrace(packet);
@@ -104,6 +133,13 @@ Dect2020Phy::Receive(Ptr<Packet> packet)
 {
     NS_LOG_FUNCTION(this << packet);
 
+    m_phyRxTrace(packet);
+
+    if (m_mac)
+    {
+        m_mac->ReceiveFromPhy(packet);
+    }
+
     // Empfangsverzögerung
     // Simulator::Schedule(m_rxDelay, &Dect2020Phy::ReceiveDelayed, this, packet);
 }
@@ -114,10 +150,50 @@ Dect2020Phy::ReceiveDelayed(Ptr<Packet> packet)
     NS_LOG_FUNCTION(this << packet);
 
     // Trace-Aufruf
-    m_phyRxEndTrace(packet);
+    m_phyRxTrace(packet);
 
     // Weiterleitung an die MAC-Schicht
     m_mac->ReceiveFromPhy(packet);
+}
+
+void
+Dect2020Phy::SetReceiveCallback(Callback<void, Ptr<Packet>> cb)
+{
+    m_receiveCallback = cb;
+}
+
+void
+Dect2020Phy::SetMobility(Ptr<MobilityModel> m)
+{
+    m_mobilityModel = m;
+}
+
+Ptr<MobilityModel>
+Dect2020Phy::GetMobility() const
+{
+    return m_mobilityModel;
+}
+
+Ptr<const SpectrumModel>
+Dect2020Phy::GetRxSpectrumModel() const
+{
+    return m_spectrumModel;
+}
+
+Ptr<Object>
+Dect2020Phy::GetAntenna() const
+{
+    return m_antenna;
+}
+
+void
+Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
+{
+    NS_LOG_INFO("Dect2020Phy: StartRx called");
+
+    Ptr<Dect2020SpectrumSignalParameters> dectParams =
+        DynamicCast<Dect2020SpectrumSignalParameters>(params);
+    m_receiveCallback(dectParams->txPacket);
 }
 
 void
@@ -208,7 +284,8 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 {
     m_currentSlot = slot;
 
-    // NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed <<Simulator::Now().GetMicroSeconds());
+    // NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed
+    // <<Simulator::Now().GetMicroSeconds());
 
     // TODO: Klären, wie mit unterschiedlichen subcarrier scaling Factors umgegangen wird
     // bzw. wo er definiert wird
@@ -222,9 +299,10 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 
     for (uint32_t subslot = 0; subslot < numSubslotsPerSlot; subslot++)
     {
-        NS_LOG_INFO("Schedule::ProcessSubslot Subslot " << subslot << " in Slot "
-                    << slot << " at Time " << std::fixed << (slotStartTime + subslot * subslotDuration)
-                    << " and subslotDuration " << subslotDuration);
+        NS_LOG_INFO("Schedule::ProcessSubslot Subslot "
+                    << subslot << " in Slot " << slot << " at Time " << std::fixed
+                    << (slotStartTime + subslot * subslotDuration) << " and subslotDuration "
+                    << subslotDuration);
         Simulator::Schedule(MicroSeconds(slotStartTime + (subslot * subslotDuration)),
                             &Dect2020Phy::ProcessSubslot,
                             this,
@@ -238,7 +316,8 @@ Dect2020Phy::ProcessSubslot(uint32_t slot, uint32_t subslot)
 {
     m_currenSubslot = subslot;
 
-    // NS_LOG_INFO("Processing Subslot " << std::fixed << subslot << " in Slot " << slot << " at time "
+    // NS_LOG_INFO("Processing Subslot " << std::fixed << subslot << " in Slot " << slot << " at
+    // time "
     //                                   << std::fixed << Simulator::Now().GetMicroSeconds());
 }
 

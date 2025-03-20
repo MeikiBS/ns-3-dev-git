@@ -72,7 +72,7 @@ Dect2020NetDevice::DoInitialize(void)
     }
     if (m_phy)
     {
-        m_phy->SetNetDevice(this);
+        m_phy->SetDevice(this);
     }
     NetDevice::DoInitialize();
 }
@@ -278,7 +278,7 @@ void
 Dect2020NetDevice::SetPhy(Ptr<Dect2020Phy> phy)
 {
     m_phy = phy;
-    m_phy->SetNetDevice(this);
+    m_phy->SetDevice(this);
 }
 
 Ptr<Dect2020Phy>

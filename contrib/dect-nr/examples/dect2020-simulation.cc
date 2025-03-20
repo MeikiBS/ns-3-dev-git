@@ -9,6 +9,7 @@
 #include "ns3/dect2020-net-device.h"
 #include "ns3/dect2020-mac.h"
 #include "ns3/dect2020-phy.h"
+#include "ns3/dect2020-spectrum-signal-parameters.h"
 
 // using namespace ns3;
 // using Dect2020NetDevice::TerminationPointType::FT;
@@ -137,12 +138,15 @@ main(int argc, char* argv[])
     LogComponentEnable("Dect2020Simulation", LOG_LEVEL_INFO);
 
 
-    // Transmitter Address (32 Bits)
-    Address addr;
-    Mac48Address mac = ns3::Mac48Address::ConvertFrom(Mac48Address::Allocate());
-    uint8_t macBytes[6];
-    mac.CopyTo(macBytes);
+    // Hier Bereich für Tests
+    // ###########################
+    Dect2020SpectrumSignalParameters params;
+    
+    
 
+
+
+    // ###########################
 
     // Erstellen der Knoten
     NodeContainer nodes;
@@ -179,7 +183,7 @@ main(int argc, char* argv[])
         mac->SetNetDevice(dev);
         mac->SetPhy(phy);
         phy->SetMac(mac);
-        phy->SetNetDevice(dev);
+        phy->SetDevice(dev);
         phy->SetChannel(channel);
 
         mac->Start();

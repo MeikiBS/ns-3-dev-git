@@ -2,12 +2,17 @@
 #ifndef DECT2020_PHY_H
 #define DECT2020_PHY_H
 
+#include "dect2020-operating-band.h"
+#include "dect2020-spectrum-signal-parameters.h"
+
 #include "ns3/nstime.h"
 #include "ns3/object.h"
 #include "ns3/packet.h"
 #include "ns3/ptr.h"
 #include "ns3/traced-callback.h"
-#include "dect2020-operating-band.h"
+#include "ns3/mobility-model.h"
+#include "ns3/spectrum-model.h"
+#include "ns3/spectrum-phy.h"
 
 namespace ns3
 {
@@ -19,13 +24,15 @@ class SpectrumChannel;
 struct Slot;
 struct Subslot;
 
+typedef Callback<void, Ptr<Packet>> RxReceivedCallback;
+
 /**
  * \brief DECT2020 PHY Klasse
  *
  * Diese Klasse implementiert die grundlegende PHY-Schichtfunktionalität
  * für das DECT2020 Modul.
  */
-class Dect2020Phy : public Object
+class Dect2020Phy : public SpectrumPhy
 {
   public:
     static TypeId GetTypeId(void);
@@ -35,7 +42,7 @@ class Dect2020Phy : public Object
 
     // Methoden zum Setzen der MAC-Schicht und des NetDevice
     void SetMac(Ptr<Dect2020Mac> mac);
-    void SetNetDevice(Ptr<Dect2020NetDevice> device);
+    void SetDevice(Ptr<NetDevice> device) override;
 
     // Methoden zum Senden und Empfangen von Paketen
     void Send(Ptr<Packet> packet);
@@ -43,9 +50,9 @@ class Dect2020Phy : public Object
 
     // Kanalverwaltung
     void SetChannel(Ptr<SpectrumChannel> channel);
-    Ptr<SpectrumChannel> GetChannel(void) const;
+    Ptr<SpectrumChannel> GetChannel() const;
 
-    Ptr<Dect2020NetDevice> GetNetDevice(void) const;
+    Ptr<NetDevice> GetDevice() const;
 
     void InitializeBand(uint8_t bandNumber);
     void StartFrameTimer();
@@ -53,8 +60,15 @@ class Dect2020Phy : public Object
     void ProcessSubslot(uint32_t slot, uint32_t subslot);
     Slot* GetCurrentSlot(uint32_t channelId) const;
     Subslot* GetCurrentSubslot(uint32_t channelId) const;
-
+    void SetReceiveCallback(Callback<void, Ptr<Packet>> cb);
     // static const std::vector<Channel>& GetChannels();
+
+    // Inherited Methods
+    void SetMobility(Ptr<MobilityModel> m);
+    Ptr<MobilityModel> GetMobility() const override;
+    Ptr<const SpectrumModel> GetRxSpectrumModel() const override;
+    Ptr<Object> GetAntenna() const override;
+    void StartRx(Ptr<SpectrumSignalParameters> params);
 
   private:
     static bool m_isFrameTimerRunning;
@@ -62,17 +76,22 @@ class Dect2020Phy : public Object
 
     // Membervariablen
     Ptr<Dect2020Mac> m_mac;
-    Ptr<Dect2020NetDevice> m_device;
+    Ptr<NetDevice> m_device;
     Ptr<SpectrumChannel> m_channel;
     uint32_t m_currentSlot;
     uint32_t m_currenSubslot;
     static std::vector<Dect2020Channel> m_channels;
-    
+    Ptr<const SpectrumModel> m_spectrumModel;
+    Ptr<MobilityModel> m_mobilityModel;
+    Ptr<Object> m_antenna;
+
     static void InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFactor);
+
+    Callback<void, Ptr<Packet>> m_receiveCallback;
 
     // Trace-Quellen
     TracedCallback<Ptr<const Packet>> m_phyTxBeginTrace;
-    TracedCallback<Ptr<const Packet>> m_phyRxEndTrace;
+    TracedCallback<Ptr<const Packet>> m_phyRxTrace;
 };
 
 } // namespace ns3

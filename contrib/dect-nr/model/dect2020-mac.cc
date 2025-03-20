@@ -1,10 +1,11 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
 #include "dect2020-mac.h"
 
-#include "dect2020-net-device.h"
-#include "dect2020-phy.h"
 #include "dect2020-beacon-header.h"
 #include "dect2020-beacon-message.h"
+#include "dect2020-mac-header-type.h"
+#include "dect2020-net-device.h"
+#include "dect2020-phy.h"
 
 #include "ns3/log.h"
 #include "ns3/simulator.h"
@@ -54,6 +55,8 @@ Dect2020Mac::SetPhy(Ptr<Dect2020Phy> phy)
 {
     NS_LOG_FUNCTION(this << phy);
     m_phy = phy;
+
+    m_phy->SetReceiveCallback(MakeCallback(&Dect2020Mac::ReceiveFromPhy, this));
 }
 
 void
@@ -62,7 +65,7 @@ Dect2020Mac::Send(Ptr<Packet> packet, const Address& dest, Dect2020PacketType ty
     NS_LOG_FUNCTION(this << packet << dest << type);
 
     // Hier können MAC-Header hinzugefügt werden
-    if(type == BEACON)
+    if (type == BEACON)
     {
         Dect2020BeaconHeader beaconHeader;
         beaconHeader.SetNetworkId(this->GetNetworkId());
@@ -81,7 +84,22 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
 {
     NS_LOG_FUNCTION(this << packet);
 
-    // Hier können MAC-Header entfernt und überprüft werden
+    Dect2020MacHeaderType macHeaderType;
+    packet->RemoveHeader(macHeaderType);
+
+    if (macHeaderType.GetMacHeaderTypeField() ==
+        Dect2020MacHeaderType::MacHeaderTypeField::BEACON_HEADER)
+    {
+        Dect2020BeaconHeader beaconHeader;
+        packet->RemoveHeader(beaconHeader);
+
+        NS_LOG_INFO("Beacon received! Network ID: " << beaconHeader.GetNetworkId() << " from Device "
+                                                     << beaconHeader.GetTransmitterAddress());
+    }
+    else
+    {
+        NS_LOG_WARN("Received unknown Message.");
+    }
 
     // Weiterleitung des Pakets an das NetDevice
     m_device->Receive(packet);
@@ -138,7 +156,32 @@ Dect2020Mac::JoinNetwork(uint32_t networkId)
 void
 Dect2020Mac::StartBeaconTransmission()
 {
-    // tbd
+    NS_LOG_INFO("Dect2020Mac::StartBeaconTransmission aufgerufen");
+    Ptr<Packet> networkBeacon = Create<Packet>();
+
+    // MAC Header Type
+    Dect2020MacHeaderType macHeaderType;
+    macHeaderType.SetMacHeaderTypeField(Dect2020MacHeaderType::BEACON_HEADER);
+    networkBeacon->AddHeader(macHeaderType);
+
+    // Mac Beacon Header
+    Dect2020BeaconHeader beaconHeader;
+    beaconHeader.SetNetworkId(m_networkId);
+    beaconHeader.SetTransmitterAddress(m_longRadioDeviceId);
+
+    networkBeacon->AddHeader(beaconHeader);
+
+    // MAC Beacon Message
+    Dect2020BeaconMessage beaconMessage;
+    // TODO: beaconMessage mit Inhalt füllen
+
+    networkBeacon->AddHeader(beaconMessage);
+
+    m_phy->Send(networkBeacon);
+
+    NS_LOG_INFO("Network Beacon gesendet von Gerät " << this->m_longRadioDeviceId);
+
+    Simulator::Schedule(Seconds(1), &Dect2020Mac::StartBeaconTransmission, this);
 }
 
 uint32_t
