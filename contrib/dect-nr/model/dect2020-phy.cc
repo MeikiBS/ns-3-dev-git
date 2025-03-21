@@ -116,7 +116,7 @@ Dect2020Phy::Send(Ptr<Packet> packet) // TODO? Zieladresse festlegen
 
     std::vector<double> centerFreqs;
 
-    for(int i = 0; i <= bp.nEnd - bp.nStart + 1; i++)
+    for(int i = 0; i <= bp.nEnd - bp.nStart; i++)
     {
         double currentFreq = bp.startFrequency + i * bp.frequencyStep;
         centerFreqs.push_back(currentFreq);
