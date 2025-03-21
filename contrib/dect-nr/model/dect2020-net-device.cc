@@ -292,6 +292,8 @@ Dect2020NetDevice::Receive(Ptr<Packet> packet)
 {
     NS_LOG_FUNCTION(this << packet);
 
+    NS_LOG_INFO("Dect2020NetDevice::Receive() aufgerufen von Device " << this->m_mac->GetLongRadioDeviceId());
+
     if (!m_rxCallback.IsNull())
     {
         // Für die minimale Implementierung setzen wir die Protokollnummer auf 0

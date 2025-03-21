@@ -97,6 +97,10 @@ Dect2020Phy::GetDevice(void) const
 void
 Dect2020Phy::Send(Ptr<Packet> packet) // TODO? Zieladresse festlegen
 {
+    NS_ASSERT_MSG(packet, "Packet is null");
+    NS_ASSERT_MSG(this->m_device, "m_device is null");
+
+
     NS_LOG_FUNCTION(this << packet);
 
     Ptr<Dect2020SpectrumSignalParameters> params = Create<Dect2020SpectrumSignalParameters>();
@@ -104,12 +108,15 @@ Dect2020Phy::Send(Ptr<Packet> packet) // TODO? Zieladresse festlegen
     params->txPhy = this;
     params->txPacket = packet;
 
+    Time duration = Time(Seconds(1));
+    params->duration = duration;
+
     Dect2020OperatingBand band = Dect2020OperatingBand(1);
     BandParameters bp = band.InitializeBandParameters(1);
 
     std::vector<double> centerFreqs;
 
-    for(int i = bp.nStart; i <= bp.nEnd; i++)
+    for(int i = 0; i <= bp.nEnd - bp.nStart + 1; i++)
     {
         double currentFreq = bp.startFrequency + i * bp.frequencyStep;
         centerFreqs.push_back(currentFreq);
@@ -255,7 +262,7 @@ Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFac
 void
 Dect2020Phy::StartFrameTimer()
 {
-    NS_LOG_INFO("StartFrameTimer() called at time " << Simulator::Now().GetMicroSeconds());
+    // NS_LOG_INFO("StartFrameTimer() called at time " << Simulator::Now().GetMicroSeconds());
 
     auto currentTime = Simulator::Now().GetMicroSeconds();
     double slotDuration = 416.67;   // 0,41667 ms in µs
@@ -264,16 +271,16 @@ Dect2020Phy::StartFrameTimer()
     for (uint32_t slot = 0; slot < 24; slot++)
     {
         double slotStartTime = currentTime + slot * slotDuration;
-        NS_LOG_INFO("Schedule::ProcessSlot Slot " << slot << " at slotStartTime " << std::fixed
-                                                  << std::setprecision(2) << slotStartTime);
+        // NS_LOG_INFO("Schedule::ProcessSlot Slot " << slot << " at slotStartTime " << std::fixed
+        //                                           << std::setprecision(2) << slotStartTime);
         Simulator::Schedule(MicroSeconds(slotStartTime),
                             &Dect2020Phy::ProcessSlot,
                             this,
                             slot,
                             slotStartTime);
     }
-    NS_LOG_INFO("Schedule::StartFrameTimer --> currentTime + frameDuration = "
-                << std::fixed << currentTime + frameDuration);
+    // NS_LOG_INFO("Schedule::StartFrameTimer --> currentTime + frameDuration = "
+    //             << std::fixed << currentTime + frameDuration);
     Simulator::Schedule(MicroSeconds(currentTime + frameDuration),
                         &Dect2020Phy::StartFrameTimer,
                         this);
@@ -299,10 +306,10 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 
     for (uint32_t subslot = 0; subslot < numSubslotsPerSlot; subslot++)
     {
-        NS_LOG_INFO("Schedule::ProcessSubslot Subslot "
-                    << subslot << " in Slot " << slot << " at Time " << std::fixed
-                    << (slotStartTime + subslot * subslotDuration) << " and subslotDuration "
-                    << subslotDuration);
+        // NS_LOG_INFO("Schedule::ProcessSubslot Subslot "
+        //             << subslot << " in Slot " << slot << " at Time " << std::fixed
+        //             << (slotStartTime + subslot * subslotDuration) << " and subslotDuration "
+        //             << subslotDuration);
         Simulator::Schedule(MicroSeconds(slotStartTime + (subslot * subslotDuration)),
                             &Dect2020Phy::ProcessSubslot,
                             this,

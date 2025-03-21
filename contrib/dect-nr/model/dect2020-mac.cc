@@ -64,13 +64,13 @@ Dect2020Mac::Send(Ptr<Packet> packet, const Address& dest, Dect2020PacketType ty
 {
     NS_LOG_FUNCTION(this << packet << dest << type);
 
-    // Hier können MAC-Header hinzugefügt werden
-    if (type == BEACON)
-    {
-        Dect2020BeaconHeader beaconHeader;
-        beaconHeader.SetNetworkId(this->GetNetworkId());
-        beaconHeader.SetTransmitterAddress(this->GetLongRadioDeviceId());
-    }
+    // // Hier können MAC-Header hinzugefügt werden
+    // if (type == BEACON)
+    // {
+    //     Dect2020BeaconHeader beaconHeader;
+    //     beaconHeader.SetNetworkId(this->GetNetworkId());
+    //     beaconHeader.SetTransmitterAddress(this->GetLongRadioDeviceId());
+    // }
 
     // Senden des Pakets über die PHY-Schicht
     m_phy->Send(packet);
@@ -84,17 +84,36 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
 {
     NS_LOG_FUNCTION(this << packet);
 
+    NS_LOG_INFO("Dect2020Mac::ReceiveFromPhy() aufgerufen von" << this);
+
     Dect2020MacHeaderType macHeaderType;
-    packet->RemoveHeader(macHeaderType);
+    packet->PeekHeader(macHeaderType);
+    NS_LOG_INFO(macHeaderType);
+
+    // Jetzt sicher entfernen
+    Dect2020BeaconMessage beaconMessage;
+    packet->RemoveHeader(beaconMessage);
+    NS_LOG_INFO(beaconMessage);
+
+    Dect2020BeaconHeader beaconHeader;
+    packet->RemoveHeader(beaconHeader);
+    NS_LOG_INFO(beaconHeader);
+
+    packet->RemoveHeader(macHeaderType); // Jetzt passt die Reihenfolge
+    NS_LOG_INFO(macHeaderType);
+
+    // Dect2020MacHeaderType macHeaderType;
+    // packet->RemoveHeader(macHeaderType);
 
     if (macHeaderType.GetMacHeaderTypeField() ==
         Dect2020MacHeaderType::MacHeaderTypeField::BEACON_HEADER)
     {
-        Dect2020BeaconHeader beaconHeader;
-        packet->RemoveHeader(beaconHeader);
+        // Dect2020BeaconHeader beaconHeader;
+        // packet->RemoveHeader(beaconHeader);
 
-        NS_LOG_INFO("Beacon received! Network ID: " << beaconHeader.GetNetworkId() << " from Device "
-                                                     << beaconHeader.GetTransmitterAddress());
+        NS_LOG_INFO("Beacon received! Network ID: " << beaconHeader.GetNetworkId()
+                                                    << " from Device "
+                                                    << beaconHeader.GetTransmitterAddress());
     }
     else
     {

@@ -21,8 +21,17 @@ Dect2020SpectrumSignalParameters::~Dect2020SpectrumSignalParameters()
 Ptr<SpectrumSignalParameters>
 Dect2020SpectrumSignalParameters::Copy() const
 {
-    // TODO
-    return nullptr;
+    Ptr<Dect2020SpectrumSignalParameters> copy = Create<Dect2020SpectrumSignalParameters>();
+
+    copy->duration = this->duration;
+    copy->txPhy = this->txPhy;
+    copy->txAntenna = this->txAntenna;
+    copy->psd = this->psd ? this->psd->Copy() : nullptr;
+
+    copy->txPacket = this->txPacket ? this->txPacket->Copy() : nullptr;
+
+    return copy;
+    // return nullptr;
 }
 
 } // namespace ns3

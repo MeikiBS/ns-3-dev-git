@@ -128,7 +128,7 @@ ReceivePacket(Ptr<NetDevice> device,
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(1));
+    Simulator::Stop(Seconds(5));
 
     // Protokollierung aktivieren
     LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
@@ -150,7 +150,7 @@ main(int argc, char* argv[])
 
     // Erstellen der Knoten
     NodeContainer nodes;
-    nodes.Create(2);
+    nodes.Create(4);
 
     // Erstellen des Kanals
     Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
@@ -186,7 +186,7 @@ main(int argc, char* argv[])
         phy->SetDevice(dev);
         phy->SetChannel(channel);
 
-        mac->Start();
+        // mac->Start();
 
         // Hinzufügen des Geräts zum Knoten
         nodes.Get(i)->AddDevice(dev);
@@ -198,7 +198,11 @@ main(int argc, char* argv[])
         dev->SetLinkUp();
 
         devices.Add(dev);
+        mac->Start();
     }
+
+    // Ptr<Dect2020NetDevice> ft = DynamicCast<Dect2020NetDevice>(devices.Get(0));
+    // ft->GetMac()->Start();
 
     // Setzen des Empfangs-Callbacks für Gerät 2
     devices.Get(1)->SetReceiveCallback(MakeCallback(&ReceivePacket));

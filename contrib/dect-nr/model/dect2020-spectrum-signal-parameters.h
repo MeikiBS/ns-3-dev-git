@@ -3,6 +3,10 @@
 
 #include "ns3/spectrum-signal-parameters.h"
 #include "ns3/packet.h"
+#include "ns3/spectrum-value.h" // Include the header for SpectrumValue
+#include "ns3/spectrum-phy.h"
+#include "ns3/antenna-model.h"
+
 
 namespace ns3
 {
