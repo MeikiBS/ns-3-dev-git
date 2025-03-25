@@ -150,7 +150,7 @@ main(int argc, char* argv[])
 
     // Erstellen der Knoten
     NodeContainer nodes;
-    nodes.Create(4);
+    nodes.Create(3);
 
     // Erstellen des Kanals
     Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
@@ -205,7 +205,7 @@ main(int argc, char* argv[])
     // ft->GetMac()->Start();
 
     // Setzen des Empfangs-Callbacks für Gerät 2
-    devices.Get(1)->SetReceiveCallback(MakeCallback(&ReceivePacket));
+    // devices.Get(1)->SetReceiveCallback(MakeCallback(&ReceivePacket));
 
     // Installieren des Internet-Stacks
     InternetStackHelper internet;

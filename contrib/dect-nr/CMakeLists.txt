@@ -19,7 +19,8 @@ set(source_files
     model/dect2020-beacon-message.cc
     model/dect2020-mac-header-type.cc
     model/dect2020-operating-band.cc
-    model/dect2020-spectrum-signal-parameters.cc)
+    model/dect2020-spectrum-signal-parameters.cc
+    model/dect2020-spectrum-model-manager.cc)
 
 set(header_files
     model/dect2020-net-device.h
@@ -30,7 +31,8 @@ set(header_files
     model/dect2020-beacon-message.h
     model/dect2020-mac-header-type.h
     model/dect2020-operating-band.h
-    model/dect2020-spectrum-signal-parameters.h)
+    model/dect2020-spectrum-signal-parameters.h
+    model/dect2020-spectrum-model-manager.h)
 
 build_lib(
     LIBNAME dect-nr

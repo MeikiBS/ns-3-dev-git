@@ -84,23 +84,29 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
 {
     NS_LOG_FUNCTION(this << packet);
 
-    NS_LOG_INFO("Dect2020Mac::ReceiveFromPhy() aufgerufen von" << this);
+    NS_LOG_INFO("Dect2020Mac::ReceiveFromPhy() aufgerufen von 0x" << std::hex
+                                                                  << this->GetLongRadioDeviceId());
 
     Dect2020MacHeaderType macHeaderType;
-    packet->PeekHeader(macHeaderType);
-    NS_LOG_INFO(macHeaderType);
+    // packet->PeekHeader(macHeaderType);
+    // NS_LOG_INFO(macHeaderType);
 
     // Jetzt sicher entfernen
     Dect2020BeaconMessage beaconMessage;
     packet->RemoveHeader(beaconMessage);
-    NS_LOG_INFO(beaconMessage);
+    // NS_LOG_INFO(beaconMessage);
 
     Dect2020BeaconHeader beaconHeader;
     packet->RemoveHeader(beaconHeader);
-    NS_LOG_INFO(beaconHeader);
+    // NS_LOG_INFO(beaconHeader);
 
     packet->RemoveHeader(macHeaderType); // Jetzt passt die Reihenfolge
     NS_LOG_INFO(macHeaderType);
+
+    if(macHeaderType.GetMacHeaderTypeField() == Dect2020MacHeaderType::MacHeaderTypeField::UNICAST_HEADER)
+    {
+        NS_LOG_INFO("JO!!!! :(");
+    }
 
     // Dect2020MacHeaderType macHeaderType;
     // packet->RemoveHeader(macHeaderType);
@@ -111,8 +117,8 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
         // Dect2020BeaconHeader beaconHeader;
         // packet->RemoveHeader(beaconHeader);
 
-        NS_LOG_INFO("Beacon received! Network ID: " << beaconHeader.GetNetworkId()
-                                                    << " from Device "
+        NS_LOG_INFO("Beacon received! Network ID: 0x" << std::hex << beaconHeader.GetNetworkId()
+                                                    << " from Device 0x" << std::hex
                                                     << beaconHeader.GetTransmitterAddress());
     }
     else
@@ -144,8 +150,8 @@ Dect2020Mac::Start()
              Dect2020NetDevice::TerminationPointType::PT)
     {
         // DEBUG: Network ID auf festen Wert setzen, später mit Beacon empfangen
-        m_networkId = 123456;
-        JoinNetwork(m_networkId);
+        // m_networkId = 123456;
+        // JoinNetwork(m_networkId);
     }
 }
 
@@ -156,7 +162,7 @@ Dect2020Mac::InitializeNetwork()
     SetNetworkId(networkId);
 
     NS_LOG_INFO("FT-Device " << this << " started a new Network with the Network ID: " << std::hex
-                             << networkId);
+                             << std::setw(8) << std::setfill('0') << networkId);
 
     StartBeaconTransmission();
 }
@@ -166,7 +172,8 @@ Dect2020Mac::JoinNetwork(uint32_t networkId)
 {
     SetNetworkId(networkId);
 
-    NS_LOG_INFO("PT-Device joined a Network with the Network ID: " << std::hex << networkId);
+    NS_LOG_INFO("PT-Device joined a Network with the Network ID: "
+                << std::hex << std::setw(8) << std::setfill('0') << networkId);
 
     SetShortRadioDeviceId(GenerateShortRadioDeviceId());
     // TODO: Unter welchen Umständen kann einem Network beigetreten/nicht beigetreten werden?
@@ -198,7 +205,9 @@ Dect2020Mac::StartBeaconTransmission()
 
     m_phy->Send(networkBeacon);
 
-    NS_LOG_INFO("Network Beacon gesendet von Gerät " << this->m_longRadioDeviceId);
+    NS_LOG_INFO("Network Beacon gesendet von Gerät 0x"
+                << std::hex  << this->GetLongRadioDeviceId());
+    NS_LOG_INFO("MAC Header Type: " << macHeaderType.GetMacHeaderTypeField());
 
     Simulator::Schedule(Seconds(1), &Dect2020Mac::StartBeaconTransmission, this);
 }

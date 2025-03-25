@@ -4,6 +4,7 @@
 
 #include "dect2020-operating-band.h"
 #include "dect2020-spectrum-signal-parameters.h"
+#include "dect2020-spectrum-model-manager.h"
 
 #include "ns3/nstime.h"
 #include "ns3/object.h"

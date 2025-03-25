@@ -8,6 +8,9 @@
 #include "ns3/ptr.h"
 #include "ns3/traced-callback.h"
 
+#include <iomanip> // Für std::setw und std::setfill
+
+
 namespace ns3
 {
 

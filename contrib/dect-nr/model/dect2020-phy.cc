@@ -111,18 +111,22 @@ Dect2020Phy::Send(Ptr<Packet> packet) // TODO? Zieladresse festlegen
     Time duration = Time(Seconds(1));
     params->duration = duration;
 
-    Dect2020OperatingBand band = Dect2020OperatingBand(1);
-    BandParameters bp = band.InitializeBandParameters(1);
+    // Dect2020OperatingBand band = Dect2020OperatingBand(1);
+    // BandParameters bp = band.InitializeBandParameters(1);
 
-    std::vector<double> centerFreqs;
+    // std::vector<double> centerFreqs;
 
-    for(int i = 0; i <= bp.nEnd - bp.nStart; i++)
-    {
-        double currentFreq = bp.startFrequency + i * bp.frequencyStep;
-        centerFreqs.push_back(currentFreq);
-    }
+    // for(int i = 0; i <= bp.nEnd - bp.nStart; i++)
+    // {
+    //     double currentFreq = bp.startFrequency + i * bp.frequencyStep;
+    //     centerFreqs.push_back(currentFreq);
+    // }
 
-    Ptr<const SpectrumModel> specModel = Create<const SpectrumModel>(centerFreqs);
+    // Ptr<const SpectrumModel> specModel = Create<const SpectrumModel>(centerFreqs);
+
+    uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder Bootstrapping entschieden
+
+    Ptr<const SpectrumModel> specModel = Dect2020SpectrumModelManager::GetSpectrumModel(bandId);
     Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
     params->psd = psd;
 
@@ -196,7 +200,7 @@ Dect2020Phy::GetAntenna() const
 void
 Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
 {
-    NS_LOG_INFO("Dect2020Phy: StartRx called");
+    NS_LOG_INFO("Dect2020Phy: StartRx called from Device 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
 
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
