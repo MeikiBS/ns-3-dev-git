@@ -100,13 +100,17 @@ Dect2020Phy::Send(Ptr<Packet> packet) // TODO? Zieladresse festlegen
     NS_ASSERT_MSG(packet, "Packet is null");
     NS_ASSERT_MSG(this->m_device, "m_device is null");
 
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << " - Empfangenes Paket mit UID " << packet->GetUid() << " und Größe "
+                << packet->GetSize() << " Bytes von 0x" << std::hex
+                << this->m_mac->GetLongRadioDeviceId());
 
     NS_LOG_FUNCTION(this << packet);
 
     Ptr<Dect2020SpectrumSignalParameters> params = Create<Dect2020SpectrumSignalParameters>();
 
     params->txPhy = this;
-    params->txPacket = packet;
+    params->txPacket = packet->Copy();
 
     Time duration = Time(Seconds(1));
     params->duration = duration;
@@ -124,7 +128,8 @@ Dect2020Phy::Send(Ptr<Packet> packet) // TODO? Zieladresse festlegen
 
     // Ptr<const SpectrumModel> specModel = Create<const SpectrumModel>(centerFreqs);
 
-    uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder Bootstrapping entschieden
+    uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder
+                        // Bootstrapping entschieden
 
     Ptr<const SpectrumModel> specModel = Dect2020SpectrumModelManager::GetSpectrumModel(bandId);
     Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
@@ -200,10 +205,16 @@ Dect2020Phy::GetAntenna() const
 void
 Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
 {
-    NS_LOG_INFO("Dect2020Phy: StartRx called from Device 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Dect2020Phy: StartRx called from Device 0x" << std::hex
+                << this->m_mac->GetLongRadioDeviceId());
 
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
+
+    NS_LOG_INFO("StartRx() - UID: " << dectParams->txPacket->GetUid()
+                                    << ", Größe: " << dectParams->txPacket->GetSize());
+
     m_receiveCallback(dectParams->txPacket);
 }
 

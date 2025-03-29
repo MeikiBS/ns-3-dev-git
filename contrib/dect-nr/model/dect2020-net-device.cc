@@ -47,11 +47,11 @@ Dect2020NetDevice::SetTerminationPointType(TerminationPointType tpt)
     NS_LOG_FUNCTION(this << tpt);
     if (tpt != PT && tpt != FT)
     {
-        NS_LOG_ERROR("Invalid TerminationPointType");
+        NS_LOG_ERROR(Simulator::Now().GetMilliSeconds() << ": Invalid TerminationPointType");
         return;
     }
     m_terminationPointType = tpt;
-    NS_LOG_INFO("Set TerminationPointType to: " << (tpt == PT ? "PT" : "FT"));
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": " << __PRETTY_FUNCTION__ << " | " << "Set TerminationPointType to: " << (tpt == PT ? "PT" : "FT"));
 
     m_terminationPointType = tpt;
 }
@@ -179,6 +179,9 @@ Dect2020NetDevice::Send(Ptr<Packet> packet, const Address& dest, uint16_t protoc
 {
     NS_LOG_FUNCTION(this << packet << dest << protocolNumber);
 
+    // TEST
+    NS_LOG_INFO("Dect2020NetDevice::Send aufgerufen");
+
     if (!m_linkUp)
     {
         NS_LOG_ERROR("Link is down");
@@ -292,7 +295,7 @@ Dect2020NetDevice::Receive(Ptr<Packet> packet)
 {
     NS_LOG_FUNCTION(this << packet);
 
-    NS_LOG_INFO("Dect2020NetDevice::Receive() aufgerufen von Device 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": Dect2020NetDevice::Receive() aufgerufen von Device 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
 
     if (!m_rxCallback.IsNull())
     {
@@ -307,7 +310,7 @@ ReceivePacket(Ptr<NetDevice> device,
               uint16_t protocol,
               const Address& sender)
 {
-    NS_LOG_UNCOND("Gerät 2 hat ein Paket empfangen von " << Mac48Address::ConvertFrom(sender));
+    NS_LOG_UNCOND(Simulator::Now().GetMilliSeconds() << ": Gerät 2 hat ein Paket empfangen von " << Mac48Address::ConvertFrom(sender));
     return true; // Paket wurde erfolgreich empfangen
 }
 

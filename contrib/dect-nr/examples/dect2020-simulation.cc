@@ -128,7 +128,9 @@ ReceivePacket(Ptr<NetDevice> device,
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(5));
+    Simulator::Stop(Seconds(10));
+
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds());
 
     // Protokollierung aktivieren
     LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
@@ -150,7 +152,7 @@ main(int argc, char* argv[])
 
     // Erstellen der Knoten
     NodeContainer nodes;
-    nodes.Create(3);
+    nodes.Create(10);
 
     // Erstellen des Kanals
     Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
@@ -207,31 +209,6 @@ main(int argc, char* argv[])
     // Setzen des Empfangs-Callbacks für Gerät 2
     // devices.Get(1)->SetReceiveCallback(MakeCallback(&ReceivePacket));
 
-    // Installieren des Internet-Stacks
-    InternetStackHelper internet;
-    internet.Install(nodes);
-
-    // Zuweisen von IP-Adressen
-    Ipv4AddressHelper ipv4;
-    ipv4.SetBase("10.1.1.0", "255.255.255.0");
-    Ipv4InterfaceContainer interfaces = ipv4.Assign(devices);
-
-    // Erstellen der Anwendung auf Knoten 1 (Empfänger)
-    uint16_t port = 9;
-    UdpEchoServerHelper server(port);
-    ApplicationContainer serverApp = server.Install(nodes.Get(1));
-    serverApp.Start(Seconds(1.0));
-    serverApp.Stop(Seconds(10.0));
-
-    // Erstellen der Anwendung auf Knoten 0 (Sender)
-    UdpEchoClientHelper client(interfaces.GetAddress(1), port);
-    client.SetAttribute("MaxPackets", UintegerValue(5));
-    client.SetAttribute("Interval", TimeValue(Seconds(1.0)));
-    client.SetAttribute("PacketSize", UintegerValue(1024));
-
-    ApplicationContainer clientApp = client.Install(nodes.Get(0));
-    clientApp.Start(Seconds(2.0));
-    clientApp.Stop(Seconds(10.0));
 
     // Simulation ausführen
     Simulator::Run();

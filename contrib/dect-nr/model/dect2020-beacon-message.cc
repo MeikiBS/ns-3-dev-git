@@ -282,7 +282,7 @@ Dect2020BeaconMessage::GetSerializedSize() const
 void
 Dect2020BeaconMessage::Print(std::ostream& os) const
 {
-    os << "TX power = " << (bool)m_txPowerIncluded << std::endl
+    os << "Beacon Message:" << std::endl << "TX power = " << (bool)m_txPowerIncluded << std::endl
        << "Power const = " << (bool)m_powerConstraints << std::endl
        << "Current cluster channel = " << (bool)m_currentClusterChannelIncluded << std::endl
        << "Network Beacon channels = " << static_cast<int>(m_networkBeaconChannels) << std::endl

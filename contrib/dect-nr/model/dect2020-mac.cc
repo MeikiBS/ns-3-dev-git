@@ -73,7 +73,7 @@ Dect2020Mac::Send(Ptr<Packet> packet, const Address& dest, Dect2020PacketType ty
     // }
 
     // Senden des Pakets über die PHY-Schicht
-    m_phy->Send(packet);
+    // m_phy->Send(packet);
 
     // Trace-Aufruf
     m_txPacketTrace(packet);
@@ -84,46 +84,41 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
 {
     NS_LOG_FUNCTION(this << packet);
 
-    NS_LOG_INFO("Dect2020Mac::ReceiveFromPhy() aufgerufen von 0x" << std::hex
-                                                                  << this->GetLongRadioDeviceId());
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020Mac::ReceiveFromPhy() aufgerufen von 0x" << std::hex
+    //             << this->GetLongRadioDeviceId());
 
-    Dect2020MacHeaderType macHeaderType;
-    // packet->PeekHeader(macHeaderType);
-    // NS_LOG_INFO(macHeaderType);
+    NS_LOG_INFO("Dect2020Mac::ReceiveFromPhy: Empfangenes Paket UID: "
+                << packet->GetUid() << ", Größe: " << packet->GetSize() << " von Device 0x"
+                << std::hex << this->GetLongRadioDeviceId());
+
 
     // Jetzt sicher entfernen
     Dect2020BeaconMessage beaconMessage;
     packet->RemoveHeader(beaconMessage);
-    // NS_LOG_INFO(beaconMessage);
+    NS_LOG_INFO(beaconMessage);
 
     Dect2020BeaconHeader beaconHeader;
     packet->RemoveHeader(beaconHeader);
-    // NS_LOG_INFO(beaconHeader);
+    NS_LOG_INFO(beaconHeader);
 
+    Dect2020MacHeaderType macHeaderType;
+    // packet->PeekHeader(macHeaderType);
+    // NS_LOG_INFO(macHeaderType);
     packet->RemoveHeader(macHeaderType); // Jetzt passt die Reihenfolge
     NS_LOG_INFO(macHeaderType);
-
-    if(macHeaderType.GetMacHeaderTypeField() == Dect2020MacHeaderType::MacHeaderTypeField::UNICAST_HEADER)
-    {
-        NS_LOG_INFO("JO!!!! :(");
-    }
-
-    // Dect2020MacHeaderType macHeaderType;
-    // packet->RemoveHeader(macHeaderType);
 
     if (macHeaderType.GetMacHeaderTypeField() ==
         Dect2020MacHeaderType::MacHeaderTypeField::BEACON_HEADER)
     {
-        // Dect2020BeaconHeader beaconHeader;
-        // packet->RemoveHeader(beaconHeader);
-
-        NS_LOG_INFO("Beacon received! Network ID: 0x" << std::hex << beaconHeader.GetNetworkId()
+        NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": Beacon received! Network ID: 0x" <<
+        std::hex << beaconHeader.GetNetworkId()
                                                     << " from Device 0x" << std::hex
                                                     << beaconHeader.GetTransmitterAddress());
     }
     else
     {
-        NS_LOG_WARN("Received unknown Message.");
+        NS_LOG_WARN(Simulator::Now().GetMilliSeconds() << ": Received unknown Message.");
     }
 
     // Weiterleitung des Pakets an das NetDevice
@@ -161,8 +156,9 @@ Dect2020Mac::InitializeNetwork()
     uint32_t networkId = GenerateValidNetworkId();
     SetNetworkId(networkId);
 
-    NS_LOG_INFO("FT-Device " << this << " started a new Network with the Network ID: " << std::hex
-                             << std::setw(8) << std::setfill('0') << networkId);
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ":  FT-Device " << this << " started a new Network with the Network ID: "
+                << std::hex << std::setw(8) << std::setfill('0') << networkId);
 
     StartBeaconTransmission();
 }
@@ -172,8 +168,9 @@ Dect2020Mac::JoinNetwork(uint32_t networkId)
 {
     SetNetworkId(networkId);
 
-    NS_LOG_INFO("PT-Device joined a Network with the Network ID: "
-                << std::hex << std::setw(8) << std::setfill('0') << networkId);
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": PT-Device joined a Network with the Network ID: " << std::hex << std::setw(8)
+                << std::setfill('0') << networkId);
 
     SetShortRadioDeviceId(GenerateShortRadioDeviceId());
     // TODO: Unter welchen Umständen kann einem Network beigetreten/nicht beigetreten werden?
@@ -182,7 +179,8 @@ Dect2020Mac::JoinNetwork(uint32_t networkId)
 void
 Dect2020Mac::StartBeaconTransmission()
 {
-    NS_LOG_INFO("Dect2020Mac::StartBeaconTransmission aufgerufen");
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Dect2020Mac::StartBeaconTransmission aufgerufen");
     Ptr<Packet> networkBeacon = Create<Packet>();
 
     // MAC Header Type
@@ -203,11 +201,15 @@ Dect2020Mac::StartBeaconTransmission()
 
     networkBeacon->AddHeader(beaconMessage);
 
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": StartBeaconTransmission() versendet Paket mit der Größe "
+                << networkBeacon->GetSize() << " Bytes.");
+
     m_phy->Send(networkBeacon);
 
-    NS_LOG_INFO("Network Beacon gesendet von Gerät 0x"
-                << std::hex  << this->GetLongRadioDeviceId());
-    NS_LOG_INFO("MAC Header Type: " << macHeaderType.GetMacHeaderTypeField());
+    // NS_LOG_INFO("Network Beacon gesendet von Gerät 0x"
+    //             << std::hex  << this->GetLongRadioDeviceId());
+    // NS_LOG_INFO("MAC Header Type: " << macHeaderType.GetMacHeaderTypeField());
 
     Simulator::Schedule(Seconds(1), &Dect2020Mac::StartBeaconTransmission, this);
 }
@@ -243,14 +245,16 @@ Dect2020Mac::SetNetworkId(uint32_t networkId)
 
     if (lsb == 0x00 || msb == 0x000000)
     {
-        NS_LOG_ERROR("Invalid Network ID: LSB and MSB have to be greater zero.");
+        NS_LOG_ERROR(Simulator::Now().GetMilliSeconds()
+                     << ": Invalid Network ID: LSB and MSB have to be greater zero.");
         return;
     }
 
     m_networkId = networkId;
 
-    NS_LOG_DEBUG("Network ID set: 0x" << std::hex << std::setw(8) << std::setfill('0')
-                                      << m_networkId << " on Device " << this);
+    NS_LOG_DEBUG(Simulator::Now().GetMilliSeconds()
+                 << ": Network ID set: 0x" << std::hex << std::setw(8) << std::setfill('0')
+                 << m_networkId << " on Device " << this);
 }
 
 uint32_t
@@ -270,8 +274,9 @@ Dect2020Mac::GenerateLongRadioDeviceId()
         rdId = randomVar->GetValue(1, 0xFFFFFFFD); // Range 0x00000001 bis 0xFFFFFFFD
     } while (rdId == 0x00000000 || rdId == 0xFFFFFFFE || rdId == 0xFFFFFFFF);
 
-    NS_LOG_INFO("Generated Long Radio Device ID: 0x" << std::hex << std::setw(8)
-                                                     << std::setfill('0') << rdId);
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Generated Long Radio Device ID: 0x" << std::hex << std::setw(8)
+                << std::setfill('0') << rdId);
     return rdId;
 }
 
@@ -282,12 +287,14 @@ Dect2020Mac::SetLongRadioDeviceId(uint32_t rdId)
     {
         m_longRadioDeviceId = rdId;
 
-        NS_LOG_INFO("Set Long Radio Device ID: 0x" << std::hex << std::setw(8) << std::setfill('0')
-                                                   << rdId << " on Device " << this);
+        NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                    << ": Set Long Radio Device ID: 0x" << std::hex << std::setw(8)
+                    << std::setfill('0') << rdId << " on Device " << this);
     }
     else
     {
-        NS_LOG_WARN("Invalid Long Radio Device ID detected. Generate a new one.");
+        NS_LOG_WARN(Simulator::Now().GetMilliSeconds()
+                    << ": Invalid Long Radio Device ID detected. Generate a new one.");
 
         SetLongRadioDeviceId(GenerateLongRadioDeviceId());
     }
@@ -310,7 +317,8 @@ Dect2020Mac::GenerateShortRadioDeviceId()
         rdId = randomVar->GetValue(1, 0xFFFE); // Range 0x0001 bis 0xFFFE
     } while (rdId == 0x0000 || rdId == 0xFFFF);
 
-    NS_LOG_DEBUG("Short Radio Device ID " << rdId << "generated.");
+    NS_LOG_DEBUG(Simulator::Now().GetMilliSeconds()
+                 << ": Short Radio Device ID " << rdId << "generated.");
 
     return rdId;
 }
@@ -324,7 +332,8 @@ Dect2020Mac::SetShortRadioDeviceId(uint16_t rdId)
     }
     else
     {
-        NS_LOG_WARN("Invalid Short Radio Device ID detected. Generate a new one.");
+        NS_LOG_WARN(Simulator::Now().GetMilliSeconds()
+                    << ": Invalid Short Radio Device ID detected. Generate a new one.");
 
         SetShortRadioDeviceId(GenerateShortRadioDeviceId());
     }

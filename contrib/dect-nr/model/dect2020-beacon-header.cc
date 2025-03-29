@@ -63,8 +63,8 @@ Dect2020BeaconHeader::GetTransmitterAddress() const
 void
 Dect2020BeaconHeader::Print(std::ostream& os) const
 {
-    os << "NetworkId=0x" << std::hex << m_networkId << ", TransmitterAddress=0x" << std::hex
-       << m_transmitterAddress;
+    os << "Beacon Header:" << std::endl << "NetworkId = 0x" << std::hex << m_networkId << std::endl
+       << "TransmitterAddress = 0x" << std::hex << m_transmitterAddress;
 }
 
 uint32_t

@@ -107,7 +107,7 @@ Dect2020MacHeaderType::GetSerializedSize() const
 void
 Dect2020MacHeaderType::Print(std::ostream& os) const
 {
-    os << "Version = " << static_cast<int>(m_version) << std::endl
+    os << "Beacon Header Type:" << std::endl << "Version = " << static_cast<int>(m_version) << std::endl
        << "MAC Security = " << static_cast<int>(m_macSecurity) << std::endl
        << "MAC Header Type = " << static_cast<int>(m_macHeaderTypeField) << std::endl;
 }
