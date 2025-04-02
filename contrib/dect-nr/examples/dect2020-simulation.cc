@@ -10,6 +10,7 @@
 #include "ns3/dect2020-mac.h"
 #include "ns3/dect2020-phy.h"
 #include "ns3/dect2020-spectrum-signal-parameters.h"
+#include "ns3/dect2020-physical-header-field.h"
 
 // using namespace ns3;
 // using Dect2020NetDevice::TerminationPointType::FT;
@@ -114,6 +115,35 @@ TestBeaconMessage()
 //     }
 // }
 
+void TestPhysicalLayerControlFieldType1()
+{
+    Dect2020PhysicalHeaderField originalPhysicalHeaderField;
+
+    uint8_t originalPacketlLengthType = 1;
+    uint8_t originalPacketLength = 13;
+    uint8_t originalShortNetworkID = 55;
+    uint16_t originalTransmitterIdentity = 13130;
+    uint8_t originalTransmitPower = 3;
+    uint8_t originalDFMCS = 2;
+
+    originalPhysicalHeaderField.m_packetLengthType = originalPacketlLengthType;
+    originalPhysicalHeaderField.m_packetLength = originalPacketLength;
+    originalPhysicalHeaderField.m_shortNetworkID = originalShortNetworkID;
+    originalPhysicalHeaderField.m_transmitterIdentity = originalTransmitterIdentity;
+    originalPhysicalHeaderField.m_transmitPower = originalTransmitPower;
+    originalPhysicalHeaderField.m_dFMCS = originalDFMCS;
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(originalPhysicalHeaderField);
+
+    Dect2020PhysicalHeaderField deserializedPhysicalHeaderField;
+    packet->RemoveHeader(deserializedPhysicalHeaderField);
+
+    NS_LOG_INFO(originalPhysicalHeaderField);
+    NS_LOG_INFO(deserializedPhysicalHeaderField);
+    
+}
+
 // Empfangsfunktion definieren
 bool
 ReceivePacket(Ptr<NetDevice> device,
@@ -216,7 +246,8 @@ main(int argc, char* argv[])
 
     // TestBeaconHeader();
     // TestBeaconMessage();
-    TestMacHeaderField();
+    // TestMacHeaderField();
 
+    TestPhysicalLayerControlFieldType1();
     return 0;
 }

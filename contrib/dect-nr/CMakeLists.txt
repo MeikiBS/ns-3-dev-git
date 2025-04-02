@@ -20,7 +20,8 @@ set(source_files
     model/dect2020-mac-header-type.cc
     model/dect2020-operating-band.cc
     model/dect2020-spectrum-signal-parameters.cc
-    model/dect2020-spectrum-model-manager.cc)
+    model/dect2020-spectrum-model-manager.cc
+    model/dect2020-physical-header-field.cc)
 
 set(header_files
     model/dect2020-net-device.h
@@ -32,7 +33,8 @@ set(header_files
     model/dect2020-mac-header-type.h
     model/dect2020-operating-band.h
     model/dect2020-spectrum-signal-parameters.h
-    model/dect2020-spectrum-model-manager.h)
+    model/dect2020-spectrum-model-manager.h
+    model/dect2020-physical-header-field.h)
 
 build_lib(
     LIBNAME dect-nr
