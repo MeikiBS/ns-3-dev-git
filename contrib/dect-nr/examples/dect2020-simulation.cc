@@ -126,12 +126,12 @@ void TestPhysicalLayerControlFieldType1()
     uint8_t originalTransmitPower = 3;
     uint8_t originalDFMCS = 2;
 
-    originalPhysicalHeaderField.m_packetLengthType = originalPacketlLengthType;
-    originalPhysicalHeaderField.m_packetLength = originalPacketLength;
-    originalPhysicalHeaderField.m_shortNetworkID = originalShortNetworkID;
-    originalPhysicalHeaderField.m_transmitterIdentity = originalTransmitterIdentity;
-    originalPhysicalHeaderField.m_transmitPower = originalTransmitPower;
-    originalPhysicalHeaderField.m_dFMCS = originalDFMCS;
+    originalPhysicalHeaderField.SetPacketLengthType(originalPacketlLengthType);
+    originalPhysicalHeaderField.SetPacketLength(originalPacketLength);
+    originalPhysicalHeaderField.SetShortNetworkID(originalShortNetworkID);
+    originalPhysicalHeaderField.SetTransmitterIdentity(originalTransmitterIdentity);
+    originalPhysicalHeaderField.SetTransmitPower(originalTransmitPower);
+    originalPhysicalHeaderField.SetDFMCS(originalDFMCS);
 
     Ptr<Packet> packet = Create<Packet>();
     packet->AddHeader(originalPhysicalHeaderField);
@@ -182,7 +182,7 @@ main(int argc, char* argv[])
 
     // Erstellen der Knoten
     NodeContainer nodes;
-    nodes.Create(10);
+    nodes.Create(3);
 
     // Erstellen des Kanals
     Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
@@ -248,6 +248,6 @@ main(int argc, char* argv[])
     // TestBeaconMessage();
     // TestMacHeaderField();
 
-    TestPhysicalLayerControlFieldType1();
+    // TestPhysicalLayerControlFieldType1();
     return 0;
 }

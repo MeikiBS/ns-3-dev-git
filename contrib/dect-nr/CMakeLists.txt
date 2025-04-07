@@ -45,6 +45,4 @@ build_lib(
             ${spectrum}
             ${mobility}
             ${network}
-    TEST_SOURCES test/dect-nr-test-suite.cc
-                 ${examples_as_tests_sources}
 )

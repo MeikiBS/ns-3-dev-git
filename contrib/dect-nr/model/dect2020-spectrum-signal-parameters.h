@@ -19,6 +19,7 @@ class Dect2020SpectrumSignalParameters : public SpectrumSignalParameters
     Ptr<SpectrumSignalParameters> Copy() const;
 
     Ptr<Packet> txPacket;
+    uint32_t m_currentChannelId;
 
   private:
 };

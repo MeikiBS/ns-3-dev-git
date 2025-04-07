@@ -25,9 +25,7 @@ Dect2020Mac::GetTypeId(void)
     static TypeId tid = TypeId("ns3::Dect2020Mac")
                             .SetParent<Object>()
                             .SetGroupName("Dect2020")
-                            .AddConstructor<Dect2020Mac>()
-        // Hier können weitere Attribute und Trace-Quellen hinzugefügt werden
-        ;
+                            .AddConstructor<Dect2020Mac>();
     return tid;
 }
 
@@ -92,6 +90,9 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
                 << packet->GetUid() << ", Größe: " << packet->GetSize() << " von Device 0x"
                 << std::hex << this->GetLongRadioDeviceId());
 
+    Dect2020PhysicalHeaderField physicalHeaderField;
+    packet->RemoveHeader(physicalHeaderField);
+    NS_LOG_INFO(physicalHeaderField);
 
     // Jetzt sicher entfernen
     Dect2020BeaconMessage beaconMessage;
@@ -205,13 +206,32 @@ Dect2020Mac::StartBeaconTransmission()
                 << ": StartBeaconTransmission() versendet Paket mit der Größe "
                 << networkBeacon->GetSize() << " Bytes.");
 
-    m_phy->Send(networkBeacon);
+    
+    m_phy->Send(networkBeacon, CreatePhysicalHeaderField());
 
     // NS_LOG_INFO("Network Beacon gesendet von Gerät 0x"
     //             << std::hex  << this->GetLongRadioDeviceId());
     // NS_LOG_INFO("MAC Header Type: " << macHeaderType.GetMacHeaderTypeField());
 
     Simulator::Schedule(Seconds(1), &Dect2020Mac::StartBeaconTransmission, this);
+}
+
+Dect2020PhysicalHeaderField
+Dect2020Mac::CreatePhysicalHeaderField()
+{
+    Dect2020PhysicalHeaderField physicalHeaderField;
+    physicalHeaderField.SetPacketLengthType(1); // TODO: Wie wird das bestimmt?
+    physicalHeaderField.SetPacketLength(5); // TODO: Wie wird das bestimmt?
+
+    // Short Network ID: The last 8 LSB bits of the Network ID # ETSI 103 636 04 4.2.3.1
+    uint8_t shortNetworkID = m_networkId & 0xFF;
+    physicalHeaderField.SetShortNetworkID(shortNetworkID);
+    physicalHeaderField.SetTransmitterIdentity(m_shortRadioDeviceId);
+    physicalHeaderField.SetTransmitPower(3);    // TODO: Wie wird das bestimmt?
+    physicalHeaderField.SetDFMCS(0);        // TODO: Wie wird das bestimmt?
+
+    return physicalHeaderField;
+
 }
 
 uint32_t
@@ -297,6 +317,7 @@ Dect2020Mac::SetLongRadioDeviceId(uint32_t rdId)
                     << ": Invalid Long Radio Device ID detected. Generate a new one.");
 
         SetLongRadioDeviceId(GenerateLongRadioDeviceId());
+        // Hier Short RDID
     }
 }
 
@@ -349,5 +370,6 @@ void
 Dect2020Mac::InitializeDevice()
 {
     SetLongRadioDeviceId(GenerateLongRadioDeviceId());
+    SetShortRadioDeviceId(GenerateShortRadioDeviceId());
 }
 } // namespace ns3

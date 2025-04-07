@@ -27,10 +27,24 @@ Dect2020Channel::GetTypeId(void)
 Dect2020Channel::Dect2020Channel()
 {
     NS_LOG_FUNCTION(this);
+
+    std::vector<Slot> m_slots;
+    std::vector<Slot> m_slotsLastFrame;
 }
 
 Dect2020Channel::~Dect2020Channel()
 {
     NS_LOG_FUNCTION(this);
+}
+
+void
+Dect2020Channel::AddSlot(Slot slot)
+{
+    m_slots.push_back(slot);
+
+    if(m_slots.size() == 24)
+    {
+        m_slotsLastFrame = m_slots; // Deep copy of the fresh initialized Slot List
+    }
 }
 } // namespace ns3

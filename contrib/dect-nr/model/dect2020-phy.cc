@@ -34,7 +34,7 @@ Dect2020Phy::GetTypeId(void)
 
 Dect2020Phy::Dect2020Phy()
     : m_currentSlot(0),
-      m_currenSubslot(0)
+      m_currentSubslot(0)
 {
     if (m_channels.empty())
     {
@@ -95,7 +95,7 @@ Dect2020Phy::GetDevice(void) const
 }
 
 void
-Dect2020Phy::Send(Ptr<Packet> packet) // TODO? Zieladresse festlegen
+Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader) // TODO? Zieladresse festlegen
 {
     NS_ASSERT_MSG(packet, "Packet is null");
     NS_ASSERT_MSG(this->m_device, "m_device is null");
@@ -111,6 +111,7 @@ Dect2020Phy::Send(Ptr<Packet> packet) // TODO? Zieladresse festlegen
 
     params->txPhy = this;
     params->txPacket = packet->Copy();
+    params->txPacket->AddHeader(physicalHeader);
 
     Time duration = Time(Seconds(1));
     params->duration = duration;
@@ -130,10 +131,12 @@ Dect2020Phy::Send(Ptr<Packet> packet) // TODO? Zieladresse festlegen
 
     uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder
                         // Bootstrapping entschieden
+                        // TODO: Wo wird entschieden, auf welchem Channel gesendet wird?
 
     Ptr<const SpectrumModel> specModel = Dect2020SpectrumModelManager::GetSpectrumModel(bandId);
     Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
     params->psd = psd;
+    (*psd)[this->m_mac->m_currentChannelId] = -30;
 
     m_channel->StartTx(params);
 
@@ -205,15 +208,20 @@ Dect2020Phy::GetAntenna() const
 void
 Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
 {
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Phy: StartRx called from Device 0x" << std::hex
-                << this->m_mac->GetLongRadioDeviceId());
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020Phy: StartRx called from Device 0x" << std::hex
+    //             << this->m_mac->GetLongRadioDeviceId());
 
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
 
     NS_LOG_INFO("StartRx() - UID: " << dectParams->txPacket->GetUid()
                                     << ", Größe: " << dectParams->txPacket->GetSize());
+
+    Ptr<SpectrumValue> psd = dectParams->psd;
+    double power = (*psd)[dectParams->m_currentChannelId];
+    Subslot* subslot = GetCurrentSubslot(dectParams->m_currentChannelId);
+    subslot->rssi = power;
 
     m_receiveCallback(dectParams->txPacket);
 }
@@ -238,7 +246,6 @@ Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFac
                                                                    : 16;
 
     const uint32_t slotsPerFrame = 24; // #ETSI 103 636-3 V1.5.1, Section 4.4
-    // uint32_t numSubslotsPerChannel = slotsPerFrame * numSubslotsPerSlot;
 
     m_channels.clear();
     for (uint32_t ch = 0; ch < numChannels; ch++)
@@ -265,7 +272,8 @@ Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFac
                 slotObj.subslots.push_back(subslot);
             }
 
-            dect2020Channel.m_slots.push_back(slotObj);
+            // dect2020Channel.m_slots.push_back(slotObj);
+            dect2020Channel.AddSlot(slotObj);   // Add the current Slot to the Channel
         }
 
         // NS_LOG_INFO("Channel " << channelFrequencyNumbering << " frequency "
@@ -305,6 +313,8 @@ void
 Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 {
     m_currentSlot = slot;
+    // Hier weiter 08.04.: Hier sollte bei jedem Start des Slots der RSSI des Slots zurückgesetzt werden.
+    // Der RSSI wird nur in StartRx() gesetzt, wenn auch ein Paket empfangen wird.
 
     // NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed
     // <<Simulator::Now().GetMicroSeconds());
@@ -336,7 +346,7 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 void
 Dect2020Phy::ProcessSubslot(uint32_t slot, uint32_t subslot)
 {
-    m_currenSubslot = subslot;
+    m_currentSubslot = subslot;
 
     // NS_LOG_INFO("Processing Subslot " << std::fixed << subslot << " in Slot " << slot << " at
     // time "
@@ -378,7 +388,7 @@ Dect2020Phy::GetCurrentSubslot(uint32_t channelId) const
             {
                 for (Subslot& subslot : slot.subslots)
                 {
-                    if (subslot.subslotId == m_currenSubslot)
+                    if (subslot.subslotId == m_currentSubslot)
                     {
                         return &subslot;
                     }

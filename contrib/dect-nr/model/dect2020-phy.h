@@ -5,6 +5,7 @@
 #include "dect2020-operating-band.h"
 #include "dect2020-spectrum-signal-parameters.h"
 #include "dect2020-spectrum-model-manager.h"
+#include "dect2020-physical-header-field.h"
 
 #include "ns3/nstime.h"
 #include "ns3/object.h"
@@ -46,7 +47,7 @@ class Dect2020Phy : public SpectrumPhy
     void SetDevice(Ptr<NetDevice> device) override;
 
     // Methoden zum Senden und Empfangen von Paketen
-    void Send(Ptr<Packet> packet);
+    void Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader);
     void Receive(Ptr<Packet> packet);
 
     // Kanalverwaltung
@@ -71,6 +72,8 @@ class Dect2020Phy : public SpectrumPhy
     Ptr<Object> GetAntenna() const override;
     void StartRx(Ptr<SpectrumSignalParameters> params);
 
+    static std::vector<Dect2020Channel> m_channels;
+
   private:
     static bool m_isFrameTimerRunning;
     void ReceiveDelayed(Ptr<Packet> packet);
@@ -80,8 +83,7 @@ class Dect2020Phy : public SpectrumPhy
     Ptr<NetDevice> m_device;
     Ptr<SpectrumChannel> m_channel;
     uint32_t m_currentSlot;
-    uint32_t m_currenSubslot;
-    static std::vector<Dect2020Channel> m_channels;
+    uint32_t m_currentSubslot;
     Ptr<const SpectrumModel> m_spectrumModel;
     Ptr<MobilityModel> m_mobilityModel;
     Ptr<Object> m_antenna;

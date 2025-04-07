@@ -9,6 +9,8 @@
 #include "ns3/random-variable-stream.h"
 #include "ns3/traced-callback.h"
 
+#include "dect2020-physical-header-field.h"
+
 namespace ns3
 {
 
@@ -116,7 +118,11 @@ class Dect2020Mac : public Object
      */
     void InitializeDevice();
 
+    uint32_t m_currentChannelId = 0;    // Number of the Channel that is currently the main Channel
+
   private:
+    Dect2020PhysicalHeaderField CreatePhysicalHeaderField();
+
     // Membervariablen
     Ptr<Dect2020NetDevice> m_device;
     Ptr<Dect2020Phy> m_phy;

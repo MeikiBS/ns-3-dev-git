@@ -21,7 +21,7 @@ Dect2020SpectrumModelManager::GetSpectrumModel(uint8_t bandId)
     BandParameters bp = band.m_bandParameters;
 
     std::vector<double> frequencies;
-    for (int i = 0; i < bp.nEnd - bp.nStart; i++)
+    for (int i = 0; i < bp.nEnd - bp.nStart + 1; i++)
     {
         frequencies.push_back(bp.startFrequency + i * bp.frequencyStep);
     }

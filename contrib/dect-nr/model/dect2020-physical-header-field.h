@@ -1,19 +1,26 @@
 #ifndef DECT2020_PHYSICAL_HEADER_FIELD
 #define DECT2020_PHYSICAL_HEADER_FIELD
 
+#include "ns3/address.h"
 #include "ns3/header.h"
 #include "ns3/nstime.h"
-#include "ns3/address.h"
 
 namespace ns3
 {
+
+// TODO: Implement Physical Layer Control Field Type 1
 
 class Dect2020PhysicalHeaderField : public Header
 {
   public:
     Dect2020PhysicalHeaderField();
+    Dect2020PhysicalHeaderField(uint8_t packetLengthType,
+                                uint8_t packetLength,
+                                uint8_t shortNetworkID,
+                                uint16_t transmitterIdentity,
+                                uint8_t transmitPower,
+                                uint8_t dFMCS);
     virtual ~Dect2020PhysicalHeaderField();
-
 
     // Überladene Methoden von Header
     static TypeId GetTypeId(void);
@@ -23,7 +30,21 @@ class Dect2020PhysicalHeaderField : public Header
     virtual void Serialize(Buffer::Iterator start) const;
     virtual uint32_t Deserialize(Buffer::Iterator start);
 
-//   private:
+    // Setter und Getter
+    void SetPacketLengthType(uint8_t packetLengthType);
+    uint8_t GetPacketLengthType();
+    void SetPacketLength(uint8_t packetLength);
+    uint8_t GetPacketLength();
+    void SetShortNetworkID(uint8_t shortNetworkID);
+    uint8_t GetShortNetworkID();
+    void SetTransmitterIdentity(uint16_t transmitterIdentity);
+    uint16_t GetTransmitterIdentity();
+    void SetTransmitPower(uint8_t transmitPower);
+    uint8_t GetTransmitPower();
+    void SetDFMCS(uint8_t dFMCS);
+    uint8_t GetDFMCS();
+
+  private:
     uint8_t m_headerFormat;
     uint8_t m_packetLengthType;
     uint8_t m_packetLength;
