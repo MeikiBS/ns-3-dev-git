@@ -95,15 +95,16 @@ Dect2020Phy::GetDevice(void) const
 }
 
 void
-Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader) // TODO? Zieladresse festlegen
+Dect2020Phy::Send(Ptr<Packet> packet,
+                  Dect2020PhysicalHeaderField physicalHeader) // TODO? Zieladresse festlegen
 {
     NS_ASSERT_MSG(packet, "Packet is null");
     NS_ASSERT_MSG(this->m_device, "m_device is null");
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << " - Empfangenes Paket mit UID " << packet->GetUid() << " und Größe "
-                << packet->GetSize() << " Bytes von 0x" << std::hex
-                << this->m_mac->GetLongRadioDeviceId());
+                << ": Dect2020Phy::Send(): Von MAC Layer empfangenes Paket mit UID "
+                << packet->GetUid() << " und Größe " << packet->GetSize() << " Bytes von 0x"
+                << std::hex << this->m_mac->GetLongRadioDeviceId());
 
     NS_LOG_FUNCTION(this << packet);
 
@@ -112,6 +113,11 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
     params->txPhy = this;
     params->txPacket = packet->Copy();
     params->txPacket->AddHeader(physicalHeader);
+
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Dect2020Phy::Send(): Physical Header hinzugefügt bei Paket mit UID "
+                << params->txPacket->GetUid() << " und neuer Größe " << params->txPacket->GetSize()
+                << " Bytes von 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
 
     Time duration = Time(Seconds(1));
     params->duration = duration;
@@ -136,7 +142,9 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
     Ptr<const SpectrumModel> specModel = Dect2020SpectrumModelManager::GetSpectrumModel(bandId);
     Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
     params->psd = psd;
-    (*psd)[this->m_mac->m_currentChannelId] = -30;
+    (*psd)[this->m_mac->m_currentChannelId - 1657] = -30;
+
+    NS_LOG_INFO("Typ von m_channel: " << m_channel->GetInstanceTypeId());
 
     m_channel->StartTx(params);
 
@@ -215,12 +223,18 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
 
-    NS_LOG_INFO("StartRx() - UID: " << dectParams->txPacket->GetUid()
-                                    << ", Größe: " << dectParams->txPacket->GetSize());
+    NS_LOG_INFO("Paket UID: " << dectParams->txPacket->GetUid());
+    NS_LOG_INFO("Paketgröße VOR dem RemoveHeader: " << dectParams->txPacket->GetSize());
+
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Dect2020Phy::StartRx(): Device 0x" << std::hex
+                << this->m_mac->GetLongRadioDeviceId() << " empfängt Paket mit UID "
+                << dectParams->txPacket->GetUid() << " und Größe "
+                << dectParams->txPacket->GetSize() << " Bytes vom Kanal.");
 
     Ptr<SpectrumValue> psd = dectParams->psd;
-    double power = (*psd)[dectParams->m_currentChannelId];
-    Subslot* subslot = GetCurrentSubslot(dectParams->m_currentChannelId);
+    double power = (*psd)[this->m_mac->m_currentChannelId - 1657];
+    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
     subslot->rssi = power;
 
     m_receiveCallback(dectParams->txPacket);
@@ -273,7 +287,7 @@ Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFac
             }
 
             // dect2020Channel.m_slots.push_back(slotObj);
-            dect2020Channel.AddSlot(slotObj);   // Add the current Slot to the Channel
+            dect2020Channel.AddSlot(slotObj); // Add the current Slot to the Channel
         }
 
         // NS_LOG_INFO("Channel " << channelFrequencyNumbering << " frequency "
@@ -313,8 +327,6 @@ void
 Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 {
     m_currentSlot = slot;
-    // Hier weiter 08.04.: Hier sollte bei jedem Start des Slots der RSSI des Slots zurückgesetzt werden.
-    // Der RSSI wird nur in StartRx() gesetzt, wenn auch ein Paket empfangen wird.
 
     // NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed
     // <<Simulator::Now().GetMicroSeconds());
@@ -344,9 +356,13 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 }
 
 void
-Dect2020Phy::ProcessSubslot(uint32_t slot, uint32_t subslot)
+Dect2020Phy::ProcessSubslot(uint32_t slotId, uint32_t subslotId)
 {
-    m_currentSubslot = subslot;
+    m_currentSubslot = subslotId;
+
+    // Reset the RSSI of the current Subslot
+    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
+    (*subslot).rssi = 0;
 
     // NS_LOG_INFO("Processing Subslot " << std::fixed << subslot << " in Slot " << slot << " at
     // time "
@@ -378,7 +394,7 @@ Dect2020Phy::GetCurrentSlot(uint32_t channelId) const
 Subslot*
 Dect2020Phy::GetCurrentSubslot(uint32_t channelId) const
 {
-    NS_LOG_INFO("DEBUG: GetCurrentSubslot() channelId = " << channelId);
+    // NS_LOG_INFO("DEBUG: GetCurrentSubslot() channelId = " << channelId);
 
     for (Dect2020Channel& channel : m_channels)
     {

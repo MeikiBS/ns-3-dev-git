@@ -158,7 +158,7 @@ ReceivePacket(Ptr<NetDevice> device,
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(10));
+    Simulator::Stop(Seconds(3));
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds());
 
@@ -168,6 +168,8 @@ main(int argc, char* argv[])
     LogComponentEnable("Dect2020Phy", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Channel", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Simulation", LOG_LEVEL_INFO);
+    LogComponentEnable("Dect2020SpectrumSignalParameters", LOG_LEVEL_INFO);
+
 
 
     // Hier Bereich für Tests

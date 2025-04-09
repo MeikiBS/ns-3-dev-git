@@ -32,6 +32,10 @@ Dect2020Mac::GetTypeId(void)
 Dect2020Mac::Dect2020Mac()
 {
     NS_LOG_FUNCTION(this);
+
+    // TODO: Channel sucht sich ein RD selbst aus
+    m_currentChannelId = 1658;
+
     InitializeDevice(); // Initialize the Device
 }
 
@@ -86,11 +90,13 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
     //             << ": Dect2020Mac::ReceiveFromPhy() aufgerufen von 0x" << std::hex
     //             << this->GetLongRadioDeviceId());
 
-    NS_LOG_INFO("Dect2020Mac::ReceiveFromPhy: Empfangenes Paket UID: "
-                << packet->GetUid() << ", Größe: " << packet->GetSize() << " von Device 0x"
-                << std::hex << this->GetLongRadioDeviceId());
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Dect2020Mac::ReceiveFromPhy(): Device 0x"
+                << std::hex << this->GetLongRadioDeviceId() << " hat Paket mit UID "
+                << packet->GetUid() << " mit der Größe von " << packet->GetSize() << " Bytes empfangen." << std::endl);
 
     Dect2020PhysicalHeaderField physicalHeaderField;
+    NS_LOG_INFO("RemoveHeader() aufgrufen");
     packet->RemoveHeader(physicalHeaderField);
     NS_LOG_INFO(physicalHeaderField);
 
@@ -112,10 +118,10 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
     if (macHeaderType.GetMacHeaderTypeField() ==
         Dect2020MacHeaderType::MacHeaderTypeField::BEACON_HEADER)
     {
-        NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": Beacon received! Network ID: 0x" <<
-        std::hex << beaconHeader.GetNetworkId()
-                                                    << " from Device 0x" << std::hex
-                                                    << beaconHeader.GetTransmitterAddress());
+        NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                    << ": Dect2020Mac::ReceiveFromPhy(): Beacon with Network ID: 0x" << std::hex
+                    << beaconHeader.GetNetworkId() << " received from Device 0x" << std::hex
+                    << beaconHeader.GetTransmitterAddress());
     }
     else
     {
@@ -203,10 +209,9 @@ Dect2020Mac::StartBeaconTransmission()
     networkBeacon->AddHeader(beaconMessage);
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": StartBeaconTransmission() versendet Paket mit der Größe "
-                << networkBeacon->GetSize() << " Bytes.");
+                << ": StartBeaconTransmission() übergibt Paket mit der Größe "
+                << networkBeacon->GetSize() << " Bytes an PHY.");
 
-    
     m_phy->Send(networkBeacon, CreatePhysicalHeaderField());
 
     // NS_LOG_INFO("Network Beacon gesendet von Gerät 0x"
@@ -221,17 +226,16 @@ Dect2020Mac::CreatePhysicalHeaderField()
 {
     Dect2020PhysicalHeaderField physicalHeaderField;
     physicalHeaderField.SetPacketLengthType(1); // TODO: Wie wird das bestimmt?
-    physicalHeaderField.SetPacketLength(5); // TODO: Wie wird das bestimmt?
+    physicalHeaderField.SetPacketLength(5);     // TODO: Wie wird das bestimmt?
 
     // Short Network ID: The last 8 LSB bits of the Network ID # ETSI 103 636 04 4.2.3.1
     uint8_t shortNetworkID = m_networkId & 0xFF;
     physicalHeaderField.SetShortNetworkID(shortNetworkID);
     physicalHeaderField.SetTransmitterIdentity(m_shortRadioDeviceId);
-    physicalHeaderField.SetTransmitPower(3);    // TODO: Wie wird das bestimmt?
-    physicalHeaderField.SetDFMCS(0);        // TODO: Wie wird das bestimmt?
+    physicalHeaderField.SetTransmitPower(3); // TODO: Wie wird das bestimmt?
+    physicalHeaderField.SetDFMCS(0);         // TODO: Wie wird das bestimmt?
 
     return physicalHeaderField;
-
 }
 
 uint32_t

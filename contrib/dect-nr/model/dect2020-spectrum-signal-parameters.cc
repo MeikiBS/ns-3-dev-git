@@ -21,6 +21,9 @@ Dect2020SpectrumSignalParameters::~Dect2020SpectrumSignalParameters()
 Ptr<SpectrumSignalParameters>
 Dect2020SpectrumSignalParameters::Copy() const
 {
+    NS_LOG_INFO("Dect2020SpectrumSignalParameters::Copy(): txPacket size = "
+                << txPacket->GetSize() << ", UID = " << txPacket->GetUid());
+
     Ptr<Dect2020SpectrumSignalParameters> copy = Create<Dect2020SpectrumSignalParameters>();
 
     copy->duration = this->duration;
@@ -29,6 +32,7 @@ Dect2020SpectrumSignalParameters::Copy() const
     copy->psd = this->psd ? this->psd->Copy() : nullptr;
 
     copy->txPacket = this->txPacket ? this->txPacket->Copy() : nullptr;
+    copy->m_currentChannelId = m_currentChannelId;
 
     return copy;
     // return nullptr;

@@ -59,7 +59,7 @@ class Dect2020Phy : public SpectrumPhy
     void InitializeBand(uint8_t bandNumber);
     void StartFrameTimer();
     void ProcessSlot(uint32_t slot, double slotStartTime);
-    void ProcessSubslot(uint32_t slot, uint32_t subslot);
+    void ProcessSubslot(uint32_t slotId, uint32_t subslotId);
     Slot* GetCurrentSlot(uint32_t channelId) const;
     Subslot* GetCurrentSubslot(uint32_t channelId) const;
     void SetReceiveCallback(Callback<void, Ptr<Packet>> cb);

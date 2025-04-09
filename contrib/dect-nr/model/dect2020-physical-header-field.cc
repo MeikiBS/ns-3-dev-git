@@ -55,7 +55,7 @@ Dect2020PhysicalHeaderField::GetInstanceTypeId(void) const
 void
 Dect2020PhysicalHeaderField::Print(std::ostream& os) const
 {
-    os << "Header Format: " << static_cast<int>(m_headerFormat) << std::endl
+    os << "Physical Header Field:" << std::endl << "Header Format: " << static_cast<int>(m_headerFormat) << std::endl
        << "Packet length type: " << static_cast<int>(m_packetLengthType) << std::endl
        << "Packet Length: " << static_cast<int>(m_packetLength) << std::endl
        << "Short Network ID: 0x" << std::hex << static_cast<int>(m_shortNetworkID) << std::endl
