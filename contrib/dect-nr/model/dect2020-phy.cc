@@ -119,7 +119,7 @@ Dect2020Phy::Send(Ptr<Packet> packet,
                 << params->txPacket->GetUid() << " und neuer Größe " << params->txPacket->GetSize()
                 << " Bytes von 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
 
-    Time duration = Time(Seconds(1));
+    Time duration = Time(MilliSeconds(13));
     params->duration = duration;
 
     // Dect2020OperatingBand band = Dect2020OperatingBand(1);
@@ -143,8 +143,6 @@ Dect2020Phy::Send(Ptr<Packet> packet,
     Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
     params->psd = psd;
     (*psd)[this->m_mac->m_currentChannelId - 1657] = -30;
-
-    NS_LOG_INFO("Typ von m_channel: " << m_channel->GetInstanceTypeId());
 
     m_channel->StartTx(params);
 
@@ -223,12 +221,9 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
 
-    NS_LOG_INFO("Paket UID: " << dectParams->txPacket->GetUid());
-    NS_LOG_INFO("Paketgröße VOR dem RemoveHeader: " << dectParams->txPacket->GetSize());
-
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
                 << ": Dect2020Phy::StartRx(): Device 0x" << std::hex
-                << this->m_mac->GetLongRadioDeviceId() << " empfängt Paket mit UID "
+                << this->m_mac->GetLongRadioDeviceId() << std::dec << " empfängt Paket mit UID "
                 << dectParams->txPacket->GetUid() << " und Größe "
                 << dectParams->txPacket->GetSize() << " Bytes vom Kanal.");
 

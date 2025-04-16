@@ -21,8 +21,8 @@ Dect2020SpectrumSignalParameters::~Dect2020SpectrumSignalParameters()
 Ptr<SpectrumSignalParameters>
 Dect2020SpectrumSignalParameters::Copy() const
 {
-    NS_LOG_INFO("Dect2020SpectrumSignalParameters::Copy(): txPacket size = "
-                << txPacket->GetSize() << ", UID = " << txPacket->GetUid());
+    // NS_LOG_INFO("Dect2020SpectrumSignalParameters::Copy(): txPacket size = "
+    //             << txPacket->GetSize() << ", UID = " << txPacket->GetUid());
 
     Ptr<Dect2020SpectrumSignalParameters> copy = Create<Dect2020SpectrumSignalParameters>();
 

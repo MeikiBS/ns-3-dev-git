@@ -12,10 +12,10 @@ namespace ns3
 class Dect2020SpectrumModelManager
 {
   public:
-    static Ptr<const SpectrumModel> GetSpectrumModel(uint8_t bandId);
+    static Ptr<SpectrumModel> GetSpectrumModel(uint8_t bandId);
 
   private:
-    static std::map<uint8_t, Ptr<const SpectrumModel>> m_bandModels;
+    static std::map<uint8_t, Ptr<SpectrumModel>> m_bandModels;
 };
 
 } // namespace ns3

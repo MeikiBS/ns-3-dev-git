@@ -91,12 +91,11 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
     //             << this->GetLongRadioDeviceId());
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Mac::ReceiveFromPhy(): Device 0x"
-                << std::hex << this->GetLongRadioDeviceId() << " hat Paket mit UID "
-                << packet->GetUid() << " mit der Größe von " << packet->GetSize() << " Bytes empfangen." << std::endl);
+                << ": Dect2020Mac::ReceiveFromPhy(): Device 0x" << std::hex
+                << this->GetLongRadioDeviceId() << std::dec << " hat Paket mit UID " << packet->GetUid()
+                << " mit der Größe von " << packet->GetSize() << " Bytes empfangen." << std::endl);
 
     Dect2020PhysicalHeaderField physicalHeaderField;
-    NS_LOG_INFO("RemoveHeader() aufgrufen");
     packet->RemoveHeader(physicalHeaderField);
     NS_LOG_INFO(physicalHeaderField);
 
@@ -190,10 +189,12 @@ Dect2020Mac::StartBeaconTransmission()
                 << ": Dect2020Mac::StartBeaconTransmission aufgerufen");
     Ptr<Packet> networkBeacon = Create<Packet>();
 
+    NS_LOG_INFO("Größe des Pakets direkt nach Erstellung: " << networkBeacon->GetSize());
     // MAC Header Type
     Dect2020MacHeaderType macHeaderType;
     macHeaderType.SetMacHeaderTypeField(Dect2020MacHeaderType::BEACON_HEADER);
     networkBeacon->AddHeader(macHeaderType);
+    NS_LOG_INFO("Größe des Pakets direkt nach macHeaderType: " << networkBeacon->GetSize());
 
     // Mac Beacon Header
     Dect2020BeaconHeader beaconHeader;
@@ -202,15 +203,21 @@ Dect2020Mac::StartBeaconTransmission()
 
     networkBeacon->AddHeader(beaconHeader);
 
+    NS_LOG_INFO("Größe des Pakets direkt nach beaconHeader: " << networkBeacon->GetSize());
+
     // MAC Beacon Message
     Dect2020BeaconMessage beaconMessage;
     // TODO: beaconMessage mit Inhalt füllen
 
     networkBeacon->AddHeader(beaconMessage);
 
+    NS_LOG_INFO("Größe des Pakets direkt nach beaconMessage: " << networkBeacon->GetSize());
+
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": StartBeaconTransmission() übergibt Paket mit der Größe "
-                << networkBeacon->GetSize() << " Bytes an PHY.");
+                << ": StartBeaconTransmission() aufgerufen von 0x" << std::hex
+                << this->GetLongRadioDeviceId() << " übergibt Paket mit der Größe "
+                << networkBeacon->GetSize() << " Bytes und UID " << networkBeacon->GetUid()
+                << " an PHY.");
 
     m_phy->Send(networkBeacon, CreatePhysicalHeaderField());
 

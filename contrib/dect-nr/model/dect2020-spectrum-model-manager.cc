@@ -5,9 +5,9 @@ NS_LOG_COMPONENT_DEFINE("Dect2020SpectrumModelManager");
 namespace ns3
 {
 
-std::map<uint8_t, Ptr<const SpectrumModel>> Dect2020SpectrumModelManager::m_bandModels;
+std::map<uint8_t, Ptr<SpectrumModel>> Dect2020SpectrumModelManager::m_bandModels;
 
-Ptr<const SpectrumModel>
+Ptr<SpectrumModel>
 Dect2020SpectrumModelManager::GetSpectrumModel(uint8_t bandId)
 {
     auto iterator = m_bandModels.find(bandId);
@@ -26,7 +26,7 @@ Dect2020SpectrumModelManager::GetSpectrumModel(uint8_t bandId)
         frequencies.push_back(bp.startFrequency + i * bp.frequencyStep);
     }
 
-    Ptr<const SpectrumModel> model = Create<const SpectrumModel>(frequencies);
+    Ptr<SpectrumModel> model = Create<SpectrumModel>(frequencies);
     m_bandModels[bandId] = model;
 
     NS_LOG_INFO("Created SpectrumModel for Band " << static_cast<int>(bandId));

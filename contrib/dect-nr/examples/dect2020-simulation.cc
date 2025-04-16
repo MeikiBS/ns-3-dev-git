@@ -3,14 +3,17 @@
 #include "ns3/dect2020-beacon-header.h"
 #include "ns3/dect2020-beacon-message.h"
 #include "ns3/dect2020-mac-header-type.h"
+#include "ns3/dect2020-mac.h"
+#include "ns3/dect2020-net-device.h"
+#include "ns3/dect2020-phy.h"
+#include "ns3/dect2020-physical-header-field.h"
+#include "ns3/dect2020-spectrum-signal-parameters.h"
 #include "ns3/internet-module.h"
+#include "ns3/isotropic-antenna-model.h"
 #include "ns3/network-module.h"
 #include "ns3/single-model-spectrum-channel.h"
-#include "ns3/dect2020-net-device.h"
-#include "ns3/dect2020-mac.h"
-#include "ns3/dect2020-phy.h"
-#include "ns3/dect2020-spectrum-signal-parameters.h"
-#include "ns3/dect2020-physical-header-field.h"
+#include "ns3/spectrum-analyzer-helper.h"
+#include "ns3/spectrum-analyzer.h"
 
 // using namespace ns3;
 // using Dect2020NetDevice::TerminationPointType::FT;
@@ -18,7 +21,6 @@
 
 using namespace ns3;
 using TermPointType = Dect2020NetDevice::TerminationPointType;
-
 
 NS_LOG_COMPONENT_DEFINE("Dect2020Simulation");
 
@@ -115,7 +117,8 @@ TestBeaconMessage()
 //     }
 // }
 
-void TestPhysicalLayerControlFieldType1()
+void
+TestPhysicalLayerControlFieldType1()
 {
     Dect2020PhysicalHeaderField originalPhysicalHeaderField;
 
@@ -141,7 +144,6 @@ void TestPhysicalLayerControlFieldType1()
 
     NS_LOG_INFO(originalPhysicalHeaderField);
     NS_LOG_INFO(deserializedPhysicalHeaderField);
-    
 }
 
 // Empfangsfunktion definieren
@@ -170,15 +172,9 @@ main(int argc, char* argv[])
     LogComponentEnable("Dect2020Simulation", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020SpectrumSignalParameters", LOG_LEVEL_INFO);
 
-
-
     // Hier Bereich für Tests
     // ###########################
     Dect2020SpectrumSignalParameters params;
-    
-    
-
-
 
     // ###########################
 
@@ -235,12 +231,21 @@ main(int argc, char* argv[])
         mac->Start();
     }
 
+    IsotropicAntennaModel antenna;
+    SpectrumAnalyzerHelper spectrumAnalyzerHelper;
+    spectrumAnalyzerHelper.SetChannel(channel);
+    spectrumAnalyzerHelper.SetRxSpectrumModel(Dect2020SpectrumModelManager::GetSpectrumModel(1));
+    spectrumAnalyzerHelper.SetAntenna("ns3::IsotropicAntennaModel");
+    spectrumAnalyzerHelper.SetPhyAttribute("Resolution", TimeValue(MicroSeconds(10)));
+
+    spectrumAnalyzerHelper.Install(nodes);
+
+
     // Ptr<Dect2020NetDevice> ft = DynamicCast<Dect2020NetDevice>(devices.Get(0));
     // ft->GetMac()->Start();
 
     // Setzen des Empfangs-Callbacks für Gerät 2
     // devices.Get(1)->SetReceiveCallback(MakeCallback(&ReceivePacket));
-
 
     // Simulation ausführen
     Simulator::Run();
