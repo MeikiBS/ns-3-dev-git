@@ -91,17 +91,73 @@ Dect2020OperatingBand::CalculateCenterFrequency(uint8_t bandNumber, uint32_t cha
 {
     double centerFrequency = 0;
 
-    if((bandNumber >= 1 && bandNumber <= 12) || bandNumber == 22)
+    if ((bandNumber >= 1 && bandNumber <= 12) || bandNumber == 22)
     {
-        double f0 = 450.144e6;  // F0 in Hz
+        double f0 = 450.144e6; // F0 in Hz
         double channelRaster = 0.864e6;
 
         centerFrequency = f0 + (channelNumber * channelRaster);
     }
     // TODO: Add more Bands
 
-
     return centerFrequency;
+}
+
+uint16_t
+Dect2020OperatingBand::GetFirstValidChannelNumber(uint8_t bandNumber)
+{
+    switch (bandNumber)
+    {
+    case 1:
+
+        return 1657;
+        break;
+
+    case 2:
+
+        return 1680;
+        break;
+
+    case 20:
+
+        return 3416;
+        break;
+
+    case 21:
+
+        return 3357;
+        break;
+
+    default:
+        NS_FATAL_ERROR("Invalid band number. Supported bands are 1, 2, 20, and 21.");
+    }
+}
+
+uint8_t
+Dect2020OperatingBand::GetBandNumber(uint16_t channelNumber)
+{
+    struct BandChannelRange
+    {
+        uint8_t bandNumber;
+        uint16_t nStart;
+        uint16_t nEnd;
+    };
+
+    static const std::vector<BandChannelRange> bandMap = {{1, 1657, 1677},
+                                                          {2, 1680, 1700},
+                                                          {20, 3416, 3645},
+                                                          {21, 3357, 3414}};
+
+    for (const auto& band : bandMap)
+    {
+        if (channelNumber >= band.nStart && channelNumber <= band.nEnd)
+        {
+            return band.bandNumber;
+        }
+    }
+
+    NS_LOG_WARN("Channel number " << channelNumber << " not in any known band.");
+    return -1; // Invalid band number
 }
 
 std::vector<ChannelInfo>

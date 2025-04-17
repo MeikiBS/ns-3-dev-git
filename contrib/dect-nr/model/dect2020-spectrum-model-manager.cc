@@ -6,6 +6,8 @@ namespace ns3
 {
 
 std::map<uint8_t, Ptr<SpectrumModel>> Dect2020SpectrumModelManager::m_bandModels;
+std::map<uint8_t, Ptr<SpectrumValue>> Dect2020SpectrumModelManager::channelOccupancy;
+
 
 Ptr<SpectrumModel>
 Dect2020SpectrumModelManager::GetSpectrumModel(uint8_t bandId)
@@ -16,7 +18,7 @@ Dect2020SpectrumModelManager::GetSpectrumModel(uint8_t bandId)
         return iterator->second;
     }
 
-    // Model for this band does not exist --> create
+    // Spectrum Model for this band does not exist --> create
     Dect2020OperatingBand band(bandId);
     BandParameters bp = band.m_bandParameters;
 
@@ -29,9 +31,33 @@ Dect2020SpectrumModelManager::GetSpectrumModel(uint8_t bandId)
     Ptr<SpectrumModel> model = Create<SpectrumModel>(frequencies);
     m_bandModels[bandId] = model;
 
+    Ptr<SpectrumValue> psd = Create<SpectrumValue>(model);
+    channelOccupancy[bandId] = psd;
+
     NS_LOG_INFO("Created SpectrumModel for Band " << static_cast<int>(bandId));
 
     return model;
 }
 
+void
+Dect2020SpectrumModelManager::SetSpectrumValue(uint16_t channelId, double value)
+{
+    uint8_t bandNumber = Dect2020OperatingBand::GetBandNumber(channelId);
+    uint16_t channelIndex =
+        channelId - Dect2020OperatingBand::GetFirstValidChannelNumber(bandNumber);
+
+    auto it = channelOccupancy.find(bandNumber);
+
+    if (it == channelOccupancy.end() || it->second == nullptr)
+    {
+        NS_LOG_WARN("SpectrumValue for band " << static_cast<int>(bandNumber)
+                                              << " not initialized. Creating now.");
+
+        Ptr<SpectrumModel> model = GetSpectrumModel(bandNumber);
+        it = channelOccupancy.find(bandNumber);
+    }
+
+    Ptr<SpectrumValue> psd = it->second;
+    (*psd)[channelIndex] = value;
+}
 } // namespace ns3

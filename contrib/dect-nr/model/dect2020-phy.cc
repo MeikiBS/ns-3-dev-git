@@ -135,14 +135,15 @@ Dect2020Phy::Send(Ptr<Packet> packet,
 
     // Ptr<const SpectrumModel> specModel = Create<const SpectrumModel>(centerFreqs);
 
-    uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder
+    // uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder
                         // Bootstrapping entschieden
                         // TODO: Wo wird entschieden, auf welchem Channel gesendet wird?
 
-    Ptr<const SpectrumModel> specModel = Dect2020SpectrumModelManager::GetSpectrumModel(bandId);
-    Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
-    params->psd = psd;
-    (*psd)[this->m_mac->m_currentChannelId - 1657] = -30;
+    // Ptr<const SpectrumModel> specModel = Dect2020SpectrumModelManager::GetSpectrumModel(bandId);
+    // Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
+    // params->psd = psd;
+    // (*psd)[this->m_mac->m_currentChannelId - 1657] = -30;
+    Dect2020SpectrumModelManager::SetSpectrumValue(this->m_mac->m_currentChannelId, -30);
 
     m_channel->StartTx(params);
 
