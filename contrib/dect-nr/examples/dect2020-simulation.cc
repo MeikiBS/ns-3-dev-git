@@ -160,7 +160,7 @@ ReceivePacket(Ptr<NetDevice> device,
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(3));
+    Simulator::Stop(Seconds(5));
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds());
 
@@ -229,16 +229,20 @@ main(int argc, char* argv[])
 
         devices.Add(dev);
         mac->Start();
+
+
+        // for(int j = 0; j < 5; j++)
+        // {
+        //     if(dev->GetTerminationPointType() == TermPointType::PT)
+        //     {
+        //         Ptr<Packet> packet = Create<Packet>(100);
+        //         Dect2020PhysicalHeaderField physicalHeaderField;
+
+        //         Simulator::Schedule(MilliSeconds(1000), &Dect2020Phy::Send, phy, packet,
+        //                              physicalHeaderField);
+        //     }
+        // }
     }
-
-    IsotropicAntennaModel antenna;
-    SpectrumAnalyzerHelper spectrumAnalyzerHelper;
-    spectrumAnalyzerHelper.SetChannel(channel);
-    spectrumAnalyzerHelper.SetRxSpectrumModel(Dect2020SpectrumModelManager::GetSpectrumModel(1));
-    spectrumAnalyzerHelper.SetAntenna("ns3::IsotropicAntennaModel");
-    spectrumAnalyzerHelper.SetPhyAttribute("Resolution", TimeValue(MicroSeconds(10)));
-
-    spectrumAnalyzerHelper.Install(nodes);
 
 
     // Ptr<Dect2020NetDevice> ft = DynamicCast<Dect2020NetDevice>(devices.Get(0));

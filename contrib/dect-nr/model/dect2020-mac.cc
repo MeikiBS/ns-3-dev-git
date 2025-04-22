@@ -97,22 +97,22 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
 
     Dect2020PhysicalHeaderField physicalHeaderField;
     packet->RemoveHeader(physicalHeaderField);
-    NS_LOG_INFO(physicalHeaderField);
+    // NS_LOG_INFO(physicalHeaderField);
 
     // Jetzt sicher entfernen
     Dect2020BeaconMessage beaconMessage;
     packet->RemoveHeader(beaconMessage);
-    NS_LOG_INFO(beaconMessage);
+    // NS_LOG_INFO(beaconMessage);
 
     Dect2020BeaconHeader beaconHeader;
     packet->RemoveHeader(beaconHeader);
-    NS_LOG_INFO(beaconHeader);
+    // NS_LOG_INFO(beaconHeader);
 
     Dect2020MacHeaderType macHeaderType;
     // packet->PeekHeader(macHeaderType);
     // NS_LOG_INFO(macHeaderType);
     packet->RemoveHeader(macHeaderType); // Jetzt passt die Reihenfolge
-    NS_LOG_INFO(macHeaderType);
+    // NS_LOG_INFO(macHeaderType);
 
     if (macHeaderType.GetMacHeaderTypeField() ==
         Dect2020MacHeaderType::MacHeaderTypeField::BEACON_HEADER)
@@ -225,7 +225,7 @@ Dect2020Mac::StartBeaconTransmission()
     //             << std::hex  << this->GetLongRadioDeviceId());
     // NS_LOG_INFO("MAC Header Type: " << macHeaderType.GetMacHeaderTypeField());
 
-    Simulator::Schedule(Seconds(1), &Dect2020Mac::StartBeaconTransmission, this);
+    Simulator::Schedule(MilliSeconds(1000), &Dect2020Mac::StartBeaconTransmission, this);
 }
 
 Dect2020PhysicalHeaderField

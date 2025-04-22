@@ -8,7 +8,6 @@ namespace ns3
 std::map<uint8_t, Ptr<SpectrumModel>> Dect2020SpectrumModelManager::m_bandModels;
 std::map<uint8_t, Ptr<SpectrumValue>> Dect2020SpectrumModelManager::channelOccupancy;
 
-
 Ptr<SpectrumModel>
 Dect2020SpectrumModelManager::GetSpectrumModel(uint8_t bandId)
 {
@@ -39,8 +38,11 @@ Dect2020SpectrumModelManager::GetSpectrumModel(uint8_t bandId)
     return model;
 }
 
+/**
+ * \param powerWatt Power to add (in **Watts**)
+ */
 void
-Dect2020SpectrumModelManager::SetSpectrumValue(uint16_t channelId, double value)
+Dect2020SpectrumModelManager::AddSpectrumPowerToChannel(uint16_t channelId, double powerWatt)
 {
     uint8_t bandNumber = Dect2020OperatingBand::GetBandNumber(channelId);
     uint16_t channelIndex =
@@ -58,6 +60,72 @@ Dect2020SpectrumModelManager::SetSpectrumValue(uint16_t channelId, double value)
     }
 
     Ptr<SpectrumValue> psd = it->second;
-    (*psd)[channelIndex] = value;
+    (*psd)[channelIndex] += powerWatt;
+
+    NS_LOG_INFO("Added " << powerWatt << " dBm to channel " << channelId << " (band " << (int)bandNumber
+                         << ", index " << channelIndex << ")");
 }
+
+/**
+ * \param powerWatt Power to remove (in **Watts**)
+ */
+void
+Dect2020SpectrumModelManager::RemoveSpectrumPowerFromChannel(uint16_t channelId, double powerWatt)
+{
+    uint8_t bandNumber = Dect2020OperatingBand::GetBandNumber(channelId);
+    uint16_t channelIndex =
+        channelId - Dect2020OperatingBand::GetFirstValidChannelNumber(bandNumber);
+
+    auto it = channelOccupancy.find(bandNumber);
+
+    if (it == channelOccupancy.end() || it->second == nullptr)
+    {
+        NS_LOG_WARN("SpectrumValue for band " << static_cast<int>(bandNumber)
+                                              << " not initialized. Creating now.");
+
+        Ptr<SpectrumModel> model = GetSpectrumModel(bandNumber);
+        it = channelOccupancy.find(bandNumber);
+    }
+
+    Ptr<SpectrumValue> psd = it->second;
+    (*psd)[channelIndex] -= powerWatt;
+
+    NS_LOG_INFO("Removed " << powerWatt << " dBm to channel " << channelId << " (band " << (int)bandNumber
+                         << ", index " << channelIndex << ")");
+}
+
+double
+Dect2020SpectrumModelManager::GetSpectrumValue(uint16_t channelId)
+{
+    uint8_t bandNumber = Dect2020OperatingBand::GetBandNumber(channelId);
+    uint16_t channelIndex =
+        channelId - Dect2020OperatingBand::GetFirstValidChannelNumber(bandNumber);
+
+    auto it = channelOccupancy.find(bandNumber);
+
+    if (it == channelOccupancy.end() || it->second == nullptr)
+    {
+        NS_LOG_WARN("SpectrumValue for band " << static_cast<int>(bandNumber)
+                                              << " not initialized. Creating now.");
+
+        Ptr<SpectrumModel> model = GetSpectrumModel(bandNumber);
+        it = channelOccupancy.find(bandNumber);
+    }
+
+    Ptr<SpectrumValue> psd = it->second;
+    return (*psd)[channelIndex];
+}
+
+double
+Dect2020SpectrumModelManager::DbmToW(double dBm)
+{
+    return std::pow(10.0, 0.1 * (dBm - 30.0));
+}
+
+double
+Dect2020SpectrumModelManager::WToDbm(double w)
+{
+    return 10.0 * std::log10(w) + 30.0;
+}
+
 } // namespace ns3

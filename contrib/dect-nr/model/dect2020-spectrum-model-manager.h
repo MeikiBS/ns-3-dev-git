@@ -13,11 +13,13 @@ class Dect2020SpectrumModelManager
 {
   public:
     static Ptr<SpectrumModel> GetSpectrumModel(uint8_t bandId);
-    static void SetSpectrumValue(uint16_t channelId, double value);
-
+    static void AddSpectrumPowerToChannel(uint16_t channelId, double powerWatt);
+    static void RemoveSpectrumPowerFromChannel(uint16_t channelId, double powerWatt);
+    static double GetSpectrumValue(uint16_t channelId);
+    static double DbmToW(double dBm);
+    static double WToDbm(double w);
 
     static std::map<uint8_t, Ptr<SpectrumValue>> channelOccupancy;
-
 
   private:
     static std::map<uint8_t, Ptr<SpectrumModel>> m_bandModels;

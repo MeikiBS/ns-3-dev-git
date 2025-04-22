@@ -96,7 +96,7 @@ Dect2020Phy::GetDevice(void) const
 
 void
 Dect2020Phy::Send(Ptr<Packet> packet,
-                  Dect2020PhysicalHeaderField physicalHeader) // TODO? Zieladresse festlegen
+                  Dect2020PhysicalHeaderField physicalHeader)
 {
     NS_ASSERT_MSG(packet, "Packet is null");
     NS_ASSERT_MSG(this->m_device, "m_device is null");
@@ -119,39 +119,34 @@ Dect2020Phy::Send(Ptr<Packet> packet,
                 << params->txPacket->GetUid() << " und neuer Größe " << params->txPacket->GetSize()
                 << " Bytes von 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
 
-    Time duration = Time(MilliSeconds(13));
+    Time duration = Time(MilliSeconds(1000));
     params->duration = duration;
 
-    // Dect2020OperatingBand band = Dect2020OperatingBand(1);
-    // BandParameters bp = band.InitializeBandParameters(1);
 
-    // std::vector<double> centerFreqs;
-
-    // for(int i = 0; i <= bp.nEnd - bp.nStart; i++)
-    // {
-    //     double currentFreq = bp.startFrequency + i * bp.frequencyStep;
-    //     centerFreqs.push_back(currentFreq);
-    // }
-
-    // Ptr<const SpectrumModel> specModel = Create<const SpectrumModel>(centerFreqs);
-
-    // uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder
+    uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder
                         // Bootstrapping entschieden
                         // TODO: Wo wird entschieden, auf welchem Channel gesendet wird?
 
-    // Ptr<const SpectrumModel> specModel = Dect2020SpectrumModelManager::GetSpectrumModel(bandId);
-    // Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
-    // params->psd = psd;
-    // (*psd)[this->m_mac->m_currentChannelId - 1657] = -30;
-    Dect2020SpectrumModelManager::SetSpectrumValue(this->m_mac->m_currentChannelId, -30);
+    // The following PSD is currently not used in this implementation.
+    // Use Dect2020SpectrumModelManager::GetSpectrumValue instead.
 
+    Ptr<const SpectrumModel> specModel = Dect2020SpectrumModelManager::GetSpectrumModel(bandId);
+    Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
+    params->psd = psd;
+
+    // Set the PSD value for the current channel
+    double power = Dect2020SpectrumModelManager::DbmToW(23);
+    Dect2020SpectrumModelManager::AddSpectrumPowerToChannel(this->m_mac->m_currentChannelId, power);
+
+    // Remove the PSD value after the transmission
+    // Simulator::Schedule(duration, &Dect2020SpectrumModelManager::RemoveSpectrumPowerFromChannel,
+    //                    this->m_mac->m_currentChannelId, power);
+
+    // Start the transmission
     m_channel->StartTx(params);
 
     // Trace-Aufruf
     m_phyTxBeginTrace(packet);
-
-    // Sendeverzögerung
-    // Simulator::Schedule(m_txDelay, &Dect2020Channel::Transmit, m_channel, packet, this);
 }
 
 void
@@ -228,10 +223,13 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
                 << dectParams->txPacket->GetUid() << " und Größe "
                 << dectParams->txPacket->GetSize() << " Bytes vom Kanal.");
 
-    Ptr<SpectrumValue> psd = dectParams->psd;
-    double power = (*psd)[this->m_mac->m_currentChannelId - 1657];
+    // Ptr<SpectrumValue> psd = dectParams->psd;
+    // double power = (*psd)[this->m_mac->m_currentChannelId - 1657];
+    double power = Dect2020SpectrumModelManager::GetSpectrumValue(this->m_mac->m_currentChannelId);
     Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
     subslot->rssi = power;
+
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": Dect2020Phy::StartRx(): Current global PSD: " << power);
 
     m_receiveCallback(dectParams->txPacket);
 }
