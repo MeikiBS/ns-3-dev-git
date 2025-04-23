@@ -128,7 +128,7 @@ Dect2020Phy::Send(Ptr<Packet> packet,
                         // TODO: Wo wird entschieden, auf welchem Channel gesendet wird?
 
     // The following PSD is currently not used in this implementation.
-    // Use Dect2020SpectrumModelManager::GetSpectrumValue instead.
+    // Use Dect2020SpectrumModelManager::GetRssiDbm instead.
 
     Ptr<const SpectrumModel> specModel = Dect2020SpectrumModelManager::GetSpectrumModel(bandId);
     Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
@@ -225,7 +225,7 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
 
     // Ptr<SpectrumValue> psd = dectParams->psd;
     // double power = (*psd)[this->m_mac->m_currentChannelId - 1657];
-    double power = Dect2020SpectrumModelManager::GetSpectrumValue(this->m_mac->m_currentChannelId);
+    double power = Dect2020SpectrumModelManager::GetRssiDbm(this->m_mac->m_currentChannelId);
     Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
     subslot->rssi = power;
 

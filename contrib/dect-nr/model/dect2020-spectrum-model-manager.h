@@ -15,7 +15,7 @@ class Dect2020SpectrumModelManager
     static Ptr<SpectrumModel> GetSpectrumModel(uint8_t bandId);
     static void AddSpectrumPowerToChannel(uint16_t channelId, double powerWatt);
     static void RemoveSpectrumPowerFromChannel(uint16_t channelId, double powerWatt);
-    static double GetSpectrumValue(uint16_t channelId);
+    static double GetRssiDbm(uint16_t channelId);
     static double DbmToW(double dBm);
     static double WToDbm(double w);
 

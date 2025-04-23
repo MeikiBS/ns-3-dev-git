@@ -95,7 +95,7 @@ Dect2020SpectrumModelManager::RemoveSpectrumPowerFromChannel(uint16_t channelId,
 }
 
 double
-Dect2020SpectrumModelManager::GetSpectrumValue(uint16_t channelId)
+Dect2020SpectrumModelManager::GetRssiDbm(uint16_t channelId)
 {
     uint8_t bandNumber = Dect2020OperatingBand::GetBandNumber(channelId);
     uint16_t channelIndex =
@@ -113,7 +113,7 @@ Dect2020SpectrumModelManager::GetSpectrumValue(uint16_t channelId)
     }
 
     Ptr<SpectrumValue> psd = it->second;
-    return (*psd)[channelIndex];
+    return WToDbm((*psd)[channelIndex]);
 }
 
 double
