@@ -38,7 +38,7 @@ Dect2020Phy::Dect2020Phy()
     
     if (m_channels.empty())
     {
-        InitializeChannels(1, 2);
+        InitializeChannels(1, 1);
     }
 
     if (!m_isFrameTimerRunning)
@@ -322,12 +322,10 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 {
     m_currentSlot = slot;
 
-    // NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed
-    // <<Simulator::Now().GetMicroSeconds());
+    NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed
+    <<Simulator::Now().GetMicroSeconds());
 
-    // TODO: Klären, wie mit unterschiedlichen subcarrier scaling Factors umgegangen wird
-    // bzw. wo er definiert wird
-    uint8_t subcarrierScalingFactor = 2;
+    uint8_t subcarrierScalingFactor = 1;
     uint32_t numSubslotsPerSlot = (subcarrierScalingFactor == 1)   ? 2
                                   : (subcarrierScalingFactor == 2) ? 4
                                   : (subcarrierScalingFactor == 4) ? 8
@@ -366,7 +364,7 @@ Dect2020Phy::ProcessSubslot(uint32_t slotId, uint32_t subslotId)
 Slot*
 Dect2020Phy::GetCurrentSlot(uint32_t channelId)
 {
-    NS_LOG_INFO("DEBUG: GetCurrentSlot() channelId = " << channelId);
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": DEBUG: GetCurrentSlot() channelId = " << channelId);
 
     for (Dect2020Channel& channel : m_channels)
     {

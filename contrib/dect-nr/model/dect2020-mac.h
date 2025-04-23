@@ -17,6 +17,14 @@ namespace ns3
 class Dect2020NetDevice;
 class Dect2020Phy;
 
+struct ChannelEvaluation
+{
+    uint16_t channelId;
+    uint32_t free = 0;
+    uint32_t possible = 0;
+    uint32_t busy = 0;
+};
+
 /**
  * \brief DECT2020 MAC Klasse
  *
@@ -118,8 +126,13 @@ class Dect2020Mac : public Object
      */
     void InitializeDevice();
 
+    void OperatingChannelSelection();
+
     uint32_t m_currentChannelId = 0;    // Number of the Channel that is currently the main Channel
 
+    const double RSSI_THRESHOLD_MIN = -85; // dBm
+    const double RSSI_THRESHOLD_MAX = -50; // dBm TODO: RSSI_THRESHOLDMAX = -52 - max TX Power of RD
+    const int SCAN_MEAS_DURATION = 24; // slots
   private:
     Dect2020PhysicalHeaderField CreatePhysicalHeaderField();
 

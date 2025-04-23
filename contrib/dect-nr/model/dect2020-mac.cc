@@ -92,8 +92,9 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
                 << ": Dect2020Mac::ReceiveFromPhy(): Device 0x" << std::hex
-                << this->GetLongRadioDeviceId() << std::dec << " hat Paket mit UID " << packet->GetUid()
-                << " mit der Größe von " << packet->GetSize() << " Bytes empfangen." << std::endl);
+                << this->GetLongRadioDeviceId() << std::dec << " hat Paket mit UID "
+                << packet->GetUid() << " mit der Größe von " << packet->GetSize()
+                << " Bytes empfangen." << std::endl);
 
     Dect2020PhysicalHeaderField physicalHeaderField;
     packet->RemoveHeader(physicalHeaderField);
@@ -166,7 +167,10 @@ Dect2020Mac::InitializeNetwork()
                 << ":  FT-Device " << this << " started a new Network with the Network ID: "
                 << std::hex << std::setw(8) << std::setfill('0') << networkId);
 
-    StartBeaconTransmission();
+    Simulator::Schedule(Seconds(1), &Dect2020Mac::OperatingChannelSelection, this);
+    Simulator::Schedule(Seconds(1), &Dect2020Mac::StartBeaconTransmission, this);
+    // OperatingChannelSelection();
+    // StartBeaconTransmission();
 }
 
 void
@@ -226,6 +230,60 @@ Dect2020Mac::StartBeaconTransmission()
     // NS_LOG_INFO("MAC Header Type: " << macHeaderType.GetMacHeaderTypeField());
 
     Simulator::Schedule(MilliSeconds(1000), &Dect2020Mac::StartBeaconTransmission, this);
+}
+
+void
+Dect2020Mac::OperatingChannelSelection()
+{
+    std::vector<ChannelEvaluation> evaluations;
+
+    for (auto& channel : m_phy->m_channels)
+    {
+        ChannelEvaluation eval;
+        eval.channelId = channel.m_channelId;
+
+        if(channel.m_channelId == 1657)
+        {
+            Dect2020SpectrumModelManager::AddSpectrumPowerToChannel(1657, -100);
+        }
+
+        for (int i = 0; i < SCAN_MEAS_DURATION; i++)
+        {
+            Slot* currentSlot = m_phy->GetCurrentSlot(channel.m_channelId);
+
+            for (auto& subslot : currentSlot->subslots)
+            {
+                NS_LOG_INFO("DEBUG: Subslot " << subslot.subslotId
+                            << " in Slot " << currentSlot->slotId);
+                double rssi = Dect2020SpectrumModelManager::GetRssiDbm(channel.m_channelId);
+
+                if (rssi <= RSSI_THRESHOLD_MIN)
+                {
+                    eval.free++;
+                }
+                else if (rssi <= RSSI_THRESHOLD_MAX)
+                {
+                    eval.possible++;
+                }
+                else
+                {
+                    eval.busy++;
+                }
+            }
+        }
+
+        evaluations.push_back(eval);
+    }
+
+    for (const auto& e : evaluations)
+    {
+        if (e.busy == 0 && e.possible == 0)
+        {
+            m_currentChannelId = e.channelId;
+            NS_LOG_INFO("Selected COMPLETELY FREE channel: " << e.channelId);
+            return;
+        }
+    }
 }
 
 Dect2020PhysicalHeaderField

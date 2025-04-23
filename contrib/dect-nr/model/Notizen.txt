@@ -6,3 +6,5 @@
 - Vergleiche LRWPAN MLME Start Request / Scan Request fürs Beacon senden/empfangen bzw. Verbindung aufbauen
 
 
+TODO:
+- SubcarrierScalingFactor an einer Stelle definieren
