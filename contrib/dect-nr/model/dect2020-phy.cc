@@ -19,7 +19,6 @@ namespace ns3
 
 NS_OBJECT_ENSURE_REGISTERED(Dect2020Phy);
 
-std::vector<Dect2020Channel> Dect2020Phy::m_channels;
 bool Dect2020Phy::m_isFrameTimerRunning = false;
 
 TypeId
@@ -36,6 +35,7 @@ Dect2020Phy::Dect2020Phy()
     : m_currentSlot(0),
       m_currentSubslot(0)
 {
+    
     if (m_channels.empty())
     {
         InitializeChannels(1, 2);
@@ -255,7 +255,7 @@ Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFac
 
     const uint32_t slotsPerFrame = 24; // #ETSI 103 636-3 V1.5.1, Section 4.4
 
-    m_channels.clear();
+    this->m_channels.clear();
     for (uint32_t ch = 0; ch < numChannels; ch++)
     {
         int channelFrequencyNumbering = bandParams.nStart + ch;
@@ -364,7 +364,7 @@ Dect2020Phy::ProcessSubslot(uint32_t slotId, uint32_t subslotId)
 }
 
 Slot*
-Dect2020Phy::GetCurrentSlot(uint32_t channelId) const
+Dect2020Phy::GetCurrentSlot(uint32_t channelId)
 {
     NS_LOG_INFO("DEBUG: GetCurrentSlot() channelId = " << channelId);
 
@@ -386,7 +386,7 @@ Dect2020Phy::GetCurrentSlot(uint32_t channelId) const
 }
 
 Subslot*
-Dect2020Phy::GetCurrentSubslot(uint32_t channelId) const
+Dect2020Phy::GetCurrentSubslot(uint32_t channelId)
 {
     // NS_LOG_INFO("DEBUG: GetCurrentSubslot() channelId = " << channelId);
 

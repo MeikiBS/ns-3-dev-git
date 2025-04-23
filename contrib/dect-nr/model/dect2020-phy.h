@@ -60,8 +60,8 @@ class Dect2020Phy : public SpectrumPhy
     void StartFrameTimer();
     void ProcessSlot(uint32_t slot, double slotStartTime);
     void ProcessSubslot(uint32_t slotId, uint32_t subslotId);
-    Slot* GetCurrentSlot(uint32_t channelId) const;
-    Subslot* GetCurrentSubslot(uint32_t channelId) const;
+    Slot* GetCurrentSlot(uint32_t channelId);
+    Subslot* GetCurrentSubslot(uint32_t channelId);
     void SetReceiveCallback(Callback<void, Ptr<Packet>> cb);
     // static const std::vector<Channel>& GetChannels();
 
@@ -72,7 +72,7 @@ class Dect2020Phy : public SpectrumPhy
     Ptr<Object> GetAntenna() const override;
     void StartRx(Ptr<SpectrumSignalParameters> params);
 
-    static std::vector<Dect2020Channel> m_channels;
+    std::vector<Dect2020Channel> m_channels;
 
   private:
     static bool m_isFrameTimerRunning;
@@ -88,7 +88,7 @@ class Dect2020Phy : public SpectrumPhy
     Ptr<MobilityModel> m_mobilityModel;
     Ptr<Object> m_antenna;
 
-    static void InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFactor);
+    void InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFactor);
 
     Callback<void, Ptr<Packet>> m_receiveCallback;
 
