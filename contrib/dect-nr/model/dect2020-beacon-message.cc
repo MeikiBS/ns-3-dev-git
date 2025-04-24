@@ -34,8 +34,8 @@ Dect2020BeaconMessage::Dect2020BeaconMessage()
       m_powerConstraints(false),
       m_currentClusterChannelIncluded(false),
       m_networkBeaconChannels(0),
-      m_networkBeaconPeriod(NETWORK_PERIOD_100MS),
-      m_clusterBeaconPeriod(CLUSTER_PERIOD_10MS),
+      m_networkBeaconPeriod(NETWORK_PERIOD_500MS),
+      m_clusterBeaconPeriod(CLUSTER_PERIOD_1000MS),
       m_nextClusterChannel(0),
       m_timeToNext(0),
       m_clustersMaxTxPower(0),
@@ -465,4 +465,42 @@ Dect2020BeaconMessage::Deserialize(Buffer::Iterator start)
     return bytesRead;
 }
 
+uint16_t
+Dect2020BeaconMessage::GetNetworkBeaconPeriodTime() const
+{
+    switch (m_networkBeaconPeriod)
+    {
+    case NETWORK_PERIOD_50MS:
+        return 50;
+        break;
+
+    case NETWORK_PERIOD_100MS:
+        return 100;
+        break;
+
+    case NETWORK_PERIOD_500MS:
+        return 500;
+        break;
+
+    case NETWORK_PERIOD_1000MS:
+        return 1000;
+        break;
+
+    case NETWORK_PERIOD_1500MS:
+        return 1500;
+        break;
+
+    case NETWORK_PERIOD_2000MS:
+        return 2000;
+        break;
+
+    case NETWORK_PERIOD_4000MS:
+        return 4000;
+        break;
+
+    default:
+        NS_FATAL_ERROR("Invalid network beacon period. Supported periods are 50, 100, 500, "
+                       "1000, 1500, 2000, and 4000 ms.");
+    }
+}
 } // namespace ns3

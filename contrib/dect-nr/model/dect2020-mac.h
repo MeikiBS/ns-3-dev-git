@@ -1,6 +1,8 @@
 #ifndef DECT2020_MAC_H
 #define DECT2020_MAC_H
 
+#include "dect2020-physical-header-field.h"
+
 #include "ns3/callback.h"
 #include "ns3/mac48-address.h"
 #include "ns3/object.h"
@@ -8,8 +10,6 @@
 #include "ns3/ptr.h"
 #include "ns3/random-variable-stream.h"
 #include "ns3/traced-callback.h"
-
-#include "dect2020-physical-header-field.h"
 
 namespace ns3
 {
@@ -23,6 +23,11 @@ struct ChannelEvaluation
     uint32_t free = 0;
     uint32_t possible = 0;
     uint32_t busy = 0;
+
+    uint32_t Total() const
+    {
+        return free + possible + busy;
+    }
 };
 
 /**
@@ -128,11 +133,15 @@ class Dect2020Mac : public Object
 
     void OperatingChannelSelection();
 
-    uint32_t m_currentChannelId = 0;    // Number of the Channel that is currently the main Channel
+    uint32_t m_currentChannelId = 0; // Number of the Channel that is currently the main Channel
 
+    // ETSI TS 103 636-4 V2.1.1 #7.2-1
     const double RSSI_THRESHOLD_MIN = -85; // dBm
     const double RSSI_THRESHOLD_MAX = -50; // dBm TODO: RSSI_THRESHOLDMAX = -52 - max TX Power of RD
-    const int SCAN_MEAS_DURATION = 24; // slots
+    const int SCAN_MEAS_DURATION = 24;     // slots
+    const double SCAN_SUITABLE = 0.75;     // Threshold when an operating channel can be considered
+                                           // fulfilling the operating conditions.
+    const int SCAN_STATUS_VALID = 300;     // seconds
   private:
     Dect2020PhysicalHeaderField CreatePhysicalHeaderField();
 

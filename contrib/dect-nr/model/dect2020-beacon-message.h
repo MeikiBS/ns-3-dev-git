@@ -75,6 +75,8 @@ class Dect2020BeaconMessage : public Header
     void SetAdditionalNetworkBeaconChannels(uint16_t additionalNetworkBeaconChannels[3]);
     uint16_t* GetAdditionalNetworkBeaconChannels();
 
+    uint16_t GetNetworkBeaconPeriodTime() const;
+
     // Überladene Methoden vom Header
     static TypeId GetTypeId();
     virtual TypeId GetInstanceTypeId() const override;

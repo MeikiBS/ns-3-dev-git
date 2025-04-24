@@ -168,7 +168,7 @@ Dect2020Mac::InitializeNetwork()
                 << std::hex << std::setw(8) << std::setfill('0') << networkId);
 
     Simulator::Schedule(Seconds(1), &Dect2020Mac::OperatingChannelSelection, this);
-    Simulator::Schedule(Seconds(1), &Dect2020Mac::StartBeaconTransmission, this);
+    // Simulator::Schedule(Seconds(1), &Dect2020Mac::StartBeaconTransmission, this);
     // OperatingChannelSelection();
     // StartBeaconTransmission();
 }
@@ -190,7 +190,8 @@ void
 Dect2020Mac::StartBeaconTransmission()
 {
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Mac::StartBeaconTransmission aufgerufen");
+                << ": Start Beacon Transmission on channel: " << m_currentChannelId);
+
     Ptr<Packet> networkBeacon = Create<Packet>();
 
     NS_LOG_INFO("Größe des Pakets direkt nach Erstellung: " << networkBeacon->GetSize());
@@ -229,7 +230,9 @@ Dect2020Mac::StartBeaconTransmission()
     //             << std::hex  << this->GetLongRadioDeviceId());
     // NS_LOG_INFO("MAC Header Type: " << macHeaderType.GetMacHeaderTypeField());
 
-    Simulator::Schedule(MilliSeconds(1000), &Dect2020Mac::StartBeaconTransmission, this);
+    Simulator::Schedule(MilliSeconds(beaconMessage.GetNetworkBeaconPeriodTime()),
+                        &Dect2020Mac::StartBeaconTransmission,
+                        this);
 }
 
 void
@@ -242,7 +245,7 @@ Dect2020Mac::OperatingChannelSelection()
         ChannelEvaluation eval;
         eval.channelId = channel.m_channelId;
 
-        if(channel.m_channelId == 1657)
+        if (channel.m_channelId == 1657)
         {
             Dect2020SpectrumModelManager::AddSpectrumPowerToChannel(1657, -100);
         }
@@ -253,8 +256,8 @@ Dect2020Mac::OperatingChannelSelection()
 
             for (auto& subslot : currentSlot->subslots)
             {
-                NS_LOG_INFO("DEBUG: Subslot " << subslot.subslotId
-                            << " in Slot " << currentSlot->slotId);
+                NS_LOG_INFO("DEBUG: Subslot " << subslot.subslotId << " in Slot "
+                                              << currentSlot->slotId);
                 double rssi = Dect2020SpectrumModelManager::GetRssiDbm(channel.m_channelId);
 
                 if (rssi <= RSSI_THRESHOLD_MIN)
@@ -275,15 +278,80 @@ Dect2020Mac::OperatingChannelSelection()
         evaluations.push_back(eval);
     }
 
+    // 1. Search 100 % free channel
     for (const auto& e : evaluations)
     {
-        if (e.busy == 0 && e.possible == 0)
+        uint32_t total = e.Total();
+
+        if (e.free == total)
         {
             m_currentChannelId = e.channelId;
             NS_LOG_INFO("Selected COMPLETELY FREE channel: " << e.channelId);
+
+            // Reschedule the next channel selection after SCAN_STATUS_VALID (300 seconds)
+            Simulator::Schedule(Seconds(SCAN_STATUS_VALID),
+                                &Dect2020Mac::OperatingChannelSelection,
+                                this);
+            // Start the beacon transmission
+            StartBeaconTransmission();
             return;
         }
     }
+
+    // 2. Search channel with suitable conditions
+    for (const auto& e : evaluations)
+    {
+        uint32_t total = e.Total();
+        uint32_t suitable = e.free + e.possible;
+
+        if (suitable >= static_cast<uint32_t>(total * SCAN_SUITABLE))
+        {
+            m_currentChannelId = e.channelId;
+            NS_LOG_INFO("Selected suitable channel: " << e.channelId);
+
+            // Reschedule the next channel selection after SCAN_STATUS_VALID (300 seconds)
+            Simulator::Schedule(Seconds(SCAN_STATUS_VALID),
+                                &Dect2020Mac::OperatingChannelSelection,
+                                this);
+            // Start the beacon transmission
+            StartBeaconTransmission();
+            return;
+        }
+    }
+
+    // 3. Search channel with the lowest busy / lowest possible subslots
+    uint32_t lowestBusy = std::numeric_limits<uint32_t>::max();
+    uint32_t lowestPossible = std::numeric_limits<uint32_t>::max();
+    uint32_t selectedChannelId = 0;
+
+    for (const auto& e : evaluations)
+    {
+        // Number of busy subslots smaller --> better
+        if (e.busy < lowestBusy)
+        {
+            lowestBusy = e.busy;
+            lowestPossible = e.possible;
+            selectedChannelId = e.channelId;
+        }
+        // Number of busy subslots equal --> number of possible subslots smaller (= number of free
+        // subslots bigger) --> better
+        else if (e.busy == lowestBusy)
+        {
+            if (e.possible < lowestPossible)
+            {
+                lowestPossible = e.possible;
+                selectedChannelId = e.channelId;
+            }
+        }
+    }
+
+    m_currentChannelId = selectedChannelId;
+    NS_LOG_INFO("Selected the channel with the lowest number of busy / possible subslots: " << m_currentChannelId);
+
+    // Reschedule the next channel selection after SCAN_STATUS_VALID (300 seconds)
+    Simulator::Schedule(Seconds(SCAN_STATUS_VALID), &Dect2020Mac::OperatingChannelSelection, this);
+    // Start the beacon transmission
+    StartBeaconTransmission();
 }
 
 Dect2020PhysicalHeaderField
