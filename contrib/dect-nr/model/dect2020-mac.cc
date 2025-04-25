@@ -224,7 +224,7 @@ Dect2020Mac::StartBeaconTransmission()
                 << networkBeacon->GetSize() << " Bytes und UID " << networkBeacon->GetUid()
                 << " an PHY.");
 
-    m_phy->Send(networkBeacon, CreatePhysicalHeaderField());
+    m_phy->Send(networkBeacon, CreatePhysicalHeaderField(0, networkBeacon->GetSize())); //
 
     // NS_LOG_INFO("Network Beacon gesendet von Gerät 0x"
     //             << std::hex  << this->GetLongRadioDeviceId());
@@ -346,7 +346,8 @@ Dect2020Mac::OperatingChannelSelection()
     }
 
     m_currentChannelId = selectedChannelId;
-    NS_LOG_INFO("Selected the channel with the lowest number of busy / possible subslots: " << m_currentChannelId);
+    NS_LOG_INFO("Selected the channel with the lowest number of busy / possible subslots: "
+                << m_currentChannelId);
 
     // Reschedule the next channel selection after SCAN_STATUS_VALID (300 seconds)
     Simulator::Schedule(Seconds(SCAN_STATUS_VALID), &Dect2020Mac::OperatingChannelSelection, this);
@@ -366,7 +367,44 @@ Dect2020Mac::CreatePhysicalHeaderField()
     physicalHeaderField.SetShortNetworkID(shortNetworkID);
     physicalHeaderField.SetTransmitterIdentity(m_shortRadioDeviceId);
     physicalHeaderField.SetTransmitPower(3); // TODO: Wie wird das bestimmt?
-    physicalHeaderField.SetDFMCS(0);         // TODO: Wie wird das bestimmt?
+    physicalHeaderField.SetDFMCS(m_mcs);     // TODO: Wie wird das bestimmt?
+
+    return physicalHeaderField;
+}
+
+Dect2020PhysicalHeaderField
+Dect2020Mac::CreatePhysicalHeaderField(uint8_t packetLengthType, uint32_t packetLengthBytes)
+{
+    Dect2020PhysicalHeaderField physicalHeaderField;
+    physicalHeaderField.SetPacketLengthType(packetLengthType); // 0 = in Slots, 1 = in Subslots
+
+    // DEBUG:
+    double packetLengthBits = packetLengthBytes * 8;
+    auto transportBlockSizeBits =
+        this->m_phy->GetMcsTransportBlockSize(m_subcarrierScalingFactor,
+                                              m_fourierTransformScalingFactor,
+                                              m_mcs);
+
+    NS_LOG_INFO("packetLengthBits: " << packetLengthBits);
+    NS_LOG_INFO("transportBlockSizeBits: " << transportBlockSizeBits);
+
+    double mcsTransportBlockSizeBits =
+        this->m_phy->GetMcsTransportBlockSize(m_subcarrierScalingFactor,
+                                              m_fourierTransformScalingFactor,
+                                              m_mcs);
+
+    uint16_t packetLengthInSlotsOrSubslots = 0;
+    packetLengthInSlotsOrSubslots = std::ceil(packetLengthBits / mcsTransportBlockSizeBits);
+
+    physicalHeaderField.SetPacketLength(
+        packetLengthInSlotsOrSubslots); // Size of packet in slots/subslots
+
+    // Short Network ID: The last 8 LSB bits of the Network ID # ETSI 103 636 04 4.2.3.1
+    uint8_t shortNetworkID = m_networkId & 0xFF;
+    physicalHeaderField.SetShortNetworkID(shortNetworkID);
+    physicalHeaderField.SetTransmitterIdentity(m_shortRadioDeviceId);
+    physicalHeaderField.SetTransmitPower(3); // TODO: Wie wird das bestimmt?
+    physicalHeaderField.SetDFMCS(m_mcs);     // TODO: Wie wird das bestimmt?
 
     return physicalHeaderField;
 }

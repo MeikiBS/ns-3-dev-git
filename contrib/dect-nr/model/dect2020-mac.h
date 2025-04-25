@@ -133,7 +133,12 @@ class Dect2020Mac : public Object
 
     void OperatingChannelSelection();
 
+    Dect2020PhysicalHeaderField  CreatePhysicalHeaderField();
+
     uint32_t m_currentChannelId = 0; // Number of the Channel that is currently the main Channel
+
+    uint8_t m_subcarrierScalingFactor = 1; // Subcarrier Scaling Factor
+    uint8_t m_fourierTransformScalingFactor = 1; // Fourier Transform Scaling Factor
 
     // ETSI TS 103 636-4 V2.1.1 #7.2-1
     const double RSSI_THRESHOLD_MIN = -85; // dBm
@@ -143,7 +148,7 @@ class Dect2020Mac : public Object
                                            // fulfilling the operating conditions.
     const int SCAN_STATUS_VALID = 300;     // seconds
   private:
-    Dect2020PhysicalHeaderField CreatePhysicalHeaderField();
+    Dect2020PhysicalHeaderField CreatePhysicalHeaderField(uint8_t packetLengthType, uint32_t packetLength);
 
     // Membervariablen
     Ptr<Dect2020NetDevice> m_device;
@@ -160,6 +165,8 @@ class Dect2020Mac : public Object
     uint32_t m_networkId;          // ETSI TS 103 636-4 V 1.51 #4.2.3.1
     uint32_t m_longRadioDeviceId;  // ETSI TS 103 636-4 V 1.51 #4.2.3.2
     uint16_t m_shortRadioDeviceId; // ETSI TS 103 636-4 V 1.51 #4.2.3.3
+
+    uint8_t m_mcs = 0; // Modulation and Coding Scheme
 };
 
 } // namespace ns3

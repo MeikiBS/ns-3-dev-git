@@ -73,6 +73,7 @@ class Dect2020Phy : public SpectrumPhy
     void StartRx(Ptr<SpectrumSignalParameters> params);
 
     std::vector<Dect2020Channel> m_channels;
+    uint16_t GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex);  // In bits
 
   private:
     static bool m_isFrameTimerRunning;
@@ -87,6 +88,8 @@ class Dect2020Phy : public SpectrumPhy
     Ptr<const SpectrumModel> m_spectrumModel;
     Ptr<MobilityModel> m_mobilityModel;
     Ptr<Object> m_antenna;
+
+    static const std::vector<uint16_t> m_singleSlotSingleStreamTransportBlockSizesMu1Beta1;
 
     void InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFactor);
 

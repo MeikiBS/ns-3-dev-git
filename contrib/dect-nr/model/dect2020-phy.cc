@@ -21,6 +21,21 @@ NS_OBJECT_ENSURE_REGISTERED(Dect2020Phy);
 
 bool Dect2020Phy::m_isFrameTimerRunning = false;
 
+const std::vector<uint16_t> Dect2020Phy::m_singleSlotSingleStreamTransportBlockSizesMu1Beta1{
+    136,  // MCS 0
+    296,  // MCS 1
+    456,  // MCS 2
+    616,  // MCS 3
+    936,  // MCS 4
+    1256, // MCS 5
+    1416, // MCS 6
+    1576, // MCS 7
+    1896, // MCS 8
+    2040, // MCS 9
+    2296, // MCS 10
+    2552  // MCS 11
+};
+
 TypeId
 Dect2020Phy::GetTypeId(void)
 {
@@ -35,7 +50,6 @@ Dect2020Phy::Dect2020Phy()
     : m_currentSlot(0),
       m_currentSubslot(0)
 {
-    
     if (m_channels.empty())
     {
         InitializeChannels(1, 1);
@@ -95,8 +109,7 @@ Dect2020Phy::GetDevice(void) const
 }
 
 void
-Dect2020Phy::Send(Ptr<Packet> packet,
-                  Dect2020PhysicalHeaderField physicalHeader)
+Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader)
 {
     NS_ASSERT_MSG(packet, "Packet is null");
     NS_ASSERT_MSG(this->m_device, "m_device is null");
@@ -121,7 +134,6 @@ Dect2020Phy::Send(Ptr<Packet> packet,
 
     Time duration = Time(MilliSeconds(1000));
     params->duration = duration;
-
 
     uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder
                         // Bootstrapping entschieden
@@ -229,7 +241,8 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
     subslot->rssi = power;
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": Dect2020Phy::StartRx(): Current global PSD: " << power);
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Dect2020Phy::StartRx(): Current global PSD: " << power);
 
     m_receiveCallback(dectParams->txPacket);
 }
@@ -323,7 +336,7 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
     m_currentSlot = slot;
 
     NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed
-    <<Simulator::Now().GetMicroSeconds());
+                                   << Simulator::Now().GetMicroSeconds());
 
     uint8_t subcarrierScalingFactor = 1;
     uint32_t numSubslotsPerSlot = (subcarrierScalingFactor == 1)   ? 2
@@ -364,7 +377,8 @@ Dect2020Phy::ProcessSubslot(uint32_t slotId, uint32_t subslotId)
 Slot*
 Dect2020Phy::GetCurrentSlot(uint32_t channelId)
 {
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": DEBUG: GetCurrentSlot() channelId = " << channelId);
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": DEBUG: GetCurrentSlot() channelId = " << channelId);
 
     for (Dect2020Channel& channel : m_channels)
     {
@@ -406,6 +420,23 @@ Dect2020Phy::GetCurrentSubslot(uint32_t channelId)
     }
 
     return nullptr;
+}
+
+uint16_t
+Dect2020Phy::GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex)
+{
+    if (mu == 1 && beta == 1)
+    {
+        if (mcsIndex >= m_singleSlotSingleStreamTransportBlockSizesMu1Beta1.size())
+        {
+            NS_LOG_WARN("Invalid MCS index for (mu = 1, beta = 1)");
+            return 0;
+        }
+        return m_singleSlotSingleStreamTransportBlockSizesMu1Beta1[mcsIndex];
+    }
+
+    NS_LOG_WARN("Unsupported (mu,beta) combination in GetMCSTransportBlockSize");
+    return 0;
 }
 
 } // namespace ns3
