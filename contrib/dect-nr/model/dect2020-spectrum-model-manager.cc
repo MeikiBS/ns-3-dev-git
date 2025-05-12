@@ -129,6 +129,11 @@ Dect2020SpectrumModelManager::DbmToW(double dBm)
 double
 Dect2020SpectrumModelManager::WToDbm(double w)
 {
+    if(w <= 0.0)
+    {
+        // Invalid power value
+        return -150;
+    }
     return 10.0 * std::log10(w) + 30.0;
 }
 
