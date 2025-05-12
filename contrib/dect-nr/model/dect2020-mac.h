@@ -172,7 +172,6 @@ class Dect2020Mac : public Object
   private:
     Dect2020PhysicalHeaderField CreatePhysicalHeaderField(uint8_t packetLengthType,
                                                           uint32_t packetLength);
-    void MeasureSubslot(ChannelEvaluation& eval, uint32_t channelId);
 
     // Membervariablen
     Ptr<Dect2020NetDevice> m_device;

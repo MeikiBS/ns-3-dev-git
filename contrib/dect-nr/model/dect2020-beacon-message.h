@@ -9,37 +9,68 @@
 namespace ns3
 {
 
-class Dect2020BeaconMessage : public Header
+enum NetworkBeaconPeriod // ETSI TS 103 636-4 V 1.51 #6.4.2.2-1
+{
+    NETWORK_PERIOD_50MS = 0,
+    NETWORK_PERIOD_100MS = 1,
+    NETWORK_PERIOD_500MS = 2,
+    NETWORK_PERIOD_1000MS = 3,
+    NETWORK_PERIOD_1500MS = 4,
+    NETWORK_PERIOD_2000MS = 5,
+    NETWORK_PERIOD_4000MS = 6
+};
+
+enum ClusterBeaconPeriod // ETSI TS 103 636-4 V 1.51 #6.4.2.2-1
+{
+    CLUSTER_PERIOD_10MS = 0,
+    CLUSTER_PERIOD_50MS = 1,
+    CLUSTER_PERIOD_100MS = 2,
+    CLUSTER_PERIOD_500MS = 3,
+    CLUSTER_PERIOD_1000MS = 4,
+    CLUSTER_PERIOD_1500MS = 5,
+    CLUSTER_PERIOD_2000MS = 6,
+    CLUSTER_PERIOD_4000MS = 7,
+    CLUSTER_PERIOD_8000MS = 8,
+    CLUSTER_PERIOD_16000MS = 9,
+    CLUSTER_PERIOD_32000MS = 10
+};
+
+class Dect2020ClusterBeaconMessage : public Header
 {
   public:
-    enum NetworkBeaconPeriod // ETSI TS 103 636-4 V 1.51 #6.4.2.2-1
-    {
-        NETWORK_PERIOD_50MS = 0,
-        NETWORK_PERIOD_100MS = 1,
-        NETWORK_PERIOD_500MS = 2,
-        NETWORK_PERIOD_1000MS = 3,
-        NETWORK_PERIOD_1500MS = 4,
-        NETWORK_PERIOD_2000MS = 5,
-        NETWORK_PERIOD_4000MS = 6
-    };
+    // Überladene Methoden vom Header
+    static TypeId GetTypeId();
+    virtual TypeId GetInstanceTypeId() const override;
+    virtual uint32_t GetSerializedSize() const;
+    virtual void Serialize(Buffer::Iterator start) const;
+    virtual uint32_t Deserialize(Buffer::Iterator start);
+    virtual void Print(std::ostream& os) const;
 
-    enum ClusterBeaconPeriod // ETSI TS 103 636-4 V 1.51 #6.4.2.2-1
-    {
-        CLUSTER_PERIOD_10MS = 0,
-        CLUSTER_PERIOD_50MS = 1,
-        CLUSTER_PERIOD_100MS = 2,
-        CLUSTER_PERIOD_500MS = 3,
-        CLUSTER_PERIOD_1000MS = 4,
-        CLUSTER_PERIOD_1500MS = 5,
-        CLUSTER_PERIOD_2000MS = 6,
-        CLUSTER_PERIOD_4000MS = 7,
-        CLUSTER_PERIOD_8000MS = 8,
-        CLUSTER_PERIOD_16000MS = 9,
-        CLUSTER_PERIOD_32000MS = 10
-    };
+  private:
+    uint8_t m_SFN; // System Frame number
+    bool m_txPowerIncluded;
+    bool m_powerConstraints;
+    bool m_FO; // Frame Offset
+    bool m_nextChannel;
+    bool m_timeToNext;
+    NetworkBeaconPeriod m_networkBeaconPeriod;
+    ClusterBeaconPeriod m_clusterBeaconPeriod;
+    uint8_t m_countToTrigger;
+    uint8_t m_relQuality;
+    uint8_t m_minQuality;
+    uint8_t m_clusterMaxTxPower;
+    uint16_t m_frameOffset; // if subcarrierscaling factor = <= 4 --> frameOffset 8 bit, otherwise 16 bit
+    uint16_t m_nextClusterChannel;
+    uint32_t m_timeToNext;
+};
 
-    Dect2020BeaconMessage();
-    virtual ~Dect2020BeaconMessage();
+
+
+class Dect2020NetworkBeaconMessage : public Header
+{
+  public:
+    Dect2020NetworkBeaconMessage();
+    virtual ~Dect2020NetworkBeaconMessage();
 
     // Setter und Getter für jedes Feld
     void SetTxPowerIncluded(bool txPowerIncluded);

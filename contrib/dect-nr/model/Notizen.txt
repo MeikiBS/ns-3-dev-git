@@ -8,3 +8,7 @@
 
 TODO:
 - SubcarrierScalingFactor an einer Stelle definieren
+
+
+Fragen:
+Physical Layer Control Field: Packet length, beinhaltet was genau?

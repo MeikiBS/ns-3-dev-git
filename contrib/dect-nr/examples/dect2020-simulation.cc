@@ -46,14 +46,14 @@ TestMacHeaderField()
 void
 TestBeaconMessage()
 {
-    Dect2020BeaconMessage originalMessage;
+    Dect2020NetworkBeaconMessage originalMessage;
 
     originalMessage.SetTxPowerIncluded(0);
     originalMessage.SetPowerConstraints(1);
     originalMessage.SetCurrentClusterChannelIncluded(0);
     originalMessage.SetNetworkBeaconChannels(1);
-    originalMessage.SetNetworkBeaconPeriod(Dect2020BeaconMessage::NETWORK_PERIOD_2000MS);
-    originalMessage.SetClusterBeaconPeriod(Dect2020BeaconMessage::CLUSTER_PERIOD_16000MS);
+    originalMessage.SetNetworkBeaconPeriod(NETWORK_PERIOD_2000MS);
+    originalMessage.SetClusterBeaconPeriod(CLUSTER_PERIOD_16000MS);
     originalMessage.SetNextClusterChannel(8191);
     originalMessage.SetTimeToNext(UINT32_MAX - 1);
 
@@ -63,7 +63,7 @@ TestBeaconMessage()
     Ptr<Packet> packet = Create<Packet>();
     packet->AddHeader(originalMessage);
 
-    Dect2020BeaconMessage receivedMessage;
+    Dect2020NetworkBeaconMessage receivedMessage;
     packet->RemoveHeader(receivedMessage);
 
     originalMessage.Print(std::cout);
