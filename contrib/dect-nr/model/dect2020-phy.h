@@ -74,6 +74,7 @@ class Dect2020Phy : public SpectrumPhy
 
     std::vector<Dect2020Channel> m_channels;
     uint16_t GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex);  // In bits
+    double CalculateTxDurationNs(Dect2020PhysicalHeaderField physicalHeaderField);
 
   private:
     static bool m_isFrameTimerRunning;

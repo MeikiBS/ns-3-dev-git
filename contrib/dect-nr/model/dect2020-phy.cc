@@ -132,14 +132,14 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
                 << params->txPacket->GetUid() << " und neuer Größe " << params->txPacket->GetSize()
                 << " Bytes von 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
 
-    Time duration = Time(MilliSeconds(1000));
+    Time duration = Time(NanoSeconds(CalculateTxDurationNs(physicalHeader)));
     params->duration = duration;
 
     uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder
                         // Bootstrapping entschieden
                         // TODO: Wo wird entschieden, auf welchem Channel gesendet wird?
 
-    // The following PSD is currently not used in this implementation.
+    // The following PSD Object is currently not used in this implementation.
     // Use Dect2020SpectrumModelManager::GetRssiDbm instead.
 
     Ptr<const SpectrumModel> specModel = Dect2020SpectrumModelManager::GetSpectrumModel(bandId);
@@ -151,11 +151,14 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
     Dect2020SpectrumModelManager::AddSpectrumPowerToChannel(this->m_mac->m_currentChannelId, power);
 
     // Remove the PSD value after the transmission
-    // Simulator::Schedule(duration, &Dect2020SpectrumModelManager::RemoveSpectrumPowerFromChannel,
-    //                    this->m_mac->m_currentChannelId, power);
+    Simulator::Schedule(duration,
+                        &Dect2020SpectrumModelManager::RemoveSpectrumPowerFromChannel,
+                        this->m_mac->m_currentChannelId,
+                        power);
 
     // Start the transmission
-    m_channel->StartTx(params);
+    // m_channel->StartTx(params);
+    Simulator::Schedule(duration, &ns3::SpectrumChannel::StartTx, m_channel, params);
 
     // Trace-Aufruf
     m_phyTxBeginTrace(packet);
@@ -250,6 +253,9 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
 void
 Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFactor)
 {
+    const uint32_t slotsPerFrame = 24;    // #ETSI 103 636-3 V1.5.1, Section 4.4
+
+
     Dect2020OperatingBand operatingBand;
     BandParameters bandParams = operatingBand.InitializeBandParameters(bandNumber);
 
@@ -258,15 +264,15 @@ Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFac
     if (!(subcarrierScalingFactor == 1 || subcarrierScalingFactor == 2 ||
           subcarrierScalingFactor == 4 || subcarrierScalingFactor == 8))
     {
-        NS_LOG_INFO("Subcarrier scaling factor invalid, set to 1");
+        NS_LOG_INFO("Subcarrier scaling factor invalid (not yet implemented), set to 1");
         subcarrierScalingFactor = 1;
     }
     uint32_t numSubslotsPerSlot = (subcarrierScalingFactor == 1)   ? 2
                                   : (subcarrierScalingFactor == 2) ? 4
                                   : (subcarrierScalingFactor == 4) ? 8
                                                                    : 16;
-
-    const uint32_t slotsPerFrame = 24; // #ETSI 103 636-3 V1.5.1, Section 4.4
+    const double slotDurationNs = 10000000 / slotsPerFrame; // 0,41667 ms in ns
+    double subslotDurationNs = slotDurationNs / numSubslotsPerSlot; // Subslot Duration in ns
 
     this->m_channels.clear();
     for (uint32_t ch = 0; ch < numChannels; ch++)
@@ -290,6 +296,7 @@ Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFac
                 subslot.subslotId = ss;
                 subslot.status = SubslotStatus::FREE;
                 subslot.rssi = 0.0;
+                subslot.subslotDurationNs = subslotDurationNs;
                 slotObj.subslots.push_back(subslot);
             }
 
@@ -308,16 +315,16 @@ Dect2020Phy::StartFrameTimer()
 {
     // NS_LOG_INFO("StartFrameTimer() called at time " << Simulator::Now().GetMicroSeconds());
 
-    auto currentTime = Simulator::Now().GetMicroSeconds();
-    double slotDuration = 416.67;   // 0,41667 ms in µs
+    // auto currentTime = Simulator::Now().GetMicroSeconds();
+    double slotDuration = 416666;   // 0,41667 ms in ns
     uint16_t frameDuration = 10000; // 10 ms in µs
 
     for (uint32_t slot = 0; slot < 24; slot++)
     {
-        double slotStartTime = currentTime + slot * slotDuration;
+        double slotStartTime = slot * slotDuration;
         // NS_LOG_INFO("Schedule::ProcessSlot Slot " << slot << " at slotStartTime " << std::fixed
         //                                           << std::setprecision(2) << slotStartTime);
-        Simulator::Schedule(MicroSeconds(slotStartTime),
+        Simulator::Schedule(NanoSeconds(slotStartTime),
                             &Dect2020Phy::ProcessSlot,
                             this,
                             slot,
@@ -325,9 +332,7 @@ Dect2020Phy::StartFrameTimer()
     }
     // NS_LOG_INFO("Schedule::StartFrameTimer --> currentTime + frameDuration = "
     //             << std::fixed << currentTime + frameDuration);
-    Simulator::Schedule(MicroSeconds(currentTime + frameDuration),
-                        &Dect2020Phy::StartFrameTimer,
-                        this);
+    Simulator::Schedule(MicroSeconds(frameDuration), &Dect2020Phy::StartFrameTimer, this);
 }
 
 void
@@ -335,8 +340,8 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 {
     m_currentSlot = slot;
 
-    NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed
-                                   << Simulator::Now().GetMicroSeconds());
+    // NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed
+    //                                << Simulator::Now().GetMicroSeconds());
 
     uint8_t subcarrierScalingFactor = 1;
     uint32_t numSubslotsPerSlot = (subcarrierScalingFactor == 1)   ? 2
@@ -344,7 +349,7 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
                                   : (subcarrierScalingFactor == 4) ? 8
                                                                    : 16;
 
-    double subslotDuration = 416.67 / numSubslotsPerSlot; // Subslot Duration in µs
+    double subslotDuration = 416667 / numSubslotsPerSlot; // Subslot Duration in µs
 
     for (uint32_t subslot = 0; subslot < numSubslotsPerSlot; subslot++)
     {
@@ -352,7 +357,7 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
         //             << subslot << " in Slot " << slot << " at Time " << std::fixed
         //             << (slotStartTime + subslot * subslotDuration) << " and subslotDuration "
         //             << subslotDuration);
-        Simulator::Schedule(MicroSeconds(slotStartTime + (subslot * subslotDuration)),
+        Simulator::Schedule(NanoSeconds(slotStartTime + (subslot * subslotDuration)),
                             &Dect2020Phy::ProcessSubslot,
                             this,
                             slot,
@@ -408,11 +413,16 @@ Dect2020Phy::GetCurrentSubslot(uint32_t channelId)
         {
             for (Slot& slot : channel.m_slots)
             {
-                for (Subslot& subslot : slot.subslots)
+                if (slot.slotId == m_currentSlot)
                 {
-                    if (subslot.subslotId == m_currentSubslot)
+                    for (Subslot& subslot : slot.subslots)
                     {
-                        return &subslot;
+                        if (subslot.subslotId == m_currentSubslot)
+                        {
+                            // NS_LOG_INFO(Simulator::Now().GetNanoSeconds() << ": DEBUG: Subslot "
+                            //             << subslot.subslotId << " in Slot " << slot.slotId);
+                            return &subslot;
+                        }
                     }
                 }
             }
@@ -436,6 +446,26 @@ Dect2020Phy::GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex
     }
 
     NS_LOG_WARN("Unsupported (mu,beta) combination in GetMCSTransportBlockSize");
+    return 0;
+}
+
+double
+Dect2020Phy::CalculateTxDurationNs(Dect2020PhysicalHeaderField physicalHeaderField)
+{
+    if (physicalHeaderField.GetPacketLengthType() == 0) // Packet length is given in subslots
+    {
+        // TBD
+    }
+    else if (physicalHeaderField.GetPacketLengthType() == 1) // Packet length is given in slots
+    {
+        return physicalHeaderField.GetPacketLength() * 416670; // 416.67 ns per slot
+    }
+    else
+    {
+        NS_LOG_WARN("Invalid packet length type");
+        return 0;
+    }
+
     return 0;
 }
 

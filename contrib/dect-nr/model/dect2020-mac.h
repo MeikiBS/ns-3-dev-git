@@ -30,6 +30,17 @@ struct ChannelEvaluation
     }
 };
 
+// Structure to hold the context for subslot scanning
+struct SubslotScanContext
+{
+    uint32_t channelId;
+    uint32_t subslotCount; // Counter for how many Subslots have been measured
+    ChannelEvaluation evaluation;
+    std::function<void(const ChannelEvaluation&)>
+        onComplete; // Callback to be called when the scan is complete (OperatingChannelSelection,
+                    // LBT, ...)
+};
+
 /**
  * \brief DECT2020 MAC Klasse
  *
@@ -132,12 +143,19 @@ class Dect2020Mac : public Object
     void InitializeDevice();
 
     void OperatingChannelSelection();
+    void EvaluateAllChannels();
 
-    Dect2020PhysicalHeaderField  CreatePhysicalHeaderField();
+    Dect2020PhysicalHeaderField CreatePhysicalHeaderField();
+
+    void StartSubslotScan(uint32_t channelId,
+                          uint32_t numSubslots,
+                          std::function<void(const ChannelEvaluation&)> onComplete);
+    void ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> context,
+                                        uint32_t numSubslots);
 
     uint32_t m_currentChannelId = 0; // Number of the Channel that is currently the main Channel
 
-    uint8_t m_subcarrierScalingFactor = 1; // Subcarrier Scaling Factor
+    uint8_t m_subcarrierScalingFactor = 1;       // Subcarrier Scaling Factor
     uint8_t m_fourierTransformScalingFactor = 1; // Fourier Transform Scaling Factor
 
     // ETSI TS 103 636-4 V2.1.1 #7.2-1
@@ -147,8 +165,14 @@ class Dect2020Mac : public Object
     const double SCAN_SUITABLE = 0.75;     // Threshold when an operating channel can be considered
                                            // fulfilling the operating conditions.
     const int SCAN_STATUS_VALID = 300;     // seconds
+
+    std::map<uint32_t, ChannelEvaluation> m_scanEvaluations;
+    uint32_t m_completedScans = 0;
+
   private:
-    Dect2020PhysicalHeaderField CreatePhysicalHeaderField(uint8_t packetLengthType, uint32_t packetLength);
+    Dect2020PhysicalHeaderField CreatePhysicalHeaderField(uint8_t packetLengthType,
+                                                          uint32_t packetLength);
+    void MeasureSubslot(ChannelEvaluation& eval, uint32_t channelId);
 
     // Membervariablen
     Ptr<Dect2020NetDevice> m_device;

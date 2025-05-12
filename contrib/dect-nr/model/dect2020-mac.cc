@@ -216,15 +216,21 @@ Dect2020Mac::StartBeaconTransmission()
 
     networkBeacon->AddHeader(beaconMessage);
 
+    // DEBUG #############
+    Ptr<Packet> packet = Create<Packet>(100);
+    networkBeacon->AddAtEnd(packet);
+
+    // ################
+
     NS_LOG_INFO("Größe des Pakets direkt nach beaconMessage: " << networkBeacon->GetSize());
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
                 << ": StartBeaconTransmission() aufgerufen von 0x" << std::hex
-                << this->GetLongRadioDeviceId() << " übergibt Paket mit der Größe "
+                << this->GetLongRadioDeviceId() << " übergibt Paket mit der Größe " << std::dec
                 << networkBeacon->GetSize() << " Bytes und UID " << networkBeacon->GetUid()
                 << " an PHY.");
 
-    m_phy->Send(networkBeacon, CreatePhysicalHeaderField(0, networkBeacon->GetSize())); //
+    m_phy->Send(networkBeacon, CreatePhysicalHeaderField(1, networkBeacon->GetSize())); //
 
     // NS_LOG_INFO("Network Beacon gesendet von Gerät 0x"
     //             << std::hex  << this->GetLongRadioDeviceId());
@@ -236,45 +242,269 @@ Dect2020Mac::StartBeaconTransmission()
 }
 
 void
+Dect2020Mac::MeasureSubslot(ChannelEvaluation& eval, uint32_t channelId)
+{
+    double rssi = Dect2020SpectrumModelManager::GetRssiDbm(channelId);
+
+    if (rssi <= RSSI_THRESHOLD_MIN)
+    {
+        eval.free++;
+    }
+    else if (rssi <= RSSI_THRESHOLD_MAX)
+    {
+        eval.possible++;
+    }
+    else
+    {
+        eval.busy++;
+    }
+}
+
+void
+Dect2020Mac::StartSubslotScan(uint32_t channelId,
+                              uint32_t numSubslots,
+                              std::function<void(const ChannelEvaluation&)> onComplete)
+{
+    auto context = std::make_shared<SubslotScanContext>();
+    context->channelId = channelId;
+    context->evaluation.channelId = channelId;
+    context->onComplete = onComplete;
+    context->subslotCount = 0;
+
+    ScheduleNextSubslotMeasurement(context, numSubslots);
+}
+
+void
+Dect2020Mac::ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> context,
+                                            uint32_t numSubslots)
+{
+    NS_LOG_INFO(Simulator::Now().GetNanoSeconds()
+                << ": DEBUG: ScheduleNextSubslotMeasurement() on Channel " << context->channelId
+                << " subslotCount = " << context->subslotCount);
+    Subslot* subslot = m_phy->GetCurrentSubslot(context->channelId);
+
+    double rssi = Dect2020SpectrumModelManager::GetRssiDbm(context->channelId);
+
+    if (rssi <= RSSI_THRESHOLD_MIN)
+    {
+        context->evaluation.free++;
+    }
+    else if (rssi <= RSSI_THRESHOLD_MAX)
+    {
+        context->evaluation.possible++;
+    }
+    else
+    {
+        context->evaluation.busy++;
+    }
+
+    context->subslotCount++;
+
+    if (context->subslotCount < numSubslots)
+    {
+        // Schedule the next measurement
+        Simulator::Schedule(NanoSeconds(subslot->subslotDurationNs),
+                            &Dect2020Mac::ScheduleNextSubslotMeasurement,
+                            this,
+                            context,
+                            numSubslots);
+    }
+    else
+    {
+        // Call the completion callback with the evaluation
+        context->onComplete(context->evaluation);
+    }
+}
+
+void
 Dect2020Mac::OperatingChannelSelection()
+{
+    m_scanEvaluations.clear();
+    m_completedScans = 0;
+
+    int numSubslots = 48; // TODO: Get number of Subslots from configuration
+
+    double subslotDurationNs = 208333.0;
+    double totalScanTimeNs = subslotDurationNs * numSubslots;
+
+    uint32_t channelOffset = 0;
+    for (auto& channel : m_phy->m_channels)
+    {
+        Time delay = NanoSeconds(channelOffset * totalScanTimeNs);
+
+        Simulator::Schedule(delay,
+                            &Dect2020Mac::StartSubslotScan,
+                            this,
+                            channel.m_channelId,
+                            48,
+                            [this](const ChannelEvaluation& eval) {
+                                m_scanEvaluations[eval.channelId] = eval;
+                                m_completedScans++;
+
+                                if (m_completedScans == m_phy->m_channels.size())
+                                {
+                                    EvaluateAllChannels();
+                                }
+                            });
+
+        channelOffset++;
+    }
+
+    //     m_scanEvaluations.clear();
+    // m_completedScans = 0;
+
+    // int numSubslots = 48; // TODO: Get number of Subslots from configuration
+
+    // double subslotDurationNs = 208333.0;
+    // double totalScanTime = subslotDurationNs * numSubslots;
+
+    // uint32_t channelOffset = 0;
+    // for (auto& channel : m_phy->m_channels)
+    // {
+    //     Time delay = NanoSeconds(channelOffset * subslotDurationNs);
+    //     StartSubslotScan(channel.m_channelId, numSubslots, [this](const ChannelEvaluation& eval)
+    //     {
+    //         m_scanEvaluations[eval.channelId] = eval;
+    //         m_completedScans++;
+
+    //         if (m_completedScans == m_phy->m_channels.size())
+    //         {
+    //             EvaluateAllChannels();
+    //         }
+    //     });
+    // }
+
+    // std::vector<ChannelEvaluation> evaluations;
+
+    // for (auto& channel : m_phy->m_channels)
+    // {
+    //     ChannelEvaluation eval;
+    //     eval.channelId = channel.m_channelId;
+
+    //     // Get the subslot duration
+    //     double subslotDurationNs =
+    //     m_phy->GetCurrentSubslot(channel.m_channelId)->subslotDurationNs;
+
+    //     if (channel.m_channelId == 1657)
+    //     {
+    //         Dect2020SpectrumModelManager::AddSpectrumPowerToChannel(1657, -100);
+    //     }
+
+    //     for (int i = 0; i < SCAN_MEAS_DURATION; i++)
+    //     {
+    //         Slot* currentSlot = m_phy->GetCurrentSlot(channel.m_channelId);
+
+    //         for (auto& subslot : currentSlot->subslots)
+    //         {
+    //             NS_LOG_INFO("DEBUG: Subslot " << subslot.subslotId << " in Slot "
+    //                                           << currentSlot->slotId);
+
+    //             double rssi = Dect2020SpectrumModelManager::GetRssiDbm(channel.m_channelId);
+
+    //             if (rssi <= RSSI_THRESHOLD_MIN)
+    //             {
+    //                 eval.free++;
+    //             }
+    //             else if (rssi <= RSSI_THRESHOLD_MAX)
+    //             {
+    //                 eval.possible++;
+    //             }
+    //             else
+    //             {
+    //                 eval.busy++;
+    //             }
+    //         }
+    //     }
+
+    //     evaluations.push_back(eval);
+    // }
+
+    // // 1. Search 100 % free channel
+    // for (const auto& e : evaluations)
+    // {
+    //     uint32_t total = e.Total();
+
+    //     if (e.free == total)
+    //     {
+    //         m_currentChannelId = e.channelId;
+    //         NS_LOG_INFO("Selected COMPLETELY FREE channel: " << e.channelId);
+
+    //         // Reschedule the next channel selection after SCAN_STATUS_VALID (300 seconds)
+    //         Simulator::Schedule(Seconds(SCAN_STATUS_VALID),
+    //                             &Dect2020Mac::OperatingChannelSelection,
+    //                             this);
+    //         // Start the beacon transmission
+    //         StartBeaconTransmission();
+    //         return;
+    //     }
+    // }
+
+    // // 2. Search channel with suitable conditions
+    // for (const auto& e : evaluations)
+    // {
+    //     uint32_t total = e.Total();
+    //     uint32_t suitable = e.free + e.possible;
+
+    //     if (suitable >= static_cast<uint32_t>(total * SCAN_SUITABLE))
+    //     {
+    //         m_currentChannelId = e.channelId;
+    //         NS_LOG_INFO("Selected suitable channel: " << e.channelId);
+
+    //         // Reschedule the next channel selection after SCAN_STATUS_VALID (300 seconds)
+    //         Simulator::Schedule(Seconds(SCAN_STATUS_VALID),
+    //                             &Dect2020Mac::OperatingChannelSelection,
+    //                             this);
+    //         // Start the beacon transmission
+    //         StartBeaconTransmission();
+    //         return;
+    //     }
+    // }
+
+    // // 3. Search channel with the lowest busy / lowest possible subslots
+    // uint32_t lowestBusy = std::numeric_limits<uint32_t>::max();
+    // uint32_t lowestPossible = std::numeric_limits<uint32_t>::max();
+    // uint32_t selectedChannelId = 0;
+
+    // for (const auto& e : evaluations)
+    // {
+    //     // Number of busy subslots smaller --> better
+    //     if (e.busy < lowestBusy)
+    //     {
+    //         lowestBusy = e.busy;
+    //         lowestPossible = e.possible;
+    //         selectedChannelId = e.channelId;
+    //     }
+    //     // Number of busy subslots equal --> number of possible subslots smaller (= number of
+    //     free
+    //     // subslots bigger) --> better
+    //     else if (e.busy == lowestBusy)
+    //     {
+    //         if (e.possible < lowestPossible)
+    //         {
+    //             lowestPossible = e.possible;
+    //             selectedChannelId = e.channelId;
+    //         }
+    //     }
+    // }
+
+    // m_currentChannelId = selectedChannelId;
+    // NS_LOG_INFO("Selected the channel with the lowest number of busy / possible subslots: "
+    //             << m_currentChannelId);
+
+    // // Reschedule the next channel selection after SCAN_STATUS_VALID (300 seconds)
+    // Simulator::Schedule(Seconds(SCAN_STATUS_VALID), &Dect2020Mac::OperatingChannelSelection,
+    // this);
+    // // Start the beacon transmission
+    // StartBeaconTransmission();
+}
+
+void
+Dect2020Mac::EvaluateAllChannels()
 {
     std::vector<ChannelEvaluation> evaluations;
 
-    for (auto& channel : m_phy->m_channels)
+    for (const auto& [channelId, eval] : m_scanEvaluations)
     {
-        ChannelEvaluation eval;
-        eval.channelId = channel.m_channelId;
-
-        if (channel.m_channelId == 1657)
-        {
-            Dect2020SpectrumModelManager::AddSpectrumPowerToChannel(1657, -100);
-        }
-
-        for (int i = 0; i < SCAN_MEAS_DURATION; i++)
-        {
-            Slot* currentSlot = m_phy->GetCurrentSlot(channel.m_channelId);
-
-            for (auto& subslot : currentSlot->subslots)
-            {
-                NS_LOG_INFO("DEBUG: Subslot " << subslot.subslotId << " in Slot "
-                                              << currentSlot->slotId);
-                double rssi = Dect2020SpectrumModelManager::GetRssiDbm(channel.m_channelId);
-
-                if (rssi <= RSSI_THRESHOLD_MIN)
-                {
-                    eval.free++;
-                }
-                else if (rssi <= RSSI_THRESHOLD_MAX)
-                {
-                    eval.possible++;
-                }
-                else
-                {
-                    eval.busy++;
-                }
-            }
-        }
-
         evaluations.push_back(eval);
     }
 
@@ -359,7 +589,7 @@ Dect2020PhysicalHeaderField
 Dect2020Mac::CreatePhysicalHeaderField()
 {
     Dect2020PhysicalHeaderField physicalHeaderField;
-    physicalHeaderField.SetPacketLengthType(1); // TODO: Wie wird das bestimmt?
+    physicalHeaderField.SetPacketLengthType(0); // 0 = in Subslots, 1 = in Slots
     physicalHeaderField.SetPacketLength(5);     // TODO: Wie wird das bestimmt?
 
     // Short Network ID: The last 8 LSB bits of the Network ID # ETSI 103 636 04 4.2.3.1
@@ -376,28 +606,35 @@ Dect2020PhysicalHeaderField
 Dect2020Mac::CreatePhysicalHeaderField(uint8_t packetLengthType, uint32_t packetLengthBytes)
 {
     Dect2020PhysicalHeaderField physicalHeaderField;
-    physicalHeaderField.SetPacketLengthType(packetLengthType); // 0 = in Slots, 1 = in Subslots
+    physicalHeaderField.SetPacketLengthType(packetLengthType); // 0 = in Subslots, 1 = in Slots
 
-    // DEBUG:
-    double packetLengthBits = packetLengthBytes * 8;
-    auto transportBlockSizeBits =
-        this->m_phy->GetMcsTransportBlockSize(m_subcarrierScalingFactor,
-                                              m_fourierTransformScalingFactor,
-                                              m_mcs);
+    if (packetLengthType == 0) // Packet length is given in subslots
+    {
+        // TBD
+    }
+    else if (packetLengthType == 1) // Packet length is given in slots
+    {
+        // DEBUG:
+        double packetLengthBits = packetLengthBytes * 8;
+        auto transportBlockSizeBits =
+            this->m_phy->GetMcsTransportBlockSize(m_subcarrierScalingFactor,
+                                                  m_fourierTransformScalingFactor,
+                                                  m_mcs);
 
-    NS_LOG_INFO("packetLengthBits: " << packetLengthBits);
-    NS_LOG_INFO("transportBlockSizeBits: " << transportBlockSizeBits);
+        NS_LOG_INFO("packetLengthBits: " << packetLengthBits);
+        NS_LOG_INFO("transportBlockSizeBits: " << transportBlockSizeBits);
 
-    double mcsTransportBlockSizeBits =
-        this->m_phy->GetMcsTransportBlockSize(m_subcarrierScalingFactor,
-                                              m_fourierTransformScalingFactor,
-                                              m_mcs);
+        double mcsTransportBlockSizeBits =
+            this->m_phy->GetMcsTransportBlockSize(m_subcarrierScalingFactor,
+                                                  m_fourierTransformScalingFactor,
+                                                  m_mcs);
 
-    uint16_t packetLengthInSlotsOrSubslots = 0;
-    packetLengthInSlotsOrSubslots = std::ceil(packetLengthBits / mcsTransportBlockSizeBits);
+        uint16_t packetLengthInSlots = 0;
+        packetLengthInSlots = std::ceil(packetLengthBits / mcsTransportBlockSizeBits);
 
-    physicalHeaderField.SetPacketLength(
-        packetLengthInSlotsOrSubslots); // Size of packet in slots/subslots
+        physicalHeaderField.SetPacketLength(
+            packetLengthInSlots); // Size of packet in slots/subslots
+    }
 
     // Short Network ID: The last 8 LSB bits of the Network ID # ETSI 103 636 04 4.2.3.1
     uint8_t shortNetworkID = m_networkId & 0xFF;

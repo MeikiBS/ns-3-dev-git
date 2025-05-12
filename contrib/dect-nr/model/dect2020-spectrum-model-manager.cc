@@ -62,8 +62,8 @@ Dect2020SpectrumModelManager::AddSpectrumPowerToChannel(uint16_t channelId, doub
     Ptr<SpectrumValue> psd = it->second;
     (*psd)[channelIndex] += powerWatt;
 
-    NS_LOG_INFO("Added " << powerWatt << " dBm to channel " << channelId << " (band " << (int)bandNumber
-                         << ", index " << channelIndex << ")");
+    NS_LOG_INFO("Added " << powerWatt << " dBm to channel " << channelId << " (band "
+                         << (int)bandNumber << ", index " << channelIndex << ")");
 }
 
 /**
@@ -88,10 +88,14 @@ Dect2020SpectrumModelManager::RemoveSpectrumPowerFromChannel(uint16_t channelId,
     }
 
     Ptr<SpectrumValue> psd = it->second;
+    // ############ DEBUG
+    auto currentPsd = (*psd)[channelIndex];
+    NS_LOG_INFO(currentPsd);
+    // ############
     (*psd)[channelIndex] -= powerWatt;
 
-    NS_LOG_INFO("Removed " << powerWatt << " dBm to channel " << channelId << " (band " << (int)bandNumber
-                         << ", index " << channelIndex << ")");
+    NS_LOG_INFO("Removed " << powerWatt << " dBm to channel " << channelId << " (band "
+                           << (int)bandNumber << ", index " << channelIndex << ")");
 }
 
 double

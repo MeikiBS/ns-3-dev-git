@@ -30,6 +30,7 @@ struct Subslot
   uint32_t subslotId;
   SubslotStatus status;
   double rssi;
+  double subslotDurationNs; // Duration of a Subslot in ns
 };
 
 struct Slot
