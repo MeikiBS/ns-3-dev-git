@@ -5,6 +5,11 @@
 
 - Vergleiche LRWPAN MLME Start Request / Scan Request fürs Beacon senden/empfangen bzw. Verbindung aufbauen
 
+-------- Notizen 09.04.
+-> Dokumentation von Annahmen
+-> Duration Berechnung abhängig von ß, subcarrierscalingfactor und MCS (aus cfg File)
+-> Pathloss Formel Free Space
+-> https://www.mkdocs.org/
 
 TODO:
 - SubcarrierScalingFactor an einer Stelle definieren
