@@ -38,6 +38,9 @@ enum ClusterBeaconPeriod // ETSI TS 103 636-4 V 1.51 #6.4.2.2-1
 class Dect2020ClusterBeaconMessage : public Header
 {
   public:
+    Dect2020ClusterBeaconMessage();
+    virtual ~Dect2020ClusterBeaconMessage();
+
     // Überladene Methoden vom Header
     static TypeId GetTypeId();
     virtual TypeId GetInstanceTypeId() const override;
@@ -46,13 +49,60 @@ class Dect2020ClusterBeaconMessage : public Header
     virtual uint32_t Deserialize(Buffer::Iterator start);
     virtual void Print(std::ostream& os) const;
 
+    int8_t GetTxPowerFromField(uint8_t field);
+
+    void SetSystemFrameNumber(uint8_t sfn);
+    uint8_t GetSystemFrameNumber() const;
+
+    void SetTxPowerIncluded(bool txPowerIncluded);
+    bool GetTxPowerIncluded() const;
+
+    void SetPowerConstraints(bool powerConstraints);
+    bool GetPowerConstraints() const;
+
+    void SetFrameOffsetIncluded(bool frameOffsetIncluded);
+    bool GetFrameOffsetIncluded() const;
+
+    void SetNextChannelIncluded(bool nextChannelIncluded);
+    bool GetNextChannelIncluded() const;
+
+    void SetTimeToNextFieldPresent(bool timeToNextFieldPresent);
+    bool GetTimeToNextFieldPresent() const;
+
+    void SetNetworkBeaconPeriod(NetworkBeaconPeriod period);
+    NetworkBeaconPeriod GetNetworkBeaconPeriod() const;
+
+    void SetClusterBeaconPeriod(ClusterBeaconPeriod period);
+    ClusterBeaconPeriod GetClusterBeaconPeriod() const;
+
+    void SetCountToTrigger(uint8_t count);
+    uint8_t GetCountToTrigger() const;
+
+    void SetRelativeQuality(uint8_t relQuality);
+    uint8_t GetRelativeQuality() const;
+
+    void SetMinimumQuality(uint8_t minQuality);
+    uint8_t GetMinimumQuality() const;
+
+    void SetClusterMaxTxPower(uint8_t power);
+    uint8_t GetClusterMaxTxPower() const;
+
+    void SetFrameOffset(uint16_t offset);
+    uint16_t GetFrameOffset() const;
+
+    void SetNextClusterChannel(uint16_t channel);
+    uint16_t GetNextClusterChannel() const;
+
+    void SetTimeToNext(uint32_t time);
+    uint32_t GetTimeToNext() const;
+
   private:
     uint8_t m_SFN; // System Frame number
     bool m_txPowerIncluded;
     bool m_powerConstraints;
     bool m_FO; // Frame Offset
     bool m_nextChannel;
-    bool m_timeToNext;
+    bool m_timeToNextFieldPresent;  // Time to Next Field: 0 = not present, 1 = present
     NetworkBeaconPeriod m_networkBeaconPeriod;
     ClusterBeaconPeriod m_clusterBeaconPeriod;
     uint8_t m_countToTrigger;

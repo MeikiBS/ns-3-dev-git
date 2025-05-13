@@ -9,16 +9,491 @@
 
 namespace ns3
 {
+
+NS_LOG_COMPONENT_DEFINE("Dect2020BeaconMessage");
+NS_OBJECT_ENSURE_REGISTERED(Dect2020ClusterBeaconMessage);
+
 // *******************************************************
 //            DECT2020 Cluster Beacon Message
-// *******************************************************   
+// *******************************************************
+const std::array<int8_t, 16> txPowerTable = {
+    0,   // 0000 = reserved
+    0,   // 0001 = reserved
+    0,   // 0010 = reserved
+    0,   // 0011 = reserved
+    -12, // 0100
+    -8,  // 0101
+    -4,  // 0110
+    0,   // 0111
+    4,   // 1000
+    7,   // 1001
+    10,  // 1010
+    13,  // 1011
+    16,  // 1100
+    19,  // 1101
+    21,  // 1110
+    23   // 1111
+};
 
+int8_t
+Dect2020ClusterBeaconMessage::GetTxPowerFromField(uint8_t field)
+{
+    if (field < txPowerTable.size())
+    {
+        return txPowerTable[field];
+    }
+    return 0; // fallback
+}
+
+TypeId
+Dect2020ClusterBeaconMessage::GetTypeId(void)
+{
+    static TypeId tid = TypeId("ns3::Dect2020ClusterBeaconMessage")
+                            .SetParent<Header>()
+                            .SetGroupName("Dect2020")
+                            .AddConstructor<Dect2020ClusterBeaconMessage>();
+    return tid;
+}
+
+TypeId
+Dect2020ClusterBeaconMessage::GetInstanceTypeId() const
+{
+    return GetTypeId();
+}
+
+Dect2020ClusterBeaconMessage::Dect2020ClusterBeaconMessage()
+    : m_SFN(0),
+      m_txPowerIncluded(false),
+      m_powerConstraints(false),
+      m_FO(false),
+      m_nextChannel(false),
+      m_timeToNextFieldPresent(false),
+      m_networkBeaconPeriod(NETWORK_PERIOD_50MS),
+      m_clusterBeaconPeriod(CLUSTER_PERIOD_10MS),
+      m_countToTrigger(0),
+      m_relQuality(0),
+      m_minQuality(0),
+      m_clusterMaxTxPower(GetTxPowerFromField(4)),
+      m_frameOffset(0),
+      m_nextClusterChannel(0),
+      m_timeToNext(0)
+{
+}
+
+Dect2020ClusterBeaconMessage::~Dect2020ClusterBeaconMessage()
+{
+}
+
+void
+Dect2020ClusterBeaconMessage::SetSystemFrameNumber(uint8_t sfn)
+{
+    m_SFN = sfn;
+}
+
+uint8_t
+Dect2020ClusterBeaconMessage::GetSystemFrameNumber() const
+{
+    return m_SFN;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetTxPowerIncluded(bool txPowerIncluded)
+{
+    m_txPowerIncluded = txPowerIncluded;
+}
+
+bool
+Dect2020ClusterBeaconMessage::GetTxPowerIncluded() const
+{
+    return m_txPowerIncluded;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetPowerConstraints(bool powerConstraints)
+{
+    m_powerConstraints = powerConstraints;
+}
+
+bool
+Dect2020ClusterBeaconMessage::GetPowerConstraints() const
+{
+    return m_powerConstraints;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetFrameOffsetIncluded(bool frameOffsetIncluded)
+{
+    m_FO = frameOffsetIncluded;
+}
+
+bool
+Dect2020ClusterBeaconMessage::GetFrameOffsetIncluded() const
+{
+    return m_FO;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetNextChannelIncluded(bool nextChannelIncluded)
+{
+    m_nextChannel = nextChannelIncluded;
+}
+
+bool
+Dect2020ClusterBeaconMessage::GetNextChannelIncluded() const
+{
+    return m_nextChannel;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetTimeToNextFieldPresent(bool timeToNextFieldPresent)
+{
+    m_timeToNextFieldPresent = timeToNextFieldPresent;
+}
+
+bool
+Dect2020ClusterBeaconMessage::GetTimeToNextFieldPresent() const
+{
+    return m_timeToNextFieldPresent;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetNetworkBeaconPeriod(NetworkBeaconPeriod period)
+{
+    if (period > 15)
+    {
+        throw std::invalid_argument("Network Beacon Period must be between 0 and 15");
+    }
+    m_networkBeaconPeriod = period;
+}
+
+NetworkBeaconPeriod
+Dect2020ClusterBeaconMessage::GetNetworkBeaconPeriod() const
+{
+    return m_networkBeaconPeriod;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetClusterBeaconPeriod(ClusterBeaconPeriod period)
+{
+    if (period > 15)
+    {
+        throw std::invalid_argument("Cluster Beacon Period must be between 0 and 15");
+    }
+    m_clusterBeaconPeriod = period;
+}
+
+ClusterBeaconPeriod
+Dect2020ClusterBeaconMessage::GetClusterBeaconPeriod() const
+{
+    return m_clusterBeaconPeriod;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetCountToTrigger(uint8_t count)
+{
+    m_countToTrigger = count;
+}
+
+uint8_t
+Dect2020ClusterBeaconMessage::GetCountToTrigger() const
+{
+    return m_countToTrigger;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetRelativeQuality(uint8_t relQuality)
+{
+    m_relQuality = relQuality;
+}
+
+uint8_t
+Dect2020ClusterBeaconMessage::GetRelativeQuality() const
+{
+    return m_relQuality;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetMinimumQuality(uint8_t minQuality)
+{
+    m_minQuality = minQuality;
+}
+
+uint8_t
+Dect2020ClusterBeaconMessage::GetMinimumQuality() const
+{
+    return m_minQuality;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetClusterMaxTxPower(uint8_t power)
+{
+    m_clusterMaxTxPower = power;
+}
+
+uint8_t
+Dect2020ClusterBeaconMessage::GetClusterMaxTxPower() const
+{
+    return m_clusterMaxTxPower;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetFrameOffset(uint16_t offset)
+{
+    m_frameOffset = offset;
+}
+
+uint16_t
+Dect2020ClusterBeaconMessage::GetFrameOffset() const
+{
+    return m_frameOffset;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetNextClusterChannel(uint16_t channel)
+{
+    m_nextClusterChannel = channel;
+}
+
+uint16_t
+Dect2020ClusterBeaconMessage::GetNextClusterChannel() const
+{
+    return m_nextClusterChannel;
+}
+
+void
+Dect2020ClusterBeaconMessage::SetTimeToNext(uint32_t time)
+{
+    m_timeToNext = time;
+}
+
+uint32_t
+Dect2020ClusterBeaconMessage::GetTimeToNext() const
+{
+    return m_timeToNext;
+}
+
+void
+Dect2020ClusterBeaconMessage::Serialize(Buffer::Iterator start) const
+{
+    // Byte 0
+    uint8_t byte0 = 0;
+    byte0 = m_SFN; // Bit 0-7
+
+    start.WriteU8(byte0);
+
+    // Byte 1
+    uint8_t byte1 = 0;
+    // Bit 0-2 Reserved
+    byte1 |= (m_txPowerIncluded << 4);   // Bit 3
+    byte1 |= (m_powerConstraints << 3);  // Bit 4
+    byte1 |= (m_FO << 2);                // Bit 5
+    byte1 |= (m_nextChannel << 1);       // Bit 6
+    byte1 |= (m_timeToNextFieldPresent); // Bit 7
+
+    start.WriteU8(byte1);
+
+    // Byte 2
+    uint8_t byte2 = 0;
+    byte1 |= (m_networkBeaconPeriod & 0x0F) << 4; // Bit 0-3
+    byte1 |= (m_clusterBeaconPeriod & 0x0F);      // Bit 4-7
+
+    start.WriteU8(byte2);
+
+    // Byte 3
+    uint8_t byte3 = 0;
+    byte3 |= (m_countToTrigger & 0x0F) << 4; // Bit 0-3
+    byte3 |= (m_relQuality & 0x03) << 2;     // Bit 4-5
+    byte3 |= (m_minQuality & 0x03);          // Bit 6-7
+
+    start.WriteU8(byte3);
+
+    if (m_txPowerIncluded)
+    {
+        // Byte 4
+        uint8_t byte4 = 0;
+        // Bit 0-2 Reserved
+        byte4 |= (m_clusterMaxTxPower & 0x0F); // Bit 4-7
+
+        start.WriteU8(byte4);
+    }
+
+    if (m_FO) // Note: Only the 8 bit variant is implemented. For subcarrier scaling factor >= 4,
+              // Frame Offset is 16 Bit
+    {
+        // Byte 5
+        uint8_t byte5 = 0;
+        byte5 = m_frameOffset; // Bit 0-7
+
+        start.WriteU8(byte5);
+    }
+
+    if (m_nextChannel)
+    {
+        // Byte 6
+        uint8_t byte6 = 0;
+        byte6 |= (m_nextClusterChannel >> 8) & 0x1F; // Bit 0-7
+
+        start.WriteU8(byte6);
+
+        // Byte 7
+        uint8_t byte7 = 0;
+        byte7 |= (m_nextClusterChannel & 0xFF); // Bit 0-7
+
+        start.WriteU8(byte7);
+    }
+
+    if (m_timeToNext)
+    {
+        start.WriteU32(m_timeToNext);
+    }
+}
+
+uint32_t
+Dect2020ClusterBeaconMessage::Deserialize(Buffer::Iterator start)
+{
+    uint32_t bytesRead = 0;
+
+    // Byte 0
+    uint8_t byte0 = start.ReadU8();
+    bytesRead++;
+    m_SFN = byte0;
+
+    // Byte 1
+    uint8_t byte1 = start.ReadU8();
+    bytesRead++;
+    m_txPowerIncluded = (byte1 >> 4) & 0x01;
+    m_powerConstraints = (byte1 >> 3) & 0x01;
+    m_FO = (byte1 >> 2) & 0x01;
+    m_nextChannel = (byte1 >> 1) & 0x01;
+    m_timeToNextFieldPresent = (byte1 >> 0) & 0x01;
+
+    // Byte 2
+    uint8_t byte2 = start.ReadU8();
+    bytesRead++;
+    m_networkBeaconPeriod = static_cast<NetworkBeaconPeriod>((byte2 >> 4) & 0x0F);
+    m_clusterBeaconPeriod = static_cast<ClusterBeaconPeriod>(byte2 & 0x0F);
+
+    // Byte 3
+    uint8_t byte3 = start.ReadU8();
+    bytesRead++;
+    m_countToTrigger = (byte3 >> 4) & 0x0F;
+    m_relQuality = (byte3 >> 2) & 0x03;
+    m_minQuality = byte3 & 0x03;
+
+    // Byte 4 (optional)
+    if (m_txPowerIncluded)
+    {
+        uint8_t byte4 = start.ReadU8();
+        bytesRead++;
+        m_clusterMaxTxPower = byte4 & 0x0F;
+    }
+
+    // Byte 5 (optional)
+    if (m_FO)
+    {
+        uint8_t byte5 = start.ReadU8();
+        bytesRead++;
+        m_frameOffset = byte5; // only 8 Bit variant implemented
+    }
+
+    // Bytes 6–7 (optional)
+    if (m_nextChannel)
+    {
+        uint8_t byte6 = start.ReadU8();
+        bytesRead++;
+        uint8_t byte7 = start.ReadU8();
+        bytesRead++;
+        m_nextClusterChannel = ((byte6 & 0x1F) << 8) | byte7;
+    }
+
+    // Bytes 8–11 (optional)
+    if (m_timeToNextFieldPresent)
+    {
+        m_timeToNext = start.ReadU32();
+        bytesRead += 4;
+    }
+
+    return bytesRead;
+}
+
+uint32_t
+Dect2020ClusterBeaconMessage::GetSerializedSize() const
+{
+    uint32_t sizeInBits = 0;
+
+    sizeInBits += 8; // Byte 0: SFN
+    sizeInBits += 8; // Byte 1: Flags
+    sizeInBits += 8; // Byte 2: Network/Cluster Beacon Period
+    sizeInBits += 8; // Byte 3: CountToTrigger, RelQuality, MinQuality
+
+    if (m_txPowerIncluded)
+    {
+        sizeInBits += 8; // Byte 4: Cluster Max TX Power + reserved
+    }
+
+    if (m_FO)
+    {
+        sizeInBits += 8; // Byte 5: FrameOffset (8 Bit variant)
+    }
+
+    if (m_nextChannel)
+    {
+        sizeInBits += 16; // Bytes 6–7: Next Cluster Channel (13 bits + reserved)
+    }
+
+    if (m_timeToNextFieldPresent)
+    {
+        sizeInBits += 32; // Bytes 8–11: Time to Next (32 bits)
+    }
+
+    // Round up to full bytes
+    uint32_t sizeInBytes = (sizeInBits + 7) / 8;
+    return sizeInBytes;
+}
+
+void
+Dect2020ClusterBeaconMessage::Print(std::ostream& os) const
+{
+    os << "Cluster Beacon Message:" << std::endl
+       << "System Frame Number (SFN): " << static_cast<int>(m_SFN) << std::endl
+       << "TX Power Included: " << std::boolalpha << m_txPowerIncluded << std::endl
+       << "Power Constraints: " << std::boolalpha << m_powerConstraints << std::endl
+       << "Frame Offset Included (FO): " << std::boolalpha << m_FO << std::endl
+       << "Next Channel Included: " << std::boolalpha << m_nextChannel << std::endl
+       << "TimeToNext Field Present: " << std::boolalpha << m_timeToNextFieldPresent << std::endl
+       << "Network Beacon Period: " << static_cast<int>(m_networkBeaconPeriod) << std::endl
+       << "Cluster Beacon Period: " << static_cast<int>(m_clusterBeaconPeriod) << std::endl
+       << "Count to Trigger: " << static_cast<int>(m_countToTrigger) << std::endl
+       << "Relative Quality: " << static_cast<int>(m_relQuality) << std::endl
+       << "Minimum Quality: " << static_cast<int>(m_minQuality) << std::endl;
+
+    if (m_txPowerIncluded)
+    {
+        os << "Cluster Max TX Power: " << static_cast<int>(m_clusterMaxTxPower) << " dBm"
+           << std::endl;
+    }
+
+    if (m_FO)
+    {
+        os << "Frame Offset: " << static_cast<uint16_t>(m_frameOffset) << std::endl;
+    }
+
+    if (m_nextChannel)
+    {
+        os << "Next Cluster Channel: " << static_cast<uint16_t>(m_nextClusterChannel) << std::endl;
+    }
+
+    if (m_timeToNextFieldPresent)
+    {
+        os << "Time to Next: " << static_cast<uint32_t>(m_timeToNext) << " µs" << std::endl;
+    }
+}
 
 // *******************************************************
 //            DECT2020 Network Beacon Message
-// *******************************************************           
+// *******************************************************
 
-NS_LOG_COMPONENT_DEFINE("Dect2020NetworkBeaconMessage");
+// NS_LOG_COMPONENT_DEFINE("Dect2020NetworkBeaconMessage");
 NS_OBJECT_ENSURE_REGISTERED(Dect2020NetworkBeaconMessage);
 
 TypeId
@@ -242,7 +717,8 @@ Dect2020NetworkBeaconMessage::GetCurrentClusterChannel() const
 }
 
 void
-Dect2020NetworkBeaconMessage::SetAdditionalNetworkBeaconChannels(uint16_t* additionalNetworkBeaconChannels)
+Dect2020NetworkBeaconMessage::SetAdditionalNetworkBeaconChannels(
+    uint16_t* additionalNetworkBeaconChannels)
 {
     std::copy(additionalNetworkBeaconChannels,
               additionalNetworkBeaconChannels + 3,
@@ -290,7 +766,8 @@ Dect2020NetworkBeaconMessage::GetSerializedSize() const
 void
 Dect2020NetworkBeaconMessage::Print(std::ostream& os) const
 {
-    os << "Beacon Message:" << std::endl << "TX power = " << (bool)m_txPowerIncluded << std::endl
+    os << "Beacon Message:" << std::endl
+       << "TX power = " << (bool)m_txPowerIncluded << std::endl
        << "Power const = " << (bool)m_powerConstraints << std::endl
        << "Current cluster channel = " << (bool)m_currentClusterChannelIncluded << std::endl
        << "Network Beacon channels = " << static_cast<int>(m_networkBeaconChannels) << std::endl
