@@ -4,6 +4,8 @@
 - Wenn bei der Network Beacon Message pro "Network Beacon Channel" jeweils eine Frequenz mit 13 Bit drangehangen werden, dann muss der Datentyp von "Additional Network Beacon Channels" angepasst werden zu einem Array?! Dann uA "Print" anpassen
 
 - Vergleiche LRWPAN MLME Start Request / Scan Request fürs Beacon senden/empfangen bzw. Verbindung aufbauen
+- SubcarrierScalingFactor an einer Stelle definieren
+
 
 -------- Notizen 09.04.
 -> Dokumentation von Annahmen
@@ -11,9 +13,18 @@
 -> Pathloss Formel Free Space
 -> https://www.mkdocs.org/
 
-TODO:
-- SubcarrierScalingFactor an einer Stelle definieren
+TODO/Next steps:
+- Cluster Beacon Message
+- Random Access Resource IE
+- Unicast Header
+- Association Request Message
+- Association Response Message
+- Random Access Procedure
+
 
 
 Fragen:
-Physical Layer Control Field: Packet length, beinhaltet was genau?
+- Physical Layer Control Field: Packet length, beinhaltet welche Länge genau?
+- Was ist eine realistische Network Beacon Period und wird ein Network Beacon auf allen Kanälen eines Bands gesendet?
+
+- KI Nutzung wie/wo dokumentieren?
