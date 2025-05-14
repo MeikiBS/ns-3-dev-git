@@ -14,6 +14,7 @@
 #include "ns3/single-model-spectrum-channel.h"
 #include "ns3/spectrum-analyzer-helper.h"
 #include "ns3/spectrum-analyzer.h"
+#include "ns3/dect2020-mac-information-elements.h"
 
 // using namespace ns3;
 // using Dect2020NetDevice::TerminationPointType::FT;
@@ -199,6 +200,39 @@ TestPhysicalLayerControlFieldType1()
     NS_LOG_INFO(deserializedPhysicalHeaderField);
 }
 
+void
+TestRandomAccessResourceIE()
+{
+    Dect2020RandomAccessResourceIE originalMessage;
+
+    originalMessage.SetRepeat(2);
+    originalMessage.SetSystemFrameNumberFieldIncluded(1);
+    originalMessage.SetChannelFieldIncluded(1);
+    originalMessage.SetStartSubslot(2);
+    originalMessage.SetLengthType(1);
+    originalMessage.SetRaraLength(4);
+    originalMessage.SetMaxRachLengthType(1);
+    originalMessage.SetMaxRachLength(5);
+    originalMessage.SetCwMinSig(7);
+    originalMessage.SetDectDelay(1);
+    originalMessage.SetResponseWindow(9);
+    originalMessage.SetCwMaxSig(3);
+    originalMessage.SetRepetition(2);
+    originalMessage.SetValidity(45);
+    originalMessage.SetSystemFrameNumberValue(100);
+    originalMessage.SetChannelAbsoluteCarrierCenterFrequency(1780);
+    originalMessage.SetSeparateChannelAbsoluteCarrierCenterFrequency(1790);
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(originalMessage);
+
+    Dect2020RandomAccessResourceIE receivedMessage;
+    packet->RemoveHeader(receivedMessage);
+
+    NS_LOG_INFO(originalMessage);
+    NS_LOG_INFO(receivedMessage);
+}
+
 // Empfangsfunktion definieren
 bool
 ReceivePacket(Ptr<NetDevice> device,
@@ -226,6 +260,7 @@ main(int argc, char* argv[])
     LogComponentEnable("Dect2020SpectrumSignalParameters", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020BeaconMessage", LOG_LEVEL_INFO); 
     LogComponentEnable("Dect2020MacCommonHeader", LOG_LEVEL_INFO);
+    LogComponentEnable("Dect2020MACInformationElements", LOG_LEVEL_INFO);
 
     // Hier Bereich für Tests
     // ###########################
@@ -314,7 +349,8 @@ main(int argc, char* argv[])
     // TestBeaconMessage();
     // TestMacHeaderField();
     // TestClusterBeaconMessage();
-    TestUnicastHeader();
+    // TestUnicastHeader();
+    TestRandomAccessResourceIE();
 
     // TestPhysicalLayerControlFieldType1();
     return 0;
