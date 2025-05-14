@@ -104,6 +104,26 @@ TestClusterBeaconMessage()
     receivedMessage.Print(std::cout);
 }
 
+void
+TestUnicastHeader()
+{
+    Dect2020UnicastHeader originalMessage;
+    originalMessage.SetReset(true);
+    originalMessage.SetSequenceNumber(1234);
+    originalMessage.SetReceiverAddress(0x12345678);
+    originalMessage.SetTransmitterAddress(0x87654321);
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(originalMessage);
+
+    Dect2020UnicastHeader receivedMessage;
+    packet->RemoveHeader(receivedMessage);
+
+    originalMessage.Print(std::cout);
+    std::cout << std::endl << std::endl;
+    receivedMessage.Print(std::cout);
+}
+
 // void
 // TestBeaconHeader()
 // {
@@ -204,7 +224,8 @@ main(int argc, char* argv[])
     LogComponentEnable("Dect2020Channel", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Simulation", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020SpectrumSignalParameters", LOG_LEVEL_INFO);
-    LogComponentEnable("Dect2020BeaconMessage", LOG_LEVEL_INFO);
+    LogComponentEnable("Dect2020BeaconMessage", LOG_LEVEL_INFO); 
+    LogComponentEnable("Dect2020MacCommonHeader", LOG_LEVEL_INFO);
 
     // Hier Bereich für Tests
     // ###########################
@@ -292,7 +313,8 @@ main(int argc, char* argv[])
     // TestBeaconHeader();
     // TestBeaconMessage();
     // TestMacHeaderField();
-    TestClusterBeaconMessage();
+    // TestClusterBeaconMessage();
+    TestUnicastHeader();
 
     // TestPhysicalLayerControlFieldType1();
     return 0;
