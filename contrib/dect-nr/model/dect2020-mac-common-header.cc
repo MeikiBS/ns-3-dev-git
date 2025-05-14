@@ -1,4 +1,4 @@
-#include "dect2020-beacon-header.h"
+#include "dect2020-mac-common-header.h"
 
 #include "ns3/address-utils.h"
 #include "ns3/log.h"
@@ -6,7 +6,7 @@
 namespace ns3
 {
 
-NS_LOG_COMPONENT_DEFINE("Dect2020BeaconHeader");
+NS_LOG_COMPONENT_DEFINE("Dect2020MacCommonHeader");
 
 NS_OBJECT_ENSURE_REGISTERED(Dect2020BeaconHeader);
 

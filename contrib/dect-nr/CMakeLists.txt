@@ -15,7 +15,7 @@ set(source_files
     model/dect2020-mac.cc
     model/dect2020-phy.cc
     model/dect2020-channel.cc
-    model/dect2020-beacon-header.cc
+    model/dect2020-mac-common-header.cc
     model/dect2020-beacon-message.cc
     model/dect2020-mac-header-type.cc
     model/dect2020-operating-band.cc
@@ -28,7 +28,7 @@ set(header_files
     model/dect2020-mac.h
     model/dect2020-phy.h
     model/dect2020-channel.h
-    model/dect2020-beacon-header.h
+    model/dect2020-mac-common-header.h
     model/dect2020-beacon-message.h
     model/dect2020-mac-header-type.h
     model/dect2020-operating-band.h

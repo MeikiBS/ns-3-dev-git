@@ -1,7 +1,7 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
 #include "dect2020-mac.h"
 
-#include "dect2020-beacon-header.h"
+#include "dect2020-mac-common-header.h"
 #include "dect2020-beacon-message.h"
 #include "dect2020-mac-header-type.h"
 #include "dect2020-net-device.h"
