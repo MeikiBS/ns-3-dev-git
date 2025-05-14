@@ -294,8 +294,8 @@ Dect2020ClusterBeaconMessage::Serialize(Buffer::Iterator start) const
 
     // Byte 2
     uint8_t byte2 = 0;
-    byte1 |= (m_networkBeaconPeriod & 0x0F) << 4; // Bit 0-3
-    byte1 |= (m_clusterBeaconPeriod & 0x0F);      // Bit 4-7
+    byte2 |= (m_networkBeaconPeriod & 0x0F) << 4; // Bit 0-3
+    byte2 |= (m_clusterBeaconPeriod & 0x0F);      // Bit 4-7
 
     start.WriteU8(byte2);
 

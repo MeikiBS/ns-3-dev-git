@@ -71,6 +71,39 @@ TestBeaconMessage()
     receivedMessage.Print(std::cout);
 }
 
+void
+TestClusterBeaconMessage()
+{
+    Dect2020ClusterBeaconMessage originalMessage;
+
+    originalMessage.SetSystemFrameNumber(4);
+    originalMessage.SetTxPowerIncluded(1);
+    originalMessage.SetPowerConstraints(1);
+    originalMessage.SetFrameOffsetIncluded(1);
+    originalMessage.SetNextChannelIncluded(1);
+    originalMessage.SetTimeToNextFieldPresent(1);
+    originalMessage.SetNetworkBeaconPeriod(NETWORK_PERIOD_2000MS);
+    originalMessage.SetClusterBeaconPeriod(CLUSTER_PERIOD_16000MS);
+    originalMessage.SetCountToTrigger(5);
+    originalMessage.SetRelativeQuality(1);
+    originalMessage.SetMinimumQuality(2);
+    originalMessage.SetClusterMaxTxPower(3);
+    originalMessage.SetClusterMaxTxPower(4);
+    originalMessage.SetFrameOffset(3);
+    originalMessage.SetNextClusterChannel(1660);
+    originalMessage.SetTimeToNext(1000);
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(originalMessage);
+
+    Dect2020ClusterBeaconMessage receivedMessage;
+    packet->RemoveHeader(receivedMessage);
+
+    originalMessage.Print(std::cout);
+    std::cout << std::endl << std::endl;
+    receivedMessage.Print(std::cout);
+}
+
 // void
 // TestBeaconHeader()
 // {
@@ -171,6 +204,7 @@ main(int argc, char* argv[])
     LogComponentEnable("Dect2020Channel", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Simulation", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020SpectrumSignalParameters", LOG_LEVEL_INFO);
+    LogComponentEnable("Dect2020BeaconMessage", LOG_LEVEL_INFO);
 
     // Hier Bereich für Tests
     // ###########################
@@ -258,6 +292,7 @@ main(int argc, char* argv[])
     // TestBeaconHeader();
     // TestBeaconMessage();
     // TestMacHeaderField();
+    TestClusterBeaconMessage();
 
     // TestPhysicalLayerControlFieldType1();
     return 0;
