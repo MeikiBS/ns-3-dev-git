@@ -208,6 +208,7 @@ TestRandomAccessResourceIE()
     originalMessage.SetRepeat(2);
     originalMessage.SetSystemFrameNumberFieldIncluded(1);
     originalMessage.SetChannelFieldIncluded(1);
+    originalMessage.SetSeparateChannelFieldIncluded(1);
     originalMessage.SetStartSubslot(2);
     originalMessage.SetLengthType(1);
     originalMessage.SetRaraLength(4);

@@ -41,24 +41,12 @@ Dect2020RandomAccessResourceIE::Serialize(Buffer::Iterator start) const
     // Byte 0
     uint8_t byte0 = 0;
 
-    NS_LOG_INFO("m_repeat (Serialize) (vorher) " << std::hex << static_cast<int>(m_repeat));
     // Bit 0-2 Reserved
     byte0 |= (m_repeat & 0x03) << 3; // Bit 3-4
-    NS_LOG_INFO("Byte0 (Serialize) nach m_repeat= " << std::hex << static_cast<int>(byte0));
+    byte0 |= (m_systemFrameNumberFieldIncluded ? 1 : 0) << 2; // Bit 5
+    byte0 |= (m_channelFieldIncluded ? 1 : 0) << 1; // Bit 6
+    byte0 |= (m_separateChannelFieldIncluded ? 1 : 0) << 0; // Bit 7
 
-    byte0 |= (m_systemFrameNumberFieldIncluded ? 1 : 0 << 2); // Bit 5
-    NS_LOG_INFO("Byte0 (Serialize) nach m_systemFrameNumberFieldIncluded= "
-                << std::hex << static_cast<int>(byte0));
-
-    byte0 |= (m_channelFieldIncluded ? 1 : 0 << 1); // Bit 6
-    NS_LOG_INFO("Byte0 (Serialize) nach m_channelFieldIncluded= " << std::hex
-                                                                  << static_cast<int>(byte0));
-
-    byte0 |= (m_separateChannelFieldIncluded ? 1 : 0); // Bit 7
-    NS_LOG_INFO("Byte0 (Serialize) nach m_separateChannelFieldIncluded= " << std::hex
-                                                                  << static_cast<int>(byte0));
-
-    NS_LOG_INFO("Byte0 (Serialize) = " << std::hex << static_cast<int>(byte0));
     start.WriteU8(byte0);
 
     if (false) // Byte1 only if subcarrier scaling factor >= 4 --> currently not implemented
@@ -73,14 +61,14 @@ Dect2020RandomAccessResourceIE::Serialize(Buffer::Iterator start) const
 
     // Byte 3
     uint8_t byte3 = 0;
-    byte3 |= (m_lengthType ? 1 : 0 << 7); // Bit 0
+    byte3 |= (m_lengthType ? 1 : 0) << 7; // Bit 0
     byte3 |= (m_raraLength & 0x7F);       // Bit 1-7
 
     start.WriteU8(byte3);
 
     // Byte 4
     uint8_t byte4 = 0;
-    byte4 |= (m_maxRachLengthType ? 1 : 0 << 7); // Bit 0
+    byte4 |= (m_maxRachLengthType ? 1 : 0) << 7; // Bit 0
     byte4 |= (m_maxRachLength & 0x0F) << 3;      // Bit 1-4
     byte4 |= (m_cwMin_sig & 0x07);               // Bit 5-7
 
@@ -88,7 +76,7 @@ Dect2020RandomAccessResourceIE::Serialize(Buffer::Iterator start) const
 
     // Byte 5
     uint8_t byte5 = 0;
-    byte5 |= (m_dectDelay ? 1 : 0 << 7);     // Bit 0
+    byte5 |= (m_dectDelay ? 1 : 0) << 7;     // Bit 0
     byte5 |= (m_responseWindow & 0x0F) << 3; // Bit 1-4
     byte5 |= (m_cwMax_sig & 0x07);           // Bit 5-7
 
@@ -149,13 +137,13 @@ Dect2020RandomAccessResourceIE::Deserialize(Buffer::Iterator start)
 
     // Byte 0
     uint8_t byte0 = i.ReadU8();
-    NS_LOG_INFO("Byte0 (Deserialize) = " << std::hex << static_cast<int>(byte0));
 
     m_repeat = (byte0 >> 3) & 0x03; // Bits 3–4
-    // NS_LOG_INFO("m_repeat: " << static_cast<uint16_t>(m_repeat));
-    m_systemFrameNumberFieldIncluded = (byte0 >> 2) & 0x01; // Bit 5
-    m_channelFieldIncluded = (byte0 >> 1) & 0x01;           // Bit 6
-    m_separateChannelFieldIncluded = byte0 & 0x01;          // Bit 7
+
+    m_systemFrameNumberFieldIncluded = (byte0 & (1 << 2)) != 0; // Bit 5
+    m_channelFieldIncluded = (byte0 & (1 << 1)) != 0; // Bit 6
+    m_separateChannelFieldIncluded = (byte0 & (1 << 0)) != 0; // Bit 7
+
 
     // Byte 1 skipped (currently unused / reserved for μ ≥ 4)
     // i.Next();
