@@ -1,7 +1,7 @@
 #include "ns3/applications-module.h"
 #include "ns3/core-module.h"
 #include "ns3/dect2020-beacon-header.h"
-#include "ns3/dect2020-beacon-message.h"
+#include "ns3/dect2020-mac-messages.h"
 #include "ns3/dect2020-mac-header-type.h"
 #include "ns3/dect2020-mac.h"
 #include "ns3/dect2020-net-device.h"
@@ -234,6 +234,37 @@ TestRandomAccessResourceIE()
     NS_LOG_INFO(receivedMessage);
 }
 
+void
+TestAssociationRequestMessage()
+{
+    Dect2020AssociationRequestMessage originalMessage;
+
+    originalMessage.SetSetupCause(0);
+    originalMessage.SetNumberOfFlows(2);
+    originalMessage.SetPowerConstraints(1);
+    originalMessage.SetFtMode(1);
+    originalMessage.SetCurrent(1);
+    originalMessage.SetHarqProcessesTx(3);
+    originalMessage.SetMaxHarqReTxDelay(4);
+    originalMessage.SetHarqProcessesRx(5);
+    originalMessage.SetMaxHarqReRxDelay(6);
+    originalMessage.SetFlowId(7);
+    originalMessage.SetNetworkBeaconPeriod(NETWORK_PERIOD_2000MS);
+    originalMessage.SetClusterBeaconPeriod(CLUSTER_PERIOD_16000MS);
+    originalMessage.SetNextClusterChannel(8191);
+    originalMessage.SetTimeToNext(UINT32_MAX - 1);
+    originalMessage.SetCurrentClusterChannel(1234);
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(originalMessage);
+
+    Dect2020AssociationRequestMessage receivedMessage;
+    packet->RemoveHeader(receivedMessage);
+
+    NS_LOG_INFO(originalMessage);
+    NS_LOG_INFO(receivedMessage);
+}
+
 // Empfangsfunktion definieren
 bool
 ReceivePacket(Ptr<NetDevice> device,
@@ -351,7 +382,8 @@ main(int argc, char* argv[])
     // TestMacHeaderField();
     // TestClusterBeaconMessage();
     // TestUnicastHeader();
-    TestRandomAccessResourceIE();
+    // TestRandomAccessResourceIE();
+    TestAssociationRequestMessage();
 
     // TestPhysicalLayerControlFieldType1();
     return 0;

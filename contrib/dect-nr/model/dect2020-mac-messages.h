@@ -1,5 +1,5 @@
-#ifndef DECT2020_BEACON_MESSAGE_H
-#define DECT2020_BEACON_MESSAGE_H
+#ifndef DECT2020_MAC_MESSAGES_H
+#define DECT2020_MAC_MESSAGES_H
 
 #include "ns3/header.h"
 #include "ns3/log.h"
@@ -34,6 +34,11 @@ enum ClusterBeaconPeriod // ETSI TS 103 636-4 V 1.51 #6.4.2.2-1
     CLUSTER_PERIOD_16000MS = 9,
     CLUSTER_PERIOD_32000MS = 10
 };
+
+// *******************************************************
+//            DECT2020 Cluster Beacon Message
+//            # ETSI TS 103 636-4 V2.1.1 6.4.2.3
+// *******************************************************
 
 class Dect2020ClusterBeaconMessage : public Header
 {
@@ -102,19 +107,23 @@ class Dect2020ClusterBeaconMessage : public Header
     bool m_powerConstraints;
     bool m_FO; // Frame Offset
     bool m_nextChannel;
-    bool m_timeToNextFieldPresent;  // Time to Next Field: 0 = not present, 1 = present
+    bool m_timeToNextFieldPresent; // Time to Next Field: 0 = not present, 1 = present
     NetworkBeaconPeriod m_networkBeaconPeriod;
     ClusterBeaconPeriod m_clusterBeaconPeriod;
     uint8_t m_countToTrigger;
     uint8_t m_relQuality;
     uint8_t m_minQuality;
     uint8_t m_clusterMaxTxPower;
-    uint16_t m_frameOffset; // if subcarrierscaling factor = <= 4 --> frameOffset 8 bit, otherwise 16 bit
+    uint16_t
+        m_frameOffset; // if subcarrierscaling factor = <= 4 --> frameOffset 8 bit, otherwise 16 bit
     uint16_t m_nextClusterChannel;
     uint32_t m_timeToNext;
 };
 
-
+// *******************************************************
+//            DECT2020 Network Beacon Message
+//            # ETSI TS 103 636-4 V2.1.1 6.4.2.2
+// *******************************************************
 
 class Dect2020NetworkBeaconMessage : public Header
 {
@@ -179,6 +188,90 @@ class Dect2020NetworkBeaconMessage : public Header
     uint8_t m_clustersMaxTxPower;
     uint16_t m_currentClusterChannel;
     uint16_t m_additionalNetworkBeaconChannels[3]{};
+};
+
+// *******************************************************
+//            DECT2020 Association Request Message
+//            # ETSI TS 103 636-4 V2.1.1 6.4.2.4
+// *******************************************************
+
+class Dect2020AssociationRequestMessage : public Header
+{
+  public:
+    Dect2020AssociationRequestMessage();
+    virtual ~Dect2020AssociationRequestMessage();
+
+    // Überladene Methoden vom Header
+    static TypeId GetTypeId();
+    virtual TypeId GetInstanceTypeId() const override;
+    virtual uint32_t GetSerializedSize() const;
+    virtual void Serialize(Buffer::Iterator start) const;
+    virtual uint32_t Deserialize(Buffer::Iterator start);
+    virtual void Print(std::ostream& os) const;
+
+    // Getter and Setter
+    void SetSetupCause(uint8_t cause);
+    uint8_t GetSetupCause() const;
+
+    void SetNumberOfFlows(uint8_t flows);
+    uint8_t GetNumberOfFlows() const;
+
+    void SetPowerConstraints(bool constraints);
+    bool GetPowerConstraints() const;
+
+    void SetFtMode(bool mode);
+    bool GetFtMode() const;
+
+    void SetCurrent(bool current);
+    bool GetCurrent() const;
+
+    void SetHarqProcessesTx(uint8_t value);
+    uint8_t GetHarqProcessesTx() const;
+
+    void SetMaxHarqReTxDelay(uint8_t delay);
+    uint8_t GetMaxHarqReTxDelay() const;
+
+    void SetHarqProcessesRx(uint8_t value);
+    uint8_t GetHarqProcessesRx() const;
+
+    void SetMaxHarqReRxDelay(uint8_t delay);
+    uint8_t GetMaxHarqReRxDelay() const;
+
+    void SetFlowId(uint8_t id);
+    uint8_t GetFlowId() const;
+
+    void SetNetworkBeaconPeriod(NetworkBeaconPeriod value);
+    NetworkBeaconPeriod GetNetworkBeaconPeriod() const;
+
+    void SetClusterBeaconPeriod(ClusterBeaconPeriod value);
+    ClusterBeaconPeriod GetClusterBeaconPeriod() const;
+
+    void SetNextClusterChannel(uint16_t channel);
+    uint16_t GetNextClusterChannel() const;
+
+    void SetTimeToNext(uint32_t time);
+    uint32_t GetTimeToNext() const;
+
+    void SetCurrentClusterChannel(uint16_t channel);
+    uint16_t GetCurrentClusterChannel() const;
+
+  private:
+    uint8_t m_setupCause;    // 3 Bit
+    uint8_t m_numberOfFlows; // 3 Bit
+    bool m_powerConstraints; // 1 Bit
+    bool m_ftMode;           // 1 Bit
+    bool m_current; // 1 Bit. 0 = current cluster channel is the same as the next cluster channel.
+                    //        1 = not the same --> current cluster channel field included
+    uint8_t m_harqProcessesTx;                 // 3 Bit
+    uint8_t m_maxHarqReTxDelay;                // 5 Bit
+    uint8_t m_harqProcessesRx;                 // 3 Bit
+    uint8_t m_maxHarqReRxDelay;                // 5 Bit
+    uint8_t m_flowId;                          // 6 Bit
+    NetworkBeaconPeriod m_networkBeaconPeriod; // 4 Bit
+    ClusterBeaconPeriod m_clusterBeaconPeriod; // 4 Bit
+    uint16_t m_nextClusterChannel;             // 13 Bit
+    uint32_t m_timeToNext;                     // 32 Bit
+    uint16_t m_currentClusterChannel;          // 13 Bit
 };
 
 } // namespace ns3

@@ -2,7 +2,7 @@
 #include "dect2020-mac.h"
 
 #include "dect2020-mac-common-header.h"
-#include "dect2020-beacon-message.h"
+#include "dect2020-mac-messages.h"
 #include "dect2020-mac-header-type.h"
 #include "dect2020-net-device.h"
 #include "dect2020-phy.h"

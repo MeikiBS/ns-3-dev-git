@@ -1,4 +1,4 @@
-#include "dect2020-beacon-message.h"
+#include "dect2020-mac-messages.h"
 
 #include "dect2020-mac-common-header.h"
 
@@ -16,6 +16,7 @@ NS_OBJECT_ENSURE_REGISTERED(Dect2020ClusterBeaconMessage);
 // *******************************************************
 //            DECT2020 Cluster Beacon Message
 // *******************************************************
+
 const std::array<int8_t, 16> txPowerTable = {
     0,   // 0000 = reserved
     0,   // 0001 = reserved
@@ -988,4 +989,406 @@ Dect2020NetworkBeaconMessage::GetNetworkBeaconPeriodTime() const
                        "1000, 1500, 2000, and 4000 ms.");
     }
 }
+
+// *******************************************************
+//            DECT2020 Association Request Message
+//            # ETSI TS 103 636-4 V2.1.1 6.4.2.4
+// *******************************************************
+
+
+Dect2020AssociationRequestMessage::Dect2020AssociationRequestMessage()
+{
+}
+
+Dect2020AssociationRequestMessage::~Dect2020AssociationRequestMessage()
+{
+}
+
+TypeId
+Dect2020AssociationRequestMessage::GetTypeId(void)
+{
+    static TypeId tid = TypeId("ns3::Dect2020AssociationRequestMessage")
+                            .SetParent<Header>()
+                            .SetGroupName("Dect2020")
+                            .AddConstructor<Dect2020AssociationRequestMessage>();
+    return tid;
+}
+
+TypeId
+Dect2020AssociationRequestMessage::GetInstanceTypeId() const
+{
+    return GetTypeId();
+}
+
+void
+Dect2020AssociationRequestMessage::Serialize(Buffer::Iterator start) const
+{
+    // Byte 0
+    uint8_t byte0 = 0;
+    byte0 |= (m_setupCause & 0x07) << 5;    // Bit 0-2
+    byte0 |= (m_numberOfFlows & 0x07) << 2; // Bit 3-5
+    byte0 |= (m_powerConstraints << 1);     // Bit 6
+    byte0 |= (m_ftMode << 0);               // Bit 7
+
+    start.WriteU8(byte0);
+
+    // Byte 1
+    uint8_t byte1 = 0;
+    byte1 |= (m_current << 7); // Bit 0
+    // Bit 1-7 Reserved
+
+    start.WriteU8(byte1);
+
+    // Byte 2
+    uint8_t byte2 = 0;
+    byte2 |= (m_harqProcessesTx & 0x07) << 5;  // Bit 0-2
+    byte2 |= (m_maxHarqReTxDelay & 0x1F) << 0; // Bit 3-7
+
+    start.WriteU8(byte2);
+
+    // Byte 3
+    uint8_t byte3 = 0;
+    byte3 |= (m_harqProcessesRx & 0x07) << 5;  // Bit 0-2
+    byte3 |= (m_maxHarqReRxDelay & 0x1F) << 0; // Bit 3-7
+
+    start.WriteU8(byte3);
+
+    // Byte 4
+    uint8_t byte4 = 0;
+    // Bit 0-1 Reserved
+    byte4 |= (m_flowId & 0x3F); // Bit 2-7
+
+    start.WriteU8(byte4);
+
+    if (m_ftMode == 1)
+    {
+        // Byte 5
+        uint8_t byte5 = 0;
+        byte5 |= (m_networkBeaconPeriod & 0x0F) << 4; // Bit 0-3
+        byte5 |= (m_clusterBeaconPeriod & 0x0F);      // Bit 4-7
+
+        start.WriteU8(byte5);
+
+        // Byte 6
+        uint8_t byte6 = 0;
+        // Bit 0-2 Reserved
+        byte6 |= (m_nextClusterChannel >> 8) & 0x1F; // Bit 3-7
+
+        start.WriteU8(byte6);
+
+        // Byte 7
+        uint8_t byte7 = 0;
+        byte7 |= (m_nextClusterChannel & 0xFF); // Bit 0-7
+
+        start.WriteU8(byte7);
+
+        // Byte 8 - 11
+        start.WriteHtonU32(m_timeToNext);
+    }
+
+    if (m_current == 1)
+    {
+        // Byte 12
+        uint8_t byte12 = 0;
+        byte12 |= (m_currentClusterChannel >> 8) & 0x1F; // Bit 3-7
+
+        start.WriteU8(byte12);
+
+        // Byte 13
+        uint8_t byte13 = 0;
+        byte13 |= (m_currentClusterChannel & 0xFF); // Bit 0-7
+
+        start.WriteU8(byte13);
+    }
+}
+
+void
+Dect2020AssociationRequestMessage::Print(std::ostream& os) const
+{
+    os << "Dect2020AssociationRequestMessage:" << std::endl;
+    os << "  Setup Cause: " << static_cast<uint32_t>(m_setupCause) << std::endl;
+    os << "  Number of Flows: " << static_cast<uint32_t>(m_numberOfFlows) << std::endl;
+    os << "  Power Constraints: " << std::boolalpha << m_powerConstraints << std::endl;
+    os << "  FT Mode: " << std::boolalpha << m_ftMode << std::endl;
+    os << "  Current: " << std::boolalpha << m_current << std::endl;
+    os << "  HARQ Processes TX: " << static_cast<uint32_t>(m_harqProcessesTx) << std::endl;
+    os << "  Max HARQ ReTX Delay: " << static_cast<uint32_t>(m_maxHarqReTxDelay) << std::endl;
+    os << "  HARQ Processes RX: " << static_cast<uint32_t>(m_harqProcessesRx) << std::endl;
+    os << "  Max HARQ ReRX Delay: " << static_cast<uint32_t>(m_maxHarqReRxDelay) << std::endl;
+    os << "  Flow ID: " << static_cast<uint32_t>(m_flowId) << std::endl;
+
+    if (m_ftMode)
+    {
+        os << "  Network Beacon Period: " << static_cast<uint32_t>(m_networkBeaconPeriod)
+           << std::endl;
+        os << "  Cluster Beacon Period: " << static_cast<uint32_t>(m_clusterBeaconPeriod)
+           << std::endl;
+        os << "  Next Cluster Channel: " << m_nextClusterChannel << std::endl;
+        os << "  Time To Next: " << m_timeToNext << std::endl;
+    }
+
+    if (m_current)
+    {
+        os << "  Current Cluster Channel: " << m_currentClusterChannel << std::endl;
+    }
+}
+
+uint32_t
+Dect2020AssociationRequestMessage::GetSerializedSize() const
+{
+    uint32_t size = 0;
+
+    size += 5; // Byte 0–4 (immer vorhanden)
+
+    if (m_ftMode)
+    {
+        size += 1; // Byte 5: Beacon Periods
+        size += 2; // Byte 6–7: Next Cluster Channel
+        size += 4; // Byte 8–11: Time To Next
+    }
+
+    if (m_current)
+    {
+        size += 2; // Byte 12–13: Current Cluster Channel
+    }
+
+    return size;
+}
+
+uint32_t
+Dect2020AssociationRequestMessage::Deserialize(Buffer::Iterator start)
+{
+    Buffer::Iterator i = start;
+
+    // Byte 0
+    uint8_t byte0 = i.ReadU8();
+    SetSetupCause((byte0 >> 5) & 0x07);       // Bit 0-2
+    SetNumberOfFlows((byte0 >> 2) & 0x07);    // Bit 3-5
+    SetPowerConstraints((byte0 >> 1) & 0x01); // Bit 6
+    SetFtMode(byte0 & 0x01);                  // Bit 7
+
+    // Byte 1
+    uint8_t byte1 = i.ReadU8();
+    SetCurrent((byte1 >> 7) & 0x01); // Bit 0
+    // Bit 1-7 Reserved
+
+    // Byte 2
+    uint8_t byte2 = i.ReadU8();
+    SetHarqProcessesTx((byte2 >> 5) & 0x07); // Bit 0-2
+    SetMaxHarqReTxDelay(byte2 & 0x1F);       // Bit 3-7
+
+    // Byte 3
+    uint8_t byte3 = i.ReadU8();
+    SetHarqProcessesRx((byte3 >> 5) & 0x07); // Bit 0-2
+    SetMaxHarqReRxDelay(byte3 & 0x1F);       // Bit 3-7
+
+    // Byte 4
+    uint8_t byte4 = i.ReadU8();
+    SetFlowId(byte4 & 0x3F); // Bit 2-7
+
+    if (m_ftMode == 1)
+    {
+        // Byte 5
+        uint8_t byte5 = i.ReadU8();
+        SetNetworkBeaconPeriod(static_cast<NetworkBeaconPeriod>((byte5 >> 4) & 0x0F)); // Bit 0-3
+        SetClusterBeaconPeriod(static_cast<ClusterBeaconPeriod>(byte5 & 0x0F));        // Bit 4-7
+
+        // Byte 6-7
+        uint8_t byte6 = i.ReadU8();
+        SetNextClusterChannel(((byte6 & 0x1F) << 8) | (i.ReadU8() & 0xFF)); // Bit 3-7
+
+        // Byte 8-11
+        SetTimeToNext(i.ReadNtohU32());
+    }
+
+    if (m_current == 1)
+    {
+        // Byte 12-13
+        uint8_t byte12 = i.ReadU8();
+        SetCurrentClusterChannel(((byte12 & 0x1F) << 8) | (i.ReadU8() & 0xFF)); // Bit 3-7
+    }
+
+    return i.GetDistanceFrom(start);
+}
+
+void
+Dect2020AssociationRequestMessage::SetSetupCause(uint8_t cause)
+{
+    m_setupCause = cause & 0x07; // 3 Bit
+}
+
+uint8_t
+Dect2020AssociationRequestMessage::GetSetupCause() const
+{
+    return m_setupCause;
+}
+
+void
+Dect2020AssociationRequestMessage::SetNumberOfFlows(uint8_t flows)
+{
+    m_numberOfFlows = flows & 0x07; // 3 Bit
+}
+
+uint8_t
+Dect2020AssociationRequestMessage::GetNumberOfFlows() const
+{
+    return m_numberOfFlows;
+}
+
+void
+Dect2020AssociationRequestMessage::SetPowerConstraints(bool constraints)
+{
+    m_powerConstraints = constraints;
+}
+
+bool
+Dect2020AssociationRequestMessage::GetPowerConstraints() const
+{
+    return m_powerConstraints;
+}
+
+void
+Dect2020AssociationRequestMessage::SetFtMode(bool mode)
+{
+    m_ftMode = mode;
+}
+
+bool
+Dect2020AssociationRequestMessage::GetFtMode() const
+{
+    return m_ftMode;
+}
+
+void
+Dect2020AssociationRequestMessage::SetCurrent(bool current)
+{
+    m_current = current;
+}
+
+bool
+Dect2020AssociationRequestMessage::GetCurrent() const
+{
+    return m_current;
+}
+
+void
+Dect2020AssociationRequestMessage::SetHarqProcessesTx(uint8_t value)
+{
+    m_harqProcessesTx = value & 0x07; // 3 Bit
+}
+
+uint8_t
+Dect2020AssociationRequestMessage::GetHarqProcessesTx() const
+{
+    return m_harqProcessesTx;
+}
+
+void
+Dect2020AssociationRequestMessage::SetMaxHarqReTxDelay(uint8_t delay)
+{
+    m_maxHarqReTxDelay = delay & 0x1F; // 5 Bit
+}
+
+uint8_t
+Dect2020AssociationRequestMessage::GetMaxHarqReTxDelay() const
+{
+    return m_maxHarqReTxDelay;
+}
+
+void
+Dect2020AssociationRequestMessage::SetHarqProcessesRx(uint8_t value)
+{
+    m_harqProcessesRx = value & 0x07; // 3 Bit
+}
+
+uint8_t
+Dect2020AssociationRequestMessage::GetHarqProcessesRx() const
+{
+    return m_harqProcessesRx;
+}
+
+void
+Dect2020AssociationRequestMessage::SetMaxHarqReRxDelay(uint8_t delay)
+{
+    m_maxHarqReRxDelay = delay & 0x1F; // 5 Bit
+}
+
+uint8_t
+Dect2020AssociationRequestMessage::GetMaxHarqReRxDelay() const
+{
+    return m_maxHarqReRxDelay;
+}
+
+void
+Dect2020AssociationRequestMessage::SetFlowId(uint8_t id)
+{
+    m_flowId = id & 0x3F; // 6 Bit
+}
+
+uint8_t
+Dect2020AssociationRequestMessage::GetFlowId() const
+{
+    return m_flowId;
+}
+
+void
+Dect2020AssociationRequestMessage::SetNetworkBeaconPeriod(NetworkBeaconPeriod value)
+{
+    m_networkBeaconPeriod = value;
+}
+
+NetworkBeaconPeriod
+Dect2020AssociationRequestMessage::GetNetworkBeaconPeriod() const
+{
+    return m_networkBeaconPeriod;
+}
+
+void
+Dect2020AssociationRequestMessage::SetClusterBeaconPeriod(ClusterBeaconPeriod value)
+{
+    m_clusterBeaconPeriod = value;
+}
+
+ClusterBeaconPeriod
+Dect2020AssociationRequestMessage::GetClusterBeaconPeriod() const
+{
+    return m_clusterBeaconPeriod;
+}
+
+void
+Dect2020AssociationRequestMessage::SetNextClusterChannel(uint16_t channel)
+{
+    m_nextClusterChannel = channel & 0x1FFF; // 13 Bit
+}
+
+uint16_t
+Dect2020AssociationRequestMessage::GetNextClusterChannel() const
+{
+    return m_nextClusterChannel;
+}
+
+void
+Dect2020AssociationRequestMessage::SetTimeToNext(uint32_t time)
+{
+    m_timeToNext = time;
+}
+
+uint32_t
+Dect2020AssociationRequestMessage::GetTimeToNext() const
+{
+    return m_timeToNext;
+}
+
+void
+Dect2020AssociationRequestMessage::SetCurrentClusterChannel(uint16_t channel)
+{
+    m_currentClusterChannel = channel & 0x1FFF; // 13 Bit
+}
+
+uint16_t
+Dect2020AssociationRequestMessage::GetCurrentClusterChannel() const
+{
+    return m_currentClusterChannel;
+}
+
 } // namespace ns3
