@@ -995,7 +995,6 @@ Dect2020NetworkBeaconMessage::GetNetworkBeaconPeriodTime() const
 //            # ETSI TS 103 636-4 V2.1.1 6.4.2.4
 // *******************************************************
 
-
 Dect2020AssociationRequestMessage::Dect2020AssociationRequestMessage()
 {
 }
@@ -1389,6 +1388,372 @@ uint16_t
 Dect2020AssociationRequestMessage::GetCurrentClusterChannel() const
 {
     return m_currentClusterChannel;
+}
+
+// *******************************************************
+//            DECT2020 Association Response Message
+//            # ETSI TS 103 636-4 V2.1.1 6.4.2.5
+// *******************************************************
+
+Dect2020AssociationResponseMessage::Dect2020AssociationResponseMessage()
+{
+}
+
+Dect2020AssociationResponseMessage::~Dect2020AssociationResponseMessage()
+{
+}
+
+TypeId
+Dect2020AssociationResponseMessage::GetTypeId(void)
+{
+    static TypeId tid = TypeId("ns3::Dect2020AssociationResponseMessage")
+                            .SetParent<Header>()
+                            .SetGroupName("Dect2020")
+                            .AddConstructor<Dect2020AssociationResponseMessage>();
+    return tid;
+}
+
+TypeId
+Dect2020AssociationResponseMessage::GetInstanceTypeId() const
+{
+    return GetTypeId();
+}
+
+void
+Dect2020AssociationResponseMessage::Serialize(Buffer::Iterator start) const
+{
+    // Byte 0
+    uint8_t byte0 = 0;
+    byte0 |= (m_associationAccepted << 7); // Bit 0
+    // Bit 1 Reserved
+    byte0 |= (m_harqMod << 5);                       // Bit 2
+    byte0 |= (m_numberOfFlows & 0x07) << 2;          // Bit 3-5
+    byte0 |= (m_groupIdAndResourceTagIncluded << 1); // Bit 6
+    // Bit 7 Reserved
+
+    start.WriteU8(byte0);
+
+    if (m_associationAccepted == 0) // Association rejected
+    {
+        // Byte 1
+        uint8_t byte1 = 0;
+        byte1 |= (m_rejectCause & 0x0F) << 4; // Bit 0-3
+        byte1 |= (m_rejectTimer & 0x0F);      // Bit 4-7
+
+        start.WriteU8(byte1);
+
+        NS_LOG_INFO("Serialize: byte1 = 0x" << std::hex << static_cast<uint32_t>(byte1));
+    }
+
+    if (m_harqMod == 1) // HARQ configuration present
+    {
+        // Byte 2
+        uint8_t byte2 = 0;
+        byte2 |= (m_harqProcessesRx & 0x07) << 5; // Bit 0-2
+        byte2 |= m_maxHarqReRxDelay & 0x1F;       // Bit 3-7
+
+        start.WriteU8(byte2);
+
+        // Byte 3
+        uint8_t byte3 = 0;
+        byte3 |= (m_harqProcessesTx & 0x07) << 5; // Bit 0-2
+        byte3 |= m_maxHarqReTxDelay & 0x1F;       // Bit 3-7
+
+        start.WriteU8(byte3);
+    }
+
+    // Byte 4
+    uint8_t byte4 = 0;
+    byte4 |= (m_flowId & 0x3F); // Bit 2-7
+
+    start.WriteU8(byte4);
+
+    if (m_groupIdAndResourceTagIncluded == 1)
+    {
+        // Byte 5
+        uint8_t byte5 = 0;
+        byte5 |= (m_groupId & 0x7F); // Bit 1-7
+
+        start.WriteU8(byte5);
+
+        // Byte 6
+        uint8_t byte6 = 0;
+        byte6 |= (m_resourceTag & 0x7F); // Bit 1-7
+
+        start.WriteU8(byte6);
+    }
+}
+
+uint32_t
+Dect2020AssociationResponseMessage::Deserialize(Buffer::Iterator start)
+{
+    Buffer::Iterator i = start;
+
+    // Byte 0
+    uint8_t byte0 = i.ReadU8();
+    SetAssociationAccepted((byte0 >> 7) & 0x01); // Bit 0
+    // Bit 1 Reserved
+    SetHarqMod((byte0 >> 5) & 0x01);                       // Bit 2
+    SetNumberOfFlows((byte0 >> 2) & 0x07);                 // Bit 3-5
+    SetGroupIdAndResourceTagIncluded((byte0 >> 1) & 0x01); // Bit 6
+    // Bit 7 Reserved
+
+    if (m_associationAccepted == 0) // Association rejected
+    {
+        // Byte 1
+        uint8_t byte1 = i.ReadU8();
+
+        NS_LOG_INFO("Deserialize: byte1 = 0x" << std::hex << static_cast<uint32_t>(byte1));
+
+
+        SetRejectCause((byte1 >> 4) & 0x0F); // Bit 0-3
+        SetRejectTimer(byte1 & 0x0F);        // Bit 4-7
+    }
+
+    if (m_harqMod == 1) // HARQ configuration present
+    {
+        // Byte 2
+        uint8_t byte2 = i.ReadU8();
+        SetHarqProcessesRx((byte2 >> 5) & 0x07); // Bit 0-2
+        SetMaxHarqReRxDelay(byte2 & 0x1F);       // Bit 3-7
+
+        // Byte 3
+        uint8_t byte3 = i.ReadU8();
+        SetHarqProcessesTx((byte3 >> 5) & 0x07); // Bit 0-2
+        SetMaxHarqReTxDelay(byte3 & 0x1F);       // Bit 3-7
+    }
+
+    // Byte 4
+    uint8_t byte4 = i.ReadU8();
+    SetFlowId(byte4 & 0x3F); // Bit 2-7
+
+    if (m_groupIdAndResourceTagIncluded == 1)
+    {
+        // Byte 5
+        uint8_t byte5 = i.ReadU8();
+        SetGroupId(byte5 & 0x7F); // Bit 1-7
+
+        // Byte 6
+        uint8_t byte6 = i.ReadU8();
+        SetResourceTag(byte6 & 0x7F); // Bit 1-7
+    }
+
+    return i.GetDistanceFrom(start);
+}
+
+void
+Dect2020AssociationResponseMessage::Print(std::ostream& os) const
+{
+    os << "Dect2020AssociationResponseMessage:" << std::endl;
+    os << "  Association Accepted: " << std::boolalpha << m_associationAccepted << std::endl;
+    os << "  HARQ Mod: " << std::boolalpha << m_harqMod << std::endl;
+    os << "  Number of Flows: " << static_cast<uint32_t>(m_numberOfFlows) << std::endl;
+    os << "  GroupId and ResourceTag Included: " << std::boolalpha
+       << m_groupIdAndResourceTagIncluded << std::endl;
+
+    if (!m_associationAccepted)
+    {
+        os << "  Reject Cause: " << static_cast<uint32_t>(m_rejectCause) << std::endl;
+        os << "  Reject Timer: " << static_cast<uint32_t>(m_rejectTimer) << std::endl;
+    }
+
+    if (m_harqMod)
+    {
+        os << "  HARQ Processes RX: " << static_cast<uint32_t>(m_harqProcessesRx) << std::endl;
+        os << "  Max HARQ ReRX Delay: " << static_cast<uint32_t>(m_maxHarqReRxDelay) << std::endl;
+        os << "  HARQ Processes TX: " << static_cast<uint32_t>(m_harqProcessesTx) << std::endl;
+        os << "  Max HARQ ReTX Delay: " << static_cast<uint32_t>(m_maxHarqReTxDelay) << std::endl;
+    }
+
+    os << "  Flow ID: " << static_cast<uint32_t>(m_flowId) << std::endl;
+
+    if (m_groupIdAndResourceTagIncluded)
+    {
+        os << "  Group ID: " << static_cast<uint32_t>(m_groupId) << std::endl;
+        os << "  Resource Tag: " << static_cast<uint32_t>(m_resourceTag) << std::endl;
+    }
+}
+
+uint32_t
+Dect2020AssociationResponseMessage::GetSerializedSize() const
+{
+    uint32_t size = 1; // Byte 0
+
+    if (!m_associationAccepted)
+    {
+        size += 1; // Byte 1: Reject Cause + Timer
+    }
+
+    if (m_harqMod)
+    {
+        size += 2; // Byte 2–3: HARQ RX + TX
+    }
+
+    size += 1; // Byte 4: Flow ID
+
+    if (m_groupIdAndResourceTagIncluded)
+    {
+        size += 2; // Byte 5–6: Group ID + Resource Tag
+    }
+
+    return size;
+}
+
+
+void
+Dect2020AssociationResponseMessage::SetAssociationAccepted(bool accepted)
+{
+    m_associationAccepted = accepted;
+}
+
+bool
+Dect2020AssociationResponseMessage::GetAssociationAccepted() const
+{
+    return m_associationAccepted;
+}
+
+void
+Dect2020AssociationResponseMessage::SetHarqMod(bool harqMod)
+{
+    m_harqMod = harqMod;
+}
+
+bool
+Dect2020AssociationResponseMessage::GetHarqMod() const
+{
+    return m_harqMod;
+}
+
+void
+Dect2020AssociationResponseMessage::SetNumberOfFlows(uint8_t numberOfFlows)
+{
+    m_numberOfFlows = numberOfFlows & 0x07; // 3 Bit
+}
+
+uint8_t
+Dect2020AssociationResponseMessage::GetNumberOfFlows() const
+{
+    return m_numberOfFlows;
+}
+
+void
+Dect2020AssociationResponseMessage::SetGroupIdAndResourceTagIncluded(bool included)
+{
+    m_groupIdAndResourceTagIncluded = included;
+}
+
+bool
+Dect2020AssociationResponseMessage::GetGroupIdAndResourceTagIncluded() const
+{
+    return m_groupIdAndResourceTagIncluded;
+}
+
+void
+Dect2020AssociationResponseMessage::SetRejectCause(uint8_t cause)
+{
+    m_rejectCause = cause & 0x0F; // 4 Bit
+}
+
+uint8_t
+Dect2020AssociationResponseMessage::GetRejectCause() const
+{
+    return m_rejectCause;
+}
+
+void
+Dect2020AssociationResponseMessage::SetRejectTimer(uint8_t timer)
+{
+    m_rejectTimer = timer & 0x0F; // 4 Bit
+}
+
+uint8_t
+Dect2020AssociationResponseMessage::GetRejectTimer() const
+{
+    return m_rejectTimer;
+}
+
+void
+Dect2020AssociationResponseMessage::SetHarqProcessesRx(uint8_t value)
+{
+    m_harqProcessesRx = value & 0x07; // 3 Bit
+}
+
+uint8_t
+Dect2020AssociationResponseMessage::GetHarqProcessesRx() const
+{
+    return m_harqProcessesRx;
+}
+
+void
+Dect2020AssociationResponseMessage::SetMaxHarqReRxDelay(uint8_t delay)
+{
+    m_maxHarqReRxDelay = delay & 0x1F; // 5 Bit
+}
+
+uint8_t
+Dect2020AssociationResponseMessage::GetMaxHarqReRxDelay() const
+{
+    return m_maxHarqReRxDelay;
+}
+
+void
+Dect2020AssociationResponseMessage::SetHarqProcessesTx(uint8_t value)
+{
+    m_harqProcessesTx = value & 0x07; // 3 Bit
+}
+
+uint8_t
+Dect2020AssociationResponseMessage::GetHarqProcessesTx() const
+{
+    return m_harqProcessesTx;
+}
+
+void
+Dect2020AssociationResponseMessage::SetMaxHarqReTxDelay(uint8_t delay)
+{
+    m_maxHarqReTxDelay = delay & 0x1F; // 5 Bit
+}
+
+uint8_t
+Dect2020AssociationResponseMessage::GetMaxHarqReTxDelay() const
+{
+    return m_maxHarqReTxDelay;
+}
+
+void
+Dect2020AssociationResponseMessage::SetFlowId(uint8_t flowId)
+{
+    m_flowId = flowId & 0x3F; // 6 Bit
+}
+
+uint8_t
+Dect2020AssociationResponseMessage::GetFlowId() const
+{
+    return m_flowId;
+}
+
+void
+Dect2020AssociationResponseMessage::SetGroupId(uint8_t groupId)
+{
+    m_groupId = groupId & 0x7F; // 7 Bit
+}
+
+uint8_t
+Dect2020AssociationResponseMessage::GetGroupId() const
+{
+    return m_groupId;
+}
+
+void
+Dect2020AssociationResponseMessage::SetResourceTag(uint8_t resourceTag)
+{
+    m_resourceTag = resourceTag & 0x7F; // 7 Bit
+}
+
+uint8_t
+Dect2020AssociationResponseMessage::GetResourceTag() const
+{
+    return m_resourceTag;
 }
 
 } // namespace ns3

@@ -265,6 +265,35 @@ TestAssociationRequestMessage()
     NS_LOG_INFO(receivedMessage);
 }
 
+void
+TestAssociationResponseMessage()
+{
+    Dect2020AssociationResponseMessage originalMessage;
+
+    originalMessage.SetAssociationAccepted(0);
+    originalMessage.SetHarqMod(1);
+    originalMessage.SetNumberOfFlows(4);
+    originalMessage.SetGroupIdAndResourceTagIncluded(1);
+    originalMessage.SetRejectCause(2);
+    originalMessage.SetRejectTimer(3);
+    originalMessage.SetHarqProcessesRx(4);
+    originalMessage.SetMaxHarqReRxDelay(5);
+    originalMessage.SetHarqProcessesTx(6);
+    originalMessage.SetMaxHarqReTxDelay(7);
+    originalMessage.SetFlowId(5);
+    originalMessage.SetGroupId(6);
+    originalMessage.SetResourceTag(7);
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(originalMessage);
+
+    Dect2020AssociationResponseMessage receivedMessage;
+    packet->RemoveHeader(receivedMessage);
+
+    NS_LOG_INFO(originalMessage);
+    NS_LOG_INFO(receivedMessage);
+}
+
 // Empfangsfunktion definieren
 bool
 ReceivePacket(Ptr<NetDevice> device,
@@ -383,7 +412,8 @@ main(int argc, char* argv[])
     // TestClusterBeaconMessage();
     // TestUnicastHeader();
     // TestRandomAccessResourceIE();
-    TestAssociationRequestMessage();
+    // TestAssociationRequestMessage();
+    TestAssociationResponseMessage();
 
     // TestPhysicalLayerControlFieldType1();
     return 0;
