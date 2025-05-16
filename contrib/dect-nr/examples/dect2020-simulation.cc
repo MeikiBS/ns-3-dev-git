@@ -15,6 +15,7 @@
 #include "ns3/spectrum-analyzer-helper.h"
 #include "ns3/spectrum-analyzer.h"
 #include "ns3/dect2020-mac-information-elements.h"
+#include "ns3/dect2020-channel-manager.h"
 
 // using namespace ns3;
 // using Dect2020NetDevice::TerminationPointType::FT;
@@ -329,6 +330,9 @@ main(int argc, char* argv[])
 
     // ###########################
 
+    Dect2020ChannelManager channelManager;
+    channelManager.InitializeChannels(1, 1); // Band 1, Subcarrier Scaling Factor 1
+
     // Erstellen der Knoten
     NodeContainer nodes;
     nodes.Create(3);
@@ -342,6 +346,7 @@ main(int argc, char* argv[])
     {
         // Erstellen des NetDevice
         Ptr<Dect2020NetDevice> dev = CreateObject<Dect2020NetDevice>();
+        dev->SetBandNumber(1); // Band 1
 
         if (i == 0)
         {
@@ -379,6 +384,7 @@ main(int argc, char* argv[])
         dev->SetLinkUp();
 
         devices.Add(dev);
+        phy->Start();
         mac->Start();
 
 

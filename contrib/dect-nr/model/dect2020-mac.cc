@@ -6,6 +6,7 @@
 #include "dect2020-mac-header-type.h"
 #include "dect2020-net-device.h"
 #include "dect2020-phy.h"
+#include "dect2020-channel-manager.h"
 
 #include "ns3/log.h"
 #include "ns3/simulator.h"
@@ -265,12 +266,9 @@ void
 Dect2020Mac::ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> context,
                                             uint32_t numSubslots)
 {
-    NS_LOG_INFO(Simulator::Now().GetNanoSeconds()
-                << ": DEBUG: ScheduleNextSubslotMeasurement() on Channel " << context->channelId
-                << " subslotCount = " << context->subslotCount);
     Subslot* subslot = m_phy->GetCurrentSubslot(context->channelId);
 
-    double rssi = Dect2020SpectrumModelManager::GetRssiDbm(context->channelId);
+    double rssi = Dect2020ChannelManager::GetRssiDbm(context->channelId);
 
     if (rssi <= RSSI_THRESHOLD_MIN)
     {
@@ -315,20 +313,23 @@ Dect2020Mac::OperatingChannelSelection()
     double totalScanTimeNs = subslotDurationNs * numSubslots;
 
     uint32_t channelOffset = 0;
-    for (auto& channel : m_phy->m_channels)
+    // for (auto& channel : m_phy->m_channels)
+    auto validChannels = Dect2020ChannelManager::GetValidChannels(this->m_device->GetBandNumber());
+    uint16_t numOfValidChannels = validChannels.size();
+    for (auto& channel : validChannels)
     {
         Time delay = NanoSeconds(channelOffset * totalScanTimeNs);
 
         Simulator::Schedule(delay,
                             &Dect2020Mac::StartSubslotScan,
                             this,
-                            channel.m_channelId,
+                            channel->m_channelId,
                             48,
-                            [this](const ChannelEvaluation& eval) {
+                            [this, numOfValidChannels](const ChannelEvaluation& eval) {
                                 m_scanEvaluations[eval.channelId] = eval;
                                 m_completedScans++;
 
-                                if (m_completedScans == m_phy->m_channels.size())
+                                if (m_completedScans == numOfValidChannels)
                                 {
                                     EvaluateAllChannels();
                                 }
