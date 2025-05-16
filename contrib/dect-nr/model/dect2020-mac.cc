@@ -101,19 +101,23 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
     packet->RemoveHeader(physicalHeaderField);
     // NS_LOG_INFO(physicalHeaderField);
 
-    // Jetzt sicher entfernen
-    Dect2020NetworkBeaconMessage beaconMessage;
-    packet->RemoveHeader(beaconMessage);
-    // NS_LOG_INFO(beaconMessage);
+    Dect2020MacHeaderType macHeaderType;
+    // packet->PeekHeader(macHeaderType);
+    // NS_LOG_INFO(macHeaderType);
+    packet->RemoveHeader(macHeaderType);
 
     Dect2020BeaconHeader beaconHeader;
     packet->RemoveHeader(beaconHeader);
     // NS_LOG_INFO(beaconHeader);
 
-    Dect2020MacHeaderType macHeaderType;
-    // packet->PeekHeader(macHeaderType);
-    // NS_LOG_INFO(macHeaderType);
-    packet->RemoveHeader(macHeaderType); // Jetzt passt die Reihenfolge
+    // Jetzt sicher entfernen
+    Dect2020NetworkBeaconMessage beaconMessage;
+    packet->RemoveHeader(beaconMessage);
+    // NS_LOG_INFO(beaconMessage);
+
+
+
+    // Jetzt passt die Reihenfolge
     // NS_LOG_INFO(macHeaderType);
 
     if (macHeaderType.GetMacHeaderTypeField() ==
@@ -244,7 +248,21 @@ Dect2020Mac::JoinNetwork(uint32_t networkId)
                 << std::setfill('0') << networkId);
 
     SetShortRadioDeviceId(GenerateShortRadioDeviceId());
-    // TODO: Unter welchen Umständen kann einem Network beigetreten/nicht beigetreten werden?
+}
+
+void
+Dect2020Mac::StartClusterBeaconTransmission()
+{
+    SetCurrentChannelId(m_operatingChannelId);
+
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Dect2020Mac::StartClusterBeaconTransmission " << m_operatingChannelId);
+
+    Ptr<Packet> clusterBeacon = BuildBeacon(true);
+    m_phy->Send(clusterBeacon, CreatePhysicalHeaderField(1, clusterBeacon->GetSize()));
+
+    // Schedule next cluster beacon transmission
+    Simulator::Schedule(MilliSeconds(100), &Dect2020Mac::StartClusterBeaconTransmission, this);
 }
 
 void
@@ -321,15 +339,6 @@ Dect2020Mac::BuildBeacon(bool isCluster)
 {
     Ptr<Packet> beacon = Create<Packet>();
 
-    Dect2020MacHeaderType macHeaderType;
-    macHeaderType.SetMacHeaderTypeField(Dect2020MacHeaderType::BEACON_HEADER);
-    beacon->AddHeader(macHeaderType);
-
-    Dect2020BeaconHeader beaconHeader;
-    beaconHeader.SetNetworkId(m_networkId);
-    beaconHeader.SetTransmitterAddress(m_longRadioDeviceId);
-    beacon->AddHeader(beaconHeader);
-
     if (isCluster)
     {
         Dect2020ClusterBeaconMessage msg;
@@ -343,6 +352,15 @@ Dect2020Mac::BuildBeacon(bool isCluster)
         beacon->AddHeader(msg);
     }
 
+    Dect2020BeaconHeader beaconHeader;
+    beaconHeader.SetNetworkId(m_networkId);
+    beaconHeader.SetTransmitterAddress(m_longRadioDeviceId);
+    beacon->AddHeader(beaconHeader);
+
+    Dect2020MacHeaderType macHeaderType;
+    macHeaderType.SetMacHeaderTypeField(Dect2020MacHeaderType::BEACON_HEADER);
+    beacon->AddHeader(macHeaderType);
+
     return beacon;
 }
 
@@ -350,6 +368,7 @@ void
 Dect2020Mac::StartBeaconTransmission()
 {
     StartNetworkBeaconSweep();
+    StartClusterBeaconTransmission();
     // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
     //             << ": Start Beacon Transmission on channel: " << m_operatingChannelId);
 

@@ -147,6 +147,7 @@ class Dect2020Mac : public Object
     void OperatingChannelSelection();
     void EvaluateAllChannels();
     void StartNetworkBeaconSweep();
+    void StartClusterBeaconTransmission();
     Ptr<Packet> BuildBeacon(bool isCluster);
     void ReturnToOperatingChannel();
 

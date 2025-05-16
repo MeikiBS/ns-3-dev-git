@@ -145,6 +145,7 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
     params->txPhy = this;
     params->txPacket = packet->Copy();
     params->txPacket->AddHeader(physicalHeader);
+    params->m_currentChannelId = this->m_mac->m_currentChannelId;
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
                 << ": Dect2020Phy::Send(): Physical Header hinzugefügt bei Paket mit UID "
@@ -251,11 +252,11 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
 
-    if (dectParams->m_currentChannelId != this->m_mac->m_operatingChannelId)
-    {
-        // abort Rx if the channel is not the same
-        return;
-    }
+    // if (dectParams->m_currentChannelId != this->m_mac->m_operatingChannelId)
+    // {
+    //     // abort Rx if the channel is not the same
+    //     return;
+    // }
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
                 << ": Dect2020Phy::StartRx(): Device 0x" << std::hex
