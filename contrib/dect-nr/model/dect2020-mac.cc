@@ -1,12 +1,12 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
 #include "dect2020-mac.h"
 
+#include "dect2020-channel-manager.h"
 #include "dect2020-mac-common-header.h"
-#include "dect2020-mac-messages.h"
 #include "dect2020-mac-header-type.h"
+#include "dect2020-mac-messages.h"
 #include "dect2020-net-device.h"
 #include "dect2020-phy.h"
-#include "dect2020-channel-manager.h"
 
 #include "ns3/log.h"
 #include "ns3/simulator.h"
@@ -155,6 +155,10 @@ Dect2020Mac::Start()
         // DEBUG: Network ID auf festen Wert setzen, später mit Beacon empfangen
         // m_networkId = 123456;
         // JoinNetwork(m_networkId);
+
+        Simulator::Schedule(MilliSeconds(100),
+                            &Dect2020Mac::DiscoverNetworks,
+                            this); // Start Discovery
     }
 }
 
@@ -177,7 +181,44 @@ Dect2020Mac::InitializeNetwork()
 void
 Dect2020Mac::DiscoverNetworks()
 {
-    
+    std::vector<Ptr<Dect2020Channel>> channelList =
+        Dect2020ChannelManager::GetValidChannels(this->m_device->GetBandNumber());
+
+    if (m_associatedFTNetDevice != nullptr)
+    {
+        return; // Device is already associated --> abort
+    }
+
+    // find the current channel
+    uint32_t current = m_currentChannelId;
+    uint32_t nextChannelId = 0;
+
+    // search if current + 1 is part of the channel list
+    bool found = false;
+    for (auto& ch : channelList)
+    {
+        if (ch->m_channelId == current + 1)
+        {
+            nextChannelId = ch->m_channelId;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        // no valid next channel -> take the first one
+        nextChannelId = channelList.front()->m_channelId;
+    }
+
+    SetCurrentChannelId(nextChannelId);
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": PT-Device " << std::hex << "0x" << GetShortRadioDeviceId()
+                << " is scanning channel: " << std::dec <<m_currentChannelId);
+
+    Time t = MilliSeconds(100); // Discover Network wait time
+    Simulator::Schedule(t, &Dect2020Mac::DiscoverNetworks,
+                        this); // Schedule next discovery
 }
 
 void
@@ -431,7 +472,7 @@ Dect2020Mac::CreatePhysicalHeaderField()
 {
     Dect2020PhysicalHeaderField physicalHeaderField;
     physicalHeaderField.SetPacketLengthType(0); // 0 = in Subslots, 1 = in Slots
-    physicalHeaderField.SetPacketLength(5); // Size of packet in slots/subslots
+    physicalHeaderField.SetPacketLength(5);     // Size of packet in slots/subslots
 
     // Short Network ID: The last 8 LSB bits of the Network ID # ETSI 103 636 04 4.2.3.1
     uint8_t shortNetworkID = m_networkId & 0xFF;
@@ -505,6 +546,13 @@ Dect2020Mac::GenerateValidNetworkId()
     // empfangen lassen
     networkId = 123456;
     return networkId;
+}
+
+void
+Dect2020Mac::SetCurrentChannelId(uint32_t channelId)
+{
+    NS_LOG_FUNCTION(this << channelId);
+    m_currentChannelId = channelId;
 }
 
 void

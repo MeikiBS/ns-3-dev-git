@@ -78,7 +78,7 @@ class Dect2020Phy : public SpectrumPhy
     double CalculateTxDurationNs(Dect2020PhysicalHeaderField physicalHeaderField);
 
   private:
-    static bool m_isFrameTimerRunning;
+    bool m_isFrameTimerRunning = false;
     void ReceiveDelayed(Ptr<Packet> packet);
 
     // Membervariablen

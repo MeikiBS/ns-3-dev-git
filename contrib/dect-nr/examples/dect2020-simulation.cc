@@ -1,8 +1,10 @@
 #include "ns3/applications-module.h"
 #include "ns3/core-module.h"
 #include "ns3/dect2020-beacon-header.h"
-#include "ns3/dect2020-mac-messages.h"
+#include "ns3/dect2020-channel-manager.h"
 #include "ns3/dect2020-mac-header-type.h"
+#include "ns3/dect2020-mac-information-elements.h"
+#include "ns3/dect2020-mac-messages.h"
 #include "ns3/dect2020-mac.h"
 #include "ns3/dect2020-net-device.h"
 #include "ns3/dect2020-phy.h"
@@ -14,8 +16,6 @@
 #include "ns3/single-model-spectrum-channel.h"
 #include "ns3/spectrum-analyzer-helper.h"
 #include "ns3/spectrum-analyzer.h"
-#include "ns3/dect2020-mac-information-elements.h"
-#include "ns3/dect2020-channel-manager.h"
 
 // using namespace ns3;
 // using Dect2020NetDevice::TerminationPointType::FT;
@@ -306,6 +306,12 @@ ReceivePacket(Ptr<NetDevice> device,
     return true; // Paket wurde erfolgreich empfangen
 }
 
+void
+ZustandNach1Sek(Ptr<Dect2020NetDevice> dev)
+{
+    dev->GetPhy();
+}
+
 int
 main(int argc, char* argv[])
 {
@@ -320,7 +326,7 @@ main(int argc, char* argv[])
     LogComponentEnable("Dect2020Channel", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Simulation", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020SpectrumSignalParameters", LOG_LEVEL_INFO);
-    LogComponentEnable("Dect2020BeaconMessage", LOG_LEVEL_INFO); 
+    LogComponentEnable("Dect2020BeaconMessage", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020MacCommonHeader", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020MACInformationElements", LOG_LEVEL_INFO);
 
@@ -387,7 +393,6 @@ main(int argc, char* argv[])
         phy->Start();
         mac->Start();
 
-
         // for(int j = 0; j < 5; j++)
         // {
         //     if(dev->GetTerminationPointType() == TermPointType::PT)
@@ -401,6 +406,8 @@ main(int argc, char* argv[])
         // }
     }
 
+    auto dfg = DynamicCast<Dect2020NetDevice>(devices.Get(1));
+    Simulator::Schedule(Seconds(2.0523), &ZustandNach1Sek, dfg);
 
     // Ptr<Dect2020NetDevice> ft = DynamicCast<Dect2020NetDevice>(devices.Get(0));
     // ft->GetMac()->Start();

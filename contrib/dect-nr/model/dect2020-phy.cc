@@ -20,7 +20,7 @@ namespace ns3
 
 NS_OBJECT_ENSURE_REGISTERED(Dect2020Phy);
 
-bool Dect2020Phy::m_isFrameTimerRunning = false;
+// bool Dect2020Phy::m_isFrameTimerRunning = false;
 
 const std::vector<uint16_t> Dect2020Phy::m_singleSlotSingleStreamTransportBlockSizesMu1Beta1{
     136,  // MCS 0
@@ -78,6 +78,7 @@ Dect2020Phy::Start()
     Ptr<Dect2020Channel> startChannel =
         Dect2020ChannelManager::GetValidChannels(device->GetBandNumber()).front();
     m_dect2020Channel = startChannel;
+    this->m_mac->SetCurrentChannelId(m_dect2020Channel->m_channelId);
 
     if (!m_isFrameTimerRunning)
     {
@@ -362,6 +363,13 @@ Dect2020Phy::StartFrameTimer()
 void
 Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 {
+    auto t = Simulator::Now().GetSeconds();
+    if(t > 3.0 && t < 3.1)
+    {
+        NS_LOG_INFO("DEBUG: ProcessSlot() at time " << std::fixed << t << std::endl << "on Device " << std::hex << " 0x" << this->m_mac->GetLongRadioDeviceId());
+    }
+
+
     m_currentSlot = slot;
 
     // NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed

@@ -81,6 +81,8 @@ class Dect2020Mac : public Object
     // Zugriff auf die Mac-Adresse des NetDevice
     Mac48Address GetAddress(void) const;
 
+    void SetCurrentChannelId(uint32_t channelId);
+
     /**
      * Initialize a new Network
      */
