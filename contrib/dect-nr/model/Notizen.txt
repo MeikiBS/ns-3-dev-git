@@ -14,12 +14,13 @@
 -> https://www.mkdocs.org/
 
 TODO/Next steps:
-- Cluster Beacon Message
+- Cluster Beacon Message 
 - Random Access Resource IE
 - Unicast Header
 - Association Request Message
 - Association Response Message
 - Random Access Procedure
+- Helper Klassen
 
 
 

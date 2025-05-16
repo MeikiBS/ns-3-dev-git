@@ -19,10 +19,10 @@ class Dect2020SpectrumModelManager
     static double DbmToW(double dBm);
     static double WToDbm(double w);
 
-    static std::map<uint8_t, Ptr<SpectrumValue>> channelOccupancy;
+    static std::map<uint8_t, Ptr<SpectrumValue>> m_channelOccupancy;
 
   private:
-    static std::map<uint8_t, Ptr<SpectrumModel>> m_bandModels;
+    static std::map<uint8_t, Ptr<SpectrumModel>> m_bandModels;  // Band ID  : SpectrumModel
 };
 
 } // namespace ns3

@@ -174,6 +174,12 @@ Dect2020Mac::InitializeNetwork()
 }
 
 void
+Dect2020Mac::DiscoverNetworks()
+{
+    
+}
+
+void
 Dect2020Mac::JoinNetwork(uint32_t networkId)
 {
     SetNetworkId(networkId);

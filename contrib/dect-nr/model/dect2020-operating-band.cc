@@ -21,16 +21,16 @@ Dect2020OperatingBand::GetTypeId(void)
 
 Dect2020OperatingBand::Dect2020OperatingBand()
 {
-    m_bandParameters = InitializeBandParameters(1);
+    m_bandParameters = GetBandParameters(1);
 }
 
 Dect2020OperatingBand::Dect2020OperatingBand(uint8_t bandNumber)
 {
-    m_bandParameters = InitializeBandParameters(bandNumber);
+    m_bandParameters = GetBandParameters(bandNumber);
 }
 
 BandParameters
-Dect2020OperatingBand::InitializeBandParameters(uint8_t bandNumber)
+Dect2020OperatingBand::GetBandParameters(uint8_t bandNumber)
 {
     // Note: Currently only Bands 1, 2, 20, and 21 are implemented.
     BandParameters bp;
@@ -83,6 +83,12 @@ Dect2020OperatingBand::InitializeBandParameters(uint8_t bandNumber)
     }
 
     return bp;
+}
+
+void
+Dect2020OperatingBand::InitializeChannels(uint8_t bandNumber)
+{
+    BandParameters bandParams = GetBandParameters(bandNumber);
 }
 
 // #ETSI 103 636-2 V1.5.1 Section 5.4.2

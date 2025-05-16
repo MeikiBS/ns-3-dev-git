@@ -232,6 +232,12 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
 
+    if(dectParams->m_currentChannelId != this->m_mac->m_currentChannelId)
+    {
+        // abort Rx if the channel is not the same
+        return;
+    }
+
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
                 << ": Dect2020Phy::StartRx(): Device 0x" << std::hex
                 << this->m_mac->GetLongRadioDeviceId() << std::dec << " empfängt Paket mit UID "
@@ -257,7 +263,7 @@ Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFac
 
 
     Dect2020OperatingBand operatingBand;
-    BandParameters bandParams = operatingBand.InitializeBandParameters(bandNumber);
+    BandParameters bandParams = operatingBand.GetBandParameters(bandNumber);
 
     uint32_t numChannels = (bandParams.nEnd - bandParams.nStart) + 1; // Number of Channels
 

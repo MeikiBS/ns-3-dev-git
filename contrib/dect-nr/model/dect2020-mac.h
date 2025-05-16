@@ -173,8 +173,12 @@ class Dect2020Mac : public Object
     Dect2020PhysicalHeaderField CreatePhysicalHeaderField(uint8_t packetLengthType,
                                                           uint32_t packetLength);
 
+    void DiscoverNetworks();
+
     // Membervariablen
     Ptr<Dect2020NetDevice> m_device;
+    Ptr<Dect2020NetDevice> m_associatedFTNetDevice; // Variable to store the associated FT NetDevice
+    std::vector<Dect2020NetDevice> m_associatedNetDevices; // List of associated NetDevices
     Ptr<Dect2020Phy> m_phy;
     Mac48Address m_address;
 

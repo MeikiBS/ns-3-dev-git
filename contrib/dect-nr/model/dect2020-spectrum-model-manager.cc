@@ -6,7 +6,7 @@ namespace ns3
 {
 
 std::map<uint8_t, Ptr<SpectrumModel>> Dect2020SpectrumModelManager::m_bandModels;
-std::map<uint8_t, Ptr<SpectrumValue>> Dect2020SpectrumModelManager::channelOccupancy;
+std::map<uint8_t, Ptr<SpectrumValue>> Dect2020SpectrumModelManager::m_channelOccupancy;
 
 Ptr<SpectrumModel>
 Dect2020SpectrumModelManager::GetSpectrumModel(uint8_t bandId)
@@ -31,7 +31,7 @@ Dect2020SpectrumModelManager::GetSpectrumModel(uint8_t bandId)
     m_bandModels[bandId] = model;
 
     Ptr<SpectrumValue> psd = Create<SpectrumValue>(model);
-    channelOccupancy[bandId] = psd;
+    m_channelOccupancy[bandId] = psd;
 
     NS_LOG_INFO("Created SpectrumModel for Band " << static_cast<int>(bandId));
 
@@ -48,15 +48,15 @@ Dect2020SpectrumModelManager::AddSpectrumPowerToChannel(uint16_t channelId, doub
     uint16_t channelIndex =
         channelId - Dect2020OperatingBand::GetFirstValidChannelNumber(bandNumber);
 
-    auto it = channelOccupancy.find(bandNumber);
+    auto it = m_channelOccupancy.find(bandNumber);
 
-    if (it == channelOccupancy.end() || it->second == nullptr)
+    if (it == m_channelOccupancy.end() || it->second == nullptr)
     {
         NS_LOG_WARN("SpectrumValue for band " << static_cast<int>(bandNumber)
                                               << " not initialized. Creating now.");
 
         Ptr<SpectrumModel> model = GetSpectrumModel(bandNumber);
-        it = channelOccupancy.find(bandNumber);
+        it = m_channelOccupancy.find(bandNumber);
     }
 
     Ptr<SpectrumValue> psd = it->second;
@@ -76,15 +76,15 @@ Dect2020SpectrumModelManager::RemoveSpectrumPowerFromChannel(uint16_t channelId,
     uint16_t channelIndex =
         channelId - Dect2020OperatingBand::GetFirstValidChannelNumber(bandNumber);
 
-    auto it = channelOccupancy.find(bandNumber);
+    auto it = m_channelOccupancy.find(bandNumber);
 
-    if (it == channelOccupancy.end() || it->second == nullptr)
+    if (it == m_channelOccupancy.end() || it->second == nullptr)
     {
         NS_LOG_WARN("SpectrumValue for band " << static_cast<int>(bandNumber)
                                               << " not initialized. Creating now.");
 
         Ptr<SpectrumModel> model = GetSpectrumModel(bandNumber);
-        it = channelOccupancy.find(bandNumber);
+        it = m_channelOccupancy.find(bandNumber);
     }
 
     Ptr<SpectrumValue> psd = it->second;
@@ -105,15 +105,15 @@ Dect2020SpectrumModelManager::GetRssiDbm(uint16_t channelId)
     uint16_t channelIndex =
         channelId - Dect2020OperatingBand::GetFirstValidChannelNumber(bandNumber);
 
-    auto it = channelOccupancy.find(bandNumber);
+    auto it = m_channelOccupancy.find(bandNumber);
 
-    if (it == channelOccupancy.end() || it->second == nullptr)
+    if (it == m_channelOccupancy.end() || it->second == nullptr)
     {
         NS_LOG_WARN("SpectrumValue for band " << static_cast<int>(bandNumber)
                                               << " not initialized. Creating now.");
 
         Ptr<SpectrumModel> model = GetSpectrumModel(bandNumber);
-        it = channelOccupancy.find(bandNumber);
+        it = m_channelOccupancy.find(bandNumber);
     }
 
     Ptr<SpectrumValue> psd = it->second;

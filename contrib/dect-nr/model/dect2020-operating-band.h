@@ -49,7 +49,7 @@ class Dect2020OperatingBand : public Object
 
     std::vector<ChannelInfo> GetAvailableChannels() const;
     void UpdateChannelRssi(uint16_t channelNumber, double rssi);
-    BandParameters InitializeBandParameters(uint8_t bandNumber);
+    BandParameters GetBandParameters(uint8_t bandNumber);
     static double CalculateCenterFrequency(uint8_t bandNumber, uint32_t channelNumber);
     static uint16_t GetFirstValidChannelNumber(uint8_t bandNumber);
     static uint8_t GetBandNumber(uint16_t channelNumber);
@@ -60,6 +60,8 @@ class Dect2020OperatingBand : public Object
   private:
     void InitializeBand();
     void CalculateChannelFrequencies();
+
+    void InitializeChannels(uint8_t bandNumber); 
 
     std::vector<Ptr<Dect2020Channel>> m_channelList;
 };
