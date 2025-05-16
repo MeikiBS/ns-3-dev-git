@@ -168,6 +168,21 @@ Dect2020ChannelManager::CalculateCenterFrequency(uint8_t bandNumber, uint32_t ch
     return centerFrequency;
 }
 
+bool
+Dect2020ChannelManager::ChannelExists(uint32_t chId)
+{
+    std::vector<Ptr<Dect2020Channel>> validChannels = GetValidChannels(GetBandNumber(chId));
+
+    for(const auto& ch : validChannels)
+    {
+        if (ch->m_channelId == chId)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 uint16_t
 Dect2020ChannelManager::GetFirstValidChannelNumber(uint8_t bandNumber)
 {

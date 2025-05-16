@@ -167,12 +167,12 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
 
     // Set the PSD value for the current channel
     double power = Dect2020ChannelManager::DbmToW(23);
-    Dect2020ChannelManager::AddSpectrumPowerToChannel(this->m_mac->m_currentChannelId, power);
+    Dect2020ChannelManager::AddSpectrumPowerToChannel(this->m_mac->m_operatingChannelId, power);
 
     // Remove the PSD value after the transmission
     Simulator::Schedule(duration,
                         &Dect2020ChannelManager::RemoveSpectrumPowerFromChannel,
-                        this->m_mac->m_currentChannelId,
+                        this->m_mac->m_operatingChannelId,
                         power);
 
     // Start the transmission
@@ -251,7 +251,7 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
 
-    if (dectParams->m_currentChannelId != this->m_mac->m_currentChannelId)
+    if (dectParams->m_currentChannelId != this->m_mac->m_operatingChannelId)
     {
         // abort Rx if the channel is not the same
         return;
@@ -265,8 +265,8 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
 
     // Ptr<SpectrumValue> psd = dectParams->psd;
     // double power = (*psd)[this->m_mac->m_currentChannelId - 1657];
-    double power = Dect2020ChannelManager::GetRssiDbm(this->m_mac->m_currentChannelId);
-    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
+    double power = Dect2020ChannelManager::GetRssiDbm(this->m_mac->m_operatingChannelId);
+    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_operatingChannelId);
     subslot->rssi = power;
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
@@ -363,13 +363,6 @@ Dect2020Phy::StartFrameTimer()
 void
 Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 {
-    auto t = Simulator::Now().GetSeconds();
-    if(t > 3.0 && t < 3.1)
-    {
-        NS_LOG_INFO("DEBUG: ProcessSlot() at time " << std::fixed << t << std::endl << "on Device " << std::hex << " 0x" << this->m_mac->GetLongRadioDeviceId());
-    }
-
-
     m_currentSlot = slot;
 
     // NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed
@@ -403,7 +396,7 @@ Dect2020Phy::ProcessSubslot(uint32_t slotId, uint32_t subslotId)
     m_currentSubslot = subslotId;
 
     // Reset the RSSI of the current Subslot
-    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
+    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_operatingChannelId);
     (*subslot).rssi = 0;
 
     // NS_LOG_INFO("Processing Subslot " << std::fixed << subslot << " in Slot " << slot << " at

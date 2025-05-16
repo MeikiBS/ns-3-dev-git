@@ -49,6 +49,7 @@ class Dect2020ChannelManager
     static double CalculateCenterFrequency(uint8_t bandNumber, uint32_t channelNumber);
     static uint16_t GetFirstValidChannelNumber(uint8_t bandNumber);
     static uint8_t GetBandNumber(uint16_t channelNumber);
+    static bool ChannelExists(uint32_t chId);
 
     BandParameters m_bandParameters;
     uint8_t m_bandNumber;

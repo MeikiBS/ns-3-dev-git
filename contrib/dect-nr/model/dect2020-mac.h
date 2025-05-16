@@ -146,6 +146,9 @@ class Dect2020Mac : public Object
 
     void OperatingChannelSelection();
     void EvaluateAllChannels();
+    void StartNetworkBeaconSweep();
+    Ptr<Packet> BuildBeacon(bool isCluster);
+    void ReturnToOperatingChannel();
 
     Dect2020PhysicalHeaderField CreatePhysicalHeaderField();
 
@@ -155,7 +158,8 @@ class Dect2020Mac : public Object
     void ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> context,
                                         uint32_t numSubslots);
 
-    uint32_t m_currentChannelId = 0; // Number of the Channel that is currently the main Channel
+    uint32_t m_operatingChannelId = 0; // Number of the Channel that is currently the operating Channel
+    uint32_t m_currentChannelId = 0;   // Number of the Channel that is currently used (e.g. for scanning/Beacon tx)
 
     uint8_t m_subcarrierScalingFactor = 1;       // Subcarrier Scaling Factor
     uint8_t m_fourierTransformScalingFactor = 1; // Fourier Transform Scaling Factor
@@ -176,6 +180,7 @@ class Dect2020Mac : public Object
                                                           uint32_t packetLength);
 
     void DiscoverNetworks();
+    void SendNetworkBeaconOnChannel(uint16_t channelId);
 
     // Membervariablen
     Ptr<Dect2020NetDevice> m_device;
