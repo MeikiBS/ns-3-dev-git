@@ -50,6 +50,8 @@ class Dect2020ChannelManager
     static uint16_t GetFirstValidChannelNumber(uint8_t bandNumber);
     static uint8_t GetBandNumber(uint16_t channelNumber);
     static bool ChannelExists(uint32_t chId);
+    static double GetChannelCentreFrequency(uint16_t channelId);
+    static uint16_t GetChannelId(double centerFrequency);
 
     BandParameters m_bandParameters;
     uint8_t m_bandNumber;
@@ -64,7 +66,7 @@ class Dect2020ChannelManager
     static double WToDbm(double w);
 
     static std::map<uint8_t, Ptr<SpectrumValue>> m_channelOccupancy;
-    static std::map<uint16_t, std::vector<Ptr<Dect2020Channel>>> m_channels;
+    static std::map<uint16_t, std::vector<Ptr<Dect2020Channel>>> m_channels;  // Band :: Channels
 
   private:
     void InitializeBand();

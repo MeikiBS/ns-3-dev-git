@@ -155,9 +155,8 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
     Time duration = Time(NanoSeconds(CalculateTxDurationNs(physicalHeader)));
     params->duration = duration;
 
-    uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder
-                        // Bootstrapping entschieden
-                        // TODO: Wo wird entschieden, auf welchem Channel gesendet wird?
+    // Get the band number from the current channel ID
+    uint8_t bandId = Dect2020ChannelManager::GetBandNumber(m_mac->m_currentChannelId);
 
     // The following PSD Object is currently not used in this implementation.
     // Use Dect2020SpectrumModelManager::GetRssiDbm instead.
@@ -168,16 +167,15 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
 
     // Set the PSD value for the current channel
     double power = Dect2020ChannelManager::DbmToW(23);
-    Dect2020ChannelManager::AddSpectrumPowerToChannel(this->m_mac->m_operatingChannelId, power);
+    Dect2020ChannelManager::AddSpectrumPowerToChannel(this->m_mac->m_clusterChannelId, power);
 
     // Remove the PSD value after the transmission
     Simulator::Schedule(duration,
                         &Dect2020ChannelManager::RemoveSpectrumPowerFromChannel,
-                        this->m_mac->m_operatingChannelId,
+                        this->m_mac->m_clusterChannelId,
                         power);
 
     // Start the transmission
-    // m_channel->StartTx(params);
     Simulator::Schedule(duration, &ns3::SpectrumChannel::StartTx, m_channel, params);
 
     // Trace-Aufruf
@@ -252,26 +250,37 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
 
-    // if (dectParams->m_currentChannelId != this->m_mac->m_operatingChannelId)
+    // NS_LOG_INFO("StartRx() aufgerufen von 0x" << std::hex << this->m_mac->GetShortRadioDeviceId() << std::dec << ". RD Channel: " << this->m_mac->m_clusterChannelId
+    //             << " und Params Channel: " << dectParams->m_currentChannelId);
+
+    // if (dectParams->m_currentChannelId == this->m_mac->m_currentChannelId)
     // {
-    //     // abort Rx if the channel is not the same
+    //     NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": Message empfangen auf channel " << 
+    //                 dectParams->m_currentChannelId << " mit UID " << dectParams->txPacket->GetUid());
     //     return;
     // }
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Phy::StartRx(): Device 0x" << std::hex
-                << this->m_mac->GetLongRadioDeviceId() << std::dec << " empfängt Paket mit UID "
-                << dectParams->txPacket->GetUid() << " und Größe "
-                << dectParams->txPacket->GetSize() << " Bytes vom Kanal.");
+    if (dectParams->m_currentChannelId != this->m_mac->m_currentChannelId)
+    {
+        // abort Rx if the channel is not the same
+        return;
+    }
 
-    // Ptr<SpectrumValue> psd = dectParams->psd;
-    // double power = (*psd)[this->m_mac->m_currentChannelId - 1657];
-    double power = Dect2020ChannelManager::GetRssiDbm(this->m_mac->m_operatingChannelId);
-    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_operatingChannelId);
-    subslot->rssi = power;
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020Phy::StartRx(): Device 0x" << std::hex
+    //             << this->m_mac->GetLongRadioDeviceId() << std::dec << " empfängt Paket mit UID "
+    //             << dectParams->txPacket->GetUid() << " und Größe "
+    //             << dectParams->txPacket->GetSize() << " Bytes vom Kanal.");
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Phy::StartRx(): Current global PSD: " << power);
+
+
+    // WARUM??
+    // double power = Dect2020ChannelManager::GetRssiDbm(this->m_mac->m_currentChannelId);
+    // Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
+    // subslot->rssi = power;
+
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020Phy::StartRx(): Current global PSD: " << power);
 
     m_receiveCallback(dectParams->txPacket);
 }
@@ -397,7 +406,7 @@ Dect2020Phy::ProcessSubslot(uint32_t slotId, uint32_t subslotId)
     m_currentSubslot = subslotId;
 
     // Reset the RSSI of the current Subslot
-    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_operatingChannelId);
+    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_clusterChannelId);
     (*subslot).rssi = 0;
 
     // NS_LOG_INFO("Processing Subslot " << std::fixed << subslot << " in Slot " << slot << " at

@@ -2,6 +2,7 @@
 #define DECT2020_MAC_H
 
 #include "dect2020-physical-header-field.h"
+#include "dect2020-mac-messages.h"
 
 #include "ns3/callback.h"
 #include "ns3/mac48-address.h"
@@ -148,8 +149,9 @@ class Dect2020Mac : public Object
     void EvaluateAllChannels();
     void StartNetworkBeaconSweep();
     void StartClusterBeaconTransmission();
-    Ptr<Packet> BuildBeacon(bool isCluster);
+    Ptr<Packet> BuildBeacon(bool isCluster, uint16_t networkBeaconTransmissionChannelId);
     void ReturnToOperatingChannel();
+    void HandleBeaconPacket(Ptr<Packet> packet);
 
     Dect2020PhysicalHeaderField CreatePhysicalHeaderField();
 
@@ -159,11 +161,14 @@ class Dect2020Mac : public Object
     void ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> context,
                                         uint32_t numSubslots);
 
-    uint32_t m_operatingChannelId = 0; // Number of the Channel that is currently the operating Channel
+    uint32_t m_clusterChannelId = 0; // Number of the Channel that is currently the operating Channel
     uint32_t m_currentChannelId = 0;   // Number of the Channel that is currently used (e.g. for scanning/Beacon tx)
 
     uint8_t m_subcarrierScalingFactor = 1;       // Subcarrier Scaling Factor
     uint8_t m_fourierTransformScalingFactor = 1; // Fourier Transform Scaling Factor
+
+    NetworkBeaconPeriod m_networkBeaconPeriod = NetworkBeaconPeriod::NETWORK_PERIOD_50MS; // Network Beacon Period
+    ClusterBeaconPeriod m_clusterBeaconPeriod = ClusterBeaconPeriod::CLUSTER_PERIOD_100MS; // Cluster Beacon Period
 
     // ETSI TS 103 636-4 V2.1.1 #7.2-1
     const double RSSI_THRESHOLD_MIN = -85; // dBm

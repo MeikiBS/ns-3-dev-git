@@ -297,9 +297,9 @@ Dect2020NetDevice::Receive(Ptr<Packet> packet)
 {
     NS_LOG_FUNCTION(this << packet);
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020NetDevice::Receive() aufgerufen von Device 0x" << std::hex
-                << this->m_mac->GetLongRadioDeviceId());
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020NetDevice::Receive() aufgerufen von Device 0x" << std::hex
+    //             << this->m_mac->GetLongRadioDeviceId());
 
     if (!m_rxCallback.IsNull())
     {

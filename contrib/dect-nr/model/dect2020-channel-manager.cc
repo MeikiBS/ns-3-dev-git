@@ -11,13 +11,12 @@ std::map<uint16_t, std::vector<Ptr<Dect2020Channel>>> Dect2020ChannelManager::m_
 
 Dect2020ChannelManager::Dect2020ChannelManager()
 {
-
 }
 
 Dect2020ChannelManager::~Dect2020ChannelManager()
 {
-
 }
+
 void
 Dect2020ChannelManager::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFactor)
 {
@@ -150,6 +149,44 @@ Dect2020ChannelManager::GetBandParameters(uint8_t bandNumber)
     return bp;
 }
 
+double
+Dect2020ChannelManager::GetChannelCentreFrequency(uint16_t channelId)
+{
+    uint8_t bandNumber = GetBandNumber(channelId);
+
+    std::vector<Ptr<Dect2020Channel>> validChannels = GetValidChannels(bandNumber);
+
+    for (const auto& ch : validChannels)
+    {
+        if (ch->m_channelId == channelId)
+        {
+            return ch->m_centerFrequency;
+        }
+    }
+
+    return 0.0;
+}
+
+uint16_t
+Dect2020ChannelManager::GetChannelId(double centerFrequency)
+{
+    for (const auto& bandEntry : m_channels)
+    {
+        const std::vector<Ptr<Dect2020Channel>>& channelList = bandEntry.second;
+
+        for (const auto& channel : channelList)
+        {
+            if (channel->m_centerFrequency == centerFrequency)
+            {
+                return channel->m_channelId;
+            }
+        }
+    }
+
+    NS_LOG_WARN("No channel found for center frequency " << centerFrequency);
+    return 0;
+}
+
 // #ETSI 103 636-2 V1.5.1 Section 5.4.2
 double
 Dect2020ChannelManager::CalculateCenterFrequency(uint8_t bandNumber, uint32_t channelNumber)
@@ -173,7 +210,7 @@ Dect2020ChannelManager::ChannelExists(uint32_t chId)
 {
     std::vector<Ptr<Dect2020Channel>> validChannels = GetValidChannels(GetBandNumber(chId));
 
-    for(const auto& ch : validChannels)
+    for (const auto& ch : validChannels)
     {
         if (ch->m_channelId == chId)
         {
@@ -279,8 +316,7 @@ void
 Dect2020ChannelManager::AddSpectrumPowerToChannel(uint16_t channelId, double powerWatt)
 {
     uint8_t bandNumber = GetBandNumber(channelId);
-    uint16_t channelIndex =
-        channelId - GetFirstValidChannelNumber(bandNumber);
+    uint16_t channelIndex = channelId - GetFirstValidChannelNumber(bandNumber);
 
     auto it = m_channelOccupancy.find(bandNumber);
 
@@ -307,8 +343,7 @@ void
 Dect2020ChannelManager::RemoveSpectrumPowerFromChannel(uint16_t channelId, double powerWatt)
 {
     uint8_t bandNumber = GetBandNumber(channelId);
-    uint16_t channelIndex =
-        channelId - GetFirstValidChannelNumber(bandNumber);
+    uint16_t channelIndex = channelId - GetFirstValidChannelNumber(bandNumber);
 
     auto it = m_channelOccupancy.find(bandNumber);
 
@@ -333,8 +368,7 @@ double
 Dect2020ChannelManager::GetRssiDbm(uint16_t channelId)
 {
     uint8_t bandNumber = GetBandNumber(channelId);
-    uint16_t channelIndex =
-        channelId - GetFirstValidChannelNumber(bandNumber);
+    uint16_t channelIndex = channelId - GetFirstValidChannelNumber(bandNumber);
 
     auto it = m_channelOccupancy.find(bandNumber);
 
@@ -360,7 +394,7 @@ Dect2020ChannelManager::DbmToW(double dBm)
 double
 Dect2020ChannelManager::WToDbm(double w)
 {
-    if(w <= 0.0)
+    if (w <= 0.0)
     {
         // Invalid power value
         return -150;

@@ -315,7 +315,7 @@ ZustandNach1Sek(Ptr<Dect2020NetDevice> dev)
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(5));
+    Simulator::Stop(Seconds(10));
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds());
 
@@ -329,6 +329,7 @@ main(int argc, char* argv[])
     LogComponentEnable("Dect2020BeaconMessage", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020MacCommonHeader", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020MACInformationElements", LOG_LEVEL_INFO);
+    LogComponentEnable("Dect2020ChannelManager", LOG_LEVEL_INFO);
 
     // Hier Bereich für Tests
     // ###########################
@@ -426,7 +427,7 @@ main(int argc, char* argv[])
     // TestUnicastHeader();
     // TestRandomAccessResourceIE();
     // TestAssociationRequestMessage();
-    TestAssociationResponseMessage();
+    // TestAssociationResponseMessage();
 
     // TestPhysicalLayerControlFieldType1();
     return 0;
