@@ -1,7 +1,12 @@
 #ifndef DECT2020_MAC_H
 #define DECT2020_MAC_H
 
+#include "dect2020-mac-common-header.h"
+#include "dect2020-mac-messages.h"
+#include "dect2020-mac-multiplexing-header.h"
 #include "dect2020-physical-header-field.h"
+#include "dect2020-statistics.h"
+#include "dect2020-mac-information-elements.h"
 
 #include "ns3/callback.h"
 #include "ns3/mac48-address.h"
@@ -58,6 +63,13 @@ class Dect2020Mac : public Object
         RD_BROADCAST = 3
     };
 
+    enum AssociationStatus
+    {
+        NOT_ASSOCIATED,
+        ASSOCIATION_PENDING,
+        ASSOCIATED
+    };
+
     static TypeId GetTypeId(void);
 
     Dect2020Mac();
@@ -80,6 +92,9 @@ class Dect2020Mac : public Object
 
     // Zugriff auf die Mac-Adresse des NetDevice
     Mac48Address GetAddress(void) const;
+
+    void SetCurrentChannelId(uint32_t channelId);
+    uint32_t GetCurrentChannelId() const;
 
     /**
      * Initialize a new Network
@@ -144,6 +159,14 @@ class Dect2020Mac : public Object
 
     void OperatingChannelSelection();
     void EvaluateAllChannels();
+    void StartNetworkBeaconSweep();
+    void StartClusterBeaconTransmission();
+    Dect2020RandomAccessResourceIE BuildRandomAccessResourceIE();
+    Ptr<Packet> BuildBeacon(bool isCluster, uint16_t networkBeaconTransmissionChannelId);
+    void ReturnToOperatingChannel();
+    void HandleBeaconPacket(Ptr<Packet> packet);
+    void HandleNetworkBeacon(Dect2020BeaconHeader beaconHeader,
+                             Dect2020NetworkBeaconMessage networkBeaconMsg);
 
     Dect2020PhysicalHeaderField CreatePhysicalHeaderField();
 
@@ -153,10 +176,21 @@ class Dect2020Mac : public Object
     void ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> context,
                                         uint32_t numSubslots);
 
-    uint32_t m_currentChannelId = 0; // Number of the Channel that is currently the main Channel
+    uint32_t m_clusterChannelId =
+        0; // Number of the Channel that is currently the operating Channel
+    uint32_t m_currentChannelId =
+        0; // Number of the Channel that is currently used (e.g. for scanning/Beacon tx)
 
     uint8_t m_subcarrierScalingFactor = 1;       // Subcarrier Scaling Factor
     uint8_t m_fourierTransformScalingFactor = 1; // Fourier Transform Scaling Factor
+
+    NetworkBeaconPeriod m_networkBeaconPeriod =
+        NetworkBeaconPeriod::NETWORK_PERIOD_50MS; // Network Beacon Period
+    ClusterBeaconPeriod m_clusterBeaconPeriod =
+        ClusterBeaconPeriod::CLUSTER_PERIOD_100MS; // Cluster Beacon Period
+
+    AssociationStatus m_associationStatus = NOT_ASSOCIATED;
+
 
     // ETSI TS 103 636-4 V2.1.1 #7.2-1
     const double RSSI_THRESHOLD_MIN = -85; // dBm
@@ -168,13 +202,20 @@ class Dect2020Mac : public Object
 
     std::map<uint32_t, ChannelEvaluation> m_scanEvaluations;
     uint32_t m_completedScans = 0;
+    uint8_t m_nextAvailableSubslot = 0;
+
 
   private:
     Dect2020PhysicalHeaderField CreatePhysicalHeaderField(uint8_t packetLengthType,
                                                           uint32_t packetLength);
 
+    void DiscoverNetworks();
+    void SendNetworkBeaconOnChannel(uint16_t channelId);
+
     // Membervariablen
     Ptr<Dect2020NetDevice> m_device;
+    Ptr<Dect2020NetDevice> m_associatedFTNetDevice; // Variable to store the associated FT NetDevice
+    std::vector<Dect2020NetDevice> m_associatedNetDevices; // List of associated NetDevices
     Ptr<Dect2020Phy> m_phy;
     Mac48Address m_address;
 

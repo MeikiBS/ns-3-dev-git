@@ -1,6 +1,7 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
 #include "dect2020-phy.h"
 
+#include "dect2020-channel-manager.h"
 #include "dect2020-channel.h"
 #include "dect2020-mac.h"
 #include "dect2020-net-device.h"
@@ -12,6 +13,10 @@
 #include <algorithm>
 #include <iomanip>
 
+// Kann später wieder weg, nur DEBUG:
+#include <cstdlib>
+#include <ctime>
+
 NS_LOG_COMPONENT_DEFINE("Dect2020Phy");
 
 namespace ns3
@@ -19,7 +24,7 @@ namespace ns3
 
 NS_OBJECT_ENSURE_REGISTERED(Dect2020Phy);
 
-bool Dect2020Phy::m_isFrameTimerRunning = false;
+// bool Dect2020Phy::m_isFrameTimerRunning = false;
 
 const std::vector<uint16_t> Dect2020Phy::m_singleSlotSingleStreamTransportBlockSizesMu1Beta1{
     136,  // MCS 0
@@ -50,22 +55,47 @@ Dect2020Phy::Dect2020Phy()
     : m_currentSlot(0),
       m_currentSubslot(0)
 {
-    if (m_channels.empty())
-    {
-        InitializeChannels(1, 1);
-    }
+    // // Set a start channel
+    // Ptr<Dect2020NetDevice> device = DynamicCast<Dect2020NetDevice>(this->m_device);
+    // Ptr<Dect2020Channel> startChannel =
+    // Dect2020ChannelManager::GetValidChannels(device->GetBandNumber()).front(); m_dect2020Channel
+    // = startChannel;
 
-    if (!m_isFrameTimerRunning)
-    {
-        m_isFrameTimerRunning = true;
-        StartFrameTimer();
-    }
+    // if (!m_isFrameTimerRunning)
+    // {
+    //     m_isFrameTimerRunning = true;
+    //     StartFrameTimer();
+    // }
     NS_LOG_FUNCTION(this);
 }
 
 Dect2020Phy::~Dect2020Phy()
 {
     NS_LOG_FUNCTION(this);
+}
+
+void
+Dect2020Phy::Start()
+{
+    // Set a start channel
+    Ptr<Dect2020NetDevice> device = DynamicCast<Dect2020NetDevice>(this->m_device);
+    Ptr<Dect2020Channel> startChannel =
+        Dect2020ChannelManager::GetValidChannels(device->GetBandNumber()).front();
+    m_dect2020Channel = startChannel;
+    // this->m_mac->SetCurrentChannelId(m_dect2020Channel->m_channelId);
+    
+    
+    uint32_t seed = this->m_mac->GetLongRadioDeviceId();
+    std::srand(seed);
+    uint16_t randomChannelId = 1657 + (std::rand() % 21);
+    m_mac->SetCurrentChannelId(randomChannelId);
+
+    NS_LOG_INFO("Set Random Channel ID: " << m_mac->m_currentChannelId);
+    if (!m_isFrameTimerRunning)
+    {
+        m_isFrameTimerRunning = true;
+        StartFrameTimer();
+    }
 }
 
 void
@@ -114,10 +144,10 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
     NS_ASSERT_MSG(packet, "Packet is null");
     NS_ASSERT_MSG(this->m_device, "m_device is null");
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Phy::Send(): Von MAC Layer empfangenes Paket mit UID "
-                << packet->GetUid() << " und Größe " << packet->GetSize() << " Bytes von 0x"
-                << std::hex << this->m_mac->GetLongRadioDeviceId());
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020Phy::Send(): Von MAC Layer empfangenes Paket mit UID "
+    //             << packet->GetUid() << " und Größe " << packet->GetSize() << " Bytes von 0x"
+    //             << std::hex << this->m_mac->GetLongRadioDeviceId());
 
     NS_LOG_FUNCTION(this << packet);
 
@@ -126,38 +156,37 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
     params->txPhy = this;
     params->txPacket = packet->Copy();
     params->txPacket->AddHeader(physicalHeader);
+    params->m_currentChannelId = this->m_mac->m_currentChannelId;
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Phy::Send(): Physical Header hinzugefügt bei Paket mit UID "
-                << params->txPacket->GetUid() << " und neuer Größe " << params->txPacket->GetSize()
-                << " Bytes von 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020Phy::Send(): Physical Header hinzugefügt bei Paket mit UID "
+    //             << params->txPacket->GetUid() << " und neuer Größe " << params->txPacket->GetSize()
+    //             << " Bytes von 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
 
     Time duration = Time(NanoSeconds(CalculateTxDurationNs(physicalHeader)));
     params->duration = duration;
 
-    uint8_t bandId = 1; // TODO: Wo Band speichern? Laut Perez wird das bei Herstellung (HW) oder
-                        // Bootstrapping entschieden
-                        // TODO: Wo wird entschieden, auf welchem Channel gesendet wird?
+    // Get the band number from the current channel ID
+    uint8_t bandId = Dect2020ChannelManager::GetBandNumber(m_mac->m_currentChannelId);
 
     // The following PSD Object is currently not used in this implementation.
     // Use Dect2020SpectrumModelManager::GetRssiDbm instead.
 
-    Ptr<const SpectrumModel> specModel = Dect2020SpectrumModelManager::GetSpectrumModel(bandId);
+    Ptr<const SpectrumModel> specModel = Dect2020ChannelManager::GetSpectrumModel(bandId);
     Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
     params->psd = psd;
 
     // Set the PSD value for the current channel
-    double power = Dect2020SpectrumModelManager::DbmToW(23);
-    Dect2020SpectrumModelManager::AddSpectrumPowerToChannel(this->m_mac->m_currentChannelId, power);
+    double power = Dect2020ChannelManager::DbmToW(23);
+    Dect2020ChannelManager::AddSpectrumPowerToChannel(this->m_mac->m_clusterChannelId, power);
 
     // Remove the PSD value after the transmission
     Simulator::Schedule(duration,
-                        &Dect2020SpectrumModelManager::RemoveSpectrumPowerFromChannel,
-                        this->m_mac->m_currentChannelId,
+                        &Dect2020ChannelManager::RemoveSpectrumPowerFromChannel,
+                        this->m_mac->m_clusterChannelId,
                         power);
 
     // Start the transmission
-    // m_channel->StartTx(params);
     Simulator::Schedule(duration, &ns3::SpectrumChannel::StartTx, m_channel, params);
 
     // Trace-Aufruf
@@ -232,83 +261,100 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
 
+    // NS_LOG_INFO("StartRx() aufgerufen von 0x" << std::hex << this->m_mac->GetShortRadioDeviceId()
+    // << std::dec << ". RD Channel: " << this->m_mac->m_clusterChannelId
+    //             << " und Params Channel: " << dectParams->m_currentChannelId);
+
+    // if (dectParams->m_currentChannelId == this->m_mac->m_currentChannelId)
+    // {
+    //     NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": Message empfangen auf channel " <<
+    //                 dectParams->m_currentChannelId << " mit UID " <<
+    //                 dectParams->txPacket->GetUid());
+    //     return;
+    // }
+
+    if (dectParams->m_currentChannelId != this->m_mac->m_currentChannelId)
+    {
+        // abort Rx if the channel is not the same
+        return;
+    }
+
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
                 << ": Dect2020Phy::StartRx(): Device 0x" << std::hex
                 << this->m_mac->GetLongRadioDeviceId() << std::dec << " empfängt Paket mit UID "
                 << dectParams->txPacket->GetUid() << " und Größe "
                 << dectParams->txPacket->GetSize() << " Bytes vom Kanal.");
 
-    // Ptr<SpectrumValue> psd = dectParams->psd;
-    // double power = (*psd)[this->m_mac->m_currentChannelId - 1657];
-    double power = Dect2020SpectrumModelManager::GetRssiDbm(this->m_mac->m_currentChannelId);
-    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
-    subslot->rssi = power;
+    // WARUM??
+    // double power = Dect2020ChannelManager::GetRssiDbm(this->m_mac->m_currentChannelId);
+    // Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
+    // subslot->rssi = power;
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Phy::StartRx(): Current global PSD: " << power);
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020Phy::StartRx(): Current global PSD: " << power);
 
     m_receiveCallback(dectParams->txPacket);
 }
 
-void
-Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFactor)
-{
-    const uint32_t slotsPerFrame = 24;    // #ETSI 103 636-3 V1.5.1, Section 4.4
+// void
+// Dect2020Phy::InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFactor)
+// {
+//     const uint32_t slotsPerFrame = 24;    // #ETSI 103 636-3 V1.5.1, Section 4.4
 
+//     Dect2020OperatingBand operatingBand;
+//     BandParameters bandParams = operatingBand.GetBandParameters(bandNumber);
 
-    Dect2020OperatingBand operatingBand;
-    BandParameters bandParams = operatingBand.InitializeBandParameters(bandNumber);
+//     uint32_t numChannels = (bandParams.nEnd - bandParams.nStart) + 1; // Number of Channels
 
-    uint32_t numChannels = (bandParams.nEnd - bandParams.nStart) + 1; // Number of Channels
+//     if (!(subcarrierScalingFactor == 1 || subcarrierScalingFactor == 2 ||
+//           subcarrierScalingFactor == 4 || subcarrierScalingFactor == 8))
+//     {
+//         NS_LOG_INFO("Subcarrier scaling factor invalid (not yet implemented), set to 1");
+//         subcarrierScalingFactor = 1;
+//     }
+//     uint32_t numSubslotsPerSlot = (subcarrierScalingFactor == 1)   ? 2
+//                                   : (subcarrierScalingFactor == 2) ? 4
+//                                   : (subcarrierScalingFactor == 4) ? 8
+//                                                                    : 16;
+//     const double slotDurationNs = 10000000 / slotsPerFrame; // 0,41667 ms in ns
+//     double subslotDurationNs = slotDurationNs / numSubslotsPerSlot; // Subslot Duration in ns
 
-    if (!(subcarrierScalingFactor == 1 || subcarrierScalingFactor == 2 ||
-          subcarrierScalingFactor == 4 || subcarrierScalingFactor == 8))
-    {
-        NS_LOG_INFO("Subcarrier scaling factor invalid (not yet implemented), set to 1");
-        subcarrierScalingFactor = 1;
-    }
-    uint32_t numSubslotsPerSlot = (subcarrierScalingFactor == 1)   ? 2
-                                  : (subcarrierScalingFactor == 2) ? 4
-                                  : (subcarrierScalingFactor == 4) ? 8
-                                                                   : 16;
-    const double slotDurationNs = 10000000 / slotsPerFrame; // 0,41667 ms in ns
-    double subslotDurationNs = slotDurationNs / numSubslotsPerSlot; // Subslot Duration in ns
+//     this->m_channels.clear();
+//     for (uint32_t ch = 0; ch < numChannels; ch++)
+//     {
+//         int channelFrequencyNumbering = bandParams.nStart + ch;
 
-    this->m_channels.clear();
-    for (uint32_t ch = 0; ch < numChannels; ch++)
-    {
-        int channelFrequencyNumbering = bandParams.nStart + ch;
+//         Dect2020Channel dect2020Channel;
+//         dect2020Channel.m_subcarrierScalingFactor = subcarrierScalingFactor;
+//         dect2020Channel.m_channelId = channelFrequencyNumbering;
+//         dect2020Channel.m_centerFrequency =
+//             Dect2020OperatingBand::CalculateCenterFrequency(bandNumber,
+//             channelFrequencyNumbering);
 
-        Dect2020Channel dect2020Channel;
-        dect2020Channel.m_subcarrierScalingFactor = subcarrierScalingFactor;
-        dect2020Channel.m_channelId = channelFrequencyNumbering;
-        dect2020Channel.m_centerFrequency =
-            Dect2020OperatingBand::CalculateCenterFrequency(bandNumber, channelFrequencyNumbering);
+//         for (uint32_t slot = 0; slot < slotsPerFrame; slot++)
+//         {
+//             Slot slotObj;
+//             slotObj.slotId = slot;
 
-        for (uint32_t slot = 0; slot < slotsPerFrame; slot++)
-        {
-            Slot slotObj;
-            slotObj.slotId = slot;
+//             for (uint32_t ss = 0; ss < numSubslotsPerSlot; ss++)
+//             {
+//                 Subslot subslot;
+//                 subslot.subslotId = ss;
+//                 subslot.status = SubslotStatus::FREE;
+//                 subslot.rssi = 0.0;
+//                 subslot.subslotDurationNs = subslotDurationNs;
+//                 slotObj.subslots.push_back(subslot);
+//             }
 
-            for (uint32_t ss = 0; ss < numSubslotsPerSlot; ss++)
-            {
-                Subslot subslot;
-                subslot.subslotId = ss;
-                subslot.status = SubslotStatus::FREE;
-                subslot.rssi = 0.0;
-                subslot.subslotDurationNs = subslotDurationNs;
-                slotObj.subslots.push_back(subslot);
-            }
+//             // dect2020Channel.m_slots.push_back(slotObj);
+//             dect2020Channel.AddSlot(slotObj); // Add the current Slot to the Channel
+//         }
 
-            // dect2020Channel.m_slots.push_back(slotObj);
-            dect2020Channel.AddSlot(slotObj); // Add the current Slot to the Channel
-        }
-
-        // NS_LOG_INFO("Channel " << channelFrequencyNumbering << " frequency "
-        //                        << dect2020Channel.m_centerFrequency);
-        m_channels.push_back(dect2020Channel);
-    }
-}
+//         // NS_LOG_INFO("Channel " << channelFrequencyNumbering << " frequency "
+//         //                        << dect2020Channel.m_centerFrequency);
+//         m_channels.push_back(dect2020Channel);
+//     }
+// }
 
 void
 Dect2020Phy::StartFrameTimer()
@@ -338,6 +384,10 @@ Dect2020Phy::StartFrameTimer()
 void
 Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 {
+    if(slot == 0)
+    {
+        m_currentSfn = (m_currentSfn + 1) % 256;
+    }
     m_currentSlot = slot;
 
     // NS_LOG_INFO("Processing Slot " << slot << " at time " << std::fixed
@@ -369,9 +419,10 @@ void
 Dect2020Phy::ProcessSubslot(uint32_t slotId, uint32_t subslotId)
 {
     m_currentSubslot = subslotId;
+    m_currentSubslotAbsolute = (slotId * 2) + subslotId;
 
     // Reset the RSSI of the current Subslot
-    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
+    Subslot* subslot = GetCurrentSubslot(this->m_mac->m_clusterChannelId);
     (*subslot).rssi = 0;
 
     // NS_LOG_INFO("Processing Subslot " << std::fixed << subslot << " in Slot " << slot << " at
@@ -385,17 +436,11 @@ Dect2020Phy::GetCurrentSlot(uint32_t channelId)
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
                 << ": DEBUG: GetCurrentSlot() channelId = " << channelId);
 
-    for (Dect2020Channel& channel : m_channels)
+    for (Slot& slot : m_dect2020Channel->m_slots)
     {
-        if (channel.m_channelId == channelId)
+        if (slot.slotId == m_currentSlot)
         {
-            for (Slot& slot : channel.m_slots)
-            {
-                if (slot.slotId == m_currentSlot)
-                {
-                    return &slot;
-                }
-            }
+            return &slot;
         }
     }
 
@@ -407,23 +452,17 @@ Dect2020Phy::GetCurrentSubslot(uint32_t channelId)
 {
     // NS_LOG_INFO("DEBUG: GetCurrentSubslot() channelId = " << channelId);
 
-    for (Dect2020Channel& channel : m_channels)
+    for (Slot& slot : m_dect2020Channel->m_slots)
     {
-        if (channel.m_channelId == channelId)
+        if (slot.slotId == m_currentSlot)
         {
-            for (Slot& slot : channel.m_slots)
+            for (Subslot& subslot : slot.subslots)
             {
-                if (slot.slotId == m_currentSlot)
+                if (subslot.subslotId == m_currentSubslot)
                 {
-                    for (Subslot& subslot : slot.subslots)
-                    {
-                        if (subslot.subslotId == m_currentSubslot)
-                        {
-                            // NS_LOG_INFO(Simulator::Now().GetNanoSeconds() << ": DEBUG: Subslot "
-                            //             << subslot.subslotId << " in Slot " << slot.slotId);
-                            return &subslot;
-                        }
-                    }
+                    // NS_LOG_INFO(Simulator::Now().GetNanoSeconds() << ": DEBUG: Subslot "
+                    //             << subslot.subslotId << " in Slot " << slot.slotId);
+                    return &subslot;
                 }
             }
         }

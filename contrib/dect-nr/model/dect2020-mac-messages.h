@@ -3,6 +3,7 @@
 
 #include "ns3/header.h"
 #include "ns3/log.h"
+#include "ns3/packet.h"
 
 #include <vector>
 

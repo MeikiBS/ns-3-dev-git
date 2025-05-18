@@ -1,8 +1,10 @@
 #include "ns3/applications-module.h"
 #include "ns3/core-module.h"
 #include "ns3/dect2020-beacon-header.h"
-#include "ns3/dect2020-mac-messages.h"
+#include "ns3/dect2020-channel-manager.h"
 #include "ns3/dect2020-mac-header-type.h"
+#include "ns3/dect2020-mac-information-elements.h"
+#include "ns3/dect2020-mac-messages.h"
 #include "ns3/dect2020-mac.h"
 #include "ns3/dect2020-net-device.h"
 #include "ns3/dect2020-phy.h"
@@ -14,7 +16,6 @@
 #include "ns3/single-model-spectrum-channel.h"
 #include "ns3/spectrum-analyzer-helper.h"
 #include "ns3/spectrum-analyzer.h"
-#include "ns3/dect2020-mac-information-elements.h"
 
 // using namespace ns3;
 // using Dect2020NetDevice::TerminationPointType::FT;
@@ -305,6 +306,12 @@ ReceivePacket(Ptr<NetDevice> device,
     return true; // Paket wurde erfolgreich empfangen
 }
 
+void
+ZustandNach1Sek(Ptr<Dect2020NetDevice> dev)
+{
+    dev->GetPhy();
+}
+
 int
 main(int argc, char* argv[])
 {
@@ -319,15 +326,19 @@ main(int argc, char* argv[])
     LogComponentEnable("Dect2020Channel", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Simulation", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020SpectrumSignalParameters", LOG_LEVEL_INFO);
-    LogComponentEnable("Dect2020BeaconMessage", LOG_LEVEL_INFO); 
+    LogComponentEnable("Dect2020BeaconMessage", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020MacCommonHeader", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020MACInformationElements", LOG_LEVEL_INFO);
+    LogComponentEnable("Dect2020ChannelManager", LOG_LEVEL_INFO);
 
     // Hier Bereich für Tests
     // ###########################
     Dect2020SpectrumSignalParameters params;
 
     // ###########################
+
+    Dect2020ChannelManager channelManager;
+    channelManager.InitializeChannels(1, 1); // Band 1, Subcarrier Scaling Factor 1
 
     // Erstellen der Knoten
     NodeContainer nodes;
@@ -342,6 +353,7 @@ main(int argc, char* argv[])
     {
         // Erstellen des NetDevice
         Ptr<Dect2020NetDevice> dev = CreateObject<Dect2020NetDevice>();
+        dev->SetBandNumber(1); // Band 1
 
         if (i == 0)
         {
@@ -379,8 +391,8 @@ main(int argc, char* argv[])
         dev->SetLinkUp();
 
         devices.Add(dev);
+        phy->Start();
         mac->Start();
-
 
         // for(int j = 0; j < 5; j++)
         // {
@@ -395,6 +407,8 @@ main(int argc, char* argv[])
         // }
     }
 
+    auto dfg = DynamicCast<Dect2020NetDevice>(devices.Get(1));
+    Simulator::Schedule(Seconds(2.0523), &ZustandNach1Sek, dfg);
 
     // Ptr<Dect2020NetDevice> ft = DynamicCast<Dect2020NetDevice>(devices.Get(0));
     // ft->GetMac()->Start();
@@ -413,7 +427,7 @@ main(int argc, char* argv[])
     // TestUnicastHeader();
     // TestRandomAccessResourceIE();
     // TestAssociationRequestMessage();
-    TestAssociationResponseMessage();
+    // TestAssociationResponseMessage();
 
     // TestPhysicalLayerControlFieldType1();
     return 0;

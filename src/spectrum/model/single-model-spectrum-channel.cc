@@ -95,8 +95,6 @@ SingleModelSpectrumChannel::AddRx(Ptr<SpectrumPhy> phy)
 void
 SingleModelSpectrumChannel::StartTx(Ptr<SpectrumSignalParameters> txParams)
 {
-    NS_LOG_INFO("SingleModelSpectrumChannel::StartTx() mit Typ: " << typeid(*txParams).name());
-
     NS_LOG_FUNCTION(this << txParams->psd << txParams->duration << txParams->txPhy);
     NS_ASSERT_MSG(txParams->psd, "NULL txPsd");
     NS_ASSERT_MSG(txParams->txPhy, "NULL txPhy");

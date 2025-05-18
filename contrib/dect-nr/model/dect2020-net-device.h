@@ -110,6 +110,11 @@ class Dect2020NetDevice : public NetDevice
     void SetLinkUp(void);
     void SetLinkDown(void);
 
+    void SetBandNumber(uint8_t bandNumber);
+    uint8_t GetBandNumber(void) const;
+
+    TerminationPointType m_terminationPointType;
+
   private:
     void DoInitialize(void) override;
 
@@ -124,7 +129,9 @@ class Dect2020NetDevice : public NetDevice
     Ptr<Dect2020Mac> m_mac;
     Ptr<Dect2020Phy> m_phy;
     TracedCallback<> m_linkChanges;
-    TerminationPointType m_terminationPointType;
+    
+
+    uint8_t m_bandNumber; // Band Number (1-22)
 };
 
 } // namespace ns3

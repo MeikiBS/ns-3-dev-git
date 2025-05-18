@@ -1,5 +1,5 @@
-#ifndef DECT2020_BEACON_HEADER_H
-#define DECT2020_BEACON_HEADER_H
+#ifndef DECT2020_COMMON_HEADER_H
+#define DECT2020_COMMON_HEADER_H
 
 #include "ns3/address.h"
 #include "ns3/header.h"

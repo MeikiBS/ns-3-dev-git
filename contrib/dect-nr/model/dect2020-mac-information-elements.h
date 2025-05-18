@@ -2,6 +2,8 @@
 #define DECT2020_MAC_INFORMATION_ELEMENTS_H
 
 #include "ns3/header.h"
+#include <cstdint>
+
 
 namespace ns3
 {

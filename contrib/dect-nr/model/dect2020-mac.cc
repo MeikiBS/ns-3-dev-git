@@ -1,9 +1,10 @@
 /* -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
 #include "dect2020-mac.h"
 
+#include "dect2020-channel-manager.h"
 #include "dect2020-mac-common-header.h"
-#include "dect2020-mac-messages.h"
 #include "dect2020-mac-header-type.h"
+#include "dect2020-mac-messages.h"
 #include "dect2020-net-device.h"
 #include "dect2020-phy.h"
 
@@ -34,7 +35,7 @@ Dect2020Mac::Dect2020Mac()
     NS_LOG_FUNCTION(this);
 
     // TODO: Channel sucht sich ein RD selbst aus
-    m_currentChannelId = 1658;
+    // m_clusterChannelId = 1658;
 
     InitializeDevice(); // Initialize the Device
 }
@@ -90,49 +91,96 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
     //             << ": Dect2020Mac::ReceiveFromPhy() aufgerufen von 0x" << std::hex
     //             << this->GetLongRadioDeviceId());
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Mac::ReceiveFromPhy(): Device 0x" << std::hex
-                << this->GetLongRadioDeviceId() << std::dec << " hat Paket mit UID "
-                << packet->GetUid() << " mit der Größe von " << packet->GetSize()
-                << " Bytes empfangen." << std::endl);
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020Mac::ReceiveFromPhy(): Device 0x" << std::hex
+    //             << this->GetLongRadioDeviceId() << std::dec << " hat Paket mit UID "
+    //             << packet->GetUid() << " mit der Größe von " << packet->GetSize()
+    //             << " Bytes empfangen." << std::endl);
 
     Dect2020PhysicalHeaderField physicalHeaderField;
     packet->RemoveHeader(physicalHeaderField);
     // NS_LOG_INFO(physicalHeaderField);
 
-    // Jetzt sicher entfernen
-    Dect2020NetworkBeaconMessage beaconMessage;
-    packet->RemoveHeader(beaconMessage);
-    // NS_LOG_INFO(beaconMessage);
-
-    Dect2020BeaconHeader beaconHeader;
-    packet->RemoveHeader(beaconHeader);
-    // NS_LOG_INFO(beaconHeader);
-
     Dect2020MacHeaderType macHeaderType;
     // packet->PeekHeader(macHeaderType);
     // NS_LOG_INFO(macHeaderType);
-    packet->RemoveHeader(macHeaderType); // Jetzt passt die Reihenfolge
-    // NS_LOG_INFO(macHeaderType);
+    packet->RemoveHeader(macHeaderType);
 
     if (macHeaderType.GetMacHeaderTypeField() ==
         Dect2020MacHeaderType::MacHeaderTypeField::BEACON_HEADER)
     {
-        NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                    << ": Dect2020Mac::ReceiveFromPhy(): Beacon with Network ID: 0x" << std::hex
-                    << beaconHeader.GetNetworkId() << " received from Device 0x" << std::hex
-                    << beaconHeader.GetTransmitterAddress());
+        HandleBeaconPacket(packet);
     }
-    else
+    else if (macHeaderType.GetMacHeaderTypeField() ==
+             Dect2020MacHeaderType::MacHeaderTypeField::UNICAST_HEADER)
     {
-        NS_LOG_WARN(Simulator::Now().GetMilliSeconds() << ": Received unknown Message.");
+        // tbd
     }
+
+    // Dect2020BeaconHeader beaconHeader;
+    // packet->RemoveHeader(beaconHeader);
+    // // NS_LOG_INFO(beaconHeader);
+
+    // // Jetzt sicher entfernen
+    // Dect2020NetworkBeaconMessage beaconMessage;
+    // packet->RemoveHeader(beaconMessage);
+    // // NS_LOG_INFO(beaconMessage);
 
     // Weiterleitung des Pakets an das NetDevice
     m_device->Receive(packet);
 
     // Trace-Aufruf
     m_rxPacketTrace(packet);
+}
+
+void
+Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet)
+{
+    NS_LOG_INFO(">> ENTER HandleBeaconPacket with UID: " << packet->GetUid());
+    Dect2020BeaconHeader beaconHeader;
+    packet->RemoveHeader(beaconHeader);
+
+    // uint32_t ftBeaconNetworkId = beaconHeader.GetNetworkId();
+    // uint32_t ftBeaconTransmitterAddress = beaconHeader.GetTransmitterAddress();
+
+    Dect2020MacMuxHeaderShortSduNoPayload muxHeader;
+    packet->RemoveHeader(muxHeader);
+    IETypeFieldEncoding ieType = muxHeader.GetIeTypeFieldEncoding();
+
+    if (ieType == IETypeFieldEncoding::NETWORK_BEACON_MESSAGE)
+    {
+        Dect2020NetworkBeaconMessage networkBeaconMessage;
+        packet->RemoveHeader(networkBeaconMessage);
+
+        // Get the cluster channel id from the network beacon message
+        uint16_t ftBeaconNextClusterChannel = networkBeaconMessage.GetNextClusterChannel();
+
+        // if this RD is not on the cluster channel, switch to it
+        if (GetCurrentChannelId() != ftBeaconNextClusterChannel)
+        {
+            NS_LOG_INFO("Switching to channel: " << ftBeaconNextClusterChannel
+                                                 << " from channel: " << GetCurrentChannelId());
+            SetCurrentChannelId(ftBeaconNextClusterChannel);
+
+            // DEBUG, später löschen:
+            m_associationStatus = AssociationStatus::ASSOCIATION_PENDING;
+        }
+    }
+    else if (ieType == IETypeFieldEncoding::CLUSTER_BEACON_MESSAGE)
+    {
+        Dect2020Statistics::IncrementClusterBeaconReception();
+        NS_LOG_INFO("Erfolgreich Channel geswitcht!!");
+    }
+}
+
+void
+Dect2020Mac::HandleNetworkBeacon(Dect2020BeaconHeader beaconHeader,
+                                 Dect2020NetworkBeaconMessage networkBeaconMsg)
+{
+    NS_LOG_INFO(">> ENTER HandleNetworkBeacon");
+    this->SetCurrentChannelId(1657);
+    // uint32_t ftBeaconNetworkId = beaconHeader.GetNetworkId();
+    // uint32_t ftBeaconTransmitterAddress = beaconHeader.GetTransmitterAddress();
 }
 
 Mac48Address
@@ -154,6 +202,10 @@ Dect2020Mac::Start()
         // DEBUG: Network ID auf festen Wert setzen, später mit Beacon empfangen
         // m_networkId = 123456;
         // JoinNetwork(m_networkId);
+
+        Simulator::Schedule(MilliSeconds(100),
+                            &Dect2020Mac::DiscoverNetworks,
+                            this); // Start Discovery
     }
 }
 
@@ -173,6 +225,66 @@ Dect2020Mac::InitializeNetwork()
     // StartBeaconTransmission();
 }
 
+/**
+ * \brief Initiates or continues the network discovery procedure for a PT device.
+ *
+ * This method simulates a periodic channel sweep by a portable termination (PT) device
+ * to discover available fixed terminations (FTs) in a DECT-2020 NR network. It increases
+ * the current operating channel by one and switches to that channel if it exists in the
+ * current band. If the next channel is not available (e.g., end of band), the channel
+ * list is wrapped and the PT starts scanning again from the beginning.
+ *
+ * The method reschedules itself after a fixed delay (e.g., 100 ms) until the device
+ * becomes associated with an FT.
+ *
+ */
+void
+Dect2020Mac::DiscoverNetworks()
+{
+    if (m_associationStatus == AssociationStatus::ASSOCIATION_PENDING)
+    {
+        return; // Device is in association process --> abort discovering networks
+    }
+    std::vector<Ptr<Dect2020Channel>> channelList =
+        Dect2020ChannelManager::GetValidChannels(this->m_device->GetBandNumber());
+
+    if (m_associatedFTNetDevice != nullptr)
+    {
+        return; // Device is already associated --> abort
+    }
+
+    // find the current channel
+    uint32_t current = m_currentChannelId;
+    uint32_t nextChannelId = 0;
+
+    // search if current + 1 is part of the channel list
+    bool found = false;
+    for (auto& ch : channelList)
+    {
+        if (ch->m_channelId == current + 1)
+        {
+            nextChannelId = ch->m_channelId;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        // no valid next channel -> take the first one of the band
+        nextChannelId = channelList.front()->m_channelId;
+    }
+
+    SetCurrentChannelId(nextChannelId);
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": PT-Device " << std::hex << "0x" << GetShortRadioDeviceId()
+                << " is scanning channel: " << std::dec << m_currentChannelId);
+
+    Time t = MilliSeconds(1000); // Discover Network wait time
+    Simulator::Schedule(t, &Dect2020Mac::DiscoverNetworks,
+                        this); // Schedule next discovery
+}
+
 void
 Dect2020Mac::JoinNetwork(uint32_t networkId)
 {
@@ -183,62 +295,215 @@ Dect2020Mac::JoinNetwork(uint32_t networkId)
                 << std::setfill('0') << networkId);
 
     SetShortRadioDeviceId(GenerateShortRadioDeviceId());
-    // TODO: Unter welchen Umständen kann einem Network beigetreten/nicht beigetreten werden?
+}
+
+void
+Dect2020Mac::StartClusterBeaconTransmission()
+{
+    SetCurrentChannelId(m_clusterChannelId);
+
+    Ptr<Packet> clusterBeacon = BuildBeacon(true, m_clusterChannelId);
+    m_phy->Send(clusterBeacon, CreatePhysicalHeaderField(1, clusterBeacon->GetSize()));
+
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Dect2020Mac::StartClusterBeaconTransmission sent Cluster Beacon on Channel "
+                << m_clusterChannelId << " with UID " << clusterBeacon->GetUid());
+
+    // Schedule next cluster beacon transmission
+    Simulator::Schedule(MilliSeconds(100), &Dect2020Mac::StartClusterBeaconTransmission, this);
+}
+
+Dect2020RandomAccessResourceIE
+Dect2020Mac::BuildRandomAccessResourceIE()
+{
+    Dect2020RandomAccessResourceIE randomAccessResourceIE;
+    randomAccessResourceIE.SetRepeat(0);
+    randomAccessResourceIE.SetSystemFrameNumberFieldIncluded(0);
+    randomAccessResourceIE.SetChannelFieldIncluded(0);
+    randomAccessResourceIE.SetSeparateChannelFieldIncluded(0);
+
+    return randomAccessResourceIE;
+}
+
+void
+Dect2020Mac::StartNetworkBeaconSweep()
+{
+    std::vector<Ptr<Dect2020Channel>> channelList =
+        Dect2020ChannelManager::GetValidChannels(this->m_device->GetBandNumber());
+
+    int16_t operatingChannel = static_cast<int16_t>(m_clusterChannelId);
+    std::vector<int16_t> networkBeaconChannels;
+
+    // the network beacon should be sent on the operating channel
+    networkBeaconChannels.push_back(operatingChannel);
+
+    // find valid channels with a higher channel id than the operating channel +2, +4, ...
+    for (int16_t offset = 2;; offset += 2)
+    {
+        int16_t candidate = operatingChannel + offset;
+        if (!Dect2020ChannelManager::ChannelExists(candidate))
+        {
+            break;
+        }
+        networkBeaconChannels.push_back(candidate);
+    }
+
+    // find valid channels with a lower channel id than the operating channel -2, -4, ...
+    for (int16_t offset = 2;; offset += 2)
+    {
+        int16_t candidate = operatingChannel - offset;
+        if (!Dect2020ChannelManager::ChannelExists(candidate))
+        {
+            break;
+        }
+        networkBeaconChannels.push_back(candidate);
+    }
+
+    // Schedule the network beacon transmission on the selected channels
+    Time beaconDuration = MicroSeconds(1);       // duration of the beacon transmission
+    Time networkBeaconPeriod = MilliSeconds(10); // gap between each transmission
+    Time base = Seconds(0);
+
+    for (auto& channelId : networkBeaconChannels)
+    {
+        Simulator::Schedule(base, &Dect2020Mac::SendNetworkBeaconOnChannel, this, channelId);
+
+        // Go back to the operating channel after beacon transmission
+        Simulator::Schedule(base + beaconDuration, &Dect2020Mac::ReturnToOperatingChannel, this);
+
+        base += networkBeaconPeriod;
+    }
+
+    // Schedule the next sweep
+    Simulator::Schedule(base + beaconDuration, &Dect2020Mac::StartNetworkBeaconSweep, this);
+}
+
+void
+Dect2020Mac::ReturnToOperatingChannel()
+{
+    SetCurrentChannelId(m_clusterChannelId);
+}
+
+void
+Dect2020Mac::SendNetworkBeaconOnChannel(uint16_t channelId)
+{
+    SetCurrentChannelId(channelId);
+
+    Ptr<Packet> networkBeacon = BuildBeacon(false, channelId);
+
+    m_phy->Send(networkBeacon, CreatePhysicalHeaderField(1, networkBeacon->GetSize()));
+
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Dect2020Mac::SendNetworkBeaconOnChannel sent Network Beacon on Channel "
+                << channelId << " with UID " << networkBeacon->GetUid());
+}
+
+Ptr<Packet>
+Dect2020Mac::BuildBeacon(bool isCluster, uint16_t networkBeaconTransmissionChannelId)
+{
+    Ptr<Packet> beacon = Create<Packet>();
+
+    Dect2020MacMuxHeaderShortSduNoPayload muxHeader;
+    muxHeader.SetMacExtensionFieldEncoding(0); // No length field included in the IE Header
+    muxHeader.SetLengthField(0);               // No length field included in the IE Header
+
+    if (isCluster)
+    {
+        muxHeader.SetIeTypeFieldEncoding(IETypeFieldEncoding::CLUSTER_BEACON_MESSAGE);
+
+        Dect2020ClusterBeaconMessage msg;
+        msg.SetSystemFrameNumber(this->m_phy->m_currentSfn);
+        msg.SetTxPowerIncluded(0);
+        msg.SetPowerConstraints(0);
+        msg.SetFrameOffset(0);
+        msg.SetNextChannelIncluded(0);
+        msg.SetTimeToNextFieldPresent(0);
+        msg.SetNetworkBeaconPeriod(m_networkBeaconPeriod);
+        msg.SetClusterBeaconPeriod(m_clusterBeaconPeriod);
+        msg.SetCountToTrigger(15);
+        msg.SetRelativeQuality(0);
+        msg.SetMinimumQuality(0);
+
+        beacon->AddHeader(msg);
+    }
+    else
+    {
+        muxHeader.SetIeTypeFieldEncoding(IETypeFieldEncoding::NETWORK_BEACON_MESSAGE);
+
+        Dect2020NetworkBeaconMessage msg;
+        msg.SetTxPowerIncluded(1);
+        msg.SetPowerConstraints(0);
+        msg.SetCurrentClusterChannelIncluded(0);
+        msg.SetNetworkBeaconChannels(0);
+        msg.SetNetworkBeaconPeriod(m_networkBeaconPeriod);
+        msg.SetClusterBeaconPeriod(m_clusterBeaconPeriod);
+        msg.SetNextClusterChannel(networkBeaconTransmissionChannelId);
+        // Cluster Channel ID is set in SendNetworkBeaconOnChannel()
+        msg.SetTimeToNext(0); // TODO: Time to next = Next send time - current sim time
+
+        beacon->AddHeader(msg);
+    }
+
+    // Add the mux header to the packet
+    beacon->AddHeader(muxHeader);
+
+    Dect2020BeaconHeader beaconHeader;
+    beaconHeader.SetNetworkId(m_networkId);
+    beaconHeader.SetTransmitterAddress(m_longRadioDeviceId);
+    beacon->AddHeader(beaconHeader);
+
+    Dect2020MacHeaderType macHeaderType;
+    macHeaderType.SetMacHeaderTypeField(Dect2020MacHeaderType::BEACON_HEADER);
+    beacon->AddHeader(macHeaderType);
+
+    return beacon;
 }
 
 void
 Dect2020Mac::StartBeaconTransmission()
 {
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Start Beacon Transmission on channel: " << m_currentChannelId);
+    StartNetworkBeaconSweep();
+    StartClusterBeaconTransmission();
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Start Beacon Transmission on channel: " << m_clusterChannelId);
 
-    Ptr<Packet> networkBeacon = Create<Packet>();
+    // Ptr<Packet> networkBeacon = Create<Packet>();
 
-    NS_LOG_INFO("Größe des Pakets direkt nach Erstellung: " << networkBeacon->GetSize());
-    // MAC Header Type
-    Dect2020MacHeaderType macHeaderType;
-    macHeaderType.SetMacHeaderTypeField(Dect2020MacHeaderType::BEACON_HEADER);
-    networkBeacon->AddHeader(macHeaderType);
-    NS_LOG_INFO("Größe des Pakets direkt nach macHeaderType: " << networkBeacon->GetSize());
+    // // MAC Header Type
+    // Dect2020MacHeaderType macHeaderType;
+    // macHeaderType.SetMacHeaderTypeField(Dect2020MacHeaderType::BEACON_HEADER);
+    // networkBeacon->AddHeader(macHeaderType);
 
-    // Mac Beacon Header
-    Dect2020BeaconHeader beaconHeader;
-    beaconHeader.SetNetworkId(m_networkId);
-    beaconHeader.SetTransmitterAddress(m_longRadioDeviceId);
+    // // Mac Beacon Header
+    // Dect2020BeaconHeader beaconHeader;
+    // beaconHeader.SetNetworkId(m_networkId);
+    // beaconHeader.SetTransmitterAddress(m_longRadioDeviceId);
 
-    networkBeacon->AddHeader(beaconHeader);
+    // networkBeacon->AddHeader(beaconHeader);
 
-    NS_LOG_INFO("Größe des Pakets direkt nach beaconHeader: " << networkBeacon->GetSize());
+    // // MAC Beacon Message
+    // Dect2020NetworkBeaconMessage beaconMessage;
+    // // TODO: beaconMessage mit Inhalt füllen
 
-    // MAC Beacon Message
-    Dect2020NetworkBeaconMessage beaconMessage;
-    // TODO: beaconMessage mit Inhalt füllen
+    // networkBeacon->AddHeader(beaconMessage);
 
-    networkBeacon->AddHeader(beaconMessage);
+    // NS_LOG_INFO("Größe des Pakets direkt nach beaconMessage: " << networkBeacon->GetSize());
 
-    // DEBUG #############
-    Ptr<Packet> packet = Create<Packet>(100);
-    networkBeacon->AddAtEnd(packet);
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": StartBeaconTransmission() aufgerufen von 0x" << std::hex
+    //             << this->GetLongRadioDeviceId() << " übergibt Paket mit der Größe " << std::dec
+    //             << networkBeacon->GetSize() << " Bytes und UID " << networkBeacon->GetUid()
+    //             << " an PHY.");
 
-    // ################
+    // m_phy->Send(networkBeacon, CreatePhysicalHeaderField(1, networkBeacon->GetSize())); //
 
-    NS_LOG_INFO("Größe des Pakets direkt nach beaconMessage: " << networkBeacon->GetSize());
+    // // NS_LOG_INFO("Network Beacon gesendet von Gerät 0x"
+    // //             << std::hex  << this->GetLongRadioDeviceId());
+    // // NS_LOG_INFO("MAC Header Type: " << macHeaderType.GetMacHeaderTypeField());
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": StartBeaconTransmission() aufgerufen von 0x" << std::hex
-                << this->GetLongRadioDeviceId() << " übergibt Paket mit der Größe " << std::dec
-                << networkBeacon->GetSize() << " Bytes und UID " << networkBeacon->GetUid()
-                << " an PHY.");
-
-    m_phy->Send(networkBeacon, CreatePhysicalHeaderField(1, networkBeacon->GetSize())); //
-
-    // NS_LOG_INFO("Network Beacon gesendet von Gerät 0x"
-    //             << std::hex  << this->GetLongRadioDeviceId());
-    // NS_LOG_INFO("MAC Header Type: " << macHeaderType.GetMacHeaderTypeField());
-
-    Simulator::Schedule(MilliSeconds(beaconMessage.GetNetworkBeaconPeriodTime()),
-                        &Dect2020Mac::StartBeaconTransmission,
-                        this);
+    // Simulator::Schedule(MilliSeconds(beaconMessage.GetNetworkBeaconPeriodTime()),
+    //                     &Dect2020Mac::StartBeaconTransmission,
+    //                     this);
 }
 
 void
@@ -259,12 +524,9 @@ void
 Dect2020Mac::ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> context,
                                             uint32_t numSubslots)
 {
-    NS_LOG_INFO(Simulator::Now().GetNanoSeconds()
-                << ": DEBUG: ScheduleNextSubslotMeasurement() on Channel " << context->channelId
-                << " subslotCount = " << context->subslotCount);
     Subslot* subslot = m_phy->GetCurrentSubslot(context->channelId);
 
-    double rssi = Dect2020SpectrumModelManager::GetRssiDbm(context->channelId);
+    double rssi = Dect2020ChannelManager::GetRssiDbm(context->channelId);
 
     if (rssi <= RSSI_THRESHOLD_MIN)
     {
@@ -309,20 +571,23 @@ Dect2020Mac::OperatingChannelSelection()
     double totalScanTimeNs = subslotDurationNs * numSubslots;
 
     uint32_t channelOffset = 0;
-    for (auto& channel : m_phy->m_channels)
+    // for (auto& channel : m_phy->m_channels)
+    auto validChannels = Dect2020ChannelManager::GetValidChannels(this->m_device->GetBandNumber());
+    uint16_t numOfValidChannels = validChannels.size();
+    for (auto& channel : validChannels)
     {
         Time delay = NanoSeconds(channelOffset * totalScanTimeNs);
 
         Simulator::Schedule(delay,
                             &Dect2020Mac::StartSubslotScan,
                             this,
-                            channel.m_channelId,
+                            channel->m_channelId,
                             48,
-                            [this](const ChannelEvaluation& eval) {
+                            [this, numOfValidChannels](const ChannelEvaluation& eval) {
                                 m_scanEvaluations[eval.channelId] = eval;
                                 m_completedScans++;
 
-                                if (m_completedScans == m_phy->m_channels.size())
+                                if (m_completedScans == numOfValidChannels)
                                 {
                                     EvaluateAllChannels();
                                 }
@@ -349,7 +614,7 @@ Dect2020Mac::EvaluateAllChannels()
 
         if (e.free == total)
         {
-            m_currentChannelId = e.channelId;
+            m_clusterChannelId = e.channelId;
             NS_LOG_INFO("Selected COMPLETELY FREE channel: " << e.channelId);
 
             // Reschedule the next channel selection after SCAN_STATUS_VALID (300 seconds)
@@ -370,7 +635,7 @@ Dect2020Mac::EvaluateAllChannels()
 
         if (suitable >= static_cast<uint32_t>(total * SCAN_SUITABLE))
         {
-            m_currentChannelId = e.channelId;
+            m_clusterChannelId = e.channelId;
             NS_LOG_INFO("Selected suitable channel: " << e.channelId);
 
             // Reschedule the next channel selection after SCAN_STATUS_VALID (300 seconds)
@@ -409,9 +674,9 @@ Dect2020Mac::EvaluateAllChannels()
         }
     }
 
-    m_currentChannelId = selectedChannelId;
+    m_clusterChannelId = selectedChannelId;
     NS_LOG_INFO("Selected the channel with the lowest number of busy / possible subslots: "
-                << m_currentChannelId);
+                << m_clusterChannelId);
 
     // Reschedule the next channel selection after SCAN_STATUS_VALID (300 seconds)
     Simulator::Schedule(Seconds(SCAN_STATUS_VALID), &Dect2020Mac::OperatingChannelSelection, this);
@@ -424,7 +689,7 @@ Dect2020Mac::CreatePhysicalHeaderField()
 {
     Dect2020PhysicalHeaderField physicalHeaderField;
     physicalHeaderField.SetPacketLengthType(0); // 0 = in Subslots, 1 = in Slots
-    physicalHeaderField.SetPacketLength(5); // Size of packet in slots/subslots
+    physicalHeaderField.SetPacketLength(5);     // Size of packet in slots/subslots
 
     // Short Network ID: The last 8 LSB bits of the Network ID # ETSI 103 636 04 4.2.3.1
     uint8_t shortNetworkID = m_networkId & 0xFF;
@@ -448,15 +713,7 @@ Dect2020Mac::CreatePhysicalHeaderField(uint8_t packetLengthType, uint32_t packet
     }
     else if (packetLengthType == 1) // Packet length is given in slots
     {
-        // DEBUG:
         double packetLengthBits = packetLengthBytes * 8;
-        auto transportBlockSizeBits =
-            this->m_phy->GetMcsTransportBlockSize(m_subcarrierScalingFactor,
-                                                  m_fourierTransformScalingFactor,
-                                                  m_mcs);
-
-        NS_LOG_INFO("packetLengthBits: " << packetLengthBits);
-        NS_LOG_INFO("transportBlockSizeBits: " << transportBlockSizeBits);
 
         double mcsTransportBlockSizeBits =
             this->m_phy->GetMcsTransportBlockSize(m_subcarrierScalingFactor,
@@ -498,6 +755,26 @@ Dect2020Mac::GenerateValidNetworkId()
     // empfangen lassen
     networkId = 123456;
     return networkId;
+}
+
+void
+Dect2020Mac::SetCurrentChannelId(uint32_t channelId)
+{
+    NS_LOG_FUNCTION(this << channelId);
+    if (m_currentChannelId == channelId)
+        return;
+
+    m_currentChannelId = channelId;
+    if (m_clusterChannelId == 0)
+    {
+        m_clusterChannelId = channelId;
+    }
+}
+
+uint32_t
+Dect2020Mac::GetCurrentChannelId() const
+{
+    return m_currentChannelId;
 }
 
 void

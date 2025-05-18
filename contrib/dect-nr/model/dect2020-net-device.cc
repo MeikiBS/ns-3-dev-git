@@ -51,7 +51,9 @@ Dect2020NetDevice::SetTerminationPointType(TerminationPointType tpt)
         return;
     }
     m_terminationPointType = tpt;
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": " << __PRETTY_FUNCTION__ << " | " << "Set TerminationPointType to: " << (tpt == PT ? "PT" : "FT"));
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": " << __PRETTY_FUNCTION__ << " | "
+                << "Set TerminationPointType to: " << (tpt == PT ? "PT" : "FT"));
 
     m_terminationPointType = tpt;
 }
@@ -295,7 +297,9 @@ Dect2020NetDevice::Receive(Ptr<Packet> packet)
 {
     NS_LOG_FUNCTION(this << packet);
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": Dect2020NetDevice::Receive() aufgerufen von Device 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020NetDevice::Receive() aufgerufen von Device 0x" << std::hex
+    //             << this->m_mac->GetLongRadioDeviceId());
 
     if (!m_rxCallback.IsNull())
     {
@@ -310,7 +314,8 @@ ReceivePacket(Ptr<NetDevice> device,
               uint16_t protocol,
               const Address& sender)
 {
-    NS_LOG_UNCOND(Simulator::Now().GetMilliSeconds() << ": Gerät 2 hat ein Paket empfangen von " << Mac48Address::ConvertFrom(sender));
+    NS_LOG_UNCOND(Simulator::Now().GetMilliSeconds()
+                  << ": Gerät 2 hat ein Paket empfangen von " << Mac48Address::ConvertFrom(sender));
     return true; // Paket wurde erfolgreich empfangen
 }
 
@@ -334,6 +339,25 @@ Dect2020NetDevice::SetLinkDown(void)
         m_linkUp = false;
         m_linkChanges();
     }
+}
+
+void
+Dect2020NetDevice::SetBandNumber(uint8_t bandNumber)
+{
+    if (bandNumber > 0 && bandNumber <= 22)
+    {
+        m_bandNumber = bandNumber;
+    }
+    else
+    {
+        NS_LOG_ERROR("Band number must be between 1 and 22");
+    }
+}
+
+uint8_t
+Dect2020NetDevice::GetBandNumber(void) const
+{
+    return m_bandNumber;
 }
 
 } // namespace ns3

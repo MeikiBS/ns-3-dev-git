@@ -721,9 +721,17 @@ void
 Dect2020NetworkBeaconMessage::SetAdditionalNetworkBeaconChannels(
     uint16_t* additionalNetworkBeaconChannels)
 {
-    std::copy(additionalNetworkBeaconChannels,
-              additionalNetworkBeaconChannels + 3,
-              m_additionalNetworkBeaconChannels);
+    if (additionalNetworkBeaconChannels != nullptr)
+    {
+        std::copy(additionalNetworkBeaconChannels,
+                  additionalNetworkBeaconChannels + 3,
+                  m_additionalNetworkBeaconChannels);
+    }
+    else
+    {
+        NS_LOG_WARN("SetAdditionalNetworkBeaconChannels() received nullptr!");
+    }
+
     // m_additionalNetworkBeaconChannels = additionalNetworkBeaconChannels;
 }
 
@@ -989,6 +997,7 @@ Dect2020NetworkBeaconMessage::GetNetworkBeaconPeriodTime() const
                        "1000, 1500, 2000, and 4000 ms.");
     }
 }
+
 
 // *******************************************************
 //            DECT2020 Association Request Message
@@ -1505,7 +1514,6 @@ Dect2020AssociationResponseMessage::Deserialize(Buffer::Iterator start)
 
         NS_LOG_INFO("Deserialize: byte1 = 0x" << std::hex << static_cast<uint32_t>(byte1));
 
-
         SetRejectCause((byte1 >> 4) & 0x0F); // Bit 0-3
         SetRejectTimer(byte1 & 0x0F);        // Bit 4-7
     }
@@ -1598,7 +1606,6 @@ Dect2020AssociationResponseMessage::GetSerializedSize() const
 
     return size;
 }
-
 
 void
 Dect2020AssociationResponseMessage::SetAssociationAccepted(bool accepted)

@@ -50,13 +50,14 @@ class Dect2020Phy : public SpectrumPhy
     void Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader);
     void Receive(Ptr<Packet> packet);
 
+    void Start();
+
     // Kanalverwaltung
     void SetChannel(Ptr<SpectrumChannel> channel);
     Ptr<SpectrumChannel> GetChannel() const;
 
     Ptr<NetDevice> GetDevice() const;
 
-    void InitializeBand(uint8_t bandNumber);
     void StartFrameTimer();
     void ProcessSlot(uint32_t slot, double slotStartTime);
     void ProcessSubslot(uint32_t slotId, uint32_t subslotId);
@@ -72,12 +73,15 @@ class Dect2020Phy : public SpectrumPhy
     Ptr<Object> GetAntenna() const override;
     void StartRx(Ptr<SpectrumSignalParameters> params);
 
-    std::vector<Dect2020Channel> m_channels;
+    Ptr<Dect2020Channel> m_dect2020Channel;
     uint16_t GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex);  // In bits
     double CalculateTxDurationNs(Dect2020PhysicalHeaderField physicalHeaderField);
 
+    uint8_t m_currentSfn = 0;
+    uint16_t m_currentSubslotAbsolute = 0;  // The absolute subslot number in the frame
+
   private:
-    static bool m_isFrameTimerRunning;
+    bool m_isFrameTimerRunning = false;
     void ReceiveDelayed(Ptr<Packet> packet);
 
     // Membervariablen
@@ -91,8 +95,6 @@ class Dect2020Phy : public SpectrumPhy
     Ptr<Object> m_antenna;
 
     static const std::vector<uint16_t> m_singleSlotSingleStreamTransportBlockSizesMu1Beta1;
-
-    void InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFactor);
 
     Callback<void, Ptr<Packet>> m_receiveCallback;
 
