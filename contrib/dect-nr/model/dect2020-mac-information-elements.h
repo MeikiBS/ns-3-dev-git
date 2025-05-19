@@ -94,7 +94,7 @@ class Dect2020RandomAccessResourceIE : public Header
     bool m_lengthType;    // 1 Bit. 0 = length in subslots, 1 = length in slots
     uint8_t m_raraLength; // 7 Bit. The length of the random access resource allocation in subslots
                           // or slots
-    bool m_maxRachLengthType;                                 // 1 Bit
+    bool m_maxRachLengthType;                                 // 1 Bit. 0 = length in subslots, 1 = length in slots
     uint8_t m_maxRachLength;                                  // 4 Bit
     uint8_t m_cwMin_sig;                                      // 3 Bit
     bool m_dectDelay;                                         // 1 Bit

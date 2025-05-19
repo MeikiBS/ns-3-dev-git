@@ -65,6 +65,7 @@ class Dect2020Phy : public SpectrumPhy
     Subslot* GetCurrentSubslot(uint32_t channelId);
     void SetReceiveCallback(Callback<void, Ptr<Packet>> cb);
     // static const std::vector<Channel>& GetChannels();
+    uint16_t GetCurrentAbsoluteSubslot() const;
 
     // Inherited Methods
     void SetMobility(Ptr<MobilityModel> m);
@@ -77,8 +78,9 @@ class Dect2020Phy : public SpectrumPhy
     uint16_t GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex);  // In bits
     double CalculateTxDurationNs(Dect2020PhysicalHeaderField physicalHeaderField);
 
+
     uint8_t m_currentSfn = 0;
-    uint16_t m_currentSubslotAbsolute = 0;  // The absolute subslot number in the frame
+    uint16_t m_currentAbsoluteSubslot = 0;  // The absolute subslot number in the frame
 
   private:
     bool m_isFrameTimerRunning = false;

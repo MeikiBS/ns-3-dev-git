@@ -227,6 +227,12 @@ Dect2020Phy::SetReceiveCallback(Callback<void, Ptr<Packet>> cb)
     m_receiveCallback = cb;
 }
 
+uint16_t
+Dect2020Phy::GetCurrentAbsoluteSubslot() const
+{
+    return m_currentAbsoluteSubslot;
+}
+
 void
 Dect2020Phy::SetMobility(Ptr<MobilityModel> m)
 {
@@ -419,7 +425,7 @@ void
 Dect2020Phy::ProcessSubslot(uint32_t slotId, uint32_t subslotId)
 {
     m_currentSubslot = subslotId;
-    m_currentSubslotAbsolute = (slotId * 2) + subslotId;
+    m_currentAbsoluteSubslot = (slotId * 2) + subslotId;
 
     // Reset the RSSI of the current Subslot
     Subslot* subslot = GetCurrentSubslot(this->m_mac->m_clusterChannelId);

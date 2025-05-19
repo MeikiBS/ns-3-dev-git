@@ -167,6 +167,7 @@ class Dect2020Mac : public Object
     void HandleBeaconPacket(Ptr<Packet> packet);
     void HandleNetworkBeacon(Dect2020BeaconHeader beaconHeader,
                              Dect2020NetworkBeaconMessage networkBeaconMsg);
+    void EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBeaconMsg, const Dect2020RandomAccessResourceIE& rarIe);
 
     Dect2020PhysicalHeaderField CreatePhysicalHeaderField();
 
@@ -177,9 +178,9 @@ class Dect2020Mac : public Object
                                         uint32_t numSubslots);
 
     uint32_t m_clusterChannelId =
-        0; // Number of the Channel that is currently the operating Channel
+        0; // Number of the Channel that is currently the cluster Channel
     uint32_t m_currentChannelId =
-        0; // Number of the Channel that is currently used (e.g. for scanning/Beacon tx)
+        0; // Number of the Channel that the RD is currently connected with (e.g. for scanning/Beacon tx)
 
     uint8_t m_subcarrierScalingFactor = 1;       // Subcarrier Scaling Factor
     uint8_t m_fourierTransformScalingFactor = 1; // Fourier Transform Scaling Factor
@@ -202,8 +203,9 @@ class Dect2020Mac : public Object
 
     std::map<uint32_t, ChannelEvaluation> m_scanEvaluations;
     uint32_t m_completedScans = 0;
-    uint8_t m_nextAvailableSubslot = 0;
-
+    uint8_t m_nextAvailableSubslot = 2; // First subslot to be used by RD is 2 --> Subslot 0 and 1 are reserved for 
+                                        // the cluster beacon transmission
+    uint8_t m_lastSfn;
 
   private:
     Dect2020PhysicalHeaderField CreatePhysicalHeaderField(uint8_t packetLengthType,

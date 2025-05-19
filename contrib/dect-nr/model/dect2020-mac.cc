@@ -168,8 +168,15 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet)
     }
     else if (ieType == IETypeFieldEncoding::CLUSTER_BEACON_MESSAGE)
     {
+        auto t = Simulator::Now().GetMilliSeconds();
+        NS_LOG_INFO(t);
         Dect2020Statistics::IncrementClusterBeaconReception();
-        NS_LOG_INFO("Erfolgreich Channel geswitcht!!");
+        
+        Dect2020ClusterBeaconMessage clusterBeaconMessage;
+        packet->RemoveHeader(clusterBeaconMessage);
+
+        Dect2020RandomAccessResourceIE randomAccessResourceIE;
+        packet->RemoveHeader(randomAccessResourceIE);
     }
 }
 
@@ -181,6 +188,14 @@ Dect2020Mac::HandleNetworkBeacon(Dect2020BeaconHeader beaconHeader,
     this->SetCurrentChannelId(1657);
     // uint32_t ftBeaconNetworkId = beaconHeader.GetNetworkId();
     // uint32_t ftBeaconTransmitterAddress = beaconHeader.GetTransmitterAddress();
+}
+
+void
+Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBeaconMsg, const Dect2020RandomAccessResourceIE& rarIe)
+{
+    m_lastSfn = clusterBeaconMsg.GetSystemFrameNumber();
+
+    uint16_t startSubslot = rarIe.GetStartSubslot();
 }
 
 Mac48Address
@@ -322,6 +337,19 @@ Dect2020Mac::BuildRandomAccessResourceIE()
     randomAccessResourceIE.SetChannelFieldIncluded(0);
     randomAccessResourceIE.SetSeparateChannelFieldIncluded(0);
 
+    uint8_t m_startSubslot = m_nextAvailableSubslot;
+    randomAccessResourceIE.SetStartSubslot(m_startSubslot);
+    m_nextAvailableSubslot += 2; // 2 Subslots / RD
+
+    randomAccessResourceIE.SetLengthType(0); // length in subslots
+    randomAccessResourceIE.SetRaraLength(2);
+    randomAccessResourceIE.SetMaxRachLengthType(0); // length in subslots
+    randomAccessResourceIE.SetMaxRachLength(2);     // Max 2  subslots / transmission
+    randomAccessResourceIE.SetCwMinSig(0);          // CW min 0 --> backoff not yet implemented
+    randomAccessResourceIE.SetDectDelay(0);
+    randomAccessResourceIE.SetResponseWindow(5);
+    randomAccessResourceIE.SetCwMaxSig(0); // CW max 0 --> backoff not yet implemented
+
     return randomAccessResourceIE;
 }
 
@@ -409,7 +437,12 @@ Dect2020Mac::BuildBeacon(bool isCluster, uint16_t networkBeaconTransmissionChann
 
     if (isCluster)
     {
+        // Set the IE Type Field in the MAC multiplexing Header
         muxHeader.SetIeTypeFieldEncoding(IETypeFieldEncoding::CLUSTER_BEACON_MESSAGE);
+
+        // Cluster beacon message is always followed by the Random Access Ressource IE
+        Dect2020RandomAccessResourceIE randomAccessResourceIE = BuildRandomAccessResourceIE();
+        beacon->AddHeader(randomAccessResourceIE);
 
         Dect2020ClusterBeaconMessage msg;
         msg.SetSystemFrameNumber(this->m_phy->m_currentSfn);
