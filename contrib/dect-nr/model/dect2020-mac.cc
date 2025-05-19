@@ -87,23 +87,19 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
 {
     NS_LOG_FUNCTION(this << packet);
 
-    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": Dect2020Mac::ReceiveFromPhy() aufgerufen von 0x" << std::hex
-    //             << this->GetLongRadioDeviceId());
-
-    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": Dect2020Mac::ReceiveFromPhy(): Device 0x" << std::hex
-    //             << this->GetLongRadioDeviceId() << std::dec << " hat Paket mit UID "
-    //             << packet->GetUid() << " mit der Größe von " << packet->GetSize()
-    //             << " Bytes empfangen." << std::endl);
-
+    // --- Physical Header Field ---
     Dect2020PhysicalHeaderField physicalHeaderField;
     packet->RemoveHeader(physicalHeaderField);
-    // NS_LOG_INFO(physicalHeaderField);
 
+    // If the candidate has sent a message before, we can update his entry in the FT Candidate List
+    FtCandidateInfo* ft = FindOrCreateFtCandidate(physicalHeaderField.GetTransmitterIdentity());
+    ft->receptionTime = Simulator::Now();
+    ft->ftPhyHeaderField = physicalHeaderField;
+    ft->shortFtId = physicalHeaderField.GetTransmitterIdentity();
+    ft->shortNetworkId = physicalHeaderField.GetShortNetworkID();
+
+    // --- MAC Header Type ---
     Dect2020MacHeaderType macHeaderType;
-    // packet->PeekHeader(macHeaderType);
-    // NS_LOG_INFO(macHeaderType);
     packet->RemoveHeader(macHeaderType);
 
     if (macHeaderType.GetMacHeaderTypeField() ==
@@ -137,25 +133,35 @@ void
 Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet)
 {
     NS_LOG_INFO(">> ENTER HandleBeaconPacket with UID: " << packet->GetUid());
+
+    FtCandidateInfo* ft = &m_ftCandidates.back();
+
+    // --- Beacon Header ---
     Dect2020BeaconHeader beaconHeader;
     packet->RemoveHeader(beaconHeader);
+    ft->ftBeaconHeader = beaconHeader;
+    ft->networkId = beaconHeader.GetNetworkId();
+    ft->longFtId = beaconHeader.GetTransmitterAddress();
 
-    // uint32_t ftBeaconNetworkId = beaconHeader.GetNetworkId();
-    // uint32_t ftBeaconTransmitterAddress = beaconHeader.GetTransmitterAddress();
-
+    // --- MAC Multiplexing Header ---
     Dect2020MacMuxHeaderShortSduNoPayload muxHeader;
     packet->RemoveHeader(muxHeader);
+    m_lastFtMacMuxHeader = muxHeader;
     IETypeFieldEncoding ieType = muxHeader.GetIeTypeFieldEncoding();
 
+    // --- Network Beacon Message ---
     if (ieType == IETypeFieldEncoding::NETWORK_BEACON_MESSAGE)
     {
         Dect2020NetworkBeaconMessage networkBeaconMessage;
         packet->RemoveHeader(networkBeaconMessage);
+        ft->ftNetworkBeaconMessage = networkBeaconMessage;
 
         // Get the cluster channel id from the network beacon message
         uint16_t ftBeaconNextClusterChannel = networkBeaconMessage.GetNextClusterChannel();
+        ft->clusterChannelId = ftBeaconNextClusterChannel;
 
-        // if this RD is not on the cluster channel, switch to it
+        // if this RD is not on the cluster channel, switch to it. TODO: check association status
+        // before
         if (GetCurrentChannelId() != ftBeaconNextClusterChannel)
         {
             NS_LOG_INFO("Switching to channel: " << ftBeaconNextClusterChannel
@@ -166,6 +172,7 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet)
             m_associationStatus = AssociationStatus::ASSOCIATION_PENDING;
         }
     }
+    // --- Cluster Beacon Message ---
     else if (ieType == IETypeFieldEncoding::CLUSTER_BEACON_MESSAGE)
     {
         auto t = Simulator::Now().GetMilliSeconds();
@@ -174,9 +181,13 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet)
 
         Dect2020ClusterBeaconMessage clusterBeaconMessage;
         packet->RemoveHeader(clusterBeaconMessage);
+        ft->ftClusterBeaconMessage = clusterBeaconMessage;
 
         Dect2020RandomAccessResourceIE randomAccessResourceIE;
         packet->RemoveHeader(randomAccessResourceIE);
+        ft->ftRandomAccessResourceIE = randomAccessResourceIE;
+
+        EvaluateClusterBeacon(clusterBeaconMessage, randomAccessResourceIE);
     }
 }
 
@@ -185,18 +196,37 @@ Dect2020Mac::HandleNetworkBeacon(Dect2020BeaconHeader beaconHeader,
                                  Dect2020NetworkBeaconMessage networkBeaconMsg)
 {
     NS_LOG_INFO(">> ENTER HandleNetworkBeacon");
-    this->SetCurrentChannelId(1657);
-    // uint32_t ftBeaconNetworkId = beaconHeader.GetNetworkId();
-    // uint32_t ftBeaconTransmitterAddress = beaconHeader.GetTransmitterAddress();
 }
 
 void
 Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBeaconMsg,
                                    const Dect2020RandomAccessResourceIE& rarIe)
 {
-    // m_lastSfn = clusterBeaconMsg.GetSystemFrameNumber();
+    FtCandidateInfo* ft = &m_ftCandidates.back();
+    ft->sfn = clusterBeaconMsg.GetSystemFrameNumber();
 
-    // uint16_t startSubslot = rarIe.GetStartSubslot();
+    m_lastSfn = clusterBeaconMsg.GetSystemFrameNumber();
+
+    if (m_associationStatus == AssociationStatus::NOT_ASSOCIATED)
+    {
+        uint16_t startSubslot = rarIe.GetStartSubslot();
+        uint8_t slot = startSubslot / GetSubslotsPerSlot();
+        uint8_t subslot = startSubslot % GetSubslotsPerSlot();
+
+        Time t = m_phy->GetAbsoluteSubslotTime(m_lastSfn, slot, subslot);
+
+        Simulator::Schedule(t, &Dect2020Mac::SendAssociationRequest, this);
+        m_associationStatus = AssociationStatus::ASSOCIATION_PENDING;
+
+        NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << "Association Request an FT 0x"
+                    << std::hex << ft->shortFtId << std::dec << " geplant von " << std::hex <<this->GetShortRadioDeviceId() << std::dec << " für Subslot "
+                    << static_cast<int>(subslot) << " in SFN " << static_cast<int>(m_lastSfn));
+    }
+}
+
+void
+Dect2020Mac::SendAssociationRequest()
+{
 }
 
 Mac48Address
@@ -426,11 +456,11 @@ Dect2020Mac::SendNetworkBeaconOnChannel(uint16_t channelId)
     //             << ": Dect2020Mac::SendNetworkBeaconOnChannel sent Network Beacon on Channel "
     //             << channelId << " with UID " << networkBeacon->GetUid());
 
-    auto subslotTime = m_phy->GetAbsoluteSubslotTime(m_phy->m_currentSfn, 5, 1).GetNanoSeconds();
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Mac::SendNetworkBeaconOnChannel GetAbsoluteSubslotTime(currentSfn, "
-                   "Slot = 5, Subslot = 1) = "
-                << subslotTime);
+    // auto subslotTime = m_phy->GetAbsoluteSubslotTime(m_phy->m_currentSfn, 5, 1).GetNanoSeconds();
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020Mac::SendNetworkBeaconOnChannel GetAbsoluteSubslotTime(currentSfn, "
+    //                "Slot = 5, Subslot = 1) = "
+    //             << subslotTime);
 }
 
 Ptr<Packet>
@@ -608,6 +638,24 @@ Dect2020Mac::GetSubslotsPerSlot()
                                                                      : 16;
 
     return numSubslotsPerSlot;
+}
+
+FtCandidateInfo*
+Dect2020Mac::FindOrCreateFtCandidate(uint16_t shortFtId)
+{
+    for (size_t idx = 0; idx < m_ftCandidates.size(); idx++)
+    {
+        if (m_ftCandidates[idx].shortFtId == shortFtId)
+        {
+            return &m_ftCandidates[idx];
+        }
+    }
+
+    // No candidate found, create one
+    FtCandidateInfo newCandidate;
+    m_ftCandidates.push_back(newCandidate);
+
+    return &m_ftCandidates.back();
 }
 
 void

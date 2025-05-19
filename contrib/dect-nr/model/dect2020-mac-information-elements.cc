@@ -503,6 +503,110 @@ Dect2020RandomAccessResourceIE::GetSeparateChannelAbsoluteCarrierCenterFrequency
 }
 
 // *******************************************************
+//            DECT2020 Association Control IE
+//            # ETSI TS 103 636-4 V2.1.1 6.4.3.18
+// *******************************************************
+
+AssociationControlIE::AssociationControlIE()
+    : m_cbM(false), m_dlDataReception(0), m_ulPeriod(0)
+{
+}
+
+AssociationControlIE::~AssociationControlIE() {}
+
+TypeId
+AssociationControlIE::GetTypeId()
+{
+    static TypeId tid = TypeId("ns3::AssociationControlIE")
+                            .SetParent<Header>()
+                            .SetGroupName("Dect2020")
+                            .AddConstructor<AssociationControlIE>();
+    return tid;
+}
+
+TypeId
+AssociationControlIE::GetInstanceTypeId() const
+{
+    return GetTypeId();
+}
+
+void
+AssociationControlIE::Print(std::ostream& os) const
+{
+    os << "CB_M = " << (m_cbM ? 1 : 0)
+       << ", DLdataReception = " << static_cast<uint32_t>(m_dlDataReception)
+       << ", ULPeriod = " << static_cast<uint32_t>(m_ulPeriod);
+}
+
+uint32_t
+AssociationControlIE::GetSerializedSize() const
+{
+    return 1; // 1 Byte
+}
+
+void
+AssociationControlIE::Serialize(Buffer::Iterator start) const
+{
+    uint8_t byte = 0;
+    if (m_cbM)
+    {
+        byte |= (1 << 7); // Bit 0
+    }
+    byte |= (m_dlDataReception & 0x07) << 4; // Bits 1-3
+    byte |= (m_ulPeriod & 0x0F);             // Bits 4–7
+
+    start.WriteU8(byte);
+}
+
+uint32_t
+AssociationControlIE::Deserialize(Buffer::Iterator start)
+{
+    uint8_t byte = start.ReadU8();
+
+    m_cbM = (byte & 0x80) != 0;
+    m_dlDataReception = (byte >> 4) & 0x07;
+    m_ulPeriod = byte & 0x0F;
+
+    return 1;
+}
+
+void
+AssociationControlIE::SetClusterBeaconMonitoring(bool enable)
+{
+    m_cbM = enable;
+}
+
+bool
+AssociationControlIE::GetClusterBeaconMonitoring() const
+{
+    return m_cbM;
+}
+
+void
+AssociationControlIE::SetDlDataReception(uint8_t code)
+{
+    m_dlDataReception = code & 0x07;
+}
+
+uint8_t
+AssociationControlIE::GetDlDataReception() const
+{
+    return m_dlDataReception;
+}
+
+void
+AssociationControlIE::SetUlPeriod(uint8_t code)
+{
+    m_ulPeriod = code & 0x0F;
+}
+
+uint8_t
+AssociationControlIE::GetUlPeriod() const
+{
+    return m_ulPeriod;
+}
+
+// *******************************************************
 //            DECT2020 Resource Allocation IE
 // *******************************************************
 

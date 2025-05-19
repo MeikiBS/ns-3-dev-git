@@ -2,11 +2,12 @@
 #define DECT2020_MAC_H
 
 #include "dect2020-mac-common-header.h"
+#include "dect2020-mac-information-elements.h"
 #include "dect2020-mac-messages.h"
 #include "dect2020-mac-multiplexing-header.h"
 #include "dect2020-physical-header-field.h"
 #include "dect2020-statistics.h"
-#include "dect2020-mac-information-elements.h"
+#include "dect2020-mac-header-type.h"
 
 #include "ns3/callback.h"
 #include "ns3/mac48-address.h"
@@ -33,6 +34,33 @@ struct ChannelEvaluation
     {
         return free + possible + busy;
     }
+};
+
+struct FtCandidateInfo
+{
+    uint8_t shortNetworkId; // Short Network ID of the FT candidate 
+    uint32_t networkId; // Network ID of the FT candidate
+    uint32_t shortFtId; // Short RD ID of the FT candidate
+    uint32_t longFtId;  // Long RD ID of the FT candidate
+
+    uint16_t clusterChannelId;
+    uint8_t sfn;
+    Time receptionTime;
+    double rssiDbm;
+
+
+    Dect2020PhysicalHeaderField ftPhyHeaderField; // Last received Physical Header Field
+    // Dect2020MacHeaderType ftMacHeaderType;        // Last received MAC Header Type
+    Dect2020BeaconHeader ftBeaconHeader;          // Last received Beacon Header
+    Dect2020UnicastHeader ftUnicastHeader;        // Last received Unicast Header
+    Dect2020NetworkBeaconMessage
+        ftNetworkBeaconMessage; // Last received Network Beacon Message
+    Dect2020ClusterBeaconMessage
+        ftClusterBeaconMessage; // Last received Cluster Beacon Message
+    Dect2020RandomAccessResourceIE
+        ftRandomAccessResourceIE; // Last received Random Access Resource IE
+    // Dect2020MacMuxHeaderShortSduNoPayload
+    //     mftMacMuxHeader; // Last received MAC Multiplexing Header
 };
 
 // Structure to hold the context for subslot scanning
@@ -167,7 +195,8 @@ class Dect2020Mac : public Object
     void HandleBeaconPacket(Ptr<Packet> packet);
     void HandleNetworkBeacon(Dect2020BeaconHeader beaconHeader,
                              Dect2020NetworkBeaconMessage networkBeaconMsg);
-    void EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBeaconMsg, const Dect2020RandomAccessResourceIE& rarIe);
+    void EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBeaconMsg,
+                               const Dect2020RandomAccessResourceIE& rarIe);
 
     Dect2020PhysicalHeaderField CreatePhysicalHeaderField();
 
@@ -178,11 +207,12 @@ class Dect2020Mac : public Object
                                         uint32_t numSubslots);
 
     uint8_t GetSubslotsPerSlot();
+    FtCandidateInfo* FindOrCreateFtCandidate(uint16_t shortFtId);
+    void SendAssociationRequest();
 
-    uint32_t m_clusterChannelId =
-        0; // Number of the Channel that is currently the cluster Channel
-    uint32_t m_currentChannelId =
-        0; // Number of the Channel that the RD is currently connected with (e.g. for scanning/Beacon tx)
+    uint32_t m_clusterChannelId = 0; // Number of the Channel that is currently the cluster Channel
+    uint32_t m_currentChannelId = 0; // Number of the Channel that the RD is currently connected
+                                     // with (e.g. for scanning/Beacon tx)
 
     uint8_t m_subcarrierScalingFactor = 1;       // Subcarrier Scaling Factor
     uint8_t m_fourierTransformScalingFactor = 1; // Fourier Transform Scaling Factor
@@ -193,7 +223,22 @@ class Dect2020Mac : public Object
         ClusterBeaconPeriod::CLUSTER_PERIOD_100MS; // Cluster Beacon Period
 
     AssociationStatus m_associationStatus = NOT_ASSOCIATED;
+    std::vector<FtCandidateInfo> m_ftCandidates;
 
+
+    // Last received header fields
+    Dect2020PhysicalHeaderField m_lastFtPhyHeaderField; // Last received Physical Header Field
+    Dect2020MacHeaderType m_lastFtMacHeaderType;        // Last received MAC Header Type
+    Dect2020BeaconHeader m_lastFtBeaconHeader;          // Last received Beacon Header
+    Dect2020UnicastHeader m_lastFtUnicastHeader;        // Last received Unicast Header
+    Dect2020NetworkBeaconMessage
+        m_lastFtNetworkBeaconMessage; // Last received Network Beacon Message
+    Dect2020ClusterBeaconMessage
+        m_lastFtClusterBeaconMessage; // Last received Cluster Beacon Message
+    Dect2020RandomAccessResourceIE
+        m_lastFtRandomAccessResourceIE; // Last received Random Access Resource IE
+    Dect2020MacMuxHeaderShortSduNoPayload
+        m_lastFtMacMuxHeader; // Last received MAC Multiplexing Header
 
     // ETSI TS 103 636-4 V2.1.1 #7.2-1
     const double RSSI_THRESHOLD_MIN = -85; // dBm
@@ -205,8 +250,8 @@ class Dect2020Mac : public Object
 
     std::map<uint32_t, ChannelEvaluation> m_scanEvaluations;
     uint32_t m_completedScans = 0;
-    uint8_t m_nextAvailableSubslot = 2; // First subslot to be used by RD is 2 --> Subslot 0 and 1 are reserved for 
-                                        // the cluster beacon transmission
+    uint8_t m_nextAvailableSubslot = 2; // First subslot to be used by RD is 2 --> Subslot 0 and 1
+                                        // are reserved for the cluster beacon transmission
     uint8_t m_lastSfn;
 
   private:

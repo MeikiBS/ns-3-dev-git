@@ -2,8 +2,8 @@
 #define DECT2020_MAC_INFORMATION_ELEMENTS_H
 
 #include "ns3/header.h"
-#include <cstdint>
 
+#include <cstdint>
 
 namespace ns3
 {
@@ -94,17 +94,52 @@ class Dect2020RandomAccessResourceIE : public Header
     bool m_lengthType;    // 1 Bit. 0 = length in subslots, 1 = length in slots
     uint8_t m_raraLength; // 7 Bit. The length of the random access resource allocation in subslots
                           // or slots
-    bool m_maxRachLengthType;                                 // 1 Bit. 0 = length in subslots, 1 = length in slots
-    uint8_t m_maxRachLength;                                  // 4 Bit
-    uint8_t m_cwMin_sig;                                      // 3 Bit
-    bool m_dectDelay;                                         // 1 Bit
-    uint8_t m_responseWindow;                                 // 4 Bit
-    uint8_t m_cwMax_sig;                                      // 3 Bit
-    uint8_t m_repitition;                                     // 8 Bit
-    uint8_t m_validity;                                       // 8 Bit
-    uint8_t m_systemFrameNumberValue;                         // 8 Bit
+    bool m_maxRachLengthType;         // 1 Bit. 0 = length in subslots, 1 = length in slots
+    uint8_t m_maxRachLength;          // 4 Bit
+    uint8_t m_cwMin_sig;              // 3 Bit
+    bool m_dectDelay;                 // 1 Bit
+    uint8_t m_responseWindow;         // 4 Bit
+    uint8_t m_cwMax_sig;              // 3 Bit
+    uint8_t m_repitition;             // 8 Bit
+    uint8_t m_validity;               // 8 Bit
+    uint8_t m_systemFrameNumberValue; // 8 Bit
     uint16_t m_channelAbsoluteCarrierCentryFrequency;         // 13 Bit
     uint16_t m_separateChannelAbsoluteCarrierCentryFrequency; // 13 Bit
+};
+
+// *******************************************************
+//            DECT2020 Association Control IE
+//            # ETSI TS 103 636-4 V2.1.1 6.4.3.18
+// *******************************************************
+
+class AssociationControlIE : public Header
+{
+  public:
+    AssociationControlIE();
+    virtual ~AssociationControlIE();
+
+    // Überladene Methoden vom Header
+    static TypeId GetTypeId();
+    virtual TypeId GetInstanceTypeId() const override;
+    virtual uint32_t GetSerializedSize() const;
+    virtual void Serialize(Buffer::Iterator start) const;
+    virtual uint32_t Deserialize(Buffer::Iterator start);
+    virtual void Print(std::ostream& os) const;
+
+    // Getter / Setter
+    void SetClusterBeaconMonitoring(bool enable);
+    bool GetClusterBeaconMonitoring() const;
+
+    void SetDlDataReception(uint8_t code);
+    uint8_t GetDlDataReception() const;
+
+    void SetUlPeriod(uint8_t code);
+    uint8_t GetUlPeriod() const;
+
+  private:
+    bool m_cbM;                // 1 Bit. Cluster Beacon Message Reception
+    uint8_t m_dlDataReception; // 3 Bit
+    uint8_t m_ulPeriod;        // 4 Bit
 };
 
 // *******************************************************

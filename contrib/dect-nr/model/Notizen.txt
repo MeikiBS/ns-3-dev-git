@@ -29,3 +29,7 @@ Fragen:
 - Was ist eine realistische Network Beacon Period und wird ein Network Beacon auf allen Kanälen eines Bands gesendet?
 
 - KI Nutzung wie/wo dokumentieren?
+
+
+Fragen neu 21.05.
+- 

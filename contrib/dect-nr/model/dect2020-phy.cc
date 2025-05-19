@@ -437,10 +437,10 @@ Dect2020Phy::ProcessSubslot(uint32_t slotId, uint32_t subslotId)
     Subslot* subslot = GetCurrentSubslot(this->m_mac->m_clusterChannelId);
     (*subslot).rssi = 0;
 
-    NS_LOG_INFO("Device 0x" << std::hex << this->m_mac->GetShortRadioDeviceId() << std::dec
-                            << " Processing Subslot " << subslotId << " in Slot " << slotId
-                            << " at time " << std::fixed << Simulator::Now().GetNanoSeconds()
-                            << " with current SFN " << static_cast<int>(m_currentSfn));
+    // NS_LOG_INFO("Device 0x" << std::hex << this->m_mac->GetShortRadioDeviceId() << std::dec
+    //                         << " Processing Subslot " << subslotId << " in Slot " << slotId
+    //                         << " at time " << std::fixed << Simulator::Now().GetNanoSeconds()
+    //                         << " with current SFN " << static_cast<int>(m_currentSfn));
 }
 
 Slot*
@@ -536,13 +536,15 @@ Dect2020Phy::GetAbsoluteSubslotTime(uint8_t targetSfn, uint8_t slot, uint8_t sub
 
     Time offset = deltaFrames * frameDuration + slot * slotDuration + subslot * subslotDuration;
 
-    auto fff = offset.GetNanoSeconds();
-    auto fst = m_frameStartTime.GetNanoSeconds();
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": DEBUG: GetAbsoluteSubslotTime() targetSfn = " << static_cast<int>(targetSfn)
-                << ", m_currentSfn = " << static_cast<int>(m_currentSfn) << ", slot = "
-                << static_cast<int>(slot) << ", subslot = " << static_cast<int>(subslot)
-                << ", m_frameStartTime + offset = " << fst + fff);
+    // DEBUG
+    // auto fff = offset.GetNanoSeconds();
+    // auto fst = m_frameStartTime.GetNanoSeconds();
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": DEBUG: GetAbsoluteSubslotTime() targetSfn = " << static_cast<int>(targetSfn)
+    //             << ", m_currentSfn = " << static_cast<int>(m_currentSfn) << ", slot = "
+    //             << static_cast<int>(slot) << ", subslot = " << static_cast<int>(subslot)
+    //             << ", m_frameStartTime + offset = " << fst + fff);
+    // ###############################
 
     return m_frameStartTime + offset;
 }
