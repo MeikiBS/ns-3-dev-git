@@ -507,31 +507,31 @@ Dect2020RandomAccessResourceIE::GetSeparateChannelAbsoluteCarrierCenterFrequency
 //            # ETSI TS 103 636-4 V2.1.1 6.4.3.18
 // *******************************************************
 
-AssociationControlIE::AssociationControlIE()
+Dect2020AssociationControlIE::Dect2020AssociationControlIE()
     : m_cbM(false), m_dlDataReception(0), m_ulPeriod(0)
 {
 }
 
-AssociationControlIE::~AssociationControlIE() {}
+Dect2020AssociationControlIE::~Dect2020AssociationControlIE() {}
 
 TypeId
-AssociationControlIE::GetTypeId()
+Dect2020AssociationControlIE::GetTypeId()
 {
-    static TypeId tid = TypeId("ns3::AssociationControlIE")
+    static TypeId tid = TypeId("ns3::Dect2020AssociationControlIE")
                             .SetParent<Header>()
                             .SetGroupName("Dect2020")
-                            .AddConstructor<AssociationControlIE>();
+                            .AddConstructor<Dect2020AssociationControlIE>();
     return tid;
 }
 
 TypeId
-AssociationControlIE::GetInstanceTypeId() const
+Dect2020AssociationControlIE::GetInstanceTypeId() const
 {
     return GetTypeId();
 }
 
 void
-AssociationControlIE::Print(std::ostream& os) const
+Dect2020AssociationControlIE::Print(std::ostream& os) const
 {
     os << "CB_M = " << (m_cbM ? 1 : 0)
        << ", DLdataReception = " << static_cast<uint32_t>(m_dlDataReception)
@@ -539,13 +539,13 @@ AssociationControlIE::Print(std::ostream& os) const
 }
 
 uint32_t
-AssociationControlIE::GetSerializedSize() const
+Dect2020AssociationControlIE::GetSerializedSize() const
 {
     return 1; // 1 Byte
 }
 
 void
-AssociationControlIE::Serialize(Buffer::Iterator start) const
+Dect2020AssociationControlIE::Serialize(Buffer::Iterator start) const
 {
     uint8_t byte = 0;
     if (m_cbM)
@@ -559,7 +559,7 @@ AssociationControlIE::Serialize(Buffer::Iterator start) const
 }
 
 uint32_t
-AssociationControlIE::Deserialize(Buffer::Iterator start)
+Dect2020AssociationControlIE::Deserialize(Buffer::Iterator start)
 {
     uint8_t byte = start.ReadU8();
 
@@ -570,38 +570,39 @@ AssociationControlIE::Deserialize(Buffer::Iterator start)
     return 1;
 }
 
+
 void
-AssociationControlIE::SetClusterBeaconMonitoring(bool enable)
+Dect2020AssociationControlIE::SetClusterBeaconMonitoring(bool enable)
 {
     m_cbM = enable;
 }
 
 bool
-AssociationControlIE::GetClusterBeaconMonitoring() const
+Dect2020AssociationControlIE::GetClusterBeaconMonitoring() const
 {
     return m_cbM;
 }
 
 void
-AssociationControlIE::SetDlDataReception(uint8_t code)
+Dect2020AssociationControlIE::SetDlDataReception(uint8_t code)
 {
     m_dlDataReception = code & 0x07;
 }
 
 uint8_t
-AssociationControlIE::GetDlDataReception() const
+Dect2020AssociationControlIE::GetDlDataReception() const
 {
     return m_dlDataReception;
 }
 
 void
-AssociationControlIE::SetUlPeriod(uint8_t code)
+Dect2020AssociationControlIE::SetUlPeriod(uint8_t code)
 {
     m_ulPeriod = code & 0x0F;
 }
 
 uint8_t
-AssociationControlIE::GetUlPeriod() const
+Dect2020AssociationControlIE::GetUlPeriod() const
 {
     return m_ulPeriod;
 }

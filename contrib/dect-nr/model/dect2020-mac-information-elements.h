@@ -112,11 +112,11 @@ class Dect2020RandomAccessResourceIE : public Header
 //            # ETSI TS 103 636-4 V2.1.1 6.4.3.18
 // *******************************************************
 
-class AssociationControlIE : public Header
+class Dect2020AssociationControlIE : public Header
 {
   public:
-    AssociationControlIE();
-    virtual ~AssociationControlIE();
+    Dect2020AssociationControlIE();
+    virtual ~Dect2020AssociationControlIE();
 
     // Überladene Methoden vom Header
     static TypeId GetTypeId();
@@ -127,6 +127,9 @@ class AssociationControlIE : public Header
     virtual void Print(std::ostream& os) const;
 
     // Getter / Setter
+
+    // 0: The associated RD on maintains cluster beacon message reception.
+    // 1: The associated RD on does not maintains cluster beacon message reception
     void SetClusterBeaconMonitoring(bool enable);
     bool GetClusterBeaconMonitoring() const;
 

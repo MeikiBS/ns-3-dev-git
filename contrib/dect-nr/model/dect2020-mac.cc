@@ -218,15 +218,76 @@ Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBe
         Simulator::Schedule(t, &Dect2020Mac::SendAssociationRequest, this);
         m_associationStatus = AssociationStatus::ASSOCIATION_PENDING;
 
-        NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << "Association Request an FT 0x"
-                    << std::hex << ft->shortFtId << std::dec << " geplant von " << std::hex <<this->GetShortRadioDeviceId() << std::dec << " für Subslot "
-                    << static_cast<int>(subslot) << " in SFN " << static_cast<int>(m_lastSfn));
+        NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                    << "Association Request an FT 0x" << std::hex << ft->shortFtId << std::dec
+                    << " geplant von " << std::hex << this->GetShortRadioDeviceId() << std::dec
+                    << " für Subslot " << static_cast<int>(subslot) << " in SFN "
+                    << static_cast<int>(m_lastSfn));
     }
 }
 
 void
 Dect2020Mac::SendAssociationRequest()
 {
+    // Get the latest FT candidate
+    FtCandidateInfo* ft = &m_ftCandidates.back();
+
+    Ptr<Packet> packet = Create<Packet>();
+
+    // --- Association Control IE ---
+    Dect2020AssociationControlIE associationControlIE;
+    associationControlIE.SetClusterBeaconMonitoring(0);
+    associationControlIE.SetDlDataReception(0);
+    associationControlIE.SetUlPeriod(0);
+
+    packet->AddHeader(associationControlIE);
+
+    // --- Association Request Message ---
+    Dect2020AssociationRequestMessage associationRequestMessage;
+    associationRequestMessage.SetSetupCause(0); // Initial association
+    associationRequestMessage.SetNumberOfFlows(0);
+    associationRequestMessage.SetPowerConstraints(0);
+    associationRequestMessage.SetFtMode(0);
+    associationRequestMessage.SetCurrent(0);
+    associationRequestMessage.SetHarqProcessesTx(0);
+    associationRequestMessage.SetMaxHarqReTxDelay(0);
+    associationRequestMessage.SetHarqProcessesRx(0);
+    associationRequestMessage.SetMaxHarqReRxDelay(0);
+    associationRequestMessage.SetFlowId(0);
+
+    packet->AddHeader(associationRequestMessage);
+
+    // --- MAC Multiplexing Header ---
+    Dect2020MacMuxHeaderShortSduNoPayload muxHeader;
+    muxHeader.SetMacExtensionFieldEncoding(0);
+    muxHeader.SetLengthField(0);
+    muxHeader.SetIeTypeFieldEncoding(IETypeFieldEncoding::ASSOCIATION_REQUEST_MESSAGE);
+
+    packet->AddHeader(muxHeader);
+
+    // --- Unicast Header ---
+    Dect2020UnicastHeader unicastHeader;
+    unicastHeader.SetReset(0);
+    unicastHeader.SetSequenceNumber(0);
+    unicastHeader.SetReceiverAddress(ft->longFtId);
+    unicastHeader.SetTransmitterAddress(this->GetLongRadioDeviceId());
+
+    packet->AddHeader(unicastHeader);
+
+    // --- MAC Header Type ---
+    Dect2020MacHeaderType macHeaderType;
+    macHeaderType.SetVersion(0);
+    macHeaderType.SetMacSecurity(Dect2020MacHeaderType::MacSecurityField::MAC_SECURITY_NOT_USED);
+    macHeaderType.SetMacHeaderTypeField(Dect2020MacHeaderType::MacHeaderTypeField::UNICAST_HEADER);
+
+    packet->AddHeader(macHeaderType);
+
+    // --- Physical Header Field ---
+    Dect2020PhysicalHeaderField physicalHeaderField =
+        CreatePhysicalHeaderField(1, packet->GetSize());
+    physicalHeaderField.SetShortNetworkID(ft->shortNetworkId);
+
+    m_phy->Send(packet, physicalHeaderField); // Send the packet to the PHY
 }
 
 Mac48Address
@@ -452,13 +513,14 @@ Dect2020Mac::SendNetworkBeaconOnChannel(uint16_t channelId)
 
     m_phy->Send(networkBeacon, CreatePhysicalHeaderField(1, networkBeacon->GetSize()));
 
-    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": Dect2020Mac::SendNetworkBeaconOnChannel sent Network Beacon on Channel "
-    //             << channelId << " with UID " << networkBeacon->GetUid());
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Dect2020Mac::SendNetworkBeaconOnChannel sent Network Beacon on Channel "
+                << channelId << " with UID " << networkBeacon->GetUid());
 
     // auto subslotTime = m_phy->GetAbsoluteSubslotTime(m_phy->m_currentSfn, 5, 1).GetNanoSeconds();
     // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": Dect2020Mac::SendNetworkBeaconOnChannel GetAbsoluteSubslotTime(currentSfn, "
+    //             << ": Dect2020Mac::SendNetworkBeaconOnChannel GetAbsoluteSubslotTime(currentSfn,
+    //             "
     //                "Slot = 5, Subslot = 1) = "
     //             << subslotTime);
 }
