@@ -77,10 +77,12 @@ class Dect2020Phy : public SpectrumPhy
     Ptr<Dect2020Channel> m_dect2020Channel;
     uint16_t GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex);  // In bits
     double CalculateTxDurationNs(Dect2020PhysicalHeaderField physicalHeaderField);
+    Time GetAbsoluteSubslotTime(uint8_t targetSfn, uint8_t slot, uint8_t subslot) const;
 
 
     uint8_t m_currentSfn = 0;
     uint16_t m_currentAbsoluteSubslot = 0;  // The absolute subslot number in the frame
+    Time m_frameStartTime;
 
   private:
     bool m_isFrameTimerRunning = false;

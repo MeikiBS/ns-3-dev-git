@@ -171,7 +171,7 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet)
         auto t = Simulator::Now().GetMilliSeconds();
         NS_LOG_INFO(t);
         Dect2020Statistics::IncrementClusterBeaconReception();
-        
+
         Dect2020ClusterBeaconMessage clusterBeaconMessage;
         packet->RemoveHeader(clusterBeaconMessage);
 
@@ -191,11 +191,12 @@ Dect2020Mac::HandleNetworkBeacon(Dect2020BeaconHeader beaconHeader,
 }
 
 void
-Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBeaconMsg, const Dect2020RandomAccessResourceIE& rarIe)
+Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBeaconMsg,
+                                   const Dect2020RandomAccessResourceIE& rarIe)
 {
-    m_lastSfn = clusterBeaconMsg.GetSystemFrameNumber();
+    // m_lastSfn = clusterBeaconMsg.GetSystemFrameNumber();
 
-    uint16_t startSubslot = rarIe.GetStartSubslot();
+    // uint16_t startSubslot = rarIe.GetStartSubslot();
 }
 
 Mac48Address
@@ -421,9 +422,15 @@ Dect2020Mac::SendNetworkBeaconOnChannel(uint16_t channelId)
 
     m_phy->Send(networkBeacon, CreatePhysicalHeaderField(1, networkBeacon->GetSize()));
 
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020Mac::SendNetworkBeaconOnChannel sent Network Beacon on Channel "
+    //             << channelId << " with UID " << networkBeacon->GetUid());
+
+    auto subslotTime = m_phy->GetAbsoluteSubslotTime(m_phy->m_currentSfn, 5, 1).GetNanoSeconds();
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Mac::SendNetworkBeaconOnChannel sent Network Beacon on Channel "
-                << channelId << " with UID " << networkBeacon->GetUid());
+                << ": Dect2020Mac::SendNetworkBeaconOnChannel GetAbsoluteSubslotTime(currentSfn, "
+                   "Slot = 5, Subslot = 1) = "
+                << subslotTime);
 }
 
 Ptr<Packet>
@@ -590,6 +597,17 @@ Dect2020Mac::ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> 
         // Call the completion callback with the evaluation
         context->onComplete(context->evaluation);
     }
+}
+
+uint8_t
+Dect2020Mac::GetSubslotsPerSlot()
+{
+    uint32_t numSubslotsPerSlot = (m_subcarrierScalingFactor == 1)   ? 2
+                                  : (m_subcarrierScalingFactor == 2) ? 4
+                                  : (m_subcarrierScalingFactor == 4) ? 8
+                                                                     : 16;
+
+    return numSubslotsPerSlot;
 }
 
 void

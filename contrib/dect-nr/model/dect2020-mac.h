@@ -177,6 +177,8 @@ class Dect2020Mac : public Object
     void ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> context,
                                         uint32_t numSubslots);
 
+    uint8_t GetSubslotsPerSlot();
+
     uint32_t m_clusterChannelId =
         0; // Number of the Channel that is currently the cluster Channel
     uint32_t m_currentChannelId =

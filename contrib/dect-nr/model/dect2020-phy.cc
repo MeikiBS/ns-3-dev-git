@@ -83,8 +83,7 @@ Dect2020Phy::Start()
         Dect2020ChannelManager::GetValidChannels(device->GetBandNumber()).front();
     m_dect2020Channel = startChannel;
     // this->m_mac->SetCurrentChannelId(m_dect2020Channel->m_channelId);
-    
-    
+
     uint32_t seed = this->m_mac->GetLongRadioDeviceId();
     std::srand(seed);
     uint16_t randomChannelId = 1657 + (std::rand() % 21);
@@ -160,7 +159,8 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
 
     // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
     //             << ": Dect2020Phy::Send(): Physical Header hinzugefügt bei Paket mit UID "
-    //             << params->txPacket->GetUid() << " und neuer Größe " << params->txPacket->GetSize()
+    //             << params->txPacket->GetUid() << " und neuer Größe " <<
+    //             params->txPacket->GetSize()
     //             << " Bytes von 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
 
     Time duration = Time(NanoSeconds(CalculateTxDurationNs(physicalHeader)));
@@ -370,6 +370,7 @@ Dect2020Phy::StartFrameTimer()
     // auto currentTime = Simulator::Now().GetMicroSeconds();
     double slotDuration = 416666;   // 0,41667 ms in ns
     uint16_t frameDuration = 10000; // 10 ms in µs
+    m_frameStartTime = Simulator::Now();
 
     for (uint32_t slot = 0; slot < 24; slot++)
     {
@@ -390,7 +391,7 @@ Dect2020Phy::StartFrameTimer()
 void
 Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 {
-    if(slot == 0)
+    if (slot == 0)
     {
         m_currentSfn = (m_currentSfn + 1) % 256;
     }
@@ -405,7 +406,7 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
                                   : (subcarrierScalingFactor == 4) ? 8
                                                                    : 16;
 
-    double subslotDuration = 416667 / numSubslotsPerSlot; // Subslot Duration in µs
+    double subslotDuration = 416666 / numSubslotsPerSlot; // Subslot Duration in µs
 
     for (uint32_t subslot = 0; subslot < numSubslotsPerSlot; subslot++)
     {
@@ -413,7 +414,12 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
         //             << subslot << " in Slot " << slot << " at Time " << std::fixed
         //             << (slotStartTime + subslot * subslotDuration) << " and subslotDuration "
         //             << subslotDuration);
-        Simulator::Schedule(NanoSeconds(slotStartTime + (subslot * subslotDuration)),
+        // Simulator::Schedule(NanoSeconds(slotStartTime + (subslot * subslotDuration)),
+        //                     &Dect2020Phy::ProcessSubslot,
+        //                     this,
+        //                     slot,
+        //                     subslot);
+        Simulator::Schedule(NanoSeconds(subslot * subslotDuration),
                             &Dect2020Phy::ProcessSubslot,
                             this,
                             slot,
@@ -431,9 +437,10 @@ Dect2020Phy::ProcessSubslot(uint32_t slotId, uint32_t subslotId)
     Subslot* subslot = GetCurrentSubslot(this->m_mac->m_clusterChannelId);
     (*subslot).rssi = 0;
 
-    // NS_LOG_INFO("Processing Subslot " << std::fixed << subslot << " in Slot " << slot << " at
-    // time "
-    //                                   << std::fixed << Simulator::Now().GetMicroSeconds());
+    NS_LOG_INFO("Device 0x" << std::hex << this->m_mac->GetShortRadioDeviceId() << std::dec
+                            << " Processing Subslot " << subslotId << " in Slot " << slotId
+                            << " at time " << std::fixed << Simulator::Now().GetNanoSeconds()
+                            << " with current SFN " << static_cast<int>(m_currentSfn));
 }
 
 Slot*
@@ -512,6 +519,32 @@ Dect2020Phy::CalculateTxDurationNs(Dect2020PhysicalHeaderField physicalHeaderFie
     }
 
     return 0;
+}
+
+Time
+Dect2020Phy::GetAbsoluteSubslotTime(uint8_t targetSfn, uint8_t slot, uint8_t subslot) const
+{
+    // uint32_t slotsPerFrame = 24;
+    uint32_t subslotsPerSlot = this->m_mac->GetSubslotsPerSlot();
+    // uint32_t subslotsPerFrame = slotsPerFrame * subslotsPerSlot;
+
+    Time frameDuration = MicroSeconds(10000);                     // 10 ms in µs
+    Time slotDuration = NanoSeconds(416666);                      // 0,41667 ms in ns
+    Time subslotDuration = NanoSeconds(416666 / subslotsPerSlot); // Subslot Duration in ns
+
+    uint8_t deltaFrames = (targetSfn - m_currentSfn) % 256;
+
+    Time offset = deltaFrames * frameDuration + slot * slotDuration + subslot * subslotDuration;
+
+    auto fff = offset.GetNanoSeconds();
+    auto fst = m_frameStartTime.GetNanoSeconds();
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": DEBUG: GetAbsoluteSubslotTime() targetSfn = " << static_cast<int>(targetSfn)
+                << ", m_currentSfn = " << static_cast<int>(m_currentSfn) << ", slot = "
+                << static_cast<int>(slot) << ", subslot = " << static_cast<int>(subslot)
+                << ", m_frameStartTime + offset = " << fst + fff);
+
+    return m_frameStartTime + offset;
 }
 
 } // namespace ns3
