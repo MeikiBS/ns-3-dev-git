@@ -67,12 +67,13 @@ struct AssociatedPtInfo
     uint8_t numberOfFlows;
     bool powerConstraints;
     bool ftMode;
-    uint8_t harqProcessesTx;                 
-    uint8_t maxHarqReTxDelay;                
-    uint8_t harqProcessesRx;                
-    uint8_t maxHarqReRxDelay;                
-    uint8_t flowId;                         
+    uint8_t harqProcessesTx;
+    uint8_t maxHarqReTxDelay;
+    uint8_t harqProcessesRx;
+    uint8_t maxHarqReRxDelay;
+    uint8_t flowId;
     bool cb_m;
+    Dect2020RdCapabilityIE rdCapabilityIe;
 
     double lastRssi;
 };
@@ -215,8 +216,10 @@ class Dect2020Mac : public Object
                                const Dect2020RandomAccessResourceIE& rarIe,
                                FtCandidateInfo* ft);
 
-                               // assoInitiatorLongRdId is the long radio device id of the RD which has sent the Association Request
+    // assoInitiatorLongRdId is the long radio device id of the RD which has sent the Association
+    // Request
     void ProcessAssociationRequest(Dect2020AssociationRequestMessage assoReqMsg,
+                                   Dect2020RdCapabilityIE rdCapabilityIe,
                                    Dect2020AssociationControlIE assoControlIe,
                                    uint32_t assoInitiatorLongRdId);
 
@@ -231,6 +234,8 @@ class Dect2020Mac : public Object
     uint8_t GetSubslotsPerSlot();
     FtCandidateInfo* FindOrCreateFtCandidate(uint16_t shortFtId);
     void SendAssociationRequest(FtCandidateInfo* ft);
+    Time CalculcateTimeOffsetFromCurrentSubslot(uint32_t delayInSubslots);
+    void SendAssociationResponse(AssociatedPtInfo ptInfo);
 
     uint32_t m_clusterChannelId = 0; // Number of the Channel that is currently the cluster Channel
     uint32_t m_currentChannelId = 0; // Number of the Channel that the RD is currently connected
@@ -238,6 +243,7 @@ class Dect2020Mac : public Object
 
     uint8_t m_subcarrierScalingFactor = 1;       // Subcarrier Scaling Factor
     uint8_t m_fourierTransformScalingFactor = 1; // Fourier Transform Scaling Factor
+    bool m_dectDelay = false; // DECT Delay
 
     NetworkBeaconPeriod m_networkBeaconPeriod =
         NetworkBeaconPeriod::NETWORK_PERIOD_50MS; // Network Beacon Period

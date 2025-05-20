@@ -508,6 +508,7 @@ Dect2020RandomAccessResourceIE::GetSeparateChannelAbsoluteCarrierCenterFrequency
 
 Dect2020RdCapabilityIE::Dect2020RdCapabilityIE()
 {
+    m_numOfPhyCapabilities = 0;
 }
 
 Dect2020RdCapabilityIE::~Dect2020RdCapabilityIE()

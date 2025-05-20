@@ -34,9 +34,6 @@ Dect2020Mac::Dect2020Mac()
 {
     NS_LOG_FUNCTION(this);
 
-    // TODO: Channel sucht sich ein RD selbst aus
-    // m_clusterChannelId = 1658;
-
     InitializeDevice(); // Initialize the Device
 }
 
@@ -231,11 +228,15 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
         Dect2020AssociationRequestMessage associationRequestMessage;
         packet->RemoveHeader(associationRequestMessage);
 
+        Dect2020RdCapabilityIE rdCapabilityIE;
+        packet->RemoveHeader(rdCapabilityIE);
+
         Dect2020AssociationControlIE associationControlIE;
         packet->RemoveHeader(associationControlIE);
 
         // device is an FT --> process the association request
         ProcessAssociationRequest(associationRequestMessage,
+                                  rdCapabilityIE,
                                   associationControlIE,
                                   transmitterAddress);
     }
@@ -255,6 +256,7 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
 
 void
 Dect2020Mac::ProcessAssociationRequest(Dect2020AssociationRequestMessage assoReqMsg,
+                                       Dect2020RdCapabilityIE rdCapabilityIe,
                                        Dect2020AssociationControlIE assoControlIe,
                                        uint32_t assoInitiatorLongRdId)
 {
@@ -270,8 +272,38 @@ Dect2020Mac::ProcessAssociationRequest(Dect2020AssociationRequestMessage assoReq
     ptInfo.maxHarqReRxDelay = assoReqMsg.GetMaxHarqReRxDelay();
     ptInfo.flowId = assoReqMsg.GetFlowId();
     ptInfo.cb_m = assoControlIe.GetClusterBeaconMonitoring() == 1 ? true : false;
+    ptInfo.rdCapabilityIe = rdCapabilityIe;
+
+    m_associatedPtDevices.push_back(ptInfo);
 
     // TODO: implement logic to accept or reject device. Currently every device is accepted
+
+    // calculate the time to send the association response. DECT_Delay == 0 --> subslot n + HARQ
+    // feedback delay +1
+    uint32_t subslotsPerFrame = GetSubslotsPerSlot() * 24;
+    ;
+    uint32_t currentAbsSubslot = m_phy->GetCurrentAbsoluteSubslot();
+
+    uint8_t harqDelay = rdCapabilityIe.GetHarqFeedbackDelay();
+    uint32_t responseAbsSubslot;
+
+    if (m_dectDelay == 0)
+    {
+        responseAbsSubslot = currentAbsSubslot + harqDelay + 1;
+    }
+    else
+    {
+        responseAbsSubslot = currentAbsSubslot + (subslotsPerFrame / 2); // 0.5 frame later
+    }
+
+    Time t = CalculcateTimeOffsetFromCurrentSubslot(responseAbsSubslot - currentAbsSubslot);
+    Simulator::Schedule(t, &Dect2020Mac::SendAssociationResponse, this, ptInfo);
+}
+
+void
+Dect2020Mac::SendAssociationResponse(AssociatedPtInfo ptInfo)
+{
+    NS_LOG_INFO("SendAssociationResponse");
 }
 
 void
@@ -323,6 +355,29 @@ Dect2020Mac::SendAssociationRequest(FtCandidateInfo* ft)
 
     packet->AddHeader(associationControlIE);
 
+    // --- RD Capability IE ---
+    Dect2020RdCapabilityIE rdCapabilityIE;
+    rdCapabilityIE.SetRelease(2);
+    rdCapabilityIE.SetGroupAssignment(0);
+    rdCapabilityIE.SetPaging(0);
+    rdCapabilityIE.SetOperatingModes(0); // PT only
+    rdCapabilityIE.SetMesh(0);
+    rdCapabilityIE.SetScheduledAccessDataTransfer(0);
+    rdCapabilityIE.SetMacSecurity(0);
+    rdCapabilityIE.SetDlcServiceType(0);
+    rdCapabilityIE.SetRdPowerClass(0);
+    rdCapabilityIE.SetMaxNssFoRx(0);
+    rdCapabilityIE.SetRxForTxDiversity(0);
+    rdCapabilityIE.SetRxGain(5); // 0 dB
+    rdCapabilityIE.SetMaxMcs(0); // MCS 0
+    rdCapabilityIE.SetSoftBufferSize(0);
+    rdCapabilityIE.SetNumOfHarqProcesses(0);
+    rdCapabilityIE.SetHarqFeedbackDelay(0);
+    rdCapabilityIE.SetDDelay(0);
+    rdCapabilityIE.SetHalfDulp(0);
+
+    packet->AddHeader(rdCapabilityIE);
+
     // --- Association Request Message ---
     Dect2020AssociationRequestMessage associationRequestMessage;
     associationRequestMessage.SetSetupCause(0); // Initial association
@@ -350,10 +405,7 @@ Dect2020Mac::SendAssociationRequest(FtCandidateInfo* ft)
     Dect2020UnicastHeader unicastHeader;
     unicastHeader.SetReset(0);
     unicastHeader.SetSequenceNumber(0);
-    NS_LOG_INFO("DEBUG: ft->longFtId == 0x" << std::hex << ft->longFtId);
     unicastHeader.SetReceiverAddress(ft->longFtId);
-    NS_LOG_INFO("DEBUG: unicastHeader == 0x" << std::hex << unicastHeader.GetReceiverAddress());
-
     unicastHeader.SetTransmitterAddress(this->GetLongRadioDeviceId());
 
     packet->AddHeader(unicastHeader);
@@ -371,10 +423,43 @@ Dect2020Mac::SendAssociationRequest(FtCandidateInfo* ft)
         CreatePhysicalHeaderField(1, packet->GetSize());
     physicalHeaderField.SetShortNetworkID(m_potentialShortNetworkId);
 
-    NS_LOG_INFO("DEBUG: Sending Association Request to FT 0x" << std::hex << ft->longFtId
-                                                              << " with UID: " << packet->GetUid());
+    NS_LOG_INFO("DEBUG: Sending Association Request to FT 0x"
+                << std::hex << ft->longFtId << " with UID: " << std::dec << packet->GetUid());
 
     m_phy->Send(packet, physicalHeaderField); // Send the packet to the PHY
+}
+
+Time
+Dect2020Mac::CalculcateTimeOffsetFromCurrentSubslot(uint32_t delayInSubslots)
+{
+    uint32_t subslotsPerFrame = GetSubslotsPerSlot() * 24;
+    uint32_t subslotsPerSlot = GetSubslotsPerSlot();
+    uint32_t currentAbsSubslot = m_phy->GetCurrentAbsoluteSubslot();
+
+    uint32_t responseAbsSubslot = currentAbsSubslot + delayInSubslots;
+
+    uint8_t targetSfn = (m_phy->m_currentSfn + (responseAbsSubslot / subslotsPerFrame)) % 256;
+
+    uint32_t subslotWithinFrame = responseAbsSubslot % subslotsPerFrame;
+    uint32_t slot = subslotWithinFrame / subslotsPerSlot;
+    uint32_t subslot = subslotWithinFrame % subslotsPerSlot;
+
+    Time t = m_phy->GetAbsoluteSubslotTime(targetSfn, slot, subslot);
+
+    NS_LOG_INFO("FrameTimer: SFN="<< static_cast<int>(m_phy->m_currentSfn) << ", m_frameStartTime=" << m_phy->m_frameStartTime.GetNanoSeconds());
+
+    // ############### DEBUGGING ###############
+    NS_LOG_INFO("CalculcateTimeOffsetFromCurrentSubslot():"
+                << std::endl
+                << "currentAbsSubslot: " << currentAbsSubslot << std::endl
+                << "responseAbsSubslot: " << responseAbsSubslot << std::endl
+                << "targetSfn: " << static_cast<int>(targetSfn) << std::endl
+                << "slot: " << static_cast<int>(slot) << std::endl
+                << "subslot: " << static_cast<int>(subslot) << std::endl
+                << "Time: " << t.GetNanoSeconds() << std::endl);
+    // ############### DEBUGGING ###############
+
+    return t;
 }
 
 Mac48Address
@@ -525,7 +610,7 @@ Dect2020Mac::BuildRandomAccessResourceIE()
     randomAccessResourceIE.SetMaxRachLengthType(0); // length in subslots
     randomAccessResourceIE.SetMaxRachLength(2);     // Max 2  subslots / transmission
     randomAccessResourceIE.SetCwMinSig(0);          // CW min 0 --> backoff not yet implemented
-    randomAccessResourceIE.SetDectDelay(0);
+    randomAccessResourceIE.SetDectDelay(m_dectDelay);
     randomAccessResourceIE.SetResponseWindow(5);
     randomAccessResourceIE.SetCwMaxSig(0); // CW max 0 --> backoff not yet implemented
 

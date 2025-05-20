@@ -286,7 +286,7 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
         return;
     }
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    NS_LOG_INFO(Simulator::Now().GetNanoSeconds()
                 << ": Dect2020Phy::StartRx(): Device 0x" << std::hex
                 << this->m_mac->GetLongRadioDeviceId() << std::dec << " empfängt Paket mit UID "
                 << dectParams->txPacket->GetUid() << " und Größe "
