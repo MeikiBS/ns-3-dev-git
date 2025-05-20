@@ -60,6 +60,23 @@ struct FtCandidateInfo
     //     mftMacMuxHeader; // Last received MAC Multiplexing Header
 };
 
+struct AssociatedPtInfo
+{
+    Time associationEstablished;
+    uint32_t longRdId; // Long Radio Device ID of the PT
+    uint8_t numberOfFlows;
+    bool powerConstraints;
+    bool ftMode;
+    uint8_t harqProcessesTx;                 
+    uint8_t maxHarqReTxDelay;                
+    uint8_t harqProcessesRx;                
+    uint8_t maxHarqReRxDelay;                
+    uint8_t flowId;                         
+    bool cb_m;
+
+    double lastRssi;
+};
+
 // Structure to hold the context for subslot scanning
 struct SubslotScanContext
 {
@@ -197,7 +214,11 @@ class Dect2020Mac : public Object
     void EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBeaconMsg,
                                const Dect2020RandomAccessResourceIE& rarIe,
                                FtCandidateInfo* ft);
-    void EvaluateAssociationRequestMessage();                               
+
+                               // assoInitiatorLongRdId is the long radio device id of the RD which has sent the Association Request
+    void ProcessAssociationRequest(Dect2020AssociationRequestMessage assoReqMsg,
+                                   Dect2020AssociationControlIE assoControlIe,
+                                   uint32_t assoInitiatorLongRdId);
 
     Dect2020PHYControlFieldType1 CreatePhysicalHeaderField();
 
@@ -225,12 +246,13 @@ class Dect2020Mac : public Object
 
     AssociationStatus m_associationStatus = NOT_ASSOCIATED;
     std::vector<FtCandidateInfo> m_ftCandidates;
+    std::vector<AssociatedPtInfo> m_associatedPtDevices;
 
     // Last received header fields
     Dect2020PHYControlFieldType1 m_lastFtPhyHeaderField; // Last received Physical Header Field
-    Dect2020MacHeaderType m_lastFtMacHeaderType;        // Last received MAC Header Type
-    Dect2020BeaconHeader m_lastFtBeaconHeader;          // Last received Beacon Header
-    Dect2020UnicastHeader m_lastFtUnicastHeader;        // Last received Unicast Header
+    Dect2020MacHeaderType m_lastFtMacHeaderType;         // Last received MAC Header Type
+    Dect2020BeaconHeader m_lastFtBeaconHeader;           // Last received Beacon Header
+    Dect2020UnicastHeader m_lastFtUnicastHeader;         // Last received Unicast Header
     Dect2020NetworkBeaconMessage
         m_lastFtNetworkBeaconMessage; // Last received Network Beacon Message
     Dect2020ClusterBeaconMessage
@@ -253,11 +275,12 @@ class Dect2020Mac : public Object
     uint8_t m_nextAvailableSubslot = 2; // First subslot to be used by RD is 2 --> Subslot 0 and 1
                                         // are reserved for the cluster beacon transmission
     uint8_t m_lastSfn;
-    uint8_t m_potentialShortNetworkId;  // Short Network ID of the current FT candidate in the Association Procedure
+    uint8_t m_potentialShortNetworkId; // Short Network ID of the current FT candidate in the
+                                       // Association Procedure
 
   private:
     Dect2020PHYControlFieldType1 CreatePhysicalHeaderField(uint8_t packetLengthType,
-                                                          uint32_t packetLength);
+                                                           uint32_t packetLength);
 
     void DiscoverNetworks();
     void SendNetworkBeaconOnChannel(uint16_t channelId);

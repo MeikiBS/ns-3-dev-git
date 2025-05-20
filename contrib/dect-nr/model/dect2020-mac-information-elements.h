@@ -108,6 +108,114 @@ class Dect2020RandomAccessResourceIE : public Header
 };
 
 // *******************************************************
+//            DECT2020 RD Capability IE
+//            # ETSI TS 103 636-4 V2.1.1 6.4.3.5
+// *******************************************************
+
+// NOTE: Only "Number of PHY Capabilities = 000" is supported.
+// This means that only the first 7 bytes are implemented.
+// The remaining 5 octets defined in the standard are not currently used.
+
+class Dect2020RdCapabilityIE : public Header
+{
+  public:
+    Dect2020RdCapabilityIE();
+    virtual ~Dect2020RdCapabilityIE();
+
+    // Überladene Methoden vom Header
+    static TypeId GetTypeId();
+    virtual TypeId GetInstanceTypeId() const override;
+    virtual uint32_t GetSerializedSize() const;
+    virtual void Serialize(Buffer::Iterator start) const;
+    virtual uint32_t Deserialize(Buffer::Iterator start);
+    virtual void Print(std::ostream& os) const;
+
+    // Getter und Setter
+        // Getter und Setter
+
+    void SetNumOfPhyCapabilities(uint8_t val);
+    uint8_t GetNumOfPhyCapabilities() const;
+
+    void SetRelease(uint8_t val);
+    uint8_t GetRelease() const;
+
+    void SetGroupAssignment(bool enabled);
+    bool GetGroupAssignment() const;
+
+    void SetPaging(bool enabled);
+    bool GetPaging() const;
+
+    void SetOperatingModes(uint8_t val);
+    uint8_t GetOperatingModes() const;
+
+    void SetMesh(bool enabled);
+    bool GetMesh() const;
+
+    void SetScheduledAccessDataTransfer(bool enabled);
+    bool GetScheduledAccessDataTransfer() const;
+
+    void SetMacSecurity(uint8_t val);
+    uint8_t GetMacSecurity() const;
+
+    void SetDlcServiceType(uint8_t val);
+    uint8_t GetDlcServiceType() const;
+
+    void SetRdPowerClass(uint8_t val);
+    uint8_t GetRdPowerClass() const;
+
+    void SetMaxNssFoRx(uint8_t val);
+    uint8_t GetMaxNssFoRx() const;
+
+    void SetRxForTxDiversity(uint8_t val);
+    uint8_t GetRxForTxDiversity() const;
+
+    void SetRxGain(uint8_t val);
+    uint8_t GetRxGain() const;
+
+    void SetMaxMcs(uint8_t val);
+    uint8_t GetMaxMcs() const;
+
+    void SetSoftBufferSize(uint8_t val);
+    uint8_t GetSoftBufferSize() const;
+
+    void SetNumOfHarqProcesses(uint8_t val);
+    uint8_t GetNumOfHarqProcesses() const;
+
+    void SetHarqFeedbackDelay(uint8_t val);
+    uint8_t GetHarqFeedbackDelay() const;
+
+    void SetDDelay(bool enabled);
+    bool GetDDelay() const;
+
+    void SetHalfDulp(bool enabled);
+    bool GetHalfDulp() const;
+
+
+  private:
+    uint8_t m_numOfPhyCapabilities; // 3 Bit
+    uint8_t m_Release; // 5 Bit
+    bool m_groupAssignment; // 1 Bit
+    bool m_paging; // 1 Bit
+    uint8_t m_operatingModes; // 2 Bit
+    bool m_mesh; // 1 Bit 
+    bool m_scheduledAccessDataTransfer; // 1 Bit
+    uint8_t m_macSecurity; // 3 Bit
+    uint8_t m_dlcServiceType; // 3 Bit
+    uint8_t m_rdPowerClass; // 3 Bit
+    uint8_t m_maxNssFoRx; // 3 Bit
+    uint8_t m_rxForTxDiversity; // 3 Bit
+    uint8_t m_rxGain; // 4 Bit
+    uint8_t m_maxMcs; // 4 Bit
+    uint8_t m_softBufferSize; // 4 Bit
+    uint8_t m_numOfHarqProcesses; // 2 Bit
+    uint8_t m_harqFeedbackDelay; // 4 Bit
+    bool m_dDelay; // 1 Bit
+    bool m_halfDulp; // 1 Bit
+
+    // The following 5 Oktets are not used (and not implemented)in the current implementation
+};
+
+// *******************************************************
 //            DECT2020 Association Control IE
 //            # ETSI TS 103 636-4 V2.1.1 6.4.3.18
 // *******************************************************

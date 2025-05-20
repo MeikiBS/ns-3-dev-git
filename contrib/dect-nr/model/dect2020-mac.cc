@@ -99,8 +99,8 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
     if (macHeaderType.GetMacHeaderTypeField() ==
         Dect2020MacHeaderType::MacHeaderTypeField::BEACON_HEADER)
     {
-        // If the candidate has sent a beacon message before, we can update its entry in the FT Candidate
-        // List
+        // If the candidate has sent a beacon message before, we can update its entry in the FT
+        // Candidate List
         FtCandidateInfo* ft = FindOrCreateFtCandidate(physicalHeaderField.GetTransmitterIdentity());
         ft->receptionTime = Simulator::Now();
         ft->ftPhyHeaderField = physicalHeaderField;
@@ -201,6 +201,8 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
 
     // Check if the Unicast Message is for me
     uint32_t receiverAddress = unicastHeader.GetReceiverAddress();
+    uint32_t transmitterAddress = unicastHeader.GetTransmitterAddress();
+
     if (receiverAddress != this->GetLongRadioDeviceId())
     {
         NS_LOG_INFO("Unicast message not for me, receiver address: 0x"
@@ -209,30 +211,67 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
         return;
     }
 
-    // uint32_t transmitterAddress = unicastHeader.GetTransmitterAddress();
-
     // --- MAC Multiplexing Header ---
     Dect2020MacMuxHeaderShortSduNoPayload muxHeader;
+    packet->RemoveHeader(muxHeader);
+
     IETypeFieldEncoding ieType = muxHeader.GetIeTypeFieldEncoding();
 
     // Message is a an association request
-    if(ieType == IETypeFieldEncoding::ASSOCIATION_REQUEST_MESSAGE)
+    if (ieType == IETypeFieldEncoding::ASSOCIATION_REQUEST_MESSAGE)
     {
         // check whether this device is an FT --> a PT cannot process an association request
-        if(this->m_device->GetTerminationPointType() != Dect2020NetDevice::TerminationPointType::FT)
+        if (this->m_device->GetTerminationPointType() !=
+            Dect2020NetDevice::TerminationPointType::FT)
         {
             NS_LOG_WARN("Association Request received, but this device is not an FT.");
             return;
         }
 
+        Dect2020AssociationRequestMessage associationRequestMessage;
+        packet->RemoveHeader(associationRequestMessage);
 
+        Dect2020AssociationControlIE associationControlIE;
+        packet->RemoveHeader(associationControlIE);
+
+        // device is an FT --> process the association request
+        ProcessAssociationRequest(associationRequestMessage,
+                                  associationControlIE,
+                                  transmitterAddress);
+    }
+    // Message is an association response
+    else if (ieType == IETypeFieldEncoding::ASSOCIATION_RESPONSE_MESSAGE)
+    {
+        // check whether this device is an PT --> TODO: implement associationable FTs
+        if (this->m_device->GetTerminationPointType() !=
+            Dect2020NetDevice::TerminationPointType::PT)
+        {
+            NS_LOG_WARN("Association Response received, but this device is not an PT. FT "
+                        "association not yet implemented.");
+            return;
+        }
     }
 }
 
 void
-Dect2020Mac::EvaluateAssociationRequestMessage()
+Dect2020Mac::ProcessAssociationRequest(Dect2020AssociationRequestMessage assoReqMsg,
+                                       Dect2020AssociationControlIE assoControlIe,
+                                       uint32_t assoInitiatorLongRdId)
 {
+    AssociatedPtInfo ptInfo;
+    ptInfo.associationEstablished = Simulator::Now();
+    ptInfo.longRdId = assoInitiatorLongRdId;
+    ptInfo.numberOfFlows = assoReqMsg.GetNumberOfFlows();
+    ptInfo.powerConstraints = assoReqMsg.GetPowerConstraints();
+    ptInfo.ftMode = assoReqMsg.GetFtMode();
+    ptInfo.harqProcessesTx = assoReqMsg.GetHarqProcessesTx();
+    ptInfo.maxHarqReTxDelay = assoReqMsg.GetMaxHarqReTxDelay();
+    ptInfo.harqProcessesRx = assoReqMsg.GetHarqProcessesRx();
+    ptInfo.maxHarqReRxDelay = assoReqMsg.GetMaxHarqReRxDelay();
+    ptInfo.flowId = assoReqMsg.GetFlowId();
+    ptInfo.cb_m = assoControlIe.GetClusterBeaconMonitoring() == 1 ? true : false;
 
+    // TODO: implement logic to accept or reject device. Currently every device is accepted
 }
 
 void

@@ -321,6 +321,43 @@ TestPhyLayerControlFieldType2()
     NS_LOG_INFO(deserializedPhysicalHeaderField);
 }
 
+void
+TestRdCapabilityIe()
+{
+    NS_LOG_INFO("=== Test Dect2020RdCapabilityIE ===");
+
+    Dect2020RdCapabilityIE originalIe;
+    originalIe.SetNumOfPhyCapabilities(0);
+    originalIe.SetRelease(3);
+    originalIe.SetGroupAssignment(true);
+    originalIe.SetPaging(false);
+    originalIe.SetOperatingModes(1);
+    originalIe.SetMesh(false);
+    originalIe.SetScheduledAccessDataTransfer(true);
+    originalIe.SetMacSecurity(2);
+    originalIe.SetDlcServiceType(1);
+    originalIe.SetRdPowerClass(3);
+    originalIe.SetMaxNssFoRx(2);
+    originalIe.SetRxForTxDiversity(1);
+    originalIe.SetRxGain(9);
+    originalIe.SetMaxMcs(4);
+    originalIe.SetSoftBufferSize(10);
+    originalIe.SetNumOfHarqProcesses(2);
+    originalIe.SetHarqFeedbackDelay(6);
+    originalIe.SetDDelay(true);
+    originalIe.SetHalfDulp(false);
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(originalIe);
+
+    Dect2020RdCapabilityIE deserializedIe;
+    packet->RemoveHeader(deserializedIe);
+
+    NS_LOG_INFO("Original:    " << originalIe);
+    NS_LOG_INFO("Deserialized:" << deserializedIe);
+}
+
+
 // Empfangsfunktion definieren
 bool
 ReceivePacket(Ptr<NetDevice> device,
@@ -455,7 +492,8 @@ main(int argc, char* argv[])
     // TestRandomAccessResourceIE();
     // TestAssociationRequestMessage();
     // TestAssociationResponseMessage();
-    TestPhyLayerControlFieldType2();
+    // TestPhyLayerControlFieldType2();
+    TestRdCapabilityIe();
 
     // TestPhysicalLayerControlFieldType1();
     return 0;
