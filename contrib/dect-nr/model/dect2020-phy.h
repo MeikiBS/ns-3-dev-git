@@ -47,7 +47,7 @@ class Dect2020Phy : public SpectrumPhy
     void SetDevice(Ptr<NetDevice> device) override;
 
     // Methoden zum Senden und Empfangen von Paketen
-    void Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader);
+    void Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeader);
     void Receive(Ptr<Packet> packet);
 
     void Start();
@@ -76,7 +76,7 @@ class Dect2020Phy : public SpectrumPhy
 
     Ptr<Dect2020Channel> m_dect2020Channel;
     uint16_t GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex);  // In bits
-    double CalculateTxDurationNs(Dect2020PhysicalHeaderField physicalHeaderField);
+    double CalculateTxDurationNs(Dect2020PHYControlFieldType1 physicalHeaderField);
     Time GetAbsoluteSubslotTime(uint8_t targetSfn, uint8_t slot, uint8_t subslot) const;
 
 

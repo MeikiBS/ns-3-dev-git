@@ -138,7 +138,7 @@ Dect2020Phy::GetDevice(void) const
 }
 
 void
-Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader)
+Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeader)
 {
     NS_ASSERT_MSG(packet, "Packet is null");
     NS_ASSERT_MSG(this->m_device, "m_device is null");
@@ -156,6 +156,7 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PhysicalHeaderField physicalHeader
     params->txPacket = packet->Copy();
     params->txPacket->AddHeader(physicalHeader);
     params->m_currentChannelId = this->m_mac->m_currentChannelId;
+
 
     // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
     //             << ": Dect2020Phy::Send(): Physical Header hinzugefügt bei Paket mit UID "
@@ -502,7 +503,7 @@ Dect2020Phy::GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex
 }
 
 double
-Dect2020Phy::CalculateTxDurationNs(Dect2020PhysicalHeaderField physicalHeaderField)
+Dect2020Phy::CalculateTxDurationNs(Dect2020PHYControlFieldType1 physicalHeaderField)
 {
     if (physicalHeaderField.GetPacketLengthType() == 0) // Packet length is given in subslots
     {

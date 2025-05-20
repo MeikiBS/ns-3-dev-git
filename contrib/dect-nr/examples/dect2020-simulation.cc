@@ -175,7 +175,7 @@ TestUnicastHeader()
 void
 TestPhysicalLayerControlFieldType1()
 {
-    Dect2020PhysicalHeaderField originalPhysicalHeaderField;
+    Dect2020PHYControlFieldType1 originalPhysicalHeaderField;
 
     uint8_t originalPacketlLengthType = 1;
     uint8_t originalPacketLength = 13;
@@ -194,7 +194,7 @@ TestPhysicalLayerControlFieldType1()
     Ptr<Packet> packet = Create<Packet>();
     packet->AddHeader(originalPhysicalHeaderField);
 
-    Dect2020PhysicalHeaderField deserializedPhysicalHeaderField;
+    Dect2020PHYControlFieldType1 deserializedPhysicalHeaderField;
     packet->RemoveHeader(deserializedPhysicalHeaderField);
 
     NS_LOG_INFO(originalPhysicalHeaderField);
@@ -295,6 +295,32 @@ TestAssociationResponseMessage()
     NS_LOG_INFO(receivedMessage);
 }
 
+void
+TestPhyLayerControlFieldType2()
+{
+    Dect2020PHYControlFieldType2 originalPhysicalHeaderField;
+
+    originalPhysicalHeaderField.SetPacketLengthType(1);
+    originalPhysicalHeaderField.SetPacketLength(13);
+    originalPhysicalHeaderField.SetShortNetworkID(55);
+    originalPhysicalHeaderField.SetTransmitterIdentity(13130);
+    originalPhysicalHeaderField.SetTransmitPower(3);
+    originalPhysicalHeaderField.SetDFMCS(2);
+    originalPhysicalHeaderField.SetReceiverIdentity(11111);
+    originalPhysicalHeaderField.SetNumberOfSpatialStreams(0);
+    originalPhysicalHeaderField.SetFeedbackFormat(12);
+    originalPhysicalHeaderField.SetFeedbackInfo(1024);
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(originalPhysicalHeaderField);
+
+    Dect2020PHYControlFieldType2 deserializedPhysicalHeaderField;
+    packet->RemoveHeader(deserializedPhysicalHeaderField);
+
+    NS_LOG_INFO(originalPhysicalHeaderField);
+    NS_LOG_INFO(deserializedPhysicalHeaderField);
+}
+
 // Empfangsfunktion definieren
 bool
 ReceivePacket(Ptr<NetDevice> device,
@@ -315,7 +341,7 @@ ZustandNach1Sek(Ptr<Dect2020NetDevice> dev)
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(30));
+    Simulator::Stop(Seconds(60));
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds());
 
@@ -346,6 +372,7 @@ main(int argc, char* argv[])
 
     // Erstellen des Kanals
     Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
+    
 
     // Erstellen und Konfigurieren der Geräte
     NetDeviceContainer devices;
@@ -399,7 +426,7 @@ main(int argc, char* argv[])
         //     if(dev->GetTerminationPointType() == TermPointType::PT)
         //     {
         //         Ptr<Packet> packet = Create<Packet>(100);
-        //         Dect2020PhysicalHeaderField physicalHeaderField;
+        //         Dect2020PHYControlFieldType1 physicalHeaderField;
 
         //         Simulator::Schedule(MilliSeconds(1000), &Dect2020Phy::Send, phy, packet,
         //                              physicalHeaderField);
@@ -428,6 +455,7 @@ main(int argc, char* argv[])
     // TestRandomAccessResourceIE();
     // TestAssociationRequestMessage();
     // TestAssociationResponseMessage();
+    TestPhyLayerControlFieldType2();
 
     // TestPhysicalLayerControlFieldType1();
     return 0;

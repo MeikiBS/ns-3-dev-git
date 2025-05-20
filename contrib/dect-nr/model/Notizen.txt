@@ -18,10 +18,11 @@ TODO/Next steps:
 - Random Access Resource IE
 - Unicast Header
 - Association Request Message
+
 - Association Response Message
 - Random Access Procedure
 - Helper Klassen
-
+- SpectrumChannel: maxPassLossDb
 
 
 Fragen:
