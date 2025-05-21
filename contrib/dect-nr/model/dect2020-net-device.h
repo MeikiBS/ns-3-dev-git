@@ -10,7 +10,6 @@
 
 #include <iomanip> // Für std::setw und std::setfill
 
-
 namespace ns3
 {
 
@@ -115,6 +114,33 @@ class Dect2020NetDevice : public NetDevice
 
     TerminationPointType m_terminationPointType;
 
+    void SetBootstrappingVariables(bool isFT);
+
+    // --- Bootstrapping variables ---
+
+    // RD Capability Values --> ETSI TS 103636 044 V 2.1.1 Table 6.4.3.5-1
+    uint8_t m_numOfPHYCapabilities;
+    uint8_t m_release; // Indicates release of the radio device. Coded values: reserved, Release 1,
+                       // Release 2, Release 3, Release 4, rest of the values are reserved
+    bool m_supportGroupAssignment ; // Indicates if the device supports group assignment
+    bool m_supportPaging;       // Indicates if the device supports paging
+    uint8_t m_operatingModes;      // Indicates the operating modes of the device
+    bool m_mesh;
+    bool m_scheduledAccessDataTransfer; // Indicates if the device supports scheduled access data
+                                         // transfer
+    uint8_t m_macSecurity; // Indicates the MAC security level of the device
+    uint8_t m_dlcServiceType; // Indicates the DLC service type of the device
+    uint8_t m_rdPowerClass; // Indicates the RD power class of the device
+    uint8_t m_maxNssFoRx; // Indicates the maximum number of spatial streams for reception
+    uint8_t m_rxForTxDiversity; // Indicates if the device supports RX for TX diversity
+    uint8_t m_rxGain; // Indicates the RX gain of the device
+    uint8_t m_maxMcs; // Indicates the maximum MCS of the device
+    uint8_t m_softBufferSize; // Indicates the size of the soft buffer of the device
+    uint8_t m_numOfHarqProcesses; // Indicates the number of HARQ processes of the device
+    uint8_t m_harqFeedbackDelay; // Indicates the HARQ feedback delay of the device
+    bool m_dDelay; // Indicates if the device supports D-Delay
+    bool m_halfDulp; // Indicates if the device supports half-duplex operation
+
   private:
     void DoInitialize(void) override;
 
@@ -129,7 +155,6 @@ class Dect2020NetDevice : public NetDevice
     Ptr<Dect2020Mac> m_mac;
     Ptr<Dect2020Phy> m_phy;
     TracedCallback<> m_linkChanges;
-    
 
     uint8_t m_bandNumber; // Band Number (1-22)
 };

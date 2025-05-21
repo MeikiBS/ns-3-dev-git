@@ -33,4 +33,5 @@ Fragen:
 
 
 Fragen neu 21.05.
-- 
+- Association Request/Response: Reihenfolge der IEs
+- Physical Header: Wie wird in Realität festgestellt, welcher Header Type genutzt wurde?

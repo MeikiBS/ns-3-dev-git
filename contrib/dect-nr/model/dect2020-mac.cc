@@ -234,7 +234,7 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
         Dect2020AssociationControlIE associationControlIE;
         packet->RemoveHeader(associationControlIE);
 
-        // device is an FT --> process the association request
+        // process the association request
         ProcessAssociationRequest(associationRequestMessage,
                                   rdCapabilityIE,
                                   associationControlIE,
@@ -278,10 +278,10 @@ Dect2020Mac::ProcessAssociationRequest(Dect2020AssociationRequestMessage assoReq
 
     // TODO: implement logic to accept or reject device. Currently every device is accepted
 
-    // calculate the time to send the association response. DECT_Delay == 0 --> subslot n + HARQ
-    // feedback delay +1
+    // calculate the time to send the association response. DECT_Delay == 0 --> subslot n +
+    // HARQ_feedback_delay +1
     uint32_t subslotsPerFrame = GetSubslotsPerSlot() * 24;
-    ;
+
     uint32_t currentAbsSubslot = m_phy->GetCurrentAbsoluteSubslot();
 
     uint8_t harqDelay = rdCapabilityIe.GetHarqFeedbackDelay();
@@ -303,7 +303,43 @@ Dect2020Mac::ProcessAssociationRequest(Dect2020AssociationRequestMessage assoReq
 void
 Dect2020Mac::SendAssociationResponse(AssociatedPtInfo ptInfo)
 {
-    NS_LOG_INFO("SendAssociationResponse");
+    Ptr<Packet> packet = Create<Packet>();
+
+    // --- RD Capability IE ---
+    Dect2020RdCapabilityIE rdCapabilityIE;
+    rdCapabilityIE.SetNumOfPhyCapabilities(this->m_device->m_numOfPHYCapabilities);
+    rdCapabilityIE.SetRelease(this->m_device->m_release);
+    rdCapabilityIE.SetGroupAssignment(this->m_device->m_supportGroupAssignment);
+    rdCapabilityIE.SetPaging(this->m_device->m_supportPaging);
+    rdCapabilityIE.SetOperatingModes(this->m_device->m_operatingModes);
+    rdCapabilityIE.SetMesh(this->m_device->m_mesh);
+    rdCapabilityIE.SetScheduledAccessDataTransfer(
+        this->m_device->m_scheduledAccessDataTransfer);
+    rdCapabilityIE.SetMacSecurity(this->m_device->m_macSecurity);
+    rdCapabilityIE.SetDlcServiceType(this->m_device->m_dlcServiceType);
+    rdCapabilityIE.SetRdPowerClass(this->m_device->m_rdPowerClass);
+    rdCapabilityIE.SetMaxNssFoRx(this->m_device->m_maxNssFoRx);
+    rdCapabilityIE.SetRxForTxDiversity(this->m_device->m_rxForTxDiversity);
+    rdCapabilityIE.SetRxGain(this->m_device->m_rxGain);
+    rdCapabilityIE.SetMaxMcs(this->m_device->m_maxMcs);
+    rdCapabilityIE.SetSoftBufferSize(this->m_device->m_softBufferSize);
+    rdCapabilityIE.SetNumOfHarqProcesses(this->m_device->m_numOfHarqProcesses);
+    rdCapabilityIE.SetHarqFeedbackDelay(this->m_device->m_harqFeedbackDelay);
+    rdCapabilityIE.SetDDelay(this->m_device->m_dDelay);
+    rdCapabilityIE.SetHalfDulp(this->m_device->m_halfDulp);
+
+    packet->AddHeader(rdCapabilityIE);
+
+    // --- Association Response Message ---
+    Dect2020AssociationResponseMessage associationResponseMessage;
+    associationResponseMessage.SetAssociationAccepted(true);
+    associationResponseMessage.SetHarqMod(0);
+    associationResponseMessage.SetNumberOfFlows(7);    // all flows accepted
+    associationResponseMessage.SetGroupId(0);
+
+    packet->AddHeader(associationResponseMessage);
+
+
 }
 
 void
@@ -446,7 +482,8 @@ Dect2020Mac::CalculcateTimeOffsetFromCurrentSubslot(uint32_t delayInSubslots)
 
     Time t = m_phy->GetAbsoluteSubslotTime(targetSfn, slot, subslot);
 
-    NS_LOG_INFO("FrameTimer: SFN="<< static_cast<int>(m_phy->m_currentSfn) << ", m_frameStartTime=" << m_phy->m_frameStartTime.GetNanoSeconds());
+    NS_LOG_INFO("FrameTimer: SFN=" << static_cast<int>(m_phy->m_currentSfn) << ", m_frameStartTime="
+                                   << m_phy->m_frameStartTime.GetNanoSeconds());
 
     // ############### DEBUGGING ###############
     NS_LOG_INFO("CalculcateTimeOffsetFromCurrentSubslot():"
@@ -768,46 +805,6 @@ Dect2020Mac::StartBeaconTransmission()
 {
     StartNetworkBeaconSweep();
     StartClusterBeaconTransmission();
-    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": Start Beacon Transmission on channel: " << m_clusterChannelId);
-
-    // Ptr<Packet> networkBeacon = Create<Packet>();
-
-    // // MAC Header Type
-    // Dect2020MacHeaderType macHeaderType;
-    // macHeaderType.SetMacHeaderTypeField(Dect2020MacHeaderType::BEACON_HEADER);
-    // networkBeacon->AddHeader(macHeaderType);
-
-    // // Mac Beacon Header
-    // Dect2020BeaconHeader beaconHeader;
-    // beaconHeader.SetNetworkId(m_networkId);
-    // beaconHeader.SetTransmitterAddress(m_longRadioDeviceId);
-
-    // networkBeacon->AddHeader(beaconHeader);
-
-    // // MAC Beacon Message
-    // Dect2020NetworkBeaconMessage beaconMessage;
-    // // TODO: beaconMessage mit Inhalt füllen
-
-    // networkBeacon->AddHeader(beaconMessage);
-
-    // NS_LOG_INFO("Größe des Pakets direkt nach beaconMessage: " << networkBeacon->GetSize());
-
-    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": StartBeaconTransmission() aufgerufen von 0x" << std::hex
-    //             << this->GetLongRadioDeviceId() << " übergibt Paket mit der Größe " << std::dec
-    //             << networkBeacon->GetSize() << " Bytes und UID " << networkBeacon->GetUid()
-    //             << " an PHY.");
-
-    // m_phy->Send(networkBeacon, CreatePhysicalHeaderField(1, networkBeacon->GetSize())); //
-
-    // // NS_LOG_INFO("Network Beacon gesendet von Gerät 0x"
-    // //             << std::hex  << this->GetLongRadioDeviceId());
-    // // NS_LOG_INFO("MAC Header Type: " << macHeaderType.GetMacHeaderTypeField());
-
-    // Simulator::Schedule(MilliSeconds(beaconMessage.GetNetworkBeaconPeriodTime()),
-    //                     &Dect2020Mac::StartBeaconTransmission,
-    //                     this);
 }
 
 void
@@ -901,13 +898,13 @@ Dect2020Mac::OperatingChannelSelection()
     m_scanEvaluations.clear();
     m_completedScans = 0;
 
-    int numSubslots = 48; // TODO: Get number of Subslots from configuration
+    int numSubslots = GetSubslotsPerSlot() * 24;
 
     double subslotDurationNs = 208333.0;
     double totalScanTimeNs = subslotDurationNs * numSubslots;
 
     uint32_t channelOffset = 0;
-    // for (auto& channel : m_phy->m_channels)
+
     auto validChannels = Dect2020ChannelManager::GetValidChannels(this->m_device->GetBandNumber());
     uint16_t numOfValidChannels = validChannels.size();
     for (auto& channel : validChannels)
@@ -918,7 +915,7 @@ Dect2020Mac::OperatingChannelSelection()
                             &Dect2020Mac::StartSubslotScan,
                             this,
                             channel->m_channelId,
-                            48,
+                            numSubslots,
                             [this, numOfValidChannels](const ChannelEvaluation& eval) {
                                 m_scanEvaluations[eval.channelId] = eval;
                                 m_completedScans++;
@@ -1194,7 +1191,7 @@ Dect2020Mac::GenerateShortRadioDeviceId()
 
     do
     {
-        rdId = randomVar->GetValue(1, 0xFFFE); // Range 0x0001 bis 0xFFFE
+        rdId = randomVar->GetValue(1, 0xFFFE); // Range 0x0001 to 0xFFFE
     } while (rdId == 0x0000 || rdId == 0xFFFF);
 
     NS_LOG_DEBUG(Simulator::Now().GetMilliSeconds()
