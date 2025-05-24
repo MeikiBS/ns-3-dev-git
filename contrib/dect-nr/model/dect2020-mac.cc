@@ -132,15 +132,12 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet)
 void
 Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
 {
-    NS_LOG_INFO(">> ENTER HandleBeaconPacket with UID: " << packet->GetUid());
-
     // --- Beacon Header ---
     Dect2020BeaconHeader beaconHeader;
     packet->RemoveHeader(beaconHeader);
     ft->ftBeaconHeader = beaconHeader;
     ft->networkId = beaconHeader.GetNetworkId();
     ft->longFtId = beaconHeader.GetTransmitterAddress();
-    NS_LOG_INFO("HandleBeaconPacket ft->longFtId == 0x" << std::hex << ft->longFtId);
 
     // --- MAC Multiplexing Header ---
     Dect2020MacMuxHeaderShortSduNoPayload muxHeader;
@@ -202,11 +199,13 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
 
     if (receiverAddress != this->GetLongRadioDeviceId())
     {
-        NS_LOG_INFO("Unicast message not for me, receiver address: 0x"
-                    << std::hex << receiverAddress << ", my address: 0x"
-                    << this->GetLongRadioDeviceId());
         return;
     }
+
+    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    //             << ": Dect2020Mac::HandleUnicastPacket: Received Unicast Message from 0x"
+    //             << std::hex << transmitterAddress << " to 0x" << receiverAddress << " with UID "
+    //             << std::dec << packet->GetUid());
 
     // --- MAC Multiplexing Header ---
     Dect2020MacMuxHeaderShortSduNoPayload muxHeader;
@@ -224,6 +223,11 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
             NS_LOG_WARN("Association Request received, but this device is not an FT.");
             return;
         }
+
+        NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                    << ": Dect2020Mac::HandleUnicastPacket: 0x" << std::hex << receiverAddress
+                    << " received an Association Request from 0x" << std::hex << transmitterAddress
+                    << " with UID " << std::dec << packet->GetUid());
 
         Dect2020AssociationRequestMessage associationRequestMessage;
         packet->RemoveHeader(associationRequestMessage);
@@ -243,6 +247,11 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
     // Message is an association response
     else if (ieType == IETypeFieldEncoding::ASSOCIATION_RESPONSE_MESSAGE)
     {
+        NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                    << ": Dect2020Mac::HandleUnicastPacket: 0x" << std::hex << receiverAddress
+                    << " received an Association Response from 0x" << std::hex << transmitterAddress
+                    << " with UID " << std::dec << packet->GetUid());
+
         // check whether this device is an PT --> TODO: implement associationable FTs
         if (this->m_device->GetTerminationPointType() !=
             Dect2020NetDevice::TerminationPointType::PT)
@@ -297,6 +306,12 @@ Dect2020Mac::ProcessAssociationRequest(Dect2020AssociationRequestMessage assoReq
     }
 
     Time t = CalculcateTimeOffsetFromCurrentSubslot(responseAbsSubslot - currentAbsSubslot);
+
+    NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                << ": Dect2020Mac::ProcessAssociationRequest: Scheduling Association Response to 0x"
+                << std::hex << ptInfo.longRdId << std::dec << " in "
+                << (responseAbsSubslot - currentAbsSubslot) << " subslots and in " << t.GetMicroSeconds() << " us.");
+
     Simulator::Schedule(t, &Dect2020Mac::SendAssociationResponse, this, ptInfo);
 }
 
@@ -313,8 +328,7 @@ Dect2020Mac::SendAssociationResponse(AssociatedPtInfo ptInfo)
     rdCapabilityIE.SetPaging(this->m_device->m_supportPaging);
     rdCapabilityIE.SetOperatingModes(this->m_device->m_operatingModes);
     rdCapabilityIE.SetMesh(this->m_device->m_mesh);
-    rdCapabilityIE.SetScheduledAccessDataTransfer(
-        this->m_device->m_scheduledAccessDataTransfer);
+    rdCapabilityIE.SetScheduledAccessDataTransfer(this->m_device->m_scheduledAccessDataTransfer);
     rdCapabilityIE.SetMacSecurity(this->m_device->m_macSecurity);
     rdCapabilityIE.SetDlcServiceType(this->m_device->m_dlcServiceType);
     rdCapabilityIE.SetRdPowerClass(this->m_device->m_rdPowerClass);
@@ -334,12 +348,46 @@ Dect2020Mac::SendAssociationResponse(AssociatedPtInfo ptInfo)
     Dect2020AssociationResponseMessage associationResponseMessage;
     associationResponseMessage.SetAssociationAccepted(true);
     associationResponseMessage.SetHarqMod(0);
-    associationResponseMessage.SetNumberOfFlows(7);    // all flows accepted
+    associationResponseMessage.SetNumberOfFlows(7); // all flows accepted
     associationResponseMessage.SetGroupId(0);
 
     packet->AddHeader(associationResponseMessage);
 
+    // --- MAC Multiplexing Header ---
+    Dect2020MacMuxHeaderShortSduNoPayload muxHeader;
+    muxHeader.SetMacExtensionFieldEncoding(0);
+    muxHeader.SetLengthField(0);
+    muxHeader.SetIeTypeFieldEncoding(IETypeFieldEncoding::ASSOCIATION_RESPONSE_MESSAGE);
 
+    packet->AddHeader(muxHeader);
+
+    // --- Unicast Header ---
+    Dect2020UnicastHeader unicastHeader;
+    unicastHeader.SetReset(0);
+    unicastHeader.SetSequenceNumber(0);
+    unicastHeader.SetReceiverAddress(ptInfo.longRdId);
+    unicastHeader.SetTransmitterAddress(this->GetLongRadioDeviceId());
+
+    packet->AddHeader(unicastHeader);
+
+    // --- MAC Header Type ---
+    Dect2020MacHeaderType macHeaderType;
+    macHeaderType.SetVersion(0);
+    macHeaderType.SetMacSecurity(Dect2020MacHeaderType::MacSecurityField::MAC_SECURITY_NOT_USED);
+    macHeaderType.SetMacHeaderTypeField(Dect2020MacHeaderType::MacHeaderTypeField::UNICAST_HEADER);
+
+    packet->AddHeader(macHeaderType);
+
+    // --- Physical Header Field ---
+    Dect2020PHYControlFieldType1 physicalHeaderField =
+        CreatePhysicalHeaderField(1, packet->GetSize());
+    physicalHeaderField.SetShortNetworkID(m_networkId);
+
+    NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                << ": Dect2020Mac::SendAssociationResponse: Sending Association Response to 0x"
+                << std::hex << ptInfo.longRdId << " with UID " << std::dec << packet->GetUid());
+
+    m_phy->Send(packet, physicalHeaderField); // Send the packet to the PHY
 }
 
 void
@@ -365,16 +413,15 @@ Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBe
         uint8_t slot = startSubslot / GetSubslotsPerSlot();
         uint8_t subslot = startSubslot % GetSubslotsPerSlot();
 
-        Time t = m_phy->GetAbsoluteSubslotTime(m_lastSfn, slot, subslot);
+        // Time t = m_phy->GetAbsoluteSubslotTime(m_lastSfn, slot, subslot);
+        Time t = m_phy->GetTimeToNextAbsoluteSubslot(m_lastSfn, slot, subslot);
+
+
+        NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                    << ": DEBUG: Scheduling Association Request in " << t.GetMicroSeconds());
 
         Simulator::Schedule(t, &Dect2020Mac::SendAssociationRequest, this, ft);
         m_associationStatus = AssociationStatus::ASSOCIATION_PENDING;
-
-        NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                    << "Association Request an FT 0x" << std::hex << ft->longFtId << std::dec
-                    << " geplant von 0x" << std::hex << this->GetLongRadioDeviceId() << std::dec
-                    << " für Subslot " << static_cast<int>(subslot) << " in SFN "
-                    << static_cast<int>(m_lastSfn));
     }
 }
 
@@ -393,24 +440,24 @@ Dect2020Mac::SendAssociationRequest(FtCandidateInfo* ft)
 
     // --- RD Capability IE ---
     Dect2020RdCapabilityIE rdCapabilityIE;
-    rdCapabilityIE.SetRelease(2);
-    rdCapabilityIE.SetGroupAssignment(0);
-    rdCapabilityIE.SetPaging(0);
-    rdCapabilityIE.SetOperatingModes(0); // PT only
-    rdCapabilityIE.SetMesh(0);
-    rdCapabilityIE.SetScheduledAccessDataTransfer(0);
-    rdCapabilityIE.SetMacSecurity(0);
-    rdCapabilityIE.SetDlcServiceType(0);
-    rdCapabilityIE.SetRdPowerClass(0);
-    rdCapabilityIE.SetMaxNssFoRx(0);
-    rdCapabilityIE.SetRxForTxDiversity(0);
-    rdCapabilityIE.SetRxGain(5); // 0 dB
-    rdCapabilityIE.SetMaxMcs(0); // MCS 0
-    rdCapabilityIE.SetSoftBufferSize(0);
-    rdCapabilityIE.SetNumOfHarqProcesses(0);
-    rdCapabilityIE.SetHarqFeedbackDelay(0);
-    rdCapabilityIE.SetDDelay(0);
-    rdCapabilityIE.SetHalfDulp(0);
+    rdCapabilityIE.SetRelease(this->m_device->m_release);
+    rdCapabilityIE.SetGroupAssignment(this->m_device->m_supportGroupAssignment);
+    rdCapabilityIE.SetPaging(this->m_device->m_supportPaging);
+    rdCapabilityIE.SetOperatingModes(this->m_device->m_operatingModes);
+    rdCapabilityIE.SetMesh(this->m_device->m_mesh);
+    rdCapabilityIE.SetScheduledAccessDataTransfer(this->m_device->m_scheduledAccessDataTransfer);
+    rdCapabilityIE.SetMacSecurity(this->m_device->m_macSecurity);
+    rdCapabilityIE.SetDlcServiceType(this->m_device->m_dlcServiceType);
+    rdCapabilityIE.SetRdPowerClass(this->m_device->m_rdPowerClass);
+    rdCapabilityIE.SetMaxNssFoRx(this->m_device->m_maxNssFoRx);
+    rdCapabilityIE.SetRxForTxDiversity(this->m_device->m_rxForTxDiversity);
+    rdCapabilityIE.SetRxGain(this->m_device->m_rxGain);
+    rdCapabilityIE.SetMaxMcs(this->m_device->m_maxMcs);
+    rdCapabilityIE.SetSoftBufferSize(this->m_device->m_softBufferSize);
+    rdCapabilityIE.SetNumOfHarqProcesses(this->m_device->m_numOfHarqProcesses);
+    rdCapabilityIE.SetHarqFeedbackDelay(this->m_device->m_harqFeedbackDelay);
+    rdCapabilityIE.SetDDelay(this->m_device->m_dDelay);
+    rdCapabilityIE.SetHalfDulp(this->m_device->m_halfDulp);
 
     packet->AddHeader(rdCapabilityIE);
 
@@ -459,8 +506,9 @@ Dect2020Mac::SendAssociationRequest(FtCandidateInfo* ft)
         CreatePhysicalHeaderField(1, packet->GetSize());
     physicalHeaderField.SetShortNetworkID(m_potentialShortNetworkId);
 
-    NS_LOG_INFO("DEBUG: Sending Association Request to FT 0x"
-                << std::hex << ft->longFtId << " with UID: " << std::dec << packet->GetUid());
+    NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                << ": DEBUG: 0x" << std::hex << GetLongRadioDeviceId()
+                << " is sending an Association Request with UID: " << std::dec << packet->GetUid());
 
     m_phy->Send(packet, physicalHeaderField); // Send the packet to the PHY
 }
@@ -482,19 +530,14 @@ Dect2020Mac::CalculcateTimeOffsetFromCurrentSubslot(uint32_t delayInSubslots)
 
     Time t = m_phy->GetAbsoluteSubslotTime(targetSfn, slot, subslot);
 
-    NS_LOG_INFO("FrameTimer: SFN=" << static_cast<int>(m_phy->m_currentSfn) << ", m_frameStartTime="
-                                   << m_phy->m_frameStartTime.GetNanoSeconds());
+    NS_LOG_INFO("Absolute Subslot Time = " << t.GetMicroSeconds());
 
-    // ############### DEBUGGING ###############
-    NS_LOG_INFO("CalculcateTimeOffsetFromCurrentSubslot():"
-                << std::endl
-                << "currentAbsSubslot: " << currentAbsSubslot << std::endl
-                << "responseAbsSubslot: " << responseAbsSubslot << std::endl
-                << "targetSfn: " << static_cast<int>(targetSfn) << std::endl
-                << "slot: " << static_cast<int>(slot) << std::endl
-                << "subslot: " << static_cast<int>(subslot) << std::endl
-                << "Time: " << t.GetNanoSeconds() << std::endl);
-    // ############### DEBUGGING ###############
+    auto fff = GetShortRadioDeviceId();
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": DEBUG: CalculcateTimeOffsetFromCurrentSubslot() for Device 0x"
+                << std::hex << fff << std::dec << " with delayInSubslots = " << delayInSubslots
+                << ", targetSfn = " << static_cast<int>(targetSfn) << ", slot = " << slot
+                << ", subslot = " << subslot << ", t = " << t.GetMicroSeconds());
 
     return t;
 }
@@ -621,7 +664,7 @@ Dect2020Mac::StartClusterBeaconTransmission()
     Ptr<Packet> clusterBeacon = BuildBeacon(true, m_clusterChannelId);
     m_phy->Send(clusterBeacon, CreatePhysicalHeaderField(1, clusterBeacon->GetSize()));
 
-    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+    NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
                 << ": Dect2020Mac::StartClusterBeaconTransmission sent Cluster Beacon on Channel "
                 << m_clusterChannelId << " with UID " << clusterBeacon->GetUid());
 
@@ -878,8 +921,6 @@ Dect2020Mac::FindOrCreateFtCandidate(uint16_t shortFtId)
     {
         if (m_ftCandidates[idx].shortFtId == shortFtId)
         {
-            NS_LOG_INFO("DEBUG FindOrCreateFtCandidate: Found candidate with shortFtId = 0x"
-                        << std::hex << shortFtId);
             return &m_ftCandidates[idx];
         }
     }
@@ -887,7 +928,6 @@ Dect2020Mac::FindOrCreateFtCandidate(uint16_t shortFtId)
     // No candidate found, create one
     FtCandidateInfo newCandidate;
     m_ftCandidates.push_back(newCandidate);
-    NS_LOG_INFO("Created new Candidate with ShortFtId = 0x" << std::hex << shortFtId);
 
     return &m_ftCandidates.back();
 }
@@ -1060,12 +1100,10 @@ Dect2020Mac::CreatePhysicalHeaderField(uint8_t packetLengthType, uint32_t packet
             packetLengthInSlots); // Size of packet in slots/subslots
     }
 
-    // Short Network ID: The last 8 LSB bits of the Network ID # ETSI 103 636 04 4.2.3.1
-    uint8_t shortNetworkID = m_networkId & 0xFF;
-    physicalHeaderField.SetShortNetworkID(shortNetworkID);
+    physicalHeaderField.SetShortNetworkID(m_networkId);
     physicalHeaderField.SetTransmitterIdentity(m_shortRadioDeviceId);
-    physicalHeaderField.SetTransmitPower(3); // TODO: Wie wird das bestimmt?
-    physicalHeaderField.SetDFMCS(m_mcs);     // TODO: Wie wird das bestimmt?
+    physicalHeaderField.SetTransmitPower(23); // TODO: Wie wird das bestimmt?
+    physicalHeaderField.SetDFMCS(m_mcs);
 
     return physicalHeaderField;
 }
@@ -1084,9 +1122,6 @@ Dect2020Mac::GenerateValidNetworkId()
         msb = (networkId >> 8) & 0xFFFFFF;
     } while (lsb == 0x00 || msb == 0x000000);
 
-    // DEBUG: networkId auf festen Wert setzen. Später random erstellen und PT Device Beacon
-    // empfangen lassen
-    networkId = 123456;
     return networkId;
 }
 

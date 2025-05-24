@@ -273,7 +273,6 @@ Dect2020ChannelManager::GetBandNumber(uint16_t channelNumber)
         }
     }
 
-    NS_LOG_WARN("Channel number " << channelNumber << " not in any known band.");
     return -1; // Invalid band number
 }
 

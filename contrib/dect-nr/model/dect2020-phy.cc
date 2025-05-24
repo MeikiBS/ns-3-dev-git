@@ -157,7 +157,6 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeade
     params->txPacket->AddHeader(physicalHeader);
     params->m_currentChannelId = this->m_mac->m_currentChannelId;
 
-
     // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
     //             << ": Dect2020Phy::Send(): Physical Header hinzugefügt bei Paket mit UID "
     //             << params->txPacket->GetUid() << " und neuer Größe " <<
@@ -285,12 +284,6 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
         // abort Rx if the channel is not the same
         return;
     }
-
-    NS_LOG_INFO(Simulator::Now().GetNanoSeconds()
-                << ": Dect2020Phy::StartRx(): Device 0x" << std::hex
-                << this->m_mac->GetLongRadioDeviceId() << std::dec << " empfängt Paket mit UID "
-                << dectParams->txPacket->GetUid() << " und Größe "
-                << dectParams->txPacket->GetSize() << " Bytes vom Kanal.");
 
     // WARUM??
     // double power = Dect2020ChannelManager::GetRssiDbm(this->m_mac->m_currentChannelId);
@@ -533,7 +526,15 @@ Dect2020Phy::GetAbsoluteSubslotTime(uint8_t targetSfn, uint8_t slot, uint8_t sub
     Time slotDuration = NanoSeconds(416666);                      // 0,41667 ms in ns
     Time subslotDuration = NanoSeconds(416666 / subslotsPerSlot); // Subslot Duration in ns
 
-    uint8_t deltaFrames = (targetSfn - m_currentSfn) % 256;
+    // uint8_t deltaFrames = (targetSfn - m_currentSfn) % 256;
+    int32_t deltaFrames = static_cast<int32_t>(targetSfn) - static_cast<int32_t>(m_currentSfn);
+
+    if (deltaFrames < 0)
+    {
+        // If the target SFN is less than the current SFN, we need to wrap around.
+        // We want to calculate the offset time of the current Frame.
+        deltaFrames = 0;
+    }
 
     Time offset = deltaFrames * frameDuration + slot * slotDuration + subslot * subslotDuration;
 
@@ -541,13 +542,59 @@ Dect2020Phy::GetAbsoluteSubslotTime(uint8_t targetSfn, uint8_t slot, uint8_t sub
     // auto fff = offset.GetNanoSeconds();
     // auto fst = m_frameStartTime.GetNanoSeconds();
     // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": DEBUG: GetAbsoluteSubslotTime() targetSfn = " << static_cast<int>(targetSfn)
+    //             << ": DEBUG: GetAbsoluteSubslotTime() targetSfn = " <<
+    //             static_cast<int>(targetSfn)
     //             << ", m_currentSfn = " << static_cast<int>(m_currentSfn) << ", slot = "
     //             << static_cast<int>(slot) << ", subslot = " << static_cast<int>(subslot)
     //             << ", m_frameStartTime + offset = " << fst + fff);
     // ###############################
 
-    return m_frameStartTime + offset;
+    NS_LOG_INFO("offset = " << offset.GetMicroSeconds() << std::endl
+                            << "m_frameStartTime = " << m_frameStartTime.GetMicroSeconds()
+                            << std::endl
+                            << " Simulator::Now().GetMicroSeconds() = "
+                            << Simulator::Now().GetMicroSeconds());
+    
+    return offset + m_frameStartTime;
+}
+
+Time
+Dect2020Phy::GetTimeToNextAbsoluteSubslot(uint8_t targetSfn, uint8_t targetSlot, uint8_t targetSubslot) const
+{
+    // uint8_t currentSfn = m_currentSfn;
+    uint8_t currentSlot = m_currentSlot;
+    uint8_t currentSubslot = m_currentSubslot;
+
+    // Calculate the absolute subslot index for the current and target subslot
+    int currentAbsoluteSubslotIndex = GetAbsoluteSubslotIndex(currentSlot, currentSubslot);
+    int targetAbsoluteSubslotIndex = GetAbsoluteSubslotIndex(targetSlot, targetSubslot);
+
+    // Calculate the difference in absolute subslot indices
+    int subslotDifference = targetAbsoluteSubslotIndex - currentAbsoluteSubslotIndex;
+
+    // If the target subslot is in the next frame, adjust the difference
+    if (subslotDifference < 0)
+    {
+        // If the target subslot is in the next frame, add the total number of subslots in a frame
+        uint32_t subslotsPerFrame = this->m_mac->GetSubslotsPerSlot() * 24; // 24 slots per frame
+        subslotDifference += subslotsPerFrame;
+    }
+
+    // Calculate the time until the target subslot
+    Time subslotDuration = NanoSeconds(416666 / this->m_mac->GetSubslotsPerSlot()); // Subslot Duration in ns
+    Time timeUntilNextSubslot = subslotDifference * subslotDuration;
+
+    return timeUntilNextSubslot;
+}
+
+int
+Dect2020Phy::GetAbsoluteSubslotIndex(uint8_t slot, uint8_t subslot) const
+{
+    // Calculate the absolute subslot index
+    uint8_t subslotsPerSlot = this->m_mac->GetSubslotsPerSlot();
+    int absoluteSubslotIndex = (slot * subslotsPerSlot) + subslot;
+
+    return absoluteSubslotIndex;
 }
 
 } // namespace ns3

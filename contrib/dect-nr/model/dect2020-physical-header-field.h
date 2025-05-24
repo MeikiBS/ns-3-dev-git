@@ -19,7 +19,7 @@ class Dect2020PHYControlFieldType1 : public Header
     Dect2020PHYControlFieldType1();
     Dect2020PHYControlFieldType1(uint8_t packetLengthType,
                                  uint8_t packetLength,
-                                 uint8_t shortNetworkID,
+                                 uint32_t longNetworkID,
                                  uint16_t transmitterIdentity,
                                  uint8_t transmitPower,
                                  uint8_t dFMCS);
@@ -38,7 +38,7 @@ class Dect2020PHYControlFieldType1 : public Header
     uint8_t GetPacketLengthType();
     void SetPacketLength(uint8_t packetLength);
     uint8_t GetPacketLength();
-    void SetShortNetworkID(uint8_t shortNetworkID);
+    void SetShortNetworkID(uint32_t longNetworkID);
     uint8_t GetShortNetworkID();
     void SetTransmitterIdentity(uint16_t transmitterIdentity);
     uint16_t GetTransmitterIdentity();
@@ -85,7 +85,7 @@ class Dect2020PHYControlFieldType2 : public Header
     void SetPacketLength(uint8_t packetLength);
     uint8_t GetPacketLength();
 
-    void SetShortNetworkID(uint8_t shortNetworkID);
+    void SetShortNetworkID(uint8_t longNetworkID);
     uint8_t GetShortNetworkID();
 
     void SetTransmitterIdentity(uint16_t transmitterIdentity);
@@ -96,7 +96,7 @@ class Dect2020PHYControlFieldType2 : public Header
 
     void SetDFMCS(uint8_t dFMCS);
     uint8_t GetDFMCS();
-    
+
     void SetReceiverIdentity(uint16_t receiverIdentity);
     uint16_t GetReceiverIdentity() const;
 

@@ -366,25 +366,25 @@ Dect2020NetDevice::GetBandNumber(void) const
 void
 Dect2020NetDevice::SetBootstrappingVariables(bool isFT)
 {
-    uint8_t m_numOfPHYCapabilities = 0;
-    uint8_t m_release = 2;
-    bool m_supportGroupAssignment = false;
-    bool m_supportPaging = false;
-    uint8_t m_operatingModes = (isFT ? 1 : 0);
-    bool m_mesh = false;
-    bool m_scheduledAccessDataTransfer = false;              
-    uint8_t m_macSecurity = false;             
-    uint8_t m_dlcServiceType = 0;          
-    uint8_t m_rdPowerClass = 0;            
-    uint8_t m_maxNssFoRx = 0;         
-    uint8_t m_rxForTxDiversity = 0;   
-    uint8_t m_rxGain = 5;   // 0 dB             
-    uint8_t m_maxMcs = 11;             
-    uint8_t m_softBufferSize = 0;     
-    uint8_t m_numOfHarqProcesses = 2; 
-    uint8_t m_harqFeedbackDelay = 2;
-    bool m_dDelay = true;
-    bool m_halfDulp = false;
+    m_numOfPHYCapabilities = 0;
+    m_release = 2;
+    m_supportGroupAssignment = false;
+    m_supportPaging = false;
+    m_operatingModes = (isFT ? 1 : 0);
+    m_mesh = false;
+    m_scheduledAccessDataTransfer = false;              
+    m_macSecurity = false;             
+    m_dlcServiceType = 0;          
+    m_rdPowerClass = 0;            
+    m_maxNssFoRx = 0;         
+    m_rxForTxDiversity = 0;   
+    m_rxGain = 5;   // 0 dB             
+    m_maxMcs = 11;             
+    m_softBufferSize = 0;     
+    m_numOfHarqProcesses = 2; 
+    m_harqFeedbackDelay = 2;
+    m_dDelay = true;
+    m_halfDulp = false;
 }
 
 } // namespace ns3

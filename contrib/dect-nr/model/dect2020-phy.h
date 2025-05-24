@@ -3,18 +3,18 @@
 #define DECT2020_PHY_H
 
 #include "dect2020-operating-band.h"
-#include "dect2020-spectrum-signal-parameters.h"
-#include "dect2020-spectrum-model-manager.h"
 #include "dect2020-physical-header-field.h"
+#include "dect2020-spectrum-model-manager.h"
+#include "dect2020-spectrum-signal-parameters.h"
 
+#include "ns3/mobility-model.h"
 #include "ns3/nstime.h"
 #include "ns3/object.h"
 #include "ns3/packet.h"
 #include "ns3/ptr.h"
-#include "ns3/traced-callback.h"
-#include "ns3/mobility-model.h"
 #include "ns3/spectrum-model.h"
 #include "ns3/spectrum-phy.h"
+#include "ns3/traced-callback.h"
 
 namespace ns3
 {
@@ -75,13 +75,15 @@ class Dect2020Phy : public SpectrumPhy
     void StartRx(Ptr<SpectrumSignalParameters> params);
 
     Ptr<Dect2020Channel> m_dect2020Channel;
-    uint16_t GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex);  // In bits
+    uint16_t GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex); // In bits
     double CalculateTxDurationNs(Dect2020PHYControlFieldType1 physicalHeaderField);
     Time GetAbsoluteSubslotTime(uint8_t targetSfn, uint8_t slot, uint8_t subslot) const;
-
+    Time GetTimeUntilSubslot(uint8_t targetSfn, uint8_t targetSlot, uint8_t targetSubslot) const;
+    int GetAbsoluteSubslotIndex(uint8_t slot, uint8_t subslot) const;
+    Time GetTimeToNextAbsoluteSubslot(uint8_t targetSfn, uint8_t slot, uint8_t subslot) const;
 
     uint8_t m_currentSfn = 0;
-    uint16_t m_currentAbsoluteSubslot = 0;  // The absolute subslot number in the frame
+    uint16_t m_currentAbsoluteSubslot = 0; // The absolute subslot number in the frame
     Time m_frameStartTime;
 
   private:

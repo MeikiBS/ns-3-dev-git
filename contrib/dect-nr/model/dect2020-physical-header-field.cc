@@ -19,14 +19,14 @@ Dect2020PHYControlFieldType1::Dect2020PHYControlFieldType1()
 
 Dect2020PHYControlFieldType1::Dect2020PHYControlFieldType1(uint8_t packetLengthType,
                                                            uint8_t packetLength,
-                                                           uint8_t shortNetworkID,
+                                                           uint32_t longNetworkID,
                                                            uint16_t transmitterIdentity,
                                                            uint8_t transmitPower,
                                                            uint8_t dFMCS)
 {
     SetPacketLengthType(packetLengthType);
     SetPacketLength(packetLength);
-    SetShortNetworkID(shortNetworkID);
+    SetShortNetworkID(longNetworkID);
     SetTransmitterIdentity(transmitterIdentity);
     SetTransmitPower(transmitPower);
     SetDFMCS(dFMCS);
@@ -179,16 +179,10 @@ Dect2020PHYControlFieldType1::GetPacketLength()
 }
 
 void
-Dect2020PHYControlFieldType1::SetShortNetworkID(uint8_t shortNetworkID)
+Dect2020PHYControlFieldType1::SetShortNetworkID(uint32_t longNetworkID)
 {
-    if (shortNetworkID >= 0 && shortNetworkID <= pow(2, 8) - 1)
-    {
-        m_shortNetworkID = shortNetworkID;
-    }
-    else
-    {
-        NS_LOG_WARN("Invalid Short Network ID. Must be between 0 and " << (pow(2, 8) - 1));
-    }
+    m_shortNetworkID = 0;
+    m_shortNetworkID |= (longNetworkID & 0xFF); // Ensure only the last 8 bits are used
 }
 
 uint8_t
