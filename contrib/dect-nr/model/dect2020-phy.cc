@@ -280,12 +280,17 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
         return;
     }
 
-    // uint16_t channelIndex =
-    //     dectParams->m_currentChannelId -
-    //     Dect2020ChannelManager::GetFirstValidChannelNumber(
-    //         Dect2020ChannelManager::GetBandNumber(dectParams->m_currentChannelId));
-    // double rssiPacket = (*params->psd)[channelIndex];
-    // double rssiDbmPacket = Dect2020ChannelManager::WToDbm(rssiPacket);
+    uint16_t channelIndex =
+        dectParams->m_currentChannelId -
+        Dect2020ChannelManager::GetFirstValidChannelNumber(
+            Dect2020ChannelManager::GetBandNumber(dectParams->m_currentChannelId));
+    double rssiPacket = (*params->psd)[channelIndex];
+    double rssiDbmPacket = Dect2020ChannelManager::WToDbm(rssiPacket);
+
+    NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                << ": Dect2020Phy::StartRx() Packet with UID " << dectParams->txPacket->GetUid()
+                << " and RSSI: " << rssiDbmPacket << " dBm on channel "
+                << dectParams->m_currentChannelId);
 
     auto rssiChannelDbm = Dect2020ChannelManager::GetRssiDbm(dectParams->m_currentChannelId);
     auto rssiChannelWatt = Dect2020ChannelManager::DbmToW(rssiChannelDbm);
