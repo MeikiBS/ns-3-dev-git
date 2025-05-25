@@ -141,13 +141,14 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeade
 {
     NS_ASSERT_MSG(packet, "Packet is null");
     NS_ASSERT_MSG(this->m_device, "m_device is null");
+    NS_LOG_FUNCTION(this << packet);
 
     // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
     //             << ": Dect2020Phy::Send(): Von MAC Layer empfangenes Paket mit UID "
     //             << packet->GetUid() << " und Größe " << packet->GetSize() << " Bytes von 0x"
     //             << std::hex << this->m_mac->GetLongRadioDeviceId());
 
-    NS_LOG_FUNCTION(this << packet);
+    
 
     Ptr<Dect2020SpectrumSignalParameters> params = Create<Dect2020SpectrumSignalParameters>();
 

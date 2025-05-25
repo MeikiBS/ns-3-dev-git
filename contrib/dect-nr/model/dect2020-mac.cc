@@ -12,6 +12,7 @@
 #include "ns3/simulator.h"
 
 #include <iomanip> // Für std::setw und std::setfill
+#include <random>
 
 NS_LOG_COMPONENT_DEFINE("Dect2020Mac");
 
@@ -407,9 +408,33 @@ Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBe
 
     if (m_associationStatus == AssociationStatus::NOT_ASSOCIATED)
     {
+        uint16_t txSubslot;
         uint16_t startSubslot = rarIe.GetStartSubslot();
-        uint8_t slot = startSubslot / GetSubslotsPerSlot();
-        uint8_t subslot = startSubslot % GetSubslotsPerSlot();
+        bool lengthInSubslots = !rarIe.GetLengthType();
+        uint8_t length = rarIe.GetRaraLength();
+
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        if (lengthInSubslots)
+        {
+            std::uniform_int_distribution<> dis(startSubslot, startSubslot + length - 1);
+            txSubslot = dis(gen);
+
+            if (txSubslot >= GetSubslotsPerSlot() * 24)
+            {
+                NS_LOG_INFO("txSubslot before = " << txSubslot);
+                txSubslot = txSubslot % (GetSubslotsPerSlot() * 24);
+                NS_LOG_INFO("txSubslot after = " << txSubslot);
+                m_lastSfn++;
+            }
+        }
+        else
+        {
+            // tbd
+        }
+
+        uint8_t slot = txSubslot / GetSubslotsPerSlot();
+        uint8_t subslot = txSubslot % GetSubslotsPerSlot();
 
         Time t = m_phy->GetTimeToNextAbsoluteSubslot(m_lastSfn, slot, subslot);
 
@@ -684,7 +709,7 @@ Dect2020Mac::BuildRandomAccessResourceIE()
     // m_nextAvailableSubslot += 2; // 2 Subslots / RD
 
     randomAccessResourceIE.SetLengthType(0); // length in subslots
-    randomAccessResourceIE.SetRaraLength(2);
+    randomAccessResourceIE.SetRaraLength(10);
     randomAccessResourceIE.SetMaxRachLengthType(0); // length in subslots
     randomAccessResourceIE.SetMaxRachLength(2);     // Max 2  subslots / transmission
     randomAccessResourceIE.SetCwMinSig(0);          // CW min 0 --> backoff not yet implemented

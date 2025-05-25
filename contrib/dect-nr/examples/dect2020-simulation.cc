@@ -378,7 +378,7 @@ ZustandNach1Sek(Ptr<Dect2020NetDevice> dev)
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(60));
+    Simulator::Stop(Seconds(30));
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds());
 
@@ -405,7 +405,7 @@ main(int argc, char* argv[])
 
     // Erstellen der Knoten
     NodeContainer nodes;
-    nodes.Create(500);
+    nodes.Create(10);
 
     // Erstellen des Kanals
     Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
