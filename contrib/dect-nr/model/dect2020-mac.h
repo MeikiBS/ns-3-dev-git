@@ -237,6 +237,7 @@ class Dect2020Mac : public Object
     void SendAssociationRequest(FtCandidateInfo* ft);
     Time CalculcateTimeOffsetFromCurrentSubslot(uint32_t delayInSubslots);
     void SendAssociationResponse(AssociatedPtInfo ptInfo);
+    void VerifyPendingAssociationStatus();
 
     uint32_t m_clusterChannelId = 0; // Number of the Channel that is currently the cluster Channel
     uint32_t m_currentChannelId = 0; // Number of the Channel that the RD is currently connected
@@ -294,7 +295,7 @@ class Dect2020Mac : public Object
 
     // Membervariablen
     Ptr<Dect2020NetDevice> m_device;
-    Ptr<Dect2020NetDevice> m_associatedFTNetDevice; // Variable to store the associated FT NetDevice
+    uint32_t m_associatedFTNetDeviceLongRdId = 0; // Variable to store the associated FT NetDevices Long RD ID
     std::vector<Dect2020NetDevice> m_associatedNetDevices; // List of associated NetDevices
     Ptr<Dect2020Phy> m_phy;
     Mac48Address m_address;

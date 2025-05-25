@@ -199,11 +199,6 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
         return;
     }
 
-    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": Dect2020Mac::HandleUnicastPacket: Received Unicast Message from 0x"
-    //             << std::hex << transmitterAddress << " to 0x" << receiverAddress << " with UID "
-    //             << std::dec << packet->GetUid());
-
     // --- MAC Multiplexing Header ---
     Dect2020MacMuxHeaderShortSduNoPayload muxHeader;
     packet->RemoveHeader(muxHeader);
@@ -256,6 +251,22 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
             NS_LOG_WARN("Association Response received, but this device is not an PT. FT "
                         "association not yet implemented.");
             return;
+        }
+
+        Dect2020AssociationResponseMessage associationResponseMessage;
+        packet->RemoveHeader(associationResponseMessage);
+
+        if (associationResponseMessage.GetAssociationAccepted())
+        {
+            // tbd: for now --> set association status to ASSOCIATED
+            m_associationStatus = ASSOCIATED;
+            m_associatedFTNetDeviceLongRdId = transmitterAddress;
+            NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                        << ": Dect2020Mac::HandleUnicastPacket: Association Response by 0x" << std::hex << this->GetLongRadioDeviceId() << " accepted. ");
+        }
+        else
+        {
+            // tbd
         }
     }
 }
@@ -443,6 +454,18 @@ Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBe
 
         Simulator::Schedule(t, &Dect2020Mac::SendAssociationRequest, this, ft);
         m_associationStatus = AssociationStatus::ASSOCIATION_PENDING;
+        Simulator::Schedule(t + MilliSeconds(1000),
+                            &Dect2020Mac::VerifyPendingAssociationStatus,
+                            this); // Verify the association status after ~1 second
+    }
+}
+
+void
+Dect2020Mac::VerifyPendingAssociationStatus()
+{
+    if (this->m_associationStatus == AssociationStatus::ASSOCIATION_PENDING)
+    {
+        m_associationStatus = AssociationStatus::NOT_ASSOCIATED;
     }
 }
 
@@ -630,7 +653,7 @@ Dect2020Mac::DiscoverNetworks()
     std::vector<Ptr<Dect2020Channel>> channelList =
         Dect2020ChannelManager::GetValidChannels(this->m_device->GetBandNumber());
 
-    if (m_associatedFTNetDevice != nullptr)
+    if (m_associatedFTNetDeviceLongRdId != 0)
     {
         return; // Device is already associated --> abort
     }
@@ -807,9 +830,9 @@ Dect2020Mac::SendNetworkBeaconOnChannel(uint16_t channelId)
 
     m_phy->Send(networkBeacon, CreatePhysicalHeaderField(1, networkBeacon->GetSize()));
 
-    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": Dect2020Mac::SendNetworkBeaconOnChannel sent Network Beacon on Channel "
-    //             << channelId << " with UID " << networkBeacon->GetUid());
+    NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
+                << ": Dect2020Mac::SendNetworkBeaconOnChannel sent Network Beacon on Channel "
+                << channelId << " with UID " << networkBeacon->GetUid());
 
     // auto subslotTime = m_phy->GetAbsoluteSubslotTime(m_phy->m_currentSfn, 5, 1).GetNanoSeconds();
     // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()

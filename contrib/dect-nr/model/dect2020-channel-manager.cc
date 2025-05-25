@@ -278,28 +278,44 @@ std::map<uint8_t, Ptr<SpectrumValue>> Dect2020ChannelManager::m_channelOccupancy
 Ptr<SpectrumModel>
 Dect2020ChannelManager::GetSpectrumModel(uint8_t bandId)
 {
+    // Check if a SpectrumModel for this band already exists
     auto iterator = m_bandModels.find(bandId);
     if (iterator != m_bandModels.end())
     {
         return iterator->second;
     }
 
-    // Spectrum Model for this band does not exist --> create
+    // Spectrum Model for this band does not exist --> create it
     BandParameters bp = GetBandParameters(bandId);
 
+    // Generate a list of center frequencies, one per DECT channel
     std::vector<double> frequencies;
     for (int i = 0; i < bp.nEnd - bp.nStart + 1; i++)
     {
         frequencies.push_back(bp.startFrequency + i * bp.frequencyStep);
     }
 
+    // Create the SpectrumModel from the calculated frequencies
     Ptr<SpectrumModel> model = Create<SpectrumModel>(frequencies);
     m_bandModels[bandId] = model;
 
+    // Create an initial PSD (Power Spectral Density) entry for channel occupancy
     Ptr<SpectrumValue> psd = Create<SpectrumValue>(model);
+
+    // Add a realistic noise floor for each channel (e.g. −111 dBm per channel)
+    // This corresponds to thermal noise: −174 dBm/Hz + 10*log10(channel bandwidth in Hz)
+    for (uint32_t i = 0; i < psd->GetSpectrumModel()->GetNumBands(); ++i)
+    {
+        double noiseDbm = -111.0;
+        double noiseWatt = DbmToW(noiseDbm); // Convert dBm to linear Watt
+        (*psd)[i] = noiseWatt; // Set the baseline noise power
+    }
+
+    // Store the initialized PSD
     m_channelOccupancy[bandId] = psd;
 
-    NS_LOG_INFO("Created SpectrumModel for Band " << static_cast<int>(bandId));
+    NS_LOG_INFO("Created SpectrumModel for Band " << static_cast<int>(bandId)
+                 << " with " << psd->GetSpectrumModel()->GetNumBands() << " channels and noise floor.");
 
     return model;
 }

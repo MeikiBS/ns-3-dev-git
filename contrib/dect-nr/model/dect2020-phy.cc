@@ -148,20 +148,12 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeade
     //             << packet->GetUid() << " und Größe " << packet->GetSize() << " Bytes von 0x"
     //             << std::hex << this->m_mac->GetLongRadioDeviceId());
 
-    
-
     Ptr<Dect2020SpectrumSignalParameters> params = Create<Dect2020SpectrumSignalParameters>();
 
     params->txPhy = this;
     params->txPacket = packet->Copy();
     params->txPacket->AddHeader(physicalHeader);
     params->m_currentChannelId = this->m_mac->m_currentChannelId;
-
-    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": Dect2020Phy::Send(): Physical Header hinzugefügt bei Paket mit UID "
-    //             << params->txPacket->GetUid() << " und neuer Größe " <<
-    //             params->txPacket->GetSize()
-    //             << " Bytes von 0x" << std::hex << this->m_mac->GetLongRadioDeviceId());
 
     Time duration = Time(NanoSeconds(CalculateTxDurationNs(physicalHeader)));
     params->duration = duration;
@@ -174,18 +166,37 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeade
 
     Ptr<const SpectrumModel> specModel = Dect2020ChannelManager::GetSpectrumModel(bandId);
     Ptr<SpectrumValue> psd = Create<SpectrumValue>(specModel);
-    params->psd = psd;
+
+    // Get the channelIndex --> this is the index of the channel used for psd
+    uint16_t channelIndex = this->m_mac->m_currentChannelId -
+                            Dect2020ChannelManager::GetFirstValidChannelNumber(bandId);
 
     // Set the PSD value for the current channel
-    double power = Dect2020ChannelManager::DbmToW(23);
-    Dect2020ChannelManager::AddSpectrumPowerToChannel(this->m_mac->m_clusterChannelId, power);
+    Ptr<Dect2020NetDevice> dectNetDevice = DynamicCast<Dect2020NetDevice>(this->m_device);
+    double txPowerWatt = Dect2020ChannelManager::DbmToW(dectNetDevice->m_txPowerDbm);
+    Dect2020ChannelManager::AddSpectrumPowerToChannel(this->m_mac->m_clusterChannelId, txPowerWatt);
 
+    for (uint32_t i = 0; i < psd->GetSpectrumModel()->GetNumBands(); ++i)
+    {
+        (*psd)[i] = 0.0; // Initialize all channels to 0.0
+    }
+
+    (*psd)[channelIndex] = txPowerWatt; // Set the power for the current channel
+    params->psd = psd;
+
+    // The rssiHoldTime keeps transmit power in the channel slightly longer after transmission ends.
+    // This ensures that overlapping transmissions can still be detected as collisions via RSSI
+    // checks.
+    Time rssiHoldTime = MicroSeconds(100);
     // Remove the PSD value after the transmission
-    Simulator::Schedule(duration,
+    Simulator::Schedule(duration + rssiHoldTime,
                         &Dect2020ChannelManager::RemoveSpectrumPowerFromChannel,
                         this->m_mac->m_clusterChannelId,
-                        power);
+                        txPowerWatt);
 
+    NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                << ": Dect2020Phy::Send() Packet with " << params->txPacket->GetUid()
+                << " and duration " << duration.GetMicroSeconds());
     // Start the transmission
     Simulator::Schedule(duration, &ns3::SpectrumChannel::StartTx, m_channel, params);
 
@@ -260,24 +271,8 @@ Dect2020Phy::GetAntenna() const
 void
 Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
 {
-    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": Dect2020Phy: StartRx called from Device 0x" << std::hex
-    //             << this->m_mac->GetLongRadioDeviceId());
-
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
-
-    // NS_LOG_INFO("StartRx() aufgerufen von 0x" << std::hex << this->m_mac->GetShortRadioDeviceId()
-    // << std::dec << ". RD Channel: " << this->m_mac->m_clusterChannelId
-    //             << " und Params Channel: " << dectParams->m_currentChannelId);
-
-    // if (dectParams->m_currentChannelId == this->m_mac->m_currentChannelId)
-    // {
-    //     NS_LOG_INFO(Simulator::Now().GetMilliSeconds() << ": Message empfangen auf channel " <<
-    //                 dectParams->m_currentChannelId << " mit UID " <<
-    //                 dectParams->txPacket->GetUid());
-    //     return;
-    // }
 
     if (dectParams->m_currentChannelId != this->m_mac->m_currentChannelId)
     {
@@ -285,13 +280,37 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
         return;
     }
 
-    // WARUM??
-    // double power = Dect2020ChannelManager::GetRssiDbm(this->m_mac->m_currentChannelId);
-    // Subslot* subslot = GetCurrentSubslot(this->m_mac->m_currentChannelId);
-    // subslot->rssi = power;
+    // uint16_t channelIndex =
+    //     dectParams->m_currentChannelId -
+    //     Dect2020ChannelManager::GetFirstValidChannelNumber(
+    //         Dect2020ChannelManager::GetBandNumber(dectParams->m_currentChannelId));
+    // double rssiPacket = (*params->psd)[channelIndex];
+    // double rssiDbmPacket = Dect2020ChannelManager::WToDbm(rssiPacket);
 
-    // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-    //             << ": Dect2020Phy::StartRx(): Current global PSD: " << power);
+    auto rssiChannelDbm = Dect2020ChannelManager::GetRssiDbm(dectParams->m_currentChannelId);
+    auto rssiChannelWatt = Dect2020ChannelManager::DbmToW(rssiChannelDbm);
+
+    // Nur für Logging --> später löschen
+    if (rssiChannelDbm > -100)
+    {
+        NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                    << ": Global PSD on channel " << dectParams->m_currentChannelId
+                    << " with RSSI: " << rssiChannelDbm << " dBm and " << rssiChannelWatt
+                    << " Watt.");
+    }
+
+    if (rssiChannelDbm > 11.5 && rssiChannelDbm < 13.1)
+    {
+        // double rand = UniformRandomVariable().GetValue(0.0, 1.0);
+        Ptr<UniformRandomVariable> randVar = CreateObject<UniformRandomVariable>();
+        double rand = randVar->GetValue(0.0, 1.0);
+        if (rand > 0.5)
+        {
+            NS_LOG_WARN(Simulator::Now().GetMicroSeconds()
+                        << ": Collision detected. Packet dropped.");
+            return;
+        }
+    }
 
     m_receiveCallback(dectParams->txPacket);
 }
@@ -554,12 +573,14 @@ Dect2020Phy::GetAbsoluteSubslotTime(uint8_t targetSfn, uint8_t slot, uint8_t sub
                             << std::endl
                             << " Simulator::Now().GetMicroSeconds() = "
                             << Simulator::Now().GetMicroSeconds());
-    
+
     return offset + m_frameStartTime;
 }
 
 Time
-Dect2020Phy::GetTimeToNextAbsoluteSubslot(uint8_t targetSfn, uint8_t targetSlot, uint8_t targetSubslot) const
+Dect2020Phy::GetTimeToNextAbsoluteSubslot(uint8_t targetSfn,
+                                          uint8_t targetSlot,
+                                          uint8_t targetSubslot) const
 {
     // uint8_t currentSfn = m_currentSfn;
     uint8_t currentSlot = m_currentSlot;
@@ -581,7 +602,8 @@ Dect2020Phy::GetTimeToNextAbsoluteSubslot(uint8_t targetSfn, uint8_t targetSlot,
     }
 
     // Calculate the time until the target subslot
-    Time subslotDuration = NanoSeconds(416666 / this->m_mac->GetSubslotsPerSlot()); // Subslot Duration in ns
+    Time subslotDuration =
+        NanoSeconds(416666 / this->m_mac->GetSubslotsPerSlot()); // Subslot Duration in ns
     Time timeUntilNextSubslot = subslotDifference * subslotDuration;
 
     return timeUntilNextSubslot;
