@@ -205,6 +205,7 @@ class Dect2020Mac : public Object
     void StartNetworkBeaconSweep();
     void StartClusterBeaconTransmission();
     Dect2020RandomAccessResourceIE BuildRandomAccessResourceIE();
+    uint8_t CalculateAbsoluteStartSubslot();
     Ptr<Packet> BuildBeacon(bool isCluster, uint16_t networkBeaconTransmissionChannelId);
     void ReturnToOperatingChannel();
     void HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft);

@@ -168,10 +168,6 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
     // --- Cluster Beacon Message ---
     else if (ieType == IETypeFieldEncoding::CLUSTER_BEACON_MESSAGE)
     {
-        // ########### Debugging ###########
-        auto t = Simulator::Now().GetMilliSeconds();
-        NS_LOG_INFO(t);
-        // ########### Debugging ###########
         Dect2020Statistics::IncrementClusterBeaconReception();
 
         Dect2020ClusterBeaconMessage clusterBeaconMessage;
@@ -310,7 +306,9 @@ Dect2020Mac::ProcessAssociationRequest(Dect2020AssociationRequestMessage assoReq
     NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
                 << ": Dect2020Mac::ProcessAssociationRequest: Scheduling Association Response to 0x"
                 << std::hex << ptInfo.longRdId << std::dec << " in "
-                << (responseAbsSubslot - currentAbsSubslot) << " subslots and in " << t.GetMicroSeconds() << " us.");
+                << (responseAbsSubslot - currentAbsSubslot) << " subslots and in "
+                << t.GetMicroSeconds() << " us. Current AbsSubslot == " << currentAbsSubslot
+                << " & response Subslot == " << responseAbsSubslot);
 
     Simulator::Schedule(t, &Dect2020Mac::SendAssociationResponse, this, ptInfo);
 }
@@ -413,9 +411,7 @@ Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBe
         uint8_t slot = startSubslot / GetSubslotsPerSlot();
         uint8_t subslot = startSubslot % GetSubslotsPerSlot();
 
-        // Time t = m_phy->GetAbsoluteSubslotTime(m_lastSfn, slot, subslot);
         Time t = m_phy->GetTimeToNextAbsoluteSubslot(m_lastSfn, slot, subslot);
-
 
         NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
                     << ": DEBUG: Scheduling Association Request in " << t.GetMicroSeconds());
@@ -528,14 +524,15 @@ Dect2020Mac::CalculcateTimeOffsetFromCurrentSubslot(uint32_t delayInSubslots)
     uint32_t slot = subslotWithinFrame / subslotsPerSlot;
     uint32_t subslot = subslotWithinFrame % subslotsPerSlot;
 
-    Time t = m_phy->GetAbsoluteSubslotTime(targetSfn, slot, subslot);
+    // Time t = m_phy->GetAbsoluteSubslotTime(targetSfn, slot, subslot);
+    Time t = m_phy->GetTimeToNextAbsoluteSubslot(targetSfn, slot, subslot);
 
     NS_LOG_INFO("Absolute Subslot Time = " << t.GetMicroSeconds());
 
     auto fff = GetShortRadioDeviceId();
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": DEBUG: CalculcateTimeOffsetFromCurrentSubslot() for Device 0x"
-                << std::hex << fff << std::dec << " with delayInSubslots = " << delayInSubslots
+                << ": DEBUG: CalculcateTimeOffsetFromCurrentSubslot() for Device 0x" << std::hex
+                << fff << std::dec << " with delayInSubslots = " << delayInSubslots
                 << ", targetSfn = " << static_cast<int>(targetSfn) << ", slot = " << slot
                 << ", subslot = " << subslot << ", t = " << t.GetMicroSeconds());
 
@@ -604,6 +601,7 @@ Dect2020Mac::DiscoverNetworks()
     {
         return; // Device is in association process --> abort discovering networks
     }
+
     std::vector<Ptr<Dect2020Channel>> channelList =
         Dect2020ChannelManager::GetValidChannels(this->m_device->GetBandNumber());
 
@@ -636,7 +634,7 @@ Dect2020Mac::DiscoverNetworks()
 
     SetCurrentChannelId(nextChannelId);
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": PT-Device " << std::hex << "0x" << GetShortRadioDeviceId()
+                << ": PT-Device " << std::hex << "0x" << GetLongRadioDeviceId()
                 << " is scanning channel: " << std::dec << m_currentChannelId);
 
     Time t = MilliSeconds(1000); // Discover Network wait time
@@ -681,9 +679,9 @@ Dect2020Mac::BuildRandomAccessResourceIE()
     randomAccessResourceIE.SetChannelFieldIncluded(0);
     randomAccessResourceIE.SetSeparateChannelFieldIncluded(0);
 
-    uint8_t m_startSubslot = m_nextAvailableSubslot;
+    uint8_t m_startSubslot = CalculateAbsoluteStartSubslot();
     randomAccessResourceIE.SetStartSubslot(m_startSubslot);
-    m_nextAvailableSubslot += 2; // 2 Subslots / RD
+    // m_nextAvailableSubslot += 2; // 2 Subslots / RD
 
     randomAccessResourceIE.SetLengthType(0); // length in subslots
     randomAccessResourceIE.SetRaraLength(2);
@@ -695,6 +693,25 @@ Dect2020Mac::BuildRandomAccessResourceIE()
     randomAccessResourceIE.SetCwMaxSig(0); // CW max 0 --> backoff not yet implemented
 
     return randomAccessResourceIE;
+}
+
+uint8_t
+Dect2020Mac::CalculateAbsoluteStartSubslot()
+{
+    uint8_t absoluteStartSubslot = m_nextAvailableSubslot;
+    uint8_t subslotsPerFrame = GetSubslotsPerSlot() * 24;
+
+    // If the next available subslot is greater than the number of subslots per frame,
+    // wrap around to the beginning of the frame
+    if (absoluteStartSubslot >= subslotsPerFrame)
+    {
+        absoluteStartSubslot = absoluteStartSubslot % subslotsPerFrame;
+        m_nextAvailableSubslot = absoluteStartSubslot;
+    }
+
+    m_nextAvailableSubslot += 2;
+
+    return absoluteStartSubslot;
 }
 
 void

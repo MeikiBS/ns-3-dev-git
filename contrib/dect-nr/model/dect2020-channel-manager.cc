@@ -85,10 +85,6 @@ Dect2020ChannelManager::GetValidChannels(uint8_t bandNumber)
     {
         validChannels = it->second;
     }
-    else
-    {
-        NS_LOG_WARN("No channels found for band " << static_cast<int>(bandNumber));
-    }
 
     return validChannels;
 }

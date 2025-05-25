@@ -89,7 +89,6 @@ Dect2020Phy::Start()
     uint16_t randomChannelId = 1657 + (std::rand() % 21);
     m_mac->SetCurrentChannelId(randomChannelId);
 
-    NS_LOG_INFO("Set Random Channel ID: " << m_mac->m_currentChannelId);
     if (!m_isFrameTimerRunning)
     {
         m_isFrameTimerRunning = true;
