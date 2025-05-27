@@ -244,6 +244,8 @@ class Dect2020Mac : public Object
     void SelectBestFtCandidate();
     AssociationStatus GetAssociationStatus() const;
     int8_t GetRxGainFromIndex(uint8_t index) const;
+    bool isWaitingForClusterBeacon = false;
+    void ResetIsWaitingForClusterBeaconFlag();
 
     uint32_t m_clusterChannelId = 0; // Number of the Channel that is currently the cluster Channel
     uint32_t m_currentChannelId = 0; // Number of the Channel that the RD is currently connected

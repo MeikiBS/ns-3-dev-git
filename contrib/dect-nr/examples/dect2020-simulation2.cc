@@ -26,7 +26,7 @@ using TermPointType = Dect2020NetDevice::TerminationPointType;
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(20));
+    Simulator::Stop(Seconds(25));
 
     LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
@@ -37,14 +37,15 @@ main(int argc, char* argv[])
 
     // 2 FTs + 10 PTs
     NodeContainer ftNodes;
-    ftNodes.Create(2);
+    ftNodes.Create(3);
     NodeContainer ptNodes;
-    ptNodes.Create(50);
+    ptNodes.Create(150);
 
     MobilityHelper ftMobility;
     Ptr<ListPositionAllocator> ftPos = CreateObject<ListPositionAllocator>();
-    ftPos->Add(Vector(0.0, 100.0, 0.0));
-    ftPos->Add(Vector(100.0, 0.0, 0.0));
+    ftPos->Add(Vector(0.0, 150.0, 0.0));
+    ftPos->Add(Vector(75.0, 75.0, 0.0));
+    ftPos->Add(Vector(150.0, 0.0, 0.0));
     ftMobility.SetPositionAllocator(ftPos);
     ftMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
     ftMobility.Install(ftNodes);
@@ -52,9 +53,9 @@ main(int argc, char* argv[])
     MobilityHelper ptMobility;
     ptMobility.SetPositionAllocator("ns3::RandomRectanglePositionAllocator",
                                     "X",
-                                    StringValue("ns3::UniformRandomVariable[Min=0.0|Max=100.0]"),
+                                    StringValue("ns3::UniformRandomVariable[Min=0.0|Max=150.0]"),
                                     "Y",
-                                    StringValue("ns3::UniformRandomVariable[Min=0.0|Max=100.0]"));
+                                    StringValue("ns3::UniformRandomVariable[Min=0.0|Max=150.0]"));
     ptMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
     ptMobility.Install(ptNodes);
     // ptMobility.SetPositionAllocator("ns3::GridPositionAllocator",

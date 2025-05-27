@@ -1,6 +1,5 @@
 #include "ns3/applications-module.h"
 #include "ns3/core-module.h"
-#include "ns3/dect2020-beacon-header.h"
 #include "ns3/dect2020-channel-manager.h"
 #include "ns3/dect2020-mac-header-type.h"
 #include "ns3/dect2020-mac-information-elements.h"

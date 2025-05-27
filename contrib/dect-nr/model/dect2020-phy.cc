@@ -300,23 +300,15 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
         return;
     }
 
-
+    NS_LOG_INFO(Simulator::Now().GetMicroSeconds() << ": Dect2020Phy::StartRx: 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec
+                << " received a Packet with UID " << dectParams->txPacket->GetUid());
     // NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
     //             << ": Dect2020Phy::StartRx() Packet with UID " << dectParams->txPacket->GetUid()
     //             << " and RSSI: " << rssiPacketDbm << " dBm on channel "
     //             << dectParams->m_currentChannelId);
 
     auto rssiChannelDbm = Dect2020ChannelManager::GetRssiDbm(dectParams->m_currentChannelId);
-    // auto rssiChannelWatt = Dect2020ChannelManager::DbmToW(rssiChannelDbm);
 
-    // // Nur für Logging --> später löschen
-    // if (rssiChannelDbm > -100)
-    // {
-    //     NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-    //                 << ": Global PSD on channel " << dectParams->m_currentChannelId
-    //                 << " with RSSI: " << rssiChannelDbm << " dBm and " << rssiChannelWatt
-    //                 << " Watt.");
-    // }
 
     if (rssiChannelDbm > 11.5 && rssiChannelDbm < 13.1)
     {
@@ -325,7 +317,7 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
         if (rand > 0.5)
         {
             NS_LOG_WARN(Simulator::Now().GetMicroSeconds()
-                        << ": Collision detected. Packet dropped.");
+                        << ": Collision detected. Device 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec << " dropped the Packet with UID " << dectParams->txPacket->GetUid());
             return;
         }
     }

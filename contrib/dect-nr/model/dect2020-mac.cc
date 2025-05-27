@@ -85,6 +85,10 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet, double rssiDbm)
 {
     NS_LOG_FUNCTION(this << packet);
 
+    NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                << ": Dect2020Mac::ReceiveFromPhy: 0x" << std::hex << this->GetLongRadioDeviceId()
+                << std::dec << " received a Packet with UID " << packet->GetUid());
+
     // --- Physical Header Field ---
     Dect2020PHYControlFieldType1 physicalHeaderField;
     packet->RemoveHeader(physicalHeaderField);
@@ -105,7 +109,9 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet, double rssiDbm)
         ft->ftPhyHeaderField = physicalHeaderField;
         ft->shortFtId = physicalHeaderField.GetTransmitterIdentity();
         ft->shortNetworkId = physicalHeaderField.GetShortNetworkID();
-        ft->clusterChannelId = this->GetCurrentChannelId(); // ReceiveFromPhy can only be called if the sent Packet is on the current channel
+        ft->clusterChannelId =
+            this->GetCurrentChannelId(); // ReceiveFromPhy can only be called if the sent Packet is
+                                         // on the current channel
 
         HandleBeaconPacket(packet, ft);
     }
@@ -152,7 +158,8 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
     if (ieType == IETypeFieldEncoding::NETWORK_BEACON_MESSAGE)
     {
         // NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-        //             << ": Dect2020Mac::HandleBeaconPacket: 0x" << std::hex << GetLongRadioDeviceId()
+        //             << ": Dect2020Mac::HandleBeaconPacket: 0x" << std::hex <<
+        //             GetLongRadioDeviceId()
         //             << " received an NETWORK_BEACON_MESSAGE");
         Dect2020NetworkBeaconMessage networkBeaconMessage;
         packet->RemoveHeader(networkBeaconMessage);
@@ -165,21 +172,27 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
         // if this RD is not on the cluster channel, and the association status is not associated
         // nor association pending, switch to the cluster channel.
         if (GetCurrentChannelId() != ftBeaconNextClusterChannel &&
-            m_associationStatus != ASSOCIATED && m_associationStatus != ASSOCIATION_PENDING)
+            m_associationStatus != ASSOCIATED && m_associationStatus != ASSOCIATION_PENDING && !isWaitingForClusterBeacon)
         {
-            // NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-            //             << ": 0x" << std::hex << GetLongRadioDeviceId()
-            //             << " is switching to channel: " << std::dec << ftBeaconNextClusterChannel
-            //             << " from channel: " << GetCurrentChannelId());
+            NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                        << ": 0x" << std::hex << GetLongRadioDeviceId()
+                        << " is switching from channel: " << std::dec << GetCurrentChannelId() << " to channel: " << std::dec << ftBeaconNextClusterChannel);
+            
+            isWaitingForClusterBeacon = true;
+            // // TODO: Cluster Beacon Period anpassen
+            // Simulator::Schedule(MilliSeconds(110), 
+            //                     &Dect2020Mac::ResetIsWaitingForClusterBeaconFlag, this);
             SetCurrentChannelId(ftBeaconNextClusterChannel);
         }
     }
     // --- Cluster Beacon Message ---
     else if (ieType == IETypeFieldEncoding::CLUSTER_BEACON_MESSAGE)
     {
-        // NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-        //             << ": Dect2020Mac::HandleBeaconPacket: 0x" << std::hex << GetLongRadioDeviceId()
-        //             << " received an CLUSTER_BEACON_MESSAGE");
+        isWaitingForClusterBeacon = false;
+        NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+                    << ": Dect2020Mac::HandleBeaconPacket: 0x" << std::hex <<
+                    GetLongRadioDeviceId()
+                    << " received an CLUSTER_BEACON_MESSAGE");
 
         Dect2020Statistics::IncrementClusterBeaconReception();
 
@@ -193,6 +206,12 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
 
         EvaluateClusterBeacon(clusterBeaconMessage, randomAccessResourceIE, ft);
     }
+}
+
+void
+Dect2020Mac::ResetIsWaitingForClusterBeaconFlag()
+{
+    isWaitingForClusterBeacon = false;
 }
 
 void
@@ -515,7 +534,8 @@ Dect2020Mac::SelectBestFtCandidate()
         {
             bestRssiDbm = ft.rssiDbm;
             NS_LOG_INFO("DEBUG: ft.clusterChannelId == " << ft.clusterChannelId);
-            NS_LOG_INFO("DEBUG: ft.clusterChannelId == " << ft.ftNetworkBeaconMessage.GetNextClusterChannel());
+            NS_LOG_INFO("DEBUG: ft.clusterChannelId == "
+                        << ft.ftNetworkBeaconMessage.GetNextClusterChannel());
             bestCandidate = ft;
             found = true;
         }
@@ -546,7 +566,7 @@ Dect2020Mac::SelectBestFtCandidate()
 
     // Step 4: Switch to the FT's channel
     SetCurrentChannelId(bestCandidate.clusterChannelId);
-    if(m_currentChannelId > 1700)
+    if (m_currentChannelId > 1700)
     {
         NS_LOG_INFO("FUCK");
     }
@@ -558,7 +578,9 @@ Dect2020Mac::SelectBestFtCandidate()
     // Step 5: Set status and wait for next cluster beacon of selected FT
     m_associationStatus = AssociationStatus::WAITING_FOR_SELECTED_FT;
     // Beacon triggers next step in EvaluateClusterBeacon
-    Simulator::Schedule(Seconds(2), &Dect2020Mac::VerifyWaitingForSelectedFtAssociationStatus, this);
+    Simulator::Schedule(Seconds(2),
+                        &Dect2020Mac::VerifyWaitingForSelectedFtAssociationStatus,
+                        this);
 
     NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
                 << ": Dect2020Mac::SelectBestFtCandidate: 0x" << std::hex << GetLongRadioDeviceId()
@@ -595,8 +617,6 @@ Dect2020Mac::VerifyWaitingForSelectedFtAssociationStatus()
         m_associationStatus = AssociationStatus::NOT_ASSOCIATED;
     }
 }
-
-
 
 void
 Dect2020Mac::SendAssociationRequest(FtCandidateInfo* ft)
@@ -774,8 +794,8 @@ Dect2020Mac::InitializeNetwork()
 void
 Dect2020Mac::DiscoverNetworks()
 {
-    if (m_associationStatus == AssociationStatus::ASSOCIATION_PENDING || m_associationStatus ==
-        AssociationStatus::WAITING_FOR_SELECTED_FT)
+    if (m_associationStatus == AssociationStatus::ASSOCIATION_PENDING ||
+        m_associationStatus == AssociationStatus::WAITING_FOR_SELECTED_FT)
     {
         return; // Device is in association process --> abort discovering networks
     }
@@ -842,7 +862,8 @@ Dect2020Mac::StartClusterBeaconTransmission()
     m_phy->Send(clusterBeacon, CreatePhysicalHeaderField(1, clusterBeacon->GetSize()));
 
     NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-                << ": Dect2020Mac::StartClusterBeaconTransmission sent Cluster Beacon on Channel "
+                << ": Dect2020Mac::StartClusterBeaconTransmission: Device 0x" << std::hex
+                << GetLongRadioDeviceId() << std::dec << " sent Cluster Beacon on Channel "
                 << m_clusterChannelId << " with UID " << clusterBeacon->GetUid());
 
     // Schedule next cluster beacon transmission
@@ -962,7 +983,7 @@ Dect2020Mac::SendNetworkBeaconOnChannel(uint16_t channelId)
     m_phy->Send(networkBeacon, CreatePhysicalHeaderField(1, networkBeacon->GetSize()));
 
     NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                << ": Dect2020Mac::SendNetworkBeaconOnChannel sent Network Beacon on Channel "
+                << ": Dect2020Mac::SendNetworkBeaconOnChannel: Device 0x" << std::hex << GetLongRadioDeviceId() << std::dec << " sent Network Beacon on Channel "
                 << channelId << " with UID " << networkBeacon->GetUid());
 
     // auto subslotTime = m_phy->GetAbsoluteSubslotTime(m_phy->m_currentSfn, 5, 1).GetNanoSeconds();
@@ -1401,7 +1422,8 @@ Dect2020Mac::SetLongRadioDeviceId(uint32_t rdId)
         m_longRadioDeviceId = rdId;
 
         NS_LOG_INFO(Simulator::Now().GetMilliSeconds()
-                    << ": Set Long Radio Device ID: 0x" << std::hex << rdId << " on Device " << this);
+                    << ": Set Long Radio Device ID: 0x" << std::hex << rdId << " on Device "
+                    << this);
     }
     else
     {
