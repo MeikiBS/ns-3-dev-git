@@ -1,6 +1,5 @@
 #include "ns3/applications-module.h"
 #include "ns3/core-module.h"
-#include "ns3/dect2020-beacon-header.h"
 #include "ns3/dect2020-channel-manager.h"
 #include "ns3/dect2020-mac-header-type.h"
 #include "ns3/dect2020-mac-information-elements.h"
@@ -27,7 +26,7 @@ using TermPointType = Dect2020NetDevice::TerminationPointType;
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(30));
+    Simulator::Stop(Seconds(20));
 
     LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
@@ -44,28 +43,35 @@ main(int argc, char* argv[])
 
     MobilityHelper ftMobility;
     Ptr<ListPositionAllocator> ftPos = CreateObject<ListPositionAllocator>();
-    ftPos->Add(Vector(0.0, 0.0, 0.0));
+    ftPos->Add(Vector(0.0, 100.0, 0.0));
     ftPos->Add(Vector(100.0, 0.0, 0.0));
     ftMobility.SetPositionAllocator(ftPos);
     ftMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
     ftMobility.Install(ftNodes);
 
     MobilityHelper ptMobility;
-    ptMobility.SetPositionAllocator("ns3::GridPositionAllocator",
-                                    "MinX",
-                                    DoubleValue(10.0),
-                                    "MinY",
-                                    DoubleValue(10.0),
-                                    "DeltaX",
-                                    DoubleValue(10.0),
-                                    "DeltaY",
-                                    DoubleValue(10.0),
-                                    "GridWidth",
-                                    UintegerValue(5),
-                                    "LayoutType",
-                                    StringValue("RowFirst"));
+    ptMobility.SetPositionAllocator("ns3::RandomRectanglePositionAllocator",
+                                    "X",
+                                    StringValue("ns3::UniformRandomVariable[Min=0.0|Max=100.0]"),
+                                    "Y",
+                                    StringValue("ns3::UniformRandomVariable[Min=0.0|Max=100.0]"));
     ptMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
     ptMobility.Install(ptNodes);
+    // ptMobility.SetPositionAllocator("ns3::GridPositionAllocator",
+    //                                 "MinX",
+    //                                 DoubleValue(10.0),
+    //                                 "MinY",
+    //                                 DoubleValue(10.0),
+    //                                 "DeltaX",
+    //                                 DoubleValue(10.0),
+    //                                 "DeltaY",
+    //                                 DoubleValue(10.0),
+    //                                 "GridWidth",
+    //                                 UintegerValue(5),
+    //                                 "LayoutType",
+    //                                 StringValue("RowFirst"));
+    // ptMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
+    // ptMobility.Install(ptNodes);
 
     // Kanalmodell
     Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
@@ -135,12 +141,18 @@ main(int argc, char* argv[])
     }
 
     Simulator::Run();
+
     std::map<std::string, uint32_t> statusCounter;
+    std::map<uint64_t, std::string> longRdidToName;
+
     std::ofstream topo("networkx_topology.py");
     topo << "import networkx as nx\n";
     topo << "import matplotlib.pyplot as plt\n";
     topo << "nodes = []\n";
     topo << "edges = []\n";
+
+    int ftCounter = 1;
+    int ptCounter = 1;
 
     for (uint32_t i = 0; i < devices.GetN(); ++i)
     {
@@ -150,36 +162,70 @@ main(int argc, char* argv[])
         Vector pos = mob->GetPosition();
 
         auto status = mac->GetAssociationStatus();
-        std::string statusStr = "UNKNOWN";
-        if (status == 4)
+        std::string statusStr;
+        switch (status)
+        {
+        case 0:
+            statusStr = "NOT_ASSOCIATED";
+            break;
+        case 1:
+            statusStr = "ASSOCIATION_PREPARING";
+            break;
+        case 2:
+            statusStr = "WAITING_FOR_SELECTED_FT";
+            break;
+        case 3:
+            statusStr = "ASSOCIATION_PENDING";
+            break;
+        case 4:
             statusStr = "ASSOCIATED";
+            break;
+        default:
+            statusStr = "UNKNOWN";
+            break;
+        }
+        statusCounter[statusStr]++;
 
         std::string type = dev->GetTerminationPointType() == TermPointType::FT ? "FT" : "PT";
-        topo << "nodes.append((" << i << ", '" << type << "', " << pos.x << ", " << pos.y << "))\n";
+        std::string name;
+        if (type == "FT")
+        {
+            name = "FT" + std::to_string(ftCounter++);
+        }
+        else
+        {
+            name = "PT" + std::to_string(ptCounter++);
+        }
+
+        longRdidToName[mac->GetLongRadioDeviceId()] = name;
+
+        topo << "nodes.append(('" << name << "', '" << type << "', " << pos.x << ", " << pos.y
+             << "))\n";
 
         if (status == 4) // ASSOCIATED
         {
             uint64_t ftId = mac->m_associatedFTNetDeviceLongRdId;
-            uint64_t ptId = mac->GetLongRadioDeviceId();
-            topo << "edges.append((" << ftId << ", " << ptId << "))\n";
+            std::string ftName = longRdidToName[ftId];
+            topo << "edges.append(('" << ftName << "', '" << name << "'))\n";
         }
+
+        NS_LOG_UNCOND("Device " << i << " LongRDID: 0x" << std::hex << mac->GetLongRadioDeviceId()
+                                << " --> Association Status: " << statusStr);
+    }
+
+    NS_LOG_UNCOND("\nSummary of association statuses:");
+    for (const auto& entry : statusCounter)
+    {
+        NS_LOG_UNCOND(entry.first << ": " << entry.second);
     }
 
     topo << R"(
 G = nx.Graph()
-
-# Knoten hinzufügen
-for i, typ, x, y in nodes:
-    G.add_node(i, type=typ, pos=(x, y))
-
-# Kanten hinzufügen
+for name, typ, x, y in nodes:
+    G.add_node(name, type=typ, pos=(x, y))
 G.add_edges_from(edges)
-
-# Layout über gespeicherte Positionen
-pos = {i: (x, y) for i, typ, x, y in nodes}
+pos = {name: (x, y) for name, typ, x, y in nodes}
 colors = ['red' if G.nodes[n]['type'] == 'FT' else 'skyblue' for n in G.nodes]
-
-# Zeichnen
 plt.figure(figsize=(10, 6))
 nx.draw(G, pos, with_labels=True, node_color=colors, node_size=600, font_size=8, edge_color='gray')
 plt.title('DECT-2020 NR Topologie mit FT-PT Verbindungen')
@@ -188,6 +234,12 @@ plt.grid(True)
 plt.show()
 )";
     topo.close();
+
+    for(auto& rdidName : longRdidToName)
+    {
+        NS_LOG_UNCOND("Name: " << rdidName.second << " -->  LongRDID: 0x" << std::hex << rdidName.first);
+    }
+
     Simulator::Destroy();
     return 0;
 }
