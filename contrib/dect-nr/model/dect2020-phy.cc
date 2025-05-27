@@ -204,36 +204,36 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeade
     m_phyTxBeginTrace(packet);
 }
 
+// void
+// Dect2020Phy::Receive(Ptr<Packet> packet)
+// {
+//     NS_LOG_FUNCTION(this << packet);
+
+//     m_phyRxTrace(packet);
+
+//     if (m_mac)
+//     {
+//         m_mac->ReceiveFromPhy(packet);
+//     }
+
+//     // Empfangsverzögerung
+//     // Simulator::Schedule(m_rxDelay, &Dect2020Phy::ReceiveDelayed, this, packet);
+// }
+
+// void
+// Dect2020Phy::ReceiveDelayed(Ptr<Packet> packet)
+// {
+//     NS_LOG_FUNCTION(this << packet);
+
+//     // Trace-Aufruf
+//     m_phyRxTrace(packet);
+
+//     // Weiterleitung an die MAC-Schicht
+//     m_mac->ReceiveFromPhy(packet);
+// }
+
 void
-Dect2020Phy::Receive(Ptr<Packet> packet)
-{
-    NS_LOG_FUNCTION(this << packet);
-
-    m_phyRxTrace(packet);
-
-    if (m_mac)
-    {
-        m_mac->ReceiveFromPhy(packet);
-    }
-
-    // Empfangsverzögerung
-    // Simulator::Schedule(m_rxDelay, &Dect2020Phy::ReceiveDelayed, this, packet);
-}
-
-void
-Dect2020Phy::ReceiveDelayed(Ptr<Packet> packet)
-{
-    NS_LOG_FUNCTION(this << packet);
-
-    // Trace-Aufruf
-    m_phyRxTrace(packet);
-
-    // Weiterleitung an die MAC-Schicht
-    m_mac->ReceiveFromPhy(packet);
-}
-
-void
-Dect2020Phy::SetReceiveCallback(Callback<void, Ptr<Packet>> cb)
+Dect2020Phy::SetReceiveCallback(Callback<void, Ptr<Packet>, double> cb)
 {
     m_receiveCallback = cb;
 }
@@ -274,39 +274,52 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
 
+    uint16_t channelIndex =
+        dectParams->m_currentChannelId -
+        Dect2020ChannelManager::GetFirstValidChannelNumber(
+            Dect2020ChannelManager::GetBandNumber(dectParams->m_currentChannelId));
+    double rssiPacket = (*params->psd)[channelIndex];
+    double rssiPacketDbm = Dect2020ChannelManager::WToDbm(rssiPacket);
+
+    // Calculate the minimum Rx sensitivity in dBm
+    Ptr<Dect2020NetDevice> dectNetDevice = DynamicCast<Dect2020NetDevice>(this->m_device);
+    // For Minimum RX Sensitivity see ETSI 103636 02 Table 7.2-1 --> Band 1, Bandwith 1,728 MHz == -99,7
+    double minRxSensitivityDbm = -99.7 + this->m_mac->GetRxGainFromIndex(dectNetDevice->m_rxGain);
     if (dectParams->m_currentChannelId != this->m_mac->m_currentChannelId)
     {
         // abort Rx if the channel is not the same
         return;
     }
 
-    uint16_t channelIndex =
-        dectParams->m_currentChannelId -
-        Dect2020ChannelManager::GetFirstValidChannelNumber(
-            Dect2020ChannelManager::GetBandNumber(dectParams->m_currentChannelId));
-    double rssiPacket = (*params->psd)[channelIndex];
-    double rssiDbmPacket = Dect2020ChannelManager::WToDbm(rssiPacket);
-
-    NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-                << ": Dect2020Phy::StartRx() Packet with UID " << dectParams->txPacket->GetUid()
-                << " and RSSI: " << rssiDbmPacket << " dBm on channel "
-                << dectParams->m_currentChannelId);
-
-    auto rssiChannelDbm = Dect2020ChannelManager::GetRssiDbm(dectParams->m_currentChannelId);
-    auto rssiChannelWatt = Dect2020ChannelManager::DbmToW(rssiChannelDbm);
-
-    // Nur für Logging --> später löschen
-    if (rssiChannelDbm > -100)
+    if(rssiPacketDbm < minRxSensitivityDbm)
     {
         NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-                    << ": Global PSD on channel " << dectParams->m_currentChannelId
-                    << " with RSSI: " << rssiChannelDbm << " dBm and " << rssiChannelWatt
-                    << " Watt.");
+                    << ": Dect2020Phy::StartRx() 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec << "received a Packet with UID " << dectParams->txPacket->GetUid()
+                    << " received with RSSI: " << rssiPacketDbm << " dBm on channel "
+                    << dectParams->m_currentChannelId << ". Packet dropped due to low RSSI ");
+        return;
     }
+
+
+    // NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+    //             << ": Dect2020Phy::StartRx() Packet with UID " << dectParams->txPacket->GetUid()
+    //             << " and RSSI: " << rssiPacketDbm << " dBm on channel "
+    //             << dectParams->m_currentChannelId);
+
+    auto rssiChannelDbm = Dect2020ChannelManager::GetRssiDbm(dectParams->m_currentChannelId);
+    // auto rssiChannelWatt = Dect2020ChannelManager::DbmToW(rssiChannelDbm);
+
+    // // Nur für Logging --> später löschen
+    // if (rssiChannelDbm > -100)
+    // {
+    //     NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
+    //                 << ": Global PSD on channel " << dectParams->m_currentChannelId
+    //                 << " with RSSI: " << rssiChannelDbm << " dBm and " << rssiChannelWatt
+    //                 << " Watt.");
+    // }
 
     if (rssiChannelDbm > 11.5 && rssiChannelDbm < 13.1)
     {
-        // double rand = UniformRandomVariable().GetValue(0.0, 1.0);
         Ptr<UniformRandomVariable> randVar = CreateObject<UniformRandomVariable>();
         double rand = randVar->GetValue(0.0, 1.0);
         if (rand > 0.5)
@@ -317,7 +330,7 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
         }
     }
 
-    m_receiveCallback(dectParams->txPacket);
+    m_receiveCallback(dectParams->txPacket, rssiPacketDbm);
 }
 
 // void

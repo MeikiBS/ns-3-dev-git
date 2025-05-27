@@ -141,7 +141,7 @@ class Dect2020NetDevice : public NetDevice
     bool m_dDelay; // Indicates if the device supports D-Delay
     bool m_halfDulp; // Indicates if the device supports half-duplex operation
 
-    double m_txPowerDbm = 10; // Default transmission power in dBm
+    double m_txPowerDbm = 23; // Default transmission power in dBm
 
   private:
     void DoInitialize(void) override;

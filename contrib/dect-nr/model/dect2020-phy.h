@@ -63,7 +63,7 @@ class Dect2020Phy : public SpectrumPhy
     void ProcessSubslot(uint32_t slotId, uint32_t subslotId);
     Slot* GetCurrentSlot(uint32_t channelId);
     Subslot* GetCurrentSubslot(uint32_t channelId);
-    void SetReceiveCallback(Callback<void, Ptr<Packet>> cb);
+    void SetReceiveCallback(Callback<void, Ptr<Packet>, double> cb);
     // static const std::vector<Channel>& GetChannels();
     uint16_t GetCurrentAbsoluteSubslot() const;
 
@@ -102,7 +102,7 @@ class Dect2020Phy : public SpectrumPhy
 
     static const std::vector<uint16_t> m_singleSlotSingleStreamTransportBlockSizesMu1Beta1;
 
-    Callback<void, Ptr<Packet>> m_receiveCallback;
+    Callback<void, Ptr<Packet>, double> m_receiveCallback;
 
     // Trace-Quellen
     TracedCallback<Ptr<const Packet>> m_phyTxBeginTrace;

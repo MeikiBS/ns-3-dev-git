@@ -109,6 +109,8 @@ class Dect2020Mac : public Object
     enum AssociationStatus
     {
         NOT_ASSOCIATED,
+        ASSOCIATION_PREPARING,
+        WAITING_FOR_SELECTED_FT,
         ASSOCIATION_PENDING,
         ASSOCIATED
     };
@@ -131,7 +133,7 @@ class Dect2020Mac : public Object
     void Send(Ptr<Packet> packet, const Address& dest, Dect2020PacketType type);
 
     // Empfang von Paketen von der PHY-Schicht
-    void ReceiveFromPhy(Ptr<Packet> packet);
+    void ReceiveFromPhy(Ptr<Packet> packet, double rssiDbm);
 
     // Zugriff auf die Mac-Adresse des NetDevice
     Mac48Address GetAddress(void) const;
@@ -238,6 +240,10 @@ class Dect2020Mac : public Object
     Time CalculcateTimeOffsetFromCurrentSubslot(uint32_t delayInSubslots);
     void SendAssociationResponse(AssociatedPtInfo ptInfo);
     void VerifyPendingAssociationStatus();
+    void VerifyWaitingForSelectedFtAssociationStatus();
+    void SelectBestFtCandidate();
+    AssociationStatus GetAssociationStatus() const;
+    int8_t GetRxGainFromIndex(uint8_t index) const;
 
     uint32_t m_clusterChannelId = 0; // Number of the Channel that is currently the cluster Channel
     uint32_t m_currentChannelId = 0; // Number of the Channel that the RD is currently connected
@@ -285,6 +291,9 @@ class Dect2020Mac : public Object
     uint8_t m_lastSfn;
     uint8_t m_potentialShortNetworkId; // Short Network ID of the current FT candidate in the
                                        // Association Procedure
+    FtCandidateInfo m_selectedFtCandidate; // The selected FT candidate for association
+    EventId m_discoverNetworksEvent;
+    uint32_t m_associatedFTNetDeviceLongRdId = 0; // Variable to store the associated FT NetDevices Long RD ID
 
   private:
     Dect2020PHYControlFieldType1 CreatePhysicalHeaderField(uint8_t packetLengthType,
@@ -295,7 +304,6 @@ class Dect2020Mac : public Object
 
     // Membervariablen
     Ptr<Dect2020NetDevice> m_device;
-    uint32_t m_associatedFTNetDeviceLongRdId = 0; // Variable to store the associated FT NetDevices Long RD ID
     std::vector<Dect2020NetDevice> m_associatedNetDevices; // List of associated NetDevices
     Ptr<Dect2020Phy> m_phy;
     Mac48Address m_address;

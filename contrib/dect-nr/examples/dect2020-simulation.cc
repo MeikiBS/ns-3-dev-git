@@ -405,7 +405,7 @@ main(int argc, char* argv[])
 
     // Erstellen der Knoten
     NodeContainer nodes;
-    nodes.Create(500);
+    nodes.Create(10);
 
     // Erstellen des Kanals
     Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
