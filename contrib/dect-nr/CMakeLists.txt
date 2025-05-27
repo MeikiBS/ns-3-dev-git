@@ -18,9 +18,7 @@ set(source_files
     model/dect2020-mac-common-header.cc
     model/dect2020-mac-messages.cc
     model/dect2020-mac-header-type.cc
-    model/dect2020-operating-band.cc
     model/dect2020-spectrum-signal-parameters.cc
-    model/dect2020-spectrum-model-manager.cc
     model/dect2020-physical-header-field.cc
     model/dect2020-mac-information-elements.cc
     model/dect2020-channel-manager.cc
@@ -35,9 +33,7 @@ set(header_files
     model/dect2020-mac-common-header.h
     model/dect2020-mac-messages.h
     model/dect2020-mac-header-type.h
-    model/dect2020-operating-band.h
     model/dect2020-spectrum-signal-parameters.h
-    model/dect2020-spectrum-model-manager.h
     model/dect2020-physical-header-field.h
     model/dect2020-mac-information-elements.h
     model/dect2020-channel-manager.h

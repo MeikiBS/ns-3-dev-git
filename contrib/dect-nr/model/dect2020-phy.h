@@ -2,9 +2,7 @@
 #ifndef DECT2020_PHY_H
 #define DECT2020_PHY_H
 
-#include "dect2020-operating-band.h"
 #include "dect2020-physical-header-field.h"
-#include "dect2020-spectrum-model-manager.h"
 #include "dect2020-spectrum-signal-parameters.h"
 
 #include "ns3/mobility-model.h"

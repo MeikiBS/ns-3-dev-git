@@ -55,17 +55,6 @@ Dect2020Phy::Dect2020Phy()
     : m_currentSlot(0),
       m_currentSubslot(0)
 {
-    // // Set a start channel
-    // Ptr<Dect2020NetDevice> device = DynamicCast<Dect2020NetDevice>(this->m_device);
-    // Ptr<Dect2020Channel> startChannel =
-    // Dect2020ChannelManager::GetValidChannels(device->GetBandNumber()).front(); m_dect2020Channel
-    // = startChannel;
-
-    // if (!m_isFrameTimerRunning)
-    // {
-    //     m_isFrameTimerRunning = true;
-    //     StartFrameTimer();
-    // }
     NS_LOG_FUNCTION(this);
 }
 
@@ -82,7 +71,6 @@ Dect2020Phy::Start()
     Ptr<Dect2020Channel> startChannel =
         Dect2020ChannelManager::GetValidChannels(device->GetBandNumber()).front();
     m_dect2020Channel = startChannel;
-    // this->m_mac->SetCurrentChannelId(m_dect2020Channel->m_channelId);
 
     uint32_t seed = this->m_mac->GetLongRadioDeviceId();
     std::srand(seed);
@@ -321,6 +309,12 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
             return;
         }
     }
+    else if(rssiChannelDbm > 13.1)
+    {
+        NS_LOG_WARN(Simulator::Now().GetMicroSeconds()
+                    << ": Collision detected. Device 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec << " dropped the Packet with UID " << dectParams->txPacket->GetUid());
+        return;
+    }
 
     m_receiveCallback(dectParams->txPacket, rssiPacketDbm);
 }
@@ -433,15 +427,6 @@ Dect2020Phy::ProcessSlot(uint32_t slot, double slotStartTime)
 
     for (uint32_t subslot = 0; subslot < numSubslotsPerSlot; subslot++)
     {
-        // NS_LOG_INFO("Schedule::ProcessSubslot Subslot "
-        //             << subslot << " in Slot " << slot << " at Time " << std::fixed
-        //             << (slotStartTime + subslot * subslotDuration) << " and subslotDuration "
-        //             << subslotDuration);
-        // Simulator::Schedule(NanoSeconds(slotStartTime + (subslot * subslotDuration)),
-        //                     &Dect2020Phy::ProcessSubslot,
-        //                     this,
-        //                     slot,
-        //                     subslot);
         Simulator::Schedule(NanoSeconds(subslot * subslotDuration),
                             &Dect2020Phy::ProcessSubslot,
                             this,
@@ -459,11 +444,6 @@ Dect2020Phy::ProcessSubslot(uint32_t slotId, uint32_t subslotId)
     // Reset the RSSI of the current Subslot
     Subslot* subslot = GetCurrentSubslot(this->m_mac->m_clusterChannelId);
     (*subslot).rssi = 0;
-
-    // NS_LOG_INFO("Device 0x" << std::hex << this->m_mac->GetShortRadioDeviceId() << std::dec
-    //                         << " Processing Subslot " << subslotId << " in Slot " << slotId
-    //                         << " at time " << std::fixed << Simulator::Now().GetNanoSeconds()
-    //                         << " with current SFN " << static_cast<int>(m_currentSfn));
 }
 
 Slot*

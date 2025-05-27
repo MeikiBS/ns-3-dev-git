@@ -26,7 +26,7 @@ using TermPointType = Dect2020NetDevice::TerminationPointType;
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(25));
+    Simulator::Stop(Seconds(45));
 
     LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
@@ -39,7 +39,7 @@ main(int argc, char* argv[])
     NodeContainer ftNodes;
     ftNodes.Create(3);
     NodeContainer ptNodes;
-    ptNodes.Create(150);
+    ptNodes.Create(50);
 
     MobilityHelper ftMobility;
     Ptr<ListPositionAllocator> ftPos = CreateObject<ListPositionAllocator>();
@@ -200,8 +200,8 @@ main(int argc, char* argv[])
 
         longRdidToName[mac->GetLongRadioDeviceId()] = name;
 
-        topo << "nodes.append(('" << name << "', '" << type << "', " << pos.x << ", " << pos.y
-             << "))\n";
+        topo << "nodes.append(('" << name << "', '" << type << "', '" << statusStr << "', " << pos.x << ", " << pos.y << "))\n";
+
 
         if (status == 4) // ASSOCIATED
         {
@@ -222,11 +222,26 @@ main(int argc, char* argv[])
 
     topo << R"(
 G = nx.Graph()
-for name, typ, x, y in nodes:
-    G.add_node(name, type=typ, pos=(x, y))
+for name, typ, status, x, y in nodes:
+    G.add_node(name, type=typ, status=status, pos=(x, y))
 G.add_edges_from(edges)
-pos = {name: (x, y) for name, typ, x, y in nodes}
-colors = ['red' if G.nodes[n]['type'] == 'FT' else 'skyblue' for n in G.nodes]
+pos = {name: (x, y) for name, typ, status, x, y in nodes}
+
+status_colors = {
+    'ASSOCIATED': 'dodgerblue',
+    'ASSOCIATION_PENDING': 'orange',
+    'WAITING_FOR_SELECTED_FT': 'yellow',
+    'ASSOCIATION_PREPARING': 'pink',
+    'NOT_ASSOCIATED': 'gray',
+    'UNKNOWN': 'black'
+}
+
+colors = [
+    'red' if G.nodes[n]['type'] == 'FT'
+    else status_colors.get(G.nodes[n].get('status', 'UNKNOWN'), 'black')
+    for n in G.nodes
+]
+
 plt.figure(figsize=(10, 6))
 nx.draw(G, pos, with_labels=True, node_color=colors, node_size=600, font_size=8, edge_color='gray')
 plt.title('DECT-2020 NR Topologie mit FT-PT Verbindungen')
