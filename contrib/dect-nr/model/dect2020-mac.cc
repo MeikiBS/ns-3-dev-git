@@ -194,6 +194,12 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
                     GetLongRadioDeviceId()
                     << " received an CLUSTER_BEACON_MESSAGE");
 
+        // if the PT has received a Cluster Beacon and no Network Beacon before, we assume the cluster Channel is the current Channel
+        if(ft->ftNetworkBeaconMessage.GetNextClusterChannel() == 0 && !ft->ftClusterBeaconMessage.GetNextChannelIncluded())
+        {
+            ft->ftNetworkBeaconMessage.SetNextClusterChannel(this->m_currentChannelId);
+        }
+
         Dect2020Statistics::IncrementClusterBeaconReception();
 
         Dect2020ClusterBeaconMessage clusterBeaconMessage;
@@ -227,7 +233,7 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
 
     if (receiverAddress != this->GetLongRadioDeviceId())
     {
-        return;
+        return; // Packet is not for this device
     }
 
     // --- MAC Multiplexing Header ---
@@ -555,29 +561,18 @@ Dect2020Mac::SelectBestFtCandidate()
                 << " selected FT with Long RD ID " << std::hex << bestCandidate.longFtId
                 << " and RSSI: " << bestRssiDbm << " dBm");
 
-    // Step 3: Abort running Events from Dect2020Mac::DisoverNetworks
-    // if (m_discoverNetworksEvent.IsRunning())
-    // {
-    //     NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-    //                 << ": Device with Long RD ID 0x" << std::hex << GetLongRadioDeviceId()
-    //                 << ": Canceling scheduled DiscoverNetworks event after FT selection.");
-    //     m_discoverNetworksEvent.Cancel();
-    // }
 
-    // Step 4: Switch to the FT's channel
+    // Step 3: Switch to the FT's channel
     SetCurrentChannelId(bestCandidate.clusterChannelId);
-    if (m_currentChannelId > 1700)
-    {
-        NS_LOG_INFO("FUCK");
-    }
+
     NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
                 << ": Device with Long RD ID 0x" << std::hex << GetLongRadioDeviceId() << std::dec
                 << " switched to channel " << m_currentChannelId
                 << " to wait for next Cluster Beacon.");
 
-    // Step 5: Set status and wait for next cluster beacon of selected FT
+    // Step 4: Set status and wait for next cluster beacon of selected FT
     m_associationStatus = AssociationStatus::WAITING_FOR_SELECTED_FT;
-    // Beacon triggers next step in EvaluateClusterBeacon
+    // Cluster Beacon triggers next step in EvaluateClusterBeacon
     Simulator::Schedule(Seconds(2),
                         &Dect2020Mac::VerifyWaitingForSelectedFtAssociationStatus,
                         this);
@@ -805,7 +800,7 @@ Dect2020Mac::DiscoverNetworks()
 
     if (m_associatedFTNetDeviceLongRdId != 0)
     {
-        return; // Device is already associated --> abort
+        // return; // Device is already associated --> abort
     }
 
     // find the current channel
@@ -950,7 +945,7 @@ Dect2020Mac::StartNetworkBeaconSweep()
 
     // Schedule the network beacon transmission on the selected channels
     Time beaconDuration = MicroSeconds(1);       // duration of the beacon transmission
-    Time networkBeaconPeriod = MilliSeconds(10); // gap between each transmission
+    Time networkBeaconPeriod = MilliSeconds(100); // gap between each transmission
     Time base = Seconds(0);
 
     for (auto& channelId : networkBeaconChannels)
@@ -1078,11 +1073,11 @@ Dect2020Mac::StartSubslotScan(uint32_t channelId,
     context->onComplete = onComplete;
     context->subslotCount = 0;
 
-    ScheduleNextSubslotMeasurement(context, numSubslots);
+    MeasureAndScheduleNextSubslot(context, numSubslots);
 }
 
 void
-Dect2020Mac::ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> context,
+Dect2020Mac::MeasureAndScheduleNextSubslot(std::shared_ptr<SubslotScanContext> context,
                                             uint32_t numSubslots)
 {
     Subslot* subslot = m_phy->GetCurrentSubslot(context->channelId);
@@ -1108,7 +1103,7 @@ Dect2020Mac::ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> 
     {
         // Schedule the next measurement
         Simulator::Schedule(NanoSeconds(subslot->subslotDurationNs),
-                            &Dect2020Mac::ScheduleNextSubslotMeasurement,
+                            &Dect2020Mac::MeasureAndScheduleNextSubslot,
                             this,
                             context,
                             numSubslots);

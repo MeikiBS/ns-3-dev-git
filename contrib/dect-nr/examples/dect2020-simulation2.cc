@@ -26,7 +26,7 @@ using TermPointType = Dect2020NetDevice::TerminationPointType;
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(45));
+    Simulator::Stop(Seconds(30));
 
     LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);

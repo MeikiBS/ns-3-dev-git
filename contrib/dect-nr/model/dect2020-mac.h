@@ -231,7 +231,7 @@ class Dect2020Mac : public Object
     void StartSubslotScan(uint32_t channelId,
                           uint32_t numSubslots,
                           std::function<void(const ChannelEvaluation&)> onComplete);
-    void ScheduleNextSubslotMeasurement(std::shared_ptr<SubslotScanContext> context,
+    void MeasureAndScheduleNextSubslot(std::shared_ptr<SubslotScanContext> context,
                                         uint32_t numSubslots);
 
     uint8_t GetSubslotsPerSlot();
