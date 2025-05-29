@@ -182,11 +182,12 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeade
                         this->m_mac->m_clusterChannelId,
                         txPowerWatt);
 
-    NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-                << ": Dect2020Phy::Send() Packet with " << params->txPacket->GetUid()
+    NS_LOG_INFO(Simulator::Now().GetNanoSeconds()
+                << ": Dect2020Phy::Send() Packet with UID " << params->txPacket->GetUid()
                 << " and duration " << duration.GetMicroSeconds());
     // Start the transmission
-    Simulator::Schedule(duration, &ns3::SpectrumChannel::StartTx, m_channel, params);
+    // Simulator::Schedule(duration, &ns3::SpectrumChannel::StartTx, m_channel, params);
+    m_channel->StartTx(params);
 
     // Trace-Aufruf
     m_phyTxBeginTrace(packet);
@@ -229,7 +230,27 @@ Dect2020Phy::GetAntenna() const
 }
 
 void
+Dect2020Phy::SetAntenna(Ptr<Object> antenna)
+{
+    m_antenna = antenna;
+}
+
+void
 Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
+{
+    Ptr<Dect2020SpectrumSignalParameters> dectParams =
+        DynamicCast<Dect2020SpectrumSignalParameters>(params);
+
+    // TODO: check if the device is in RX State (--> need to implement a TX/RX State Machine)
+
+    Simulator::Schedule(dectParams->duration,
+                        &Dect2020Phy::EndRx,
+                        this,
+                        dectParams);
+}
+
+void
+Dect2020Phy::EndRx(Ptr<SpectrumSignalParameters> params)
 {
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
@@ -244,7 +265,8 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     // Calculate the minimum Rx sensitivity in dBm
     Ptr<Dect2020NetDevice> dectNetDevice = DynamicCast<Dect2020NetDevice>(this->m_device);
     // For Minimum RX Sensitivity see ETSI 103636 02 Table 7.2-1 --> Band 1, Bandwith 1,728 MHz == -99,7
-    double minRxSensitivityDbm = -99.7 + this->m_mac->GetRxGainFromIndex(dectNetDevice->m_rxGain);
+    // double minRxSensitivityDbm = -99.7 + this->m_mac->GetRxGainFromIndex(dectNetDevice->m_rxGain);
+    double minRxSensitivityDbm = -99.7;
     if (dectParams->m_currentChannelId != this->m_mac->m_currentChannelId)
     {
         // abort Rx if the channel is not the same
@@ -254,13 +276,13 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     if(rssiPacketDbm < minRxSensitivityDbm)
     {
         NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-                    << ": Dect2020Phy::StartRx() 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec << "received a Packet with UID " << dectParams->txPacket->GetUid()
+                    << ": Dect2020Phy::EndRx: 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec << "received a Packet with UID " << dectParams->txPacket->GetUid()
                     << " received with RSSI: " << rssiPacketDbm << " dBm on channel "
                     << dectParams->m_currentChannelId << ". Packet dropped due to low RSSI ");
         return;
     }
 
-    NS_LOG_INFO(Simulator::Now().GetMicroSeconds() << ": Dect2020Phy::StartRx: 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec
+    NS_LOG_INFO(Simulator::Now().GetNanoSeconds() << ": Dect2020Phy::EndRx: 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec
                 << " received a Packet with UID " << dectParams->txPacket->GetUid());
     // NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
     //             << ": Dect2020Phy::StartRx() Packet with UID " << dectParams->txPacket->GetUid()

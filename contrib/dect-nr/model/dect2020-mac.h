@@ -225,6 +225,9 @@ class Dect2020Mac : public Object
                                    Dect2020RdCapabilityIE rdCapabilityIe,
                                    Dect2020AssociationControlIE assoControlIe,
                                    uint32_t assoInitiatorLongRdId);
+    void ProcessAssociationResponse(Dect2020AssociationResponseMessage assoRespMsg,
+                                    Dect2020RdCapabilityIE rdCapabilityIe,
+                                    uint32_t ftLongRdId);
 
     Dect2020PHYControlFieldType1 CreatePhysicalHeaderField();
 
@@ -236,14 +239,16 @@ class Dect2020Mac : public Object
 
     uint8_t GetSubslotsPerSlot();
     FtCandidateInfo* FindOrCreateFtCandidate(uint16_t shortFtId);
+    FtCandidateInfo* FindFtCandidateByLongId(uint32_t longFtId);
     void SendAssociationRequest(FtCandidateInfo* ft);
     Time CalculcateTimeOffsetFromCurrentSubslot(uint32_t delayInSubslots);
     void SendAssociationResponse(AssociatedPtInfo ptInfo);
     void VerifyPendingAssociationStatus();
     void VerifyWaitingForSelectedFtAssociationStatus();
+    void VerifyAssociatedStatus();
     void SelectBestFtCandidate();
     AssociationStatus GetAssociationStatus() const;
-    int8_t GetRxGainFromIndex(uint8_t index) const;
+    double GetRxGainFromIndex(uint8_t index) const;
     bool isWaitingForClusterBeacon = false;
     void ResetIsWaitingForClusterBeaconFlag();
 

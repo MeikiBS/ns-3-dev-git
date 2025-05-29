@@ -106,6 +106,12 @@ main(int argc, char* argv[])
         phy->SetChannel(channel);
         channel->AddRx(phy);
 
+        // Antenna
+        Ptr<IsotropicAntennaModel> antenna = CreateObject<IsotropicAntennaModel>();
+        DoubleValue rxGain = mac->GetRxGainFromIndex(dev->m_rxGain);
+        antenna->SetAttribute("Gain", rxGain); // z. B. 5 dBi RX Gain
+        phy->SetAntenna(antenna);
+
         dev->SetAddress(Mac48Address::Allocate());
         dev->SetLinkUp();
         devices.Add(dev);
@@ -200,8 +206,8 @@ main(int argc, char* argv[])
 
         longRdidToName[mac->GetLongRadioDeviceId()] = name;
 
-        topo << "nodes.append(('" << name << "', '" << type << "', '" << statusStr << "', " << pos.x << ", " << pos.y << "))\n";
-
+        topo << "nodes.append(('" << name << "', '" << type << "', '" << statusStr << "', " << pos.x
+             << ", " << pos.y << "))\n";
 
         if (status == 4) // ASSOCIATED
         {
@@ -251,9 +257,10 @@ plt.show()
 )";
     topo.close();
 
-    for(auto& rdidName : longRdidToName)
+    for (auto& rdidName : longRdidToName)
     {
-        NS_LOG_UNCOND("Name: " << rdidName.second << " -->  LongRDID: 0x" << std::hex << rdidName.first);
+        NS_LOG_UNCOND("Name: " << rdidName.second << " -->  LongRDID: 0x" << std::hex
+                               << rdidName.first);
     }
 
     Simulator::Destroy();

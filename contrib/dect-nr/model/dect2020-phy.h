@@ -70,7 +70,10 @@ class Dect2020Phy : public SpectrumPhy
     Ptr<MobilityModel> GetMobility() const override;
     Ptr<const SpectrumModel> GetRxSpectrumModel() const override;
     Ptr<Object> GetAntenna() const override;
+    void SetAntenna(Ptr<Object> antenna);
+    
     void StartRx(Ptr<SpectrumSignalParameters> params);
+    void EndRx(Ptr<SpectrumSignalParameters> params);
 
     Ptr<Dect2020Channel> m_dect2020Channel;
     uint16_t GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex); // In bits

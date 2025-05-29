@@ -541,25 +541,25 @@ void
 Dect2020RdCapabilityIE::Print(std::ostream& os) const
 {
     os << "RD Capability IE:"
-       << " Number of PHY capabilities=" << static_cast<uint32_t>(m_numOfPhyCapabilities)
-       << ", Release=" << static_cast<uint32_t>(m_Release)
-       << ", GroupAssign=" << m_groupAssignment
-       << ", Paging=" << m_paging
-       << ", OperatingModes=" << static_cast<uint32_t>(m_operatingModes)
-       << ", Mesh=" << m_mesh
-       << ", ScheduledAccessDataTransfer=" << m_scheduledAccessDataTransfer
-       << ", MACSec=" << static_cast<uint32_t>(m_macSecurity)
-       << ", DLC=" << static_cast<uint32_t>(m_dlcServiceType)
-       << ", PowerClass=" << static_cast<uint32_t>(m_rdPowerClass)
-       << ", NSSFoRx=" << static_cast<uint32_t>(m_maxNssFoRx)
-       << ", RxDiv=" << static_cast<uint32_t>(m_rxForTxDiversity)
-       << ", RxGain=" << static_cast<uint32_t>(m_rxGain)
-       << ", MaxMCS=" << static_cast<uint32_t>(m_maxMcs)
-       << ", Soft-Buffer=" << static_cast<uint32_t>(m_softBufferSize)
-       << ", HARQProc=" << static_cast<uint32_t>(m_numOfHarqProcesses)
-       << ", HARQDelay=" << static_cast<uint32_t>(m_harqFeedbackDelay)
-       << ", DDelay=" << m_dDelay
-       << ", HalfDULP=" << m_halfDulp;
+       << " Number of PHY capabilities=" << static_cast<uint32_t>(m_numOfPhyCapabilities) << std::endl 
+       << ", Release=" << static_cast<uint32_t>(m_Release)<< std::endl 
+       << ", GroupAssign=" << m_groupAssignment<< std::endl 
+       << ", Paging=" << m_paging<< std::endl 
+       << ", OperatingModes=" << static_cast<uint32_t>(m_operatingModes)<< std::endl 
+       << ", Mesh=" << m_mesh<< std::endl 
+       << ", ScheduledAccessDataTransfer=" << m_scheduledAccessDataTransfer<< std::endl 
+       << ", MACSec=" << static_cast<uint32_t>(m_macSecurity)<< std::endl 
+       << ", DLC=" << static_cast<uint32_t>(m_dlcServiceType)<< std::endl 
+       << ", PowerClass=" << static_cast<uint32_t>(m_rdPowerClass)<< std::endl 
+       << ", NSSFoRx=" << static_cast<uint32_t>(m_maxNssFoRx)<< std::endl 
+       << ", RxDiv=" << static_cast<uint32_t>(m_rxForTxDiversity)<< std::endl 
+       << ", RxGain=" << static_cast<uint32_t>(m_rxGain)<< std::endl 
+       << ", MaxMCS=" << static_cast<uint32_t>(m_maxMcs)<< std::endl 
+       << ", Soft-Buffer=" << static_cast<uint32_t>(m_softBufferSize)<< std::endl 
+       << ", HARQProc=" << static_cast<uint32_t>(m_numOfHarqProcesses)<< std::endl 
+       << ", HARQDelay=" << static_cast<uint32_t>(m_harqFeedbackDelay)<< std::endl 
+       << ", DDelay=" << m_dDelay<< std::endl 
+       << ", HalfDULP=" << m_halfDulp << std::endl;
 }
 
 
