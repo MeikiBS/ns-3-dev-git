@@ -302,6 +302,11 @@ class Dect2020Mac : public Object
     EventId m_discoverNetworksEvent;
     uint32_t m_associatedFTNetDeviceLongRdId = 0; // Variable to store the associated FT NetDevices Long RD ID
 
+
+    // Statistic Variables
+    Time m_deviceStartTime; // Start time of the device
+    Time m_successfulAssociationTime; // Time of the last successful association
+
   private:
     Dect2020PHYControlFieldType1 CreatePhysicalHeaderField(uint8_t packetLengthType,
                                                            uint32_t packetLength);

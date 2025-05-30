@@ -72,7 +72,8 @@ Dect2020Phy::Start()
         Dect2020ChannelManager::GetValidChannels(device->GetBandNumber()).front();
     m_dect2020Channel = startChannel;
 
-    uint32_t seed = this->m_mac->GetLongRadioDeviceId();
+    // uint32_t seed = this->m_mac->GetLongRadioDeviceId();
+    uint32_t seed = 13;
     std::srand(seed);
     uint16_t randomChannelId = 1657 + (std::rand() % 21);
     m_mac->SetCurrentChannelId(randomChannelId);
@@ -184,13 +185,17 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeade
 
     NS_LOG_INFO(Simulator::Now().GetNanoSeconds()
                 << ": Dect2020Phy::Send() Packet with UID " << params->txPacket->GetUid()
-                << " and duration " << duration.GetMicroSeconds());
+                << " and duration " << duration.GetMicroSeconds()
+                << " us. Packet size: " << params->txPacket->GetSize());
     // Start the transmission
-    // Simulator::Schedule(duration, &ns3::SpectrumChannel::StartTx, m_channel, params);
-    m_channel->StartTx(params);
+    Simulator::Schedule(duration, &ns3::SpectrumChannel::StartTx, m_channel, params);
+    // m_channel->StartTx(params);
 
     // Trace-Aufruf
     m_phyTxBeginTrace(packet);
+
+    // Statistics
+    Dect2020Statistics::IncrementSumOfAllPacketsSent();
 }
 
 void
@@ -238,20 +243,16 @@ Dect2020Phy::SetAntenna(Ptr<Object> antenna)
 void
 Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
 {
-    Ptr<Dect2020SpectrumSignalParameters> dectParams =
-        DynamicCast<Dect2020SpectrumSignalParameters>(params);
+    // Ptr<Dect2020SpectrumSignalParameters> dectParams =
+    //     DynamicCast<Dect2020SpectrumSignalParameters>(params);
 
-    // TODO: check if the device is in RX State (--> need to implement a TX/RX State Machine)
+    // // TODO: check if the device is in RX State (--> need to implement a TX/RX State Machine)
 
-    Simulator::Schedule(dectParams->duration,
-                        &Dect2020Phy::EndRx,
-                        this,
-                        dectParams);
-}
+    // Simulator::Schedule(dectParams->duration,
+    //                     &Dect2020Phy::EndRx,
+    //                     this,
+    //                     dectParams);
 
-void
-Dect2020Phy::EndRx(Ptr<SpectrumSignalParameters> params)
-{
     Ptr<Dect2020SpectrumSignalParameters> dectParams =
         DynamicCast<Dect2020SpectrumSignalParameters>(params);
 
@@ -264,33 +265,38 @@ Dect2020Phy::EndRx(Ptr<SpectrumSignalParameters> params)
 
     // Calculate the minimum Rx sensitivity in dBm
     Ptr<Dect2020NetDevice> dectNetDevice = DynamicCast<Dect2020NetDevice>(this->m_device);
-    // For Minimum RX Sensitivity see ETSI 103636 02 Table 7.2-1 --> Band 1, Bandwith 1,728 MHz == -99,7
-    // double minRxSensitivityDbm = -99.7 + this->m_mac->GetRxGainFromIndex(dectNetDevice->m_rxGain);
-    double minRxSensitivityDbm = -99.7;
+    // For Minimum RX Sensitivity see ETSI 103636 02 Table 7.2-1 --> Band 1, Bandwith 1,728 MHz ==
+    // -99,7
+    double minRxSensitivityDbm = -99.7 + this->m_mac->GetRxGainFromIndex(dectNetDevice->m_rxGain);
+    // double minRxSensitivityDbm = -99.7;
     if (dectParams->m_currentChannelId != this->m_mac->m_currentChannelId)
     {
         // abort Rx if the channel is not the same
         return;
     }
 
-    if(rssiPacketDbm < minRxSensitivityDbm)
+    if (rssiPacketDbm < minRxSensitivityDbm)
     {
         NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-                    << ": Dect2020Phy::EndRx: 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec << "received a Packet with UID " << dectParams->txPacket->GetUid()
+                    << ": Dect2020Phy::EndRx: 0x" << std::hex << this->m_mac->GetLongRadioDeviceId()
+                    << std::dec << "received a Packet with UID " << dectParams->txPacket->GetUid()
                     << " received with RSSI: " << rssiPacketDbm << " dBm on channel "
                     << dectParams->m_currentChannelId << ". Packet dropped due to low RSSI ");
+
+        // Statistics
+        Dect2020Statistics::IncrementPacketsDroppedLowRssi();
         return;
     }
 
-    NS_LOG_INFO(Simulator::Now().GetNanoSeconds() << ": Dect2020Phy::EndRx: 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec
-                << " received a Packet with UID " << dectParams->txPacket->GetUid());
+    NS_LOG_INFO(Simulator::Now().GetNanoSeconds()
+                << ": Dect2020Phy::EndRx: 0x" << std::hex << this->m_mac->GetLongRadioDeviceId()
+                << std::dec << " received a Packet with UID " << dectParams->txPacket->GetUid());
     // NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
     //             << ": Dect2020Phy::StartRx() Packet with UID " << dectParams->txPacket->GetUid()
     //             << " and RSSI: " << rssiPacketDbm << " dBm on channel "
     //             << dectParams->m_currentChannelId);
 
     auto rssiChannelDbm = Dect2020ChannelManager::GetRssiDbm(dectParams->m_currentChannelId);
-
 
     if (rssiChannelDbm > 11.5 && rssiChannelDbm < 13.1)
     {
@@ -299,14 +305,18 @@ Dect2020Phy::EndRx(Ptr<SpectrumSignalParameters> params)
         if (rand > 0.5)
         {
             NS_LOG_WARN(Simulator::Now().GetMicroSeconds()
-                        << ": Collision detected. Device 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec << " dropped the Packet with UID " << dectParams->txPacket->GetUid());
+                        << ": Collision detected. Device 0x" << std::hex
+                        << this->m_mac->GetLongRadioDeviceId() << std::dec
+                        << " dropped the Packet with UID " << dectParams->txPacket->GetUid());
             return;
         }
     }
-    else if(rssiChannelDbm > 13.1)
+    else if (rssiChannelDbm > 13.1)
     {
         NS_LOG_WARN(Simulator::Now().GetMicroSeconds()
-                    << ": Collision detected. Device 0x" << std::hex << this->m_mac->GetLongRadioDeviceId() << std::dec << " dropped the Packet with UID " << dectParams->txPacket->GetUid());
+                    << ": Collision detected. Device 0x" << std::hex
+                    << this->m_mac->GetLongRadioDeviceId() << std::dec
+                    << " dropped the Packet with UID " << dectParams->txPacket->GetUid());
         return;
     }
 

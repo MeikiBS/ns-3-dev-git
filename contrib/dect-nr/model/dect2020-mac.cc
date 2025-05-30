@@ -214,6 +214,9 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
         ft->ftRandomAccessResourceIE = randomAccessResourceIE;
 
         EvaluateClusterBeacon(clusterBeaconMessage, randomAccessResourceIE, ft);
+
+        // Statistics
+        Dect2020Statistics::IncrementClusterBeaconReception();
     }
 }
 
@@ -393,6 +396,9 @@ Dect2020Mac::ProcessAssociationResponse(Dect2020AssociationResponseMessage assoR
         NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
                     << ": Dect2020Mac::HandleUnicastPacket: Association Response by 0x" << std::hex
                     << this->GetLongRadioDeviceId() << " accepted. ");
+
+        // Statistics
+        m_successfulAssociationTime = Simulator::Now();
     }
     else
     {
@@ -821,9 +827,7 @@ Dect2020Mac::Start()
     else if (this->m_device->GetTerminationPointType() ==
              Dect2020NetDevice::TerminationPointType::PT)
     {
-        // DEBUG: Network ID auf festen Wert setzen, später mit Beacon empfangen
-        // m_networkId = 123456;
-        // JoinNetwork(m_networkId);
+        m_deviceStartTime = Simulator::Now() - MilliSeconds(100);
 
         Simulator::Schedule(MilliSeconds(100),
                             &Dect2020Mac::DiscoverNetworks,
@@ -936,7 +940,10 @@ Dect2020Mac::StartClusterBeaconTransmission()
                 << m_clusterChannelId << " with UID " << clusterBeacon->GetUid());
 
     // Schedule next cluster beacon transmission
-    Simulator::Schedule(MilliSeconds(100), &Dect2020Mac::StartClusterBeaconTransmission, this);
+    Simulator::Schedule(MilliSeconds(500), &Dect2020Mac::StartClusterBeaconTransmission, this);
+
+    // Statistics
+    Dect2020Statistics::IncrementClusterBeaconTransmission();
 }
 
 Dect2020RandomAccessResourceIE
@@ -1135,6 +1142,13 @@ Dect2020Mac::StartBeaconTransmission()
 {
     StartNetworkBeaconSweep();
     StartClusterBeaconTransmission();
+
+    // std::mt19937 rng(13); // Mersenne Twister PRNG seeded
+    // std::uniform_int_distribution<int> dist(1, 100);
+
+    // int startClusterBeaconTransmissionDelay = dist(rng);
+
+    // Simulator::Schedule(MicroSeconds(startClusterBeaconTransmissionDelay), &Dect2020Mac::StartClusterBeaconTransmission, this);
 }
 
 void
