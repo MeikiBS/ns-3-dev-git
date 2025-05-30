@@ -278,6 +278,9 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
                                   rdCapabilityIE,
                                   associationControlIE,
                                   transmitterAddress);
+
+        // Statistics
+        Dect2020Statistics::IncrementAssociationRequestCount();
     }
     // Message is an association response
     else if (ieType == IETypeFieldEncoding::ASSOCIATION_RESPONSE_MESSAGE)
@@ -940,7 +943,7 @@ Dect2020Mac::StartClusterBeaconTransmission()
                 << m_clusterChannelId << " with UID " << clusterBeacon->GetUid());
 
     // Schedule next cluster beacon transmission
-    Simulator::Schedule(MilliSeconds(500), &Dect2020Mac::StartClusterBeaconTransmission, this);
+    Simulator::Schedule(MilliSeconds(100), &Dect2020Mac::StartClusterBeaconTransmission, this);
 
     // Statistics
     Dect2020Statistics::IncrementClusterBeaconTransmission();
@@ -1148,7 +1151,8 @@ Dect2020Mac::StartBeaconTransmission()
 
     // int startClusterBeaconTransmissionDelay = dist(rng);
 
-    // Simulator::Schedule(MicroSeconds(startClusterBeaconTransmissionDelay), &Dect2020Mac::StartClusterBeaconTransmission, this);
+    // Simulator::Schedule(MicroSeconds(startClusterBeaconTransmissionDelay),
+    // &Dect2020Mac::StartClusterBeaconTransmission, this);
 }
 
 void

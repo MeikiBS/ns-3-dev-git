@@ -42,6 +42,20 @@ Dect2020Statistics::GetPacketsDroppedLowRssiCount()
     return m_packetsDroppedLowRssi;
 }
 
+uint32_t Dect2020Statistics::m_packetsDroppedCollision = 0;
+
+void
+Dect2020Statistics::IncrementPacketsDroppedCollision()
+{
+    ++m_packetsDroppedCollision;
+}
+
+uint32_t
+Dect2020Statistics::GetPacketsDroppedCollisionCount()
+{
+    return m_packetsDroppedCollision;
+}
+
 uint32_t Dect2020Statistics::m_sumOfAllPacketsSent = 0;
 
 void
@@ -54,4 +68,18 @@ uint32_t
 Dect2020Statistics::GetSumOfAllPacketsSent()
 {
     return m_sumOfAllPacketsSent;
+}
+
+uint32_t Dect2020Statistics::m_associationRequestCount = 0;
+
+void
+Dect2020Statistics::IncrementAssociationRequestCount()
+{
+    ++m_associationRequestCount;
+}
+
+uint32_t
+Dect2020Statistics::GetAssociationRequestCount()
+{
+    return m_associationRequestCount;
 }

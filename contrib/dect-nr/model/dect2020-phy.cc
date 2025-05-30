@@ -163,7 +163,7 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeade
     // Set the PSD value for the current channel
     Ptr<Dect2020NetDevice> dectNetDevice = DynamicCast<Dect2020NetDevice>(this->m_device);
     double txPowerWatt = Dect2020ChannelManager::DbmToW(dectNetDevice->m_txPowerDbm);
-    Dect2020ChannelManager::AddSpectrumPowerToChannel(this->m_mac->m_clusterChannelId, txPowerWatt);
+    Dect2020ChannelManager::AddSpectrumPowerToChannel(this->m_mac->m_currentChannelId, txPowerWatt);
 
     for (uint32_t i = 0; i < psd->GetSpectrumModel()->GetNumBands(); ++i)
     {
@@ -180,7 +180,7 @@ Dect2020Phy::Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeade
     // Remove the PSD value after the transmission
     Simulator::Schedule(duration + rssiHoldTime,
                         &Dect2020ChannelManager::RemoveSpectrumPowerFromChannel,
-                        this->m_mac->m_clusterChannelId,
+                        this->m_mac->m_currentChannelId,
                         txPowerWatt);
 
     NS_LOG_INFO(Simulator::Now().GetNanoSeconds()
@@ -308,6 +308,9 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
                         << ": Collision detected. Device 0x" << std::hex
                         << this->m_mac->GetLongRadioDeviceId() << std::dec
                         << " dropped the Packet with UID " << dectParams->txPacket->GetUid());
+
+            // Statistics
+            Dect2020Statistics::IncrementPacketsDroppedCollision();
             return;
         }
     }
@@ -317,6 +320,9 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
                     << ": Collision detected. Device 0x" << std::hex
                     << this->m_mac->GetLongRadioDeviceId() << std::dec
                     << " dropped the Packet with UID " << dectParams->txPacket->GetUid());
+
+        // Statistics
+        Dect2020Statistics::IncrementPacketsDroppedCollision();
         return;
     }
 

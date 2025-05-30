@@ -27,7 +27,7 @@ using TermPointType = Dect2020NetDevice::TerminationPointType;
 void
 CreateConnectionMapPythonSkript(NetDeviceContainer devices)
 {
-        std::map<std::string, uint32_t> statusCounter;
+    std::map<std::string, uint32_t> statusCounter;
     std::map<uint64_t, std::string> longRdidToName;
 
     std::ofstream topo("networkx_topology.py");
@@ -94,7 +94,8 @@ CreateConnectionMapPythonSkript(NetDeviceContainer devices)
             topo << "edges.append(('" << ftName << "', '" << name << "'))\n";
         }
 
-        // NS_LOG_UNCOND("Device " << i << " LongRDID: 0x" << std::hex << mac->GetLongRadioDeviceId()
+        // NS_LOG_UNCOND("Device " << i << " LongRDID: 0x" << std::hex <<
+        // mac->GetLongRadioDeviceId()
         //                         << " --> Association Status: " << statusStr);
     }
 
@@ -140,42 +141,43 @@ void
 EvaluateAssociationTimes(NetDeviceContainer devices)
 {
     std::ofstream out("association_distance_time.csv");
-out << "DeviceId,DistanceToAssociatedFT,AssociationTimeSeconds\n";
+    out << "DeviceId,DistanceToAssociatedFT,AssociationTimeSeconds\n";
 
-for (uint32_t i = 0; i < devices.GetN(); ++i)
-{
-    Ptr<Dect2020NetDevice> dev = DynamicCast<Dect2020NetDevice>(devices.Get(i));
-    Ptr<Dect2020Mac> mac = dev->GetMac();
-    Ptr<MobilityModel> ptMob = dev->GetNode()->GetObject<MobilityModel>();
-
-    if (mac->GetAssociationStatus() == Dect2020Mac::ASSOCIATED)
+    for (uint32_t i = 0; i < devices.GetN(); ++i)
     {
-        Time associationTime = mac->m_successfulAssociationTime - mac->m_deviceStartTime;
+        Ptr<Dect2020NetDevice> dev = DynamicCast<Dect2020NetDevice>(devices.Get(i));
+        Ptr<Dect2020Mac> mac = dev->GetMac();
+        Ptr<MobilityModel> ptMob = dev->GetNode()->GetObject<MobilityModel>();
 
-        // Hole FT-Position
-        uint64_t ftId = mac->m_associatedFTNetDeviceLongRdId;
-        Vector ftPos;
-        bool found = false;
-        for (uint32_t j = 0; j < devices.GetN(); ++j)
+        if (mac->GetAssociationStatus() == Dect2020Mac::ASSOCIATED)
         {
-            Ptr<Dect2020NetDevice> d = DynamicCast<Dect2020NetDevice>(devices.Get(j));
-            if (d->GetTerminationPointType() == TermPointType::FT &&
-                d->GetMac()->GetLongRadioDeviceId() == ftId)
+            Time associationTime = mac->m_successfulAssociationTime - mac->m_deviceStartTime;
+
+            // Hole FT-Position
+            uint64_t ftId = mac->m_associatedFTNetDeviceLongRdId;
+            Vector ftPos;
+            bool found = false;
+            for (uint32_t j = 0; j < devices.GetN(); ++j)
             {
-                ftPos = d->GetNode()->GetObject<MobilityModel>()->GetPosition();
-                found = true;
-                break;
+                Ptr<Dect2020NetDevice> d = DynamicCast<Dect2020NetDevice>(devices.Get(j));
+                if (d->GetTerminationPointType() == TermPointType::FT &&
+                    d->GetMac()->GetLongRadioDeviceId() == ftId)
+                {
+                    ftPos = d->GetNode()->GetObject<MobilityModel>()->GetPosition();
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found)
+            {
+                Vector ptPos = ptMob->GetPosition();
+                double distance = CalculateDistance(ptPos, ftPos);
+                out << mac->GetLongRadioDeviceId() << "," << distance << ","
+                    << associationTime.GetSeconds() << "\n";
             }
         }
-
-        if (found)
-        {
-            Vector ptPos = ptMob->GetPosition();
-            double distance = CalculateDistance(ptPos, ftPos);
-            out << mac->GetLongRadioDeviceId() << "," << distance << "," << associationTime.GetSeconds() << "\n";
-        }
     }
-}
 
     // std::string filename = "";
     // uint32_t numberOfDevices = devices.GetN();
@@ -334,126 +336,131 @@ main(int argc, char* argv[])
 
     Simulator::Run();
 
-//     std::map<std::string, uint32_t> statusCounter;
-//     std::map<uint64_t, std::string> longRdidToName;
+    //     std::map<std::string, uint32_t> statusCounter;
+    //     std::map<uint64_t, std::string> longRdidToName;
 
-//     std::ofstream topo("networkx_topology.py");
-//     topo << "import networkx as nx\n";
-//     topo << "import matplotlib.pyplot as plt\n";
-//     topo << "nodes = []\n";
-//     topo << "edges = []\n";
+    //     std::ofstream topo("networkx_topology.py");
+    //     topo << "import networkx as nx\n";
+    //     topo << "import matplotlib.pyplot as plt\n";
+    //     topo << "nodes = []\n";
+    //     topo << "edges = []\n";
 
-//     int ftCounter = 1;
-//     int ptCounter = 1;
+    //     int ftCounter = 1;
+    //     int ptCounter = 1;
 
-//     for (uint32_t i = 0; i < devices.GetN(); ++i)
-//     {
-//         Ptr<Dect2020NetDevice> dev = DynamicCast<Dect2020NetDevice>(devices.Get(i));
-//         Ptr<Dect2020Mac> mac = dev->GetMac();
-//         Ptr<MobilityModel> mob = dev->GetNode()->GetObject<MobilityModel>();
-//         Vector pos = mob->GetPosition();
+    //     for (uint32_t i = 0; i < devices.GetN(); ++i)
+    //     {
+    //         Ptr<Dect2020NetDevice> dev = DynamicCast<Dect2020NetDevice>(devices.Get(i));
+    //         Ptr<Dect2020Mac> mac = dev->GetMac();
+    //         Ptr<MobilityModel> mob = dev->GetNode()->GetObject<MobilityModel>();
+    //         Vector pos = mob->GetPosition();
 
-//         auto status = mac->GetAssociationStatus();
-//         std::string statusStr;
-//         switch (status)
-//         {
-//         case 0:
-//             statusStr = "NOT_ASSOCIATED";
-//             break;
-//         case 1:
-//             statusStr = "ASSOCIATION_PREPARING";
-//             break;
-//         case 2:
-//             statusStr = "WAITING_FOR_SELECTED_FT";
-//             break;
-//         case 3:
-//             statusStr = "ASSOCIATION_PENDING";
-//             break;
-//         case 4:
-//             statusStr = "ASSOCIATED";
-//             break;
-//         default:
-//             statusStr = "UNKNOWN";
-//             break;
-//         }
-//         statusCounter[statusStr]++;
+    //         auto status = mac->GetAssociationStatus();
+    //         std::string statusStr;
+    //         switch (status)
+    //         {
+    //         case 0:
+    //             statusStr = "NOT_ASSOCIATED";
+    //             break;
+    //         case 1:
+    //             statusStr = "ASSOCIATION_PREPARING";
+    //             break;
+    //         case 2:
+    //             statusStr = "WAITING_FOR_SELECTED_FT";
+    //             break;
+    //         case 3:
+    //             statusStr = "ASSOCIATION_PENDING";
+    //             break;
+    //         case 4:
+    //             statusStr = "ASSOCIATED";
+    //             break;
+    //         default:
+    //             statusStr = "UNKNOWN";
+    //             break;
+    //         }
+    //         statusCounter[statusStr]++;
 
-//         std::string type = dev->GetTerminationPointType() == TermPointType::FT ? "FT" : "PT";
-//         std::string name;
-//         if (type == "FT")
-//         {
-//             name = "FT" + std::to_string(ftCounter++);
-//         }
-//         else
-//         {
-//             name = "PT" + std::to_string(ptCounter++);
-//         }
+    //         std::string type = dev->GetTerminationPointType() == TermPointType::FT ? "FT" : "PT";
+    //         std::string name;
+    //         if (type == "FT")
+    //         {
+    //             name = "FT" + std::to_string(ftCounter++);
+    //         }
+    //         else
+    //         {
+    //             name = "PT" + std::to_string(ptCounter++);
+    //         }
 
-//         longRdidToName[mac->GetLongRadioDeviceId()] = name;
+    //         longRdidToName[mac->GetLongRadioDeviceId()] = name;
 
-//         topo << "nodes.append(('" << name << "', '" << type << "', '" << statusStr << "', " << pos.x
-//              << ", " << pos.y << "))\n";
+    //         topo << "nodes.append(('" << name << "', '" << type << "', '" << statusStr << "', "
+    //         << pos.x
+    //              << ", " << pos.y << "))\n";
 
-//         if (status == 4) // ASSOCIATED
-//         {
-//             uint64_t ftId = mac->m_associatedFTNetDeviceLongRdId;
-//             std::string ftName = longRdidToName[ftId];
-//             topo << "edges.append(('" << ftName << "', '" << name << "'))\n";
-//         }
+    //         if (status == 4) // ASSOCIATED
+    //         {
+    //             uint64_t ftId = mac->m_associatedFTNetDeviceLongRdId;
+    //             std::string ftName = longRdidToName[ftId];
+    //             topo << "edges.append(('" << ftName << "', '" << name << "'))\n";
+    //         }
 
-//         // NS_LOG_UNCOND("Device " << i << " LongRDID: 0x" << std::hex << mac->GetLongRadioDeviceId()
-//         //                         << " --> Association Status: " << statusStr);
-//     }
+    //         // NS_LOG_UNCOND("Device " << i << " LongRDID: 0x" << std::hex <<
+    //         mac->GetLongRadioDeviceId()
+    //         //                         << " --> Association Status: " << statusStr);
+    //     }
 
-//     NS_LOG_UNCOND("\nSummary of association statuses:");
-//     for (const auto& entry : statusCounter)
-//     {
-//         NS_LOG_UNCOND(entry.first << ": " << entry.second);
-//     }
+    //     NS_LOG_UNCOND("\nSummary of association statuses:");
+    //     for (const auto& entry : statusCounter)
+    //     {
+    //         NS_LOG_UNCOND(entry.first << ": " << entry.second);
+    //     }
 
-//     topo << R"(
-// G = nx.Graph()
-// for name, typ, status, x, y in nodes:
-//     G.add_node(name, type=typ, status=status, pos=(x, y))
-// G.add_edges_from(edges)
-// pos = {name: (x, y) for name, typ, status, x, y in nodes}
+    //     topo << R"(
+    // G = nx.Graph()
+    // for name, typ, status, x, y in nodes:
+    //     G.add_node(name, type=typ, status=status, pos=(x, y))
+    // G.add_edges_from(edges)
+    // pos = {name: (x, y) for name, typ, status, x, y in nodes}
 
-// status_colors = {
-//     'ASSOCIATED': 'dodgerblue',
-//     'ASSOCIATION_PENDING': 'orange',
-//     'WAITING_FOR_SELECTED_FT': 'yellow',
-//     'ASSOCIATION_PREPARING': 'pink',
-//     'NOT_ASSOCIATED': 'gray',
-//     'UNKNOWN': 'black'
-// }
+    // status_colors = {
+    //     'ASSOCIATED': 'dodgerblue',
+    //     'ASSOCIATION_PENDING': 'orange',
+    //     'WAITING_FOR_SELECTED_FT': 'yellow',
+    //     'ASSOCIATION_PREPARING': 'pink',
+    //     'NOT_ASSOCIATED': 'gray',
+    //     'UNKNOWN': 'black'
+    // }
 
-// colors = [
-//     'red' if G.nodes[n]['type'] == 'FT'
-//     else status_colors.get(G.nodes[n].get('status', 'UNKNOWN'), 'black')
-//     for n in G.nodes
-// ]
+    // colors = [
+    //     'red' if G.nodes[n]['type'] == 'FT'
+    //     else status_colors.get(G.nodes[n].get('status', 'UNKNOWN'), 'black')
+    //     for n in G.nodes
+    // ]
 
-// plt.figure(figsize=(10, 6))
-// nx.draw(G, pos, with_labels=True, node_color=colors, node_size=600, font_size=8, edge_color='gray')
-// plt.title('DECT-2020 NR Topologie mit FT-PT Verbindungen')
-// plt.axis('equal')
-// plt.grid(True)
-// plt.show()
-// )";
-//     topo.close();
+    // plt.figure(figsize=(10, 6))
+    // nx.draw(G, pos, with_labels=True, node_color=colors, node_size=600, font_size=8,
+    // edge_color='gray') plt.title('DECT-2020 NR Topologie mit FT-PT Verbindungen')
+    // plt.axis('equal')
+    // plt.grid(True)
+    // plt.show()
+    // )";
+    //     topo.close();
 
     // for (auto& rdidName : longRdidToName)
     // {
     //     NS_LOG_UNCOND("Name: " << rdidName.second << " -->  LongRDID: 0x" << std::hex
     //                            << rdidName.first);
     // }
-    
+
     CreateConnectionMapPythonSkript(devices);
     EvaluateAssociationTimes(devices);
 
     NS_LOG_UNCOND("Simulation finished. Evaluating successfull sent Packets");
     NS_LOG_UNCOND("All Packets sent Count: " << Dect2020Statistics::GetSumOfAllPacketsSent());
-    NS_LOG_UNCOND("Dropped Packets due to low RSSI: " << Dect2020Statistics::GetPacketsDroppedLowRssiCount());
+    NS_LOG_UNCOND(
+        "Dropped Packets due to low RSSI: " << Dect2020Statistics::GetPacketsDroppedLowRssiCount());
+    NS_LOG_UNCOND("Dropped Packets due to Collision: "
+                  << Dect2020Statistics::GetPacketsDroppedCollisionCount());
 
     Simulator::Destroy();
     return 0;

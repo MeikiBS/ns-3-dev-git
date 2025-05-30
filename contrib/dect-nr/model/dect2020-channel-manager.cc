@@ -343,8 +343,8 @@ Dect2020ChannelManager::AddSpectrumPowerToChannel(uint16_t channelId, double pow
     Ptr<SpectrumValue> psd = it->second;
     (*psd)[channelIndex] += powerWatt;
 
-    // NS_LOG_INFO("Added " << powerWatt << " dBm to channel " << channelId << " (band "
-    //                      << (int)bandNumber << ", index " << channelIndex << ")");
+    NS_LOG_INFO("Added " << powerWatt << " dBm to channel " << channelId << " (band "
+                         << (int)bandNumber << ", index " << channelIndex << ")" << " sum of PowerWatt: " << (*psd)[channelIndex] << " W");
 }
 
 /**

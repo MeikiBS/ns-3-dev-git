@@ -222,6 +222,7 @@ main(int argc, char* argv[])
     LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Phy", LOG_LEVEL_INFO);
+    LogComponentEnable("Dect2020ChannelManager", LOG_LEVEL_INFO);
 
     Dect2020ChannelManager channelManager;
     channelManager.InitializeChannels(1, 1); // Band 1, Scaling Factor 1
@@ -246,30 +247,7 @@ main(int argc, char* argv[])
     Ptr<MobilityModel> mob = ptNodes.Get(0)->GetObject<MobilityModel>();
     mob->SetPosition(Vector(0.0, 50.0, 0.0));
 
-    // ptMobility.SetPositionAllocator("ns3::RandomRectanglePositionAllocator",
-    //                                 "X",
-    //                                 StringValue("ns3::UniformRandomVariable[Min=0.0|Max=150.0]"),
-    //                                 "Y",
-    //                                 StringValue("ns3::UniformRandomVariable[Min=0.0|Max=150.0]"));
-    // ptMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
-    // ptMobility.Install(ptNodes);
-    // ptMobility.SetPositionAllocator("ns3::GridPositionAllocator",
-    //                                 "MinX",
-    //                                 DoubleValue(10.0),
-    //                                 "MinY",
-    //                                 DoubleValue(10.0),
-    //                                 "DeltaX",
-    //                                 DoubleValue(10.0),
-    //                                 "DeltaY",
-    //                                 DoubleValue(10.0),
-    //                                 "GridWidth",
-    //                                 UintegerValue(5),
-    //                                 "LayoutType",
-    //                                 StringValue("RowFirst"));
-    // ptMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
-    // ptMobility.Install(ptNodes);
-
-    // Kanalmodell
+    // Channel
     Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
     Ptr<ConstantSpeedPropagationDelayModel> delayModel =
         CreateObject<ConstantSpeedPropagationDelayModel>();
@@ -304,7 +282,7 @@ main(int argc, char* argv[])
         // Antenna
         Ptr<IsotropicAntennaModel> antenna = CreateObject<IsotropicAntennaModel>();
         DoubleValue rxGain = mac->GetRxGainFromIndex(dev->m_rxGain);
-        antenna->SetAttribute("Gain", rxGain); // z. B. 5 dBi RX Gain
+        antenna->SetAttribute("Gain", rxGain);
         phy->SetAntenna(antenna);
 
         dev->SetAddress(Mac48Address::Allocate());
@@ -335,6 +313,12 @@ main(int argc, char* argv[])
         phy->SetChannel(channel);
         channel->AddRx(phy);
 
+        // Antenna
+        Ptr<IsotropicAntennaModel> antenna = CreateObject<IsotropicAntennaModel>();
+        DoubleValue rxGain = mac->GetRxGainFromIndex(dev->m_rxGain);
+        antenna->SetAttribute("Gain", rxGain); // z. B. 5 dBi RX Gain
+        phy->SetAntenna(antenna);
+
         dev->SetAddress(Mac48Address::Allocate());
         dev->SetLinkUp();
         devices.Add(dev);
@@ -351,6 +335,8 @@ main(int argc, char* argv[])
     NS_LOG_UNCOND("All Packets sent Count: " << Dect2020Statistics::GetSumOfAllPacketsSent());
     NS_LOG_UNCOND(
         "Dropped Packets due to low RSSI: " << Dect2020Statistics::GetPacketsDroppedLowRssiCount());
+    NS_LOG_UNCOND("Dropped Packets due to Collision: "
+                  << Dect2020Statistics::GetPacketsDroppedCollisionCount());
 
     Simulator::Destroy();
     return 0;
