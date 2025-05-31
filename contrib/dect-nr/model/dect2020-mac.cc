@@ -122,15 +122,6 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet, double rssiDbm)
         HandleUnicastPacket(packet);
     }
 
-    // Dect2020BeaconHeader beaconHeader;
-    // packet->RemoveHeader(beaconHeader);
-    // // NS_LOG_INFO(beaconHeader);
-
-    // // Jetzt sicher entfernen
-    // Dect2020NetworkBeaconMessage beaconMessage;
-    // packet->RemoveHeader(beaconMessage);
-    // // NS_LOG_INFO(beaconMessage);
-
     // Weiterleitung des Pakets an das NetDevice
     m_device->Receive(packet);
 
@@ -186,6 +177,9 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
             //                     &Dect2020Mac::ResetIsWaitingForClusterBeaconFlag, this);
             SetCurrentChannelId(ftBeaconNextClusterChannel);
         }
+
+        // Statistics
+        Dect2020Statistics::IncrementNetworkBeaconReceptionCount();
     }
     // --- Cluster Beacon Message ---
     else if (ieType == IETypeFieldEncoding::CLUSTER_BEACON_MESSAGE)
@@ -202,8 +196,6 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
         {
             ft->ftNetworkBeaconMessage.SetNextClusterChannel(this->m_currentChannelId);
         }
-
-        Dect2020Statistics::IncrementClusterBeaconReception();
 
         Dect2020ClusterBeaconMessage clusterBeaconMessage;
         packet->RemoveHeader(clusterBeaconMessage);
@@ -280,7 +272,7 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
                                   transmitterAddress);
 
         // Statistics
-        Dect2020Statistics::IncrementAssociationRequestCount();
+        Dect2020Statistics::IncrementAssociationRequestReceptionCount();
     }
     // Message is an association response
     else if (ieType == IETypeFieldEncoding::ASSOCIATION_RESPONSE_MESSAGE)
@@ -320,6 +312,9 @@ Dect2020Mac::HandleUnicastPacket(Ptr<Packet> packet)
         // {
         //     // tbd
         // }
+
+        // Statistics
+        Dect2020Statistics::IncrementAssociationResponseReceptionCount();
     }
 }
 
@@ -485,6 +480,9 @@ Dect2020Mac::SendAssociationResponse(AssociatedPtInfo ptInfo)
                 << " and Packet Size " << packet->GetSize() << " bytes.");
 
     m_phy->Send(packet, physicalHeaderField); // Send the packet to the PHY
+
+    // Statistics
+    Dect2020Statistics::IncrementAssociationResponseTransmissionCount();
 }
 
 void
@@ -782,6 +780,9 @@ Dect2020Mac::SendAssociationRequest(FtCandidateInfo* ft)
                 << " is sending an Association Request with UID: " << std::dec << packet->GetUid());
 
     m_phy->Send(packet, physicalHeaderField); // Send the packet to the PHY
+
+    // Statistics
+    Dect2020Statistics::IncrementAssociationRequestTransmissionCount();
 }
 
 Time
@@ -1028,7 +1029,7 @@ Dect2020Mac::StartNetworkBeaconSweep()
     }
 
     // Schedule the network beacon transmission on the selected channels
-    Time beaconDuration = MicroSeconds(1);        // duration of the beacon transmission
+    Time beaconDuration = MicroSeconds(833);        // duration of the beacon transmission
     Time networkBeaconPeriod = MilliSeconds(100); // gap between each transmission
     Time base = Seconds(0);
 
@@ -1065,6 +1066,9 @@ Dect2020Mac::SendNetworkBeaconOnChannel(uint16_t channelId)
                 << ": Dect2020Mac::SendNetworkBeaconOnChannel: Device 0x" << std::hex
                 << GetLongRadioDeviceId() << std::dec << " sent Network Beacon on Channel "
                 << channelId << " with UID " << networkBeacon->GetUid());
+
+    // Statistics
+    Dect2020Statistics::IncrementNetworkBeaconTransmissionCount();
 
     // auto subslotTime = m_phy->GetAbsoluteSubslotTime(m_phy->m_currentSfn, 5, 1).GetNanoSeconds();
     // NS_LOG_INFO(Simulator::Now().GetMilliSeconds()

@@ -45,3 +45,23 @@ build_lib_example(
                     ${libinternet}
                     ${libapplications}
 )
+
+build_lib_example(
+  NAME dect2020-simulation3
+  SOURCE_FILES dect2020-simulation3.cc
+  LIBRARIES_TO_LINK ${libnetwork}
+                    ${libdect-nr}
+                    ${libpoint-to-point}
+                    ${libinternet}
+                    ${libapplications}
+)
+
+build_lib_example(
+  NAME dect2020-simulation4
+  SOURCE_FILES dect2020-simulation4.cc
+  LIBRARIES_TO_LINK ${libnetwork}
+                    ${libdect-nr}
+                    ${libpoint-to-point}
+                    ${libinternet}
+                    ${libapplications}
+)

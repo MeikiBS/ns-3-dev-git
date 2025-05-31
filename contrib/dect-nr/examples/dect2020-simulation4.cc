@@ -222,36 +222,27 @@ main(int argc, char* argv[])
     Dect2020ChannelManager channelManager;
     channelManager.InitializeChannels(1, 1); // Band 1, Scaling Factor 1
 
-    // 1 FTs + 10 PTs
+    // 4 FTs + 10 PTs
     NodeContainer ftNodes;
-    ftNodes.Create(1);
+    ftNodes.Create(4);
     NodeContainer ptNodes;
-    ptNodes.Create(100);
+    ptNodes.Create(250);
 
     MobilityHelper ftMobility;
     Ptr<ListPositionAllocator> ftPos = CreateObject<ListPositionAllocator>();
     ftPos->Add(Vector(0.0, 0.0, 0.0));
+    ftPos->Add(Vector(200.0, 0.0, 0.0));
+    ftPos->Add(Vector(200.0, 200.0, 0.0));
+    ftPos->Add(Vector(0.0, 200.0, 0.0));
     ftMobility.SetPositionAllocator(ftPos);
     ftMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
     ftMobility.Install(ftNodes);
 
     MobilityHelper ptMobility;
-    Ptr<ListPositionAllocator> ptPos = CreateObject<ListPositionAllocator>();
-    double centerX = 0.0;
-    double centerY = 0.0;
-    double radius = 150.0;
 
-    for (uint32_t i = 0; i < ptNodes.GetN(); ++i)
-    {
-        double angle = 2 * M_PI * i / ptNodes.GetN();             // evenly on circle
-        double r = radius * std::sqrt((double)rand() / RAND_MAX); // random distance
-        double x = centerX + r * std::cos(angle);
-        double y = centerY + r * std::sin(angle);
-
-        ptPos->Add(Vector(x, y, 0.0));
-    }
-
-    ptMobility.SetPositionAllocator(ptPos);
+ptMobility.SetPositionAllocator("ns3::RandomRectanglePositionAllocator",
+                                "X", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=200.0]"),
+                                "Y", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=200.0]"));
     ptMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
     ptMobility.Install(ptNodes);
 
@@ -341,221 +332,22 @@ main(int argc, char* argv[])
                   << Dect2020Statistics::GetPacketsDroppedCollisionCount());
     NS_LOG_UNCOND("Network Beacon Messages sent: "
                   << Dect2020Statistics::GetNetworkBeaconTransmissionCount());
-    NS_LOG_UNCOND("Network Beacon Messages received: " << Dect2020Statistics::GetNetworkBeaconReceptionCount());
+    NS_LOG_UNCOND("Network Beacon Messages received: "
+                  << Dect2020Statistics::GetNetworkBeaconReceptionCount());
     NS_LOG_UNCOND("Cluster Beacon Messages sent: "
                   << Dect2020Statistics::GetClusterBeaconTransmissionCount());
     NS_LOG_UNCOND("Cluster Beacon Messages received: "
                   << Dect2020Statistics::GetClusterBeaconReceptionCount());
 
-    NS_LOG_UNCOND("Association Request Messages sent: " << Dect2020Statistics::GetAssociationRequestTransmissionCount());
+    NS_LOG_UNCOND("Association Request Messages sent: "
+                  << Dect2020Statistics::GetAssociationRequestTransmissionCount());
     NS_LOG_UNCOND("Association Request Messages received: "
                   << Dect2020Statistics::GetAssociationRequestReceptionCount());
-    NS_LOG_UNCOND("Association Response Messages sent: " << Dect2020Statistics::GetAssociationResponseTransmissionCount());
+    NS_LOG_UNCOND("Association Response Messages sent: "
+                  << Dect2020Statistics::GetAssociationResponseTransmissionCount());
     NS_LOG_UNCOND("Association Response Messages received: "
                   << Dect2020Statistics::GetAssociationResponseReceptionCount());
 
     Simulator::Destroy();
     return 0;
 }
-
-// int main(int argc, char* argv[])
-// {
-//     Simulator::Stop(Seconds(30));
-
-//     LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
-//     LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
-//     LogComponentEnable("Dect2020Phy", LOG_LEVEL_INFO);
-
-//     Dect2020ChannelManager channelManager;
-//     channelManager.InitializeChannels(1, 1); // Band 1, Scaling Factor 1
-
-//     // 2 FTs + 10 PTs
-//     NodeContainer ftNodes;
-//     ftNodes.Create(2);
-//     NodeContainer ptNodes;
-//     ptNodes.Create(50);
-
-//     MobilityHelper ftMobility;
-//     Ptr<ListPositionAllocator> ftPos = CreateObject<ListPositionAllocator>();
-//     ftPos->Add(Vector(0.0, 0.0, 0.0));
-//     ftPos->Add(Vector(100.0, 0.0, 0.0));
-//     ftMobility.SetPositionAllocator(ftPos);
-//     ftMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
-//     ftMobility.Install(ftNodes);
-
-//     MobilityHelper ptMobility;
-//     ptMobility.SetPositionAllocator("ns3::GridPositionAllocator",
-//         "MinX", DoubleValue(10.0),
-//         "MinY", DoubleValue(10.0),
-//         "DeltaX", DoubleValue(10.0),
-//         "DeltaY", DoubleValue(10.0),
-//         "GridWidth", UintegerValue(5),
-//         "LayoutType", StringValue("RowFirst"));
-//     ptMobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
-//     ptMobility.Install(ptNodes);
-
-//     // Kanalmodell
-//     Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
-//     Ptr<ConstantSpeedPropagationDelayModel> delayModel =
-//     CreateObject<ConstantSpeedPropagationDelayModel>(); Ptr<LogDistancePropagationLossModel>
-//     lossModel = CreateObject<LogDistancePropagationLossModel>();
-//     channel->SetPropagationDelayModel(delayModel);
-//     channel->AddPropagationLossModel(lossModel);
-
-//     NetDeviceContainer devices;
-
-//     // FT-Devices
-//     for (uint32_t i = 0; i < ftNodes.GetN(); ++i)
-//     {
-//         Ptr<Dect2020NetDevice> dev = CreateObject<Dect2020NetDevice>();
-//         dev->SetBandNumber(1);
-//         dev->SetTerminationPointType(TermPointType::FT);
-
-//         Ptr<Dect2020Mac> mac = CreateObject<Dect2020Mac>();
-//         Ptr<Dect2020Phy> phy = CreateObject<Dect2020Phy>();
-
-//         dev->SetMac(mac);
-//         dev->SetPhy(phy);
-//         mac->SetNetDevice(dev);
-//         mac->SetPhy(phy);
-//         phy->SetMac(mac);
-//         ftNodes.Get(i)->AddDevice(dev);
-//         phy->SetDevice(dev);
-//         phy->SetMobility(ftNodes.Get(i)->GetObject<MobilityModel>());
-//         phy->SetChannel(channel);
-//         channel->AddRx(phy);
-
-//         dev->SetAddress(Mac48Address::Allocate());
-//         dev->SetLinkUp();
-//         devices.Add(dev);
-//         phy->Start();
-//         mac->Start();
-//     }
-
-//     // PT-Devices
-//     for (uint32_t i = 0; i < ptNodes.GetN(); ++i)
-//     {
-//         Ptr<Dect2020NetDevice> dev = CreateObject<Dect2020NetDevice>();
-//         dev->SetBandNumber(1);
-//         dev->SetTerminationPointType(TermPointType::PT);
-
-//         Ptr<Dect2020Mac> mac = CreateObject<Dect2020Mac>();
-//         Ptr<Dect2020Phy> phy = CreateObject<Dect2020Phy>();
-
-//         dev->SetMac(mac);
-//         dev->SetPhy(phy);
-//         mac->SetNetDevice(dev);
-//         mac->SetPhy(phy);
-//         phy->SetMac(mac);
-//         ptNodes.Get(i)->AddDevice(dev);
-//         phy->SetDevice(dev);
-//         phy->SetMobility(ptNodes.Get(i)->GetObject<MobilityModel>());
-//         phy->SetChannel(channel);
-//         channel->AddRx(phy);
-
-//         dev->SetAddress(Mac48Address::Allocate());
-//         dev->SetLinkUp();
-//         devices.Add(dev);
-//         phy->Start();
-//         mac->Start();
-//     }
-
-//     Simulator::Run();
-
-//         std::map<std::string, uint32_t> statusCounter;
-//     for (uint32_t i = 0; i < devices.GetN(); ++i)
-//     {
-//         Ptr<Dect2020NetDevice> dev = DynamicCast<Dect2020NetDevice>(devices.Get(i));
-//         Ptr<Dect2020Mac> mac = dev->GetMac();
-//         auto status = mac->GetAssociationStatus();
-//         std::string statusStr;
-//         switch (status)
-//         {
-//             case 0: statusStr = "NOT_ASSOCIATED"; break;
-//             case 1: statusStr = "ASSOCIATION_PREPARING"; break;
-//             case 2: statusStr = "WAITING_FOR_SELECTED_FT"; break;
-//             case 3: statusStr = "ASSOCIATION_PENDING"; break;
-//             case 4: statusStr = "ASSOCIATED"; break;
-//             default: statusStr = "UNKNOWN"; break;
-//         }
-//         statusCounter[statusStr]++;
-//         NS_LOG_UNCOND("Device " << i << " LongRDID: 0x" << std::hex <<mac->GetLongRadioDeviceId()
-//                          << " --> Association Status: " << statusStr);
-//     }
-
-//     NS_LOG_UNCOND("\nSummary of association statuses:");
-//     for (const auto& entry : statusCounter)
-//     {
-//         NS_LOG_UNCOND(entry.first << ": " << entry.second);
-//     }
-
-//     Simulator::Destroy();
-//     return 0;
-// }
-
-// int main(int argc, char* argv[])
-// {
-//     Simulator::Stop(Seconds(30));
-
-//     LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
-//     LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
-//     LogComponentEnable("Dect2020Phy", LOG_LEVEL_INFO);
-
-//     Dect2020ChannelManager channelManager;
-//     channelManager.InitializeChannels(1, 1); // Band 1, Scaling Factor 1
-
-//     NodeContainer nodes;
-//     nodes.Create(10);
-
-//     MobilityHelper mobility;
-//     mobility.SetPositionAllocator("ns3::GridPositionAllocator",
-//         "MinX", DoubleValue(0.0),
-//         "MinY", DoubleValue(0.0),
-//         "DeltaX", DoubleValue(5.0),
-//         "DeltaY", DoubleValue(5.0),
-//         "GridWidth", UintegerValue(5),
-//         "LayoutType", StringValue("RowFirst"));
-//     mobility.SetMobilityModel("ns3::ConstantPositionMobilityModel");
-//     mobility.Install(nodes);
-
-//     Ptr<SingleModelSpectrumChannel> channel = CreateObject<SingleModelSpectrumChannel>();
-//     Ptr<ConstantSpeedPropagationDelayModel> delayModel =
-//     CreateObject<ConstantSpeedPropagationDelayModel>(); Ptr<LogDistancePropagationLossModel>
-//     lossModel = CreateObject<LogDistancePropagationLossModel>();
-//     channel->SetPropagationDelayModel(delayModel);
-//     channel->AddPropagationLossModel(lossModel);
-
-//     NetDeviceContainer devices;
-//     for (uint32_t i = 0; i < nodes.GetN(); ++i)
-//     {
-//         Ptr<Dect2020NetDevice> dev = CreateObject<Dect2020NetDevice>();
-//         dev->SetBandNumber(1);
-
-//         dev->SetTerminationPointType(i == 0 ? TermPointType::FT : TermPointType::PT);
-
-//         Ptr<Dect2020Mac> mac = CreateObject<Dect2020Mac>();
-//         Ptr<Dect2020Phy> phy = CreateObject<Dect2020Phy>();
-
-//         dev->SetMac(mac);
-//         dev->SetPhy(phy);
-//         mac->SetNetDevice(dev);
-//         mac->SetPhy(phy);
-//         phy->SetMac(mac);
-//         phy->SetDevice(dev);
-//         phy->SetChannel(channel);
-
-//         nodes.Get(i)->AddDevice(dev);
-//         dev->SetAddress(Mac48Address::Allocate());
-//         dev->SetLinkUp();
-
-//         phy->SetMobility(nodes.Get(i)->GetObject<MobilityModel>());
-
-//         devices.Add(dev);
-//         phy->Start();
-//         mac->Start();
-//     }
-
-//     Simulator::Run();
-//     Simulator::Destroy();
-//     return 0;
-// }

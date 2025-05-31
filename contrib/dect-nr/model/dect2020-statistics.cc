@@ -70,16 +70,86 @@ Dect2020Statistics::GetSumOfAllPacketsSent()
     return m_sumOfAllPacketsSent;
 }
 
-uint32_t Dect2020Statistics::m_associationRequestCount = 0;
+uint32_t Dect2020Statistics::m_networkBeaconReceptionCount = 0;
 
 void
-Dect2020Statistics::IncrementAssociationRequestCount()
+Dect2020Statistics::IncrementNetworkBeaconReceptionCount()
 {
-    ++m_associationRequestCount;
+    ++m_networkBeaconReceptionCount;
 }
 
 uint32_t
-Dect2020Statistics::GetAssociationRequestCount()
+Dect2020Statistics::GetNetworkBeaconReceptionCount()
 {
-    return m_associationRequestCount;
+    return m_networkBeaconReceptionCount;
+}
+
+uint32_t Dect2020Statistics::m_networkBeaconTransmissionCount = 0;
+
+void
+Dect2020Statistics::IncrementNetworkBeaconTransmissionCount()
+{
+    ++m_networkBeaconTransmissionCount;
+}
+
+uint32_t
+Dect2020Statistics::GetNetworkBeaconTransmissionCount()
+{
+    return m_networkBeaconTransmissionCount;
+}
+
+uint32_t Dect2020Statistics::m_associationRequestTransmissionCount = 0;
+
+void
+Dect2020Statistics::IncrementAssociationRequestTransmissionCount()
+{
+    ++m_associationRequestTransmissionCount;
+}
+
+uint32_t
+Dect2020Statistics::GetAssociationRequestTransmissionCount()
+{
+    return m_associationRequestTransmissionCount;
+}
+
+uint32_t Dect2020Statistics::m_associationRequestReceptionCount = 0;
+
+void
+Dect2020Statistics::IncrementAssociationRequestReceptionCount()
+{
+    ++m_associationRequestReceptionCount;
+}
+
+uint32_t
+Dect2020Statistics::GetAssociationRequestReceptionCount()
+{
+    return m_associationRequestReceptionCount;
+}
+
+uint32_t Dect2020Statistics::m_associationResponseTransmissionCount = 0;
+
+void
+Dect2020Statistics::IncrementAssociationResponseTransmissionCount()
+{
+    ++m_associationResponseTransmissionCount;
+}
+
+uint32_t
+Dect2020Statistics::GetAssociationResponseTransmissionCount()
+{
+    return m_associationResponseTransmissionCount;
+}
+
+uint32_t Dect2020Statistics::m_associationResponseReceptionCount = 0;
+
+void
+Dect2020Statistics::IncrementAssociationResponseReceptionCount()
+{
+    ++m_associationResponseReceptionCount;
+}
+
+uint32_t
+Dect2020Statistics::GetAssociationResponseReceptionCount()
+{
+    return m_associationResponseReceptionCount;
 }
