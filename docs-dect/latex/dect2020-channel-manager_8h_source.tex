@@ -1,0 +1,81 @@
+\doxysection{dect2020-\/channel-\/manager.h}
+\hypertarget{dect2020-channel-manager_8h_source}{}\label{dect2020-channel-manager_8h_source}\index{contrib/dect-\/nr/model/dect2020-\/channel-\/manager.h@{contrib/dect-\/nr/model/dect2020-\/channel-\/manager.h}}
+\mbox{\hyperlink{dect2020-channel-manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DECT2020\_CHANNEL\_MANAGER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DECT2020\_CHANNEL\_MANAGER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}ns3/dect2020-\/channel.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacens3}{ns3}}}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Currently\ not\ used}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacens3_a23a4b2654baeb10a79213036a7d457dd}{OperatingChannelBandwith}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{namespacens3_a23a4b2654baeb10a79213036a7d457dda80bd6c9ccd45ec50bad2dd93d94ae38b}{BANDWITH\_I}}\ =\ 1728000\ \textcolor{comment}{//\ Nominal\ Channel\ Bandwith\ \#ETSI\ 103\ 636-\/2\ V1.5.1\ Table\ 5.3.2.1}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ TBD:\ BANDWITH\ II\ \&\ BANDWITH\ III}}
+\DoxyCodeLine{00016\ \};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structns3_1_1BandParameters}{BandParameters}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1BandParameters_a9301dbb82c382e84c5046dea8ce07d55}{bandNumber}};\ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structns3_1_1BandParameters_a9bc79f9bfb2f7aa7a6e51d685be63064}{startFrequency}};\ \ }
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structns3_1_1BandParameters_ae26e0c2931b1921b875bcd9de1f203c8}{stopFrequency}};\ \ \ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structns3_1_1BandParameters_a60ac4c5990982720378578831a3ed7a9}{frequencyStep}};\ \ \ }
+\DoxyCodeLine{00034\ \ \ uint16\_t\ \mbox{\hyperlink{structns3_1_1BandParameters_a68266fc51a708f0b39b129456356327b}{nStart}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ uint16\_t\ \mbox{\hyperlink{structns3_1_1BandParameters_a64b3ce2c8cc6a027050e7b15fe0ce61f}{nEnd}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020ChannelManager}{Dect2020ChannelManager}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_ab93f6453961838976624cf6f3371aa7a}{Dect2020ChannelManager}}();}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a4d4ae8ab7e4cbbca7159f0fdb1c7a75a}{\string~Dect2020ChannelManager}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ \#\#\#\ Channel\ Management}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_ac9ba6b3d9cdaf3afef01b44c1f71e99e}{InitializeChannels}}(uint8\_t\ bandNumber,\ uint8\_t\ subcarrierScalingFactor);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ std::vector<Ptr<Dect2020Channel>>\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a7fb590493714a98057d8959236f0588a}{GetValidChannels}}(uint8\_t\ bandNumber);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a6da1d46e04c396bbc7f34554cdcfdd31}{UpdateChannelRssi}}(uint16\_t\ channelNumber,\ \textcolor{keywordtype}{double}\ rssi);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structns3_1_1BandParameters}{BandParameters}}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_ab5ee634a28f4b07492aac137418b59ff}{GetBandParameters}}(uint8\_t\ bandNumber);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_ac29d151e336c80ea78ba2d2b408d8251}{CalculateCenterFrequency}}(uint8\_t\ bandNumber,\ uint32\_t\ channelNumber);}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a29e3373344d2800af51d0c9ef08d9ab9}{GetFirstValidChannelNumber}}(uint8\_t\ bandNumber);}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_af223bded29f0a44aea3dd93c3d4dba71}{GetBandNumber}}(uint16\_t\ channelNumber);}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a0041472ca2aa46db28afb39829677678}{ChannelExists}}(uint32\_t\ chId);}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a901c736a919346f814b3f3582457da98}{GetChannelId}}(\textcolor{keywordtype}{double}\ centerFrequency);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{structns3_1_1BandParameters}{BandParameters}}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a584f364a1d4c3ea646101837ddd9b13b}{m\_bandParameters}};}
+\DoxyCodeLine{00057\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a92e89f81ae751138ccbcc3197679bd99}{m\_bandNumber}};}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{namespacens3_a23a4b2654baeb10a79213036a7d457dd}{OperatingChannelBandwith}}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a7795c1a48015a9abbf493146b157f16a}{m\_operatingChannelBandwidth}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ \#\#\#\#\ Spectrum\ Model\ Manager}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{static}\ Ptr<SpectrumModel>\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a12f1e5cf8a17209c67ed986476e2f469}{GetSpectrumModel}}(uint8\_t\ bandId);}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a9fda4c3fc636984dba8c1fa4eacba523}{AddSpectrumPowerToChannel}}(uint16\_t\ channelId,\ \textcolor{keywordtype}{double}\ powerWatt);}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_abd5501d66c3ccb3e21a18ba348b701c1}{RemoveSpectrumPowerFromChannel}}(uint16\_t\ channelId,\ \textcolor{keywordtype}{double}\ powerWatt);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a6106be7a1ca2962114f10a905815fb9e}{GetRssiDbm}}(uint16\_t\ channelId);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_aa156e9d8b664c94c9f19f54f53385b46}{DbmToW}}(\textcolor{keywordtype}{double}\ dBm);}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a9039c965c009e9be32dc8a65b40687c2}{WToDbm}}(\textcolor{keywordtype}{double}\ w);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{static}\ std::map<uint8\_t,\ Ptr<SpectrumValue>>\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a50a0506b2256f7d1ea778241a29224a9}{m\_channelOccupancy}};}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{static}\ std::map<uint16\_t,\ std::vector<Ptr<Dect2020Channel>>>\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_aa33b814fbf0860f0ba8f1213ae81d8f7}{m\_channels}};\ \ \textcolor{comment}{//\ Band\ ::\ Channels}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ InitializeBand();}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ CalculateChannelFrequencies();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_ac9ba6b3d9cdaf3afef01b44c1f71e99e}{InitializeChannels}}(uint8\_t\ bandNumber);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ std::vector<Ptr<Dect2020Channel>>\ m\_channelList;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{static}\ std::map<uint8\_t,\ Ptr<SpectrumModel>>\ m\_bandModels;\ \ \textcolor{comment}{//\ Band\ ID\ \ :\ SpectrumModel}}
+\DoxyCodeLine{00079\ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \}\ \textcolor{comment}{//\ namespace\ ns3}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

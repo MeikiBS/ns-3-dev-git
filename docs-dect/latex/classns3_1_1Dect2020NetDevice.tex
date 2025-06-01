@@ -1,0 +1,575 @@
+\doxysection{ns3\+::Dect2020\+Net\+Device Class Reference}
+\hypertarget{classns3_1_1Dect2020NetDevice}{}\label{classns3_1_1Dect2020NetDevice}\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+
+
+DECT2020 Net\+Device Klasse.  
+
+
+
+
+{\ttfamily \#include $<$dect2020-\/net-\/device.\+h$>$}
+
+
+
+Inheritance diagram for ns3\+::Dect2020\+Net\+Device\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classns3_1_1Dect2020NetDevice__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ns3\+::Dect2020\+Net\+Device\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classns3_1_1Dect2020NetDevice__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}} \{ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a57e3b3dc7019eb213bb23c9f87444842}{PT}}
+, \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a4c46711cf18c3bbfa6c933d6935ed5f6}{FT}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ac5d8d0101c48596e57906adbd2edde9d}{Dect2020\+Net\+Device}} ()
+\item 
+virtual \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a7ce30bc25af7c757f03c67bac4dc67c0}{\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Net\+Device}} ()
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_abf9d8e29f49e0b5f3f79c8a9326e8e31}{Set\+Termination\+Point\+Type}} (\mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}} tpm)
+\begin{DoxyCompactList}\small\item\em Sets the termination point type of the device. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}} \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a740875741e82ba2d1a2dba1696820458}{Get\+Termination\+Point\+Type}} ()
+\begin{DoxyCompactList}\small\item\em Gets the termination point type of the device. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a544900bdb5d6c03b9b5c0568f968c233}{Set\+If\+Index}} (const uint32\+\_\+t index) override
+\item 
+virtual uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a49d4e586264870e12e0105d4ca86a934}{Get\+If\+Index}} (void) const override
+\item 
+virtual Ptr$<$ Channel $>$ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ae7f0f5053af6a60ed112eefd5f67158a}{Get\+Channel}} (void) const override
+\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_adebf86a43236c7df1b4462e59ea35ee1}{Set\+Address}} (Address address) override
+\item 
+virtual Address \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad90fcdb6baaeb8e4297a4a5c8ad65985}{Get\+Address}} (void) const override
+\item 
+virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a800379056c2227005b231dd97ffd6d74}{Set\+Mtu}} (const uint16\+\_\+t mtu) override
+\item 
+virtual uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a261e08be195ae452efee51a0ef3a97d3}{Get\+Mtu}} (void) const override
+\item 
+virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a4bedc2774696c7836c18ddc518b5b157}{Is\+Link\+Up}} (void) const override
+\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_af40a956271fb48205afca25ab6655292}{Add\+Link\+Change\+Callback}} (Callback$<$ void $>$ callback) override
+\item 
+virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a4d718780c14b2457d7d99c12249e102a}{Is\+Broadcast}} (void) const override
+\item 
+virtual Address \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a0c0e4907062f3fd3a9db198568d123ee}{Get\+Broadcast}} (void) const override
+\item 
+virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ae85a91d56a4f6e82436fc2c33a00d641}{Is\+Multicast}} (void) const override
+\item 
+virtual Address \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a6b5df627e0fc2826a8f064187d6db8af}{Get\+Multicast}} (Ipv4\+Address multicast\+Group) const override
+\item 
+virtual Address \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aa23d3724cabec3f6219d68a041b77855}{Get\+Multicast}} (Ipv6\+Address multicast\+Group) const override
+\item 
+virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a3595545196154c18d586289cb6bf4b84}{Is\+Point\+To\+Point}} (void) const override
+\item 
+virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a56815b0c672e1682d6d663e01117185e}{Send}} (Ptr$<$ Packet $>$ packet, const Address \&dest, uint16\+\_\+t protocol\+Number) override
+\item 
+virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_abac503b5be2830db2cc782b6f8252968}{Send\+From}} (Ptr$<$ Packet $>$ packet, const Address \&source, const Address \&dest, uint16\+\_\+t protocol\+Number) override
+\item 
+virtual Ptr$<$ Node $>$ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a399fc544c2d0d5b6c9dbf59e55368e3d}{Get\+Node}} (void) const override
+\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a1101386767c493f8e4c16603ac57a553}{Set\+Node}} (Ptr$<$ Node $>$ node) override
+\item 
+virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a651645a8783afda327726233641b7ce2}{Needs\+Arp}} (void) const override
+\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a7498db9f08c37a96a1519c1ab9cbaee1}{Set\+Receive\+Callback}} (Net\+Device\+::\+Receive\+Callback cb) override
+\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aeeea2ed93dacd408f2517977d319094d}{Set\+Promisc\+Receive\+Callback}} (Net\+Device\+::\+Promisc\+Receive\+Callback cb) override
+\item 
+virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a053867be483f4736c98fc9dff8cf1084}{Supports\+Send\+From}} (void) const override
+\item 
+virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a0961da65e3778d8b3dfa6561553f877e}{Is\+Bridge}} (void) const override
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a33d64205022943b3dbead878abf6e209}{Set\+Mac}} (Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020\+Mac}} $>$ mac)
+\item 
+Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020\+Mac}} $>$ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a66986ee2766aa002f066bf63be76f824}{Get\+Mac}} (void) const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a25bfbde6d3df4db34ea4d2caff002b0d}{Set\+Phy}} (Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020\+Phy}} $>$ phy)
+\item 
+Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020\+Phy}} $>$ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_afe44a222d46200cbc0702177bc47ad9f}{Get\+Phy}} (void) const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a4a9cd416891c68946f4cb5d1e836f855}{Receive}} (Ptr$<$ Packet $>$ packet)
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad65be437745e8255de887455db30c77a}{Set\+Link\+Up}} (void)
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad30f8b0b6cc35caa6a947cb62a789e83}{Set\+Link\+Down}} (void)
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ab357fc0ef9ab439544c4d066bce4be95}{Set\+Band\+Number}} (uint8\+\_\+t band\+Number)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a2eefa88119653f835a7684cda74d822d}{Get\+Band\+Number}} (void) const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aae4bb66f382b834b849a2d12dcdae922}{Set\+Bootstrapping\+Variables}} (bool is\+FT)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Type\+Id \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_afe9bcae03d13a1c5b32f0ef77aebdb37}{Get\+Type\+Id}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}} \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a13d886e2e77bce4aa7fde44adda49890}{m\+\_\+termination\+Point\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ab163903c3692b590ff393d53fb816c2b}{m\+\_\+num\+Of\+PHYCapabilities}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a1301decb01705f84ad7389614afa3ef8}{m\+\_\+release}}
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad74a1cabcc2d374fb1d581bcc9fc3c3a}{m\+\_\+support\+Group\+Assignment}}
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a93775dfb230af1178920dc6b7b3827e8}{m\+\_\+support\+Paging}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ae4d1358a67f2c909baf6b68c2270cb7e}{m\+\_\+operating\+Modes}}
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a567107954fab4f166cc05bf041b73d1f}{m\+\_\+mesh}}
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a3c565b5a3c888a077b00228723a98b69}{m\+\_\+scheduled\+Access\+Data\+Transfer}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a9341e5b6ca0bfa3e23cd1be702f2b183}{m\+\_\+mac\+Security}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aaf25d1253d95a77c66a345624f832531}{m\+\_\+dlc\+Service\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad31824b78655dc671e90b4547500ca69}{m\+\_\+rd\+Power\+Class}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a44d2852f8e96ab0d2ccdb6899de3e2e1}{m\+\_\+max\+Nss\+Fo\+Rx}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aac42b44515e0e429655343dd72e16659}{m\+\_\+rx\+For\+Tx\+Diversity}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a49e335d384651cfb878c57dc646b1573}{m\+\_\+rx\+Gain}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a91bb3d6862a4bfde3d8c9e8108095de2}{m\+\_\+max\+Mcs}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aec53a223e48948474613eb8413925cb5}{m\+\_\+soft\+Buffer\+Size}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a19622110a019a0c23c6f84b364dcb5ca}{m\+\_\+num\+Of\+Harq\+Processes}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a3978467177e62c50a696d82d1db81d74}{m\+\_\+harq\+Feedback\+Delay}}
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_abc43bf9aacc2b10824eab4f738889e5d}{m\+\_\+d\+Delay}}
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aef0976a9c2f76af463f3a6caf400a304}{m\+\_\+half\+Dulp}}
+\item 
+double \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a5089c1e2107fe8550c89fec783add4cc}{m\+\_\+tx\+Power\+Dbm}} = 10
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+DECT2020 Net\+Device Klasse. 
+
+Diese Klasse repräsentiert ein DECT2020 Netzwerkgerät in ns-\/3. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}\label{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!TerminationPointType@{TerminationPointType}}
+\index{TerminationPointType@{TerminationPointType}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{TerminationPointType}{TerminationPointType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{ns3\+::\+Dect2020\+Net\+Device\+::\+Termination\+Point\+Type}}}
+
+The possible Termination Point Types (PT or FT) \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PT@{PT}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!PT@{PT}}}\Hypertarget{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a57e3b3dc7019eb213bb23c9f87444842}\label{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a57e3b3dc7019eb213bb23c9f87444842} 
+PT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FT@{FT}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!FT@{FT}}}\Hypertarget{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a4c46711cf18c3bbfa6c933d6935ed5f6}\label{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a4c46711cf18c3bbfa6c933d6935ed5f6} 
+FT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classns3_1_1Dect2020NetDevice_ac5d8d0101c48596e57906adbd2edde9d}\label{classns3_1_1Dect2020NetDevice_ac5d8d0101c48596e57906adbd2edde9d} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!Dect2020NetDevice@{Dect2020NetDevice}}
+\index{Dect2020NetDevice@{Dect2020NetDevice}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{Dect2020NetDevice()}{Dect2020NetDevice()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Net\+Device\+::\+Dect2020\+Net\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a7ce30bc25af7c757f03c67bac4dc67c0}\label{classns3_1_1Dect2020NetDevice_a7ce30bc25af7c757f03c67bac4dc67c0} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!````~Dect2020NetDevice@{\texorpdfstring{$\sim$}{\string~}Dect2020NetDevice}}
+\index{````~Dect2020NetDevice@{\texorpdfstring{$\sim$}{\string~}Dect2020NetDevice}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Dect2020NetDevice()}{\string~Dect2020NetDevice()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Net\+Device\+::\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Net\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classns3_1_1Dect2020NetDevice_af40a956271fb48205afca25ab6655292}\label{classns3_1_1Dect2020NetDevice_af40a956271fb48205afca25ab6655292} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!AddLinkChangeCallback@{AddLinkChangeCallback}}
+\index{AddLinkChangeCallback@{AddLinkChangeCallback}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{AddLinkChangeCallback()}{AddLinkChangeCallback()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Add\+Link\+Change\+Callback (\begin{DoxyParamCaption}\item[{Callback$<$ void $>$}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_ad90fcdb6baaeb8e4297a4a5c8ad65985}\label{classns3_1_1Dect2020NetDevice_ad90fcdb6baaeb8e4297a4a5c8ad65985} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetAddress@{GetAddress}}
+\index{GetAddress@{GetAddress}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetAddress()}{GetAddress()}}
+{\footnotesize\ttfamily Address ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Address (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a2eefa88119653f835a7684cda74d822d}\label{classns3_1_1Dect2020NetDevice_a2eefa88119653f835a7684cda74d822d} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetBandNumber@{GetBandNumber}}
+\index{GetBandNumber@{GetBandNumber}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetBandNumber()}{GetBandNumber()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Band\+Number (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a0c0e4907062f3fd3a9db198568d123ee}\label{classns3_1_1Dect2020NetDevice_a0c0e4907062f3fd3a9db198568d123ee} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetBroadcast@{GetBroadcast}}
+\index{GetBroadcast@{GetBroadcast}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetBroadcast()}{GetBroadcast()}}
+{\footnotesize\ttfamily Address ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Broadcast (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_ae7f0f5053af6a60ed112eefd5f67158a}\label{classns3_1_1Dect2020NetDevice_ae7f0f5053af6a60ed112eefd5f67158a} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetChannel@{GetChannel}}
+\index{GetChannel@{GetChannel}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetChannel()}{GetChannel()}}
+{\footnotesize\ttfamily Ptr$<$ Channel $>$ ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Channel (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a49d4e586264870e12e0105d4ca86a934}\label{classns3_1_1Dect2020NetDevice_a49d4e586264870e12e0105d4ca86a934} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetIfIndex@{GetIfIndex}}
+\index{GetIfIndex@{GetIfIndex}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetIfIndex()}{GetIfIndex()}}
+{\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+If\+Index (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a66986ee2766aa002f066bf63be76f824}\label{classns3_1_1Dect2020NetDevice_a66986ee2766aa002f066bf63be76f824} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetMac@{GetMac}}
+\index{GetMac@{GetMac}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetMac()}{GetMac()}}
+{\footnotesize\ttfamily Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020\+Mac}} $>$ ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Mac (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a261e08be195ae452efee51a0ef3a97d3}\label{classns3_1_1Dect2020NetDevice_a261e08be195ae452efee51a0ef3a97d3} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetMtu@{GetMtu}}
+\index{GetMtu@{GetMtu}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetMtu()}{GetMtu()}}
+{\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Mtu (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a6b5df627e0fc2826a8f064187d6db8af}\label{classns3_1_1Dect2020NetDevice_a6b5df627e0fc2826a8f064187d6db8af} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetMulticast@{GetMulticast}}
+\index{GetMulticast@{GetMulticast}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetMulticast()}{GetMulticast()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Address ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Multicast (\begin{DoxyParamCaption}\item[{Ipv4\+Address}]{multicast\+Group }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_aa23d3724cabec3f6219d68a041b77855}\label{classns3_1_1Dect2020NetDevice_aa23d3724cabec3f6219d68a041b77855} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetMulticast@{GetMulticast}}
+\index{GetMulticast@{GetMulticast}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetMulticast()}{GetMulticast()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Address ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Multicast (\begin{DoxyParamCaption}\item[{Ipv6\+Address}]{multicast\+Group }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a399fc544c2d0d5b6c9dbf59e55368e3d}\label{classns3_1_1Dect2020NetDevice_a399fc544c2d0d5b6c9dbf59e55368e3d} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetNode()}{GetNode()}}
+{\footnotesize\ttfamily Ptr$<$ Node $>$ ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Node (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_afe44a222d46200cbc0702177bc47ad9f}\label{classns3_1_1Dect2020NetDevice_afe44a222d46200cbc0702177bc47ad9f} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetPhy@{GetPhy}}
+\index{GetPhy@{GetPhy}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetPhy()}{GetPhy()}}
+{\footnotesize\ttfamily Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020\+Phy}} $>$ ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Phy (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a740875741e82ba2d1a2dba1696820458}\label{classns3_1_1Dect2020NetDevice_a740875741e82ba2d1a2dba1696820458} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetTerminationPointType@{GetTerminationPointType}}
+\index{GetTerminationPointType@{GetTerminationPointType}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetTerminationPointType()}{GetTerminationPointType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Dect2020\+Net\+Device\+::\+Termination\+Point\+Type}} ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Termination\+Point\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the termination point type of the device. 
+
+\begin{DoxyReturn}{Returns}
+The termination point type of the device (PT or FT) 
+\end{DoxyReturn}
+\Hypertarget{classns3_1_1Dect2020NetDevice_afe9bcae03d13a1c5b32f0ef77aebdb37}\label{classns3_1_1Dect2020NetDevice_afe9bcae03d13a1c5b32f0ef77aebdb37} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetTypeId@{GetTypeId}}
+\index{GetTypeId@{GetTypeId}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{GetTypeId()}{GetTypeId()}}
+{\footnotesize\ttfamily Type\+Id ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Type\+Id (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a0961da65e3778d8b3dfa6561553f877e}\label{classns3_1_1Dect2020NetDevice_a0961da65e3778d8b3dfa6561553f877e} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!IsBridge@{IsBridge}}
+\index{IsBridge@{IsBridge}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{IsBridge()}{IsBridge()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Is\+Bridge (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a4d718780c14b2457d7d99c12249e102a}\label{classns3_1_1Dect2020NetDevice_a4d718780c14b2457d7d99c12249e102a} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!IsBroadcast@{IsBroadcast}}
+\index{IsBroadcast@{IsBroadcast}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{IsBroadcast()}{IsBroadcast()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Is\+Broadcast (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a4bedc2774696c7836c18ddc518b5b157}\label{classns3_1_1Dect2020NetDevice_a4bedc2774696c7836c18ddc518b5b157} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!IsLinkUp@{IsLinkUp}}
+\index{IsLinkUp@{IsLinkUp}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{IsLinkUp()}{IsLinkUp()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Is\+Link\+Up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_ae85a91d56a4f6e82436fc2c33a00d641}\label{classns3_1_1Dect2020NetDevice_ae85a91d56a4f6e82436fc2c33a00d641} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!IsMulticast@{IsMulticast}}
+\index{IsMulticast@{IsMulticast}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{IsMulticast()}{IsMulticast()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Is\+Multicast (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a3595545196154c18d586289cb6bf4b84}\label{classns3_1_1Dect2020NetDevice_a3595545196154c18d586289cb6bf4b84} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!IsPointToPoint@{IsPointToPoint}}
+\index{IsPointToPoint@{IsPointToPoint}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{IsPointToPoint()}{IsPointToPoint()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Is\+Point\+To\+Point (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a651645a8783afda327726233641b7ce2}\label{classns3_1_1Dect2020NetDevice_a651645a8783afda327726233641b7ce2} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!NeedsArp@{NeedsArp}}
+\index{NeedsArp@{NeedsArp}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{NeedsArp()}{NeedsArp()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Needs\+Arp (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a4a9cd416891c68946f4cb5d1e836f855}\label{classns3_1_1Dect2020NetDevice_a4a9cd416891c68946f4cb5d1e836f855} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!Receive@{Receive}}
+\index{Receive@{Receive}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{Receive()}{Receive()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Receive (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a56815b0c672e1682d6d663e01117185e}\label{classns3_1_1Dect2020NetDevice_a56815b0c672e1682d6d663e01117185e} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!Send@{Send}}
+\index{Send@{Send}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{Send()}{Send()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Send (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet,  }\item[{const Address \&}]{dest,  }\item[{uint16\+\_\+t}]{protocol\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_abac503b5be2830db2cc782b6f8252968}\label{classns3_1_1Dect2020NetDevice_abac503b5be2830db2cc782b6f8252968} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SendFrom@{SendFrom}}
+\index{SendFrom@{SendFrom}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SendFrom()}{SendFrom()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Send\+From (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet,  }\item[{const Address \&}]{source,  }\item[{const Address \&}]{dest,  }\item[{uint16\+\_\+t}]{protocol\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_adebf86a43236c7df1b4462e59ea35ee1}\label{classns3_1_1Dect2020NetDevice_adebf86a43236c7df1b4462e59ea35ee1} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetAddress@{SetAddress}}
+\index{SetAddress@{SetAddress}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetAddress()}{SetAddress()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Address (\begin{DoxyParamCaption}\item[{Address}]{address }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_ab357fc0ef9ab439544c4d066bce4be95}\label{classns3_1_1Dect2020NetDevice_ab357fc0ef9ab439544c4d066bce4be95} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetBandNumber@{SetBandNumber}}
+\index{SetBandNumber@{SetBandNumber}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetBandNumber()}{SetBandNumber()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Band\+Number (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{band\+Number }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_aae4bb66f382b834b849a2d12dcdae922}\label{classns3_1_1Dect2020NetDevice_aae4bb66f382b834b849a2d12dcdae922} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetBootstrappingVariables@{SetBootstrappingVariables}}
+\index{SetBootstrappingVariables@{SetBootstrappingVariables}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetBootstrappingVariables()}{SetBootstrappingVariables()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Bootstrapping\+Variables (\begin{DoxyParamCaption}\item[{bool}]{is\+FT }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a544900bdb5d6c03b9b5c0568f968c233}\label{classns3_1_1Dect2020NetDevice_a544900bdb5d6c03b9b5c0568f968c233} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetIfIndex@{SetIfIndex}}
+\index{SetIfIndex@{SetIfIndex}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetIfIndex()}{SetIfIndex()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+If\+Index (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_ad30f8b0b6cc35caa6a947cb62a789e83}\label{classns3_1_1Dect2020NetDevice_ad30f8b0b6cc35caa6a947cb62a789e83} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetLinkDown@{SetLinkDown}}
+\index{SetLinkDown@{SetLinkDown}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetLinkDown()}{SetLinkDown()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Link\+Down (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_ad65be437745e8255de887455db30c77a}\label{classns3_1_1Dect2020NetDevice_ad65be437745e8255de887455db30c77a} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetLinkUp@{SetLinkUp}}
+\index{SetLinkUp@{SetLinkUp}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetLinkUp()}{SetLinkUp()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Link\+Up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a33d64205022943b3dbead878abf6e209}\label{classns3_1_1Dect2020NetDevice_a33d64205022943b3dbead878abf6e209} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetMac@{SetMac}}
+\index{SetMac@{SetMac}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetMac()}{SetMac()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Mac (\begin{DoxyParamCaption}\item[{Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020\+Mac}} $>$}]{mac }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a800379056c2227005b231dd97ffd6d74}\label{classns3_1_1Dect2020NetDevice_a800379056c2227005b231dd97ffd6d74} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetMtu@{SetMtu}}
+\index{SetMtu@{SetMtu}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetMtu()}{SetMtu()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Mtu (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t}]{mtu }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a1101386767c493f8e4c16603ac57a553}\label{classns3_1_1Dect2020NetDevice_a1101386767c493f8e4c16603ac57a553} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetNode@{SetNode}}
+\index{SetNode@{SetNode}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetNode()}{SetNode()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Node (\begin{DoxyParamCaption}\item[{Ptr$<$ Node $>$}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a25bfbde6d3df4db34ea4d2caff002b0d}\label{classns3_1_1Dect2020NetDevice_a25bfbde6d3df4db34ea4d2caff002b0d} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetPhy@{SetPhy}}
+\index{SetPhy@{SetPhy}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetPhy()}{SetPhy()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Phy (\begin{DoxyParamCaption}\item[{Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020\+Phy}} $>$}]{phy }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_aeeea2ed93dacd408f2517977d319094d}\label{classns3_1_1Dect2020NetDevice_aeeea2ed93dacd408f2517977d319094d} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetPromiscReceiveCallback@{SetPromiscReceiveCallback}}
+\index{SetPromiscReceiveCallback@{SetPromiscReceiveCallback}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetPromiscReceiveCallback()}{SetPromiscReceiveCallback()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Promisc\+Receive\+Callback (\begin{DoxyParamCaption}\item[{Net\+Device\+::\+Promisc\+Receive\+Callback}]{cb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a7498db9f08c37a96a1519c1ab9cbaee1}\label{classns3_1_1Dect2020NetDevice_a7498db9f08c37a96a1519c1ab9cbaee1} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetReceiveCallback@{SetReceiveCallback}}
+\index{SetReceiveCallback@{SetReceiveCallback}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetReceiveCallback()}{SetReceiveCallback()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Receive\+Callback (\begin{DoxyParamCaption}\item[{Net\+Device\+::\+Receive\+Callback}]{cb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_abf9d8e29f49e0b5f3f79c8a9326e8e31}\label{classns3_1_1Dect2020NetDevice_abf9d8e29f49e0b5f3f79c8a9326e8e31} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetTerminationPointType@{SetTerminationPointType}}
+\index{SetTerminationPointType@{SetTerminationPointType}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SetTerminationPointType()}{SetTerminationPointType()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Termination\+Point\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}}}]{tpm }\end{DoxyParamCaption})}
+
+
+
+Sets the termination point type of the device. 
+
+Note\+: In typical DECT implementations, the termination point type (PT or FT) would be dynamically determined by the device. However, for simplicity and initial testing purposes, the type is set manually during device creation in this simulation. \Hypertarget{classns3_1_1Dect2020NetDevice_a053867be483f4736c98fc9dff8cf1084}\label{classns3_1_1Dect2020NetDevice_a053867be483f4736c98fc9dff8cf1084} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SupportsSendFrom@{SupportsSendFrom}}
+\index{SupportsSendFrom@{SupportsSendFrom}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{SupportsSendFrom()}{SupportsSendFrom()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Supports\+Send\+From (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classns3_1_1Dect2020NetDevice_abc43bf9aacc2b10824eab4f738889e5d}\label{classns3_1_1Dect2020NetDevice_abc43bf9aacc2b10824eab4f738889e5d} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_dDelay@{m\_dDelay}}
+\index{m\_dDelay@{m\_dDelay}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_dDelay}{m\_dDelay}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+d\+Delay}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_aaf25d1253d95a77c66a345624f832531}\label{classns3_1_1Dect2020NetDevice_aaf25d1253d95a77c66a345624f832531} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_dlcServiceType@{m\_dlcServiceType}}
+\index{m\_dlcServiceType@{m\_dlcServiceType}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_dlcServiceType}{m\_dlcServiceType}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+dlc\+Service\+Type}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_aef0976a9c2f76af463f3a6caf400a304}\label{classns3_1_1Dect2020NetDevice_aef0976a9c2f76af463f3a6caf400a304} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_halfDulp@{m\_halfDulp}}
+\index{m\_halfDulp@{m\_halfDulp}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_halfDulp}{m\_halfDulp}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+half\+Dulp}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a3978467177e62c50a696d82d1db81d74}\label{classns3_1_1Dect2020NetDevice_a3978467177e62c50a696d82d1db81d74} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_harqFeedbackDelay@{m\_harqFeedbackDelay}}
+\index{m\_harqFeedbackDelay@{m\_harqFeedbackDelay}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_harqFeedbackDelay}{m\_harqFeedbackDelay}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+harq\+Feedback\+Delay}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a9341e5b6ca0bfa3e23cd1be702f2b183}\label{classns3_1_1Dect2020NetDevice_a9341e5b6ca0bfa3e23cd1be702f2b183} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_macSecurity@{m\_macSecurity}}
+\index{m\_macSecurity@{m\_macSecurity}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_macSecurity}{m\_macSecurity}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+mac\+Security}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a91bb3d6862a4bfde3d8c9e8108095de2}\label{classns3_1_1Dect2020NetDevice_a91bb3d6862a4bfde3d8c9e8108095de2} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_maxMcs@{m\_maxMcs}}
+\index{m\_maxMcs@{m\_maxMcs}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_maxMcs}{m\_maxMcs}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+max\+Mcs}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a44d2852f8e96ab0d2ccdb6899de3e2e1}\label{classns3_1_1Dect2020NetDevice_a44d2852f8e96ab0d2ccdb6899de3e2e1} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_maxNssFoRx@{m\_maxNssFoRx}}
+\index{m\_maxNssFoRx@{m\_maxNssFoRx}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_maxNssFoRx}{m\_maxNssFoRx}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+max\+Nss\+Fo\+Rx}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a567107954fab4f166cc05bf041b73d1f}\label{classns3_1_1Dect2020NetDevice_a567107954fab4f166cc05bf041b73d1f} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_mesh@{m\_mesh}}
+\index{m\_mesh@{m\_mesh}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_mesh}{m\_mesh}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+mesh}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a19622110a019a0c23c6f84b364dcb5ca}\label{classns3_1_1Dect2020NetDevice_a19622110a019a0c23c6f84b364dcb5ca} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_numOfHarqProcesses@{m\_numOfHarqProcesses}}
+\index{m\_numOfHarqProcesses@{m\_numOfHarqProcesses}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_numOfHarqProcesses}{m\_numOfHarqProcesses}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+num\+Of\+Harq\+Processes}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_ab163903c3692b590ff393d53fb816c2b}\label{classns3_1_1Dect2020NetDevice_ab163903c3692b590ff393d53fb816c2b} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_numOfPHYCapabilities@{m\_numOfPHYCapabilities}}
+\index{m\_numOfPHYCapabilities@{m\_numOfPHYCapabilities}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_numOfPHYCapabilities}{m\_numOfPHYCapabilities}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+num\+Of\+PHYCapabilities}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_ae4d1358a67f2c909baf6b68c2270cb7e}\label{classns3_1_1Dect2020NetDevice_ae4d1358a67f2c909baf6b68c2270cb7e} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_operatingModes@{m\_operatingModes}}
+\index{m\_operatingModes@{m\_operatingModes}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_operatingModes}{m\_operatingModes}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+operating\+Modes}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_ad31824b78655dc671e90b4547500ca69}\label{classns3_1_1Dect2020NetDevice_ad31824b78655dc671e90b4547500ca69} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_rdPowerClass@{m\_rdPowerClass}}
+\index{m\_rdPowerClass@{m\_rdPowerClass}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_rdPowerClass}{m\_rdPowerClass}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+rd\+Power\+Class}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a1301decb01705f84ad7389614afa3ef8}\label{classns3_1_1Dect2020NetDevice_a1301decb01705f84ad7389614afa3ef8} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_release@{m\_release}}
+\index{m\_release@{m\_release}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_release}{m\_release}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+release}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_aac42b44515e0e429655343dd72e16659}\label{classns3_1_1Dect2020NetDevice_aac42b44515e0e429655343dd72e16659} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_rxForTxDiversity@{m\_rxForTxDiversity}}
+\index{m\_rxForTxDiversity@{m\_rxForTxDiversity}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_rxForTxDiversity}{m\_rxForTxDiversity}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+rx\+For\+Tx\+Diversity}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a49e335d384651cfb878c57dc646b1573}\label{classns3_1_1Dect2020NetDevice_a49e335d384651cfb878c57dc646b1573} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_rxGain@{m\_rxGain}}
+\index{m\_rxGain@{m\_rxGain}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_rxGain}{m\_rxGain}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+rx\+Gain}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a3c565b5a3c888a077b00228723a98b69}\label{classns3_1_1Dect2020NetDevice_a3c565b5a3c888a077b00228723a98b69} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_scheduledAccessDataTransfer@{m\_scheduledAccessDataTransfer}}
+\index{m\_scheduledAccessDataTransfer@{m\_scheduledAccessDataTransfer}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_scheduledAccessDataTransfer}{m\_scheduledAccessDataTransfer}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+scheduled\+Access\+Data\+Transfer}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_aec53a223e48948474613eb8413925cb5}\label{classns3_1_1Dect2020NetDevice_aec53a223e48948474613eb8413925cb5} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_softBufferSize@{m\_softBufferSize}}
+\index{m\_softBufferSize@{m\_softBufferSize}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_softBufferSize}{m\_softBufferSize}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+soft\+Buffer\+Size}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_ad74a1cabcc2d374fb1d581bcc9fc3c3a}\label{classns3_1_1Dect2020NetDevice_ad74a1cabcc2d374fb1d581bcc9fc3c3a} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_supportGroupAssignment@{m\_supportGroupAssignment}}
+\index{m\_supportGroupAssignment@{m\_supportGroupAssignment}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_supportGroupAssignment}{m\_supportGroupAssignment}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+support\+Group\+Assignment}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a93775dfb230af1178920dc6b7b3827e8}\label{classns3_1_1Dect2020NetDevice_a93775dfb230af1178920dc6b7b3827e8} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_supportPaging@{m\_supportPaging}}
+\index{m\_supportPaging@{m\_supportPaging}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_supportPaging}{m\_supportPaging}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+support\+Paging}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a13d886e2e77bce4aa7fde44adda49890}\label{classns3_1_1Dect2020NetDevice_a13d886e2e77bce4aa7fde44adda49890} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_terminationPointType@{m\_terminationPointType}}
+\index{m\_terminationPointType@{m\_terminationPointType}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_terminationPointType}{m\_terminationPointType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}} ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+termination\+Point\+Type}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a5089c1e2107fe8550c89fec783add4cc}\label{classns3_1_1Dect2020NetDevice_a5089c1e2107fe8550c89fec783add4cc} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_txPowerDbm@{m\_txPowerDbm}}
+\index{m\_txPowerDbm@{m\_txPowerDbm}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_txPowerDbm}{m\_txPowerDbm}}
+{\footnotesize\ttfamily double ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+tx\+Power\+Dbm = 10}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-net-device_8h}{dect2020-\/net-\/device.\+h}}\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-net-device_8cc}{dect2020-\/net-\/device.\+cc}}\end{DoxyCompactItemize}

@@ -1,12 +1,25 @@
 #ifndef DECT2020_MAC_HEADER_TYPE
 #define DECT2020_MAC_HEADER_TYPE
 
+/**
+ * \file dect2020-mac-header-type.h
+ * \ingroup Dect2020Mac
+ * \brief Defines the MAC Header Type field used in DECT-2020 NR MAC PDUs.
+ *
+ * Implements header type according to ETSI TS 103 636-4 Section 6.3.2.
+ */
+
+
 #include "ns3/header.h"
 #include "ns3/nstime.h"
 
 namespace ns3
 {
 
+/**
+ * \class Dect2020MacHeaderType
+ * \brief Defined in ETSI TS 103 636-4 Section 6.3.2.
+ */
 class Dect2020MacHeaderType : public Header
 {
   public:

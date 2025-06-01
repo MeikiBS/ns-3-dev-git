@@ -1,0 +1,14 @@
+<map id="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;header&#45;type.h" name="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;header&#45;type.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="128,5,297,60"/>
+<area shape="rect" id="Node000002" href="$dect2020-mac-header-type_8cc.html" title=" " alt="" coords="5,108,175,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,71,124,110,120,106,168,67"/>
+<area shape="rect" id="Node000003" href="$dect2020-mac_8cc.html" title=" " alt="" coords="113,211,275,251"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,74,198,211,193,210,206,74"/>
+<area shape="rect" id="Node000004" href="$dect2020-mac_8h.html" title=" " alt="" coords="287,115,450,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="266,65,341,113,338,117,263,70"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="323,164,231,213,228,208,320,159"/>
+<area shape="rect" id="Node000005" href="$dect2020-net-device_8cc.html" title=" " alt="" coords="299,211,478,251"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="378,168,387,210,382,211,373,169"/>
+<area shape="rect" id="Node000006" href="$dect2020-phy_8cc.html" title=" " alt="" coords="502,211,665,251"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="425,158,541,208,539,213,423,163"/>
+</map>

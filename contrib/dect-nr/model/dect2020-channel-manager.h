@@ -8,31 +8,33 @@
 
 namespace ns3
 {
+// Currently not used
 enum OperatingChannelBandwith
 {
-    BANDWITH_I = 1539000 // Transmission Bandwith #ETSI 103 636-2 V1.5.1 Table 5.3.2.1
+    BANDWITH_I = 1728000 // Nominal Channel Bandwith #ETSI 103 636-2 V1.5.1 Table 5.3.2.1
     // TBD: BANDWITH II & BANDWITH III
 };
 
-struct ChannelInfo
+
+/**
+ * \struct BandParameters
+ * \brief Describes parameters for a DECT band.
+ *
+ * This structure defines the properties of a DECT band as specified in
+ * ETSI TS 103 636-2 V1.5.1, Table 5.4.2-1. It includes the frequency range and 
+ * step size used to compute valid logical channel numbers.
+ */
+struct BandParameters
 {
-    uint16_t channelNumber;
-    double centerFrequency;
-    double rssi;
+public:
+  uint8_t bandNumber;     ///< DECT band number (1–22)
+  double startFrequency;  ///< Center frequency of first channel in the band [Hz]
+  double stopFrequency;   ///< Center frequency of last channel in the band [Hz]
+  double frequencyStep;   ///< Channel raster (spacing) within the band [Hz]
+  uint16_t nStart;        ///< Logical channel number for start frequency
+  uint16_t nEnd;          ///< Logical channel number for stop frequency
 };
 
-struct BandParameters // #ETSI 103 636-2 V1.5.1 Chapter 5.3
-{
-  public:
-    uint8_t bandNumber;    // Band 1-22
-    double startFrequency; // Absolute start channel centre frequency #ETSI 103 636-2 V1.5.1
-                           // Table 5.4.2-1
-    double stopFrequency;  // Absolute stop channel centre frequency #ETSI 103 636-2 V1.5.1
-                           // Table 5.4.2-1
-    double frequencyStep;
-    uint16_t nStart;
-    uint16_t nEnd;
-};
 
 class Dect2020ChannelManager
 {
@@ -40,17 +42,15 @@ class Dect2020ChannelManager
     Dect2020ChannelManager();
     ~Dect2020ChannelManager();
 
+    // ### Channel Management
     void InitializeChannels(uint8_t bandNumber, uint8_t subcarrierScalingFactor);
     static std::vector<Ptr<Dect2020Channel>> GetValidChannels(uint8_t bandNumber);
-
-    std::vector<ChannelInfo> GetAvailableChannels() const;
     void UpdateChannelRssi(uint16_t channelNumber, double rssi);
     static BandParameters GetBandParameters(uint8_t bandNumber);
     static double CalculateCenterFrequency(uint8_t bandNumber, uint32_t channelNumber);
     static uint16_t GetFirstValidChannelNumber(uint8_t bandNumber);
     static uint8_t GetBandNumber(uint16_t channelNumber);
     static bool ChannelExists(uint32_t chId);
-    static double GetChannelCentreFrequency(uint16_t channelId);
     static uint16_t GetChannelId(double centerFrequency);
 
     BandParameters m_bandParameters;

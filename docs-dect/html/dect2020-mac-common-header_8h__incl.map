@@ -1,0 +1,9 @@
+<map id="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;common&#45;header.h" name="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;common&#45;header.h">
+<area shape="rect" id="Node000001" title="Implements MAC Common Headers according to ETSI TS 103 636&#45;4, Section 6.3.3." alt="" coords="103,5,284,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,117,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,62,92,103,89,98,152,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="141,108,246,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,60,196,94,191,94,191,60"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="271,108,377,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="235,58,296,98,293,103,232,62"/>
+</map>

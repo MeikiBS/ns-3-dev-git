@@ -55,7 +55,6 @@ class Dect2020Channel : public Object
     void AddSlot(Slot slot);
 
     uint32_t m_channelId;   // #ETSI 103 636-2 V1.5.1, Section 5.4.2 (n)
-    uint8_t m_subcarrierScalingFactor;
     std::vector<Slot> m_slots;
     std::vector<Slot> m_slotsLastFrame;
     double m_centerFrequency;

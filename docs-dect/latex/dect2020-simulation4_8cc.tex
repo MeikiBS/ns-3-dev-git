@@ -1,0 +1,74 @@
+\doxysection{contrib/dect-\/nr/examples/dect2020-\/simulation4.cc File Reference}
+\hypertarget{dect2020-simulation4_8cc}{}\label{dect2020-simulation4_8cc}\index{contrib/dect-\/nr/examples/dect2020-\/simulation4.cc@{contrib/dect-\/nr/examples/dect2020-\/simulation4.cc}}
+{\ttfamily \#include "{}ns3/applications-\/module.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/core-\/module.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/dect2020-\/channel-\/manager.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/dect2020-\/mac-\/header-\/type.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/dect2020-\/mac-\/information-\/elements.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/dect2020-\/mac-\/messages.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/dect2020-\/mac.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/dect2020-\/net-\/device.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/dect2020-\/phy.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/dect2020-\/physical-\/header-\/field.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/dect2020-\/spectrum-\/signal-\/parameters.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/internet-\/module.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/isotropic-\/antenna-\/model.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/mobility-\/module.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/network-\/module.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/single-\/model-\/spectrum-\/channel.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/spectrum-\/analyzer-\/helper.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/spectrum-\/analyzer.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/spectrum-\/module.\+h"{}}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for dect2020-\/simulation4.cc\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dect2020-simulation4_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{dect2020-simulation4_8cc_a2d1d34016acc6291be944e103b4eee8b}{Term\+Point\+Type}} = \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Dect2020\+Net\+Device\+::\+Termination\+Point\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{dect2020-simulation4_8cc_a74d09d242da8e0efda71241352bbccbc}{Create\+Connection\+Map\+Python\+Skript}} (Net\+Device\+Container devices)
+\item 
+void \mbox{\hyperlink{dect2020-simulation4_8cc_ae63d97abae2845fccc7f2efff0a13b1c}{Evaluate\+Association\+Times}} (Net\+Device\+Container devices)
+\item 
+int \mbox{\hyperlink{dect2020-simulation4_8cc_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{dect2020-simulation4_8cc_a2d1d34016acc6291be944e103b4eee8b}\label{dect2020-simulation4_8cc_a2d1d34016acc6291be944e103b4eee8b} 
+\index{dect2020-\/simulation4.cc@{dect2020-\/simulation4.cc}!TermPointType@{TermPointType}}
+\index{TermPointType@{TermPointType}!dect2020-\/simulation4.cc@{dect2020-\/simulation4.cc}}
+\doxysubsubsection{\texorpdfstring{TermPointType}{TermPointType}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Term\+Point\+Type}} =  \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Dect2020\+Net\+Device\+::\+Termination\+Point\+Type}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dect2020-simulation4_8cc_a74d09d242da8e0efda71241352bbccbc}\label{dect2020-simulation4_8cc_a74d09d242da8e0efda71241352bbccbc} 
+\index{dect2020-\/simulation4.cc@{dect2020-\/simulation4.cc}!CreateConnectionMapPythonSkript@{CreateConnectionMapPythonSkript}}
+\index{CreateConnectionMapPythonSkript@{CreateConnectionMapPythonSkript}!dect2020-\/simulation4.cc@{dect2020-\/simulation4.cc}}
+\doxysubsubsection{\texorpdfstring{CreateConnectionMapPythonSkript()}{CreateConnectionMapPythonSkript()}}
+{\footnotesize\ttfamily void Create\+Connection\+Map\+Python\+Skript (\begin{DoxyParamCaption}\item[{Net\+Device\+Container}]{devices }\end{DoxyParamCaption})}
+
+\Hypertarget{dect2020-simulation4_8cc_ae63d97abae2845fccc7f2efff0a13b1c}\label{dect2020-simulation4_8cc_ae63d97abae2845fccc7f2efff0a13b1c} 
+\index{dect2020-\/simulation4.cc@{dect2020-\/simulation4.cc}!EvaluateAssociationTimes@{EvaluateAssociationTimes}}
+\index{EvaluateAssociationTimes@{EvaluateAssociationTimes}!dect2020-\/simulation4.cc@{dect2020-\/simulation4.cc}}
+\doxysubsubsection{\texorpdfstring{EvaluateAssociationTimes()}{EvaluateAssociationTimes()}}
+{\footnotesize\ttfamily void Evaluate\+Association\+Times (\begin{DoxyParamCaption}\item[{Net\+Device\+Container}]{devices }\end{DoxyParamCaption})}
+
+\Hypertarget{dect2020-simulation4_8cc_a0ddf1224851353fc92bfbff6f499fa97}\label{dect2020-simulation4_8cc_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{dect2020-\/simulation4.cc@{dect2020-\/simulation4.cc}!main@{main}}
+\index{main@{main}!dect2020-\/simulation4.cc@{dect2020-\/simulation4.cc}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+

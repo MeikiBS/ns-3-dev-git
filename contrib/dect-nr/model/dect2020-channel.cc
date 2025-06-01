@@ -37,12 +37,18 @@ Dect2020Channel::~Dect2020Channel()
     NS_LOG_FUNCTION(this);
 }
 
+/**
+ * \brief Add a time slot to the channel.
+ *
+ * If 24 slots are present (one full frame), store a copy in m_slotsLastFrame. --> Currently not
+ * used in the simulation, only for debugging reasons.
+ */
 void
 Dect2020Channel::AddSlot(Slot slot)
 {
     m_slots.push_back(slot);
 
-    if(m_slots.size() == 24)
+    if (m_slots.size() == 24)
     {
         m_slotsLastFrame = m_slots; // Deep copy of the fresh initialized Slot List
     }

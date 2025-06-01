@@ -1,0 +1,354 @@
+\doxysection{ns3\+::Dect2020\+Cluster\+Beacon\+Message Class Reference}
+\hypertarget{classns3_1_1Dect2020ClusterBeaconMessage}{}\label{classns3_1_1Dect2020ClusterBeaconMessage}\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+
+
+{\ttfamily \#include $<$dect2020-\/mac-\/messages.\+h$>$}
+
+
+
+Inheritance diagram for ns3\+::Dect2020\+Cluster\+Beacon\+Message\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classns3_1_1Dect2020ClusterBeaconMessage__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ns3\+::Dect2020\+Cluster\+Beacon\+Message\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classns3_1_1Dect2020ClusterBeaconMessage__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a9293a4240d9bcfb18d24ccb46afe0249}{Dect2020\+Cluster\+Beacon\+Message}} ()
+\item 
+virtual \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aacf28827b56d465d0694eb0bed9fd6ab}{\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Cluster\+Beacon\+Message}} ()
+\item 
+virtual Type\+Id \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_acbf07df34e1809341d89fcf7cbcf4ac7}{Get\+Instance\+Type\+Id}} () const override
+\item 
+virtual uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a7fa435eca7f1e4957ed38bf863e8cbc8}{Get\+Serialized\+Size}} () const
+\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ae22057ed7a5541d904536b0d9e44ad41}{Serialize}} (Buffer\+::\+Iterator start) const
+\item 
+virtual uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a557ea3b64013941e4e29e8232300913c}{Deserialize}} (Buffer\+::\+Iterator start)
+\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad581b4f6706a7c2050a14d5881d3f12a}{Print}} (std\+::ostream \&os) const
+\item 
+int8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_abc9996e1f4db4241d73b39d98b7d2f5a}{Get\+Tx\+Power\+From\+Field}} (uint8\+\_\+t field)
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_afe8f9f66ee97f564df231ae8d9e801c1}{Set\+System\+Frame\+Number}} (uint8\+\_\+t sfn)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a9092a1c82890d7f41c7be1234941aa37}{Get\+System\+Frame\+Number}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aed2c313c7c6015ed1a6d10be2c58c0bf}{Set\+Tx\+Power\+Included}} (bool tx\+Power\+Included)
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_afb4994ca8ee5deced3130b2435ab61ba}{Get\+Tx\+Power\+Included}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a7fe754f0d83da36af1dc1a29825a4a46}{Set\+Power\+Constraints}} (bool power\+Constraints)
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af3ff23d4132a8debc8024363020f25b5}{Get\+Power\+Constraints}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af5f62d81542268160eed315c4c0fcf55}{Set\+Frame\+Offset\+Included}} (bool frame\+Offset\+Included)
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aa3aaa8933a125bbd8ed3a393eef16e40}{Get\+Frame\+Offset\+Included}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a8aad2cb609a75ee40fba74749834b375}{Set\+Next\+Channel\+Included}} (bool next\+Channel\+Included)
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a99d7b7d57d21f5443c5a797ac4a524ad}{Get\+Next\+Channel\+Included}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_adc79fdad8d28f2229088cc5195ce528c}{Set\+Time\+To\+Next\+Field\+Present}} (bool time\+To\+Next\+Field\+Present)
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af7c94390f13e00b8d3d5fe0dffd579e3}{Get\+Time\+To\+Next\+Field\+Present}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a73e441e4dc02775b2f90d72b77583240}{Set\+Network\+Beacon\+Period}} (\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{Network\+Beacon\+Period}} period)
+\item 
+\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{Network\+Beacon\+Period}} \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a331f75a3db0fbcb9128d05586c6473a9}{Get\+Network\+Beacon\+Period}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ab85895f6498ef0c51c280b878c40d6ac}{Set\+Cluster\+Beacon\+Period}} (\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{Cluster\+Beacon\+Period}} period)
+\item 
+\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{Cluster\+Beacon\+Period}} \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad96c59c785e4430d8c94dd0769894a59}{Get\+Cluster\+Beacon\+Period}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad1ff3c98b18c6db6acff3aaa8d0088b9}{Set\+Count\+To\+Trigger}} (uint8\+\_\+t count)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a036954ed332014a0e3d7fa5ce5000a23}{Get\+Count\+To\+Trigger}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad033ac77616fba07f2947a41e275bd39}{Set\+Relative\+Quality}} (uint8\+\_\+t rel\+Quality)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aa6cb9066d594a05a9e03e9063967749c}{Get\+Relative\+Quality}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a672b42058c4bfd4b05913b8703a6b91c}{Set\+Minimum\+Quality}} (uint8\+\_\+t min\+Quality)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ae4cf9335d29461236027db5e8420159a}{Get\+Minimum\+Quality}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af0ae6b8d7129a6970c510c1209daee59}{Set\+Cluster\+Max\+Tx\+Power}} (uint8\+\_\+t power)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_affba5797feb95429b54541998cdb64ea}{Get\+Cluster\+Max\+Tx\+Power}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a7eb4af5100bcb512935cfbb0c756bfd5}{Set\+Frame\+Offset}} (uint16\+\_\+t offset)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af2df65429eceb551d4c331cd470da9a8}{Get\+Frame\+Offset}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a1d1588aaffa339051bf8a17bed779ccd}{Set\+Next\+Cluster\+Channel}} (uint16\+\_\+t channel)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a45ba25f15d4bf8ef9bb0716d1e377710}{Get\+Next\+Cluster\+Channel}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af91ffcaf2aea436b02466a491fac1b04}{Set\+Time\+To\+Next}} (uint32\+\_\+t time)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a9f4258caf5d721e359a6ccaa76cb1827}{Get\+Time\+To\+Next}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Type\+Id \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad8821eab370b24153791366f9aa198d0}{Get\+Type\+Id}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a9293a4240d9bcfb18d24ccb46afe0249}\label{classns3_1_1Dect2020ClusterBeaconMessage_a9293a4240d9bcfb18d24ccb46afe0249} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!Dect2020ClusterBeaconMessage@{Dect2020ClusterBeaconMessage}}
+\index{Dect2020ClusterBeaconMessage@{Dect2020ClusterBeaconMessage}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{Dect2020ClusterBeaconMessage()}{Dect2020ClusterBeaconMessage()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Dect2020\+Cluster\+Beacon\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_aacf28827b56d465d0694eb0bed9fd6ab}\label{classns3_1_1Dect2020ClusterBeaconMessage_aacf28827b56d465d0694eb0bed9fd6ab} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!````~Dect2020ClusterBeaconMessage@{\texorpdfstring{$\sim$}{\string~}Dect2020ClusterBeaconMessage}}
+\index{````~Dect2020ClusterBeaconMessage@{\texorpdfstring{$\sim$}{\string~}Dect2020ClusterBeaconMessage}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Dect2020ClusterBeaconMessage()}{\string~Dect2020ClusterBeaconMessage()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Cluster\+Beacon\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a557ea3b64013941e4e29e8232300913c}\label{classns3_1_1Dect2020ClusterBeaconMessage_a557ea3b64013941e4e29e8232300913c} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!Deserialize@{Deserialize}}
+\index{Deserialize@{Deserialize}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{Deserialize()}{Deserialize()}}
+{\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Deserialize (\begin{DoxyParamCaption}\item[{Buffer\+::\+Iterator}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_ad96c59c785e4430d8c94dd0769894a59}\label{classns3_1_1Dect2020ClusterBeaconMessage_ad96c59c785e4430d8c94dd0769894a59} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetClusterBeaconPeriod@{GetClusterBeaconPeriod}}
+\index{GetClusterBeaconPeriod@{GetClusterBeaconPeriod}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetClusterBeaconPeriod()}{GetClusterBeaconPeriod()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{Cluster\+Beacon\+Period}} ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Cluster\+Beacon\+Period (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_affba5797feb95429b54541998cdb64ea}\label{classns3_1_1Dect2020ClusterBeaconMessage_affba5797feb95429b54541998cdb64ea} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetClusterMaxTxPower@{GetClusterMaxTxPower}}
+\index{GetClusterMaxTxPower@{GetClusterMaxTxPower}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetClusterMaxTxPower()}{GetClusterMaxTxPower()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Cluster\+Max\+Tx\+Power (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a036954ed332014a0e3d7fa5ce5000a23}\label{classns3_1_1Dect2020ClusterBeaconMessage_a036954ed332014a0e3d7fa5ce5000a23} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetCountToTrigger@{GetCountToTrigger}}
+\index{GetCountToTrigger@{GetCountToTrigger}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetCountToTrigger()}{GetCountToTrigger()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Count\+To\+Trigger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_af2df65429eceb551d4c331cd470da9a8}\label{classns3_1_1Dect2020ClusterBeaconMessage_af2df65429eceb551d4c331cd470da9a8} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetFrameOffset@{GetFrameOffset}}
+\index{GetFrameOffset@{GetFrameOffset}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetFrameOffset()}{GetFrameOffset()}}
+{\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Frame\+Offset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_aa3aaa8933a125bbd8ed3a393eef16e40}\label{classns3_1_1Dect2020ClusterBeaconMessage_aa3aaa8933a125bbd8ed3a393eef16e40} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetFrameOffsetIncluded@{GetFrameOffsetIncluded}}
+\index{GetFrameOffsetIncluded@{GetFrameOffsetIncluded}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetFrameOffsetIncluded()}{GetFrameOffsetIncluded()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Frame\+Offset\+Included (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_acbf07df34e1809341d89fcf7cbcf4ac7}\label{classns3_1_1Dect2020ClusterBeaconMessage_acbf07df34e1809341d89fcf7cbcf4ac7} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetInstanceTypeId@{GetInstanceTypeId}}
+\index{GetInstanceTypeId@{GetInstanceTypeId}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetInstanceTypeId()}{GetInstanceTypeId()}}
+{\footnotesize\ttfamily Type\+Id ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Instance\+Type\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_ae4cf9335d29461236027db5e8420159a}\label{classns3_1_1Dect2020ClusterBeaconMessage_ae4cf9335d29461236027db5e8420159a} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetMinimumQuality@{GetMinimumQuality}}
+\index{GetMinimumQuality@{GetMinimumQuality}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetMinimumQuality()}{GetMinimumQuality()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Minimum\+Quality (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a331f75a3db0fbcb9128d05586c6473a9}\label{classns3_1_1Dect2020ClusterBeaconMessage_a331f75a3db0fbcb9128d05586c6473a9} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetNetworkBeaconPeriod@{GetNetworkBeaconPeriod}}
+\index{GetNetworkBeaconPeriod@{GetNetworkBeaconPeriod}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetNetworkBeaconPeriod()}{GetNetworkBeaconPeriod()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{Network\+Beacon\+Period}} ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Network\+Beacon\+Period (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a99d7b7d57d21f5443c5a797ac4a524ad}\label{classns3_1_1Dect2020ClusterBeaconMessage_a99d7b7d57d21f5443c5a797ac4a524ad} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetNextChannelIncluded@{GetNextChannelIncluded}}
+\index{GetNextChannelIncluded@{GetNextChannelIncluded}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetNextChannelIncluded()}{GetNextChannelIncluded()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Next\+Channel\+Included (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a45ba25f15d4bf8ef9bb0716d1e377710}\label{classns3_1_1Dect2020ClusterBeaconMessage_a45ba25f15d4bf8ef9bb0716d1e377710} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetNextClusterChannel@{GetNextClusterChannel}}
+\index{GetNextClusterChannel@{GetNextClusterChannel}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetNextClusterChannel()}{GetNextClusterChannel()}}
+{\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Next\+Cluster\+Channel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_af3ff23d4132a8debc8024363020f25b5}\label{classns3_1_1Dect2020ClusterBeaconMessage_af3ff23d4132a8debc8024363020f25b5} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetPowerConstraints@{GetPowerConstraints}}
+\index{GetPowerConstraints@{GetPowerConstraints}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetPowerConstraints()}{GetPowerConstraints()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Power\+Constraints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_aa6cb9066d594a05a9e03e9063967749c}\label{classns3_1_1Dect2020ClusterBeaconMessage_aa6cb9066d594a05a9e03e9063967749c} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetRelativeQuality@{GetRelativeQuality}}
+\index{GetRelativeQuality@{GetRelativeQuality}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetRelativeQuality()}{GetRelativeQuality()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Relative\+Quality (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a7fa435eca7f1e4957ed38bf863e8cbc8}\label{classns3_1_1Dect2020ClusterBeaconMessage_a7fa435eca7f1e4957ed38bf863e8cbc8} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetSerializedSize@{GetSerializedSize}}
+\index{GetSerializedSize@{GetSerializedSize}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetSerializedSize()}{GetSerializedSize()}}
+{\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Serialized\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a9092a1c82890d7f41c7be1234941aa37}\label{classns3_1_1Dect2020ClusterBeaconMessage_a9092a1c82890d7f41c7be1234941aa37} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetSystemFrameNumber@{GetSystemFrameNumber}}
+\index{GetSystemFrameNumber@{GetSystemFrameNumber}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetSystemFrameNumber()}{GetSystemFrameNumber()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+System\+Frame\+Number (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a9f4258caf5d721e359a6ccaa76cb1827}\label{classns3_1_1Dect2020ClusterBeaconMessage_a9f4258caf5d721e359a6ccaa76cb1827} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetTimeToNext@{GetTimeToNext}}
+\index{GetTimeToNext@{GetTimeToNext}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetTimeToNext()}{GetTimeToNext()}}
+{\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Time\+To\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_af7c94390f13e00b8d3d5fe0dffd579e3}\label{classns3_1_1Dect2020ClusterBeaconMessage_af7c94390f13e00b8d3d5fe0dffd579e3} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetTimeToNextFieldPresent@{GetTimeToNextFieldPresent}}
+\index{GetTimeToNextFieldPresent@{GetTimeToNextFieldPresent}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetTimeToNextFieldPresent()}{GetTimeToNextFieldPresent()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Time\+To\+Next\+Field\+Present (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_abc9996e1f4db4241d73b39d98b7d2f5a}\label{classns3_1_1Dect2020ClusterBeaconMessage_abc9996e1f4db4241d73b39d98b7d2f5a} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetTxPowerFromField@{GetTxPowerFromField}}
+\index{GetTxPowerFromField@{GetTxPowerFromField}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetTxPowerFromField()}{GetTxPowerFromField()}}
+{\footnotesize\ttfamily int8\+\_\+t ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Tx\+Power\+From\+Field (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{field }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_afb4994ca8ee5deced3130b2435ab61ba}\label{classns3_1_1Dect2020ClusterBeaconMessage_afb4994ca8ee5deced3130b2435ab61ba} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetTxPowerIncluded@{GetTxPowerIncluded}}
+\index{GetTxPowerIncluded@{GetTxPowerIncluded}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetTxPowerIncluded()}{GetTxPowerIncluded()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Tx\+Power\+Included (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_ad8821eab370b24153791366f9aa198d0}\label{classns3_1_1Dect2020ClusterBeaconMessage_ad8821eab370b24153791366f9aa198d0} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!GetTypeId@{GetTypeId}}
+\index{GetTypeId@{GetTypeId}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{GetTypeId()}{GetTypeId()}}
+{\footnotesize\ttfamily Type\+Id ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Get\+Type\+Id (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_ad581b4f6706a7c2050a14d5881d3f12a}\label{classns3_1_1Dect2020ClusterBeaconMessage_ad581b4f6706a7c2050a14d5881d3f12a} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!Print@{Print}}
+\index{Print@{Print}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_ae22057ed7a5541d904536b0d9e44ad41}\label{classns3_1_1Dect2020ClusterBeaconMessage_ae22057ed7a5541d904536b0d9e44ad41} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{Serialize()}{Serialize()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Serialize (\begin{DoxyParamCaption}\item[{Buffer\+::\+Iterator}]{start }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_ab85895f6498ef0c51c280b878c40d6ac}\label{classns3_1_1Dect2020ClusterBeaconMessage_ab85895f6498ef0c51c280b878c40d6ac} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetClusterBeaconPeriod@{SetClusterBeaconPeriod}}
+\index{SetClusterBeaconPeriod@{SetClusterBeaconPeriod}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetClusterBeaconPeriod()}{SetClusterBeaconPeriod()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Cluster\+Beacon\+Period (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{Cluster\+Beacon\+Period}}}]{period }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_af0ae6b8d7129a6970c510c1209daee59}\label{classns3_1_1Dect2020ClusterBeaconMessage_af0ae6b8d7129a6970c510c1209daee59} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetClusterMaxTxPower@{SetClusterMaxTxPower}}
+\index{SetClusterMaxTxPower@{SetClusterMaxTxPower}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetClusterMaxTxPower()}{SetClusterMaxTxPower()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Cluster\+Max\+Tx\+Power (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{power }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_ad1ff3c98b18c6db6acff3aaa8d0088b9}\label{classns3_1_1Dect2020ClusterBeaconMessage_ad1ff3c98b18c6db6acff3aaa8d0088b9} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetCountToTrigger@{SetCountToTrigger}}
+\index{SetCountToTrigger@{SetCountToTrigger}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetCountToTrigger()}{SetCountToTrigger()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Count\+To\+Trigger (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a7eb4af5100bcb512935cfbb0c756bfd5}\label{classns3_1_1Dect2020ClusterBeaconMessage_a7eb4af5100bcb512935cfbb0c756bfd5} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetFrameOffset@{SetFrameOffset}}
+\index{SetFrameOffset@{SetFrameOffset}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetFrameOffset()}{SetFrameOffset()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Frame\+Offset (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{offset }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_af5f62d81542268160eed315c4c0fcf55}\label{classns3_1_1Dect2020ClusterBeaconMessage_af5f62d81542268160eed315c4c0fcf55} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetFrameOffsetIncluded@{SetFrameOffsetIncluded}}
+\index{SetFrameOffsetIncluded@{SetFrameOffsetIncluded}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetFrameOffsetIncluded()}{SetFrameOffsetIncluded()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Frame\+Offset\+Included (\begin{DoxyParamCaption}\item[{bool}]{frame\+Offset\+Included }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a672b42058c4bfd4b05913b8703a6b91c}\label{classns3_1_1Dect2020ClusterBeaconMessage_a672b42058c4bfd4b05913b8703a6b91c} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetMinimumQuality@{SetMinimumQuality}}
+\index{SetMinimumQuality@{SetMinimumQuality}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetMinimumQuality()}{SetMinimumQuality()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Minimum\+Quality (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{min\+Quality }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a73e441e4dc02775b2f90d72b77583240}\label{classns3_1_1Dect2020ClusterBeaconMessage_a73e441e4dc02775b2f90d72b77583240} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetNetworkBeaconPeriod@{SetNetworkBeaconPeriod}}
+\index{SetNetworkBeaconPeriod@{SetNetworkBeaconPeriod}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetNetworkBeaconPeriod()}{SetNetworkBeaconPeriod()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Network\+Beacon\+Period (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{Network\+Beacon\+Period}}}]{period }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a8aad2cb609a75ee40fba74749834b375}\label{classns3_1_1Dect2020ClusterBeaconMessage_a8aad2cb609a75ee40fba74749834b375} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetNextChannelIncluded@{SetNextChannelIncluded}}
+\index{SetNextChannelIncluded@{SetNextChannelIncluded}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetNextChannelIncluded()}{SetNextChannelIncluded()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Next\+Channel\+Included (\begin{DoxyParamCaption}\item[{bool}]{next\+Channel\+Included }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a1d1588aaffa339051bf8a17bed779ccd}\label{classns3_1_1Dect2020ClusterBeaconMessage_a1d1588aaffa339051bf8a17bed779ccd} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetNextClusterChannel@{SetNextClusterChannel}}
+\index{SetNextClusterChannel@{SetNextClusterChannel}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetNextClusterChannel()}{SetNextClusterChannel()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Next\+Cluster\+Channel (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{channel }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_a7fe754f0d83da36af1dc1a29825a4a46}\label{classns3_1_1Dect2020ClusterBeaconMessage_a7fe754f0d83da36af1dc1a29825a4a46} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetPowerConstraints@{SetPowerConstraints}}
+\index{SetPowerConstraints@{SetPowerConstraints}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetPowerConstraints()}{SetPowerConstraints()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Power\+Constraints (\begin{DoxyParamCaption}\item[{bool}]{power\+Constraints }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_ad033ac77616fba07f2947a41e275bd39}\label{classns3_1_1Dect2020ClusterBeaconMessage_ad033ac77616fba07f2947a41e275bd39} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetRelativeQuality@{SetRelativeQuality}}
+\index{SetRelativeQuality@{SetRelativeQuality}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetRelativeQuality()}{SetRelativeQuality()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Relative\+Quality (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{rel\+Quality }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_afe8f9f66ee97f564df231ae8d9e801c1}\label{classns3_1_1Dect2020ClusterBeaconMessage_afe8f9f66ee97f564df231ae8d9e801c1} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetSystemFrameNumber@{SetSystemFrameNumber}}
+\index{SetSystemFrameNumber@{SetSystemFrameNumber}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetSystemFrameNumber()}{SetSystemFrameNumber()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+System\+Frame\+Number (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sfn }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_af91ffcaf2aea436b02466a491fac1b04}\label{classns3_1_1Dect2020ClusterBeaconMessage_af91ffcaf2aea436b02466a491fac1b04} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetTimeToNext@{SetTimeToNext}}
+\index{SetTimeToNext@{SetTimeToNext}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetTimeToNext()}{SetTimeToNext()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Time\+To\+Next (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{time }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_adc79fdad8d28f2229088cc5195ce528c}\label{classns3_1_1Dect2020ClusterBeaconMessage_adc79fdad8d28f2229088cc5195ce528c} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetTimeToNextFieldPresent@{SetTimeToNextFieldPresent}}
+\index{SetTimeToNextFieldPresent@{SetTimeToNextFieldPresent}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetTimeToNextFieldPresent()}{SetTimeToNextFieldPresent()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Time\+To\+Next\+Field\+Present (\begin{DoxyParamCaption}\item[{bool}]{time\+To\+Next\+Field\+Present }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ClusterBeaconMessage_aed2c313c7c6015ed1a6d10be2c58c0bf}\label{classns3_1_1Dect2020ClusterBeaconMessage_aed2c313c7c6015ed1a6d10be2c58c0bf} 
+\index{ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}!SetTxPowerIncluded@{SetTxPowerIncluded}}
+\index{SetTxPowerIncluded@{SetTxPowerIncluded}!ns3::Dect2020ClusterBeaconMessage@{ns3::Dect2020ClusterBeaconMessage}}
+\doxysubsubsection{\texorpdfstring{SetTxPowerIncluded()}{SetTxPowerIncluded()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Cluster\+Beacon\+Message\+::\+Set\+Tx\+Power\+Included (\begin{DoxyParamCaption}\item[{bool}]{tx\+Power\+Included }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-mac-messages_8h}{dect2020-\/mac-\/messages.\+h}}\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-mac-messages_8cc}{dect2020-\/mac-\/messages.\+cc}}\end{DoxyCompactItemize}

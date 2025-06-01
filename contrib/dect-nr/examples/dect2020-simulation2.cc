@@ -213,7 +213,7 @@ EvaluateAssociationTimes(NetDeviceContainer devices)
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(60));
+    Simulator::Stop(Seconds(30));
 
     LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
     LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
@@ -226,7 +226,7 @@ main(int argc, char* argv[])
     NodeContainer ftNodes;
     ftNodes.Create(1);
     NodeContainer ptNodes;
-    ptNodes.Create(100);
+    ptNodes.Create(30);
 
     MobilityHelper ftMobility;
     Ptr<ListPositionAllocator> ftPos = CreateObject<ListPositionAllocator>();

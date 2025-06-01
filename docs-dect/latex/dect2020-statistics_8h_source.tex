@@ -1,0 +1,67 @@
+\doxysection{dect2020-\/statistics.h}
+\hypertarget{dect2020-statistics_8h_source}{}\label{dect2020-statistics_8h_source}\index{contrib/dect-\/nr/model/dect2020-\/statistics.h@{contrib/dect-\/nr/model/dect2020-\/statistics.h}}
+\mbox{\hyperlink{dect2020-statistics_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DECT2020\_STATISTICS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DECT2020\_STATISTICS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDect2020Statistics}{Dect2020Statistics}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDect2020Statistics_ab9d7a04a6460a5b9ad8da9450a9ccab2}{IncrementClusterBeaconReception}}();}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{classDect2020Statistics_a99f2bb8951ff5ab4f78c74bad28088ab}{GetClusterBeaconReceptionCount}}();}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDect2020Statistics_a7523f14a95a0aaebcc62971ff6356050}{IncrementClusterBeaconTransmission}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{classDect2020Statistics_a67a8c2a0e3dde78db3b84a75161df942}{GetClusterBeaconTransmissionCount}}();}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDect2020Statistics_a7d4091a1aee83446297371e16a94095a}{IncrementPacketsDroppedLowRssi}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{classDect2020Statistics_a5d9b23147bd700ca381e452ad3925387}{GetPacketsDroppedLowRssiCount}}();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDect2020Statistics_ae2dbbe897cce9e9c53ca311866ee26be}{IncrementPacketsDroppedCollision}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{classDect2020Statistics_a2a13e8b7ea8124be486f7e29e475daec}{GetPacketsDroppedCollisionCount}}();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDect2020Statistics_a4d454e1c88bee0fc08ded4c110f7247a}{IncrementSumOfAllPacketsSent}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{classDect2020Statistics_aedd7d83cefe763eb38350c62c4ca0c49}{GetSumOfAllPacketsSent}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDect2020Statistics_a82170cabe8d5654682179d39bfdf4ee9}{IncrementNetworkBeaconReceptionCount}}();}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{classDect2020Statistics_abead4f3420e67ea318b0afe30297188b}{GetNetworkBeaconReceptionCount}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDect2020Statistics_a2b87eb5ac3cf447834cc9782d09788c7}{IncrementNetworkBeaconTransmissionCount}}();}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{classDect2020Statistics_a2534f82e07f3afa0614d831dcd304654}{GetNetworkBeaconTransmissionCount}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDect2020Statistics_aec2105382ac12314728fa439a8fcd920}{IncrementAssociationRequestTransmissionCount}}();}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{classDect2020Statistics_afd33aeeb4c7535c132a369f0cc82a5c0}{GetAssociationRequestTransmissionCount}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDect2020Statistics_ac1d60e1b20cc198f293de67c0172c223}{IncrementAssociationRequestReceptionCount}}();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{classDect2020Statistics_a9b3eb49cf62d91f90d44943a1a70b422}{GetAssociationRequestReceptionCount}}();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDect2020Statistics_ade3ebacf002e708cebe916383cea5215}{IncrementAssociationResponseTransmissionCount}}();}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{classDect2020Statistics_a842e1884d811bcc4d84755d799e6932a}{GetAssociationResponseTransmissionCount}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classDect2020Statistics_a524dc19c89ca009876ddb07dadbd1ccc}{IncrementAssociationResponseReceptionCount}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ \mbox{\hyperlink{classDect2020Statistics_a9fd024cfb46f0864e8b0f0db66787ef0}{GetAssociationResponseReceptionCount}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ m\_clusterBeaconReceptionCount;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ m\_clusterBeaconTransmissionCount;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ m\_packetsDroppedLowRssi;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ m\_packetsDroppedCollision;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ m\_sumOfAllPacketsSent;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ m\_networkBeaconReceptionCount;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ m\_networkBeaconTransmissionCount;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ m\_associationRequestReceptionCount;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ m\_associationRequestTransmissionCount;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ m\_associationResponseReceptionCount;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static}\ uint32\_t\ m\_associationResponseTransmissionCount;}
+\DoxyCodeLine{00059\ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DECT2020\_STATISTICS\_H}}
+
+\end{DoxyCode}

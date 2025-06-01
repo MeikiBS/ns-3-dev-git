@@ -1,0 +1,99 @@
+\doxysection{ns3\+::Band\+Parameters Struct Reference}
+\hypertarget{structns3_1_1BandParameters}{}\label{structns3_1_1BandParameters}\index{ns3::BandParameters@{ns3::BandParameters}}
+
+
+Describes parameters for a DECT band.  
+
+
+
+
+{\ttfamily \#include $<$dect2020-\/channel-\/manager.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structns3_1_1BandParameters_a9301dbb82c382e84c5046dea8ce07d55}{band\+Number}}
+\begin{DoxyCompactList}\small\item\em DECT band number (1–22) \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structns3_1_1BandParameters_a9bc79f9bfb2f7aa7a6e51d685be63064}{start\+Frequency}}
+\begin{DoxyCompactList}\small\item\em Center frequency of first channel in the band \mbox{[}Hz\mbox{]}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structns3_1_1BandParameters_ae26e0c2931b1921b875bcd9de1f203c8}{stop\+Frequency}}
+\begin{DoxyCompactList}\small\item\em Center frequency of last channel in the band \mbox{[}Hz\mbox{]}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structns3_1_1BandParameters_a60ac4c5990982720378578831a3ed7a9}{frequency\+Step}}
+\begin{DoxyCompactList}\small\item\em Channel raster (spacing) within the band \mbox{[}Hz\mbox{]}. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structns3_1_1BandParameters_a68266fc51a708f0b39b129456356327b}{n\+Start}}
+\begin{DoxyCompactList}\small\item\em Logical channel number for start frequency. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{structns3_1_1BandParameters_a64b3ce2c8cc6a027050e7b15fe0ce61f}{n\+End}}
+\begin{DoxyCompactList}\small\item\em Logical channel number for stop frequency. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Describes parameters for a DECT band. 
+
+This structure defines the properties of a DECT band as specified in ETSI TS 103 636-\/2 V1.\+5.\+1, Table 5.\+4.\+2-\/1. It includes the frequency range and step size used to compute valid logical channel numbers. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structns3_1_1BandParameters_a9301dbb82c382e84c5046dea8ce07d55}\label{structns3_1_1BandParameters_a9301dbb82c382e84c5046dea8ce07d55} 
+\index{ns3::BandParameters@{ns3::BandParameters}!bandNumber@{bandNumber}}
+\index{bandNumber@{bandNumber}!ns3::BandParameters@{ns3::BandParameters}}
+\doxysubsubsection{\texorpdfstring{bandNumber}{bandNumber}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Band\+Parameters\+::band\+Number}
+
+
+
+DECT band number (1–22) 
+
+\Hypertarget{structns3_1_1BandParameters_a60ac4c5990982720378578831a3ed7a9}\label{structns3_1_1BandParameters_a60ac4c5990982720378578831a3ed7a9} 
+\index{ns3::BandParameters@{ns3::BandParameters}!frequencyStep@{frequencyStep}}
+\index{frequencyStep@{frequencyStep}!ns3::BandParameters@{ns3::BandParameters}}
+\doxysubsubsection{\texorpdfstring{frequencyStep}{frequencyStep}}
+{\footnotesize\ttfamily double ns3\+::\+Band\+Parameters\+::frequency\+Step}
+
+
+
+Channel raster (spacing) within the band \mbox{[}Hz\mbox{]}. 
+
+\Hypertarget{structns3_1_1BandParameters_a64b3ce2c8cc6a027050e7b15fe0ce61f}\label{structns3_1_1BandParameters_a64b3ce2c8cc6a027050e7b15fe0ce61f} 
+\index{ns3::BandParameters@{ns3::BandParameters}!nEnd@{nEnd}}
+\index{nEnd@{nEnd}!ns3::BandParameters@{ns3::BandParameters}}
+\doxysubsubsection{\texorpdfstring{nEnd}{nEnd}}
+{\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Band\+Parameters\+::n\+End}
+
+
+
+Logical channel number for stop frequency. 
+
+\Hypertarget{structns3_1_1BandParameters_a68266fc51a708f0b39b129456356327b}\label{structns3_1_1BandParameters_a68266fc51a708f0b39b129456356327b} 
+\index{ns3::BandParameters@{ns3::BandParameters}!nStart@{nStart}}
+\index{nStart@{nStart}!ns3::BandParameters@{ns3::BandParameters}}
+\doxysubsubsection{\texorpdfstring{nStart}{nStart}}
+{\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Band\+Parameters\+::n\+Start}
+
+
+
+Logical channel number for start frequency. 
+
+\Hypertarget{structns3_1_1BandParameters_a9bc79f9bfb2f7aa7a6e51d685be63064}\label{structns3_1_1BandParameters_a9bc79f9bfb2f7aa7a6e51d685be63064} 
+\index{ns3::BandParameters@{ns3::BandParameters}!startFrequency@{startFrequency}}
+\index{startFrequency@{startFrequency}!ns3::BandParameters@{ns3::BandParameters}}
+\doxysubsubsection{\texorpdfstring{startFrequency}{startFrequency}}
+{\footnotesize\ttfamily double ns3\+::\+Band\+Parameters\+::start\+Frequency}
+
+
+
+Center frequency of first channel in the band \mbox{[}Hz\mbox{]}. 
+
+\Hypertarget{structns3_1_1BandParameters_ae26e0c2931b1921b875bcd9de1f203c8}\label{structns3_1_1BandParameters_ae26e0c2931b1921b875bcd9de1f203c8} 
+\index{ns3::BandParameters@{ns3::BandParameters}!stopFrequency@{stopFrequency}}
+\index{stopFrequency@{stopFrequency}!ns3::BandParameters@{ns3::BandParameters}}
+\doxysubsubsection{\texorpdfstring{stopFrequency}{stopFrequency}}
+{\footnotesize\ttfamily double ns3\+::\+Band\+Parameters\+::stop\+Frequency}
+
+
+
+Center frequency of last channel in the band \mbox{[}Hz\mbox{]}. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-channel-manager_8h}{dect2020-\/channel-\/manager.\+h}}\end{DoxyCompactItemize}

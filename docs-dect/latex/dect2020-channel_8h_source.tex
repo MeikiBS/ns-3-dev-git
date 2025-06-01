@@ -1,0 +1,66 @@
+\doxysection{dect2020-\/channel.h}
+\hypertarget{dect2020-channel_8h_source}{}\label{dect2020-channel_8h_source}\index{contrib/dect-\/nr/model/dect2020-\/channel.h@{contrib/dect-\/nr/model/dect2020-\/channel.h}}
+\mbox{\hyperlink{dect2020-channel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ -\/*-\/\ Mode:C++;\ c-\/file-\/style:"{}gnu"{};\ indent-\/tabs-\/mode:nil;\ -\/*-\/\ */}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ DECT2020\_CHANNEL\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ DECT2020\_CHANNEL\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dect2020-phy_8h}{dect2020-\/phy.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}ns3/channel.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}ns3/nstime.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ns3/object.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}ns3/packet.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}ns3/ptr.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}ns3/spectrum-\/channel.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacens3}{ns3}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }Dect2020Phy;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137}{SubslotStatus}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a0599ec864b82b6eef0bd7950ccea9c73}{FREE}}\ =\ 1,}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a843e0308ede50ec9dc7814d5bfe3347e}{POSSIBLE}}\ =\ 2,}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a61eec9b142cbea484d655857fbf36e34}{BUSY}}\ =\ 3}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structns3_1_1Subslot}{Subslot}}}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1Subslot_a7831c8d594010f772050856b40cf4ede}{subslotId}};}
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137}{SubslotStatus}}\ \mbox{\hyperlink{structns3_1_1Subslot_a28407219a2a66ff75dad6e878f184a43}{status}};}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structns3_1_1Subslot_aad5005eb1888dc749401b42eb0c7ecdd}{rssi}};}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structns3_1_1Subslot_a2eaad6465c9f04fae10b857a4a8dcc04}{subslotDurationNs}};\ \textcolor{comment}{//\ Duration\ of\ a\ Subslot\ in\ ns}}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structns3_1_1Slot}{Slot}}}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1Slot_ab5a3fe5901ea164569d2b5d8e8f6004e}{slotId}};}
+\DoxyCodeLine{00039\ \ \ std::vector<Subslot>\ \mbox{\hyperlink{structns3_1_1Slot_a3c90aafca70c19735a72a3cc012cbae9}{subslots}};}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020Channel}{Dect2020Channel}}\ :\ \textcolor{keyword}{public}\ Object}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020Channel_a8a066118e71b5326136fa0193eeacb97}{GetTypeId}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Channel_acfb7aef1e0cf8edba76caca47e5c1431}{Dect2020Channel}}();}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020Channel_abdf3414cdb4e081982517fe06c117fab}{\string~Dect2020Channel}}();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Channel_a21732d9969917977ceb4e515bb66fa26}{AddSlot}}(\mbox{\hyperlink{structns3_1_1Slot}{Slot}}\ slot);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Channel_ac6dc5e1a9ef86f99bee9bb23d6ecac5a}{m\_channelId}};\ \ \ \textcolor{comment}{//\ \#ETSI\ 103\ 636-\/2\ V1.5.1,\ Section\ 5.4.2\ (n)}}
+\DoxyCodeLine{00058\ \ \ \ \ std::vector<Slot>\ \mbox{\hyperlink{classns3_1_1Dect2020Channel_a57fb0749b97f7dd3658ada8f6c284808}{m\_slots}};}
+\DoxyCodeLine{00059\ \ \ \ \ std::vector<Slot>\ \mbox{\hyperlink{classns3_1_1Dect2020Channel_ad923f245fd3d0b44913baead3c8ad0a7}{m\_slotsLastFrame}};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020Channel_a079aa2997ca2a1773f0dc6e287843fc8}{m\_centerFrequency}};}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \}\ \textcolor{comment}{//\ namespace\ ns3}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ DECT2020\_CHANNEL\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

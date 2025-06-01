@@ -523,8 +523,7 @@ Dect2020NetworkBeaconMessage::Dect2020NetworkBeaconMessage()
       m_nextClusterChannel(0),
       m_timeToNext(0),
       m_clustersMaxTxPower(0),
-      m_currentClusterChannel(0),
-      m_additionalNetworkBeaconChannels(0)
+      m_currentClusterChannel{0}
 {
 }
 

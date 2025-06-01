@@ -1,0 +1,9 @@
+<map id="contrib/dect&#45;nr/model/dect2020&#45;channel&#45;manager.h" name="contrib/dect&#45;nr/model/dect2020&#45;channel&#45;manager.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="226,5,442,45"/>
+<area shape="rect" id="Node000002" href="$dect2020-channel-manager_8cc.html" title=" " alt="" coords="5,93,228,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,53,165,96,163,91,273,48"/>
+<area shape="rect" id="Node000003" href="$dect2020-mac_8cc.html" title=" " alt="" coords="253,93,415,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="337,59,337,93,331,93,331,59"/>
+<area shape="rect" id="Node000004" href="$dect2020-phy_8cc.html" title=" " alt="" coords="439,93,602,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="388,49,481,91,479,96,386,53"/>
+</map>

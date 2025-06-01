@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['calculateabsolutestartsubslot_0',['CalculateAbsoluteStartSubslot',['../classns3_1_1Dect2020Mac.html#a0441196225d968f4d2d89ec1f5f8d19d',1,'ns3::Dect2020Mac']]],
+  ['calculatecenterfrequency_1',['CalculateCenterFrequency',['../classns3_1_1Dect2020ChannelManager.html#ac29d151e336c80ea78ba2d2b408d8251',1,'ns3::Dect2020ChannelManager']]],
+  ['calculatetxdurationns_2',['CalculateTxDurationNs',['../classns3_1_1Dect2020Phy.html#a16f7d546aa47c9dec445049729d9df5a',1,'ns3::Dect2020Phy']]],
+  ['calculcatetimeoffsetfromcurrentsubslot_3',['CalculcateTimeOffsetFromCurrentSubslot',['../classns3_1_1Dect2020Mac.html#a5825940d27c043d18da396c84cb51bf4',1,'ns3::Dect2020Mac']]],
+  ['cb_5fm_4',['cb_m',['../structns3_1_1AssociatedPtInfo.html#aae111a692cfde53bee0535c7ff8a7dec',1,'ns3::AssociatedPtInfo']]],
+  ['channelevaluation_5',['ChannelEvaluation',['../structns3_1_1ChannelEvaluation.html',1,'ns3']]],
+  ['channelexists_6',['ChannelExists',['../classns3_1_1Dect2020ChannelManager.html#a0041472ca2aa46db28afb39829677678',1,'ns3::Dect2020ChannelManager']]],
+  ['channelid_7',['channelid',['../structns3_1_1ChannelEvaluation.html#a45d60bd13f7810e64f2cc0ea46c582b6',1,'ns3::ChannelEvaluation::channelId'],['../structns3_1_1SubslotScanContext.html#ae645a2b31b24b11a266acfc9586f3bc6',1,'ns3::SubslotScanContext::channelId']]],
+  ['cluster_5fbeacon_5fmessage_8',['CLUSTER_BEACON_MESSAGE',['../namespacens3.html#a8f6fbd0f93ca9230c75e5d3206f36cb2a4fc8215c8c2100101dcace2367601f2d',1,'ns3']]],
+  ['cluster_5fperiod_5f1000ms_9',['CLUSTER_PERIOD_1000MS',['../namespacens3.html#add18c6731b9c3700a0db065064931adbabbf209582292a94fa1ac0cd0b822c4eb',1,'ns3']]],
+  ['cluster_5fperiod_5f100ms_10',['CLUSTER_PERIOD_100MS',['../namespacens3.html#add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6',1,'ns3']]],
+  ['cluster_5fperiod_5f10ms_11',['CLUSTER_PERIOD_10MS',['../namespacens3.html#add18c6731b9c3700a0db065064931adba2986bd991b3e9fc7bfffed04ae9ee86c',1,'ns3']]],
+  ['cluster_5fperiod_5f1500ms_12',['CLUSTER_PERIOD_1500MS',['../namespacens3.html#add18c6731b9c3700a0db065064931adba212c80ffb0f3fe1f5193c96ae9db7b62',1,'ns3']]],
+  ['cluster_5fperiod_5f16000ms_13',['CLUSTER_PERIOD_16000MS',['../namespacens3.html#add18c6731b9c3700a0db065064931adba2871e31753c2a86d7475eba9a5043b60',1,'ns3']]],
+  ['cluster_5fperiod_5f2000ms_14',['CLUSTER_PERIOD_2000MS',['../namespacens3.html#add18c6731b9c3700a0db065064931adba8a98ed0d12f96bea0b00fa86e089aae4',1,'ns3']]],
+  ['cluster_5fperiod_5f32000ms_15',['CLUSTER_PERIOD_32000MS',['../namespacens3.html#add18c6731b9c3700a0db065064931adba00cbdcfad832206e9b583b286063f1b1',1,'ns3']]],
+  ['cluster_5fperiod_5f4000ms_16',['CLUSTER_PERIOD_4000MS',['../namespacens3.html#add18c6731b9c3700a0db065064931adba8a145ddc939b4832ee3fc7b553f1c812',1,'ns3']]],
+  ['cluster_5fperiod_5f500ms_17',['CLUSTER_PERIOD_500MS',['../namespacens3.html#add18c6731b9c3700a0db065064931adbaf4472a2c2e9cd788f8940c5d58a47147',1,'ns3']]],
+  ['cluster_5fperiod_5f50ms_18',['CLUSTER_PERIOD_50MS',['../namespacens3.html#add18c6731b9c3700a0db065064931adbae06c717a8302a931fa4f51d40501ae32',1,'ns3']]],
+  ['cluster_5fperiod_5f8000ms_19',['CLUSTER_PERIOD_8000MS',['../namespacens3.html#add18c6731b9c3700a0db065064931adbababc8e33af9678ba409bf5ac251b19ad',1,'ns3']]],
+  ['clusterbeaconperiod_20',['ClusterBeaconPeriod',['../namespacens3.html#add18c6731b9c3700a0db065064931adb',1,'ns3']]],
+  ['clusterchannelid_21',['clusterChannelId',['../structns3_1_1FtCandidateInfo.html#a28618169d4020465a899c7926b7f576f',1,'ns3::FtCandidateInfo']]],
+  ['copy_22',['Copy',['../classns3_1_1Dect2020SpectrumSignalParameters.html#a1f84d42adf67a5146da0e77f322d72fa',1,'ns3::Dect2020SpectrumSignalParameters']]],
+  ['createconnectionmappythonskript_23',['createconnectionmappythonskript',['../dect2020-simulation1_8cc.html#a74d09d242da8e0efda71241352bbccbc',1,'CreateConnectionMapPythonSkript(NetDeviceContainer devices):&#160;dect2020-simulation1.cc'],['../dect2020-simulation2_8cc.html#a74d09d242da8e0efda71241352bbccbc',1,'CreateConnectionMapPythonSkript(NetDeviceContainer devices):&#160;dect2020-simulation2.cc'],['../dect2020-simulation3_8cc.html#a74d09d242da8e0efda71241352bbccbc',1,'CreateConnectionMapPythonSkript(NetDeviceContainer devices):&#160;dect2020-simulation3.cc'],['../dect2020-simulation4_8cc.html#a74d09d242da8e0efda71241352bbccbc',1,'CreateConnectionMapPythonSkript(NetDeviceContainer devices):&#160;dect2020-simulation4.cc']]],
+  ['createphysicalheaderfield_24',['CreatePhysicalHeaderField',['../classns3_1_1Dect2020Mac.html#ae66d28447fcbffb68ec3a01c96de6db5',1,'ns3::Dect2020Mac']]]
+];

@@ -1,0 +1,66 @@
+\doxysection{contrib/dect-\/nr/model/dect2020-\/mac-\/messages.h File Reference}
+\hypertarget{dect2020-mac-messages_8h}{}\label{dect2020-mac-messages_8h}\index{contrib/dect-\/nr/model/dect2020-\/mac-\/messages.h@{contrib/dect-\/nr/model/dect2020-\/mac-\/messages.h}}
+{\ttfamily \#include "{}ns3/header.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/log.\+h"{}}\newline
+{\ttfamily \#include "{}ns3/packet.\+h"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+Include dependency graph for dect2020-\/mac-\/messages.h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dect2020-mac-messages_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dect2020-mac-messages_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{ns3\+::\+Dect2020\+Cluster\+Beacon\+Message}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{ns3\+::\+Dect2020\+Network\+Beacon\+Message}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage}{ns3\+::\+Dect2020\+Association\+Request\+Message}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage}{ns3\+::\+Dect2020\+Association\+Response\+Message}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacens3}{ns3}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{ns3\+::\+Network\+Beacon\+Period}} \{ \newline
+\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5}{ns3\+::\+NETWORK\+\_\+\+PERIOD\+\_\+50\+MS}} = 0
+, \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caae66e92c4dd7eec5df86d4ffa3b59eee2}{ns3\+::\+NETWORK\+\_\+\+PERIOD\+\_\+100\+MS}} = 1
+, \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa883151b485be6f6d76a230db226a53de}{ns3\+::\+NETWORK\+\_\+\+PERIOD\+\_\+500\+MS}} = 2
+, \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaa52cf007493d1837739f6e2551a359e5}{ns3\+::\+NETWORK\+\_\+\+PERIOD\+\_\+1000\+MS}} = 3
+, \newline
+\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa814adeaa296547dc9373204593eb2fed}{ns3\+::\+NETWORK\+\_\+\+PERIOD\+\_\+1500\+MS}} = 4
+, \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaaf3b0044a226162ab1048a7b6a31476f}{ns3\+::\+NETWORK\+\_\+\+PERIOD\+\_\+2000\+MS}} = 5
+, \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa098efd1e228d7c17fa00416fc882e586}{ns3\+::\+NETWORK\+\_\+\+PERIOD\+\_\+4000\+MS}} = 6
+ \}
+\item 
+enum \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ns3\+::\+Cluster\+Beacon\+Period}} \{ \newline
+\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba2986bd991b3e9fc7bfffed04ae9ee86c}{ns3\+::\+CLUSTER\+\_\+\+PERIOD\+\_\+10\+MS}} = 0
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbae06c717a8302a931fa4f51d40501ae32}{ns3\+::\+CLUSTER\+\_\+\+PERIOD\+\_\+50\+MS}} = 1
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6}{ns3\+::\+CLUSTER\+\_\+\+PERIOD\+\_\+100\+MS}} = 2
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbaf4472a2c2e9cd788f8940c5d58a47147}{ns3\+::\+CLUSTER\+\_\+\+PERIOD\+\_\+500\+MS}} = 3
+, \newline
+\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbabbf209582292a94fa1ac0cd0b822c4eb}{ns3\+::\+CLUSTER\+\_\+\+PERIOD\+\_\+1000\+MS}} = 4
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba212c80ffb0f3fe1f5193c96ae9db7b62}{ns3\+::\+CLUSTER\+\_\+\+PERIOD\+\_\+1500\+MS}} = 5
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba8a98ed0d12f96bea0b00fa86e089aae4}{ns3\+::\+CLUSTER\+\_\+\+PERIOD\+\_\+2000\+MS}} = 6
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba8a145ddc939b4832ee3fc7b553f1c812}{ns3\+::\+CLUSTER\+\_\+\+PERIOD\+\_\+4000\+MS}} = 7
+, \newline
+\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbababc8e33af9678ba409bf5ac251b19ad}{ns3\+::\+CLUSTER\+\_\+\+PERIOD\+\_\+8000\+MS}} = 8
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba2871e31753c2a86d7475eba9a5043b60}{ns3\+::\+CLUSTER\+\_\+\+PERIOD\+\_\+16000\+MS}} = 9
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba00cbdcfad832206e9b583b286063f1b1}{ns3\+::\+CLUSTER\+\_\+\+PERIOD\+\_\+32000\+MS}} = 10
+ \}
+\end{DoxyCompactItemize}

@@ -1,0 +1,88 @@
+\doxysection{dect2020-\/mac-\/common-\/header.h}
+\hypertarget{dect2020-mac-common-header_8h_source}{}\label{dect2020-mac-common-header_8h_source}\index{contrib/dect-\/nr/model/dect2020-\/mac-\/common-\/header.h@{contrib/dect-\/nr/model/dect2020-\/mac-\/common-\/header.h}}
+\mbox{\hyperlink{dect2020-mac-common-header_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DECT2020\_COMMON\_HEADER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DECT2020\_COMMON\_HEADER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}ns3/address.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}ns3/header.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}ns3/nstime.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacens3}{ns3}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Beacon\ Header}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020BeaconHeader}}\ :\ \textcolor{keyword}{public}\ Header}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_a1656e2a146b5cacde81a42499597e65a}{Dect2020BeaconHeader}}();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_a28b61aa35d95b2c863646f97146ef094}{\string~Dect2020BeaconHeader}}();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Setter\ und\ Getter}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_a0507ad84de97bc3f40facd8366d96331}{SetNetworkId}}(uint32\_t\ networkId);}
+\DoxyCodeLine{00039\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_af00491115b204dfb47dcc9f670fabd07}{GetNetworkId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_ac37178f448b4a63a3908be80fef7be0c}{SetTransmitterAddress}}(uint32\_t\ transmitterId);}
+\DoxyCodeLine{00042\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_aeae205a8acd1378b8d613a928c37f5e8}{GetTransmitterAddress}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ von\ Header}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_ab054bc57956fa7c46f1722e25167a89c}{GetTypeId}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_a9bdfed53c1e3860dc0605d0edacc8bd4}{GetInstanceTypeId}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_a45eb7173a7cc4e67d6ba81060c46b811}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_aa0c017b142b70bdbd808435513476784}{GetSerializedSize}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_a6c78704e0dd09fe8c1dda862815317df}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader_afd992078416f45ef6379ad0fb3e35d4e}{Deserialize}}(Buffer::Iterator\ start);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00053\ \ \ \ \ uint32\_t\ m\_networkId;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 24\ Bits\ relevant}}
+\DoxyCodeLine{00054\ \ \ \ \ uint32\_t\ m\_transmitterAddress;\ \textcolor{comment}{//\ 32\ Bits}}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Unicast\ Header}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader}{Dect2020UnicastHeader}}\ :\ \textcolor{keyword}{public}\ Header}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_a1bfd6b0000299d2fdaeae01d5e01aaf6}{Dect2020UnicastHeader}}();}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_a76a147756f5ae8465006100259968b89}{\string~Dect2020UnicastHeader}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Setter\ and\ Getter}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_a0f34742ff902e4d614869125a1c9f3b0}{SetReset}}(\textcolor{keywordtype}{bool}\ reset);}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_aa6c11eb02ec6e6dc6d467c8d92628b65}{GetReset}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_aa164a152bd3e562ad050deac75acf659}{SetSequenceNumber}}(uint16\_t\ sequenceNumber);}
+\DoxyCodeLine{00072\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_a19f46a4ef34feb789996e7043458e87c}{GetSequenceNumber}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_a09e3cd32b5eae9d9346a899b6a426c15}{SetReceiverAddress}}(uint32\_t\ receiverAddress);}
+\DoxyCodeLine{00075\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_af57ae681520b30d4285aec988cfe3e2d}{GetReceiverAddress}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_a99ba27d381cb9181c2598e557259e427}{SetTransmitterAddress}}(uint32\_t\ transmitterAddress);}
+\DoxyCodeLine{00078\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_a81f63c8595116685083bb641e4fd4bb2}{GetTransmitterAddress}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ von\ Header}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_a76a09f2009f6b96dfbae4dc874fe1984}{GetTypeId}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_afc25ecd4eeee3c45a807bc846749d53d}{GetInstanceTypeId}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_a04c24a78deea28e1b841f45459fd3f2d}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_abd151b7fb2ab5e81155daa6d3e4772c3}{GetSerializedSize}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_aef95660e77d3088268c158199b5e0104}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader_a0952b5fbbae7c694f3406cbfb5fd1afc}{Deserialize}}(Buffer::Iterator\ start);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_reset;}
+\DoxyCodeLine{00090\ \ \ \ \ uint16\_t\ m\_sequenceNumber;}
+\DoxyCodeLine{00091\ \ \ \ \ uint32\_t\ m\_receiverAddress;}
+\DoxyCodeLine{00092\ \ \ \ \ uint32\_t\ m\_transmitterAddress;}
+\DoxyCodeLine{00093\ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \}\ \textcolor{comment}{//\ namespace\ ns3}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DECT2020\_BEACON\_HEADER\_H}}
+
+\end{DoxyCode}

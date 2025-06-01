@@ -1,6 +1,14 @@
 #ifndef DECT2020_MUX_HEADER_H
 #define DECT2020_MUX_HEADER_H
 
+/**
+ * \file dect2020-mac-multiplexing-header.h
+ * \brief Defines the MAC Multiplexing Header.
+ *
+ * This file implements the MAC Multiplexing Header as specified in
+ * ETSI TS 103 636-4  Section 6.3.4
+ */
+
 #include "ns3/header.h"
 
 namespace ns3
@@ -15,6 +23,12 @@ enum IETypeFieldEncoding
     ASSOCIATION_RESPONSE_MESSAGE = 11,
     RANDOM_ACCESS_RESOURCE_IE = 19
 };
+
+/**
+ * \class Dect2020MacMuxHeaderShortSduNoPayload
+ * \brief MAC Multiplexng Header ETSI TS 103 636-4 6.3.4 a)
+ *
+ */
 
 class Dect2020MacMuxHeaderShortSduNoPayload : public Header
 {
@@ -32,7 +46,7 @@ class Dect2020MacMuxHeaderShortSduNoPayload : public Header
     IETypeFieldEncoding GetIeTypeFieldEncoding() const;
     void SetIeTypeFieldEncoding(IETypeFieldEncoding type);
 
-        // Überladene Methoden von Header
+    // Überladene Methoden von Header
     static TypeId GetTypeId(void);
     virtual TypeId GetInstanceTypeId(void) const;
     virtual void Print(std::ostream& os) const;

@@ -1,0 +1,314 @@
+\doxysection{ns3\+::Dect2020\+Association\+Response\+Message Class Reference}
+\hypertarget{classns3_1_1Dect2020AssociationResponseMessage}{}\label{classns3_1_1Dect2020AssociationResponseMessage}\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+
+
+{\ttfamily \#include $<$dect2020-\/mac-\/messages.\+h$>$}
+
+
+
+Inheritance diagram for ns3\+::Dect2020\+Association\+Response\+Message\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classns3_1_1Dect2020AssociationResponseMessage__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ns3\+::Dect2020\+Association\+Response\+Message\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classns3_1_1Dect2020AssociationResponseMessage__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a9714bc2f94eb9dd61f18a81b5b06df98}{Dect2020\+Association\+Response\+Message}} ()
+\item 
+virtual \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a4d5710d6df2c1d406b73a1c08bf94a6b}{\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Association\+Response\+Message}} ()
+\item 
+virtual Type\+Id \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_adc6ff239c2200772f09ee4b5d154762d}{Get\+Instance\+Type\+Id}} () const override
+\item 
+virtual uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a66548a0bdc8c66d9d33c4af1721469a8}{Get\+Serialized\+Size}} () const
+\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ab4d23af1338bf598862fa7d9679b2563}{Serialize}} (Buffer\+::\+Iterator start) const
+\item 
+virtual uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a68a385c81bcee3e9ec27814e0ba32fad}{Deserialize}} (Buffer\+::\+Iterator start)
+\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a828fe12b5270b6fab7a2a87c9c39ffa1}{Print}} (std\+::ostream \&os) const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ae612de794ba838c66bb0a84204a3ecc6}{Set\+Association\+Accepted}} (bool accepted)
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_af087e7446717f688c035f9bdc601aca2}{Get\+Association\+Accepted}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a03c1c00d2b6c556cab8b7f5702d63c83}{Set\+Harq\+Mod}} (bool harq\+Mod)
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a5d84c7fe8128282ba5252d57030c5d22}{Get\+Harq\+Mod}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_af7ce4a9134daf864a89c12e220431552}{Set\+Number\+Of\+Flows}} (uint8\+\_\+t number\+Of\+Flows)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ad3b0094838c57294f3b4be9462091d9e}{Get\+Number\+Of\+Flows}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ad63fcd8b52d5a47877cefe4eff41644f}{Set\+Group\+Id\+And\+Resource\+Tag\+Included}} (bool included)
+\item 
+bool \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a84d6287525e6eff770d04317c987fe5a}{Get\+Group\+Id\+And\+Resource\+Tag\+Included}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a462df2b81f518b014f572d102e8442b7}{Set\+Reject\+Cause}} (uint8\+\_\+t cause)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a0487efe8f0650a2e2282fd13a5fbd525}{Get\+Reject\+Cause}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_aaafb013612e3e79d2872ebd4f150ecbb}{Set\+Reject\+Timer}} (uint8\+\_\+t timer)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a773fd2f5373a784b2f2a91a9b3ae13d6}{Get\+Reject\+Timer}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a868b0ae4325fa1cf8b8b6055973e6c05}{Set\+Harq\+Processes\+Rx}} (uint8\+\_\+t value)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a721ba491d28ab184c48b78671dea025f}{Get\+Harq\+Processes\+Rx}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a16ddec97623ba00dfd7d13166a3d5844}{Set\+Max\+Harq\+Re\+Rx\+Delay}} (uint8\+\_\+t delay)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a6123205fbf1913ebd14967e0048148e1}{Get\+Max\+Harq\+Re\+Rx\+Delay}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ae9199e60845f16b49891e03a2d8d8c0e}{Set\+Harq\+Processes\+Tx}} (uint8\+\_\+t value)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_aa9bd92d588afc39f0db5c6ac15ff86fe}{Get\+Harq\+Processes\+Tx}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ab8b14443803ea4bf1a14be2ca551eb2c}{Set\+Max\+Harq\+Re\+Tx\+Delay}} (uint8\+\_\+t delay)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a3119c241ce9a1a7dd98bbac05210cf5f}{Get\+Max\+Harq\+Re\+Tx\+Delay}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a04425fb7a7deadfdf4b589681a26e5dd}{Set\+Flow\+Id}} (uint8\+\_\+t flow\+Id)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a0087c54c99abf997af0231163820a3b4}{Get\+Flow\+Id}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ad8ada45aca0e19d73ba78877d0e77c26}{Set\+Group\+Id}} (uint8\+\_\+t group\+Id)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a73f2d0e69eac9e6e861ba3cfc8f99348}{Get\+Group\+Id}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a0d79925e3c2282d380c29f1d82cbad0d}{Set\+Resource\+Tag}} (uint8\+\_\+t resource\+Tag)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_af82b47a9ab66c3dba8df39e74bc0f8fa}{Get\+Resource\+Tag}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Type\+Id \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a6bb0b7875282ca35f0f5421723792263}{Get\+Type\+Id}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a9714bc2f94eb9dd61f18a81b5b06df98}\label{classns3_1_1Dect2020AssociationResponseMessage_a9714bc2f94eb9dd61f18a81b5b06df98} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!Dect2020AssociationResponseMessage@{Dect2020AssociationResponseMessage}}
+\index{Dect2020AssociationResponseMessage@{Dect2020AssociationResponseMessage}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{Dect2020AssociationResponseMessage()}{Dect2020AssociationResponseMessage()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Dect2020\+Association\+Response\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a4d5710d6df2c1d406b73a1c08bf94a6b}\label{classns3_1_1Dect2020AssociationResponseMessage_a4d5710d6df2c1d406b73a1c08bf94a6b} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!````~Dect2020AssociationResponseMessage@{\texorpdfstring{$\sim$}{\string~}Dect2020AssociationResponseMessage}}
+\index{````~Dect2020AssociationResponseMessage@{\texorpdfstring{$\sim$}{\string~}Dect2020AssociationResponseMessage}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Dect2020AssociationResponseMessage()}{\string~Dect2020AssociationResponseMessage()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Association\+Response\+Message\+::\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Association\+Response\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a68a385c81bcee3e9ec27814e0ba32fad}\label{classns3_1_1Dect2020AssociationResponseMessage_a68a385c81bcee3e9ec27814e0ba32fad} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!Deserialize@{Deserialize}}
+\index{Deserialize@{Deserialize}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{Deserialize()}{Deserialize()}}
+{\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Deserialize (\begin{DoxyParamCaption}\item[{Buffer\+::\+Iterator}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_af087e7446717f688c035f9bdc601aca2}\label{classns3_1_1Dect2020AssociationResponseMessage_af087e7446717f688c035f9bdc601aca2} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetAssociationAccepted@{GetAssociationAccepted}}
+\index{GetAssociationAccepted@{GetAssociationAccepted}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetAssociationAccepted()}{GetAssociationAccepted()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Association\+Accepted (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a0087c54c99abf997af0231163820a3b4}\label{classns3_1_1Dect2020AssociationResponseMessage_a0087c54c99abf997af0231163820a3b4} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetFlowId@{GetFlowId}}
+\index{GetFlowId@{GetFlowId}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetFlowId()}{GetFlowId()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Flow\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a73f2d0e69eac9e6e861ba3cfc8f99348}\label{classns3_1_1Dect2020AssociationResponseMessage_a73f2d0e69eac9e6e861ba3cfc8f99348} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetGroupId@{GetGroupId}}
+\index{GetGroupId@{GetGroupId}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetGroupId()}{GetGroupId()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Group\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a84d6287525e6eff770d04317c987fe5a}\label{classns3_1_1Dect2020AssociationResponseMessage_a84d6287525e6eff770d04317c987fe5a} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetGroupIdAndResourceTagIncluded@{GetGroupIdAndResourceTagIncluded}}
+\index{GetGroupIdAndResourceTagIncluded@{GetGroupIdAndResourceTagIncluded}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetGroupIdAndResourceTagIncluded()}{GetGroupIdAndResourceTagIncluded()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Group\+Id\+And\+Resource\+Tag\+Included (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a5d84c7fe8128282ba5252d57030c5d22}\label{classns3_1_1Dect2020AssociationResponseMessage_a5d84c7fe8128282ba5252d57030c5d22} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetHarqMod@{GetHarqMod}}
+\index{GetHarqMod@{GetHarqMod}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetHarqMod()}{GetHarqMod()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Harq\+Mod (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a721ba491d28ab184c48b78671dea025f}\label{classns3_1_1Dect2020AssociationResponseMessage_a721ba491d28ab184c48b78671dea025f} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetHarqProcessesRx@{GetHarqProcessesRx}}
+\index{GetHarqProcessesRx@{GetHarqProcessesRx}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetHarqProcessesRx()}{GetHarqProcessesRx()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Harq\+Processes\+Rx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_aa9bd92d588afc39f0db5c6ac15ff86fe}\label{classns3_1_1Dect2020AssociationResponseMessage_aa9bd92d588afc39f0db5c6ac15ff86fe} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetHarqProcessesTx@{GetHarqProcessesTx}}
+\index{GetHarqProcessesTx@{GetHarqProcessesTx}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetHarqProcessesTx()}{GetHarqProcessesTx()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Harq\+Processes\+Tx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_adc6ff239c2200772f09ee4b5d154762d}\label{classns3_1_1Dect2020AssociationResponseMessage_adc6ff239c2200772f09ee4b5d154762d} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetInstanceTypeId@{GetInstanceTypeId}}
+\index{GetInstanceTypeId@{GetInstanceTypeId}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetInstanceTypeId()}{GetInstanceTypeId()}}
+{\footnotesize\ttfamily Type\+Id ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Instance\+Type\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a6123205fbf1913ebd14967e0048148e1}\label{classns3_1_1Dect2020AssociationResponseMessage_a6123205fbf1913ebd14967e0048148e1} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetMaxHarqReRxDelay@{GetMaxHarqReRxDelay}}
+\index{GetMaxHarqReRxDelay@{GetMaxHarqReRxDelay}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetMaxHarqReRxDelay()}{GetMaxHarqReRxDelay()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Max\+Harq\+Re\+Rx\+Delay (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a3119c241ce9a1a7dd98bbac05210cf5f}\label{classns3_1_1Dect2020AssociationResponseMessage_a3119c241ce9a1a7dd98bbac05210cf5f} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetMaxHarqReTxDelay@{GetMaxHarqReTxDelay}}
+\index{GetMaxHarqReTxDelay@{GetMaxHarqReTxDelay}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetMaxHarqReTxDelay()}{GetMaxHarqReTxDelay()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Max\+Harq\+Re\+Tx\+Delay (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_ad3b0094838c57294f3b4be9462091d9e}\label{classns3_1_1Dect2020AssociationResponseMessage_ad3b0094838c57294f3b4be9462091d9e} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetNumberOfFlows@{GetNumberOfFlows}}
+\index{GetNumberOfFlows@{GetNumberOfFlows}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetNumberOfFlows()}{GetNumberOfFlows()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Number\+Of\+Flows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a0487efe8f0650a2e2282fd13a5fbd525}\label{classns3_1_1Dect2020AssociationResponseMessage_a0487efe8f0650a2e2282fd13a5fbd525} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetRejectCause@{GetRejectCause}}
+\index{GetRejectCause@{GetRejectCause}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetRejectCause()}{GetRejectCause()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Reject\+Cause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a773fd2f5373a784b2f2a91a9b3ae13d6}\label{classns3_1_1Dect2020AssociationResponseMessage_a773fd2f5373a784b2f2a91a9b3ae13d6} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetRejectTimer@{GetRejectTimer}}
+\index{GetRejectTimer@{GetRejectTimer}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetRejectTimer()}{GetRejectTimer()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Reject\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_af82b47a9ab66c3dba8df39e74bc0f8fa}\label{classns3_1_1Dect2020AssociationResponseMessage_af82b47a9ab66c3dba8df39e74bc0f8fa} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetResourceTag@{GetResourceTag}}
+\index{GetResourceTag@{GetResourceTag}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetResourceTag()}{GetResourceTag()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Resource\+Tag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a66548a0bdc8c66d9d33c4af1721469a8}\label{classns3_1_1Dect2020AssociationResponseMessage_a66548a0bdc8c66d9d33c4af1721469a8} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetSerializedSize@{GetSerializedSize}}
+\index{GetSerializedSize@{GetSerializedSize}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetSerializedSize()}{GetSerializedSize()}}
+{\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Serialized\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a6bb0b7875282ca35f0f5421723792263}\label{classns3_1_1Dect2020AssociationResponseMessage_a6bb0b7875282ca35f0f5421723792263} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!GetTypeId@{GetTypeId}}
+\index{GetTypeId@{GetTypeId}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{GetTypeId()}{GetTypeId()}}
+{\footnotesize\ttfamily Type\+Id ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Get\+Type\+Id (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a828fe12b5270b6fab7a2a87c9c39ffa1}\label{classns3_1_1Dect2020AssociationResponseMessage_a828fe12b5270b6fab7a2a87c9c39ffa1} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!Print@{Print}}
+\index{Print@{Print}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_ab4d23af1338bf598862fa7d9679b2563}\label{classns3_1_1Dect2020AssociationResponseMessage_ab4d23af1338bf598862fa7d9679b2563} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{Serialize()}{Serialize()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Serialize (\begin{DoxyParamCaption}\item[{Buffer\+::\+Iterator}]{start }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_ae612de794ba838c66bb0a84204a3ecc6}\label{classns3_1_1Dect2020AssociationResponseMessage_ae612de794ba838c66bb0a84204a3ecc6} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetAssociationAccepted@{SetAssociationAccepted}}
+\index{SetAssociationAccepted@{SetAssociationAccepted}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetAssociationAccepted()}{SetAssociationAccepted()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Association\+Accepted (\begin{DoxyParamCaption}\item[{bool}]{accepted }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a04425fb7a7deadfdf4b589681a26e5dd}\label{classns3_1_1Dect2020AssociationResponseMessage_a04425fb7a7deadfdf4b589681a26e5dd} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetFlowId@{SetFlowId}}
+\index{SetFlowId@{SetFlowId}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetFlowId()}{SetFlowId()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Flow\+Id (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{flow\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_ad8ada45aca0e19d73ba78877d0e77c26}\label{classns3_1_1Dect2020AssociationResponseMessage_ad8ada45aca0e19d73ba78877d0e77c26} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetGroupId@{SetGroupId}}
+\index{SetGroupId@{SetGroupId}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetGroupId()}{SetGroupId()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Group\+Id (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{group\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_ad63fcd8b52d5a47877cefe4eff41644f}\label{classns3_1_1Dect2020AssociationResponseMessage_ad63fcd8b52d5a47877cefe4eff41644f} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetGroupIdAndResourceTagIncluded@{SetGroupIdAndResourceTagIncluded}}
+\index{SetGroupIdAndResourceTagIncluded@{SetGroupIdAndResourceTagIncluded}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetGroupIdAndResourceTagIncluded()}{SetGroupIdAndResourceTagIncluded()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Group\+Id\+And\+Resource\+Tag\+Included (\begin{DoxyParamCaption}\item[{bool}]{included }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a03c1c00d2b6c556cab8b7f5702d63c83}\label{classns3_1_1Dect2020AssociationResponseMessage_a03c1c00d2b6c556cab8b7f5702d63c83} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetHarqMod@{SetHarqMod}}
+\index{SetHarqMod@{SetHarqMod}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetHarqMod()}{SetHarqMod()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Harq\+Mod (\begin{DoxyParamCaption}\item[{bool}]{harq\+Mod }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a868b0ae4325fa1cf8b8b6055973e6c05}\label{classns3_1_1Dect2020AssociationResponseMessage_a868b0ae4325fa1cf8b8b6055973e6c05} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetHarqProcessesRx@{SetHarqProcessesRx}}
+\index{SetHarqProcessesRx@{SetHarqProcessesRx}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetHarqProcessesRx()}{SetHarqProcessesRx()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Harq\+Processes\+Rx (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_ae9199e60845f16b49891e03a2d8d8c0e}\label{classns3_1_1Dect2020AssociationResponseMessage_ae9199e60845f16b49891e03a2d8d8c0e} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetHarqProcessesTx@{SetHarqProcessesTx}}
+\index{SetHarqProcessesTx@{SetHarqProcessesTx}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetHarqProcessesTx()}{SetHarqProcessesTx()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Harq\+Processes\+Tx (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a16ddec97623ba00dfd7d13166a3d5844}\label{classns3_1_1Dect2020AssociationResponseMessage_a16ddec97623ba00dfd7d13166a3d5844} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetMaxHarqReRxDelay@{SetMaxHarqReRxDelay}}
+\index{SetMaxHarqReRxDelay@{SetMaxHarqReRxDelay}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetMaxHarqReRxDelay()}{SetMaxHarqReRxDelay()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Max\+Harq\+Re\+Rx\+Delay (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{delay }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_ab8b14443803ea4bf1a14be2ca551eb2c}\label{classns3_1_1Dect2020AssociationResponseMessage_ab8b14443803ea4bf1a14be2ca551eb2c} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetMaxHarqReTxDelay@{SetMaxHarqReTxDelay}}
+\index{SetMaxHarqReTxDelay@{SetMaxHarqReTxDelay}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetMaxHarqReTxDelay()}{SetMaxHarqReTxDelay()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Max\+Harq\+Re\+Tx\+Delay (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{delay }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_af7ce4a9134daf864a89c12e220431552}\label{classns3_1_1Dect2020AssociationResponseMessage_af7ce4a9134daf864a89c12e220431552} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetNumberOfFlows@{SetNumberOfFlows}}
+\index{SetNumberOfFlows@{SetNumberOfFlows}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetNumberOfFlows()}{SetNumberOfFlows()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Number\+Of\+Flows (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{number\+Of\+Flows }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a462df2b81f518b014f572d102e8442b7}\label{classns3_1_1Dect2020AssociationResponseMessage_a462df2b81f518b014f572d102e8442b7} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetRejectCause@{SetRejectCause}}
+\index{SetRejectCause@{SetRejectCause}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetRejectCause()}{SetRejectCause()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Reject\+Cause (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{cause }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_aaafb013612e3e79d2872ebd4f150ecbb}\label{classns3_1_1Dect2020AssociationResponseMessage_aaafb013612e3e79d2872ebd4f150ecbb} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetRejectTimer@{SetRejectTimer}}
+\index{SetRejectTimer@{SetRejectTimer}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetRejectTimer()}{SetRejectTimer()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Reject\+Timer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{timer }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020AssociationResponseMessage_a0d79925e3c2282d380c29f1d82cbad0d}\label{classns3_1_1Dect2020AssociationResponseMessage_a0d79925e3c2282d380c29f1d82cbad0d} 
+\index{ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}!SetResourceTag@{SetResourceTag}}
+\index{SetResourceTag@{SetResourceTag}!ns3::Dect2020AssociationResponseMessage@{ns3::Dect2020AssociationResponseMessage}}
+\doxysubsubsection{\texorpdfstring{SetResourceTag()}{SetResourceTag()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Association\+Response\+Message\+::\+Set\+Resource\+Tag (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{resource\+Tag }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-mac-messages_8h}{dect2020-\/mac-\/messages.\+h}}\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-mac-messages_8cc}{dect2020-\/mac-\/messages.\+cc}}\end{DoxyCompactItemize}

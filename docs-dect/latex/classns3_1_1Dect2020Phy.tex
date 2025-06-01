@@ -1,0 +1,338 @@
+\doxysection{ns3\+::Dect2020\+Phy Class Reference}
+\hypertarget{classns3_1_1Dect2020Phy}{}\label{classns3_1_1Dect2020Phy}\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+
+
+DECT2020 PHY Klasse.  
+
+
+
+
+{\ttfamily \#include $<$dect2020-\/phy.\+h$>$}
+
+
+
+Inheritance diagram for ns3\+::Dect2020\+Phy\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classns3_1_1Dect2020Phy__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ns3\+::Dect2020\+Phy\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=184pt]{classns3_1_1Dect2020Phy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classns3_1_1Dect2020Phy_a2a80d65af0b9a2faf2b06f25f7940cbe}{Dect2020\+Phy}} ()
+\item 
+virtual \mbox{\hyperlink{classns3_1_1Dect2020Phy_a6ddcf2c91996c1dae954520d15bd2185}{\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Phy}} ()
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_ad6532b8cdeecabf0305fe334d14a3bcd}{Set\+Mac}} (Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020\+Mac}} $>$ mac)
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a22880d34557b18732721e3c751c88383}{Set\+Device}} (Ptr$<$ Net\+Device $>$ device) override
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a29df95614e9b784f468a99485be4585e}{Send}} (Ptr$<$ Packet $>$ packet, \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}} physical\+Header)
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a22e13661d3abf55a69ce8e0a3911898a}{Receive}} (Ptr$<$ Packet $>$ packet)
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_aa28c543e61bf5fba7343245e4b05f919}{Start}} ()
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a85b05d253891ef63a9c7019b20ab6536}{Set\+Channel}} (Ptr$<$ Spectrum\+Channel $>$ channel)
+\item 
+Ptr$<$ Spectrum\+Channel $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a76a3e82cc386ee3d09d5fb7fbd956aff}{Get\+Channel}} () const
+\item 
+Ptr$<$ Net\+Device $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_adb6198c9bbc5223f52f6b1aa54dfb9e4}{Get\+Device}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_aeb752cef6dbff6bafe6acecc0bf78228}{Start\+Frame\+Timer}} ()
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a58126991798cb41adf89d82a1170d83d}{Process\+Slot}} (uint32\+\_\+t slot, double slot\+Start\+Time)
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a65e93626418605661a7c34c77bc4519e}{Process\+Subslot}} (uint32\+\_\+t slot\+Id, uint32\+\_\+t subslot\+Id)
+\item 
+\mbox{\hyperlink{structns3_1_1Slot}{Slot}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classns3_1_1Dect2020Phy_ae1624ecb6efc7dd3ee2a2cc8702d1e24}{Get\+Current\+Slot}} (uint32\+\_\+t channel\+Id)
+\item 
+\mbox{\hyperlink{structns3_1_1Subslot}{Subslot}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classns3_1_1Dect2020Phy_a8a430092b767cb9bd0ba054a55df2600}{Get\+Current\+Subslot}} (uint32\+\_\+t channel\+Id)
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_af01685784c0a9286c994d479553414ce}{Set\+Receive\+Callback}} (Callback$<$ void, Ptr$<$ Packet $>$, double $>$ cb)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Phy_a0eb87a27bded3d641dd7418b0000c889}{Get\+Current\+Absolute\+Subslot}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_add82b42094d6eb8d4f08092303d45932}{Set\+Mobility}} (Ptr$<$ Mobility\+Model $>$ m)
+\item 
+Ptr$<$ Mobility\+Model $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a5c4aa0976778baad8e4adf8702fbaf94}{Get\+Mobility}} () const override
+\item 
+Ptr$<$ const Spectrum\+Model $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a11429ee94110918b8a8610376ef011e7}{Get\+Rx\+Spectrum\+Model}} () const override
+\item 
+Ptr$<$ Object $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_acee95993c5d992680d15568dc4e70848}{Get\+Antenna}} () const override
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a4534477687a8a45b5e4a64b0c688eddb}{Set\+Antenna}} (Ptr$<$ Object $>$ antenna)
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a21ce125c89846fff563d72afc15f9582}{Start\+Rx}} (Ptr$<$ Spectrum\+Signal\+Parameters $>$ params)
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a85ebc584263e4d68d74253f39f5aad52}{End\+Rx}} (Ptr$<$ Spectrum\+Signal\+Parameters $>$ params)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Phy_aa56bdf0b3cfeb443cef81c0fcbceff45}{Get\+Mcs\+Transport\+Block\+Size}} (uint8\+\_\+t mu, uint8\+\_\+t beta, uint8\+\_\+t mcs\+Index)
+\item 
+double \mbox{\hyperlink{classns3_1_1Dect2020Phy_a16f7d546aa47c9dec445049729d9df5a}{Calculate\+Tx\+Duration\+Ns}} (\mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}} physical\+Header\+Field)
+\item 
+Time \mbox{\hyperlink{classns3_1_1Dect2020Phy_a789b8e301e483d132f9fd3fd6a7d9dd0}{Get\+Absolute\+Subslot\+Time}} (uint8\+\_\+t target\+Sfn, uint8\+\_\+t slot, uint8\+\_\+t subslot) const
+\item 
+Time \mbox{\hyperlink{classns3_1_1Dect2020Phy_a26bd51be0fb8ddca4a231c22addee177}{Get\+Time\+Until\+Subslot}} (uint8\+\_\+t target\+Sfn, uint8\+\_\+t target\+Slot, uint8\+\_\+t target\+Subslot) const
+\item 
+int \mbox{\hyperlink{classns3_1_1Dect2020Phy_af7ebc15953167ad8851d5a45d5503b3d}{Get\+Absolute\+Subslot\+Index}} (uint8\+\_\+t slot, uint8\+\_\+t subslot) const
+\item 
+Time \mbox{\hyperlink{classns3_1_1Dect2020Phy_af84a0ebfea03afa6202a0e151724b64f}{Get\+Time\+To\+Next\+Absolute\+Subslot}} (uint8\+\_\+t target\+Sfn, uint8\+\_\+t slot, uint8\+\_\+t subslot) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Type\+Id \mbox{\hyperlink{classns3_1_1Dect2020Phy_a1f2799b6dff7bab12aae97d9eab7e579}{Get\+Type\+Id}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Channel}{Dect2020\+Channel}} $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_aa27d0fb87fbe9d9765141281806a3883}{m\+\_\+dect2020\+Channel}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Phy_a6056e9d493ff3244b142f76923833d21}{m\+\_\+current\+Sfn}} = 0
+\item 
+uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Phy_a6c48e90f947fee7b016cb1228709234c}{m\+\_\+current\+Absolute\+Subslot}} = 0
+\item 
+Time \mbox{\hyperlink{classns3_1_1Dect2020Phy_a4a1d289c4c16c3cca3a48412d7f547d0}{m\+\_\+frame\+Start\+Time}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+DECT2020 PHY Klasse. 
+
+Diese Klasse implementiert die grundlegende PHY-\/\+Schichtfunktionalität für das DECT2020 Modul. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classns3_1_1Dect2020Phy_a2a80d65af0b9a2faf2b06f25f7940cbe}\label{classns3_1_1Dect2020Phy_a2a80d65af0b9a2faf2b06f25f7940cbe} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!Dect2020Phy@{Dect2020Phy}}
+\index{Dect2020Phy@{Dect2020Phy}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{Dect2020Phy()}{Dect2020Phy()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Phy\+::\+Dect2020\+Phy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a6ddcf2c91996c1dae954520d15bd2185}\label{classns3_1_1Dect2020Phy_a6ddcf2c91996c1dae954520d15bd2185} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!````~Dect2020Phy@{\texorpdfstring{$\sim$}{\string~}Dect2020Phy}}
+\index{````~Dect2020Phy@{\texorpdfstring{$\sim$}{\string~}Dect2020Phy}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Dect2020Phy()}{\string~Dect2020Phy()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Phy\+::\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Phy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classns3_1_1Dect2020Phy_a16f7d546aa47c9dec445049729d9df5a}\label{classns3_1_1Dect2020Phy_a16f7d546aa47c9dec445049729d9df5a} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!CalculateTxDurationNs@{CalculateTxDurationNs}}
+\index{CalculateTxDurationNs@{CalculateTxDurationNs}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{CalculateTxDurationNs()}{CalculateTxDurationNs()}}
+{\footnotesize\ttfamily double ns3\+::\+Dect2020\+Phy\+::\+Calculate\+Tx\+Duration\+Ns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}}}]{physical\+Header\+Field }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a85ebc584263e4d68d74253f39f5aad52}\label{classns3_1_1Dect2020Phy_a85ebc584263e4d68d74253f39f5aad52} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!EndRx@{EndRx}}
+\index{EndRx@{EndRx}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{EndRx()}{EndRx()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+End\+Rx (\begin{DoxyParamCaption}\item[{Ptr$<$ Spectrum\+Signal\+Parameters $>$}]{params }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_af7ebc15953167ad8851d5a45d5503b3d}\label{classns3_1_1Dect2020Phy_af7ebc15953167ad8851d5a45d5503b3d} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetAbsoluteSubslotIndex@{GetAbsoluteSubslotIndex}}
+\index{GetAbsoluteSubslotIndex@{GetAbsoluteSubslotIndex}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetAbsoluteSubslotIndex()}{GetAbsoluteSubslotIndex()}}
+{\footnotesize\ttfamily int ns3\+::\+Dect2020\+Phy\+::\+Get\+Absolute\+Subslot\+Index (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{slot,  }\item[{uint8\+\_\+t}]{subslot }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a789b8e301e483d132f9fd3fd6a7d9dd0}\label{classns3_1_1Dect2020Phy_a789b8e301e483d132f9fd3fd6a7d9dd0} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetAbsoluteSubslotTime@{GetAbsoluteSubslotTime}}
+\index{GetAbsoluteSubslotTime@{GetAbsoluteSubslotTime}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetAbsoluteSubslotTime()}{GetAbsoluteSubslotTime()}}
+{\footnotesize\ttfamily Time ns3\+::\+Dect2020\+Phy\+::\+Get\+Absolute\+Subslot\+Time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{target\+Sfn,  }\item[{uint8\+\_\+t}]{slot,  }\item[{uint8\+\_\+t}]{subslot }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020Phy_acee95993c5d992680d15568dc4e70848}\label{classns3_1_1Dect2020Phy_acee95993c5d992680d15568dc4e70848} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetAntenna@{GetAntenna}}
+\index{GetAntenna@{GetAntenna}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetAntenna()}{GetAntenna()}}
+{\footnotesize\ttfamily Ptr$<$ Object $>$ ns3\+::\+Dect2020\+Phy\+::\+Get\+Antenna (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a76a3e82cc386ee3d09d5fb7fbd956aff}\label{classns3_1_1Dect2020Phy_a76a3e82cc386ee3d09d5fb7fbd956aff} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetChannel@{GetChannel}}
+\index{GetChannel@{GetChannel}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetChannel()}{GetChannel()}}
+{\footnotesize\ttfamily Ptr$<$ Spectrum\+Channel $>$ ns3\+::\+Dect2020\+Phy\+::\+Get\+Channel (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a0eb87a27bded3d641dd7418b0000c889}\label{classns3_1_1Dect2020Phy_a0eb87a27bded3d641dd7418b0000c889} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetCurrentAbsoluteSubslot@{GetCurrentAbsoluteSubslot}}
+\index{GetCurrentAbsoluteSubslot@{GetCurrentAbsoluteSubslot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetCurrentAbsoluteSubslot()}{GetCurrentAbsoluteSubslot()}}
+{\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Phy\+::\+Get\+Current\+Absolute\+Subslot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020Phy_ae1624ecb6efc7dd3ee2a2cc8702d1e24}\label{classns3_1_1Dect2020Phy_ae1624ecb6efc7dd3ee2a2cc8702d1e24} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetCurrentSlot@{GetCurrentSlot}}
+\index{GetCurrentSlot@{GetCurrentSlot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetCurrentSlot()}{GetCurrentSlot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structns3_1_1Slot}{Slot}} \texorpdfstring{$\ast$}{*} ns3\+::\+Dect2020\+Phy\+::\+Get\+Current\+Slot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{channel\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a8a430092b767cb9bd0ba054a55df2600}\label{classns3_1_1Dect2020Phy_a8a430092b767cb9bd0ba054a55df2600} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetCurrentSubslot@{GetCurrentSubslot}}
+\index{GetCurrentSubslot@{GetCurrentSubslot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetCurrentSubslot()}{GetCurrentSubslot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structns3_1_1Subslot}{Subslot}} \texorpdfstring{$\ast$}{*} ns3\+::\+Dect2020\+Phy\+::\+Get\+Current\+Subslot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{channel\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_adb6198c9bbc5223f52f6b1aa54dfb9e4}\label{classns3_1_1Dect2020Phy_adb6198c9bbc5223f52f6b1aa54dfb9e4} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetDevice@{GetDevice}}
+\index{GetDevice@{GetDevice}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetDevice()}{GetDevice()}}
+{\footnotesize\ttfamily Ptr$<$ Net\+Device $>$ ns3\+::\+Dect2020\+Phy\+::\+Get\+Device (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020Phy_aa56bdf0b3cfeb443cef81c0fcbceff45}\label{classns3_1_1Dect2020Phy_aa56bdf0b3cfeb443cef81c0fcbceff45} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetMcsTransportBlockSize@{GetMcsTransportBlockSize}}
+\index{GetMcsTransportBlockSize@{GetMcsTransportBlockSize}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetMcsTransportBlockSize()}{GetMcsTransportBlockSize()}}
+{\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Phy\+::\+Get\+Mcs\+Transport\+Block\+Size (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{mu,  }\item[{uint8\+\_\+t}]{beta,  }\item[{uint8\+\_\+t}]{mcs\+Index }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a5c4aa0976778baad8e4adf8702fbaf94}\label{classns3_1_1Dect2020Phy_a5c4aa0976778baad8e4adf8702fbaf94} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetMobility@{GetMobility}}
+\index{GetMobility@{GetMobility}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetMobility()}{GetMobility()}}
+{\footnotesize\ttfamily Ptr$<$ Mobility\+Model $>$ ns3\+::\+Dect2020\+Phy\+::\+Get\+Mobility (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a11429ee94110918b8a8610376ef011e7}\label{classns3_1_1Dect2020Phy_a11429ee94110918b8a8610376ef011e7} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetRxSpectrumModel@{GetRxSpectrumModel}}
+\index{GetRxSpectrumModel@{GetRxSpectrumModel}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetRxSpectrumModel()}{GetRxSpectrumModel()}}
+{\footnotesize\ttfamily Ptr$<$ const Spectrum\+Model $>$ ns3\+::\+Dect2020\+Phy\+::\+Get\+Rx\+Spectrum\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+\Hypertarget{classns3_1_1Dect2020Phy_af84a0ebfea03afa6202a0e151724b64f}\label{classns3_1_1Dect2020Phy_af84a0ebfea03afa6202a0e151724b64f} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetTimeToNextAbsoluteSubslot@{GetTimeToNextAbsoluteSubslot}}
+\index{GetTimeToNextAbsoluteSubslot@{GetTimeToNextAbsoluteSubslot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetTimeToNextAbsoluteSubslot()}{GetTimeToNextAbsoluteSubslot()}}
+{\footnotesize\ttfamily Time ns3\+::\+Dect2020\+Phy\+::\+Get\+Time\+To\+Next\+Absolute\+Subslot (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{target\+Sfn,  }\item[{uint8\+\_\+t}]{slot,  }\item[{uint8\+\_\+t}]{subslot }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a26bd51be0fb8ddca4a231c22addee177}\label{classns3_1_1Dect2020Phy_a26bd51be0fb8ddca4a231c22addee177} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetTimeUntilSubslot@{GetTimeUntilSubslot}}
+\index{GetTimeUntilSubslot@{GetTimeUntilSubslot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetTimeUntilSubslot()}{GetTimeUntilSubslot()}}
+{\footnotesize\ttfamily Time ns3\+::\+Dect2020\+Phy\+::\+Get\+Time\+Until\+Subslot (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{target\+Sfn,  }\item[{uint8\+\_\+t}]{target\+Slot,  }\item[{uint8\+\_\+t}]{target\+Subslot }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a1f2799b6dff7bab12aae97d9eab7e579}\label{classns3_1_1Dect2020Phy_a1f2799b6dff7bab12aae97d9eab7e579} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetTypeId@{GetTypeId}}
+\index{GetTypeId@{GetTypeId}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{GetTypeId()}{GetTypeId()}}
+{\footnotesize\ttfamily Type\+Id ns3\+::\+Dect2020\+Phy\+::\+Get\+Type\+Id (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a58126991798cb41adf89d82a1170d83d}\label{classns3_1_1Dect2020Phy_a58126991798cb41adf89d82a1170d83d} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!ProcessSlot@{ProcessSlot}}
+\index{ProcessSlot@{ProcessSlot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{ProcessSlot()}{ProcessSlot()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Process\+Slot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{slot,  }\item[{double}]{slot\+Start\+Time }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a65e93626418605661a7c34c77bc4519e}\label{classns3_1_1Dect2020Phy_a65e93626418605661a7c34c77bc4519e} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!ProcessSubslot@{ProcessSubslot}}
+\index{ProcessSubslot@{ProcessSubslot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{ProcessSubslot()}{ProcessSubslot()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Process\+Subslot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{slot\+Id,  }\item[{uint32\+\_\+t}]{subslot\+Id }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a22e13661d3abf55a69ce8e0a3911898a}\label{classns3_1_1Dect2020Phy_a22e13661d3abf55a69ce8e0a3911898a} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!Receive@{Receive}}
+\index{Receive@{Receive}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{Receive()}{Receive()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Receive (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a29df95614e9b784f468a99485be4585e}\label{classns3_1_1Dect2020Phy_a29df95614e9b784f468a99485be4585e} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!Send@{Send}}
+\index{Send@{Send}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{Send()}{Send()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Send (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet,  }\item[{\mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}}}]{physical\+Header }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a4534477687a8a45b5e4a64b0c688eddb}\label{classns3_1_1Dect2020Phy_a4534477687a8a45b5e4a64b0c688eddb} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetAntenna@{SetAntenna}}
+\index{SetAntenna@{SetAntenna}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{SetAntenna()}{SetAntenna()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Antenna (\begin{DoxyParamCaption}\item[{Ptr$<$ Object $>$}]{antenna }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a85b05d253891ef63a9c7019b20ab6536}\label{classns3_1_1Dect2020Phy_a85b05d253891ef63a9c7019b20ab6536} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetChannel@{SetChannel}}
+\index{SetChannel@{SetChannel}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{SetChannel()}{SetChannel()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Channel (\begin{DoxyParamCaption}\item[{Ptr$<$ Spectrum\+Channel $>$}]{channel }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a22880d34557b18732721e3c751c88383}\label{classns3_1_1Dect2020Phy_a22880d34557b18732721e3c751c88383} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetDevice@{SetDevice}}
+\index{SetDevice@{SetDevice}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{SetDevice()}{SetDevice()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Device (\begin{DoxyParamCaption}\item[{Ptr$<$ Net\+Device $>$}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\Hypertarget{classns3_1_1Dect2020Phy_ad6532b8cdeecabf0305fe334d14a3bcd}\label{classns3_1_1Dect2020Phy_ad6532b8cdeecabf0305fe334d14a3bcd} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetMac@{SetMac}}
+\index{SetMac@{SetMac}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{SetMac()}{SetMac()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Mac (\begin{DoxyParamCaption}\item[{Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020\+Mac}} $>$}]{mac }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_add82b42094d6eb8d4f08092303d45932}\label{classns3_1_1Dect2020Phy_add82b42094d6eb8d4f08092303d45932} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetMobility@{SetMobility}}
+\index{SetMobility@{SetMobility}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{SetMobility()}{SetMobility()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Mobility (\begin{DoxyParamCaption}\item[{Ptr$<$ Mobility\+Model $>$}]{m }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_af01685784c0a9286c994d479553414ce}\label{classns3_1_1Dect2020Phy_af01685784c0a9286c994d479553414ce} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetReceiveCallback@{SetReceiveCallback}}
+\index{SetReceiveCallback@{SetReceiveCallback}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{SetReceiveCallback()}{SetReceiveCallback()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Receive\+Callback (\begin{DoxyParamCaption}\item[{Callback$<$ void, Ptr$<$ Packet $>$, double $>$}]{cb }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_aa28c543e61bf5fba7343245e4b05f919}\label{classns3_1_1Dect2020Phy_aa28c543e61bf5fba7343245e4b05f919} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!Start@{Start}}
+\index{Start@{Start}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_aeb752cef6dbff6bafe6acecc0bf78228}\label{classns3_1_1Dect2020Phy_aeb752cef6dbff6bafe6acecc0bf78228} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!StartFrameTimer@{StartFrameTimer}}
+\index{StartFrameTimer@{StartFrameTimer}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{StartFrameTimer()}{StartFrameTimer()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Start\+Frame\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a21ce125c89846fff563d72afc15f9582}\label{classns3_1_1Dect2020Phy_a21ce125c89846fff563d72afc15f9582} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!StartRx@{StartRx}}
+\index{StartRx@{StartRx}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{StartRx()}{StartRx()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Start\+Rx (\begin{DoxyParamCaption}\item[{Ptr$<$ Spectrum\+Signal\+Parameters $>$}]{params }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classns3_1_1Dect2020Phy_a6c48e90f947fee7b016cb1228709234c}\label{classns3_1_1Dect2020Phy_a6c48e90f947fee7b016cb1228709234c} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!m\_currentAbsoluteSubslot@{m\_currentAbsoluteSubslot}}
+\index{m\_currentAbsoluteSubslot@{m\_currentAbsoluteSubslot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{m\_currentAbsoluteSubslot}{m\_currentAbsoluteSubslot}}
+{\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Phy\+::m\+\_\+current\+Absolute\+Subslot = 0}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a6056e9d493ff3244b142f76923833d21}\label{classns3_1_1Dect2020Phy_a6056e9d493ff3244b142f76923833d21} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!m\_currentSfn@{m\_currentSfn}}
+\index{m\_currentSfn@{m\_currentSfn}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{m\_currentSfn}{m\_currentSfn}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Phy\+::m\+\_\+current\+Sfn = 0}
+
+\Hypertarget{classns3_1_1Dect2020Phy_aa27d0fb87fbe9d9765141281806a3883}\label{classns3_1_1Dect2020Phy_aa27d0fb87fbe9d9765141281806a3883} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!m\_dect2020Channel@{m\_dect2020Channel}}
+\index{m\_dect2020Channel@{m\_dect2020Channel}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{m\_dect2020Channel}{m\_dect2020Channel}}
+{\footnotesize\ttfamily Ptr$<$\mbox{\hyperlink{classns3_1_1Dect2020Channel}{Dect2020\+Channel}}$>$ ns3\+::\+Dect2020\+Phy\+::m\+\_\+dect2020\+Channel}
+
+\Hypertarget{classns3_1_1Dect2020Phy_a4a1d289c4c16c3cca3a48412d7f547d0}\label{classns3_1_1Dect2020Phy_a4a1d289c4c16c3cca3a48412d7f547d0} 
+\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!m\_frameStartTime@{m\_frameStartTime}}
+\index{m\_frameStartTime@{m\_frameStartTime}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
+\doxysubsubsection{\texorpdfstring{m\_frameStartTime}{m\_frameStartTime}}
+{\footnotesize\ttfamily Time ns3\+::\+Dect2020\+Phy\+::m\+\_\+frame\+Start\+Time}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-phy_8h}{dect2020-\/phy.\+h}}\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-phy_8cc}{dect2020-\/phy.\+cc}}\end{DoxyCompactItemize}

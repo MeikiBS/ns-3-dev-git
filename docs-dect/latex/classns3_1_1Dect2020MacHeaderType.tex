@@ -1,0 +1,227 @@
+\doxysection{ns3\+::Dect2020\+Mac\+Header\+Type Class Reference}
+\hypertarget{classns3_1_1Dect2020MacHeaderType}{}\label{classns3_1_1Dect2020MacHeaderType}\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+
+
+{\ttfamily \#include $<$dect2020-\/mac-\/header-\/type.\+h$>$}
+
+
+
+Inheritance diagram for ns3\+::Dect2020\+Mac\+Header\+Type\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classns3_1_1Dect2020MacHeaderType__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ns3\+::Dect2020\+Mac\+Header\+Type\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classns3_1_1Dect2020MacHeaderType__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960}{Mac\+Security\+Field}} \{ \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960af512d5563a86851c780c4b041700c745}{MAC\+\_\+\+SECURITY\+\_\+\+NOT\+\_\+\+USED}} = 0
+, \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960a17887dcd9f4377bd198c0d9ccfff6954}{MAC\+\_\+\+SECURITY\+\_\+\+USED\+\_\+\+NO\+\_\+\+IE}} = 1
+, \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960acc4a636f315638929f49f5513766c423}{MAC\+\_\+\+SECURITY\+\_\+\+USED\+\_\+\+WITH\+\_\+\+IE}} = 2
+, \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960a20bde54d0450a1d342728360eb769367}{RESERVED}} = 3
+ \}
+\item 
+enum \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598b}{Mac\+Header\+Type\+Field}} \{ \newline
+\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba9447ac3d5294ab2475da1e42410e66d7}{DATA\+\_\+\+MAC\+\_\+\+PDU\+\_\+\+HEADER}} = 0
+, \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba8cc9cafc6e5bb045747a19ab884bf1c4}{BEACON\+\_\+\+HEADER}} = 1
+, \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba67c3cba0e28ad869d912b84a81478023}{UNICAST\+\_\+\+HEADER}} = 2
+, \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba483057b6e93d805e9298b04e0c3933aa}{RD\+\_\+\+BROADCASTING\+\_\+\+HEADER}} = 3
+, \newline
+\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba71558867bccb943cb1a73ee35359e0af}{ESCAPE}} = 15
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_a835cefde369efafef22bfb5ffa3fbf60}{Dect2020\+Mac\+Header\+Type}} ()
+\item 
+virtual \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_aa06c75189866a31b8e626824ba64212a}{\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Mac\+Header\+Type}} ()
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_a75cff26264f93b715b5b63f5c1151456}{Set\+Version}} (uint8\+\_\+t version)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_a6c67f17d1053537ef9d9bfed58bcdccc}{Get\+Version}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_a9f1bc94c8d4ca8b8a4915eb258781303}{Set\+Mac\+Security}} (\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960}{Mac\+Security\+Field}} mac\+Security)
+\item 
+\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960}{Mac\+Security\+Field}} \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_a33fef3d96739d7aca595aa0ad483596f}{Get\+Mac\+Security}} () const
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_a8f07f4a4a6bd791c1d49b93b16a5de0f}{Set\+Mac\+Header\+Type\+Field}} (\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598b}{Mac\+Header\+Type\+Field}} mac\+Header\+Type\+Field)
+\item 
+\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598b}{Mac\+Header\+Type\+Field}} \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_a5677534f53d73347c04fcc0c934b0a30}{Get\+Mac\+Header\+Type\+Field}} () const
+\item 
+virtual Type\+Id \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_af8696f0c8e485106b1717234679301c0}{Get\+Instance\+Type\+Id}} (void) const
+\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_a288175232ce1c7406db332496fe32cca}{Print}} (std\+::ostream \&os) const
+\item 
+virtual uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ae340661388c56d2483114bc5f7e4af57}{Get\+Serialized\+Size}} (void) const
+\item 
+virtual void \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ae19acc0b170c4f689aaa21ad6b6735ff}{Serialize}} (Buffer\+::\+Iterator start) const
+\item 
+virtual uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ac9149ff9091d19cea55aeb1c0c10c0df}{Deserialize}} (Buffer\+::\+Iterator start)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Type\+Id \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_a4b18c70cb682ef3b54edb0970cd2b6a9}{Get\+Type\+Id}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598b}\label{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598b} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!MacHeaderTypeField@{MacHeaderTypeField}}
+\index{MacHeaderTypeField@{MacHeaderTypeField}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{MacHeaderTypeField}{MacHeaderTypeField}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598b}{ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Mac\+Header\+Type\+Field}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA\_MAC\_PDU\_HEADER@{DATA\_MAC\_PDU\_HEADER}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!DATA\_MAC\_PDU\_HEADER@{DATA\_MAC\_PDU\_HEADER}}}\Hypertarget{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba9447ac3d5294ab2475da1e42410e66d7}\label{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba9447ac3d5294ab2475da1e42410e66d7} 
+DATA\+\_\+\+MAC\+\_\+\+PDU\+\_\+\+HEADER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BEACON\_HEADER@{BEACON\_HEADER}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!BEACON\_HEADER@{BEACON\_HEADER}}}\Hypertarget{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba8cc9cafc6e5bb045747a19ab884bf1c4}\label{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba8cc9cafc6e5bb045747a19ab884bf1c4} 
+BEACON\+\_\+\+HEADER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNICAST\_HEADER@{UNICAST\_HEADER}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!UNICAST\_HEADER@{UNICAST\_HEADER}}}\Hypertarget{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba67c3cba0e28ad869d912b84a81478023}\label{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba67c3cba0e28ad869d912b84a81478023} 
+UNICAST\+\_\+\+HEADER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RD\_BROADCASTING\_HEADER@{RD\_BROADCASTING\_HEADER}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!RD\_BROADCASTING\_HEADER@{RD\_BROADCASTING\_HEADER}}}\Hypertarget{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba483057b6e93d805e9298b04e0c3933aa}\label{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba483057b6e93d805e9298b04e0c3933aa} 
+RD\+\_\+\+BROADCASTING\+\_\+\+HEADER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ESCAPE@{ESCAPE}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!ESCAPE@{ESCAPE}}}\Hypertarget{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba71558867bccb943cb1a73ee35359e0af}\label{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598ba71558867bccb943cb1a73ee35359e0af} 
+ESCAPE&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960}\label{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!MacSecurityField@{MacSecurityField}}
+\index{MacSecurityField@{MacSecurityField}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{MacSecurityField}{MacSecurityField}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960}{ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Mac\+Security\+Field}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAC\_SECURITY\_NOT\_USED@{MAC\_SECURITY\_NOT\_USED}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!MAC\_SECURITY\_NOT\_USED@{MAC\_SECURITY\_NOT\_USED}}}\Hypertarget{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960af512d5563a86851c780c4b041700c745}\label{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960af512d5563a86851c780c4b041700c745} 
+MAC\+\_\+\+SECURITY\+\_\+\+NOT\+\_\+\+USED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAC\_SECURITY\_USED\_NO\_IE@{MAC\_SECURITY\_USED\_NO\_IE}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!MAC\_SECURITY\_USED\_NO\_IE@{MAC\_SECURITY\_USED\_NO\_IE}}}\Hypertarget{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960a17887dcd9f4377bd198c0d9ccfff6954}\label{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960a17887dcd9f4377bd198c0d9ccfff6954} 
+MAC\+\_\+\+SECURITY\+\_\+\+USED\+\_\+\+NO\+\_\+\+IE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAC\_SECURITY\_USED\_WITH\_IE@{MAC\_SECURITY\_USED\_WITH\_IE}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!MAC\_SECURITY\_USED\_WITH\_IE@{MAC\_SECURITY\_USED\_WITH\_IE}}}\Hypertarget{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960acc4a636f315638929f49f5513766c423}\label{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960acc4a636f315638929f49f5513766c423} 
+MAC\+\_\+\+SECURITY\+\_\+\+USED\+\_\+\+WITH\+\_\+\+IE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RESERVED@{RESERVED}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!RESERVED@{RESERVED}}}\Hypertarget{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960a20bde54d0450a1d342728360eb769367}\label{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960a20bde54d0450a1d342728360eb769367} 
+RESERVED&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_a835cefde369efafef22bfb5ffa3fbf60}\label{classns3_1_1Dect2020MacHeaderType_a835cefde369efafef22bfb5ffa3fbf60} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!Dect2020MacHeaderType@{Dect2020MacHeaderType}}
+\index{Dect2020MacHeaderType@{Dect2020MacHeaderType}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{Dect2020MacHeaderType()}{Dect2020MacHeaderType()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Dect2020\+Mac\+Header\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_aa06c75189866a31b8e626824ba64212a}\label{classns3_1_1Dect2020MacHeaderType_aa06c75189866a31b8e626824ba64212a} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!````~Dect2020MacHeaderType@{\texorpdfstring{$\sim$}{\string~}Dect2020MacHeaderType}}
+\index{````~Dect2020MacHeaderType@{\texorpdfstring{$\sim$}{\string~}Dect2020MacHeaderType}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Dect2020MacHeaderType()}{\string~Dect2020MacHeaderType()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Mac\+Header\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_ac9149ff9091d19cea55aeb1c0c10c0df}\label{classns3_1_1Dect2020MacHeaderType_ac9149ff9091d19cea55aeb1c0c10c0df} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!Deserialize@{Deserialize}}
+\index{Deserialize@{Deserialize}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{Deserialize()}{Deserialize()}}
+{\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Deserialize (\begin{DoxyParamCaption}\item[{Buffer\+::\+Iterator}]{start }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_af8696f0c8e485106b1717234679301c0}\label{classns3_1_1Dect2020MacHeaderType_af8696f0c8e485106b1717234679301c0} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!GetInstanceTypeId@{GetInstanceTypeId}}
+\index{GetInstanceTypeId@{GetInstanceTypeId}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{GetInstanceTypeId()}{GetInstanceTypeId()}}
+{\footnotesize\ttfamily Type\+Id ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Get\+Instance\+Type\+Id (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_a5677534f53d73347c04fcc0c934b0a30}\label{classns3_1_1Dect2020MacHeaderType_a5677534f53d73347c04fcc0c934b0a30} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!GetMacHeaderTypeField@{GetMacHeaderTypeField}}
+\index{GetMacHeaderTypeField@{GetMacHeaderTypeField}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{GetMacHeaderTypeField()}{GetMacHeaderTypeField()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598b}{ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Mac\+Header\+Type\+Field}} ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Get\+Mac\+Header\+Type\+Field (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_a33fef3d96739d7aca595aa0ad483596f}\label{classns3_1_1Dect2020MacHeaderType_a33fef3d96739d7aca595aa0ad483596f} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!GetMacSecurity@{GetMacSecurity}}
+\index{GetMacSecurity@{GetMacSecurity}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{GetMacSecurity()}{GetMacSecurity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960}{ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Mac\+Security\+Field}} ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Get\+Mac\+Security (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_ae340661388c56d2483114bc5f7e4af57}\label{classns3_1_1Dect2020MacHeaderType_ae340661388c56d2483114bc5f7e4af57} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!GetSerializedSize@{GetSerializedSize}}
+\index{GetSerializedSize@{GetSerializedSize}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{GetSerializedSize()}{GetSerializedSize()}}
+{\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Get\+Serialized\+Size (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_a4b18c70cb682ef3b54edb0970cd2b6a9}\label{classns3_1_1Dect2020MacHeaderType_a4b18c70cb682ef3b54edb0970cd2b6a9} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!GetTypeId@{GetTypeId}}
+\index{GetTypeId@{GetTypeId}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{GetTypeId()}{GetTypeId()}}
+{\footnotesize\ttfamily Type\+Id ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Get\+Type\+Id (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_a6c67f17d1053537ef9d9bfed58bcdccc}\label{classns3_1_1Dect2020MacHeaderType_a6c67f17d1053537ef9d9bfed58bcdccc} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!GetVersion@{GetVersion}}
+\index{GetVersion@{GetVersion}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{GetVersion()}{GetVersion()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Get\+Version (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_a288175232ce1c7406db332496fe32cca}\label{classns3_1_1Dect2020MacHeaderType_a288175232ce1c7406db332496fe32cca} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!Print@{Print}}
+\index{Print@{Print}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Print (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_ae19acc0b170c4f689aaa21ad6b6735ff}\label{classns3_1_1Dect2020MacHeaderType_ae19acc0b170c4f689aaa21ad6b6735ff} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{Serialize()}{Serialize()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Serialize (\begin{DoxyParamCaption}\item[{Buffer\+::\+Iterator}]{start }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_a8f07f4a4a6bd791c1d49b93b16a5de0f}\label{classns3_1_1Dect2020MacHeaderType_a8f07f4a4a6bd791c1d49b93b16a5de0f} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!SetMacHeaderTypeField@{SetMacHeaderTypeField}}
+\index{SetMacHeaderTypeField@{SetMacHeaderTypeField}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{SetMacHeaderTypeField()}{SetMacHeaderTypeField()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Set\+Mac\+Header\+Type\+Field (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ad64c306d8bbde6a232ca65dcfb1a598b}{Mac\+Header\+Type\+Field}}}]{mac\+Header\+Type\+Field }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_a9f1bc94c8d4ca8b8a4915eb258781303}\label{classns3_1_1Dect2020MacHeaderType_a9f1bc94c8d4ca8b8a4915eb258781303} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!SetMacSecurity@{SetMacSecurity}}
+\index{SetMacSecurity@{SetMacSecurity}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{SetMacSecurity()}{SetMacSecurity()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Set\+Mac\+Security (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType_ab5b271a48df0e96929ccf8e1a5d59960}{Mac\+Security\+Field}}}]{mac\+Security }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020MacHeaderType_a75cff26264f93b715b5b63f5c1151456}\label{classns3_1_1Dect2020MacHeaderType_a75cff26264f93b715b5b63f5c1151456} 
+\index{ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}!SetVersion@{SetVersion}}
+\index{SetVersion@{SetVersion}!ns3::Dect2020MacHeaderType@{ns3::Dect2020MacHeaderType}}
+\doxysubsubsection{\texorpdfstring{SetVersion()}{SetVersion()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+Header\+Type\+::\+Set\+Version (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{version }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-mac-header-type_8h}{dect2020-\/mac-\/header-\/type.\+h}}\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-mac-header-type_8cc}{dect2020-\/mac-\/header-\/type.\+cc}}\end{DoxyCompactItemize}

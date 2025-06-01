@@ -1,6 +1,14 @@
 #ifndef DECT2020_MAC_MESSAGES_H
 #define DECT2020_MAC_MESSAGES_H
 
+/**
+ * \file dect2020-mac-messages.h
+ * \brief Defines MAC Messages used in DECT-2020 NR MAC PDUs.
+ *
+ * This file implements the MAC Message structures as specified in
+ * ETSI TS 103 636-4  Section 6.4.2
+ */
+
 #include "ns3/header.h"
 #include "ns3/log.h"
 #include "ns3/packet.h"
@@ -41,6 +49,11 @@ enum ClusterBeaconPeriod // ETSI TS 103 636-4 V 1.51 #6.4.2.2-1
 //            # ETSI TS 103 636-4 V2.1.1 6.4.2.3
 // *******************************************************
 
+/**
+ * \class Dect2020ClusterBeaconMessage
+ * \brief MAC Cluster Beacon Message ETSI TS 103 636-4 V2.1.1 6.4.2.3
+ *
+ */
 class Dect2020ClusterBeaconMessage : public Header
 {
   public:
@@ -126,6 +139,11 @@ class Dect2020ClusterBeaconMessage : public Header
 //            # ETSI TS 103 636-4 V2.1.1 6.4.2.2
 // *******************************************************
 
+/**
+ * \class Dect2020NetworkBeaconMessage
+ * \brief MAC Network Beacon Message ETSI TS 103 636-4 V2.1.1 6.4.2.2
+ *
+ */
 class Dect2020NetworkBeaconMessage : public Header
 {
   public:
@@ -196,6 +214,11 @@ class Dect2020NetworkBeaconMessage : public Header
 //            # ETSI TS 103 636-4 V2.1.1 6.4.2.4
 // *******************************************************
 
+/**
+ * \class Dect2020AssociationRequestMessage
+ * \brief MAC Association Request Message ETSI TS 103 636-4 V2.1.1 6.4.2.4
+ *
+ */
 class Dect2020AssociationRequestMessage : public Header
 {
   public:
@@ -280,6 +303,11 @@ class Dect2020AssociationRequestMessage : public Header
 //            # ETSI TS 103 636-4 V2.1.1 6.4.2.5
 // *******************************************************
 
+/**
+ * \class Dect2020AssociationResponseMessage
+ * \brief MAC Association Response Message ETSI TS 103 636-4 V2.1.1 6.4.2.5
+ *
+ */
 class Dect2020AssociationResponseMessage : public Header
 {
   public:

@@ -1,6 +1,16 @@
 #ifndef DECT2020_MAC_H
 #define DECT2020_MAC_H
 
+/**
+ * \file dect2020-mac.h
+ * \ingroup Dect2020Mac
+ * \brief Implements the MAC layer functionality for DECT-2020 NR.
+ *
+ * Handles MAC procedures such as beacon transmission, association,
+ * header creation, and MAC state machine logic based on ETSI TS 103 636-4.
+ */
+
+
 #include "dect2020-mac-common-header.h"
 #include "dect2020-mac-header-type.h"
 #include "dect2020-mac-information-elements.h"
@@ -49,15 +59,12 @@ struct FtCandidateInfo
     double rssiDbm;
 
     Dect2020PHYControlFieldType1 ftPhyHeaderField; // Last received Physical Header Field
-    // Dect2020MacHeaderType ftMacHeaderType;        // Last received MAC Header Type
     Dect2020BeaconHeader ftBeaconHeader;                 // Last received Beacon Header
     Dect2020UnicastHeader ftUnicastHeader;               // Last received Unicast Header
     Dect2020NetworkBeaconMessage ftNetworkBeaconMessage; // Last received Network Beacon Message
     Dect2020ClusterBeaconMessage ftClusterBeaconMessage; // Last received Cluster Beacon Message
     Dect2020RandomAccessResourceIE
         ftRandomAccessResourceIE; // Last received Random Access Resource IE
-    // Dect2020MacMuxHeaderShortSduNoPayload
-    //     mftMacMuxHeader; // Last received MAC Multiplexing Header
 };
 
 struct AssociatedPtInfo
@@ -90,10 +97,12 @@ struct SubslotScanContext
 };
 
 /**
- * \brief DECT2020 MAC Klasse
+ * \class Dect2020Mac
+ * \brief DECT-2020 NR MAC layer implementation.
  *
- * Diese Klasse implementiert die grundlegende MAC-Schichtfunktionalität
- * für das DECT2020 Modul.
+ * Represents the Medium Access Control layer for a DECT-2020 NR node.
+ * Manages transmission/reception of MAC PDUs, beaconing, association,
+ * and MAC-PHY interaction.
  */
 class Dect2020Mac : public Object
 {
@@ -130,7 +139,7 @@ class Dect2020Mac : public Object
     void SetPhy(Ptr<Dect2020Phy> phy);
 
     // Send a MAC PDU
-    void Send(Ptr<Packet> packet, const Address& dest, Dect2020PacketType type);
+    void Send(Ptr<Packet> packet, const uint32_t receiverLongRdIf, Dect2020PacketType type);
 
     // Empfang von Paketen von der PHY-Schicht
     void ReceiveFromPhy(Ptr<Packet> packet, double rssiDbm);
@@ -152,10 +161,7 @@ class Dect2020Mac : public Object
      * Generate a valid Network ID.
      */
     uint32_t GenerateValidNetworkId();
-    /**
-     * Join an existing Network.
-     */
-    void JoinNetwork(uint32_t networkId);
+
     /**
      * Set the Network ID.
      */
@@ -212,9 +218,7 @@ class Dect2020Mac : public Object
     void ReturnToOperatingChannel();
     void HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft);
     void HandleUnicastPacket(Ptr<Packet> packet);
-    void HandleNetworkBeacon(Dect2020BeaconHeader beaconHeader,
-                             Dect2020NetworkBeaconMessage networkBeaconMsg,
-                             FtCandidateInfo* ft);
+
     void EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBeaconMsg,
                                const Dect2020RandomAccessResourceIE& rarIe,
                                FtCandidateInfo* ft);
@@ -229,7 +233,6 @@ class Dect2020Mac : public Object
                                     Dect2020RdCapabilityIE rdCapabilityIe,
                                     uint32_t ftLongRdId);
 
-    Dect2020PHYControlFieldType1 CreatePhysicalHeaderField();
 
     void StartSubslotScan(uint32_t channelId,
                           uint32_t numSubslots,
@@ -250,7 +253,6 @@ class Dect2020Mac : public Object
     AssociationStatus GetAssociationStatus() const;
     double GetRxGainFromIndex(uint8_t index) const;
     bool isWaitingForClusterBeacon = false;
-    void ResetIsWaitingForClusterBeaconFlag();
 
     uint32_t m_clusterChannelId = 0; // Number of the Channel that is currently the cluster Channel
     uint32_t m_currentChannelId = 0; // Number of the Channel that the RD is currently connected
@@ -269,17 +271,6 @@ class Dect2020Mac : public Object
     std::vector<FtCandidateInfo> m_ftCandidates;
     std::vector<AssociatedPtInfo> m_associatedPtDevices;
 
-    // Last received header fields
-    Dect2020PHYControlFieldType1 m_lastFtPhyHeaderField; // Last received Physical Header Field
-    Dect2020MacHeaderType m_lastFtMacHeaderType;         // Last received MAC Header Type
-    Dect2020BeaconHeader m_lastFtBeaconHeader;           // Last received Beacon Header
-    Dect2020UnicastHeader m_lastFtUnicastHeader;         // Last received Unicast Header
-    Dect2020NetworkBeaconMessage
-        m_lastFtNetworkBeaconMessage; // Last received Network Beacon Message
-    Dect2020ClusterBeaconMessage
-        m_lastFtClusterBeaconMessage; // Last received Cluster Beacon Message
-    Dect2020RandomAccessResourceIE
-        m_lastFtRandomAccessResourceIE; // Last received Random Access Resource IE
     Dect2020MacMuxHeaderShortSduNoPayload
         m_lastFtMacMuxHeader; // Last received MAC Multiplexing Header
 
@@ -318,7 +309,7 @@ class Dect2020Mac : public Object
     Ptr<Dect2020NetDevice> m_device;
     std::vector<Dect2020NetDevice> m_associatedNetDevices; // List of associated NetDevices
     Ptr<Dect2020Phy> m_phy;
-    Mac48Address m_address;
+    // Mac48Address m_address;
 
     // Sendewarteschlange (für zukünftige Erweiterungen)
     // std::queue<Ptr<Packet>> m_txQueue;

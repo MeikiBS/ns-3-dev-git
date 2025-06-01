@@ -1,0 +1,411 @@
+\doxysection{ns3\+::Dect2020\+Channel\+Manager Class Reference}
+\hypertarget{classns3_1_1Dect2020ChannelManager}{}\label{classns3_1_1Dect2020ChannelManager}\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+
+
+{\ttfamily \#include $<$dect2020-\/channel-\/manager.\+h$>$}
+
+
+
+Collaboration diagram for ns3\+::Dect2020\+Channel\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{classns3_1_1Dect2020ChannelManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_ab93f6453961838976624cf6f3371aa7a}{Dect2020\+Channel\+Manager}} ()
+\item 
+\mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a4d4ae8ab7e4cbbca7159f0fdb1c7a75a}{\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Channel\+Manager}} ()
+\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_ac9ba6b3d9cdaf3afef01b44c1f71e99e}{Initialize\+Channels}} (uint8\+\_\+t band\+Number, uint8\+\_\+t subcarrier\+Scaling\+Factor)
+\begin{DoxyCompactList}\small\item\em Initializes all DECT-\/2020 NR channels for a given band and scaling factor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a6da1d46e04c396bbc7f34554cdcfdd31}{Update\+Channel\+Rssi}} (uint16\+\_\+t channel\+Number, double rssi)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::vector$<$ Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Channel}{Dect2020\+Channel}} $>$ $>$ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a7fb590493714a98057d8959236f0588a}{Get\+Valid\+Channels}} (uint8\+\_\+t band\+Number)
+\begin{DoxyCompactList}\small\item\em Returns the list of initialized DECT channels for the given band. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structns3_1_1BandParameters}{Band\+Parameters}} \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_ab5ee634a28f4b07492aac137418b59ff}{Get\+Band\+Parameters}} (uint8\+\_\+t band\+Number)
+\begin{DoxyCompactList}\small\item\em Returns the frequency parameters for a specific DECT band. \end{DoxyCompactList}\item 
+static double \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_ac29d151e336c80ea78ba2d2b408d8251}{Calculate\+Center\+Frequency}} (uint8\+\_\+t band\+Number, uint32\+\_\+t channel\+Number)
+\begin{DoxyCompactList}\small\item\em Calculates the center frequency of a logical channel based on band and channel number. \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a29e3373344d2800af51d0c9ef08d9ab9}{Get\+First\+Valid\+Channel\+Number}} (uint8\+\_\+t band\+Number)
+\begin{DoxyCompactList}\small\item\em Returns the first valid channel number for the specified band. \end{DoxyCompactList}\item 
+static uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_af223bded29f0a44aea3dd93c3d4dba71}{Get\+Band\+Number}} (uint16\+\_\+t channel\+Number)
+\begin{DoxyCompactList}\small\item\em Determines the DECT band number corresponding to a given channel number. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a0041472ca2aa46db28afb39829677678}{Channel\+Exists}} (uint32\+\_\+t ch\+Id)
+\begin{DoxyCompactList}\small\item\em Checks whether a given channel ID exists in the initialized channel list. \end{DoxyCompactList}\item 
+static uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a901c736a919346f814b3f3582457da98}{Get\+Channel\+Id}} (double center\+Frequency)
+\begin{DoxyCompactList}\small\item\em Returns the logical channel ID for a given center frequency. \end{DoxyCompactList}\item 
+static Ptr$<$ Spectrum\+Model $>$ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a12f1e5cf8a17209c67ed986476e2f469}{Get\+Spectrum\+Model}} (uint8\+\_\+t band\+Id)
+\begin{DoxyCompactList}\small\item\em Retrieves or creates the Spectrum\+Model for a specific DECT band. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a9fda4c3fc636984dba8c1fa4eacba523}{Add\+Spectrum\+Power\+To\+Channel}} (uint16\+\_\+t channel\+Id, double power\+Watt)
+\item 
+static void \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_abd5501d66c3ccb3e21a18ba348b701c1}{Remove\+Spectrum\+Power\+From\+Channel}} (uint16\+\_\+t channel\+Id, double power\+Watt)
+\item 
+static double \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a6106be7a1ca2962114f10a905815fb9e}{Get\+Rssi\+Dbm}} (uint16\+\_\+t channel\+Id)
+\item 
+static double \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_aa156e9d8b664c94c9f19f54f53385b46}{Dbm\+ToW}} (double d\+Bm)
+\item 
+static double \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a9039c965c009e9be32dc8a65b40687c2}{WTo\+Dbm}} (double w)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structns3_1_1BandParameters}{Band\+Parameters}} \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a584f364a1d4c3ea646101837ddd9b13b}{m\+\_\+band\+Parameters}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a92e89f81ae751138ccbcc3197679bd99}{m\+\_\+band\+Number}}
+\item 
+\mbox{\hyperlink{namespacens3_a23a4b2654baeb10a79213036a7d457dd}{Operating\+Channel\+Bandwith}} \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a7795c1a48015a9abbf493146b157f16a}{m\+\_\+operating\+Channel\+Bandwidth}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::map$<$ uint8\+\_\+t, Ptr$<$ Spectrum\+Value $>$ $>$ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_a50a0506b2256f7d1ea778241a29224a9}{m\+\_\+channel\+Occupancy}}
+\item 
+static std\+::map$<$ uint16\+\_\+t, std\+::vector$<$ Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Channel}{Dect2020\+Channel}} $>$ $>$ $>$ \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager_aa33b814fbf0860f0ba8f1213ae81d8f7}{m\+\_\+channels}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_ab93f6453961838976624cf6f3371aa7a}\label{classns3_1_1Dect2020ChannelManager_ab93f6453961838976624cf6f3371aa7a} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!Dect2020ChannelManager@{Dect2020ChannelManager}}
+\index{Dect2020ChannelManager@{Dect2020ChannelManager}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{Dect2020ChannelManager()}{Dect2020ChannelManager()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Channel\+Manager\+::\+Dect2020\+Channel\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a4d4ae8ab7e4cbbca7159f0fdb1c7a75a}\label{classns3_1_1Dect2020ChannelManager_a4d4ae8ab7e4cbbca7159f0fdb1c7a75a} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!````~Dect2020ChannelManager@{\texorpdfstring{$\sim$}{\string~}Dect2020ChannelManager}}
+\index{````~Dect2020ChannelManager@{\texorpdfstring{$\sim$}{\string~}Dect2020ChannelManager}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Dect2020ChannelManager()}{\string~Dect2020ChannelManager()}}
+{\footnotesize\ttfamily ns3\+::\+Dect2020\+Channel\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Channel\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a9fda4c3fc636984dba8c1fa4eacba523}\label{classns3_1_1Dect2020ChannelManager_a9fda4c3fc636984dba8c1fa4eacba523} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!AddSpectrumPowerToChannel@{AddSpectrumPowerToChannel}}
+\index{AddSpectrumPowerToChannel@{AddSpectrumPowerToChannel}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{AddSpectrumPowerToChannel()}{AddSpectrumPowerToChannel()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Channel\+Manager\+::\+Add\+Spectrum\+Power\+To\+Channel (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{channel\+Id,  }\item[{double}]{power\+Watt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Add signal power to the PSD of a given channel. Creates the Spectrum\+Value if it doesn\textquotesingle{}t exist.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Id} & The logical DECT channel number. \\
+\hline
+{\em power\+Watt} & Power to add (in Watts) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_ac29d151e336c80ea78ba2d2b408d8251}\label{classns3_1_1Dect2020ChannelManager_ac29d151e336c80ea78ba2d2b408d8251} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!CalculateCenterFrequency@{CalculateCenterFrequency}}
+\index{CalculateCenterFrequency@{CalculateCenterFrequency}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{CalculateCenterFrequency()}{CalculateCenterFrequency()}}
+{\footnotesize\ttfamily double ns3\+::\+Dect2020\+Channel\+Manager\+::\+Calculate\+Center\+Frequency (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{band\+Number,  }\item[{uint32\+\_\+t}]{channel\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculates the center frequency of a logical channel based on band and channel number. 
+
+Uses the band-\/specific formula defined in ETSI TS 103 636-\/2 V1.\+5.\+1, Section 5.\+4.\+2 to compute the absolute center frequency in Hz for a given DECT channel.
+
+Currently, only bands 1–12 and band 22 are implemented. Other bands require additional formulas.
+
+
+\begin{DoxyParams}{Parameters}
+{\em band\+Number} & The DECT band number (e.\+g., 1–22). \\
+\hline
+{\em channel\+Number} & The logical channel number (e.\+g., 1657 for Band 1). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The center frequency in Hz. 
+\end{DoxyReturn}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a0041472ca2aa46db28afb39829677678}\label{classns3_1_1Dect2020ChannelManager_a0041472ca2aa46db28afb39829677678} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!ChannelExists@{ChannelExists}}
+\index{ChannelExists@{ChannelExists}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{ChannelExists()}{ChannelExists()}}
+{\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Channel\+Manager\+::\+Channel\+Exists (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{ch\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Checks whether a given channel ID exists in the initialized channel list. 
+
+Determines if a channel with the specified ID has been created for its associated band.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ch\+Id} & The logical DECT channel number to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the channel exists, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_aa156e9d8b664c94c9f19f54f53385b46}\label{classns3_1_1Dect2020ChannelManager_aa156e9d8b664c94c9f19f54f53385b46} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!DbmToW@{DbmToW}}
+\index{DbmToW@{DbmToW}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{DbmToW()}{DbmToW()}}
+{\footnotesize\ttfamily double ns3\+::\+Dect2020\+Channel\+Manager\+::\+Dbm\+ToW (\begin{DoxyParamCaption}\item[{double}]{d\+Bm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert d\+Bm to Watt. \Hypertarget{classns3_1_1Dect2020ChannelManager_af223bded29f0a44aea3dd93c3d4dba71}\label{classns3_1_1Dect2020ChannelManager_af223bded29f0a44aea3dd93c3d4dba71} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!GetBandNumber@{GetBandNumber}}
+\index{GetBandNumber@{GetBandNumber}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{GetBandNumber()}{GetBandNumber()}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Channel\+Manager\+::\+Get\+Band\+Number (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{channel\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Determines the DECT band number corresponding to a given channel number. 
+
+Iterates through predefined band ranges and returns the matching band.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Number} & The logical DECT channel number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The associated band number, or 255 if no matching band is found. 
+\end{DoxyReturn}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_ab5ee634a28f4b07492aac137418b59ff}\label{classns3_1_1Dect2020ChannelManager_ab5ee634a28f4b07492aac137418b59ff} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!GetBandParameters@{GetBandParameters}}
+\index{GetBandParameters@{GetBandParameters}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{GetBandParameters()}{GetBandParameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structns3_1_1BandParameters}{Band\+Parameters}} ns3\+::\+Dect2020\+Channel\+Manager\+::\+Get\+Band\+Parameters (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{band\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the frequency parameters for a specific DECT band. 
+
+Looks up the band configuration for the given DECT band number, including start/stop center frequencies, channel spacing (frequency step), and logical channel range.
+
+Band parameters are based on ETSI TS 103 636-\/2 V1.\+5.\+1, Table 5.\+4.\+2-\/1.
+
+\begin{DoxyNote}{Note}
+Currently implemented bands\+: 1, 2, 20, and 21. 
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Program} & aborts via NS\+\_\+\+FATAL\+\_\+\+ERROR if an unsupported band is provided.\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em band\+Number} & The DECT band number (e.\+g., 1, 2, 20, 21). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{structns3_1_1BandParameters}{Band\+Parameters} struct containing frequency and channel information. 
+\end{DoxyReturn}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a901c736a919346f814b3f3582457da98}\label{classns3_1_1Dect2020ChannelManager_a901c736a919346f814b3f3582457da98} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!GetChannelId@{GetChannelId}}
+\index{GetChannelId@{GetChannelId}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{GetChannelId()}{GetChannelId()}}
+{\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Channel\+Manager\+::\+Get\+Channel\+Id (\begin{DoxyParamCaption}\item[{double}]{center\+Frequency }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the logical channel ID for a given center frequency. 
+
+Iterates over all initialized channels and finds the channel whose center frequency exactly matches the given value.
+
+\begin{DoxyNote}{Note}
+This comparison uses exact floating-\/point equality. If your simulation setup introduces rounding errors, consider using a tolerance-\/based comparison.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em center\+Frequency} & The center frequency in Hz. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The logical DECT channel ID, or 0 if no matching channel is found. 
+\end{DoxyReturn}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a29e3373344d2800af51d0c9ef08d9ab9}\label{classns3_1_1Dect2020ChannelManager_a29e3373344d2800af51d0c9ef08d9ab9} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!GetFirstValidChannelNumber@{GetFirstValidChannelNumber}}
+\index{GetFirstValidChannelNumber@{GetFirstValidChannelNumber}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{GetFirstValidChannelNumber()}{GetFirstValidChannelNumber()}}
+{\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Channel\+Manager\+::\+Get\+First\+Valid\+Channel\+Number (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{band\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the first valid channel number for the specified band. 
+
+Based on ETSI TS 103 636-\/2 V1.\+5.\+1, Table 5.\+4.\+2-\/1. Only supports bands 1, 2, 20, and 21. Is used to calculate the index number of objects.
+
+
+\begin{DoxyParams}{Parameters}
+{\em band\+Number} & The DECT band index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The first logical channel number for the band. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Aborts} & if the band number is invalid or unsupported. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a6106be7a1ca2962114f10a905815fb9e}\label{classns3_1_1Dect2020ChannelManager_a6106be7a1ca2962114f10a905815fb9e} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!GetRssiDbm@{GetRssiDbm}}
+\index{GetRssiDbm@{GetRssiDbm}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{GetRssiDbm()}{GetRssiDbm()}}
+{\footnotesize\ttfamily double ns3\+::\+Dect2020\+Channel\+Manager\+::\+Get\+Rssi\+Dbm (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{channel\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Get current RSSI in d\+Bm for a given channel. Returns noise + interference level.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Id} & The logical DECT channel number. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a12f1e5cf8a17209c67ed986476e2f469}\label{classns3_1_1Dect2020ChannelManager_a12f1e5cf8a17209c67ed986476e2f469} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!GetSpectrumModel@{GetSpectrumModel}}
+\index{GetSpectrumModel@{GetSpectrumModel}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{GetSpectrumModel()}{GetSpectrumModel()}}
+{\footnotesize\ttfamily Ptr$<$ Spectrum\+Model $>$ ns3\+::\+Dect2020\+Channel\+Manager\+::\+Get\+Spectrum\+Model (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{band\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Retrieves or creates the Spectrum\+Model for a specific DECT band. 
+
+If no Spectrum\+Model exists yet for the given band, it is created based on the center frequencies of the band\textquotesingle{}s channels as defined in \doxylink{classns3_1_1Dect2020ChannelManager_ab5ee634a28f4b07492aac137418b59ff}{Get\+Band\+Parameters}.
+
+Additionally, this method initializes the corresponding Spectrum\+Value (PSD) representing the baseline channel occupancy (e.\+g., thermal noise floor) and stores it for later access.
+
+\begin{DoxyNote}{Note}
+The noise floor is initialized with −111 d\+Bm per channel, corresponding to a 1.\+728 MHz DECT channel bandwidth (thermal noise approximation).
+\end{DoxyNote}
+\begin{DoxyRemark}{Remarks}
+This method is primarily used by \doxylink{classns3_1_1Dect2020Phy}{Dect2020\+Phy} and \doxylink{classns3_1_1Dect2020SpectrumSignalParameters}{Dect2020\+Spectrum\+Signal\+Parameters} to\+:
+\begin{DoxyItemize}
+\item allocate transmit PSDs during Start\+Tx,
+\item evaluate received power levels (RSSI) during Start\+Rx,
+\end{DoxyItemize}
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em band\+Id} & The DECT band index (e.\+g., 1, 2, 20, 21). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the Spectrum\+Model associated with the given band. 
+\end{DoxyReturn}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a7fb590493714a98057d8959236f0588a}\label{classns3_1_1Dect2020ChannelManager_a7fb590493714a98057d8959236f0588a} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!GetValidChannels@{GetValidChannels}}
+\index{GetValidChannels@{GetValidChannels}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{GetValidChannels()}{GetValidChannels()}}
+{\footnotesize\ttfamily std\+::vector$<$ Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Channel}{Dect2020\+Channel}} $>$ $>$ ns3\+::\+Dect2020\+Channel\+Manager\+::\+Get\+Valid\+Channels (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{band\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the list of initialized DECT channels for the given band. 
+
+Retrieves all \doxylink{classns3_1_1Dect2020Channel}{Dect2020\+Channel} objects that were initialized for the specified band. If no channels were initialized for the band, an empty list is returned.
+
+A channel is considered "{}valid"{} if it fits entirely within the frequency range of the selected DECT band and does not overlap adjacent channels beyond the band\textquotesingle{}s bounds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em band\+Number} & The DECT band index (1–22). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of pointers to the corresponding \doxylink{classns3_1_1Dect2020Channel}{Dect2020\+Channel} objects. 
+\end{DoxyReturn}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_ac9ba6b3d9cdaf3afef01b44c1f71e99e}\label{classns3_1_1Dect2020ChannelManager_ac9ba6b3d9cdaf3afef01b44c1f71e99e} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!InitializeChannels@{InitializeChannels}}
+\index{InitializeChannels@{InitializeChannels}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{InitializeChannels()}{InitializeChannels()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Channel\+Manager\+::\+Initialize\+Channels (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{band\+Number,  }\item[{uint8\+\_\+t}]{subcarrier\+Scaling\+Factor }\end{DoxyParamCaption})}
+
+
+
+Initializes all DECT-\/2020 NR channels for a given band and scaling factor. 
+
+Creates logical DECT channels using the band configuration and populates each channel with time-\/domain slots and subslots based on the subcarrier scaling factor.
+
+
+\begin{DoxyItemize}
+\item The number of slots per frame is fixed to 24 (ETSI TS 103 636-\/3 V1.\+5.\+1, Section 4.\+4).
+\item The subslot count per slot depends on the subcarrier scaling factor \{1, 2, 4, 8\}.
+\item Each channel is assigned a center frequency using \doxylink{classns3_1_1Dect2020ChannelManager_ac29d151e336c80ea78ba2d2b408d8251}{Calculate\+Center\+Frequency}.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em band\+Number} & DECT band index (1–22), see ETSI TS 103 636-\/2 Table 5.\+4.\+2-\/1 \\
+\hline
+{\em subcarrier\+Scaling\+Factor} & Scaling factor used to derive subslots per slot (1, 2, 4, 8) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_abd5501d66c3ccb3e21a18ba348b701c1}\label{classns3_1_1Dect2020ChannelManager_abd5501d66c3ccb3e21a18ba348b701c1} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!RemoveSpectrumPowerFromChannel@{RemoveSpectrumPowerFromChannel}}
+\index{RemoveSpectrumPowerFromChannel@{RemoveSpectrumPowerFromChannel}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{RemoveSpectrumPowerFromChannel()}{RemoveSpectrumPowerFromChannel()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Channel\+Manager\+::\+Remove\+Spectrum\+Power\+From\+Channel (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{channel\+Id,  }\item[{double}]{power\+Watt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Subtract signal power from the PSD of a given channel. Creates the Spectrum\+Value if it doesn\textquotesingle{}t exist.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Id} & The logical DECT channel number. \\
+\hline
+{\em power\+Watt} & Power to remove (in Watts) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a6da1d46e04c396bbc7f34554cdcfdd31}\label{classns3_1_1Dect2020ChannelManager_a6da1d46e04c396bbc7f34554cdcfdd31} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!UpdateChannelRssi@{UpdateChannelRssi}}
+\index{UpdateChannelRssi@{UpdateChannelRssi}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{UpdateChannelRssi()}{UpdateChannelRssi()}}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Channel\+Manager\+::\+Update\+Channel\+Rssi (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{channel\+Number,  }\item[{double}]{rssi }\end{DoxyParamCaption})}
+
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a9039c965c009e9be32dc8a65b40687c2}\label{classns3_1_1Dect2020ChannelManager_a9039c965c009e9be32dc8a65b40687c2} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!WToDbm@{WToDbm}}
+\index{WToDbm@{WToDbm}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{WToDbm()}{WToDbm()}}
+{\footnotesize\ttfamily double ns3\+::\+Dect2020\+Channel\+Manager\+::\+WTo\+Dbm (\begin{DoxyParamCaption}\item[{double}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Convert Watt to d\+Bm. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a92e89f81ae751138ccbcc3197679bd99}\label{classns3_1_1Dect2020ChannelManager_a92e89f81ae751138ccbcc3197679bd99} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!m\_bandNumber@{m\_bandNumber}}
+\index{m\_bandNumber@{m\_bandNumber}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{m\_bandNumber}{m\_bandNumber}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Channel\+Manager\+::m\+\_\+band\+Number}
+
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a584f364a1d4c3ea646101837ddd9b13b}\label{classns3_1_1Dect2020ChannelManager_a584f364a1d4c3ea646101837ddd9b13b} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!m\_bandParameters@{m\_bandParameters}}
+\index{m\_bandParameters@{m\_bandParameters}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{m\_bandParameters}{m\_bandParameters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structns3_1_1BandParameters}{Band\+Parameters}} ns3\+::\+Dect2020\+Channel\+Manager\+::m\+\_\+band\+Parameters}
+
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a50a0506b2256f7d1ea778241a29224a9}\label{classns3_1_1Dect2020ChannelManager_a50a0506b2256f7d1ea778241a29224a9} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!m\_channelOccupancy@{m\_channelOccupancy}}
+\index{m\_channelOccupancy@{m\_channelOccupancy}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{m\_channelOccupancy}{m\_channelOccupancy}}
+{\footnotesize\ttfamily std\+::map$<$ uint8\+\_\+t, Ptr$<$ Spectrum\+Value $>$ $>$ ns3\+::\+Dect2020\+Channel\+Manager\+::m\+\_\+channel\+Occupancy\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classns3_1_1Dect2020ChannelManager_aa33b814fbf0860f0ba8f1213ae81d8f7}\label{classns3_1_1Dect2020ChannelManager_aa33b814fbf0860f0ba8f1213ae81d8f7} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!m\_channels@{m\_channels}}
+\index{m\_channels@{m\_channels}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{m\_channels}{m\_channels}}
+{\footnotesize\ttfamily std\+::map$<$ uint16\+\_\+t, std\+::vector$<$ Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Channel}{Dect2020\+Channel}} $>$ $>$ $>$ ns3\+::\+Dect2020\+Channel\+Manager\+::m\+\_\+channels\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classns3_1_1Dect2020ChannelManager_a7795c1a48015a9abbf493146b157f16a}\label{classns3_1_1Dect2020ChannelManager_a7795c1a48015a9abbf493146b157f16a} 
+\index{ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}!m\_operatingChannelBandwidth@{m\_operatingChannelBandwidth}}
+\index{m\_operatingChannelBandwidth@{m\_operatingChannelBandwidth}!ns3::Dect2020ChannelManager@{ns3::Dect2020ChannelManager}}
+\doxysubsubsection{\texorpdfstring{m\_operatingChannelBandwidth}{m\_operatingChannelBandwidth}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacens3_a23a4b2654baeb10a79213036a7d457dd}{Operating\+Channel\+Bandwith}} ns3\+::\+Dect2020\+Channel\+Manager\+::m\+\_\+operating\+Channel\+Bandwidth}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-channel-manager_8h}{dect2020-\/channel-\/manager.\+h}}\item 
+contrib/dect-\/nr/model/\mbox{\hyperlink{dect2020-channel-manager_8cc}{dect2020-\/channel-\/manager.\+cc}}\end{DoxyCompactItemize}

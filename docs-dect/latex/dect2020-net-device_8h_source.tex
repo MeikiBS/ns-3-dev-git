@@ -1,0 +1,152 @@
+\doxysection{dect2020-\/net-\/device.h}
+\hypertarget{dect2020-net-device_8h_source}{}\label{dect2020-net-device_8h_source}\index{contrib/dect-\/nr/model/dect2020-\/net-\/device.h@{contrib/dect-\/nr/model/dect2020-\/net-\/device.h}}
+\mbox{\hyperlink{dect2020-net-device_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DECT2020\_NET\_DEVICE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DECT2020\_NET\_DEVICE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}ns3/callback.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}ns3/mac48-\/address.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}ns3/net-\/device.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}ns3/node.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}ns3/ptr.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ns3/traced-\/callback.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <iomanip>}\ \textcolor{comment}{//\ Für\ std::setw\ und\ std::setfill}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacens3}{ns3}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }Dect2020Mac;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }Dect2020Phy;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020NetDevice}{Dect2020NetDevice}}\ :\ \textcolor{keyword}{public}\ NetDevice}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{TerminationPointType}}}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a57e3b3dc7019eb213bb23c9f87444842}{PT}},\ \textcolor{comment}{//\ Portable\ Termination}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a4c46711cf18c3bbfa6c933d6935ed5f6}{FT}}\ \ \textcolor{comment}{//\ Fixed\ Termination}}
+\DoxyCodeLine{00034\ \ \ \ \ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_afe9bcae03d13a1c5b32f0ef77aebdb37}{GetTypeId}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ac5d8d0101c48596e57906adbd2edde9d}{Dect2020NetDevice}}();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a7ce30bc25af7c757f03c67bac4dc67c0}{\string~Dect2020NetDevice}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Spezielle\ DECT\ 2020\ Methoden}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_abf9d8e29f49e0b5f3f79c8a9326e8e31}{SetTerminationPointType}}(\mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{TerminationPointType}}\ tpm);}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{TerminationPointType}}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a740875741e82ba2d1a2dba1696820458}{GetTerminationPointType}}();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ Vererbte\ Methoden\ von\ NetDevice}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a544900bdb5d6c03b9b5c0568f968c233}{SetIfIndex}}(\textcolor{keyword}{const}\ uint32\_t\ index)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a49d4e586264870e12e0105d4ca86a934}{GetIfIndex}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{virtual}\ Ptr<Channel>\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ae7f0f5053af6a60ed112eefd5f67158a}{GetChannel}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_adebf86a43236c7df1b4462e59ea35ee1}{SetAddress}}(Address\ address)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ Address\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad90fcdb6baaeb8e4297a4a5c8ad65985}{GetAddress}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a800379056c2227005b231dd97ffd6d74}{SetMtu}}(\textcolor{keyword}{const}\ uint16\_t\ mtu)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{virtual}\ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a261e08be195ae452efee51a0ef3a97d3}{GetMtu}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a4bedc2774696c7836c18ddc518b5b157}{IsLinkUp}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_af40a956271fb48205afca25ab6655292}{AddLinkChangeCallback}}(Callback<void>\ callback)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a4d718780c14b2457d7d99c12249e102a}{IsBroadcast}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{virtual}\ Address\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a0c0e4907062f3fd3a9db198568d123ee}{GetBroadcast}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ae85a91d56a4f6e82436fc2c33a00d641}{IsMulticast}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{virtual}\ Address\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a6b5df627e0fc2826a8f064187d6db8af}{GetMulticast}}(Ipv4Address\ multicastGroup)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{virtual}\ Address\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a6b5df627e0fc2826a8f064187d6db8af}{GetMulticast}}(Ipv6Address\ multicastGroup)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a3595545196154c18d586289cb6bf4b84}{IsPointToPoint}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a56815b0c672e1682d6d663e01117185e}{Send}}(Ptr<Packet>\ packet,\ \textcolor{keyword}{const}\ Address\&\ dest,\ uint16\_t\ protocolNumber)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_abac503b5be2830db2cc782b6f8252968}{SendFrom}}(Ptr<Packet>\ packet,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Address\&\ source,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Address\&\ dest,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ protocolNumber)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{virtual}\ Ptr<Node>\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a399fc544c2d0d5b6c9dbf59e55368e3d}{GetNode}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a1101386767c493f8e4c16603ac57a553}{SetNode}}(Ptr<Node>\ node)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a651645a8783afda327726233641b7ce2}{NeedsArp}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a7498db9f08c37a96a1519c1ab9cbaee1}{SetReceiveCallback}}(NetDevice::ReceiveCallback\ cb)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aeeea2ed93dacd408f2517977d319094d}{SetPromiscReceiveCallback}}(NetDevice::PromiscReceiveCallback\ cb)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a053867be483f4736c98fc9dff8cf1084}{SupportsSendFrom}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a0961da65e3778d8b3dfa6561553f877e}{IsBridge}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ DECT2020-\/spezifische\ Methoden}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a33d64205022943b3dbead878abf6e209}{SetMac}}(Ptr<Dect2020Mac>\ mac);}
+\DoxyCodeLine{00102\ \ \ \ \ Ptr<Dect2020Mac>\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a66986ee2766aa002f066bf63be76f824}{GetMac}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a25bfbde6d3df4db34ea4d2caff002b0d}{SetPhy}}(Ptr<Dect2020Phy>\ phy);}
+\DoxyCodeLine{00105\ \ \ \ \ Ptr<Dect2020Phy>\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_afe44a222d46200cbc0702177bc47ad9f}{GetPhy}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a4a9cd416891c68946f4cb5d1e836f855}{Receive}}(Ptr<Packet>\ packet);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad65be437745e8255de887455db30c77a}{SetLinkUp}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad30f8b0b6cc35caa6a947cb62a789e83}{SetLinkDown}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ab357fc0ef9ab439544c4d066bce4be95}{SetBandNumber}}(uint8\_t\ bandNumber);}
+\DoxyCodeLine{00113\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a2eefa88119653f835a7684cda74d822d}{GetBandNumber}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{TerminationPointType}}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a13d886e2e77bce4aa7fde44adda49890}{m\_terminationPointType}};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aae4bb66f382b834b849a2d12dcdae922}{SetBootstrappingVariables}}(\textcolor{keywordtype}{bool}\ isFT);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Bootstrapping\ variables\ -\/-\/-\/}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ RD\ Capability\ Values\ -\/-\/>\ ETSI\ TS\ 103636\ 044\ V\ 2.1.1\ Table\ 6.4.3.5-\/1}}
+\DoxyCodeLine{00122\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ab163903c3692b590ff393d53fb816c2b}{m\_numOfPHYCapabilities}};}
+\DoxyCodeLine{00123\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a1301decb01705f84ad7389614afa3ef8}{m\_release}};\ \textcolor{comment}{//\ Indicates\ release\ of\ the\ radio\ device.\ Coded\ values:\ reserved,\ Release\ 1,}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Release\ 2,\ Release\ 3,\ Release\ 4,\ rest\ of\ the\ values\ are\ reserved}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad74a1cabcc2d374fb1d581bcc9fc3c3a}{m\_supportGroupAssignment}}\ ;\ \textcolor{comment}{//\ Indicates\ if\ the\ device\ supports\ group\ assignment}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a93775dfb230af1178920dc6b7b3827e8}{m\_supportPaging}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Indicates\ if\ the\ device\ supports\ paging}}
+\DoxyCodeLine{00127\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ae4d1358a67f2c909baf6b68c2270cb7e}{m\_operatingModes}};\ \ \ \ \ \ \textcolor{comment}{//\ Indicates\ the\ operating\ modes\ of\ the\ device}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a567107954fab4f166cc05bf041b73d1f}{m\_mesh}};}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a3c565b5a3c888a077b00228723a98b69}{m\_scheduledAccessDataTransfer}};\ \textcolor{comment}{//\ Indicates\ if\ the\ device\ supports\ scheduled\ access\ data}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ transfer}}
+\DoxyCodeLine{00131\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a9341e5b6ca0bfa3e23cd1be702f2b183}{m\_macSecurity}};\ \textcolor{comment}{//\ Indicates\ the\ MAC\ security\ level\ of\ the\ device}}
+\DoxyCodeLine{00132\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aaf25d1253d95a77c66a345624f832531}{m\_dlcServiceType}};\ \textcolor{comment}{//\ Indicates\ the\ DLC\ service\ type\ of\ the\ device}}
+\DoxyCodeLine{00133\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad31824b78655dc671e90b4547500ca69}{m\_rdPowerClass}};\ \textcolor{comment}{//\ Indicates\ the\ RD\ power\ class\ of\ the\ device}}
+\DoxyCodeLine{00134\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a44d2852f8e96ab0d2ccdb6899de3e2e1}{m\_maxNssFoRx}};\ \textcolor{comment}{//\ Indicates\ the\ maximum\ number\ of\ spatial\ streams\ for\ reception}}
+\DoxyCodeLine{00135\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aac42b44515e0e429655343dd72e16659}{m\_rxForTxDiversity}};\ \textcolor{comment}{//\ Indicates\ if\ the\ device\ supports\ RX\ for\ TX\ diversity}}
+\DoxyCodeLine{00136\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a49e335d384651cfb878c57dc646b1573}{m\_rxGain}};\ \textcolor{comment}{//\ Indicates\ the\ RX\ gain\ of\ the\ device}}
+\DoxyCodeLine{00137\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a91bb3d6862a4bfde3d8c9e8108095de2}{m\_maxMcs}};\ \textcolor{comment}{//\ Indicates\ the\ maximum\ MCS\ of\ the\ device}}
+\DoxyCodeLine{00138\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aec53a223e48948474613eb8413925cb5}{m\_softBufferSize}};\ \textcolor{comment}{//\ Indicates\ the\ size\ of\ the\ soft\ buffer\ of\ the\ device}}
+\DoxyCodeLine{00139\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a19622110a019a0c23c6f84b364dcb5ca}{m\_numOfHarqProcesses}};\ \textcolor{comment}{//\ Indicates\ the\ number\ of\ HARQ\ processes\ of\ the\ device}}
+\DoxyCodeLine{00140\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a3978467177e62c50a696d82d1db81d74}{m\_harqFeedbackDelay}};\ \textcolor{comment}{//\ Indicates\ the\ HARQ\ feedback\ delay\ of\ the\ device}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_abc43bf9aacc2b10824eab4f738889e5d}{m\_dDelay}};\ \textcolor{comment}{//\ Indicates\ if\ the\ device\ supports\ D-\/Delay}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aef0976a9c2f76af463f3a6caf400a304}{m\_halfDulp}};\ \textcolor{comment}{//\ Indicates\ if\ the\ device\ supports\ half-\/duplex\ operation}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a5089c1e2107fe8550c89fec783add4cc}{m\_txPowerDbm}}\ =\ 10;\ \textcolor{comment}{//\ Default\ transmission\ power\ in\ dBm}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ DoInitialize(\textcolor{keywordtype}{void})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ Membervariablen}}
+\DoxyCodeLine{00150\ \ \ \ \ Ptr<Node>\ m\_node;}
+\DoxyCodeLine{00151\ \ \ \ \ uint32\_t\ m\_ifIndex;}
+\DoxyCodeLine{00152\ \ \ \ \ Mac48Address\ m\_address;}
+\DoxyCodeLine{00153\ \ \ \ \ uint16\_t\ m\_mtu;}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_linkUp;}
+\DoxyCodeLine{00155\ \ \ \ \ NetDevice::ReceiveCallback\ m\_rxCallback;}
+\DoxyCodeLine{00156\ \ \ \ \ NetDevice::PromiscReceiveCallback\ m\_promiscRxCallback;}
+\DoxyCodeLine{00157\ \ \ \ \ Ptr<Dect2020Mac>\ m\_mac;}
+\DoxyCodeLine{00158\ \ \ \ \ Ptr<Dect2020Phy>\ m\_phy;}
+\DoxyCodeLine{00159\ \ \ \ \ TracedCallback<>\ m\_linkChanges;}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ uint8\_t\ m\_bandNumber;\ \textcolor{comment}{//\ Band\ Number\ (1-\/22)}}
+\DoxyCodeLine{00162\ \};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \}\ \textcolor{comment}{//\ namespace\ ns3}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ DECT2020\_NET\_DEVICE\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

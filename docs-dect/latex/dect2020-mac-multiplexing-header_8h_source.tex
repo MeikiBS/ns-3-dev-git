@@ -1,0 +1,57 @@
+\doxysection{dect2020-\/mac-\/multiplexing-\/header.h}
+\hypertarget{dect2020-mac-multiplexing-header_8h_source}{}\label{dect2020-mac-multiplexing-header_8h_source}\index{contrib/dect-\/nr/model/dect2020-\/mac-\/multiplexing-\/header.h@{contrib/dect-\/nr/model/dect2020-\/mac-\/multiplexing-\/header.h}}
+\mbox{\hyperlink{dect2020-mac-multiplexing-header_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DECT2020\_MUX\_HEADER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DECT2020\_MUX\_HEADER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}ns3/header.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacens3}{ns3}}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2}{IETypeFieldEncoding}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{//\ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ Table\ 6.3.4.2}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//\ Rest\ to\ be\ implemented}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a89e33e19ddb02ee047b5738a1a87bb1a}{NETWORK\_BEACON\_MESSAGE}}\ =\ 8,}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a4fc8215c8c2100101dcace2367601f2d}{CLUSTER\_BEACON\_MESSAGE}}\ =\ 9,}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a432f034e6659bcc60ec151630a4d9fd5}{ASSOCIATION\_REQUEST\_MESSAGE}}\ =\ 10,}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a6d58d357db2c451b8e8fbb0324319b99}{ASSOCIATION\_RESPONSE\_MESSAGE}}\ =\ 11,}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2aec5914fb271e164bd15560423ea958fe}{RANDOM\_ACCESS\_RESOURCE\_IE}}\ =\ 19}
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload}{Dect2020MacMuxHeaderShortSduNoPayload}}\ :\ \textcolor{keyword}{public}\ Header}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_a890dae05885beb7831c001081165b267}{Dect2020MacMuxHeaderShortSduNoPayload}}();}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_a21f7ebb8a4e2d93ec7e356a984d8a44d}{\string~Dect2020MacMuxHeaderShortSduNoPayload}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Getter\ und\ Setter}}
+\DoxyCodeLine{00026\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_a75928fe01e24dda24d4477b4c81f8e90}{GetMacExtensionFieldEncoding}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_a9fd200e8849bb77710b4b33181296b7b}{SetMacExtensionFieldEncoding}}(uint8\_t\ encoding);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_aa65ad0e8698f8e15eb9e21905004394c}{GetLengthField}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_a969c00e2d37f7f78144f41e8c5414f1e}{SetLengthField}}(uint8\_t\ length);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2}{IETypeFieldEncoding}}\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_ae2286fccdfad80e03997e4836c7218f2}{GetIeTypeFieldEncoding}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_a3b3868cccb6158cf212c7419ed92c49d}{SetIeTypeFieldEncoding}}(\mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2}{IETypeFieldEncoding}}\ type);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ von\ Header}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_ad0d8b64bb2d54236f41b4bddcdff518e}{GetTypeId}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_a9bce46c3c94c1e72a3f147a720e61354}{GetInstanceTypeId}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_a6a7f328de2054ab89ee2b5d9d92d1d4b}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_a41cd526df3798e29fcb7f47ac4fcccfc}{GetSerializedSize}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_aad81880a63e5789dcf0f4fa75071d96b}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload_a891d9afeda650bc0565a9343f24af4c1}{Deserialize}}(Buffer::Iterator\ start);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ \ \ uint8\_t\ m\_macExtensionFieldEncoding;\ \textcolor{comment}{//\ 2\ Bit}}
+\DoxyCodeLine{00045\ \ \ \ \ uint8\_t\ m\_length;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00046\ \ \ \ \ uint8\_t\ m\_ieTypeFieldEncoding;\ \ \ \ \ \ \ \textcolor{comment}{//\ 5\ Bit}}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \}\ \textcolor{comment}{//\ namespace\ ns3}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

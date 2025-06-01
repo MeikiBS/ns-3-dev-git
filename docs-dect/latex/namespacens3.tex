@@ -1,0 +1,463 @@
+\doxysection{ns3 Namespace Reference}
+\hypertarget{namespacens3}{}\label{namespacens3}\index{ns3@{ns3}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structns3_1_1AssociatedPtInfo}{Associated\+Pt\+Info}}
+\item 
+struct \mbox{\hyperlink{structns3_1_1BandParameters}{Band\+Parameters}}
+\begin{DoxyCompactList}\small\item\em Describes parameters for a DECT band. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structns3_1_1ChannelEvaluation}{Channel\+Evaluation}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE}{Dect2020\+Association\+Control\+IE}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage}{Dect2020\+Association\+Request\+Message}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage}{Dect2020\+Association\+Response\+Message}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020\+Beacon\+Header}}
+\begin{DoxyCompactList}\small\item\em Indicates the type of the MAC Common Header (ETSI TS 103 636-\/4, Table 6.\+3.\+3.\+2). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020Channel}{Dect2020\+Channel}}
+\begin{DoxyCompactList}\small\item\em DECT2020 Channel Klasse. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020ChannelManager}{Dect2020\+Channel\+Manager}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020\+Cluster\+Beacon\+Message}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020\+Mac}}
+\begin{DoxyCompactList}\small\item\em DECT2020 MAC Klasse. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType}{Dect2020\+Mac\+Header\+Type}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload}{Dect2020\+Mac\+Mux\+Header\+Short\+Sdu\+No\+Payload}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020NetDevice}{Dect2020\+Net\+Device}}
+\begin{DoxyCompactList}\small\item\em DECT2020 Net\+Device Klasse. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020\+Network\+Beacon\+Message}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020\+Phy}}
+\begin{DoxyCompactList}\small\item\em DECT2020 PHY Klasse. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType2}{Dect2020\+PHYControl\+Field\+Type2}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020\+Random\+Access\+Resource\+IE}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020\+Rd\+Capability\+IE}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020SpectrumSignalParameters}{Dect2020\+Spectrum\+Signal\+Parameters}}
+\item 
+class \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader}{Dect2020\+Unicast\+Header}}
+\item 
+struct \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}}
+\item 
+struct \mbox{\hyperlink{structns3_1_1Slot}{Slot}}
+\item 
+struct \mbox{\hyperlink{structns3_1_1Subslot}{Subslot}}
+\item 
+struct \mbox{\hyperlink{structns3_1_1SubslotScanContext}{Subslot\+Scan\+Context}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef Callback$<$ void, Ptr$<$ Packet $>$ $>$ \mbox{\hyperlink{namespacens3_abd6d4ba79253871c9fb42dce4850bbe7}{Rx\+Received\+Callback}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacens3_a23a4b2654baeb10a79213036a7d457dd}{Operating\+Channel\+Bandwith}} \{ \mbox{\hyperlink{namespacens3_a23a4b2654baeb10a79213036a7d457dda80bd6c9ccd45ec50bad2dd93d94ae38b}{BANDWITH\+\_\+I}} = 1728000
+ \}
+\item 
+enum \mbox{\hyperlink{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137}{Subslot\+Status}} \{ \mbox{\hyperlink{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a0599ec864b82b6eef0bd7950ccea9c73}{FREE}} = 1
+, \mbox{\hyperlink{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a843e0308ede50ec9dc7814d5bfe3347e}{POSSIBLE}} = 2
+, \mbox{\hyperlink{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a61eec9b142cbea484d655857fbf36e34}{BUSY}} = 3
+ \}
+\item 
+enum \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{Network\+Beacon\+Period}} \{ \newline
+\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5}{NETWORK\+\_\+\+PERIOD\+\_\+50\+MS}} = 0
+, \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caae66e92c4dd7eec5df86d4ffa3b59eee2}{NETWORK\+\_\+\+PERIOD\+\_\+100\+MS}} = 1
+, \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa883151b485be6f6d76a230db226a53de}{NETWORK\+\_\+\+PERIOD\+\_\+500\+MS}} = 2
+, \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaa52cf007493d1837739f6e2551a359e5}{NETWORK\+\_\+\+PERIOD\+\_\+1000\+MS}} = 3
+, \newline
+\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa814adeaa296547dc9373204593eb2fed}{NETWORK\+\_\+\+PERIOD\+\_\+1500\+MS}} = 4
+, \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaaf3b0044a226162ab1048a7b6a31476f}{NETWORK\+\_\+\+PERIOD\+\_\+2000\+MS}} = 5
+, \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa098efd1e228d7c17fa00416fc882e586}{NETWORK\+\_\+\+PERIOD\+\_\+4000\+MS}} = 6
+ \}
+\item 
+enum \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{Cluster\+Beacon\+Period}} \{ \newline
+\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba2986bd991b3e9fc7bfffed04ae9ee86c}{CLUSTER\+\_\+\+PERIOD\+\_\+10\+MS}} = 0
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbae06c717a8302a931fa4f51d40501ae32}{CLUSTER\+\_\+\+PERIOD\+\_\+50\+MS}} = 1
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6}{CLUSTER\+\_\+\+PERIOD\+\_\+100\+MS}} = 2
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbaf4472a2c2e9cd788f8940c5d58a47147}{CLUSTER\+\_\+\+PERIOD\+\_\+500\+MS}} = 3
+, \newline
+\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbabbf209582292a94fa1ac0cd0b822c4eb}{CLUSTER\+\_\+\+PERIOD\+\_\+1000\+MS}} = 4
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba212c80ffb0f3fe1f5193c96ae9db7b62}{CLUSTER\+\_\+\+PERIOD\+\_\+1500\+MS}} = 5
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba8a98ed0d12f96bea0b00fa86e089aae4}{CLUSTER\+\_\+\+PERIOD\+\_\+2000\+MS}} = 6
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba8a145ddc939b4832ee3fc7b553f1c812}{CLUSTER\+\_\+\+PERIOD\+\_\+4000\+MS}} = 7
+, \newline
+\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbababc8e33af9678ba409bf5ac251b19ad}{CLUSTER\+\_\+\+PERIOD\+\_\+8000\+MS}} = 8
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba2871e31753c2a86d7475eba9a5043b60}{CLUSTER\+\_\+\+PERIOD\+\_\+16000\+MS}} = 9
+, \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba00cbdcfad832206e9b583b286063f1b1}{CLUSTER\+\_\+\+PERIOD\+\_\+32000\+MS}} = 10
+ \}
+\item 
+enum \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2}{IEType\+Field\+Encoding}} \{ \newline
+\mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a89e33e19ddb02ee047b5738a1a87bb1a}{NETWORK\+\_\+\+BEACON\+\_\+\+MESSAGE}} = 8
+, \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a4fc8215c8c2100101dcace2367601f2d}{CLUSTER\+\_\+\+BEACON\+\_\+\+MESSAGE}} = 9
+, \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a432f034e6659bcc60ec151630a4d9fd5}{ASSOCIATION\+\_\+\+REQUEST\+\_\+\+MESSAGE}} = 10
+, \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a6d58d357db2c451b8e8fbb0324319b99}{ASSOCIATION\+\_\+\+RESPONSE\+\_\+\+MESSAGE}} = 11
+, \newline
+\mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2aec5914fb271e164bd15560423ea958fe}{RANDOM\+\_\+\+ACCESS\+\_\+\+RESOURCE\+\_\+\+IE}} = 19
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacens3_a5bd8c5cb37ffa7c1f9fedbe18d503856}{NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED}} (\mbox{\hyperlink{classns3_1_1Dect2020Channel}{Dect2020\+Channel}})
+\item 
+\mbox{\hyperlink{namespacens3_a39b6a07aa314565f62cb51afbefa6831}{NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE}} ("{}Dect2020\+Mac\+Common\+Header"{})
+\item 
+\mbox{\hyperlink{namespacens3_ae94764ddd4bc74ae8eee027bf65bc9b3}{NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED}} (\mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020\+Beacon\+Header}})
+\item 
+\mbox{\hyperlink{namespacens3_a5a4d58fd70773e9422b06efdbb162761}{NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE}} ("{}Dect2020\+Mac\+Header\+Type"{})
+\item 
+\mbox{\hyperlink{namespacens3_a5a3bfcf2129cd1104711434463f2f6aa}{NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED}} (\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType}{Dect2020\+Mac\+Header\+Type}})
+\item 
+\mbox{\hyperlink{namespacens3_aa1171aa1e140caeca87a1adece2753e4}{NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE}} ("{}Dect2020\+MACInformation\+Elements"{})
+\item 
+\mbox{\hyperlink{namespacens3_a5952d242986dc76e32fcb73fbe80a1c7}{NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE}} ("{}Dect2020\+Beacon\+Message"{})
+\item 
+\mbox{\hyperlink{namespacens3_a6e5ce42f9509a636e2433fba25e8e6ff}{NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED}} (\mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020\+Cluster\+Beacon\+Message}})
+\item 
+\mbox{\hyperlink{namespacens3_af0ac44617f600222b4c43e0e2ea271a9}{NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED}} (\mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020\+Network\+Beacon\+Message}})
+\item 
+\mbox{\hyperlink{namespacens3_add5d9cab4950b24325631048b14b79f4}{NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE}} ("{}Dect2020\+Mac\+Multiplexing\+Header"{})
+\item 
+\mbox{\hyperlink{namespacens3_a0a955ad5ef15bf4f695ada6b393fb09e}{NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED}} (\mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload}{Dect2020\+Mac\+Mux\+Header\+Short\+Sdu\+No\+Payload}})
+\item 
+\mbox{\hyperlink{namespacens3_a9f9b5519e503c771ccadf98a03a9ab5f}{NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED}} (\mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020\+Mac}})
+\item 
+\mbox{\hyperlink{namespacens3_a5640857c2f47a710c56e00333c01f64d}{NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE}} ("{}Dect2020\+Net\+Device"{})
+\item 
+\mbox{\hyperlink{namespacens3_a05756d2dac96800eeec0f397e6075302}{NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED}} (\mbox{\hyperlink{classns3_1_1Dect2020NetDevice}{Dect2020\+Net\+Device}})
+\item 
+bool \mbox{\hyperlink{namespacens3_ace0b5c5a981fce8ed7aed4ec0d92d5f9}{Receive\+Packet}} (Ptr$<$ Net\+Device $>$ device, Ptr$<$ const Packet $>$ packet, uint16\+\_\+t protocol, const Address \&sender)
+\item 
+\mbox{\hyperlink{namespacens3_a93c906c4d3d832040b1a68c29c558897}{NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED}} (\mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020\+Phy}})
+\item 
+\mbox{\hyperlink{namespacens3_a8b233dc5537e134a5c48649616f53841}{NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE}} ("{}Dect2020\+PHYControl\+Field\+Type1"{})
+\item 
+\mbox{\hyperlink{namespacens3_a157384f22b5db69a9daf5f2df9e65ffe}{NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED}} (\mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}})
+\item 
+\mbox{\hyperlink{namespacens3_a294f75693f313bea03e73dc8f88932c2}{NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE}} ("{}Dect2020\+Spectrum\+Signal\+Parameters"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::array$<$ int8\+\_\+t, 16 $>$ \mbox{\hyperlink{namespacens3_a33cdf1ff79a0874e4f19affeacd4a8c9}{tx\+Power\+Table}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{namespacens3_abd6d4ba79253871c9fb42dce4850bbe7}\label{namespacens3_abd6d4ba79253871c9fb42dce4850bbe7} 
+\index{ns3@{ns3}!RxReceivedCallback@{RxReceivedCallback}}
+\index{RxReceivedCallback@{RxReceivedCallback}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{RxReceivedCallback}{RxReceivedCallback}}
+{\footnotesize\ttfamily typedef Callback$<$void, Ptr$<$Packet$>$ $>$ \mbox{\hyperlink{namespacens3_abd6d4ba79253871c9fb42dce4850bbe7}{ns3\+::\+Rx\+Received\+Callback}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adb}\label{namespacens3_add18c6731b9c3700a0db065064931adb} 
+\index{ns3@{ns3}!ClusterBeaconPeriod@{ClusterBeaconPeriod}}
+\index{ClusterBeaconPeriod@{ClusterBeaconPeriod}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{ClusterBeaconPeriod}{ClusterBeaconPeriod}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ns3\+::\+Cluster\+Beacon\+Period}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_PERIOD\_10MS@{CLUSTER\_PERIOD\_10MS}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_PERIOD\_10MS@{CLUSTER\_PERIOD\_10MS}}}\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adba2986bd991b3e9fc7bfffed04ae9ee86c}\label{namespacens3_add18c6731b9c3700a0db065064931adba2986bd991b3e9fc7bfffed04ae9ee86c} 
+CLUSTER\+\_\+\+PERIOD\+\_\+10\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_PERIOD\_50MS@{CLUSTER\_PERIOD\_50MS}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_PERIOD\_50MS@{CLUSTER\_PERIOD\_50MS}}}\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adbae06c717a8302a931fa4f51d40501ae32}\label{namespacens3_add18c6731b9c3700a0db065064931adbae06c717a8302a931fa4f51d40501ae32} 
+CLUSTER\+\_\+\+PERIOD\+\_\+50\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_PERIOD\_100MS@{CLUSTER\_PERIOD\_100MS}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_PERIOD\_100MS@{CLUSTER\_PERIOD\_100MS}}}\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6}\label{namespacens3_add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6} 
+CLUSTER\+\_\+\+PERIOD\+\_\+100\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_PERIOD\_500MS@{CLUSTER\_PERIOD\_500MS}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_PERIOD\_500MS@{CLUSTER\_PERIOD\_500MS}}}\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adbaf4472a2c2e9cd788f8940c5d58a47147}\label{namespacens3_add18c6731b9c3700a0db065064931adbaf4472a2c2e9cd788f8940c5d58a47147} 
+CLUSTER\+\_\+\+PERIOD\+\_\+500\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_PERIOD\_1000MS@{CLUSTER\_PERIOD\_1000MS}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_PERIOD\_1000MS@{CLUSTER\_PERIOD\_1000MS}}}\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adbabbf209582292a94fa1ac0cd0b822c4eb}\label{namespacens3_add18c6731b9c3700a0db065064931adbabbf209582292a94fa1ac0cd0b822c4eb} 
+CLUSTER\+\_\+\+PERIOD\+\_\+1000\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_PERIOD\_1500MS@{CLUSTER\_PERIOD\_1500MS}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_PERIOD\_1500MS@{CLUSTER\_PERIOD\_1500MS}}}\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adba212c80ffb0f3fe1f5193c96ae9db7b62}\label{namespacens3_add18c6731b9c3700a0db065064931adba212c80ffb0f3fe1f5193c96ae9db7b62} 
+CLUSTER\+\_\+\+PERIOD\+\_\+1500\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_PERIOD\_2000MS@{CLUSTER\_PERIOD\_2000MS}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_PERIOD\_2000MS@{CLUSTER\_PERIOD\_2000MS}}}\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adba8a98ed0d12f96bea0b00fa86e089aae4}\label{namespacens3_add18c6731b9c3700a0db065064931adba8a98ed0d12f96bea0b00fa86e089aae4} 
+CLUSTER\+\_\+\+PERIOD\+\_\+2000\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_PERIOD\_4000MS@{CLUSTER\_PERIOD\_4000MS}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_PERIOD\_4000MS@{CLUSTER\_PERIOD\_4000MS}}}\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adba8a145ddc939b4832ee3fc7b553f1c812}\label{namespacens3_add18c6731b9c3700a0db065064931adba8a145ddc939b4832ee3fc7b553f1c812} 
+CLUSTER\+\_\+\+PERIOD\+\_\+4000\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_PERIOD\_8000MS@{CLUSTER\_PERIOD\_8000MS}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_PERIOD\_8000MS@{CLUSTER\_PERIOD\_8000MS}}}\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adbababc8e33af9678ba409bf5ac251b19ad}\label{namespacens3_add18c6731b9c3700a0db065064931adbababc8e33af9678ba409bf5ac251b19ad} 
+CLUSTER\+\_\+\+PERIOD\+\_\+8000\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_PERIOD\_16000MS@{CLUSTER\_PERIOD\_16000MS}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_PERIOD\_16000MS@{CLUSTER\_PERIOD\_16000MS}}}\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adba2871e31753c2a86d7475eba9a5043b60}\label{namespacens3_add18c6731b9c3700a0db065064931adba2871e31753c2a86d7475eba9a5043b60} 
+CLUSTER\+\_\+\+PERIOD\+\_\+16000\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_PERIOD\_32000MS@{CLUSTER\_PERIOD\_32000MS}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_PERIOD\_32000MS@{CLUSTER\_PERIOD\_32000MS}}}\Hypertarget{namespacens3_add18c6731b9c3700a0db065064931adba00cbdcfad832206e9b583b286063f1b1}\label{namespacens3_add18c6731b9c3700a0db065064931adba00cbdcfad832206e9b583b286063f1b1} 
+CLUSTER\+\_\+\+PERIOD\+\_\+32000\+MS&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2}\label{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2} 
+\index{ns3@{ns3}!IETypeFieldEncoding@{IETypeFieldEncoding}}
+\index{IETypeFieldEncoding@{IETypeFieldEncoding}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{IETypeFieldEncoding}{IETypeFieldEncoding}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2}{ns3\+::\+IEType\+Field\+Encoding}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NETWORK\_BEACON\_MESSAGE@{NETWORK\_BEACON\_MESSAGE}!ns3@{ns3}}\index{ns3@{ns3}!NETWORK\_BEACON\_MESSAGE@{NETWORK\_BEACON\_MESSAGE}}}\Hypertarget{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a89e33e19ddb02ee047b5738a1a87bb1a}\label{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a89e33e19ddb02ee047b5738a1a87bb1a} 
+NETWORK\+\_\+\+BEACON\+\_\+\+MESSAGE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUSTER\_BEACON\_MESSAGE@{CLUSTER\_BEACON\_MESSAGE}!ns3@{ns3}}\index{ns3@{ns3}!CLUSTER\_BEACON\_MESSAGE@{CLUSTER\_BEACON\_MESSAGE}}}\Hypertarget{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a4fc8215c8c2100101dcace2367601f2d}\label{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a4fc8215c8c2100101dcace2367601f2d} 
+CLUSTER\+\_\+\+BEACON\+\_\+\+MESSAGE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ASSOCIATION\_REQUEST\_MESSAGE@{ASSOCIATION\_REQUEST\_MESSAGE}!ns3@{ns3}}\index{ns3@{ns3}!ASSOCIATION\_REQUEST\_MESSAGE@{ASSOCIATION\_REQUEST\_MESSAGE}}}\Hypertarget{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a432f034e6659bcc60ec151630a4d9fd5}\label{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a432f034e6659bcc60ec151630a4d9fd5} 
+ASSOCIATION\+\_\+\+REQUEST\+\_\+\+MESSAGE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ASSOCIATION\_RESPONSE\_MESSAGE@{ASSOCIATION\_RESPONSE\_MESSAGE}!ns3@{ns3}}\index{ns3@{ns3}!ASSOCIATION\_RESPONSE\_MESSAGE@{ASSOCIATION\_RESPONSE\_MESSAGE}}}\Hypertarget{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a6d58d357db2c451b8e8fbb0324319b99}\label{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2a6d58d357db2c451b8e8fbb0324319b99} 
+ASSOCIATION\+\_\+\+RESPONSE\+\_\+\+MESSAGE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RANDOM\_ACCESS\_RESOURCE\_IE@{RANDOM\_ACCESS\_RESOURCE\_IE}!ns3@{ns3}}\index{ns3@{ns3}!RANDOM\_ACCESS\_RESOURCE\_IE@{RANDOM\_ACCESS\_RESOURCE\_IE}}}\Hypertarget{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2aec5914fb271e164bd15560423ea958fe}\label{namespacens3_a8f6fbd0f93ca9230c75e5d3206f36cb2aec5914fb271e164bd15560423ea958fe} 
+RANDOM\+\_\+\+ACCESS\+\_\+\+RESOURCE\+\_\+\+IE&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}\label{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca} 
+\index{ns3@{ns3}!NetworkBeaconPeriod@{NetworkBeaconPeriod}}
+\index{NetworkBeaconPeriod@{NetworkBeaconPeriod}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NetworkBeaconPeriod}{NetworkBeaconPeriod}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{ns3\+::\+Network\+Beacon\+Period}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NETWORK\_PERIOD\_50MS@{NETWORK\_PERIOD\_50MS}!ns3@{ns3}}\index{ns3@{ns3}!NETWORK\_PERIOD\_50MS@{NETWORK\_PERIOD\_50MS}}}\Hypertarget{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5}\label{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5} 
+NETWORK\+\_\+\+PERIOD\+\_\+50\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NETWORK\_PERIOD\_100MS@{NETWORK\_PERIOD\_100MS}!ns3@{ns3}}\index{ns3@{ns3}!NETWORK\_PERIOD\_100MS@{NETWORK\_PERIOD\_100MS}}}\Hypertarget{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caae66e92c4dd7eec5df86d4ffa3b59eee2}\label{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caae66e92c4dd7eec5df86d4ffa3b59eee2} 
+NETWORK\+\_\+\+PERIOD\+\_\+100\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NETWORK\_PERIOD\_500MS@{NETWORK\_PERIOD\_500MS}!ns3@{ns3}}\index{ns3@{ns3}!NETWORK\_PERIOD\_500MS@{NETWORK\_PERIOD\_500MS}}}\Hypertarget{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa883151b485be6f6d76a230db226a53de}\label{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa883151b485be6f6d76a230db226a53de} 
+NETWORK\+\_\+\+PERIOD\+\_\+500\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NETWORK\_PERIOD\_1000MS@{NETWORK\_PERIOD\_1000MS}!ns3@{ns3}}\index{ns3@{ns3}!NETWORK\_PERIOD\_1000MS@{NETWORK\_PERIOD\_1000MS}}}\Hypertarget{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaa52cf007493d1837739f6e2551a359e5}\label{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaa52cf007493d1837739f6e2551a359e5} 
+NETWORK\+\_\+\+PERIOD\+\_\+1000\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NETWORK\_PERIOD\_1500MS@{NETWORK\_PERIOD\_1500MS}!ns3@{ns3}}\index{ns3@{ns3}!NETWORK\_PERIOD\_1500MS@{NETWORK\_PERIOD\_1500MS}}}\Hypertarget{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa814adeaa296547dc9373204593eb2fed}\label{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa814adeaa296547dc9373204593eb2fed} 
+NETWORK\+\_\+\+PERIOD\+\_\+1500\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NETWORK\_PERIOD\_2000MS@{NETWORK\_PERIOD\_2000MS}!ns3@{ns3}}\index{ns3@{ns3}!NETWORK\_PERIOD\_2000MS@{NETWORK\_PERIOD\_2000MS}}}\Hypertarget{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaaf3b0044a226162ab1048a7b6a31476f}\label{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaaf3b0044a226162ab1048a7b6a31476f} 
+NETWORK\+\_\+\+PERIOD\+\_\+2000\+MS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NETWORK\_PERIOD\_4000MS@{NETWORK\_PERIOD\_4000MS}!ns3@{ns3}}\index{ns3@{ns3}!NETWORK\_PERIOD\_4000MS@{NETWORK\_PERIOD\_4000MS}}}\Hypertarget{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa098efd1e228d7c17fa00416fc882e586}\label{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa098efd1e228d7c17fa00416fc882e586} 
+NETWORK\+\_\+\+PERIOD\+\_\+4000\+MS&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespacens3_a23a4b2654baeb10a79213036a7d457dd}\label{namespacens3_a23a4b2654baeb10a79213036a7d457dd} 
+\index{ns3@{ns3}!OperatingChannelBandwith@{OperatingChannelBandwith}}
+\index{OperatingChannelBandwith@{OperatingChannelBandwith}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{OperatingChannelBandwith}{OperatingChannelBandwith}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacens3_a23a4b2654baeb10a79213036a7d457dd}{ns3\+::\+Operating\+Channel\+Bandwith}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BANDWITH\_I@{BANDWITH\_I}!ns3@{ns3}}\index{ns3@{ns3}!BANDWITH\_I@{BANDWITH\_I}}}\Hypertarget{namespacens3_a23a4b2654baeb10a79213036a7d457dda80bd6c9ccd45ec50bad2dd93d94ae38b}\label{namespacens3_a23a4b2654baeb10a79213036a7d457dda80bd6c9ccd45ec50bad2dd93d94ae38b} 
+BANDWITH\+\_\+I&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137}\label{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137} 
+\index{ns3@{ns3}!SubslotStatus@{SubslotStatus}}
+\index{SubslotStatus@{SubslotStatus}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{SubslotStatus}{SubslotStatus}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137}{ns3\+::\+Subslot\+Status}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FREE@{FREE}!ns3@{ns3}}\index{ns3@{ns3}!FREE@{FREE}}}\Hypertarget{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a0599ec864b82b6eef0bd7950ccea9c73}\label{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a0599ec864b82b6eef0bd7950ccea9c73} 
+FREE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{POSSIBLE@{POSSIBLE}!ns3@{ns3}}\index{ns3@{ns3}!POSSIBLE@{POSSIBLE}}}\Hypertarget{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a843e0308ede50ec9dc7814d5bfe3347e}\label{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a843e0308ede50ec9dc7814d5bfe3347e} 
+POSSIBLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BUSY@{BUSY}!ns3@{ns3}}\index{ns3@{ns3}!BUSY@{BUSY}}}\Hypertarget{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a61eec9b142cbea484d655857fbf36e34}\label{namespacens3_a464883f9d4f13a20b2d2c3dda88c6137a61eec9b142cbea484d655857fbf36e34} 
+BUSY&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacens3_a5952d242986dc76e32fcb73fbe80a1c7}\label{namespacens3_a5952d242986dc76e32fcb73fbe80a1c7} 
+\index{ns3@{ns3}!NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}}
+\index{NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_LOG\_COMPONENT\_DEFINE()}{NS\_LOG\_COMPONENT\_DEFINE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/8]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE (\begin{DoxyParamCaption}\item[{"{}Dect2020\+Beacon\+Message"{}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a39b6a07aa314565f62cb51afbefa6831}\label{namespacens3_a39b6a07aa314565f62cb51afbefa6831} 
+\index{ns3@{ns3}!NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}}
+\index{NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_LOG\_COMPONENT\_DEFINE()}{NS\_LOG\_COMPONENT\_DEFINE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/8]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE (\begin{DoxyParamCaption}\item[{"{}Dect2020\+Mac\+Common\+Header"{}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a5a4d58fd70773e9422b06efdbb162761}\label{namespacens3_a5a4d58fd70773e9422b06efdbb162761} 
+\index{ns3@{ns3}!NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}}
+\index{NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_LOG\_COMPONENT\_DEFINE()}{NS\_LOG\_COMPONENT\_DEFINE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/8]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE (\begin{DoxyParamCaption}\item[{"{}Dect2020\+Mac\+Header\+Type"{}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_aa1171aa1e140caeca87a1adece2753e4}\label{namespacens3_aa1171aa1e140caeca87a1adece2753e4} 
+\index{ns3@{ns3}!NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}}
+\index{NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_LOG\_COMPONENT\_DEFINE()}{NS\_LOG\_COMPONENT\_DEFINE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/8]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE (\begin{DoxyParamCaption}\item[{"{}Dect2020\+MACInformation\+Elements"{}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_add5d9cab4950b24325631048b14b79f4}\label{namespacens3_add5d9cab4950b24325631048b14b79f4} 
+\index{ns3@{ns3}!NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}}
+\index{NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_LOG\_COMPONENT\_DEFINE()}{NS\_LOG\_COMPONENT\_DEFINE()}\hspace{0.1cm}{\footnotesize\ttfamily [5/8]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE (\begin{DoxyParamCaption}\item[{"{}Dect2020\+Mac\+Multiplexing\+Header"{}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a5640857c2f47a710c56e00333c01f64d}\label{namespacens3_a5640857c2f47a710c56e00333c01f64d} 
+\index{ns3@{ns3}!NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}}
+\index{NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_LOG\_COMPONENT\_DEFINE()}{NS\_LOG\_COMPONENT\_DEFINE()}\hspace{0.1cm}{\footnotesize\ttfamily [6/8]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE (\begin{DoxyParamCaption}\item[{"{}Dect2020\+Net\+Device"{}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a8b233dc5537e134a5c48649616f53841}\label{namespacens3_a8b233dc5537e134a5c48649616f53841} 
+\index{ns3@{ns3}!NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}}
+\index{NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_LOG\_COMPONENT\_DEFINE()}{NS\_LOG\_COMPONENT\_DEFINE()}\hspace{0.1cm}{\footnotesize\ttfamily [7/8]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE (\begin{DoxyParamCaption}\item[{"{}Dect2020\+PHYControl\+Field\+Type1"{}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a294f75693f313bea03e73dc8f88932c2}\label{namespacens3_a294f75693f313bea03e73dc8f88932c2} 
+\index{ns3@{ns3}!NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}}
+\index{NS\_LOG\_COMPONENT\_DEFINE@{NS\_LOG\_COMPONENT\_DEFINE}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_LOG\_COMPONENT\_DEFINE()}{NS\_LOG\_COMPONENT\_DEFINE()}\hspace{0.1cm}{\footnotesize\ttfamily [8/8]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+LOG\+\_\+\+COMPONENT\+\_\+\+DEFINE (\begin{DoxyParamCaption}\item[{"{}Dect2020\+Spectrum\+Signal\+Parameters"{}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_ae94764ddd4bc74ae8eee027bf65bc9b3}\label{namespacens3_ae94764ddd4bc74ae8eee027bf65bc9b3} 
+\index{ns3@{ns3}!NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}}
+\index{NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_OBJECT\_ENSURE\_REGISTERED()}{NS\_OBJECT\_ENSURE\_REGISTERED()}\hspace{0.1cm}{\footnotesize\ttfamily [1/10]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020\+Beacon\+Header}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a5bd8c5cb37ffa7c1f9fedbe18d503856}\label{namespacens3_a5bd8c5cb37ffa7c1f9fedbe18d503856} 
+\index{ns3@{ns3}!NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}}
+\index{NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_OBJECT\_ENSURE\_REGISTERED()}{NS\_OBJECT\_ENSURE\_REGISTERED()}\hspace{0.1cm}{\footnotesize\ttfamily [2/10]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020Channel}{Dect2020\+Channel}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a6e5ce42f9509a636e2433fba25e8e6ff}\label{namespacens3_a6e5ce42f9509a636e2433fba25e8e6ff} 
+\index{ns3@{ns3}!NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}}
+\index{NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_OBJECT\_ENSURE\_REGISTERED()}{NS\_OBJECT\_ENSURE\_REGISTERED()}\hspace{0.1cm}{\footnotesize\ttfamily [3/10]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020\+Cluster\+Beacon\+Message}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a9f9b5519e503c771ccadf98a03a9ab5f}\label{namespacens3_a9f9b5519e503c771ccadf98a03a9ab5f} 
+\index{ns3@{ns3}!NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}}
+\index{NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_OBJECT\_ENSURE\_REGISTERED()}{NS\_OBJECT\_ENSURE\_REGISTERED()}\hspace{0.1cm}{\footnotesize\ttfamily [4/10]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020\+Mac}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a5a3bfcf2129cd1104711434463f2f6aa}\label{namespacens3_a5a3bfcf2129cd1104711434463f2f6aa} 
+\index{ns3@{ns3}!NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}}
+\index{NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_OBJECT\_ENSURE\_REGISTERED()}{NS\_OBJECT\_ENSURE\_REGISTERED()}\hspace{0.1cm}{\footnotesize\ttfamily [5/10]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType}{Dect2020\+Mac\+Header\+Type}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a0a955ad5ef15bf4f695ada6b393fb09e}\label{namespacens3_a0a955ad5ef15bf4f695ada6b393fb09e} 
+\index{ns3@{ns3}!NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}}
+\index{NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_OBJECT\_ENSURE\_REGISTERED()}{NS\_OBJECT\_ENSURE\_REGISTERED()}\hspace{0.1cm}{\footnotesize\ttfamily [6/10]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload}{Dect2020\+Mac\+Mux\+Header\+Short\+Sdu\+No\+Payload}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a05756d2dac96800eeec0f397e6075302}\label{namespacens3_a05756d2dac96800eeec0f397e6075302} 
+\index{ns3@{ns3}!NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}}
+\index{NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_OBJECT\_ENSURE\_REGISTERED()}{NS\_OBJECT\_ENSURE\_REGISTERED()}\hspace{0.1cm}{\footnotesize\ttfamily [7/10]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020NetDevice}{Dect2020\+Net\+Device}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_af0ac44617f600222b4c43e0e2ea271a9}\label{namespacens3_af0ac44617f600222b4c43e0e2ea271a9} 
+\index{ns3@{ns3}!NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}}
+\index{NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_OBJECT\_ENSURE\_REGISTERED()}{NS\_OBJECT\_ENSURE\_REGISTERED()}\hspace{0.1cm}{\footnotesize\ttfamily [8/10]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020\+Network\+Beacon\+Message}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a93c906c4d3d832040b1a68c29c558897}\label{namespacens3_a93c906c4d3d832040b1a68c29c558897} 
+\index{ns3@{ns3}!NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}}
+\index{NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_OBJECT\_ENSURE\_REGISTERED()}{NS\_OBJECT\_ENSURE\_REGISTERED()}\hspace{0.1cm}{\footnotesize\ttfamily [9/10]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020\+Phy}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_a157384f22b5db69a9daf5f2df9e65ffe}\label{namespacens3_a157384f22b5db69a9daf5f2df9e65ffe} 
+\index{ns3@{ns3}!NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}}
+\index{NS\_OBJECT\_ENSURE\_REGISTERED@{NS\_OBJECT\_ENSURE\_REGISTERED}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{NS\_OBJECT\_ENSURE\_REGISTERED()}{NS\_OBJECT\_ENSURE\_REGISTERED()}\hspace{0.1cm}{\footnotesize\ttfamily [10/10]}}
+{\footnotesize\ttfamily ns3\+::\+NS\+\_\+\+OBJECT\+\_\+\+ENSURE\+\_\+\+REGISTERED (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacens3_ace0b5c5a981fce8ed7aed4ec0d92d5f9}\label{namespacens3_ace0b5c5a981fce8ed7aed4ec0d92d5f9} 
+\index{ns3@{ns3}!ReceivePacket@{ReceivePacket}}
+\index{ReceivePacket@{ReceivePacket}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{ReceivePacket()}{ReceivePacket()}}
+{\footnotesize\ttfamily bool ns3\+::\+Receive\+Packet (\begin{DoxyParamCaption}\item[{Ptr$<$ Net\+Device $>$}]{device,  }\item[{Ptr$<$ const Packet $>$}]{packet,  }\item[{uint16\+\_\+t}]{protocol,  }\item[{const Address \&}]{sender }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacens3_a33cdf1ff79a0874e4f19affeacd4a8c9}\label{namespacens3_a33cdf1ff79a0874e4f19affeacd4a8c9} 
+\index{ns3@{ns3}!txPowerTable@{txPowerTable}}
+\index{txPowerTable@{txPowerTable}!ns3@{ns3}}
+\doxysubsubsection{\texorpdfstring{txPowerTable}{txPowerTable}}
+{\footnotesize\ttfamily const std\+::array$<$int8\+\_\+t, 16$>$ ns3\+::tx\+Power\+Table}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ 0,\ \ \ }
+\DoxyCodeLine{\ \ \ \ 0,\ \ \ }
+\DoxyCodeLine{\ \ \ \ 0,\ \ \ }
+\DoxyCodeLine{\ \ \ \ 0,\ \ \ }
+\DoxyCodeLine{\ \ \ \ -\/12,\ }
+\DoxyCodeLine{\ \ \ \ -\/8,\ \ }
+\DoxyCodeLine{\ \ \ \ -\/4,\ \ }
+\DoxyCodeLine{\ \ \ \ 0,\ \ \ }
+\DoxyCodeLine{\ \ \ \ 4,\ \ \ }
+\DoxyCodeLine{\ \ \ \ 7,\ \ \ }
+\DoxyCodeLine{\ \ \ \ 10,\ \ }
+\DoxyCodeLine{\ \ \ \ 13,\ \ }
+\DoxyCodeLine{\ \ \ \ 16,\ \ }
+\DoxyCodeLine{\ \ \ \ 19,\ \ }
+\DoxyCodeLine{\ \ \ \ 21,\ \ }
+\DoxyCodeLine{\ \ \ \ 23\ \ \ }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

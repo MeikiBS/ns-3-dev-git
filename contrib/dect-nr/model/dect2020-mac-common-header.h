@@ -5,12 +5,28 @@
 #include "ns3/header.h"
 #include "ns3/nstime.h"
 
+/**
+ * \file dect2020-mac-common-header.h
+ * \ingroup Dect2020
+ * \brief Implements MAC Common Headers according to ETSI TS 103 636-4, Section 6.3.3.
+ *
+ * This file defines the common header structures used by DECT-2020 NR MAC layer messages.
+ * Currently implemented Headers are Beacon and Unicast header.
+ */
+
 namespace ns3
 {
+
 
 // *******************************************************
 //            DECT2020 Beacon Header
 // *******************************************************
+
+/**
+ * \class Dect2020BeaconHeader
+ * \brief MAC Beacon Header (ETSI TS 103 636-4, Table 6.3.3.2).
+ *
+ */
 
 class Dect2020BeaconHeader : public Header
 {
@@ -42,6 +58,11 @@ class Dect2020BeaconHeader : public Header
 //            DECT2020 Unicast Header
 // *******************************************************
 
+/**
+ * \class Dect2020UnicastHeader
+ * \brief MAC Unicast Header (ETSI TS 103 636-4, Table 6.3.3.3).
+ *
+ */
 class Dect2020UnicastHeader : public Header
 {
   public:

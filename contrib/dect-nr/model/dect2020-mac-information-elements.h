@@ -1,6 +1,14 @@
 #ifndef DECT2020_MAC_INFORMATION_ELEMENTS_H
 #define DECT2020_MAC_INFORMATION_ELEMENTS_H
 
+/**
+ * \file dect2020-mac-information-elements.h
+ * \brief Defines MAC Information Elements (IEs) used in DECT-2020 NR MAC PDUs.
+ *
+ * This file implements the IE structures as specified in
+ * ETSI TS 103 636-4  Section 6.4.3
+ */
+
 #include "ns3/header.h"
 
 #include <cstdint>
@@ -13,6 +21,11 @@ namespace ns3
 //            # ETSI TS 103 636-4 V2.1.1 6.4.3.4
 // *******************************************************
 
+/**
+ * \class Dect2020RandomAccessResourceIE
+ * \brief MAC Random Access Resource IE (ETSI TS 103 636-4 6.4.3.4).
+ *
+ */
 class Dect2020RandomAccessResourceIE : public Header
 {
   public:
@@ -114,8 +127,13 @@ class Dect2020RandomAccessResourceIE : public Header
 
 // NOTE: Only "Number of PHY Capabilities = 000" is supported.
 // This means that only the first 7 bytes are implemented.
-// The remaining 5 octets defined in the standard are not currently used.
+// The remaining 5 octets defined in the standard are currently not used.
 
+/**
+ * \class Dect2020RdCapabilityIE
+ * \brief MAC RD Capability IE (ETSI TS 103 636-4 6.4.3.5).
+ *
+ */
 class Dect2020RdCapabilityIE : public Header
 {
   public:
@@ -220,6 +238,11 @@ class Dect2020RdCapabilityIE : public Header
 //            # ETSI TS 103 636-4 V2.1.1 6.4.3.18
 // *******************************************************
 
+/**
+ * \class Dect2020AssociationControlIE
+ * \brief MAC Association Control IE (ETSI TS 103 636-4 6.4.3.18).
+ *
+ */
 class Dect2020AssociationControlIE : public Header
 {
   public:

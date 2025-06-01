@@ -1,0 +1,115 @@
+\doxysection{dect2020-\/phy.h}
+\hypertarget{dect2020-phy_8h_source}{}\label{dect2020-phy_8h_source}\index{contrib/dect-\/nr/model/dect2020-\/phy.h@{contrib/dect-\/nr/model/dect2020-\/phy.h}}
+\mbox{\hyperlink{dect2020-phy_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ -\/*-\/\ Mode:C++;\ c-\/file-\/style:"{}gnu"{};\ indent-\/tabs-\/mode:nil;\ -\/*-\/\ */}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ DECT2020\_PHY\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ DECT2020\_PHY\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dect2020-physical-header-field_8h}{dect2020-\/physical-\/header-\/field.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{dect2020-spectrum-signal-parameters_8h}{dect2020-\/spectrum-\/signal-\/parameters.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}ns3/mobility-\/model.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}ns3/nstime.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}ns3/object.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}ns3/packet.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}ns3/ptr.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}ns3/spectrum-\/model.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}ns3/spectrum-\/phy.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}ns3/traced-\/callback.h"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacens3}{ns3}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }Dect2020Mac;}
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }Dect2020Channel;}
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }Dect2020NetDevice;}
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }SpectrumChannel;}
+\DoxyCodeLine{00024\ \textcolor{keyword}{struct\ }Slot;}
+\DoxyCodeLine{00025\ \textcolor{keyword}{struct\ }Subslot;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{typedef}\ Callback<void,\ Ptr<Packet>>\ \mbox{\hyperlink{namespacens3_abd6d4ba79253871c9fb42dce4850bbe7}{RxReceivedCallback}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020Phy}}\ :\ \textcolor{keyword}{public}\ SpectrumPhy}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a1f2799b6dff7bab12aae97d9eab7e579}{GetTypeId}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a2a80d65af0b9a2faf2b06f25f7940cbe}{Dect2020Phy}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a6ddcf2c91996c1dae954520d15bd2185}{\string~Dect2020Phy}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Methoden\ zum\ Setzen\ der\ MAC-\/Schicht\ und\ des\ NetDevice}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_ad6532b8cdeecabf0305fe334d14a3bcd}{SetMac}}(Ptr<Dect2020Mac>\ mac);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a22880d34557b18732721e3c751c88383}{SetDevice}}(Ptr<NetDevice>\ device)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ Methoden\ zum\ Senden\ und\ Empfangen\ von\ Paketen}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a29df95614e9b784f468a99485be4585e}{Send}}(Ptr<Packet>\ packet,\ \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020PHYControlFieldType1}}\ physicalHeader);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a22e13661d3abf55a69ce8e0a3911898a}{Receive}}(Ptr<Packet>\ packet);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_aa28c543e61bf5fba7343245e4b05f919}{Start}}();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Kanalverwaltung}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a85b05d253891ef63a9c7019b20ab6536}{SetChannel}}(Ptr<SpectrumChannel>\ channel);}
+\DoxyCodeLine{00055\ \ \ \ \ Ptr<SpectrumChannel>\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a76a3e82cc386ee3d09d5fb7fbd956aff}{GetChannel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ Ptr<NetDevice>\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_adb6198c9bbc5223f52f6b1aa54dfb9e4}{GetDevice}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_aeb752cef6dbff6bafe6acecc0bf78228}{StartFrameTimer}}();}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a58126991798cb41adf89d82a1170d83d}{ProcessSlot}}(uint32\_t\ slot,\ \textcolor{keywordtype}{double}\ slotStartTime);}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a65e93626418605661a7c34c77bc4519e}{ProcessSubslot}}(uint32\_t\ slotId,\ uint32\_t\ subslotId);}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{structns3_1_1Slot}{Slot}}*\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_ae1624ecb6efc7dd3ee2a2cc8702d1e24}{GetCurrentSlot}}(uint32\_t\ channelId);}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{structns3_1_1Subslot}{Subslot}}*\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a8a430092b767cb9bd0ba054a55df2600}{GetCurrentSubslot}}(uint32\_t\ channelId);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_af01685784c0a9286c994d479553414ce}{SetReceiveCallback}}(Callback<\textcolor{keywordtype}{void},\ Ptr<Packet>,\ \textcolor{keywordtype}{double}>\ cb);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ static\ const\ std::vector<Channel>\&\ GetChannels();}}
+\DoxyCodeLine{00066\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a0eb87a27bded3d641dd7418b0000c889}{GetCurrentAbsoluteSubslot}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ Inherited\ Methods}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_add82b42094d6eb8d4f08092303d45932}{SetMobility}}(Ptr<MobilityModel>\ m);}
+\DoxyCodeLine{00070\ \ \ \ \ Ptr<MobilityModel>\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a5c4aa0976778baad8e4adf8702fbaf94}{GetMobility}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00071\ \ \ \ \ Ptr<const\ SpectrumModel>\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a11429ee94110918b8a8610376ef011e7}{GetRxSpectrumModel}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00072\ \ \ \ \ Ptr<Object>\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_acee95993c5d992680d15568dc4e70848}{GetAntenna}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a4534477687a8a45b5e4a64b0c688eddb}{SetAntenna}}(Ptr<Object>\ antenna);}
+\DoxyCodeLine{00074\ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a21ce125c89846fff563d72afc15f9582}{StartRx}}(Ptr<SpectrumSignalParameters>\ params);}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a85ebc584263e4d68d74253f39f5aad52}{EndRx}}(Ptr<SpectrumSignalParameters>\ params);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ Ptr<Dect2020Channel>\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_aa27d0fb87fbe9d9765141281806a3883}{m\_dect2020Channel}};}
+\DoxyCodeLine{00079\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_aa56bdf0b3cfeb443cef81c0fcbceff45}{GetMcsTransportBlockSize}}(uint8\_t\ mu,\ uint8\_t\ beta,\ uint8\_t\ mcsIndex);\ \textcolor{comment}{//\ In\ bits}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a16f7d546aa47c9dec445049729d9df5a}{CalculateTxDurationNs}}(\mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020PHYControlFieldType1}}\ physicalHeaderField);}
+\DoxyCodeLine{00081\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a789b8e301e483d132f9fd3fd6a7d9dd0}{GetAbsoluteSubslotTime}}(uint8\_t\ targetSfn,\ uint8\_t\ slot,\ uint8\_t\ subslot)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a26bd51be0fb8ddca4a231c22addee177}{GetTimeUntilSubslot}}(uint8\_t\ targetSfn,\ uint8\_t\ targetSlot,\ uint8\_t\ targetSubslot)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_af7ebc15953167ad8851d5a45d5503b3d}{GetAbsoluteSubslotIndex}}(uint8\_t\ slot,\ uint8\_t\ subslot)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_af84a0ebfea03afa6202a0e151724b64f}{GetTimeToNextAbsoluteSubslot}}(uint8\_t\ targetSfn,\ uint8\_t\ slot,\ uint8\_t\ subslot)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a6056e9d493ff3244b142f76923833d21}{m\_currentSfn}}\ =\ 0;}
+\DoxyCodeLine{00087\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a6c48e90f947fee7b016cb1228709234c}{m\_currentAbsoluteSubslot}}\ =\ 0;\ \textcolor{comment}{//\ The\ absolute\ subslot\ number\ in\ the\ frame}}
+\DoxyCodeLine{00088\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a4a1d289c4c16c3cca3a48412d7f547d0}{m\_frameStartTime}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_isFrameTimerRunning\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ ReceiveDelayed(Ptr<Packet>\ packet);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ Membervariablen}}
+\DoxyCodeLine{00095\ \ \ \ \ Ptr<Dect2020Mac>\ m\_mac;}
+\DoxyCodeLine{00096\ \ \ \ \ Ptr<NetDevice>\ m\_device;}
+\DoxyCodeLine{00097\ \ \ \ \ Ptr<SpectrumChannel>\ m\_channel;}
+\DoxyCodeLine{00098\ \ \ \ \ uint32\_t\ m\_currentSlot;}
+\DoxyCodeLine{00099\ \ \ \ \ uint32\_t\ m\_currentSubslot;}
+\DoxyCodeLine{00100\ \ \ \ \ Ptr<const\ SpectrumModel>\ m\_spectrumModel;}
+\DoxyCodeLine{00101\ \ \ \ \ Ptr<MobilityModel>\ m\_mobilityModel;}
+\DoxyCodeLine{00102\ \ \ \ \ Ptr<Object>\ m\_antenna;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ std::vector<uint16\_t>\ m\_singleSlotSingleStreamTransportBlockSizesMu1Beta1;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ Callback<void,\ Ptr<Packet>,\ \textcolor{keywordtype}{double}>\ m\_receiveCallback;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ Trace-\/Quellen}}
+\DoxyCodeLine{00109\ \ \ \ \ TracedCallback<Ptr<const\ Packet>>\ m\_phyTxBeginTrace;}
+\DoxyCodeLine{00110\ \ \ \ \ TracedCallback<Ptr<const\ Packet>>\ m\_phyRxTrace;}
+\DoxyCodeLine{00111\ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \}\ \textcolor{comment}{//\ namespace\ ns3}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ DECT2020\_PHY\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

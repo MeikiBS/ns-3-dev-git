@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['ietypefieldencoding_0',['IETypeFieldEncoding',['../namespacens3.html#a8f6fbd0f93ca9230c75e5d3206f36cb2',1,'ns3']]],
+  ['incrementassociationrequestreceptioncount_1',['IncrementAssociationRequestReceptionCount',['../classDect2020Statistics.html#ac1d60e1b20cc198f293de67c0172c223',1,'Dect2020Statistics']]],
+  ['incrementassociationrequesttransmissioncount_2',['IncrementAssociationRequestTransmissionCount',['../classDect2020Statistics.html#aec2105382ac12314728fa439a8fcd920',1,'Dect2020Statistics']]],
+  ['incrementassociationresponsereceptioncount_3',['IncrementAssociationResponseReceptionCount',['../classDect2020Statistics.html#a524dc19c89ca009876ddb07dadbd1ccc',1,'Dect2020Statistics']]],
+  ['incrementassociationresponsetransmissioncount_4',['IncrementAssociationResponseTransmissionCount',['../classDect2020Statistics.html#ade3ebacf002e708cebe916383cea5215',1,'Dect2020Statistics']]],
+  ['incrementclusterbeaconreception_5',['IncrementClusterBeaconReception',['../classDect2020Statistics.html#ab9d7a04a6460a5b9ad8da9450a9ccab2',1,'Dect2020Statistics']]],
+  ['incrementclusterbeacontransmission_6',['IncrementClusterBeaconTransmission',['../classDect2020Statistics.html#a7523f14a95a0aaebcc62971ff6356050',1,'Dect2020Statistics']]],
+  ['incrementnetworkbeaconreceptioncount_7',['IncrementNetworkBeaconReceptionCount',['../classDect2020Statistics.html#a82170cabe8d5654682179d39bfdf4ee9',1,'Dect2020Statistics']]],
+  ['incrementnetworkbeacontransmissioncount_8',['IncrementNetworkBeaconTransmissionCount',['../classDect2020Statistics.html#a2b87eb5ac3cf447834cc9782d09788c7',1,'Dect2020Statistics']]],
+  ['incrementpacketsdroppedcollision_9',['IncrementPacketsDroppedCollision',['../classDect2020Statistics.html#ae2dbbe897cce9e9c53ca311866ee26be',1,'Dect2020Statistics']]],
+  ['incrementpacketsdroppedlowrssi_10',['IncrementPacketsDroppedLowRssi',['../classDect2020Statistics.html#a7d4091a1aee83446297371e16a94095a',1,'Dect2020Statistics']]],
+  ['incrementsumofallpacketssent_11',['IncrementSumOfAllPacketsSent',['../classDect2020Statistics.html#a4d454e1c88bee0fc08ded4c110f7247a',1,'Dect2020Statistics']]],
+  ['initializechannels_12',['InitializeChannels',['../classns3_1_1Dect2020ChannelManager.html#ac9ba6b3d9cdaf3afef01b44c1f71e99e',1,'ns3::Dect2020ChannelManager']]],
+  ['initializedevice_13',['InitializeDevice',['../classns3_1_1Dect2020Mac.html#ab0a43e61de5976775531246105ef5f94',1,'ns3::Dect2020Mac']]],
+  ['initializenetwork_14',['InitializeNetwork',['../classns3_1_1Dect2020Mac.html#a36c239034dfb7ecf13053446da830cca',1,'ns3::Dect2020Mac']]],
+  ['isbridge_15',['IsBridge',['../classns3_1_1Dect2020NetDevice.html#a0961da65e3778d8b3dfa6561553f877e',1,'ns3::Dect2020NetDevice']]],
+  ['isbroadcast_16',['IsBroadcast',['../classns3_1_1Dect2020NetDevice.html#a4d718780c14b2457d7d99c12249e102a',1,'ns3::Dect2020NetDevice']]],
+  ['islinkup_17',['IsLinkUp',['../classns3_1_1Dect2020NetDevice.html#a4bedc2774696c7836c18ddc518b5b157',1,'ns3::Dect2020NetDevice']]],
+  ['ismulticast_18',['IsMulticast',['../classns3_1_1Dect2020NetDevice.html#ae85a91d56a4f6e82436fc2c33a00d641',1,'ns3::Dect2020NetDevice']]],
+  ['ispointtopoint_19',['IsPointToPoint',['../classns3_1_1Dect2020NetDevice.html#a3595545196154c18d586289cb6bf4b84',1,'ns3::Dect2020NetDevice']]],
+  ['iswaitingforclusterbeacon_20',['isWaitingForClusterBeacon',['../classns3_1_1Dect2020Mac.html#ab3a191cfbca5efa0dec192edcd42340b',1,'ns3::Dect2020Mac']]]
+];

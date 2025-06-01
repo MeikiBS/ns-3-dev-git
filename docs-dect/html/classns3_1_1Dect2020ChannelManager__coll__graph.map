@@ -1,0 +1,5 @@
+<map id="ns3::Dect2020ChannelManager" name="ns3::Dect2020ChannelManager">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,93,231,119"/>
+<area shape="rect" id="Node000002" href="$structns3_1_1BandParameters.html" title="Describes parameters for a DECT band." alt="" coords="38,5,198,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,45,121,93,115,93,115,45"/>
+</map>

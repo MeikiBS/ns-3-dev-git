@@ -1,0 +1,25 @@
+<map id="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;messages.cc" name="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;messages.cc">
+<area shape="rect" id="Node000001" title=" " alt="" coords="357,5,565,45"/>
+<area shape="rect" id="Node000002" href="$dect2020-mac-messages_8h.html" title=" " alt="" coords="149,101,348,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="415,48,291,98,289,93,413,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,181,87,207"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="357,34,304,42,247,53,191,71,138,96,115,112,94,132,62,172,58,168,90,128,111,108,135,91,189,66,246,48,303,36,356,29"/>
+<area shape="rect" id="Node000007" href="$dect2020-mac-common-header_8h.html" title="Implements MAC Common Headers according to ETSI TS 103 636&#45;4, Section 6.3.3." alt="" coords="372,93,549,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="463,46,463,79,458,79,458,46"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="574,101,659,126"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="496,43,585,92,583,96,494,48"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="683,101,750,126"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="526,43,672,91,678,93,676,98,670,96,524,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="327,181,432,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="269,124,350,172,347,176,267,128"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="220,128,89,179,87,174,218,124"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="111,181,215,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="238,128,188,174,184,170,234,124"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="240,181,303,207"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="255,125,267,167,262,169,249,127"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="443,135,403,173,400,170,439,132"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="455,181,567,207"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="475,132,499,168,494,171,471,135"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="591,181,698,207"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="506,131,606,173,604,178,504,136"/>
+</map>

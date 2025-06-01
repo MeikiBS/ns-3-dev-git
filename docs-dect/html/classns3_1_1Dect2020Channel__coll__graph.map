@@ -1,0 +1,5 @@
+<map id="ns3::Dect2020Channel" name="ns3::Dect2020Channel">
+<area shape="rect" id="Node000001" title="DECT2020 Channel Klasse." alt="" coords="5,79,173,104"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="57,5,121,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,44,92,79,87,79,87,44"/>
+</map>

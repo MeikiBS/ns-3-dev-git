@@ -1,0 +1,392 @@
+\doxysection{dect2020-\/mac-\/information-\/elements.h}
+\hypertarget{dect2020-mac-information-elements_8h_source}{}\label{dect2020-mac-information-elements_8h_source}\index{contrib/dect-\/nr/model/dect2020-\/mac-\/information-\/elements.h@{contrib/dect-\/nr/model/dect2020-\/mac-\/information-\/elements.h}}
+\mbox{\hyperlink{dect2020-mac-information-elements_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DECT2020\_MAC\_INFORMATION\_ELEMENTS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DECT2020\_MAC\_INFORMATION\_ELEMENTS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}ns3/header.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacens3}{ns3}}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Random\ Access\ Resource\ IE}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ 6.4.3.4}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020RandomAccessResourceIE}}\ :\ \textcolor{keyword}{public}\ Header}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_aa2c2042532451752b2e835773127dbf2}{Dect2020RandomAccessResourceIE}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a7c1811c2f4942362882d86ce4c6b01d5}{\string~Dect2020RandomAccessResourceIE}}();}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ vom\ Header}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a2ec8bb3facaa2b9e61e052d409962871}{GetTypeId}}();}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a75a0ede213e97d9f8d74d6acba218df6}{GetInstanceTypeId}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a12f5d192b8514437580c612d0916a57f}{GetSerializedSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_aa4faab05f358fa7244f1541a1292f381}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_ab0c6611e52bd97240e525dbbc9faa48b}{Deserialize}}(Buffer::Iterator\ start);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_ad1af38e08843c54202d07e7f625bceac}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Getter\ and\ Setter}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Getter\ and\ Setter}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_acf1f46e26a3fae7ab0b091e1e9e8cf20}{SetRepeat}}(uint8\_t\ repeat);}
+\DoxyCodeLine{00033\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_aebb895b16b786f8d3976712883e897fa}{GetRepeat}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_ac0fecb3b687945c365d706c134861638}{SetSystemFrameNumberFieldIncluded}}(\textcolor{keywordtype}{bool}\ included);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a7bef7c5883ac0752e82375023dae9e7d}{GetSystemFrameNumberFieldIncluded}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_ae59a014b0be59e2850eea9099ce31293}{SetChannelFieldIncluded}}(\textcolor{keywordtype}{bool}\ included);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a9153c13f400a9c18190c4b7c21333f00}{GetChannelFieldIncluded}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_abb73da2af4e21ed6740d7f0be357a705}{SetSeparateChannelFieldIncluded}}(\textcolor{keywordtype}{bool}\ included);}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a60e0cd0b188de41cbca08179a0775d0b}{GetSeparateChannelFieldIncluded}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a59f7b795b41996aa99f4cc4306378350}{SetStartSubslot}}(uint16\_t\ subslot);}
+\DoxyCodeLine{00045\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a6f950bdb329bbf1246dfbd8ed0f88671}{GetStartSubslot}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a2e6e158501d334aae751cd64460383e8}{SetLengthType}}(\textcolor{keywordtype}{bool}\ lengthType);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a662de58809acd165d5d5efade4fc6f30}{GetLengthType}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a274eaf855453bf3dd0f9ed6d37cccb26}{SetRaraLength}}(uint8\_t\ length);}
+\DoxyCodeLine{00051\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a96a02528b98631d916f2d1b40e356ab1}{GetRaraLength}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_ac955c864e2beb489fbd4ed90a91684a3}{SetMaxRachLengthType}}(\textcolor{keywordtype}{bool}\ type);}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a307011f1cfa0212e84d15982339edf58}{GetMaxRachLengthType}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a4e5b050abf0906f9536781bed5501a41}{SetMaxRachLength}}(uint8\_t\ length);}
+\DoxyCodeLine{00057\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a2da158e0849724e3c8402e647ab0ce42}{GetMaxRachLength}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a4046530877852d3c986cb80d63335e0b}{SetCwMinSig}}(uint8\_t\ cwMinSig);}
+\DoxyCodeLine{00060\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_aa6f0983f17db9420640337ef6addf1bd}{GetCwMinSig}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_afc153d17026d125d42b4688e08499bc4}{SetDectDelay}}(\textcolor{keywordtype}{bool}\ dectDelay);}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a9c1483e4a96d5e053cd47cba516d71ff}{GetDectDelay}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_afd7706f19d195111feebb407df89e4e7}{SetResponseWindow}}(uint8\_t\ responseWindow);}
+\DoxyCodeLine{00066\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a2f33ed1d785aa261d4debc536f71c380}{GetResponseWindow}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_abe39582510121e80a37105e26aa0b86b}{SetCwMaxSig}}(uint8\_t\ cwMaxSig);}
+\DoxyCodeLine{00069\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a7cca4f33ea8324fdf2a17ae098ceb7e8}{GetCwMaxSig}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_adad8a4298b1945411b106a3c9376ae33}{SetRepetition}}(uint8\_t\ repetition);}
+\DoxyCodeLine{00072\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_af22ebfa856ea60005f285e4b093dbc20}{GetRepetition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_aedde17ad6a9922f449596baba5b2d33e}{SetValidity}}(uint8\_t\ validity);}
+\DoxyCodeLine{00075\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a50148251f21d3276031139368a869305}{GetValidity}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_ad1f059793ea1329ae52f299e6c33623b}{SetSystemFrameNumberValue}}(uint8\_t\ sfn);}
+\DoxyCodeLine{00078\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_ab760336079e95cfe300e88fde1f706bf}{GetSystemFrameNumberValue}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a66e3300878ce8d0ce2a3428b555b0f4d}{SetChannelAbsoluteCarrierCenterFrequency}}(uint16\_t\ freq);}
+\DoxyCodeLine{00081\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_aedf9288e690acb7b2cb2b19b52a0873c}{GetChannelAbsoluteCarrierCenterFrequency}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a3e72f73e7e9316c97e7c6e6f154fcb87}{SetSeparateChannelAbsoluteCarrierCenterFrequency}}(uint16\_t\ freq);}
+\DoxyCodeLine{00084\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE_a06ec49897b119996977960813873e3a9}{GetSeparateChannelAbsoluteCarrierCenterFrequency}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00087\ \ \ \ \ uint8\_t\ m\_repeat;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2\ Bit}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_systemFrameNumberFieldIncluded;\ \textcolor{comment}{//\ 1\ Bit\ -\/-\/>\ SFN}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_channelFieldIncluded;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_separateChannelFieldIncluded;\ \ \ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00091\ \ \ \ \ uint16\_t\ m\_startSubslot;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 8\ Bit.\ For\ subcarrier\ scaling\ factor\ <=\ 4,}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ otherwise\ 9\ Bit.\ Note:\ Only\ the\ 8\ Bit\ variant\ is}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ currently\ implemented}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_lengthType;\ \ \ \ \textcolor{comment}{//\ 1\ Bit.\ 0\ =\ length\ in\ subslots,\ 1\ =\ length\ in\ slots}}
+\DoxyCodeLine{00095\ \ \ \ \ uint8\_t\ m\_raraLength;\ \textcolor{comment}{//\ 7\ Bit.\ The\ length\ of\ the\ random\ access\ resource\ allocation\ in\ subslots}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ or\ slots}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_maxRachLengthType;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ Bit.\ 0\ =\ length\ in\ subslots,\ 1\ =\ length\ in\ slots}}
+\DoxyCodeLine{00098\ \ \ \ \ uint8\_t\ m\_maxRachLength;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4\ Bit}}
+\DoxyCodeLine{00099\ \ \ \ \ uint8\_t\ m\_cwMin\_sig;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_dectDelay;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00101\ \ \ \ \ uint8\_t\ m\_responseWindow;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4\ Bit}}
+\DoxyCodeLine{00102\ \ \ \ \ uint8\_t\ m\_cwMax\_sig;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00103\ \ \ \ \ uint8\_t\ m\_repitition;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 8\ Bit}}
+\DoxyCodeLine{00104\ \ \ \ \ uint8\_t\ m\_validity;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 8\ Bit}}
+\DoxyCodeLine{00105\ \ \ \ \ uint8\_t\ m\_systemFrameNumberValue;\ \textcolor{comment}{//\ 8\ Bit}}
+\DoxyCodeLine{00106\ \ \ \ \ uint16\_t\ m\_channelAbsoluteCarrierCentryFrequency;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 13\ Bit}}
+\DoxyCodeLine{00107\ \ \ \ \ uint16\_t\ m\_separateChannelAbsoluteCarrierCentryFrequency;\ \textcolor{comment}{//\ 13\ Bit}}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ RD\ Capability\ IE}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ 6.4.3.5}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ NOTE:\ Only\ "{}Number\ of\ PHY\ Capabilities\ =\ 000"{}\ is\ supported.}}
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ This\ means\ that\ only\ the\ first\ 7\ bytes\ are\ implemented.}}
+\DoxyCodeLine{00117\ \textcolor{comment}{//\ The\ remaining\ 5\ octets\ defined\ in\ the\ standard\ are\ not\ currently\ used.}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020RdCapabilityIE}}\ :\ \textcolor{keyword}{public}\ Header}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_ae8871453ef06a71ea23abb58059c2054}{Dect2020RdCapabilityIE}}();}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a50dda3c4d0fddb4312f29a86289e624f}{\string~Dect2020RdCapabilityIE}}();}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ vom\ Header}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a5fac0009876b948547493a1ce4bf9ea5}{GetTypeId}}();}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a5a29c288a83cb76c6b7fe6b55ff65397}{GetInstanceTypeId}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a76890d21059dd989063adf8ca25c69ab}{GetSerializedSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a8bcd7eb601ebf67c7fbdb4ff2cc0b428}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_abb28e1a601b0e02f8e9bf8372967d42e}{Deserialize}}(Buffer::Iterator\ start);}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_adb384a6446cfaa4fc533166b6792f9c2}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{//\ Getter\ und\ Setter}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Getter\ und\ Setter}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a85a3f013dd1fcb59a96ac8e3cf36f87f}{SetNumOfPhyCapabilities}}(uint8\_t\ val);}
+\DoxyCodeLine{00137\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_ac5d4dd9e86171d56130ce5dada89e6d6}{GetNumOfPhyCapabilities}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a55fe07442caa6f7f76667f2e65f1129e}{SetRelease}}(uint8\_t\ val);}
+\DoxyCodeLine{00140\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a3d476d740c4aeb41d2f9dd92a760e674}{GetRelease}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a4143b860712e9520bb743b02bdeb498d}{SetGroupAssignment}}(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a72c6fcafce4f6fe81ead8356718894f1}{GetGroupAssignment}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_ae8f188c12c80a7b8103e0500ac6484be}{SetPaging}}(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a479bb3d87d0d60de10ad95ff0dce7985}{GetPaging}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_af5e16311f2194b8ad702547f9f1cb849}{SetOperatingModes}}(uint8\_t\ val);}
+\DoxyCodeLine{00149\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_ac9c178854dcc76d23239d7090630cc51}{GetOperatingModes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a699a11e7bb29c13750e3a6f039351863}{SetMesh}}(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a19639e3b931cfa5bc346d44f1b05c25d}{GetMesh}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a310b2a4d8468da51ac0b63e190afe436}{SetScheduledAccessDataTransfer}}(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a193c691cf5e4f2135f13cec3125bd280}{GetScheduledAccessDataTransfer}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a2dd928ac6c0405e3b557eb09fa27fa78}{SetMacSecurity}}(uint8\_t\ val);}
+\DoxyCodeLine{00158\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_aba18d2fd6816dc3d967d60fb72d2f3d9}{GetMacSecurity}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a7343278c50187488934472a8f0c44a33}{SetDlcServiceType}}(uint8\_t\ val);}
+\DoxyCodeLine{00161\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a2996cb88c59e91994fbb93af955fd440}{GetDlcServiceType}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_ae136cf4dbb3223d869b2a2551272a14b}{SetRdPowerClass}}(uint8\_t\ val);}
+\DoxyCodeLine{00164\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_ad4d8220c0641e1a47d6cd800b802bc4f}{GetRdPowerClass}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a6ca0fb487d95190768d1eb3f2ea30796}{SetMaxNssFoRx}}(uint8\_t\ val);}
+\DoxyCodeLine{00167\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a443e5d9c2147668b68068e5be09fc2f5}{GetMaxNssFoRx}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a2c4a85bf6be1269c25fc818137cedd43}{SetRxForTxDiversity}}(uint8\_t\ val);}
+\DoxyCodeLine{00170\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a344e4a4228fa94d38e0d4189a264303d}{GetRxForTxDiversity}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a164568473aab6af6a492a61810365996}{SetRxGain}}(uint8\_t\ val);}
+\DoxyCodeLine{00173\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_aed300447332957627d3d261494564058}{GetRxGain}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_ae7d9b55a9d1ccd54a95f9851b8d985ce}{SetMaxMcs}}(uint8\_t\ val);}
+\DoxyCodeLine{00176\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a9c4d071d8dc57f0f28a709aa90957cc2}{GetMaxMcs}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_ab3a3298d42c858713b626c6f423adfc5}{SetSoftBufferSize}}(uint8\_t\ val);}
+\DoxyCodeLine{00179\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a55d3d3c580c5fe22d20fe7620de7f19d}{GetSoftBufferSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a4db3310fffc091a83b891af710010298}{SetNumOfHarqProcesses}}(uint8\_t\ val);}
+\DoxyCodeLine{00182\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a24e78d2b6a6b9e99d06188c6a46d1aa2}{GetNumOfHarqProcesses}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a0df9493c3df7cda36042e11ae42e5763}{SetHarqFeedbackDelay}}(uint8\_t\ val);}
+\DoxyCodeLine{00185\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a565715b5c1dc8ea748b56a57600e9a8b}{GetHarqFeedbackDelay}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_af04044f793543c448c4d1fe65bdb000c}{SetDDelay}}(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_af0a5e0b98dee62897ba39ec768f71f89}{GetDDelay}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_aec351acb32a1cdc06d7226ffe7ec79f2}{SetHalfDulp}}(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE_a43c866bd7962e0fc33264fb0d14d5eee}{GetHalfDulp}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00195\ \ \ \ \ uint8\_t\ m\_numOfPhyCapabilities;\ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00196\ \ \ \ \ uint8\_t\ m\_Release;\ \textcolor{comment}{//\ 5\ Bit}}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_groupAssignment;\ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_paging;\ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00199\ \ \ \ \ uint8\_t\ m\_operatingModes;\ \textcolor{comment}{//\ 2\ Bit}}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_mesh;\ \textcolor{comment}{//\ 1\ Bit\ }}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_scheduledAccessDataTransfer;\ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00202\ \ \ \ \ uint8\_t\ m\_macSecurity;\ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00203\ \ \ \ \ uint8\_t\ m\_dlcServiceType;\ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00204\ \ \ \ \ uint8\_t\ m\_rdPowerClass;\ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00205\ \ \ \ \ uint8\_t\ m\_maxNssFoRx;\ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00206\ \ \ \ \ uint8\_t\ m\_rxForTxDiversity;\ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00207\ \ \ \ \ uint8\_t\ m\_rxGain;\ \textcolor{comment}{//\ 4\ Bit}}
+\DoxyCodeLine{00208\ \ \ \ \ uint8\_t\ m\_maxMcs;\ \textcolor{comment}{//\ 4\ Bit}}
+\DoxyCodeLine{00209\ \ \ \ \ uint8\_t\ m\_softBufferSize;\ \textcolor{comment}{//\ 4\ Bit}}
+\DoxyCodeLine{00210\ \ \ \ \ uint8\_t\ m\_numOfHarqProcesses;\ \textcolor{comment}{//\ 2\ Bit}}
+\DoxyCodeLine{00211\ \ \ \ \ uint8\_t\ m\_harqFeedbackDelay;\ \textcolor{comment}{//\ 4\ Bit}}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_dDelay;\ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_halfDulp;\ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{comment}{//\ The\ following\ 5\ Oktets\ are\ not\ used\ (and\ not\ implemented)in\ the\ current\ implementation}}
+\DoxyCodeLine{00216\ \};}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00219\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Association\ Control\ IE}}
+\DoxyCodeLine{00220\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ 6.4.3.18}}
+\DoxyCodeLine{00221\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE}{Dect2020AssociationControlIE}}\ :\ \textcolor{keyword}{public}\ Header}
+\DoxyCodeLine{00224\ \{}
+\DoxyCodeLine{00225\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_ae9d96a91b440e0e4e3d48de70d02c95d}{Dect2020AssociationControlIE}}();}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_a4935997099fec9d0f973f975ed76dab4}{\string~Dect2020AssociationControlIE}}();}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ vom\ Header}}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_abab4416485ba96c5d48f276766e872ab}{GetTypeId}}();}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_a45924e0eb8fcb8166f0680aeca667014}{GetInstanceTypeId}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_a30eeb57d829d322fbb5b9105c4dadd39}{GetSerializedSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_a78aced887719ad0eaa3b3cb0f98a36ec}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_a2e66017010e3a848c3a174467e27b9cd}{Deserialize}}(Buffer::Iterator\ start);}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_a431111a6fc46e69d9920bc3fa6aa7527}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{comment}{//\ Getter\ /\ Setter}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{comment}{//\ 0:\ The\ associated\ RD\ on\ maintains\ cluster\ beacon\ message\ reception.}}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{comment}{//\ 1:\ The\ associated\ RD\ on\ does\ not\ maintains\ cluster\ beacon\ message\ reception}}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_a3cf126535d974af384b3e503c773a41b}{SetClusterBeaconMonitoring}}(\textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_add15335f31a854666e473939b9a8a2d6}{GetClusterBeaconMonitoring}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_a6bfa8635790f637b26cf4d427f14aea0}{SetDlDataReception}}(uint8\_t\ code);}
+\DoxyCodeLine{00245\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_a609d7babdf43007c3202ffe190f0049b}{GetDlDataReception}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_a52d9457d18a3cd2da7afa3c342c68f86}{SetUlPeriod}}(uint8\_t\ code);}
+\DoxyCodeLine{00248\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE_ad4e6e57a1d40ff7ed3a21dceca77b41d}{GetUlPeriod}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_cbM;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ Bit.\ Cluster\ Beacon\ Message\ Reception}}
+\DoxyCodeLine{00252\ \ \ \ \ uint8\_t\ m\_dlDataReception;\ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00253\ \ \ \ \ uint8\_t\ m\_ulPeriod;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4\ Bit}}
+\DoxyCodeLine{00254\ \};}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00257\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Resource\ Allocation\ IE}}
+\DoxyCodeLine{00258\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00261\ \textcolor{comment}{//\ [Developer\ Note]}}
+\DoxyCodeLine{00262\ \textcolor{comment}{//\ This\ section\ was\ initially\ intended\ to\ implement\ the\ Resource\ Allocation\ IE}}
+\DoxyCodeLine{00263\ \textcolor{comment}{//\ as\ specified\ in\ section\ 6.4.3.3\ (Dect2020ResourceAllocationIE).}}
+\DoxyCodeLine{00264\ \textcolor{comment}{//}}
+\DoxyCodeLine{00265\ \textcolor{comment}{//\ During\ the\ implementation\ process,\ it\ became\ clear\ that\ this\ was\ not\ the\ correct}}
+\DoxyCodeLine{00266\ \textcolor{comment}{//\ Information\ Element\ required\ in\ this\ context.\ Instead,\ the\ Random\ Access\ Resource\ IE}}
+\DoxyCodeLine{00267\ \textcolor{comment}{//\ (section\ 6.4.3.2)\ should\ be\ used.}}
+\DoxyCodeLine{00268\ \textcolor{comment}{//}}
+\DoxyCodeLine{00269\ \textcolor{comment}{//\ The\ current\ structure,\ fields,\ and\ methods\ in\ this\ class\ relate\ to\ the\ wrong\ IE}}
+\DoxyCodeLine{00270\ \textcolor{comment}{//\ and\ have\ therefore\ not\ been\ completed.}}
+\DoxyCodeLine{00271\ \textcolor{comment}{//}}
+\DoxyCodeLine{00272\ \textcolor{comment}{//\ Please\ restructure\ or\ remove\ this\ code\ as\ needed\ once\ the\ correct\ IE\ is\ implemented.}}
+\DoxyCodeLine{00273\ \textcolor{comment}{//\ Next\ step\ would\ be\ the\ Serialize\ Method.}}
+\DoxyCodeLine{00274\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00275\ \textcolor{comment}{//}}
+\DoxyCodeLine{00276\ \textcolor{comment}{//\ [Meikel\ Kersting,\ May\ 2025]}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{comment}{//\ class\ Dect2020ResourceAllocationIE\ :\ public\ Header}}
+\DoxyCodeLine{00279\ \textcolor{comment}{//\ \{}}
+\DoxyCodeLine{00280\ \textcolor{comment}{//\ \ \ public:}}
+\DoxyCodeLine{00281\ \textcolor{comment}{//\ \ \ \ \ Dect2020ResourceAllocationIE();}}
+\DoxyCodeLine{00282\ \textcolor{comment}{//\ \ \ \ \ virtual\ \string~Dect2020ResourceAllocationIE();}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \textcolor{comment}{//\ \ \ \ \ //\ Setter\ und\ Getter}}
+\DoxyCodeLine{00285\ \textcolor{comment}{//\ \ \ \ \ void\ SetAllocationType(uint8\_t\ allocationType);}}
+\DoxyCodeLine{00286\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ GetAllocationType()\ const;}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \textcolor{comment}{//\ \ \ \ \ void\ SetAdd(bool\ add);}}
+\DoxyCodeLine{00289\ \textcolor{comment}{//\ \ \ \ \ bool\ GetAdd()\ const;}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \textcolor{comment}{//\ \ \ \ \ void\ SetID(bool\ iD);}}
+\DoxyCodeLine{00292\ \textcolor{comment}{//\ \ \ \ \ bool\ GetID()\ const;}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \textcolor{comment}{//\ \ \ \ \ void\ SetRepeat(uint8\_t\ repeat);}}
+\DoxyCodeLine{00295\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ GetRepeat()\ const;}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \textcolor{comment}{//\ \ \ \ \ void\ SetSystemFrameNumberFieldIncluded(bool\ systemFrameNumber);}}
+\DoxyCodeLine{00298\ \textcolor{comment}{//\ \ \ \ \ bool\ GetSystemFrameNumberFieldIncluded()\ const;}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \textcolor{comment}{//\ \ \ \ \ void\ SetChannelFieldIncluded(bool\ channelFieldIncluded);}}
+\DoxyCodeLine{00301\ \textcolor{comment}{//\ \ \ \ \ bool\ GetChannelFieldIncluded()\ const;}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \textcolor{comment}{//\ \ \ \ \ void\ SetRLF(bool\ rlf);}}
+\DoxyCodeLine{00304\ \textcolor{comment}{//\ \ \ \ \ bool\ GetRLF()\ const;}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \textcolor{comment}{//\ \ \ \ \ void\ SetStartSubslotDownlink(uint16\_t\ startSubslotDownlink);}}
+\DoxyCodeLine{00307\ \textcolor{comment}{//\ \ \ \ \ uint16\_t\ GetStartSubslotDownlink()\ const;}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \textcolor{comment}{//\ \ \ \ \ void\ SetStartSubslotUplink(uint16\_t\ startSubslotUplink);}}
+\DoxyCodeLine{00310\ \textcolor{comment}{//\ \ \ \ \ uint16\_t\ GetStartSubslotUplink()\ const;}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \textcolor{comment}{//\ \ \ \ \ void\ SetLengthTypeDownlink(bool\ lengthTypeDownlink);}}
+\DoxyCodeLine{00313\ \textcolor{comment}{//\ \ \ \ \ bool\ GetLengthTypeDownlink()\ const;}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \textcolor{comment}{//\ \ \ \ \ void\ SetLengthTypeUplink(bool\ lengthTypeUplink);}}
+\DoxyCodeLine{00316\ \textcolor{comment}{//\ \ \ \ \ bool\ GetLengthTypeUplink()\ const;}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \textcolor{comment}{//\ \ \ \ \ void\ SetLengthDownlink(uint8\_t\ lengthDownlink);}}
+\DoxyCodeLine{00319\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ GetLengthDownlink()\ const;}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \textcolor{comment}{//\ \ \ \ \ void\ SetLengthUplink(uint8\_t\ lengthUplink);}}
+\DoxyCodeLine{00322\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ GetLengthUplink()\ const;}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{comment}{//\ \ \ \ \ void\ SetShortRdId(uint16\_t\ shortRdId);}}
+\DoxyCodeLine{00325\ \textcolor{comment}{//\ \ \ \ \ uint16\_t\ GetShortRdId()\ const;}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \textcolor{comment}{//\ \ \ \ \ void\ SetRepetition(uint8\_t\ repetition);}}
+\DoxyCodeLine{00328\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ GetRepetition()\ const;}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \textcolor{comment}{//\ \ \ \ \ void\ SetValidity(uint8\_t\ validity);}}
+\DoxyCodeLine{00331\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ GetValidity()\ const;}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \textcolor{comment}{//\ \ \ \ \ void\ SetSFNValue(uint8\_t\ sfnValue);}}
+\DoxyCodeLine{00334\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ GetSFNValue()\ const;}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \textcolor{comment}{//\ \ \ \ \ void\ SetChannel(uint16\_t\ channel);}}
+\DoxyCodeLine{00337\ \textcolor{comment}{//\ \ \ \ \ uint16\_t\ GetChannel()\ const;}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \textcolor{comment}{//\ \ \ \ \ void\ SetDectScheduledResourceFailure(uint8\_t\ dectScheduledResourceFailure);}}
+\DoxyCodeLine{00340\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ GetDectScheduledResourceFailure()\ const;}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \textcolor{comment}{//\ \ \ \ \ //\ Überladene\ Methoden\ vom\ Header}}
+\DoxyCodeLine{00343\ \textcolor{comment}{//\ \ \ \ \ static\ TypeId\ GetTypeId();}}
+\DoxyCodeLine{00344\ \textcolor{comment}{//\ \ \ \ \ virtual\ TypeId\ GetInstanceTypeId()\ const\ override;}}
+\DoxyCodeLine{00345\ \textcolor{comment}{//\ \ \ \ \ virtual\ uint32\_t\ GetSerializedSize()\ const;}}
+\DoxyCodeLine{00346\ \textcolor{comment}{//\ \ \ \ \ virtual\ void\ Serialize(Buffer::Iterator\ start)\ const;}}
+\DoxyCodeLine{00347\ \textcolor{comment}{//\ \ \ \ \ virtual\ uint32\_t\ Deserialize(Buffer::Iterator\ start);}}
+\DoxyCodeLine{00348\ \textcolor{comment}{//\ \ \ \ \ virtual\ void\ Print(std::ostream\&\ os)\ const;}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \textcolor{comment}{//\ \ \ private:}}
+\DoxyCodeLine{00351\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ m\_allocationType;\ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ 2\ Bit}}
+\DoxyCodeLine{00352\ \textcolor{comment}{//\ \ \ \ \ bool\ m\_add;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ 1\ Bit}}
+\DoxyCodeLine{00353\ \textcolor{comment}{//\ \ \ \ \ bool\ m\_iD;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ 1\ Bit}}
+\DoxyCodeLine{00354\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ m\_repeat;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ 3\ Bit}}
+\DoxyCodeLine{00355\ \textcolor{comment}{//\ \ \ \ \ bool\ m\_systemFrameNumberFieldIncluded;\ //\ 1\ Bit\ -\/-\/>\ SFN}}
+\DoxyCodeLine{00356\ \textcolor{comment}{//\ \ \ \ \ bool\ m\_channelFieldIncluded;\ \ \ \ \ \ \ \ \ \ \ //\ 1\ Bit}}
+\DoxyCodeLine{00357\ \textcolor{comment}{//\ \ \ \ \ bool\ m\_rlf;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ 1\ Bit}}
+\DoxyCodeLine{00358\ \textcolor{comment}{//\ \ \ \ \ uint16\_t}}
+\DoxyCodeLine{00359\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ m\_startSubslotDownlink;\ \ \ \ //\ 8\ Bit.\ Downlink\ Variable.\ For\ subcarrier\ scaling\ factor\ <=}}
+\DoxyCodeLine{00360\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ 4,}}
+\DoxyCodeLine{00361\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ otherwise\ 9\ Bit.\ Note:\ Only\ the\ 8\ Bit\ variant\ is}}
+\DoxyCodeLine{00362\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ implemented}}
+\DoxyCodeLine{00363\ \textcolor{comment}{//\ \ \ \ \ uint16\_t\ m\_startSubslotUplink;\ //\ 8\ Bit.\ Uplink\ Variable.\ for\ subcarrier\ scaling\ factor\ <=\ 4,}}
+\DoxyCodeLine{00364\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ otherwise\ 9\ Bit.\ Note:\ Only\ the\ 8\ Bit\ variant\ is}}
+\DoxyCodeLine{00365\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ implemented}}
+\DoxyCodeLine{00366\ \textcolor{comment}{//\ \ \ \ \ bool\ m\_lengthTypeDownlink;\ //\ 1\ Bit.\ Downlink\ Variable.\ 0\ =\ length\ in\ subslots,\ 1\ =\ length\ in}}
+\DoxyCodeLine{00367\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ slots}}
+\DoxyCodeLine{00368\ \textcolor{comment}{//\ \ \ \ \ bool\ m\_lengthTypeUplink;\ //\ 1\ Bit.\ Uplink\ Variable.\ 0\ =\ length\ in\ subslots,\ 1\ =\ length\ in}}
+\DoxyCodeLine{00369\ \textcolor{comment}{//\ \ \ \ \ slots}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ m\_lengthDownlink;\ //\ 7\ Bit.\ Downlink\ Variable.\ The\ length\ of\ the\ resource\ allocation}}
+\DoxyCodeLine{00372\ \textcolor{comment}{//\ \ \ \ \ in}}
+\DoxyCodeLine{00373\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ subslots/slots\ (depending\ on\ the\ length\ type\ field)}}
+\DoxyCodeLine{00374\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ m\_lengthUplink;\ \ \ //\ 7\ Bit.\ Uplink\ Variable.\ The\ length\ of\ the\ resource\ allocation\ in}}
+\DoxyCodeLine{00375\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ subslots/slots\ (depending\ on\ the\ length\ type\ field)}}
+\DoxyCodeLine{00376\ \textcolor{comment}{//\ \ \ \ \ uint16\_t\ m\_shortRdId;\ \ \ \ \ //\ 16\ Bit}}
+\DoxyCodeLine{00377\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ m\_repitition;\ \ \ \ \ //\ 8\ Bit}}
+\DoxyCodeLine{00378\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ m\_validity;\ \ \ \ \ \ \ //\ 8\ Bit}}
+\DoxyCodeLine{00379\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ n\_sfnValue;\ \ \ \ \ \ \ //\ 8\ Bit}}
+\DoxyCodeLine{00380\ \textcolor{comment}{//\ \ \ \ \ uint16\_t\ m\_channel;\ \ \ \ \ \ \ //\ 13\ Bit}}
+\DoxyCodeLine{00381\ \textcolor{comment}{//\ \ \ \ \ uint8\_t\ m\_dectScheduledResourceFailure;\ //\ 4\ Bit}}
+\DoxyCodeLine{00382\ \textcolor{comment}{//\ \};}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \}\ \textcolor{comment}{//\ namespace\ ns3}}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

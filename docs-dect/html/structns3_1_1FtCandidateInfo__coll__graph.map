@@ -1,0 +1,22 @@
+<map id="ns3::FtCandidateInfo" name="ns3::FtCandidateInfo">
+<area shape="rect" id="Node000001" title=" " alt="" coords="576,149,733,174"/>
+<area shape="rect" id="Node000002" href="$classns3_1_1Dect2020PHYControlFieldType1.html" title=" " alt="" coords="124,5,343,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="357,25,455,39,505,53,553,71,582,88,608,108,645,147,641,150,604,112,579,92,551,76,504,58,454,45,356,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,75,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="51,142,80,98,100,75,122,55,144,43,147,48,126,60,103,78,84,101,56,145"/>
+<area shape="rect" id="Node000004" href="$classns3_1_1Dect2020BeaconHeader.html" title="Indicates the type of the MAC Common Header (ETSI TS 103 636&#45;4, Table 6.3.3.2)." alt="" coords="128,70,339,95"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="63,144,91,123,123,104,155,93,157,98,125,109,94,127,67,148"/>
+<area shape="rect" id="Node000005" href="$classns3_1_1Dect2020UnicastHeader.html" title=" " alt="" coords="128,119,339,145"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="88,156,164,142,165,147,89,162"/>
+<area shape="rect" id="Node000006" href="$classns3_1_1Dect2020NetworkBeaconMessage.html" title=" " alt="" coords="124,169,343,209"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="89,171,124,175,124,180,88,176"/>
+<area shape="rect" id="Node000007" href="$classns3_1_1Dect2020ClusterBeaconMessage.html" title=" " alt="" coords="129,233,338,273"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="70,186,125,219,155,231,153,236,123,224,68,191"/>
+<area shape="rect" id="Node000008" href="$classns3_1_1Dect2020RandomAccessResourceIE.html" title=" " alt="" coords="126,297,341,337"/>
+<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="55,191,83,239,103,263,126,283,146,295,143,299,122,287,99,266,79,242,50,194"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="352,88,451,100,553,120,626,146,625,151,551,125,450,105,352,93"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="352,138,576,153,575,159,352,143"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="356,187,452,185,552,177,593,171,593,177,552,183,452,190,357,193"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="351,244,450,231,551,208,594,191,631,172,633,177,597,196,553,213,451,236,352,249"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="354,313,403,307,453,298,503,283,551,263,581,243,607,218,643,172,647,176,611,222,584,247,553,268,505,288,454,303,403,312,355,318"/>
+</map>
