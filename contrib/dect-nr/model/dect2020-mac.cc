@@ -82,7 +82,7 @@ Dect2020Mac::SetPhy(Ptr<Dect2020Phy> phy)
  * \param type DECT packet type (e.g. BEACON, UNICAST).
  */
 void
-Dect2020Mac::Send(Ptr<Packet> packet, const uint32_t receiverLongRdId, Dect2020PacketType type)
+Dect2020Mac::Send(Ptr<Packet> packet, const Address& dest, Dect2020PacketType type)
 {
     // Trace-Aufruf
     m_txPacketTrace(packet);
@@ -960,9 +960,8 @@ Dect2020Mac::DiscoverNetworks()
     SetCurrentChannelId(nextChannelId);
 
     Time t = MilliSeconds(1000); // Discover Network wait time
-    m_discoverNetworksEvent = Simulator::Schedule(t,
-                                                  &Dect2020Mac::DiscoverNetworks,
-                                                  this); // Schedule next discovery
+    Simulator::Schedule(t, &Dect2020Mac::DiscoverNetworks,
+                        this); // Schedule next discovery
 }
 
 /**
@@ -979,7 +978,9 @@ Dect2020Mac::StartClusterBeaconTransmission()
     m_phy->Send(clusterBeacon, CreatePhysicalHeaderField(1, clusterBeacon->GetSize()));
 
     // Schedule next cluster beacon transmission
-    Simulator::Schedule(MilliSeconds(100), &Dect2020Mac::StartClusterBeaconTransmission, this);
+    Simulator::Schedule(m_clusterBeaconPeriodTime,
+                        &Dect2020Mac::StartClusterBeaconTransmission,
+                        this);
 
     // Statistics
     Dect2020Statistics::IncrementClusterBeaconTransmission();
@@ -1083,8 +1084,8 @@ Dect2020Mac::StartNetworkBeaconSweep()
     }
 
     // Schedule the network beacon transmission on the selected channels
-    Time beaconDuration = MicroSeconds(833);      // duration of the beacon transmission
-    Time networkBeaconPeriod = MilliSeconds(100); // gap between each transmission
+    Time beaconDuration = MicroSeconds(833);              // duration of the beacon transmission
+    Time networkBeaconPeriod = m_networkBeaconPeriodTime; // gap between each transmission
     Time base = Seconds(0);
 
     for (auto& channelId : networkBeaconChannels)
@@ -1501,8 +1502,6 @@ Dect2020Mac::EvaluateAllChannels()
     StartBeaconTransmission();
 }
 
-
-
 /**
  * \brief Creates a PHY header for data messages based on packet size.
  * \param packetLengthType 0=subslots, 1=slots
@@ -1645,9 +1644,10 @@ Dect2020Mac::GetNetworkId() const
 }
 
 /**
- * \brief Generates a valid 32-bit Long Radio Device ID as described in ETSI 103 636-04 Section 4.2.2.3.
+ * \brief Generates a valid 32-bit Long Radio Device ID as described in ETSI 103 636-04
+ * Section 4.2.2.3.
  *
- * Ensures the ID is within the allowed DECT NR range (1 to 0xFFFFFFFD), 
+ * Ensures the ID is within the allowed DECT NR range (1 to 0xFFFFFFFD),
  * excluding reserved values like 0x00000000, 0xFFFFFFFE, and 0xFFFFFFFF.
  *
  * \return A valid long RD ID
@@ -1705,7 +1705,8 @@ Dect2020Mac::GetLongRadioDeviceId() const
 }
 
 /**
- * \brief Generates a valid 16-bit Short Radio Device ID as described in ETSI 103 636-04 Section 4.2.3.3.
+ * \brief Generates a valid 16-bit Short Radio Device ID as described in ETSI 103 636-04
+ * Section 4.2.3.3.
  *
  * The ID is chosen randomly in the valid DECT NR range [0x0001, 0xFFFE], excluding
  * reserved values like 0x0000 and 0xFFFF.
@@ -1780,8 +1781,8 @@ Dect2020Mac::InitializeDevice()
 /**
  * \brief Converts RX gain index (0–8) to dB gain value.
  *
- * Index is mapped linearly to range −10 dB to +6 dB as defined in ETSI TS 103 636-4 Table 6.4.3.5-1.
- * Returns 0 dB if the index is invalid (> 8).
+ * Index is mapped linearly to range −10 dB to +6 dB as defined in ETSI TS 103 636-4
+ * Table 6.4.3.5-1. Returns 0 dB if the index is invalid (> 8).
  *
  * \param index RX gain index (0 to 8)
  * \return RX gain in dB

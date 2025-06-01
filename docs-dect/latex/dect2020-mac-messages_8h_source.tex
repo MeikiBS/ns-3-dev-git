@@ -5,357 +5,357 @@
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DECT2020\_MAC\_MESSAGES\_H}}
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DECT2020\_MAC\_MESSAGES\_H}}
 \DoxyCodeLine{00003\ }
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}ns3/header.h"{}}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}ns3/log.h"{}}}
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}ns3/packet.h"{}}}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00009\ }
-\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacens3}{ns3}}}
-\DoxyCodeLine{00011\ \{}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#6.4.2.2-\/1}}
-\DoxyCodeLine{00014\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5}{NETWORK\_PERIOD\_50MS}}\ =\ 0,}
-\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caae66e92c4dd7eec5df86d4ffa3b59eee2}{NETWORK\_PERIOD\_100MS}}\ =\ 1,}
-\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa883151b485be6f6d76a230db226a53de}{NETWORK\_PERIOD\_500MS}}\ =\ 2,}
-\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaa52cf007493d1837739f6e2551a359e5}{NETWORK\_PERIOD\_1000MS}}\ =\ 3,}
-\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa814adeaa296547dc9373204593eb2fed}{NETWORK\_PERIOD\_1500MS}}\ =\ 4,}
-\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaaf3b0044a226162ab1048a7b6a31476f}{NETWORK\_PERIOD\_2000MS}}\ =\ 5,}
-\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa098efd1e228d7c17fa00416fc882e586}{NETWORK\_PERIOD\_4000MS}}\ =\ 6}
-\DoxyCodeLine{00022\ \};}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#6.4.2.2-\/1}}
-\DoxyCodeLine{00025\ \{}
-\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba2986bd991b3e9fc7bfffed04ae9ee86c}{CLUSTER\_PERIOD\_10MS}}\ =\ 0,}
-\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbae06c717a8302a931fa4f51d40501ae32}{CLUSTER\_PERIOD\_50MS}}\ =\ 1,}
-\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6}{CLUSTER\_PERIOD\_100MS}}\ =\ 2,}
-\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbaf4472a2c2e9cd788f8940c5d58a47147}{CLUSTER\_PERIOD\_500MS}}\ =\ 3,}
-\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbabbf209582292a94fa1ac0cd0b822c4eb}{CLUSTER\_PERIOD\_1000MS}}\ =\ 4,}
-\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba212c80ffb0f3fe1f5193c96ae9db7b62}{CLUSTER\_PERIOD\_1500MS}}\ =\ 5,}
-\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba8a98ed0d12f96bea0b00fa86e089aae4}{CLUSTER\_PERIOD\_2000MS}}\ =\ 6,}
-\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba8a145ddc939b4832ee3fc7b553f1c812}{CLUSTER\_PERIOD\_4000MS}}\ =\ 7,}
-\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbababc8e33af9678ba409bf5ac251b19ad}{CLUSTER\_PERIOD\_8000MS}}\ =\ 8,}
-\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba2871e31753c2a86d7475eba9a5043b60}{CLUSTER\_PERIOD\_16000MS}}\ =\ 9,}
-\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba00cbdcfad832206e9b583b286063f1b1}{CLUSTER\_PERIOD\_32000MS}}\ =\ 10}
-\DoxyCodeLine{00037\ \};}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \textcolor{comment}{//\ *******************************************************}}
-\DoxyCodeLine{00040\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Cluster\ Beacon\ Message}}
-\DoxyCodeLine{00041\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ 6.4.2.3}}
-\DoxyCodeLine{00042\ \textcolor{comment}{//\ *******************************************************}}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020ClusterBeaconMessage}}\ :\ \textcolor{keyword}{public}\ Header}
-\DoxyCodeLine{00045\ \{}
-\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a9293a4240d9bcfb18d24ccb46afe0249}{Dect2020ClusterBeaconMessage}}();}
-\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aacf28827b56d465d0694eb0bed9fd6ab}{\string~Dect2020ClusterBeaconMessage}}();}
-\DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ vom\ Header}}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad8821eab370b24153791366f9aa198d0}{GetTypeId}}();}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_acbf07df34e1809341d89fcf7cbcf4ac7}{GetInstanceTypeId}}()\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a7fa435eca7f1e4957ed38bf863e8cbc8}{GetSerializedSize}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ae22057ed7a5541d904536b0d9e44ad41}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a557ea3b64013941e4e29e8232300913c}{Deserialize}}(Buffer::Iterator\ start);}
-\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad581b4f6706a7c2050a14d5881d3f12a}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \ \ \ \ int8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_abc9996e1f4db4241d73b39d98b7d2f5a}{GetTxPowerFromField}}(uint8\_t\ field);}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_afe8f9f66ee97f564df231ae8d9e801c1}{SetSystemFrameNumber}}(uint8\_t\ sfn);}
-\DoxyCodeLine{00061\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a9092a1c82890d7f41c7be1234941aa37}{GetSystemFrameNumber}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}ns3/header.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}ns3/log.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}ns3/packet.h"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacens3}{ns3}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#6.4.2.2-\/1}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5}{NETWORK\_PERIOD\_50MS}}\ =\ 0,}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caae66e92c4dd7eec5df86d4ffa3b59eee2}{NETWORK\_PERIOD\_100MS}}\ =\ 1,}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa883151b485be6f6d76a230db226a53de}{NETWORK\_PERIOD\_500MS}}\ =\ 2,}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaa52cf007493d1837739f6e2551a359e5}{NETWORK\_PERIOD\_1000MS}}\ =\ 3,}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa814adeaa296547dc9373204593eb2fed}{NETWORK\_PERIOD\_1500MS}}\ =\ 4,}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caaaf3b0044a226162ab1048a7b6a31476f}{NETWORK\_PERIOD\_2000MS}}\ =\ 5,}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa098efd1e228d7c17fa00416fc882e586}{NETWORK\_PERIOD\_4000MS}}\ =\ 6}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#6.4.2.2-\/1}}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba2986bd991b3e9fc7bfffed04ae9ee86c}{CLUSTER\_PERIOD\_10MS}}\ =\ 0,}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbae06c717a8302a931fa4f51d40501ae32}{CLUSTER\_PERIOD\_50MS}}\ =\ 1,}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6}{CLUSTER\_PERIOD\_100MS}}\ =\ 2,}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbaf4472a2c2e9cd788f8940c5d58a47147}{CLUSTER\_PERIOD\_500MS}}\ =\ 3,}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbabbf209582292a94fa1ac0cd0b822c4eb}{CLUSTER\_PERIOD\_1000MS}}\ =\ 4,}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba212c80ffb0f3fe1f5193c96ae9db7b62}{CLUSTER\_PERIOD\_1500MS}}\ =\ 5,}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba8a98ed0d12f96bea0b00fa86e089aae4}{CLUSTER\_PERIOD\_2000MS}}\ =\ 6,}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba8a145ddc939b4832ee3fc7b553f1c812}{CLUSTER\_PERIOD\_4000MS}}\ =\ 7,}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adbababc8e33af9678ba409bf5ac251b19ad}{CLUSTER\_PERIOD\_8000MS}}\ =\ 8,}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba2871e31753c2a86d7475eba9a5043b60}{CLUSTER\_PERIOD\_16000MS}}\ =\ 9,}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba00cbdcfad832206e9b583b286063f1b1}{CLUSTER\_PERIOD\_32000MS}}\ =\ 10}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Cluster\ Beacon\ Message}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ 6.4.2.3}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020ClusterBeaconMessage}}\ :\ \textcolor{keyword}{public}\ Header}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a9293a4240d9bcfb18d24ccb46afe0249}{Dect2020ClusterBeaconMessage}}();}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aacf28827b56d465d0694eb0bed9fd6ab}{\string~Dect2020ClusterBeaconMessage}}();}
 \DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aed2c313c7c6015ed1a6d10be2c58c0bf}{SetTxPowerIncluded}}(\textcolor{keywordtype}{bool}\ txPowerIncluded);}
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_afb4994ca8ee5deced3130b2435ab61ba}{GetTxPowerIncluded}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00065\ }
-\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a7fe754f0d83da36af1dc1a29825a4a46}{SetPowerConstraints}}(\textcolor{keywordtype}{bool}\ powerConstraints);}
-\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af3ff23d4132a8debc8024363020f25b5}{GetPowerConstraints}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af5f62d81542268160eed315c4c0fcf55}{SetFrameOffsetIncluded}}(\textcolor{keywordtype}{bool}\ frameOffsetIncluded);}
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aa3aaa8933a125bbd8ed3a393eef16e40}{GetFrameOffsetIncluded}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a8aad2cb609a75ee40fba74749834b375}{SetNextChannelIncluded}}(\textcolor{keywordtype}{bool}\ nextChannelIncluded);}
-\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a99d7b7d57d21f5443c5a797ac4a524ad}{GetNextChannelIncluded}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00074\ }
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_adc79fdad8d28f2229088cc5195ce528c}{SetTimeToNextFieldPresent}}(\textcolor{keywordtype}{bool}\ timeToNextFieldPresent);}
-\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af7c94390f13e00b8d3d5fe0dffd579e3}{GetTimeToNextFieldPresent}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a73e441e4dc02775b2f90d72b77583240}{SetNetworkBeaconPeriod}}(\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ period);}
-\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a331f75a3db0fbcb9128d05586c6473a9}{GetNetworkBeaconPeriod}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ab85895f6498ef0c51c280b878c40d6ac}{SetClusterBeaconPeriod}}(\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ period);}
-\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad96c59c785e4430d8c94dd0769894a59}{GetClusterBeaconPeriod}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad1ff3c98b18c6db6acff3aaa8d0088b9}{SetCountToTrigger}}(uint8\_t\ count);}
-\DoxyCodeLine{00085\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a036954ed332014a0e3d7fa5ce5000a23}{GetCountToTrigger}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00086\ }
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad033ac77616fba07f2947a41e275bd39}{SetRelativeQuality}}(uint8\_t\ relQuality);}
-\DoxyCodeLine{00088\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aa6cb9066d594a05a9e03e9063967749c}{GetRelativeQuality}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00089\ }
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a672b42058c4bfd4b05913b8703a6b91c}{SetMinimumQuality}}(uint8\_t\ minQuality);}
-\DoxyCodeLine{00091\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ae4cf9335d29461236027db5e8420159a}{GetMinimumQuality}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00092\ }
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af0ae6b8d7129a6970c510c1209daee59}{SetClusterMaxTxPower}}(uint8\_t\ power);}
-\DoxyCodeLine{00094\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_affba5797feb95429b54541998cdb64ea}{GetClusterMaxTxPower}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00095\ }
-\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a7eb4af5100bcb512935cfbb0c756bfd5}{SetFrameOffset}}(uint16\_t\ offset);}
-\DoxyCodeLine{00097\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af2df65429eceb551d4c331cd470da9a8}{GetFrameOffset}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a1d1588aaffa339051bf8a17bed779ccd}{SetNextClusterChannel}}(uint16\_t\ channel);}
-\DoxyCodeLine{00100\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a45ba25f15d4bf8ef9bb0716d1e377710}{GetNextClusterChannel}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00101\ }
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af91ffcaf2aea436b02466a491fac1b04}{SetTimeToNext}}(uint32\_t\ time);}
-\DoxyCodeLine{00103\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a9f4258caf5d721e359a6ccaa76cb1827}{GetTimeToNext}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00106\ \ \ \ \ uint8\_t\ m\_SFN;\ \textcolor{comment}{//\ System\ Frame\ number}}
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_txPowerIncluded;}
-\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_powerConstraints;}
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_FO;\ \textcolor{comment}{//\ Frame\ Offset}}
-\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_nextChannel;}
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_timeToNextFieldPresent;\ \textcolor{comment}{//\ Time\ to\ Next\ Field:\ 0\ =\ not\ present,\ 1\ =\ present}}
-\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ m\_networkBeaconPeriod;}
-\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ m\_clusterBeaconPeriod;}
-\DoxyCodeLine{00114\ \ \ \ \ uint8\_t\ m\_countToTrigger;}
-\DoxyCodeLine{00115\ \ \ \ \ uint8\_t\ m\_relQuality;}
-\DoxyCodeLine{00116\ \ \ \ \ uint8\_t\ m\_minQuality;}
-\DoxyCodeLine{00117\ \ \ \ \ uint8\_t\ m\_clusterMaxTxPower;}
-\DoxyCodeLine{00118\ \ \ \ \ uint16\_t}
-\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ m\_frameOffset;\ \textcolor{comment}{//\ if\ subcarrierscaling\ factor\ =\ <=\ 4\ -\/-\/>\ frameOffset\ 8\ bit,\ otherwise\ 16\ bit}}
-\DoxyCodeLine{00120\ \ \ \ \ uint16\_t\ m\_nextClusterChannel;}
-\DoxyCodeLine{00121\ \ \ \ \ uint32\_t\ m\_timeToNext;}
-\DoxyCodeLine{00122\ \};}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00124\ \textcolor{comment}{//\ *******************************************************}}
-\DoxyCodeLine{00125\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Network\ Beacon\ Message}}
-\DoxyCodeLine{00126\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ 6.4.2.2}}
-\DoxyCodeLine{00127\ \textcolor{comment}{//\ *******************************************************}}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020NetworkBeaconMessage}}\ :\ \textcolor{keyword}{public}\ Header}
-\DoxyCodeLine{00130\ \{}
-\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ab5c99efcd9a05b0340244cab6cac7d90}{Dect2020NetworkBeaconMessage}}();}
-\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a8f20594744ec8371b9e8c090d00e3554}{\string~Dect2020NetworkBeaconMessage}}();}
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ Setter\ und\ Getter\ für\ jedes\ Feld}}
-\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ae5043ddb0807ccd76fd4e6ea228aabc2}{SetTxPowerIncluded}}(\textcolor{keywordtype}{bool}\ txPowerIncluded);}
-\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ab2e0cfec809098276ec58e8dd3e8ab62}{GetTxPowerIncluded}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00138\ }
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_af5d18e70c997d054a1320e1c58b6c683}{SetPowerConstraints}}(\textcolor{keywordtype}{bool}\ powerConstraints);}
-\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a8ddd325c0db6d7e9a4733e08751339aa}{GetPowerConstraints}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ vom\ Header}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad8821eab370b24153791366f9aa198d0}{GetTypeId}}();}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_acbf07df34e1809341d89fcf7cbcf4ac7}{GetInstanceTypeId}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a7fa435eca7f1e4957ed38bf863e8cbc8}{GetSerializedSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ae22057ed7a5541d904536b0d9e44ad41}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a557ea3b64013941e4e29e8232300913c}{Deserialize}}(Buffer::Iterator\ start);}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad581b4f6706a7c2050a14d5881d3f12a}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ int8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_abc9996e1f4db4241d73b39d98b7d2f5a}{GetTxPowerFromField}}(uint8\_t\ field);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_afe8f9f66ee97f564df231ae8d9e801c1}{SetSystemFrameNumber}}(uint8\_t\ sfn);}
+\DoxyCodeLine{00074\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a9092a1c82890d7f41c7be1234941aa37}{GetSystemFrameNumber}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aed2c313c7c6015ed1a6d10be2c58c0bf}{SetTxPowerIncluded}}(\textcolor{keywordtype}{bool}\ txPowerIncluded);}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_afb4994ca8ee5deced3130b2435ab61ba}{GetTxPowerIncluded}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a7fe754f0d83da36af1dc1a29825a4a46}{SetPowerConstraints}}(\textcolor{keywordtype}{bool}\ powerConstraints);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af3ff23d4132a8debc8024363020f25b5}{GetPowerConstraints}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af5f62d81542268160eed315c4c0fcf55}{SetFrameOffsetIncluded}}(\textcolor{keywordtype}{bool}\ frameOffsetIncluded);}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aa3aaa8933a125bbd8ed3a393eef16e40}{GetFrameOffsetIncluded}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a8aad2cb609a75ee40fba74749834b375}{SetNextChannelIncluded}}(\textcolor{keywordtype}{bool}\ nextChannelIncluded);}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a99d7b7d57d21f5443c5a797ac4a524ad}{GetNextChannelIncluded}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_adc79fdad8d28f2229088cc5195ce528c}{SetTimeToNextFieldPresent}}(\textcolor{keywordtype}{bool}\ timeToNextFieldPresent);}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af7c94390f13e00b8d3d5fe0dffd579e3}{GetTimeToNextFieldPresent}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a73e441e4dc02775b2f90d72b77583240}{SetNetworkBeaconPeriod}}(\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ period);}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a331f75a3db0fbcb9128d05586c6473a9}{GetNetworkBeaconPeriod}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ab85895f6498ef0c51c280b878c40d6ac}{SetClusterBeaconPeriod}}(\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ period);}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad96c59c785e4430d8c94dd0769894a59}{GetClusterBeaconPeriod}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad1ff3c98b18c6db6acff3aaa8d0088b9}{SetCountToTrigger}}(uint8\_t\ count);}
+\DoxyCodeLine{00098\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a036954ed332014a0e3d7fa5ce5000a23}{GetCountToTrigger}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ad033ac77616fba07f2947a41e275bd39}{SetRelativeQuality}}(uint8\_t\ relQuality);}
+\DoxyCodeLine{00101\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_aa6cb9066d594a05a9e03e9063967749c}{GetRelativeQuality}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a672b42058c4bfd4b05913b8703a6b91c}{SetMinimumQuality}}(uint8\_t\ minQuality);}
+\DoxyCodeLine{00104\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_ae4cf9335d29461236027db5e8420159a}{GetMinimumQuality}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af0ae6b8d7129a6970c510c1209daee59}{SetClusterMaxTxPower}}(uint8\_t\ power);}
+\DoxyCodeLine{00107\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_affba5797feb95429b54541998cdb64ea}{GetClusterMaxTxPower}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a7eb4af5100bcb512935cfbb0c756bfd5}{SetFrameOffset}}(uint16\_t\ offset);}
+\DoxyCodeLine{00110\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af2df65429eceb551d4c331cd470da9a8}{GetFrameOffset}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a1d1588aaffa339051bf8a17bed779ccd}{SetNextClusterChannel}}(uint16\_t\ channel);}
+\DoxyCodeLine{00113\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a45ba25f15d4bf8ef9bb0716d1e377710}{GetNextClusterChannel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_af91ffcaf2aea436b02466a491fac1b04}{SetTimeToNext}}(uint32\_t\ time);}
+\DoxyCodeLine{00116\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage_a9f4258caf5d721e359a6ccaa76cb1827}{GetTimeToNext}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00119\ \ \ \ \ uint8\_t\ m\_SFN;\ \textcolor{comment}{//\ System\ Frame\ number}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_txPowerIncluded;}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_powerConstraints;}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_FO;\ \textcolor{comment}{//\ Frame\ Offset}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_nextChannel;}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_timeToNextFieldPresent;\ \textcolor{comment}{//\ Time\ to\ Next\ Field:\ 0\ =\ not\ present,\ 1\ =\ present}}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ m\_networkBeaconPeriod;}
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ m\_clusterBeaconPeriod;}
+\DoxyCodeLine{00127\ \ \ \ \ uint8\_t\ m\_countToTrigger;}
+\DoxyCodeLine{00128\ \ \ \ \ uint8\_t\ m\_relQuality;}
+\DoxyCodeLine{00129\ \ \ \ \ uint8\_t\ m\_minQuality;}
+\DoxyCodeLine{00130\ \ \ \ \ uint8\_t\ m\_clusterMaxTxPower;}
+\DoxyCodeLine{00131\ \ \ \ \ uint16\_t}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ m\_frameOffset;\ \textcolor{comment}{//\ if\ subcarrierscaling\ factor\ =\ <=\ 4\ -\/-\/>\ frameOffset\ 8\ bit,\ otherwise\ 16\ bit}}
+\DoxyCodeLine{00133\ \ \ \ \ uint16\_t\ m\_nextClusterChannel;}
+\DoxyCodeLine{00134\ \ \ \ \ uint32\_t\ m\_timeToNext;}
+\DoxyCodeLine{00135\ \};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Network\ Beacon\ Message}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ 6.4.2.2}}
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ *******************************************************}}
 \DoxyCodeLine{00141\ }
-\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a48c169adf7af997a6f278b3ccd4054a8}{SetCurrentClusterChannelIncluded}}(\textcolor{keywordtype}{bool}\ currentClusterChannelIncluded);}
-\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a2a1a670434fc7a2196c5db5f0b52ecf6}{GetCurrentClusterChannelIncluded}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00144\ }
-\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_aa403b5fcff1e345f17f4d6732251a4e7}{SetNetworkBeaconChannels}}(uint8\_t\ networkBeaconChannels);}
-\DoxyCodeLine{00146\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a98fa40f5ad20e1cf6b621ae55067811a}{GetNetworkBeaconChannels}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00147\ }
-\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a6dd6fdfc6766cf7f5db111b738cab97d}{SetNetworkBeaconPeriod}}(\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ networkBeaconPeriod);}
-\DoxyCodeLine{00149\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a10d6c1c8bbdca638e406b94384b1c4f0}{GetNetworkBeaconPeriod}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00150\ }
-\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a5df6b3a41a73e7cba3f19a39889b975b}{SetClusterBeaconPeriod}}(\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ clusterBeaconPeriod);}
-\DoxyCodeLine{00152\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a7c81dc726c8cc038747ccad437e2a149}{GetClusterBeaconPeriod}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00153\ }
-\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a0785e01c3ada05614e844d8d864c115e}{SetNextClusterChannel}}(uint16\_t\ nextClusterChannel);}
-\DoxyCodeLine{00155\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a0445f636d492f65eacd2683007440ca2}{GetNextClusterChannel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00147\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020NetworkBeaconMessage}}\ :\ \textcolor{keyword}{public}\ Header}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00150\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ab5c99efcd9a05b0340244cab6cac7d90}{Dect2020NetworkBeaconMessage}}();}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a8f20594744ec8371b9e8c090d00e3554}{\string~Dect2020NetworkBeaconMessage}}();}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ Setter\ und\ Getter\ für\ jedes\ Feld}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ae5043ddb0807ccd76fd4e6ea228aabc2}{SetTxPowerIncluded}}(\textcolor{keywordtype}{bool}\ txPowerIncluded);}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ab2e0cfec809098276ec58e8dd3e8ab62}{GetTxPowerIncluded}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00156\ }
-\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a1a3da7bf81699095b2472648c9ac7673}{SetTimeToNext}}(uint32\_t\ timeToNext);}
-\DoxyCodeLine{00158\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ab107e2b855ef94f24a8e1e0ada64e00a}{GetTimeToNext}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_af5d18e70c997d054a1320e1c58b6c683}{SetPowerConstraints}}(\textcolor{keywordtype}{bool}\ powerConstraints);}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a8ddd325c0db6d7e9a4733e08751339aa}{GetPowerConstraints}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00159\ }
-\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ae3a2194abdaba706538a9566e7769707}{SetClustersMaxTxPower}}(uint8\_t\ clustersMaxTxPower);}
-\DoxyCodeLine{00161\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_af926a06818528adf843b1c9dcc676ff1}{GetClustersMaxTxPower}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a48c169adf7af997a6f278b3ccd4054a8}{SetCurrentClusterChannelIncluded}}(\textcolor{keywordtype}{bool}\ currentClusterChannelIncluded);}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a2a1a670434fc7a2196c5db5f0b52ecf6}{GetCurrentClusterChannelIncluded}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00162\ }
-\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_af11425a32950eb5e2e1f2f18cfbaaea4}{SetCurrentClusterChannel}}(uint16\_t\ currentClusterChannel);}
-\DoxyCodeLine{00164\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a23d4fc46a9d5adef74b06a4da691f4aa}{GetCurrentClusterChannel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_aa403b5fcff1e345f17f4d6732251a4e7}{SetNetworkBeaconChannels}}(uint8\_t\ networkBeaconChannels);}
+\DoxyCodeLine{00164\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a98fa40f5ad20e1cf6b621ae55067811a}{GetNetworkBeaconChannels}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00165\ }
-\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a46a2687d61bc0234133f28f362810191}{SetAdditionalNetworkBeaconChannels}}(uint16\_t\ additionalNetworkBeaconChannels[3]);}
-\DoxyCodeLine{00167\ \ \ \ \ uint16\_t*\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a3a52392c37137ef704917a46694ef0ff}{GetAdditionalNetworkBeaconChannels}}();}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a6dd6fdfc6766cf7f5db111b738cab97d}{SetNetworkBeaconPeriod}}(\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ networkBeaconPeriod);}
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a10d6c1c8bbdca638e406b94384b1c4f0}{GetNetworkBeaconPeriod}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00168\ }
-\DoxyCodeLine{00169\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a00a68553905a5773125b604e3f876c31}{GetNetworkBeaconPeriodTime}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00170\ }
-\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ vom\ Header}}
-\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a5146fadf99393ceb8df82a0e13b99f2c}{GetTypeId}}();}
-\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_aa6a7a613616d450a9976e7f138d1e200}{GetInstanceTypeId}}()\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a79d9388d5d477c47064dd57eb7857ac5}{GetSerializedSize}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a0e4cdc3312c673534c59d4b02bb712a4}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a1b934aeba4e54bff7601b324c7a9726e}{Deserialize}}(Buffer::Iterator\ start);}
-\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ab4d72eb56baa51d7c473428924b021b2}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00178\ }
-\DoxyCodeLine{00179\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#6.4.2.2-\/1}}
-\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_txPowerIncluded;}
-\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_powerConstraints;}
-\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_currentClusterChannelIncluded;}
-\DoxyCodeLine{00184\ \ \ \ \ uint8\_t\ m\_networkBeaconChannels;}
-\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ m\_networkBeaconPeriod;}
-\DoxyCodeLine{00186\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ m\_clusterBeaconPeriod;}
-\DoxyCodeLine{00187\ \ \ \ \ uint16\_t\ m\_nextClusterChannel;}
-\DoxyCodeLine{00188\ \ \ \ \ uint32\_t\ m\_timeToNext;}
-\DoxyCodeLine{00189\ \ \ \ \ uint8\_t\ m\_clustersMaxTxPower;}
-\DoxyCodeLine{00190\ \ \ \ \ uint16\_t\ m\_currentClusterChannel;}
-\DoxyCodeLine{00191\ \ \ \ \ uint16\_t\ m\_additionalNetworkBeaconChannels[3]\{\};}
-\DoxyCodeLine{00192\ \};}
-\DoxyCodeLine{00193\ }
-\DoxyCodeLine{00194\ \textcolor{comment}{//\ *******************************************************}}
-\DoxyCodeLine{00195\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Association\ Request\ Message}}
-\DoxyCodeLine{00196\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ 6.4.2.4}}
-\DoxyCodeLine{00197\ \textcolor{comment}{//\ *******************************************************}}
-\DoxyCodeLine{00198\ }
-\DoxyCodeLine{00199\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage}{Dect2020AssociationRequestMessage}}\ :\ \textcolor{keyword}{public}\ Header}
-\DoxyCodeLine{00200\ \{}
-\DoxyCodeLine{00201\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00202\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_ad25605d697e0ce260cba75375eba0ed2}{Dect2020AssociationRequestMessage}}();}
-\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_ad9c79ac9f0b7944612f7b73556591c9a}{\string~Dect2020AssociationRequestMessage}}();}
-\DoxyCodeLine{00204\ }
-\DoxyCodeLine{00205\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ vom\ Header}}
-\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a6c18d9f66d5f7ef03c992f4403b23e5c}{GetTypeId}}();}
-\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a6b2c5d5a92800b6886fec84651f4dc46}{GetInstanceTypeId}}()\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a4ce68485e8082ac300bf2b219db2c2b3}{GetSerializedSize}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a2482a41628f0fac5391de2716fe22721}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a4650a5e47d93549ab9a22cdcd37be9df}{Deserialize}}(Buffer::Iterator\ start);}
-\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a88059259158996e05ce7ba5a31c0b051}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00212\ }
-\DoxyCodeLine{00213\ \ \ \ \ \textcolor{comment}{//\ Getter\ and\ Setter}}
-\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a459b097b998c981af00b7686d6af3526}{SetSetupCause}}(uint8\_t\ cause);}
-\DoxyCodeLine{00215\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_adbb61e0e56f5dddfdd803bbea83279ff}{GetSetupCause}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a5df6b3a41a73e7cba3f19a39889b975b}{SetClusterBeaconPeriod}}(\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ clusterBeaconPeriod);}
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a7c81dc726c8cc038747ccad437e2a149}{GetClusterBeaconPeriod}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a0785e01c3ada05614e844d8d864c115e}{SetNextClusterChannel}}(uint16\_t\ nextClusterChannel);}
+\DoxyCodeLine{00173\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a0445f636d492f65eacd2683007440ca2}{GetNextClusterChannel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a1a3da7bf81699095b2472648c9ac7673}{SetTimeToNext}}(uint32\_t\ timeToNext);}
+\DoxyCodeLine{00176\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ab107e2b855ef94f24a8e1e0ada64e00a}{GetTimeToNext}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ae3a2194abdaba706538a9566e7769707}{SetClustersMaxTxPower}}(uint8\_t\ clustersMaxTxPower);}
+\DoxyCodeLine{00179\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_af926a06818528adf843b1c9dcc676ff1}{GetClustersMaxTxPower}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_af11425a32950eb5e2e1f2f18cfbaaea4}{SetCurrentClusterChannel}}(uint16\_t\ currentClusterChannel);}
+\DoxyCodeLine{00182\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a23d4fc46a9d5adef74b06a4da691f4aa}{GetCurrentClusterChannel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a46a2687d61bc0234133f28f362810191}{SetAdditionalNetworkBeaconChannels}}(uint16\_t\ additionalNetworkBeaconChannels[3]);}
+\DoxyCodeLine{00185\ \ \ \ \ uint16\_t*\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a3a52392c37137ef704917a46694ef0ff}{GetAdditionalNetworkBeaconChannels}}();}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a00a68553905a5773125b604e3f876c31}{GetNetworkBeaconPeriodTime}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ vom\ Header}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a5146fadf99393ceb8df82a0e13b99f2c}{GetTypeId}}();}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_aa6a7a613616d450a9976e7f138d1e200}{GetInstanceTypeId}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a79d9388d5d477c47064dd57eb7857ac5}{GetSerializedSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a0e4cdc3312c673534c59d4b02bb712a4}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_a1b934aeba4e54bff7601b324c7a9726e}{Deserialize}}(Buffer::Iterator\ start);}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage_ab4d72eb56baa51d7c473428924b021b2}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#6.4.2.2-\/1}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_txPowerIncluded;}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_powerConstraints;}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_currentClusterChannelIncluded;}
+\DoxyCodeLine{00202\ \ \ \ \ uint8\_t\ m\_networkBeaconChannels;}
+\DoxyCodeLine{00203\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ m\_networkBeaconPeriod;}
+\DoxyCodeLine{00204\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ m\_clusterBeaconPeriod;}
+\DoxyCodeLine{00205\ \ \ \ \ uint16\_t\ m\_nextClusterChannel;}
+\DoxyCodeLine{00206\ \ \ \ \ uint32\_t\ m\_timeToNext;}
+\DoxyCodeLine{00207\ \ \ \ \ uint8\_t\ m\_clustersMaxTxPower;}
+\DoxyCodeLine{00208\ \ \ \ \ uint16\_t\ m\_currentClusterChannel;}
+\DoxyCodeLine{00209\ \ \ \ \ uint16\_t\ m\_additionalNetworkBeaconChannels[3]\{\};}
+\DoxyCodeLine{00210\ \};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00213\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Association\ Request\ Message}}
+\DoxyCodeLine{00214\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ 6.4.2.4}}
+\DoxyCodeLine{00215\ \textcolor{comment}{//\ *******************************************************}}
 \DoxyCodeLine{00216\ }
-\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a025457a0c0f9d24f25c99b9d00966e67}{SetNumberOfFlows}}(uint8\_t\ flows);}
-\DoxyCodeLine{00218\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_ab3e4598a6bbbaa92a37f35e5a8c41f32}{GetNumberOfFlows}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00219\ }
-\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a60b708e43d83b3c341bd4acc6547ee3b}{SetPowerConstraints}}(\textcolor{keywordtype}{bool}\ constraints);}
-\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_aa25eb17dc5eae494daa4bd5a4b9b80bd}{GetPowerConstraints}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00222\ }
-\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a6960d64eefe1c79e940082247cec823d}{SetFtMode}}(\textcolor{keywordtype}{bool}\ mode);}
-\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a92a47f24fe44579f05254defa1cabe7d}{GetFtMode}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00225\ }
-\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a3a6529f1ee6c5964e2c5647830ec6327}{SetCurrent}}(\textcolor{keywordtype}{bool}\ current);}
-\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a8bb9285897359c136b3ab6c744cf7cde}{GetCurrent}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00228\ }
-\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_adc3aa050714acb961f746ccf92f5acc6}{SetHarqProcessesTx}}(uint8\_t\ value);}
-\DoxyCodeLine{00230\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a4110ab8ec5d84dcc0707c09b12714c17}{GetHarqProcessesTx}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00231\ }
-\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_ae99a25470646e886217fc304500a5816}{SetMaxHarqReTxDelay}}(uint8\_t\ delay);}
-\DoxyCodeLine{00233\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a4f494ec380f5e46ff7bf735db6ff1968}{GetMaxHarqReTxDelay}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00234\ }
-\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_ada5bfc10a7cdc632b7ecd21eb87634bc}{SetHarqProcessesRx}}(uint8\_t\ value);}
-\DoxyCodeLine{00236\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_aae2f873e9931df6f0ae78b6f0394d30b}{GetHarqProcessesRx}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00237\ }
-\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a7235d2a76897f8b425ab65af585e4f8b}{SetMaxHarqReRxDelay}}(uint8\_t\ delay);}
-\DoxyCodeLine{00239\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_afd6b6198db6874ba53b5ed42e3f066ed}{GetMaxHarqReRxDelay}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00240\ }
-\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a86171e4e07c72c0dbc4b91b6c88b64ce}{SetFlowId}}(uint8\_t\ \textcolor{keywordtype}{id});}
-\DoxyCodeLine{00242\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a42a30e0b378fc5a90b746688ddb32509}{GetFlowId}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00243\ }
-\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a343d5b22c4c56e14e5409d02b7892a76}{SetNetworkBeaconPeriod}}(\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ value);}
-\DoxyCodeLine{00245\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a85088501482414913662efedfc3ad8f2}{GetNetworkBeaconPeriod}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00246\ }
-\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a3dcd39ebc4e036e4958ece850c24de00}{SetClusterBeaconPeriod}}(\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ value);}
-\DoxyCodeLine{00248\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_aa158bdd6d6623ef6c84fac31e411298f}{GetClusterBeaconPeriod}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00249\ }
-\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a5b4907edc98674e8e3e077633d9896b2}{SetNextClusterChannel}}(uint16\_t\ channel);}
-\DoxyCodeLine{00251\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a855e59ce0d9b63d8c680c2506ff77b84}{GetNextClusterChannel}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00252\ }
-\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a471f44c12128f208c33c43fcb173cb2e}{SetTimeToNext}}(uint32\_t\ time);}
-\DoxyCodeLine{00254\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a41a7a75adb12aa1b0c3243d48ef0e65f}{GetTimeToNext}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00255\ }
-\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_aaff24b5d8c7da3130dfe16335431c098}{SetCurrentClusterChannel}}(uint16\_t\ channel);}
-\DoxyCodeLine{00257\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_afa088d9530c39d7e68e802af5cac0bf5}{GetCurrentClusterChannel}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00258\ }
-\DoxyCodeLine{00259\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00260\ \ \ \ \ uint8\_t\ m\_setupCause;\ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
-\DoxyCodeLine{00261\ \ \ \ \ uint8\_t\ m\_numberOfFlows;\ \textcolor{comment}{//\ 3\ Bit}}
-\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_powerConstraints;\ \textcolor{comment}{//\ 1\ Bit}}
-\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_ftMode;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ Bit}}
-\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_current;\ \textcolor{comment}{//\ 1\ Bit.\ 0\ =\ current\ cluster\ channel\ is\ the\ same\ as\ the\ next\ cluster\ channel.}}
-\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ 1\ =\ not\ the\ same\ -\/-\/>\ current\ cluster\ channel\ field\ included}}
-\DoxyCodeLine{00266\ \ \ \ \ uint8\_t\ m\_harqProcessesTx;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
-\DoxyCodeLine{00267\ \ \ \ \ uint8\_t\ m\_maxHarqReTxDelay;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5\ Bit}}
-\DoxyCodeLine{00268\ \ \ \ \ uint8\_t\ m\_harqProcessesRx;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
-\DoxyCodeLine{00269\ \ \ \ \ uint8\_t\ m\_maxHarqReRxDelay;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5\ Bit}}
-\DoxyCodeLine{00270\ \ \ \ \ uint8\_t\ m\_flowId;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 6\ Bit}}
-\DoxyCodeLine{00271\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ m\_networkBeaconPeriod;\ \textcolor{comment}{//\ 4\ Bit}}
-\DoxyCodeLine{00272\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ m\_clusterBeaconPeriod;\ \textcolor{comment}{//\ 4\ Bit}}
-\DoxyCodeLine{00273\ \ \ \ \ uint16\_t\ m\_nextClusterChannel;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 13\ Bit}}
-\DoxyCodeLine{00274\ \ \ \ \ uint32\_t\ m\_timeToNext;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32\ Bit}}
-\DoxyCodeLine{00275\ \ \ \ \ uint16\_t\ m\_currentClusterChannel;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 13\ Bit}}
-\DoxyCodeLine{00276\ \};}
-\DoxyCodeLine{00277\ }
-\DoxyCodeLine{00278\ \textcolor{comment}{//\ *******************************************************}}
-\DoxyCodeLine{00279\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Association\ Response\ Message}}
-\DoxyCodeLine{00280\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ 6.4.2.5}}
-\DoxyCodeLine{00281\ \textcolor{comment}{//\ *******************************************************}}
-\DoxyCodeLine{00282\ }
-\DoxyCodeLine{00283\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage}{Dect2020AssociationResponseMessage}}\ :\ \textcolor{keyword}{public}\ Header}
-\DoxyCodeLine{00284\ \{}
-\DoxyCodeLine{00285\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00286\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a9714bc2f94eb9dd61f18a81b5b06df98}{Dect2020AssociationResponseMessage}}();}
-\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a4d5710d6df2c1d406b73a1c08bf94a6b}{\string~Dect2020AssociationResponseMessage}}();}
-\DoxyCodeLine{00288\ }
-\DoxyCodeLine{00289\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ vom\ Header}}
-\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a6bb0b7875282ca35f0f5421723792263}{GetTypeId}}();}
-\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_adc6ff239c2200772f09ee4b5d154762d}{GetInstanceTypeId}}()\ \textcolor{keyword}{const\ override};}
-\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a66548a0bdc8c66d9d33c4af1721469a8}{GetSerializedSize}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ab4d23af1338bf598862fa7d9679b2563}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a68a385c81bcee3e9ec27814e0ba32fad}{Deserialize}}(Buffer::Iterator\ start);}
-\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a828fe12b5270b6fab7a2a87c9c39ffa1}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00296\ }
-\DoxyCodeLine{00297\ \ \ \ \ \textcolor{comment}{//\ Getter\ and\ Setter}}
-\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ae612de794ba838c66bb0a84204a3ecc6}{SetAssociationAccepted}}(\textcolor{keywordtype}{bool}\ accepted);}
-\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_af087e7446717f688c035f9bdc601aca2}{GetAssociationAccepted}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00222\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage}{Dect2020AssociationRequestMessage}}\ :\ \textcolor{keyword}{public}\ Header}
+\DoxyCodeLine{00223\ \{}
+\DoxyCodeLine{00224\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00225\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_ad25605d697e0ce260cba75375eba0ed2}{Dect2020AssociationRequestMessage}}();}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_ad9c79ac9f0b7944612f7b73556591c9a}{\string~Dect2020AssociationRequestMessage}}();}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ vom\ Header}}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a6c18d9f66d5f7ef03c992f4403b23e5c}{GetTypeId}}();}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a6b2c5d5a92800b6886fec84651f4dc46}{GetInstanceTypeId}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a4ce68485e8082ac300bf2b219db2c2b3}{GetSerializedSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a2482a41628f0fac5391de2716fe22721}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a4650a5e47d93549ab9a22cdcd37be9df}{Deserialize}}(Buffer::Iterator\ start);}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a88059259158996e05ce7ba5a31c0b051}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{comment}{//\ Getter\ and\ Setter}}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a459b097b998c981af00b7686d6af3526}{SetSetupCause}}(uint8\_t\ cause);}
+\DoxyCodeLine{00238\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_adbb61e0e56f5dddfdd803bbea83279ff}{GetSetupCause}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a025457a0c0f9d24f25c99b9d00966e67}{SetNumberOfFlows}}(uint8\_t\ flows);}
+\DoxyCodeLine{00241\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_ab3e4598a6bbbaa92a37f35e5a8c41f32}{GetNumberOfFlows}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a60b708e43d83b3c341bd4acc6547ee3b}{SetPowerConstraints}}(\textcolor{keywordtype}{bool}\ constraints);}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_aa25eb17dc5eae494daa4bd5a4b9b80bd}{GetPowerConstraints}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a6960d64eefe1c79e940082247cec823d}{SetFtMode}}(\textcolor{keywordtype}{bool}\ mode);}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a92a47f24fe44579f05254defa1cabe7d}{GetFtMode}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a3a6529f1ee6c5964e2c5647830ec6327}{SetCurrent}}(\textcolor{keywordtype}{bool}\ current);}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a8bb9285897359c136b3ab6c744cf7cde}{GetCurrent}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_adc3aa050714acb961f746ccf92f5acc6}{SetHarqProcessesTx}}(uint8\_t\ value);}
+\DoxyCodeLine{00253\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a4110ab8ec5d84dcc0707c09b12714c17}{GetHarqProcessesTx}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_ae99a25470646e886217fc304500a5816}{SetMaxHarqReTxDelay}}(uint8\_t\ delay);}
+\DoxyCodeLine{00256\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a4f494ec380f5e46ff7bf735db6ff1968}{GetMaxHarqReTxDelay}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_ada5bfc10a7cdc632b7ecd21eb87634bc}{SetHarqProcessesRx}}(uint8\_t\ value);}
+\DoxyCodeLine{00259\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_aae2f873e9931df6f0ae78b6f0394d30b}{GetHarqProcessesRx}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a7235d2a76897f8b425ab65af585e4f8b}{SetMaxHarqReRxDelay}}(uint8\_t\ delay);}
+\DoxyCodeLine{00262\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_afd6b6198db6874ba53b5ed42e3f066ed}{GetMaxHarqReRxDelay}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a86171e4e07c72c0dbc4b91b6c88b64ce}{SetFlowId}}(uint8\_t\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00265\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a42a30e0b378fc5a90b746688ddb32509}{GetFlowId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a343d5b22c4c56e14e5409d02b7892a76}{SetNetworkBeaconPeriod}}(\mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ value);}
+\DoxyCodeLine{00268\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a85088501482414913662efedfc3ad8f2}{GetNetworkBeaconPeriod}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a3dcd39ebc4e036e4958ece850c24de00}{SetClusterBeaconPeriod}}(\mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ value);}
+\DoxyCodeLine{00271\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_aa158bdd6d6623ef6c84fac31e411298f}{GetClusterBeaconPeriod}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a5b4907edc98674e8e3e077633d9896b2}{SetNextClusterChannel}}(uint16\_t\ channel);}
+\DoxyCodeLine{00274\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a855e59ce0d9b63d8c680c2506ff77b84}{GetNextClusterChannel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a471f44c12128f208c33c43fcb173cb2e}{SetTimeToNext}}(uint32\_t\ time);}
+\DoxyCodeLine{00277\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_a41a7a75adb12aa1b0c3243d48ef0e65f}{GetTimeToNext}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_aaff24b5d8c7da3130dfe16335431c098}{SetCurrentClusterChannel}}(uint16\_t\ channel);}
+\DoxyCodeLine{00280\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage_afa088d9530c39d7e68e802af5cac0bf5}{GetCurrentClusterChannel}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00283\ \ \ \ \ uint8\_t\ m\_setupCause;\ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00284\ \ \ \ \ uint8\_t\ m\_numberOfFlows;\ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_powerConstraints;\ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_ftMode;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_current;\ \textcolor{comment}{//\ 1\ Bit.\ 0\ =\ current\ cluster\ channel\ is\ the\ same\ as\ the\ next\ cluster\ channel.}}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ 1\ =\ not\ the\ same\ -\/-\/>\ current\ cluster\ channel\ field\ included}}
+\DoxyCodeLine{00289\ \ \ \ \ uint8\_t\ m\_harqProcessesTx;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00290\ \ \ \ \ uint8\_t\ m\_maxHarqReTxDelay;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5\ Bit}}
+\DoxyCodeLine{00291\ \ \ \ \ uint8\_t\ m\_harqProcessesRx;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00292\ \ \ \ \ uint8\_t\ m\_maxHarqReRxDelay;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5\ Bit}}
+\DoxyCodeLine{00293\ \ \ \ \ uint8\_t\ m\_flowId;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 6\ Bit}}
+\DoxyCodeLine{00294\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ m\_networkBeaconPeriod;\ \textcolor{comment}{//\ 4\ Bit}}
+\DoxyCodeLine{00295\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ m\_clusterBeaconPeriod;\ \textcolor{comment}{//\ 4\ Bit}}
+\DoxyCodeLine{00296\ \ \ \ \ uint16\_t\ m\_nextClusterChannel;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 13\ Bit}}
+\DoxyCodeLine{00297\ \ \ \ \ uint32\_t\ m\_timeToNext;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32\ Bit}}
+\DoxyCodeLine{00298\ \ \ \ \ uint16\_t\ m\_currentClusterChannel;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 13\ Bit}}
+\DoxyCodeLine{00299\ \};}
 \DoxyCodeLine{00300\ }
-\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a03c1c00d2b6c556cab8b7f5702d63c83}{SetHarqMod}}(\textcolor{keywordtype}{bool}\ harqMod);}
-\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a5d84c7fe8128282ba5252d57030c5d22}{GetHarqMod}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00303\ }
-\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_af7ce4a9134daf864a89c12e220431552}{SetNumberOfFlows}}(uint8\_t\ numberOfFlows);}
-\DoxyCodeLine{00305\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ad3b0094838c57294f3b4be9462091d9e}{GetNumberOfFlows}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00306\ }
-\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ad63fcd8b52d5a47877cefe4eff41644f}{SetGroupIdAndResourceTagIncluded}}(\textcolor{keywordtype}{bool}\ included);}
-\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a84d6287525e6eff770d04317c987fe5a}{GetGroupIdAndResourceTagIncluded}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00309\ }
-\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a462df2b81f518b014f572d102e8442b7}{SetRejectCause}}(uint8\_t\ cause);}
-\DoxyCodeLine{00311\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a0487efe8f0650a2e2282fd13a5fbd525}{GetRejectCause}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00312\ }
-\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_aaafb013612e3e79d2872ebd4f150ecbb}{SetRejectTimer}}(uint8\_t\ timer);}
-\DoxyCodeLine{00314\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a773fd2f5373a784b2f2a91a9b3ae13d6}{GetRejectTimer}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00315\ }
-\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a868b0ae4325fa1cf8b8b6055973e6c05}{SetHarqProcessesRx}}(uint8\_t\ value);}
-\DoxyCodeLine{00317\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a721ba491d28ab184c48b78671dea025f}{GetHarqProcessesRx}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00318\ }
-\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a16ddec97623ba00dfd7d13166a3d5844}{SetMaxHarqReRxDelay}}(uint8\_t\ delay);}
-\DoxyCodeLine{00320\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a6123205fbf1913ebd14967e0048148e1}{GetMaxHarqReRxDelay}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00321\ }
-\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ae9199e60845f16b49891e03a2d8d8c0e}{SetHarqProcessesTx}}(uint8\_t\ value);}
-\DoxyCodeLine{00323\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_aa9bd92d588afc39f0db5c6ac15ff86fe}{GetHarqProcessesTx}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00301\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00302\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ DECT2020\ Association\ Response\ Message}}
+\DoxyCodeLine{00303\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \#\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ 6.4.2.5}}
+\DoxyCodeLine{00304\ \textcolor{comment}{//\ *******************************************************}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00311\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage}{Dect2020AssociationResponseMessage}}\ :\ \textcolor{keyword}{public}\ Header}
+\DoxyCodeLine{00312\ \{}
+\DoxyCodeLine{00313\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00314\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a9714bc2f94eb9dd61f18a81b5b06df98}{Dect2020AssociationResponseMessage}}();}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a4d5710d6df2c1d406b73a1c08bf94a6b}{\string~Dect2020AssociationResponseMessage}}();}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{comment}{//\ Überladene\ Methoden\ vom\ Header}}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a6bb0b7875282ca35f0f5421723792263}{GetTypeId}}();}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keyword}{virtual}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_adc6ff239c2200772f09ee4b5d154762d}{GetInstanceTypeId}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a66548a0bdc8c66d9d33c4af1721469a8}{GetSerializedSize}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ab4d23af1338bf598862fa7d9679b2563}{Serialize}}(Buffer::Iterator\ start)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keyword}{virtual}\ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a68a385c81bcee3e9ec27814e0ba32fad}{Deserialize}}(Buffer::Iterator\ start);}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a828fe12b5270b6fab7a2a87c9c39ffa1}{Print}}(std::ostream\&\ os)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00324\ }
-\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ab8b14443803ea4bf1a14be2ca551eb2c}{SetMaxHarqReTxDelay}}(uint8\_t\ delay);}
-\DoxyCodeLine{00326\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a3119c241ce9a1a7dd98bbac05210cf5f}{GetMaxHarqReTxDelay}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00327\ }
-\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a04425fb7a7deadfdf4b589681a26e5dd}{SetFlowId}}(uint8\_t\ flowId);}
-\DoxyCodeLine{00329\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a0087c54c99abf997af0231163820a3b4}{GetFlowId}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00330\ }
-\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ad8ada45aca0e19d73ba78877d0e77c26}{SetGroupId}}(uint8\_t\ groupId);}
-\DoxyCodeLine{00332\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a73f2d0e69eac9e6e861ba3cfc8f99348}{GetGroupId}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00333\ }
-\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a0d79925e3c2282d380c29f1d82cbad0d}{SetResourceTag}}(uint8\_t\ resourceTag);}
-\DoxyCodeLine{00335\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_af82b47a9ab66c3dba8df39e74bc0f8fa}{GetResourceTag}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00336\ }
-\DoxyCodeLine{00337\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_associationAccepted;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ Bit}}
-\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_harqMod;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ Bit}}
-\DoxyCodeLine{00340\ \ \ \ \ uint8\_t\ m\_numberOfFlows;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
-\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_groupIdAndResourceTagIncluded;\ \textcolor{comment}{//\ 1\ Bit}}
-\DoxyCodeLine{00342\ \ \ \ \ uint8\_t\ m\_rejectCause;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4\ Bit}}
-\DoxyCodeLine{00343\ \ \ \ \ uint8\_t\ m\_rejectTimer;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4\ Bit}}
-\DoxyCodeLine{00344\ \ \ \ \ uint8\_t\ m\_harqProcessesRx;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
-\DoxyCodeLine{00345\ \ \ \ \ uint8\_t\ m\_maxHarqReRxDelay;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5\ Bot}}
-\DoxyCodeLine{00346\ \ \ \ \ uint8\_t\ m\_harqProcessesTx;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
-\DoxyCodeLine{00347\ \ \ \ \ uint8\_t\ m\_maxHarqReTxDelay;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5\ Bit}}
-\DoxyCodeLine{00348\ \ \ \ \ uint8\_t\ m\_flowId;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 6\ Bit}}
-\DoxyCodeLine{00349\ \ \ \ \ uint8\_t\ m\_groupId;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 7\ Bit}}
-\DoxyCodeLine{00350\ \ \ \ \ uint8\_t\ m\_resourceTag;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 7\ Bit}}
-\DoxyCodeLine{00351\ \};}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{comment}{//\ Getter\ and\ Setter}}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ae612de794ba838c66bb0a84204a3ecc6}{SetAssociationAccepted}}(\textcolor{keywordtype}{bool}\ accepted);}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_af087e7446717f688c035f9bdc601aca2}{GetAssociationAccepted}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a03c1c00d2b6c556cab8b7f5702d63c83}{SetHarqMod}}(\textcolor{keywordtype}{bool}\ harqMod);}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a5d84c7fe8128282ba5252d57030c5d22}{GetHarqMod}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_af7ce4a9134daf864a89c12e220431552}{SetNumberOfFlows}}(uint8\_t\ numberOfFlows);}
+\DoxyCodeLine{00333\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ad3b0094838c57294f3b4be9462091d9e}{GetNumberOfFlows}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ad63fcd8b52d5a47877cefe4eff41644f}{SetGroupIdAndResourceTagIncluded}}(\textcolor{keywordtype}{bool}\ included);}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a84d6287525e6eff770d04317c987fe5a}{GetGroupIdAndResourceTagIncluded}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a462df2b81f518b014f572d102e8442b7}{SetRejectCause}}(uint8\_t\ cause);}
+\DoxyCodeLine{00339\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a0487efe8f0650a2e2282fd13a5fbd525}{GetRejectCause}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_aaafb013612e3e79d2872ebd4f150ecbb}{SetRejectTimer}}(uint8\_t\ timer);}
+\DoxyCodeLine{00342\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a773fd2f5373a784b2f2a91a9b3ae13d6}{GetRejectTimer}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a868b0ae4325fa1cf8b8b6055973e6c05}{SetHarqProcessesRx}}(uint8\_t\ value);}
+\DoxyCodeLine{00345\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a721ba491d28ab184c48b78671dea025f}{GetHarqProcessesRx}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a16ddec97623ba00dfd7d13166a3d5844}{SetMaxHarqReRxDelay}}(uint8\_t\ delay);}
+\DoxyCodeLine{00348\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a6123205fbf1913ebd14967e0048148e1}{GetMaxHarqReRxDelay}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ae9199e60845f16b49891e03a2d8d8c0e}{SetHarqProcessesTx}}(uint8\_t\ value);}
+\DoxyCodeLine{00351\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_aa9bd92d588afc39f0db5c6ac15ff86fe}{GetHarqProcessesTx}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00352\ }
-\DoxyCodeLine{00353\ \}\ \textcolor{comment}{//\ namespace\ ns3}}
-\DoxyCodeLine{00354\ }
-\DoxyCodeLine{00355\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ab8b14443803ea4bf1a14be2ca551eb2c}{SetMaxHarqReTxDelay}}(uint8\_t\ delay);}
+\DoxyCodeLine{00354\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a3119c241ce9a1a7dd98bbac05210cf5f}{GetMaxHarqReTxDelay}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a04425fb7a7deadfdf4b589681a26e5dd}{SetFlowId}}(uint8\_t\ flowId);}
+\DoxyCodeLine{00357\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a0087c54c99abf997af0231163820a3b4}{GetFlowId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_ad8ada45aca0e19d73ba78877d0e77c26}{SetGroupId}}(uint8\_t\ groupId);}
+\DoxyCodeLine{00360\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a73f2d0e69eac9e6e861ba3cfc8f99348}{GetGroupId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_a0d79925e3c2282d380c29f1d82cbad0d}{SetResourceTag}}(uint8\_t\ resourceTag);}
+\DoxyCodeLine{00363\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage_af82b47a9ab66c3dba8df39e74bc0f8fa}{GetResourceTag}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_associationAccepted;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_harqMod;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00368\ \ \ \ \ uint8\_t\ m\_numberOfFlows;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{keywordtype}{bool}\ m\_groupIdAndResourceTagIncluded;\ \textcolor{comment}{//\ 1\ Bit}}
+\DoxyCodeLine{00370\ \ \ \ \ uint8\_t\ m\_rejectCause;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4\ Bit}}
+\DoxyCodeLine{00371\ \ \ \ \ uint8\_t\ m\_rejectTimer;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4\ Bit}}
+\DoxyCodeLine{00372\ \ \ \ \ uint8\_t\ m\_harqProcessesRx;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00373\ \ \ \ \ uint8\_t\ m\_maxHarqReRxDelay;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5\ Bot}}
+\DoxyCodeLine{00374\ \ \ \ \ uint8\_t\ m\_harqProcessesTx;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3\ Bit}}
+\DoxyCodeLine{00375\ \ \ \ \ uint8\_t\ m\_maxHarqReTxDelay;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5\ Bit}}
+\DoxyCodeLine{00376\ \ \ \ \ uint8\_t\ m\_flowId;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 6\ Bit}}
+\DoxyCodeLine{00377\ \ \ \ \ uint8\_t\ m\_groupId;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 7\ Bit}}
+\DoxyCodeLine{00378\ \ \ \ \ uint8\_t\ m\_resourceTag;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 7\ Bit}}
+\DoxyCodeLine{00379\ \};}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \}\ \textcolor{comment}{//\ namespace\ ns3}}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}

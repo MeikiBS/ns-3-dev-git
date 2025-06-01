@@ -2,7 +2,7 @@
 \hypertarget{classns3_1_1Dect2020Phy}{}\label{classns3_1_1Dect2020Phy}\index{ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 
 
-DECT2020 PHY Klasse.  
+DECT-\/2020 NR PHY layer implementation.  
 
 
 
@@ -35,60 +35,60 @@ Collaboration diagram for ns3\+::Dect2020\+Phy\+:\nopagebreak
 virtual \mbox{\hyperlink{classns3_1_1Dect2020Phy_a6ddcf2c91996c1dae954520d15bd2185}{\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Phy}} ()
 \item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Phy_ad6532b8cdeecabf0305fe334d14a3bcd}{Set\+Mac}} (Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020\+Mac}} $>$ mac)
-\item 
+\begin{DoxyCompactList}\small\item\em Sets the MAC layer instance connected to this PHY. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a22880d34557b18732721e3c751c88383}{Set\+Device}} (Ptr$<$ Net\+Device $>$ device) override
-\item 
+\begin{DoxyCompactList}\small\item\em Sets the network device associated with this PHY. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a29df95614e9b784f468a99485be4585e}{Send}} (Ptr$<$ Packet $>$ packet, \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}} physical\+Header)
-\item 
+\begin{DoxyCompactList}\small\item\em Send a packet from the PHY layer to the Spectrum\+Channel. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a22e13661d3abf55a69ce8e0a3911898a}{Receive}} (Ptr$<$ Packet $>$ packet)
 \item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Phy_aa28c543e61bf5fba7343245e4b05f919}{Start}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes the PHY layer and starts the frame timer. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a85b05d253891ef63a9c7019b20ab6536}{Set\+Channel}} (Ptr$<$ Spectrum\+Channel $>$ channel)
-\item 
+\begin{DoxyCompactList}\small\item\em Sets the Spectrum\+Channel used by this PHY and registers this PHY as receiver. \end{DoxyCompactList}\item 
 Ptr$<$ Spectrum\+Channel $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a76a3e82cc386ee3d09d5fb7fbd956aff}{Get\+Channel}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the associated Spectrum\+Channel. \end{DoxyCompactList}\item 
 Ptr$<$ Net\+Device $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_adb6198c9bbc5223f52f6b1aa54dfb9e4}{Get\+Device}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the associated network device. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Phy_aeb752cef6dbff6bafe6acecc0bf78228}{Start\+Frame\+Timer}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Starts a periodic frame timer to simulate DECT-\/2020 NR slot-\/based timing. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a58126991798cb41adf89d82a1170d83d}{Process\+Slot}} (uint32\+\_\+t slot, double slot\+Start\+Time)
-\item 
+\begin{DoxyCompactList}\small\item\em Processes a single slot within a DECT-\/2020 NR frame. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a65e93626418605661a7c34c77bc4519e}{Process\+Subslot}} (uint32\+\_\+t slot\+Id, uint32\+\_\+t subslot\+Id)
-\item 
+\begin{DoxyCompactList}\small\item\em Processes an individual subslot within a slot. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structns3_1_1Slot}{Slot}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classns3_1_1Dect2020Phy_ae1624ecb6efc7dd3ee2a2cc8702d1e24}{Get\+Current\+Slot}} (uint32\+\_\+t channel\+Id)
-\item 
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the current \doxylink{structns3_1_1Slot}{Slot} object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structns3_1_1Subslot}{Subslot}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classns3_1_1Dect2020Phy_a8a430092b767cb9bd0ba054a55df2600}{Get\+Current\+Subslot}} (uint32\+\_\+t channel\+Id)
-\item 
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the current \doxylink{structns3_1_1Subslot}{Subslot} object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Phy_af01685784c0a9286c994d479553414ce}{Set\+Receive\+Callback}} (Callback$<$ void, Ptr$<$ Packet $>$, double $>$ cb)
-\item 
+\begin{DoxyCompactList}\small\item\em Set the callback to be invoked when a packet is received. \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Phy_a0eb87a27bded3d641dd7418b0000c889}{Get\+Current\+Absolute\+Subslot}} () const
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Phy_add82b42094d6eb8d4f08092303d45932}{Set\+Mobility}} (Ptr$<$ Mobility\+Model $>$ m)
-\item 
-Ptr$<$ Mobility\+Model $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a5c4aa0976778baad8e4adf8702fbaf94}{Get\+Mobility}} () const override
-\item 
-Ptr$<$ const Spectrum\+Model $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a11429ee94110918b8a8610376ef011e7}{Get\+Rx\+Spectrum\+Model}} () const override
-\item 
-Ptr$<$ Object $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_acee95993c5d992680d15568dc4e70848}{Get\+Antenna}} () const override
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a4534477687a8a45b5e4a64b0c688eddb}{Set\+Antenna}} (Ptr$<$ Object $>$ antenna)
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a21ce125c89846fff563d72afc15f9582}{Start\+Rx}} (Ptr$<$ Spectrum\+Signal\+Parameters $>$ params)
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a85ebc584263e4d68d74253f39f5aad52}{End\+Rx}} (Ptr$<$ Spectrum\+Signal\+Parameters $>$ params)
-\item 
+\begin{DoxyCompactList}\small\item\em Get the current absolute subslot index. \end{DoxyCompactList}\item 
 uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Phy_aa56bdf0b3cfeb443cef81c0fcbceff45}{Get\+Mcs\+Transport\+Block\+Size}} (uint8\+\_\+t mu, uint8\+\_\+t beta, uint8\+\_\+t mcs\+Index)
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the transport block size in bits for a given MCS index. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classns3_1_1Dect2020Phy_a16f7d546aa47c9dec445049729d9df5a}{Calculate\+Tx\+Duration\+Ns}} (\mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}} physical\+Header\+Field)
-\item 
+\begin{DoxyCompactList}\small\item\em Calculates the transmission duration in nanoseconds for a given packet. \end{DoxyCompactList}\item 
 Time \mbox{\hyperlink{classns3_1_1Dect2020Phy_a789b8e301e483d132f9fd3fd6a7d9dd0}{Get\+Absolute\+Subslot\+Time}} (uint8\+\_\+t target\+Sfn, uint8\+\_\+t slot, uint8\+\_\+t subslot) const
 \item 
 Time \mbox{\hyperlink{classns3_1_1Dect2020Phy_a26bd51be0fb8ddca4a231c22addee177}{Get\+Time\+Until\+Subslot}} (uint8\+\_\+t target\+Sfn, uint8\+\_\+t target\+Slot, uint8\+\_\+t target\+Subslot) const
 \item 
 int \mbox{\hyperlink{classns3_1_1Dect2020Phy_af7ebc15953167ad8851d5a45d5503b3d}{Get\+Absolute\+Subslot\+Index}} (uint8\+\_\+t slot, uint8\+\_\+t subslot) const
-\item 
+\begin{DoxyCompactList}\small\item\em Converts a slot and subslot index into an absolute subslot index within a frame. \end{DoxyCompactList}\item 
 Time \mbox{\hyperlink{classns3_1_1Dect2020Phy_af84a0ebfea03afa6202a0e151724b64f}{Get\+Time\+To\+Next\+Absolute\+Subslot}} (uint8\+\_\+t target\+Sfn, uint8\+\_\+t slot, uint8\+\_\+t subslot) const
+\begin{DoxyCompactList}\small\item\em Calculates the time offset from the current subslot to a target subslot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_add82b42094d6eb8d4f08092303d45932}{Set\+Mobility}} (Ptr$<$ Mobility\+Model $>$ m)
+\begin{DoxyCompactList}\small\item\em Set the mobility model for this PHY layer. \end{DoxyCompactList}\item 
+Ptr$<$ Mobility\+Model $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a5c4aa0976778baad8e4adf8702fbaf94}{Get\+Mobility}} () const override
+\begin{DoxyCompactList}\small\item\em Get the associated mobility model. \end{DoxyCompactList}\item 
+Ptr$<$ const Spectrum\+Model $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_a11429ee94110918b8a8610376ef011e7}{Get\+Rx\+Spectrum\+Model}} () const override
+\begin{DoxyCompactList}\small\item\em Get the spectrum model used for reception. \end{DoxyCompactList}\item 
+Ptr$<$ Object $>$ \mbox{\hyperlink{classns3_1_1Dect2020Phy_acee95993c5d992680d15568dc4e70848}{Get\+Antenna}} () const override
+\begin{DoxyCompactList}\small\item\em Get the antenna object associated with this PHY. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a4534477687a8a45b5e4a64b0c688eddb}{Set\+Antenna}} (Ptr$<$ Object $>$ antenna)
+\begin{DoxyCompactList}\small\item\em Set the antenna object for this PHY. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a21ce125c89846fff563d72afc15f9582}{Start\+Rx}} (Ptr$<$ Spectrum\+Signal\+Parameters $>$ params)
+\begin{DoxyCompactList}\small\item\em Begins the reception process of a DECT-\/2020 NR packet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Phy_a85ebc584263e4d68d74253f39f5aad52}{End\+Rx}} (Ptr$<$ Spectrum\+Signal\+Parameters $>$ params)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -109,9 +109,9 @@ Time \mbox{\hyperlink{classns3_1_1Dect2020Phy_a4a1d289c4c16c3cca3a48412d7f547d0}
 
 
 \doxysubsection{Detailed Description}
-DECT2020 PHY Klasse. 
+DECT-\/2020 NR PHY layer implementation. 
 
-Diese Klasse implementiert die grundlegende PHY-\/\+Schichtfunktionalität für das DECT2020 Modul. 
+Represents the Phyical Layer for a DECT-\/2020 NR node. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classns3_1_1Dect2020Phy_a2a80d65af0b9a2faf2b06f25f7940cbe}\label{classns3_1_1Dect2020Phy_a2a80d65af0b9a2faf2b06f25f7940cbe} 
@@ -135,6 +135,20 @@ Diese Klasse implementiert die grundlegende PHY-\/\+Schichtfunktionalität für 
 \doxysubsubsection{\texorpdfstring{CalculateTxDurationNs()}{CalculateTxDurationNs()}}
 {\footnotesize\ttfamily double ns3\+::\+Dect2020\+Phy\+::\+Calculate\+Tx\+Duration\+Ns (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}}}]{physical\+Header\+Field }\end{DoxyParamCaption})}
 
+
+
+Calculates the transmission duration in nanoseconds for a given packet. 
+
+Uses the packet length and its type (slot or subslot based) to compute the duration. Currently only slot-\/based duration is supported.
+
+
+\begin{DoxyParams}{Parameters}
+{\em physical\+Header\+Field} & PHY control field containing length and type \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Transmission duration in nanoseconds 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_a85ebc584263e4d68d74253f39f5aad52}\label{classns3_1_1Dect2020Phy_a85ebc584263e4d68d74253f39f5aad52} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!EndRx@{EndRx}}
 \index{EndRx@{EndRx}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
@@ -147,6 +161,20 @@ Diese Klasse implementiert die grundlegende PHY-\/\+Schichtfunktionalität für 
 \doxysubsubsection{\texorpdfstring{GetAbsoluteSubslotIndex()}{GetAbsoluteSubslotIndex()}}
 {\footnotesize\ttfamily int ns3\+::\+Dect2020\+Phy\+::\+Get\+Absolute\+Subslot\+Index (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{slot,  }\item[{uint8\+\_\+t}]{subslot }\end{DoxyParamCaption}) const}
 
+
+
+Converts a slot and subslot index into an absolute subslot index within a frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slot} & \doxylink{structns3_1_1Slot}{Slot} index (0–23) \\
+\hline
+{\em subslot} & \doxylink{structns3_1_1Subslot}{Subslot} index within the slot \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Absolute subslot index (0–N), where N = 24 \texorpdfstring{$\ast$}{*} subslots\+Per\+Slot -\/ 1 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_a789b8e301e483d132f9fd3fd6a7d9dd0}\label{classns3_1_1Dect2020Phy_a789b8e301e483d132f9fd3fd6a7d9dd0} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetAbsoluteSubslotTime@{GetAbsoluteSubslotTime}}
 \index{GetAbsoluteSubslotTime@{GetAbsoluteSubslotTime}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
@@ -159,60 +187,168 @@ Diese Klasse implementiert die grundlegende PHY-\/\+Schichtfunktionalität für 
 \doxysubsubsection{\texorpdfstring{GetAntenna()}{GetAntenna()}}
 {\footnotesize\ttfamily Ptr$<$ Object $>$ ns3\+::\+Dect2020\+Phy\+::\+Get\+Antenna (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
 
+
+
+Get the antenna object associated with this PHY. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the antenna (can be Isotropic\+Antenna\+Model or custom model) 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_a76a3e82cc386ee3d09d5fb7fbd956aff}\label{classns3_1_1Dect2020Phy_a76a3e82cc386ee3d09d5fb7fbd956aff} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetChannel@{GetChannel}}
 \index{GetChannel@{GetChannel}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{GetChannel()}{GetChannel()}}
 {\footnotesize\ttfamily Ptr$<$ Spectrum\+Channel $>$ ns3\+::\+Dect2020\+Phy\+::\+Get\+Channel (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
 
+
+
+Returns the associated Spectrum\+Channel. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the Spectrum\+Channel. 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_a0eb87a27bded3d641dd7418b0000c889}\label{classns3_1_1Dect2020Phy_a0eb87a27bded3d641dd7418b0000c889} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetCurrentAbsoluteSubslot@{GetCurrentAbsoluteSubslot}}
 \index{GetCurrentAbsoluteSubslot@{GetCurrentAbsoluteSubslot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{GetCurrentAbsoluteSubslot()}{GetCurrentAbsoluteSubslot()}}
 {\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Phy\+::\+Get\+Current\+Absolute\+Subslot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
+
+
+Get the current absolute subslot index. 
+
+This value increases continuously with time and wraps around after a full frame.
+
+\begin{DoxyReturn}{Returns}
+Absolute subslot index as uint16\+\_\+t 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_ae1624ecb6efc7dd3ee2a2cc8702d1e24}\label{classns3_1_1Dect2020Phy_ae1624ecb6efc7dd3ee2a2cc8702d1e24} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetCurrentSlot@{GetCurrentSlot}}
 \index{GetCurrentSlot@{GetCurrentSlot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{GetCurrentSlot()}{GetCurrentSlot()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{structns3_1_1Slot}{Slot}} \texorpdfstring{$\ast$}{*} ns3\+::\+Dect2020\+Phy\+::\+Get\+Current\+Slot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{channel\+Id }\end{DoxyParamCaption})}
 
+
+
+Returns a pointer to the current \doxylink{structns3_1_1Slot}{Slot} object. 
+
+Searches the internal slot list for the slot matching m\+\_\+current\+Slot and returns a pointer to it.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Id} & The ID of the channel (not used yet, for future extension). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the current \doxylink{structns3_1_1Slot}{Slot}, or nullptr if not found. 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_a8a430092b767cb9bd0ba054a55df2600}\label{classns3_1_1Dect2020Phy_a8a430092b767cb9bd0ba054a55df2600} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetCurrentSubslot@{GetCurrentSubslot}}
 \index{GetCurrentSubslot@{GetCurrentSubslot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{GetCurrentSubslot()}{GetCurrentSubslot()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{structns3_1_1Subslot}{Subslot}} \texorpdfstring{$\ast$}{*} ns3\+::\+Dect2020\+Phy\+::\+Get\+Current\+Subslot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{channel\+Id }\end{DoxyParamCaption})}
 
+
+
+Returns a pointer to the current \doxylink{structns3_1_1Subslot}{Subslot} object. 
+
+Iterates through the subslots of the current slot and returns the matching one.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Id} & The ID of the channel (not used yet, for future extension). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the current \doxylink{structns3_1_1Subslot}{Subslot}, or nullptr if not found. 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_adb6198c9bbc5223f52f6b1aa54dfb9e4}\label{classns3_1_1Dect2020Phy_adb6198c9bbc5223f52f6b1aa54dfb9e4} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetDevice@{GetDevice}}
 \index{GetDevice@{GetDevice}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{GetDevice()}{GetDevice()}}
 {\footnotesize\ttfamily Ptr$<$ Net\+Device $>$ ns3\+::\+Dect2020\+Phy\+::\+Get\+Device (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
 
+
+
+Returns the associated network device. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the Net\+Device. 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_aa56bdf0b3cfeb443cef81c0fcbceff45}\label{classns3_1_1Dect2020Phy_aa56bdf0b3cfeb443cef81c0fcbceff45} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetMcsTransportBlockSize@{GetMcsTransportBlockSize}}
 \index{GetMcsTransportBlockSize@{GetMcsTransportBlockSize}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{GetMcsTransportBlockSize()}{GetMcsTransportBlockSize()}}
 {\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Phy\+::\+Get\+Mcs\+Transport\+Block\+Size (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{mu,  }\item[{uint8\+\_\+t}]{beta,  }\item[{uint8\+\_\+t}]{mcs\+Index }\end{DoxyParamCaption})}
 
+
+
+Returns the transport block size in bits for a given MCS index. 
+
+Currently only supports single slot, single stream with mu = 1 and beta = 1.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mu} & Subcarrier spacing scaling factor (currently only mu = 1 supported) \\
+\hline
+{\em beta} & Time domain scaling factor (currently only beta = 1 supported) \\
+\hline
+{\em mcs\+Index} & Modulation and Coding Scheme index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Transport block size in bits, or 0 if parameters are unsupported 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_a5c4aa0976778baad8e4adf8702fbaf94}\label{classns3_1_1Dect2020Phy_a5c4aa0976778baad8e4adf8702fbaf94} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetMobility@{GetMobility}}
 \index{GetMobility@{GetMobility}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{GetMobility()}{GetMobility()}}
 {\footnotesize\ttfamily Ptr$<$ Mobility\+Model $>$ ns3\+::\+Dect2020\+Phy\+::\+Get\+Mobility (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
 
+
+
+Get the associated mobility model. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the Mobility\+Model 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_a11429ee94110918b8a8610376ef011e7}\label{classns3_1_1Dect2020Phy_a11429ee94110918b8a8610376ef011e7} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetRxSpectrumModel@{GetRxSpectrumModel}}
 \index{GetRxSpectrumModel@{GetRxSpectrumModel}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{GetRxSpectrumModel()}{GetRxSpectrumModel()}}
 {\footnotesize\ttfamily Ptr$<$ const Spectrum\+Model $>$ ns3\+::\+Dect2020\+Phy\+::\+Get\+Rx\+Spectrum\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
 
+
+
+Get the spectrum model used for reception. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the Spectrum\+Model 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_af84a0ebfea03afa6202a0e151724b64f}\label{classns3_1_1Dect2020Phy_af84a0ebfea03afa6202a0e151724b64f} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetTimeToNextAbsoluteSubslot@{GetTimeToNextAbsoluteSubslot}}
 \index{GetTimeToNextAbsoluteSubslot@{GetTimeToNextAbsoluteSubslot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{GetTimeToNextAbsoluteSubslot()}{GetTimeToNextAbsoluteSubslot()}}
-{\footnotesize\ttfamily Time ns3\+::\+Dect2020\+Phy\+::\+Get\+Time\+To\+Next\+Absolute\+Subslot (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{target\+Sfn,  }\item[{uint8\+\_\+t}]{slot,  }\item[{uint8\+\_\+t}]{subslot }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily Time ns3\+::\+Dect2020\+Phy\+::\+Get\+Time\+To\+Next\+Absolute\+Subslot (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{target\+Sfn,  }\item[{uint8\+\_\+t}]{target\+Slot,  }\item[{uint8\+\_\+t}]{target\+Subslot }\end{DoxyParamCaption}) const}
 
+
+
+Calculates the time offset from the current subslot to a target subslot. 
+
+This method computes the time required to reach a specified subslot (defined by SFN, slot, and subslot) starting from the current PHY state. It assumes that the target subslot lies within the same or next frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+Sfn} & The System Frame Number (not yet used, currently only for consistency) \\
+\hline
+{\em target\+Slot} & The slot index within the frame (0–23) \\
+\hline
+{\em target\+Subslot} & The subslot index within the slot \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Time duration until the target subslot (relative to current time) 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_a26bd51be0fb8ddca4a231c22addee177}\label{classns3_1_1Dect2020Phy_a26bd51be0fb8ddca4a231c22addee177} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!GetTimeUntilSubslot@{GetTimeUntilSubslot}}
 \index{GetTimeUntilSubslot@{GetTimeUntilSubslot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
@@ -231,12 +367,43 @@ Diese Klasse implementiert die grundlegende PHY-\/\+Schichtfunktionalität für 
 \doxysubsubsection{\texorpdfstring{ProcessSlot()}{ProcessSlot()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Process\+Slot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{slot,  }\item[{double}]{slot\+Start\+Time }\end{DoxyParamCaption})}
 
+
+
+Processes a single slot within a DECT-\/2020 NR frame. 
+
+This method is triggered once per slot (24 per frame) and performs the following actions\+:
+\begin{DoxyItemize}
+\item Increments the System Frame Number (SFN) at the beginning of each new frame.
+\item Updates the internal slot counter.
+\item Schedules subslot processing based on the subcarrier scaling factor.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em slot} & The slot index within the current frame (0–23). \\
+\hline
+{\em slot\+Start\+Time} & The relative start time of the slot in nanoseconds. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Phy_a65e93626418605661a7c34c77bc4519e}\label{classns3_1_1Dect2020Phy_a65e93626418605661a7c34c77bc4519e} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!ProcessSubslot@{ProcessSubslot}}
 \index{ProcessSubslot@{ProcessSubslot}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{ProcessSubslot()}{ProcessSubslot()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Process\+Subslot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{slot\+Id,  }\item[{uint32\+\_\+t}]{subslot\+Id }\end{DoxyParamCaption})}
 
+
+
+Processes an individual subslot within a slot. 
+
+Updates internal state for the currently active subslot and resets the RSSI value for the subslot on the currently used cluster channel.
+
+
+\begin{DoxyParams}{Parameters}
+{\em slot\+Id} & The slot index this subslot belongs to (0–23). \\
+\hline
+{\em subslot\+Id} & The subslot index within the slot (0–1/3/7/15 depending on scaling). \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Phy_a22e13661d3abf55a69ce8e0a3911898a}\label{classns3_1_1Dect2020Phy_a22e13661d3abf55a69ce8e0a3911898a} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!Receive@{Receive}}
 \index{Receive@{Receive}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
@@ -249,60 +416,175 @@ Diese Klasse implementiert die grundlegende PHY-\/\+Schichtfunktionalität für 
 \doxysubsubsection{\texorpdfstring{Send()}{Send()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Send (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet,  }\item[{\mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}}}]{physical\+Header }\end{DoxyParamCaption})}
 
+
+
+Send a packet from the PHY layer to the Spectrum\+Channel. 
+
+This function prepares and transmits a packet by creating the necessary transmission parameters, including power spectral density (PSD), transmission duration, and channel information. It also updates the channel occupancy state to allow RSSI-\/based collision detection and schedules the transmission on the Spectrum\+Channel.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The packet to send \\
+\hline
+{\em physical\+Header} & The DECT2020 PHY control header Field Type 1 \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Phy_a4534477687a8a45b5e4a64b0c688eddb}\label{classns3_1_1Dect2020Phy_a4534477687a8a45b5e4a64b0c688eddb} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetAntenna@{SetAntenna}}
 \index{SetAntenna@{SetAntenna}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{SetAntenna()}{SetAntenna()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Antenna (\begin{DoxyParamCaption}\item[{Ptr$<$ Object $>$}]{antenna }\end{DoxyParamCaption})}
 
+
+
+Set the antenna object for this PHY. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the antenna object 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Phy_a85b05d253891ef63a9c7019b20ab6536}\label{classns3_1_1Dect2020Phy_a85b05d253891ef63a9c7019b20ab6536} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetChannel@{SetChannel}}
 \index{SetChannel@{SetChannel}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{SetChannel()}{SetChannel()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Channel (\begin{DoxyParamCaption}\item[{Ptr$<$ Spectrum\+Channel $>$}]{channel }\end{DoxyParamCaption})}
 
+
+
+Sets the Spectrum\+Channel used by this PHY and registers this PHY as receiver. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel} & Pointer to the Spectrum\+Channel. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Phy_a22880d34557b18732721e3c751c88383}\label{classns3_1_1Dect2020Phy_a22880d34557b18732721e3c751c88383} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetDevice@{SetDevice}}
 \index{SetDevice@{SetDevice}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{SetDevice()}{SetDevice()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Device (\begin{DoxyParamCaption}\item[{Ptr$<$ Net\+Device $>$}]{device }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
 
+
+
+Sets the network device associated with this PHY. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & Pointer to the Net\+Device. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Phy_ad6532b8cdeecabf0305fe334d14a3bcd}\label{classns3_1_1Dect2020Phy_ad6532b8cdeecabf0305fe334d14a3bcd} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetMac@{SetMac}}
 \index{SetMac@{SetMac}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{SetMac()}{SetMac()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Mac (\begin{DoxyParamCaption}\item[{Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020\+Mac}} $>$}]{mac }\end{DoxyParamCaption})}
 
+
+
+Sets the MAC layer instance connected to this PHY. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mac} & Pointer to the MAC layer. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Phy_add82b42094d6eb8d4f08092303d45932}\label{classns3_1_1Dect2020Phy_add82b42094d6eb8d4f08092303d45932} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetMobility@{SetMobility}}
 \index{SetMobility@{SetMobility}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{SetMobility()}{SetMobility()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Mobility (\begin{DoxyParamCaption}\item[{Ptr$<$ Mobility\+Model $>$}]{m }\end{DoxyParamCaption})}
 
+
+
+Set the mobility model for this PHY layer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & Pointer to a Mobility\+Model representing the device\textquotesingle{}s position and movement \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Phy_af01685784c0a9286c994d479553414ce}\label{classns3_1_1Dect2020Phy_af01685784c0a9286c994d479553414ce} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!SetReceiveCallback@{SetReceiveCallback}}
 \index{SetReceiveCallback@{SetReceiveCallback}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{SetReceiveCallback()}{SetReceiveCallback()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Set\+Receive\+Callback (\begin{DoxyParamCaption}\item[{Callback$<$ void, Ptr$<$ Packet $>$, double $>$}]{cb }\end{DoxyParamCaption})}
 
+
+
+Set the callback to be invoked when a packet is received. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cb} & Callback function with parameters\+: received packet and received power in d\+Bm \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Phy_aa28c543e61bf5fba7343245e4b05f919}\label{classns3_1_1Dect2020Phy_aa28c543e61bf5fba7343245e4b05f919} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!Start@{Start}}
 \index{Start@{Start}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{Start()}{Start()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Initializes the PHY layer and starts the frame timer. 
+
+This method sets the initial DECT channel for the device and starts the PHY frame timer if it is not already running.
+
+Specifically, it\+:
+\begin{DoxyItemize}
+\item Retrieves the first valid DECT channel based on the configured band number.
+\item Assigns this channel to {\ttfamily m\+\_\+dect2020\+Channel}.
+\item Generates a pseudo-\/random initial channel ID (currently hardcoded with seed 13).
+\item Informs the MAC layer of the initial channel via {\ttfamily Set\+Current\+Channel\+Id}.
+\item Starts the internal frame timer to drive PHY time structure (frame/slot/subslot).
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+The random channel selection is currently deterministic (seed = 13). 
+\end{DoxyNote}
 \Hypertarget{classns3_1_1Dect2020Phy_aeb752cef6dbff6bafe6acecc0bf78228}\label{classns3_1_1Dect2020Phy_aeb752cef6dbff6bafe6acecc0bf78228} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!StartFrameTimer@{StartFrameTimer}}
 \index{StartFrameTimer@{StartFrameTimer}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{StartFrameTimer()}{StartFrameTimer()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Start\+Frame\+Timer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Phy_a21ce125c89846fff563d72afc15f9582}\label{classns3_1_1Dect2020Phy_a21ce125c89846fff563d72afc15f9582} 
+
+
+Starts a periodic frame timer to simulate DECT-\/2020 NR slot-\/based timing. 
+
+This method initializes the start of a new frame (10 ms duration) and schedules the processing of each of the 24 slots within the frame. Each slot has a duration of approximately 0.\+41667 ms. At the end of the frame, the timer is recursively scheduled again to simulate the next frame.
+
+This mechanism provides the PHY with a slot-\/aligned time base for\+:
+\begin{DoxyItemize}
+\item Frame/slot synchronization
+\item Slot-\/specific operations (e.\+g., transmission or sensing)
+\item Interfacing with the MAC layer for subslot timing 
+\end{DoxyItemize}\Hypertarget{classns3_1_1Dect2020Phy_a21ce125c89846fff563d72afc15f9582}\label{classns3_1_1Dect2020Phy_a21ce125c89846fff563d72afc15f9582} 
 \index{ns3::Dect2020Phy@{ns3::Dect2020Phy}!StartRx@{StartRx}}
 \index{StartRx@{StartRx}!ns3::Dect2020Phy@{ns3::Dect2020Phy}}
 \doxysubsubsection{\texorpdfstring{StartRx()}{StartRx()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Phy\+::\+Start\+Rx (\begin{DoxyParamCaption}\item[{Ptr$<$ Spectrum\+Signal\+Parameters $>$}]{params }\end{DoxyParamCaption})}
 
+
+
+Begins the reception process of a DECT-\/2020 NR packet. 
+
+This method is called by the Spectrum\+Channel when a transmission is received on the currently tuned channel. It performs the following steps\+:
+\begin{DoxyItemize}
+\item Verifies if the packet was sent on the same channel the PHY is listening to.
+\item Converts the received power into d\+Bm and compares it with the minimum RX sensitivity, adjusted by the device\textquotesingle{}s RX gain index.
+\item Checks the overall channel RSSI to estimate potential collisions\+:
+\begin{DoxyItemize}
+\item If RSSI is moderately high, a packet drop is determined probabilistically.
+\item If RSSI is very high, a packet drop is assumed due to collision.
+\end{DoxyItemize}
+\item If no drop condition is met, the packet is handed over to the MAC layer through a callback.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em params} & Parameters of the received signal, including power spectral density (PSD), channel ID, and the actual packet. \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Member Data Documentation}

@@ -1,5 +1,5 @@
 <map id="ns3::Dect2020NetworkBeaconMessage" name="ns3::Dect2020NetworkBeaconMessage">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,224,119"/>
+<area shape="rect" id="Node000001" title="MAC Network Beacon Message ETSI TS 103 636&#45;4 V2.1.1 6.4.2.2." alt="" coords="5,79,224,119"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="80,5,149,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,44,117,79,112,79,112,44"/>
 </map>

@@ -53,6 +53,7 @@ var classns3_1_1Dect2020NetDevice =
     [ "m_numOfHarqProcesses", "classns3_1_1Dect2020NetDevice.html#a19622110a019a0c23c6f84b364dcb5ca", null ],
     [ "m_numOfPHYCapabilities", "classns3_1_1Dect2020NetDevice.html#ab163903c3692b590ff393d53fb816c2b", null ],
     [ "m_operatingModes", "classns3_1_1Dect2020NetDevice.html#ae4d1358a67f2c909baf6b68c2270cb7e", null ],
+    [ "m_randomAccessResourceLength", "classns3_1_1Dect2020NetDevice.html#a4b9702aab766926bcb11a2a9d93ea45d", null ],
     [ "m_rdPowerClass", "classns3_1_1Dect2020NetDevice.html#ad31824b78655dc671e90b4547500ca69", null ],
     [ "m_release", "classns3_1_1Dect2020NetDevice.html#a1301decb01705f84ad7389614afa3ef8", null ],
     [ "m_rxForTxDiversity", "classns3_1_1Dect2020NetDevice.html#aac42b44515e0e429655343dd72e16659", null ],

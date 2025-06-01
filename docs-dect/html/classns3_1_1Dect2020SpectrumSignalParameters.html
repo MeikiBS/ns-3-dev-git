@@ -97,13 +97,16 @@ $(document).ready(function(){initNavTree('classns3_1_1Dect2020SpectrumSignalPara
 </div><!--header-->
 <div class="contents">
 
+<p>Signal parameters used by the DECT-2020 PHY layer in SpectrumChannel transmissions.  
+ <a href="classns3_1_1Dect2020SpectrumSignalParameters.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="dect2020-spectrum-signal-parameters_8h_source.html">dect2020-spectrum-signal-parameters.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ns3::Dect2020SpectrumSignalParameters:</div>
 <div class="dyncontent">
 <div class="center"><img src="classns3_1_1Dect2020SpectrumSignalParameters__inherit__graph.png" border="0" usemap="#ans3_1_1Dect2020SpectrumSignalParameters_inherit__map" alt="Inheritance graph"/></div>
 <map name="ans3_1_1Dect2020SpectrumSignalParameters_inherit__map" id="ans3_1_1Dect2020SpectrumSignalParameters_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,79,223,119"/>
+<area shape="rect" title="Signal parameters used by the DECT&#45;2020 PHY layer in SpectrumChannel transmissions." alt="" coords="5,79,223,119"/>
 <area shape="rect" title=" " alt="" coords="15,5,213,31"/>
 <area shape="poly" title=" " alt="" coords="117,44,117,79,111,79,111,44"/>
 </map>
@@ -113,7 +116,7 @@ Collaboration diagram for ns3::Dect2020SpectrumSignalParameters:</div>
 <div class="dyncontent">
 <div class="center"><img src="classns3_1_1Dect2020SpectrumSignalParameters__coll__graph.png" border="0" usemap="#ans3_1_1Dect2020SpectrumSignalParameters_coll__map" alt="Collaboration graph"/></div>
 <map name="ans3_1_1Dect2020SpectrumSignalParameters_coll__map" id="ans3_1_1Dect2020SpectrumSignalParameters_coll__map">
-<area shape="rect" title=" " alt="" coords="5,79,223,119"/>
+<area shape="rect" title="Signal parameters used by the DECT&#45;2020 PHY layer in SpectrumChannel transmissions." alt="" coords="5,79,223,119"/>
 <area shape="rect" title=" " alt="" coords="15,5,213,31"/>
 <area shape="poly" title=" " alt="" coords="117,44,117,79,111,79,111,44"/>
 </map>
@@ -135,7 +138,15 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a80a3a847b7be71dab7628109ca885dcb" id="r_a80a3a847b7be71dab7628109ca885dcb"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020SpectrumSignalParameters.html#a80a3a847b7be71dab7628109ca885dcb">m_currentChannelId</a></td></tr>
 <tr class="separator:a80a3a847b7be71dab7628109ca885dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Signal parameters used by the DECT-2020 PHY layer in SpectrumChannel transmissions. </p>
+<p>This class inherits from ns3::SpectrumSignalParameters and encapsulates:</p><ul>
+<li>The packet to be transmitted over the spectrum channel</li>
+<li>The DECT-specific channel ID on which the transmission takes place</li>
+</ul>
+<p>These parameters are passed to ns-3's SpectrumChannel::StartTx() method and received by other PHY entities through StartRx().</p>
+<p>This structure allows DECT-2020 NR devices to embed channel-specific transmission metadata into the physical layer for RSSI calculation, collision detection, and subslot-based scheduling. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a46ca4d99413fd6164f2e0551ce70aedd" name="a46ca4d99413fd6164f2e0551ce70aedd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a46ca4d99413fd6164f2e0551ce70aedd">&#9670;&#160;</a></span>Dect2020SpectrumSignalParameters()</h2>
 

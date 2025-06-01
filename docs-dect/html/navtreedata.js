@@ -63,11 +63,11 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "classns3_1_1Dect2020ClusterBeaconMessage.html#a7fa435eca7f1e4957ed38bf863e8cbc8",
-"classns3_1_1Dect2020Mac.html#afb36573ecf25b73a44bf187cc4899bfb",
-"classns3_1_1Dect2020NetworkBeaconMessage.html#a98fa40f5ad20e1cf6b621ae55067811a",
-"classns3_1_1Dect2020RandomAccessResourceIE.html#abb73da2af4e21ed6740d7f0be357a705",
-"dect2020-physical-header-field_8cc.html#a157384f22b5db69a9daf5f2df9e65ffe",
-"structns3_1_1FtCandidateInfo.html#ae7f876a79010583df9800a9a2095ae05"
+"classns3_1_1Dect2020MacHeaderType.html#aa06c75189866a31b8e626824ba64212a",
+"classns3_1_1Dect2020PHYControlFieldType1.html",
+"classns3_1_1Dect2020RandomAccessResourceIE.html#af22ebfa856ea60005f285e4b093dbc20",
+"dect2020-simulation_8cc.html",
+"structns3_1_1SubslotScanContext.html#ae645a2b31b24b11a266acfc9586f3bc6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

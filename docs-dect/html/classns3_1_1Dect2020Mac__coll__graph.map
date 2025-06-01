@@ -1,38 +1,29 @@
 <map id="ns3::Dect2020Mac" name="ns3::Dect2020Mac">
-<area shape="rect" id="Node000001" title="DECT2020 MAC Klasse." alt="" coords="1049,272,1192,297"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="694,7,758,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="771,9,827,4,894,5,929,10,964,19,997,32,1027,51,1052,75,1073,104,1089,135,1101,168,1116,228,1121,272,1116,272,1110,229,1096,169,1084,137,1068,106,1048,78,1024,55,994,37,962,24,928,15,894,10,827,9,772,14"/>
-<area shape="rect" id="Node000003" href="$classns3_1_1Dect2020PHYControlFieldType1.html" title=" " alt="" coords="124,241,343,281"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="305,234,366,221,436,216,530,216,748,225,1026,246,1062,257,1093,269,1091,274,1060,262,1025,251,748,231,530,221,437,221,367,226,306,239"/>
-<area shape="rect" id="Node000012" href="$structns3_1_1FtCandidateInfo.html" title=" " alt="" coords="647,316,805,341"/>
-<area shape="poly" id="edge19_Node000012_Node000003" title=" " alt="" coords="356,270,586,299,664,313,663,319,585,305,356,276"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="5,329,75,355"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="70,320,123,290,155,278,157,283,125,295,72,324"/>
-<area shape="rect" id="Node000005" href="$classns3_1_1Dect2020MacHeaderType.html" title=" " alt="" coords="367,69,585,95"/>
-<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="41,315,48,274,62,225,86,175,102,153,122,133,149,115,179,100,242,81,306,71,366,69,366,75,306,77,243,86,181,105,152,120,126,138,106,156,91,178,67,227,53,275,46,316"/>
-<area shape="rect" id="Node000006" href="$classns3_1_1Dect2020BeaconHeader.html" title="Indicates the type of the MAC Common Header (ETSI TS 103 636&#45;4, Table 6.3.3.2)." alt="" coords="128,148,339,173"/>
-<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="53,316,82,272,122,227,164,195,205,171,207,176,167,199,126,231,87,276,58,319"/>
-<area shape="rect" id="Node000007" href="$classns3_1_1Dect2020UnicastHeader.html" title=" " alt="" coords="128,305,339,331"/>
-<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="88,334,131,328,131,333,89,339"/>
-<area shape="rect" id="Node000008" href="$classns3_1_1Dect2020NetworkBeaconMessage.html" title=" " alt="" coords="124,355,343,395"/>
-<area shape="poly" id="edge11_Node000008_Node000004" title=" " alt="" coords="89,348,124,354,123,359,88,353"/>
-<area shape="rect" id="Node000009" href="$classns3_1_1Dect2020ClusterBeaconMessage.html" title=" " alt="" coords="129,421,338,461"/>
-<area shape="poly" id="edge13_Node000009_Node000004" title=" " alt="" coords="66,362,93,384,125,405,156,418,153,423,123,410,90,389,62,366"/>
-<area shape="rect" id="Node000010" href="$classns3_1_1Dect2020RandomAccessResourceIE.html" title=" " alt="" coords="126,485,341,525"/>
-<area shape="poly" id="edge15_Node000010_Node000004" title=" " alt="" coords="53,366,81,420,101,447,126,471,145,482,142,487,122,475,97,451,76,422,49,369"/>
-<area shape="rect" id="Node000011" href="$classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload.html" title=" " alt="" coords="367,595,585,635"/>
-<area shape="poly" id="edge17_Node000011_Node000004" title=" " alt="" coords="47,368,55,406,70,451,93,497,108,517,126,535,152,554,181,570,243,593,307,607,368,614,367,619,306,612,242,598,179,575,149,558,122,539,104,521,88,499,65,453,50,407,42,369"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="599,74,715,72,839,75,950,88,994,99,1027,113,1047,129,1065,149,1092,194,1110,238,1119,271,1114,272,1105,239,1088,196,1061,152,1044,133,1024,118,992,104,949,93,839,81,715,77,599,79"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="352,151,367,150,555,143,632,141,703,143,774,151,848,165,931,189,1026,222,1071,245,1105,270,1102,274,1068,250,1024,227,929,194,847,171,773,156,703,149,632,147,555,148,367,155,353,156"/>
-<area shape="poly" id="edge20_Node000012_Node000006" title=" " alt="" coords="353,167,411,178,472,195,532,220,587,253,596,264,600,275,603,285,611,295,648,314,646,319,608,299,599,288,595,277,592,267,584,257,530,224,470,200,409,183,352,172"/>
-<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="329,298,341,291,348,282,352,273,356,263,366,254,397,250,460,249,651,256,1049,278,1049,283,651,261,460,255,397,255,368,259,360,266,357,275,353,285,344,295,332,302"/>
-<area shape="poly" id="edge21_Node000012_Node000007" title=" " alt="" coords="353,318,647,324,647,330,353,323"/>
-<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="356,379,583,382,713,377,842,365,935,349,1024,321,1090,295,1092,300,1026,326,936,354,843,370,713,382,583,387,356,385"/>
-<area shape="poly" id="edge22_Node000012_Node000008" title=" " alt="" coords="356,364,585,343,647,336,647,342,586,349,357,369"/>
-<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="337,465,344,471,353,482,357,493,360,503,368,511,397,525,424,533,448,535,471,534,585,510,714,489,814,466,909,429,1024,368,1072,331,1107,296,1110,299,1075,335,1027,372,911,434,816,471,715,494,586,515,472,539,448,541,422,538,395,530,365,515,355,505,352,495,348,484,341,475,334,470"/>
-<area shape="poly" id="edge23_Node000012_Node000009" title=" " alt="" coords="351,427,465,410,585,384,646,362,698,339,700,344,648,367,586,389,466,415,352,432"/>
-<area shape="poly" id="edge14_Node000001_Node000010" title=" " alt="" coords="306,526,367,540,501,556,606,561,710,552,842,526,897,515,941,504,980,486,1024,454,1058,414,1084,370,1102,328,1113,297,1118,299,1107,330,1088,373,1062,418,1027,457,983,491,942,509,899,520,843,531,711,557,606,566,500,561,366,545,305,531"/>
-<area shape="poly" id="edge24_Node000012_Node000010" title=" " alt="" coords="354,511,412,507,473,497,531,477,559,463,583,446,593,432,596,418,598,402,607,386,643,358,682,339,684,344,646,362,611,389,603,404,601,419,598,435,587,449,561,467,534,482,474,502,413,513,354,516"/>
-<area shape="poly" id="edge16_Node000001_Node000011" title=" " alt="" coords="562,636,666,654,726,659,789,660,852,654,914,640,972,616,1024,581,1053,550,1076,512,1093,471,1104,429,1115,351,1117,297,1122,298,1121,351,1109,430,1098,473,1081,514,1058,553,1027,585,974,621,915,645,853,659,789,665,726,665,665,659,561,641"/>
-<area shape="poly" id="edge18_Node000001_Node000012" title=" " alt="" coords="818,319,1025,298,1049,295,1049,300,1026,303,818,325"/>
+<area shape="rect" id="Node000001" title="DECT&#45;2020 NR MAC layer implementation." alt="" coords="979,75,1121,100"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="658,23,722,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="736,38,955,66,989,72,988,77,954,71,735,43"/>
+<area shape="rect" id="Node000003" href="$classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload.html" title="MAC Multiplexng Header ETSI TS 103 636&#45;4 6.3.4 a)" alt="" coords="367,12,584,52"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="558,53,585,62,609,72,708,86,809,92,902,93,978,90,978,95,902,98,808,98,708,91,607,77,583,67,556,58"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,171,75,196"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="46,157,56,129,72,97,94,67,123,43,153,28,184,17,250,5,316,4,377,9,376,14,316,9,251,10,186,22,155,33,125,47,98,70,77,100,61,131,51,159"/>
+<area shape="rect" id="Node000006" href="$classns3_1_1Dect2020PHYControlFieldType1.html" title="Represents the PHY Control Field Type 1 (Format 000) for DECT&#45;2020 NR." alt="" coords="124,57,343,97"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="60,159,88,132,123,107,148,95,151,99,125,111,91,136,63,162"/>
+<area shape="rect" id="Node000007" href="$classns3_1_1Dect2020BeaconHeader.html" title="MAC Beacon Header (ETSI TS 103 636&#45;4, Table 6.3.3.2)." alt="" coords="128,122,339,147"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="87,166,98,162,169,144,171,149,99,167,89,171"/>
+<area shape="rect" id="Node000008" href="$classns3_1_1Dect2020UnicastHeader.html" title="MAC Unicast Header (ETSI TS 103 636&#45;4, Table 6.3.3.3)." alt="" coords="128,171,339,196"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="88,181,128,181,128,186,88,186"/>
+<area shape="rect" id="Node000009" href="$classns3_1_1Dect2020NetworkBeaconMessage.html" title="MAC Network Beacon Message ETSI TS 103 636&#45;4 V2.1.1 6.4.2.2." alt="" coords="124,221,343,261"/>
+<area shape="poly" id="edge12_Node000009_Node000004" title=" " alt="" coords="89,195,166,218,164,223,87,200"/>
+<area shape="rect" id="Node000010" href="$classns3_1_1Dect2020ClusterBeaconMessage.html" title="MAC Cluster Beacon Message ETSI TS 103 636&#45;4 V2.1.1 6.4.2.3." alt="" coords="129,285,338,325"/>
+<area shape="poly" id="edge14_Node000010_Node000004" title=" " alt="" coords="60,206,88,240,125,271,149,282,146,287,123,275,85,244,56,210"/>
+<area shape="rect" id="Node000011" href="$classns3_1_1Dect2020RandomAccessResourceIE.html" title="MAC Random Access Resource IE (ETSI TS 103 636&#45;4 6.4.3.4)." alt="" coords="126,349,341,389"/>
+<area shape="poly" id="edge16_Node000011_Node000004" title=" " alt="" coords="51,208,77,272,98,306,126,335,144,346,141,351,122,339,94,309,72,275,46,210"/>
+<area shape="rect" id="Node000005" href="$structns3_1_1FtCandidateInfo.html" title="Stores information about a potential Fixed Termination (FT) candidate discovered during beacon recept..." alt="" coords="611,171,769,196"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="765,165,856,144,954,118,1015,98,1016,103,955,123,857,150,767,171"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="357,80,469,94,528,106,585,122,633,144,672,168,669,173,631,149,583,127,526,111,468,99,356,85"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="352,140,584,164,617,168,616,173,584,169,352,145"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="352,181,611,181,611,186,352,186"/>
+<area shape="poly" id="edge11_Node000005_Node000009" title=" " alt="" coords="356,228,584,201,626,194,627,199,584,206,357,233"/>
+<area shape="poly" id="edge13_Node000005_Node000010" title=" " alt="" coords="351,296,465,280,525,266,583,248,633,222,672,194,675,199,636,226,585,253,527,271,466,285,352,301"/>
+<area shape="poly" id="edge15_Node000005_Node000011" title=" " alt="" coords="354,370,410,366,469,356,528,340,583,315,617,288,645,254,680,195,685,198,649,257,621,291,585,319,530,345,470,361,411,371,354,375"/>
 </map>

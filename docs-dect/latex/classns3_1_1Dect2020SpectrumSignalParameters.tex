@@ -2,11 +2,17 @@
 \hypertarget{classns3_1_1Dect2020SpectrumSignalParameters}{}\label{classns3_1_1Dect2020SpectrumSignalParameters}\index{ns3::Dect2020SpectrumSignalParameters@{ns3::Dect2020SpectrumSignalParameters}}
 
 
+Signal parameters used by the DECT-\/2020 PHY layer in Spectrum\+Channel transmissions.  
+
+
+
+
 {\ttfamily \#include $<$dect2020-\/spectrum-\/signal-\/parameters.\+h$>$}
 
 
 
-Inheritance diagram for ns3\+::Dect2020\+Spectrum\+Signal\+Parameters\+:\nopagebreak
+Inheritance diagram for ns3\+::Dect2020\+Spectrum\+Signal\+Parameters\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +21,8 @@ Inheritance diagram for ns3\+::Dect2020\+Spectrum\+Signal\+Parameters\+:\nopageb
 \end{figure}
 
 
-Collaboration diagram for ns3\+::Dect2020\+Spectrum\+Signal\+Parameters\+:\nopagebreak
+Collaboration diagram for ns3\+::Dect2020\+Spectrum\+Signal\+Parameters\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -39,6 +46,19 @@ Ptr$<$ Packet $>$ \mbox{\hyperlink{classns3_1_1Dect2020SpectrumSignalParameters_
 uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020SpectrumSignalParameters_a80a3a847b7be71dab7628109ca885dcb}{m\+\_\+current\+Channel\+Id}}
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Signal parameters used by the DECT-\/2020 PHY layer in Spectrum\+Channel transmissions. 
+
+This class inherits from ns3\+::\+Spectrum\+Signal\+Parameters and encapsulates\+:
+\begin{DoxyItemize}
+\item The packet to be transmitted over the spectrum channel
+\item The DECT-\/specific channel ID on which the transmission takes place
+\end{DoxyItemize}
+
+These parameters are passed to ns-\/3\textquotesingle{}s Spectrum\+Channel\+::\+Start\+Tx() method and received by other PHY entities through Start\+Rx().
+
+This structure allows DECT-\/2020 NR devices to embed channel-\/specific transmission metadata into the physical layer for RSSI calculation, collision detection, and subslot-\/based scheduling. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classns3_1_1Dect2020SpectrumSignalParameters_a46ca4d99413fd6164f2e0551ce70aedd}\label{classns3_1_1Dect2020SpectrumSignalParameters_a46ca4d99413fd6164f2e0551ce70aedd} 

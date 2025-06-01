@@ -97,13 +97,16 @@ $(document).ready(function(){initNavTree('classns3_1_1Dect2020PHYControlFieldTyp
 </div><!--header-->
 <div class="contents">
 
+<p>Represents the PHY Control Field Type 1 (Format 000) for DECT-2020 NR.  
+ <a href="classns3_1_1Dect2020PHYControlFieldType1.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="dect2020-physical-header-field_8h_source.html">dect2020-physical-header-field.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ns3::Dect2020PHYControlFieldType1:</div>
 <div class="dyncontent">
 <div class="center"><img src="classns3_1_1Dect2020PHYControlFieldType1__inherit__graph.png" border="0" usemap="#ans3_1_1Dect2020PHYControlFieldType1_inherit__map" alt="Inheritance graph"/></div>
 <map name="ans3_1_1Dect2020PHYControlFieldType1_inherit__map" id="ans3_1_1Dect2020PHYControlFieldType1_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,79,224,119"/>
+<area shape="rect" title="Represents the PHY Control Field Type 1 (Format 000) for DECT&#45;2020 NR." alt="" coords="5,79,224,119"/>
 <area shape="rect" title=" " alt="" coords="80,5,149,31"/>
 <area shape="poly" title=" " alt="" coords="117,44,117,79,112,79,112,44"/>
 </map>
@@ -113,7 +116,7 @@ Collaboration diagram for ns3::Dect2020PHYControlFieldType1:</div>
 <div class="dyncontent">
 <div class="center"><img src="classns3_1_1Dect2020PHYControlFieldType1__coll__graph.png" border="0" usemap="#ans3_1_1Dect2020PHYControlFieldType1_coll__map" alt="Collaboration graph"/></div>
 <map name="ans3_1_1Dect2020PHYControlFieldType1_coll__map" id="ans3_1_1Dect2020PHYControlFieldType1_coll__map">
-<area shape="rect" title=" " alt="" coords="5,79,224,119"/>
+<area shape="rect" title="Represents the PHY Control Field Type 1 (Format 000) for DECT&#45;2020 NR." alt="" coords="5,79,224,119"/>
 <area shape="rect" title=" " alt="" coords="80,5,149,31"/>
 <area shape="poly" title=" " alt="" coords="117,44,117,79,112,79,112,44"/>
 </map>
@@ -167,7 +170,18 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:af51e890cf0728d953f504001ce9ebab7" id="r_af51e890cf0728d953f504001ce9ebab7"><td class="memItemLeft" align="right" valign="top">static TypeId&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020PHYControlFieldType1.html#af51e890cf0728d953f504001ce9ebab7">GetTypeId</a> (void)</td></tr>
 <tr class="separator:af51e890cf0728d953f504001ce9ebab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents the PHY Control Field Type 1 (Format 000) for DECT-2020 NR. </p>
+<p>This header includes minimal PHY control information such as:</p><ul>
+<li>Packet length (slots or subslots)</li>
+<li>Short network ID (last 8 bits of full Network ID)</li>
+<li>Transmitter identity</li>
+<li>Transmit power</li>
+<li>MCS (Modulation and Coding Scheme)</li>
+</ul>
+<p>Based on ETSI TS 103 636-4 Table 6.2.1-1.</p>
+<p>This control field is used in basic unicast or broadcast transmissions where feedback or spatial stream details are not required. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7a324fe4296844bef6290eb6868d3560" name="a7a324fe4296844bef6290eb6868d3560"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7a324fe4296844bef6290eb6868d3560">&#9670;&#160;</a></span>Dect2020PHYControlFieldType1() <span class="overload">[1/2]</span></h2>
 

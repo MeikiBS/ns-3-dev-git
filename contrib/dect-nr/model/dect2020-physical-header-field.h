@@ -5,6 +5,21 @@
 #include "ns3/header.h"
 #include "ns3/nstime.h"
 
+/**
+ * @file dect2020-physical-header-field.h
+ * @ingroup dect2020
+ * @brief Definition of physical layer control field headers (Type 1 and Type 2) for DECT-2020 NR.
+ *
+ * This header defines two classes that represent the physical layer control fields
+ * used in DECT-2020 NR, based on ETSI TS 103 636-4 Section 6.2.1:
+ * - Dect2020PHYControlFieldType1: for basic one-way transmissions (Format 000)
+ * - Dect2020PHYControlFieldType2: for enhanced transmissions with feedback and spatial streams
+ * (Format 001)
+ *
+ * These headers are serialized and prepended to PHY layer packets for transmission via
+ * SpectrumChannel.
+ */
+
 namespace ns3
 {
 
@@ -12,6 +27,23 @@ namespace ns3
 //      DECT2020 Physical Layer Control Field: Type 1
 //            # ETSI TS 103 636-4 V2.1.1 Table 6.2.1-1
 // *******************************************************
+
+/**
+ * @class Dect2020PHYControlFieldType1
+ * @brief Represents the PHY Control Field Type 1 (Format 000) for DECT-2020 NR.
+ *
+ * This header includes minimal PHY control information such as:
+ * - Packet length (slots or subslots)
+ * - Short network ID (last 8 bits of full Network ID)
+ * - Transmitter identity
+ * - Transmit power
+ * - MCS (Modulation and Coding Scheme)
+ *
+ * Based on ETSI TS 103 636-4 Table 6.2.1-1.
+ *
+ * This control field is used in basic unicast or broadcast transmissions where
+ * feedback or spatial stream details are not required.
+ */
 
 class Dect2020PHYControlFieldType1 : public Header
 {
@@ -63,6 +95,20 @@ class Dect2020PHYControlFieldType1 : public Header
 // DECT2020 Physical Layer Control Field: Type 2, Format 001
 //            # ETSI TS 103 636-4 V2.1.1 6.2.1-2a
 // *******************************************************
+
+/**
+ * @class Dect2020PHYControlFieldType2
+ * @brief Represents the PHY Control Field Type 2 (Format 001) for DECT-2020 NR.
+ *
+ * This extended header includes:
+ * - All fields from Type 1 (e.g., packet length, transmitter ID, power)
+ * - Receiver identity
+ * - Number of spatial streams
+ * - Feedback format and content (e.g., CQI, HARQ)
+ *
+ * Based on ETSI TS 103 636-4 V2.1.1, Table 6.2.1-2a.
+ */
+
 
 class Dect2020PHYControlFieldType2 : public Header
 {

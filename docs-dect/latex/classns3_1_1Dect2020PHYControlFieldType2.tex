@@ -2,11 +2,17 @@
 \hypertarget{classns3_1_1Dect2020PHYControlFieldType2}{}\label{classns3_1_1Dect2020PHYControlFieldType2}\index{ns3::Dect2020PHYControlFieldType2@{ns3::Dect2020PHYControlFieldType2}}
 
 
+Represents the PHY Control Field Type 2 (Format 001) for DECT-\/2020 NR.  
+
+
+
+
 {\ttfamily \#include $<$dect2020-\/physical-\/header-\/field.\+h$>$}
 
 
 
-Inheritance diagram for ns3\+::Dect2020\+PHYControl\+Field\+Type2\+:\nopagebreak
+Inheritance diagram for ns3\+::Dect2020\+PHYControl\+Field\+Type2\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +21,8 @@ Inheritance diagram for ns3\+::Dect2020\+PHYControl\+Field\+Type2\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for ns3\+::Dect2020\+PHYControl\+Field\+Type2\+:\nopagebreak
+Collaboration diagram for ns3\+::Dect2020\+PHYControl\+Field\+Type2\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -85,6 +92,19 @@ uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType2_a6a43ae8
 static Type\+Id \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType2_aef9d2f198567629f36b05dc732836f87}{Get\+Type\+Id}} (void)
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Represents the PHY Control Field Type 2 (Format 001) for DECT-\/2020 NR. 
+
+This extended header includes\+:
+\begin{DoxyItemize}
+\item All fields from Type 1 (e.\+g., packet length, transmitter ID, power)
+\item Receiver identity
+\item Number of spatial streams
+\item Feedback format and content (e.\+g., CQI, HARQ)
+\end{DoxyItemize}
+
+Based on ETSI TS 103 636-\/4 V2.\+1.\+1, Table 6.\+2.\+1-\/2a. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classns3_1_1Dect2020PHYControlFieldType2_a1903758574e32ccbaf1adc60ceeacec1}\label{classns3_1_1Dect2020PHYControlFieldType2_a1903758574e32ccbaf1adc60ceeacec1} 

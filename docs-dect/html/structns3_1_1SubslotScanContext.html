@@ -96,14 +96,17 @@ $(document).ready(function(){initNavTree('structns3_1_1SubslotScanContext.html',
 </div><!--header-->
 <div class="contents">
 
+<p>Context structure used during subslot-based RSSI scanning.  
+ <a href="structns3_1_1SubslotScanContext.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="dect2020-mac_8h_source.html">dect2020-mac.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for ns3::SubslotScanContext:</div>
 <div class="dyncontent">
 <div class="center"><img src="structns3_1_1SubslotScanContext__coll__graph.png" border="0" usemap="#ans3_1_1SubslotScanContext_coll__map" alt="Collaboration graph"/></div>
 <map name="ans3_1_1SubslotScanContext_coll__map" id="ans3_1_1SubslotScanContext_coll__map">
-<area shape="rect" title=" " alt="" coords="5,93,188,119"/>
-<area shape="rect" href="structns3_1_1ChannelEvaluation.html" title=" " alt="" coords="9,5,184,31"/>
+<area shape="rect" title="Context structure used during subslot&#45;based RSSI scanning." alt="" coords="5,93,188,119"/>
+<area shape="rect" href="structns3_1_1ChannelEvaluation.html" title="Stores subslot occupancy statistics for a single channel." alt="" coords="9,5,184,31"/>
 <area shape="poly" title=" " alt="" coords="99,45,99,93,94,93,94,45"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
@@ -119,7 +122,10 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aa6d87605801abec69fead83150e4c95f" id="r_aa6d87605801abec69fead83150e4c95f"><td class="memItemLeft" align="right" valign="top">std::function&lt; void(const <a class="el" href="structns3_1_1ChannelEvaluation.html">ChannelEvaluation</a> &amp;)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structns3_1_1SubslotScanContext.html#aa6d87605801abec69fead83150e4c95f">onComplete</a></td></tr>
 <tr class="separator:aa6d87605801abec69fead83150e4c95f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Context structure used during subslot-based RSSI scanning. </p>
+<p>This struct is used to keep track of scanning progress during subslot measurements on a specific channel. It accumulates the evaluation result and triggers a callback once the scan is complete. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="ae645a2b31b24b11a266acfc9586f3bc6" name="ae645a2b31b24b11a266acfc9586f3bc6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae645a2b31b24b11a266acfc9586f3bc6">&#9670;&#160;</a></span>channelId</h2>
 

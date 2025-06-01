@@ -1,10 +1,10 @@
 <map id="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;header&#45;type.cc" name="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;header&#45;type.cc">
 <area shape="rect" id="Node000001" title=" " alt="" coords="426,5,595,60"/>
-<area shape="rect" id="Node000002" href="$dect2020-mac-header-type_8h.html" title=" " alt="" coords="240,108,405,148"/>
+<area shape="rect" id="Node000002" href="$dect2020-mac-header-type_8h.html" title="Defines the MAC Header Type field used in DECT&#45;2020 NR MAC PDUs." alt="" coords="240,108,405,148"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="459,62,374,104,372,100,457,58"/>
 <area shape="rect" id="Node000005" href="$dect2020-mac-common-header_8h.html" title="Implements MAC Common Headers according to ETSI TS 103 636&#45;4, Section 6.3.3." alt="" coords="38,108,215,148"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="427,57,218,107,217,102,425,52"/>
-<area shape="rect" id="Node000007" href="$dect2020-mac-messages_8h.html" title=" " alt="" coords="479,115,678,141"/>
+<area shape="rect" id="Node000007" href="$dect2020-mac-messages_8h.html" title="Defines MAC Messages used in DECT&#45;2020 NR MAC PDUs." alt="" coords="479,115,678,141"/>
 <area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="532,59,564,102,560,106,528,62"/>
 <area shape="rect" id="Node000008" title=" " alt="" coords="413,196,494,221"/>
 <area shape="poly" id="edge13_Node000001_Node000008" title=" " alt="" coords="495,61,471,109,461,147,457,183,452,182,456,146,465,107,490,59"/>

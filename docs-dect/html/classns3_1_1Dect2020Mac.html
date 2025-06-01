@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('classns3_1_1Dect2020Mac.html',''); ini
 </div><!--header-->
 <div class="contents">
 
-<p>DECT2020 MAC Klasse.  
+<p>DECT-2020 NR MAC layer implementation.  
  <a href="classns3_1_1Dect2020Mac.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="dect2020-mac_8h_source.html">dect2020-mac.h</a>&gt;</code></p>
@@ -108,7 +108,7 @@ Inheritance diagram for ns3::Dect2020Mac:</div>
 <div class="dyncontent">
 <div class="center"><img src="classns3_1_1Dect2020Mac__inherit__graph.png" border="0" usemap="#ans3_1_1Dect2020Mac_inherit__map" alt="Inheritance graph"/></div>
 <map name="ans3_1_1Dect2020Mac_inherit__map" id="ans3_1_1Dect2020Mac_inherit__map">
-<area shape="rect" title="DECT2020 MAC Klasse." alt="" coords="5,79,148,104"/>
+<area shape="rect" title="DECT&#45;2020 NR MAC layer implementation." alt="" coords="5,79,148,104"/>
 <area shape="rect" title=" " alt="" coords="45,5,109,31"/>
 <area shape="poly" title=" " alt="" coords="79,44,79,79,74,79,74,44"/>
 </map>
@@ -118,42 +118,33 @@ Collaboration diagram for ns3::Dect2020Mac:</div>
 <div class="dyncontent">
 <div class="center"><img src="classns3_1_1Dect2020Mac__coll__graph.png" border="0" usemap="#ans3_1_1Dect2020Mac_coll__map" alt="Collaboration graph"/></div>
 <map name="ans3_1_1Dect2020Mac_coll__map" id="ans3_1_1Dect2020Mac_coll__map">
-<area shape="rect" title="DECT2020 MAC Klasse." alt="" coords="1049,272,1192,297"/>
-<area shape="rect" title=" " alt="" coords="694,7,758,32"/>
-<area shape="poly" title=" " alt="" coords="771,9,827,4,894,5,929,10,964,19,997,32,1027,51,1052,75,1073,104,1089,135,1101,168,1116,228,1121,272,1116,272,1110,229,1096,169,1084,137,1068,106,1048,78,1024,55,994,37,962,24,928,15,894,10,827,9,772,14"/>
-<area shape="rect" href="classns3_1_1Dect2020PHYControlFieldType1.html" title=" " alt="" coords="124,241,343,281"/>
-<area shape="poly" title=" " alt="" coords="305,234,366,221,436,216,530,216,748,225,1026,246,1062,257,1093,269,1091,274,1060,262,1025,251,748,231,530,221,437,221,367,226,306,239"/>
-<area shape="rect" href="structns3_1_1FtCandidateInfo.html" title=" " alt="" coords="647,316,805,341"/>
-<area shape="poly" title=" " alt="" coords="356,270,586,299,664,313,663,319,585,305,356,276"/>
-<area shape="rect" title=" " alt="" coords="5,329,75,355"/>
-<area shape="poly" title=" " alt="" coords="70,320,123,290,155,278,157,283,125,295,72,324"/>
-<area shape="rect" href="classns3_1_1Dect2020MacHeaderType.html" title=" " alt="" coords="367,69,585,95"/>
-<area shape="poly" title=" " alt="" coords="41,315,48,274,62,225,86,175,102,153,122,133,149,115,179,100,242,81,306,71,366,69,366,75,306,77,243,86,181,105,152,120,126,138,106,156,91,178,67,227,53,275,46,316"/>
-<area shape="rect" href="classns3_1_1Dect2020BeaconHeader.html" title="Indicates the type of the MAC Common Header (ETSI TS 103 636&#45;4, Table 6.3.3.2)." alt="" coords="128,148,339,173"/>
-<area shape="poly" title=" " alt="" coords="53,316,82,272,122,227,164,195,205,171,207,176,167,199,126,231,87,276,58,319"/>
-<area shape="rect" href="classns3_1_1Dect2020UnicastHeader.html" title=" " alt="" coords="128,305,339,331"/>
-<area shape="poly" title=" " alt="" coords="88,334,131,328,131,333,89,339"/>
-<area shape="rect" href="classns3_1_1Dect2020NetworkBeaconMessage.html" title=" " alt="" coords="124,355,343,395"/>
-<area shape="poly" title=" " alt="" coords="89,348,124,354,123,359,88,353"/>
-<area shape="rect" href="classns3_1_1Dect2020ClusterBeaconMessage.html" title=" " alt="" coords="129,421,338,461"/>
-<area shape="poly" title=" " alt="" coords="66,362,93,384,125,405,156,418,153,423,123,410,90,389,62,366"/>
-<area shape="rect" href="classns3_1_1Dect2020RandomAccessResourceIE.html" title=" " alt="" coords="126,485,341,525"/>
-<area shape="poly" title=" " alt="" coords="53,366,81,420,101,447,126,471,145,482,142,487,122,475,97,451,76,422,49,369"/>
-<area shape="rect" href="classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload.html" title=" " alt="" coords="367,595,585,635"/>
-<area shape="poly" title=" " alt="" coords="47,368,55,406,70,451,93,497,108,517,126,535,152,554,181,570,243,593,307,607,368,614,367,619,306,612,242,598,179,575,149,558,122,539,104,521,88,499,65,453,50,407,42,369"/>
-<area shape="poly" title=" " alt="" coords="599,74,715,72,839,75,950,88,994,99,1027,113,1047,129,1065,149,1092,194,1110,238,1119,271,1114,272,1105,239,1088,196,1061,152,1044,133,1024,118,992,104,949,93,839,81,715,77,599,79"/>
-<area shape="poly" title=" " alt="" coords="352,151,367,150,555,143,632,141,703,143,774,151,848,165,931,189,1026,222,1071,245,1105,270,1102,274,1068,250,1024,227,929,194,847,171,773,156,703,149,632,147,555,148,367,155,353,156"/>
-<area shape="poly" title=" " alt="" coords="353,167,411,178,472,195,532,220,587,253,596,264,600,275,603,285,611,295,648,314,646,319,608,299,599,288,595,277,592,267,584,257,530,224,470,200,409,183,352,172"/>
-<area shape="poly" title=" " alt="" coords="329,298,341,291,348,282,352,273,356,263,366,254,397,250,460,249,651,256,1049,278,1049,283,651,261,460,255,397,255,368,259,360,266,357,275,353,285,344,295,332,302"/>
-<area shape="poly" title=" " alt="" coords="353,318,647,324,647,330,353,323"/>
-<area shape="poly" title=" " alt="" coords="356,379,583,382,713,377,842,365,935,349,1024,321,1090,295,1092,300,1026,326,936,354,843,370,713,382,583,387,356,385"/>
-<area shape="poly" title=" " alt="" coords="356,364,585,343,647,336,647,342,586,349,357,369"/>
-<area shape="poly" title=" " alt="" coords="337,465,344,471,353,482,357,493,360,503,368,511,397,525,424,533,448,535,471,534,585,510,714,489,814,466,909,429,1024,368,1072,331,1107,296,1110,299,1075,335,1027,372,911,434,816,471,715,494,586,515,472,539,448,541,422,538,395,530,365,515,355,505,352,495,348,484,341,475,334,470"/>
-<area shape="poly" title=" " alt="" coords="351,427,465,410,585,384,646,362,698,339,700,344,648,367,586,389,466,415,352,432"/>
-<area shape="poly" title=" " alt="" coords="306,526,367,540,501,556,606,561,710,552,842,526,897,515,941,504,980,486,1024,454,1058,414,1084,370,1102,328,1113,297,1118,299,1107,330,1088,373,1062,418,1027,457,983,491,942,509,899,520,843,531,711,557,606,566,500,561,366,545,305,531"/>
-<area shape="poly" title=" " alt="" coords="354,511,412,507,473,497,531,477,559,463,583,446,593,432,596,418,598,402,607,386,643,358,682,339,684,344,646,362,611,389,603,404,601,419,598,435,587,449,561,467,534,482,474,502,413,513,354,516"/>
-<area shape="poly" title=" " alt="" coords="562,636,666,654,726,659,789,660,852,654,914,640,972,616,1024,581,1053,550,1076,512,1093,471,1104,429,1115,351,1117,297,1122,298,1121,351,1109,430,1098,473,1081,514,1058,553,1027,585,974,621,915,645,853,659,789,665,726,665,665,659,561,641"/>
-<area shape="poly" title=" " alt="" coords="818,319,1025,298,1049,295,1049,300,1026,303,818,325"/>
+<area shape="rect" title="DECT&#45;2020 NR MAC layer implementation." alt="" coords="979,75,1121,100"/>
+<area shape="rect" title=" " alt="" coords="658,23,722,48"/>
+<area shape="poly" title=" " alt="" coords="736,38,955,66,989,72,988,77,954,71,735,43"/>
+<area shape="rect" href="classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload.html" title="MAC Multiplexng Header ETSI TS 103 636&#45;4 6.3.4 a)" alt="" coords="367,12,584,52"/>
+<area shape="poly" title=" " alt="" coords="558,53,585,62,609,72,708,86,809,92,902,93,978,90,978,95,902,98,808,98,708,91,607,77,583,67,556,58"/>
+<area shape="rect" title=" " alt="" coords="5,171,75,196"/>
+<area shape="poly" title=" " alt="" coords="46,157,56,129,72,97,94,67,123,43,153,28,184,17,250,5,316,4,377,9,376,14,316,9,251,10,186,22,155,33,125,47,98,70,77,100,61,131,51,159"/>
+<area shape="rect" href="classns3_1_1Dect2020PHYControlFieldType1.html" title="Represents the PHY Control Field Type 1 (Format 000) for DECT&#45;2020 NR." alt="" coords="124,57,343,97"/>
+<area shape="poly" title=" " alt="" coords="60,159,88,132,123,107,148,95,151,99,125,111,91,136,63,162"/>
+<area shape="rect" href="classns3_1_1Dect2020BeaconHeader.html" title="MAC Beacon Header (ETSI TS 103 636&#45;4, Table 6.3.3.2)." alt="" coords="128,122,339,147"/>
+<area shape="poly" title=" " alt="" coords="87,166,98,162,169,144,171,149,99,167,89,171"/>
+<area shape="rect" href="classns3_1_1Dect2020UnicastHeader.html" title="MAC Unicast Header (ETSI TS 103 636&#45;4, Table 6.3.3.3)." alt="" coords="128,171,339,196"/>
+<area shape="poly" title=" " alt="" coords="88,181,128,181,128,186,88,186"/>
+<area shape="rect" href="classns3_1_1Dect2020NetworkBeaconMessage.html" title="MAC Network Beacon Message ETSI TS 103 636&#45;4 V2.1.1 6.4.2.2." alt="" coords="124,221,343,261"/>
+<area shape="poly" title=" " alt="" coords="89,195,166,218,164,223,87,200"/>
+<area shape="rect" href="classns3_1_1Dect2020ClusterBeaconMessage.html" title="MAC Cluster Beacon Message ETSI TS 103 636&#45;4 V2.1.1 6.4.2.3." alt="" coords="129,285,338,325"/>
+<area shape="poly" title=" " alt="" coords="60,206,88,240,125,271,149,282,146,287,123,275,85,244,56,210"/>
+<area shape="rect" href="classns3_1_1Dect2020RandomAccessResourceIE.html" title="MAC Random Access Resource IE (ETSI TS 103 636&#45;4 6.4.3.4)." alt="" coords="126,349,341,389"/>
+<area shape="poly" title=" " alt="" coords="51,208,77,272,98,306,126,335,144,346,141,351,122,339,94,309,72,275,46,210"/>
+<area shape="rect" href="structns3_1_1FtCandidateInfo.html" title="Stores information about a potential Fixed Termination (FT) candidate discovered during beacon recept..." alt="" coords="611,171,769,196"/>
+<area shape="poly" title=" " alt="" coords="765,165,856,144,954,118,1015,98,1016,103,955,123,857,150,767,171"/>
+<area shape="poly" title=" " alt="" coords="357,80,469,94,528,106,585,122,633,144,672,168,669,173,631,149,583,127,526,111,468,99,356,85"/>
+<area shape="poly" title=" " alt="" coords="352,140,584,164,617,168,616,173,584,169,352,145"/>
+<area shape="poly" title=" " alt="" coords="352,181,611,181,611,186,352,186"/>
+<area shape="poly" title=" " alt="" coords="356,228,584,201,626,194,627,199,584,206,357,233"/>
+<area shape="poly" title=" " alt="" coords="351,296,465,280,525,266,583,248,633,222,672,194,675,199,636,226,585,253,527,271,466,285,352,301"/>
+<area shape="poly" title=" " alt="" coords="354,370,410,366,469,356,528,340,583,315,617,288,645,254,680,195,685,198,649,257,621,291,585,319,530,345,470,361,411,371,354,375"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -164,6 +155,7 @@ Public Types</h2></td></tr>
 , <a class="el" href="classns3_1_1Dect2020Mac.html#a0c758addacff7e621b44d50987dcc7d2a07e8c8e80b3af845b0f734c9484b30e0">UNICAST</a> = 2
 , <a class="el" href="classns3_1_1Dect2020Mac.html#a0c758addacff7e621b44d50987dcc7d2a5a7b619d68022a12f5843578eacc3afc">RD_BROADCAST</a> = 3
  }</td></tr>
+<tr class="memdesc:a0c758addacff7e621b44d50987dcc7d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Packet types used in DECT-2020 NR.  <a href="classns3_1_1Dect2020Mac.html#a0c758addacff7e621b44d50987dcc7d2">More...</a><br /></td></tr>
 <tr class="separator:a0c758addacff7e621b44d50987dcc7d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf30691814b49446635e3525f15e1f3e" id="r_acf30691814b49446635e3525f15e1f3e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#acf30691814b49446635e3525f15e1f3e">AssociationStatus</a> { <br />
 &#160;&#160;<a class="el" href="classns3_1_1Dect2020Mac.html#acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b">NOT_ASSOCIATED</a>
@@ -174,116 +166,148 @@ Public Types</h2></td></tr>
 &#160;&#160;<a class="el" href="classns3_1_1Dect2020Mac.html#acf30691814b49446635e3525f15e1f3ea37a70b2bd43071e43ce1f6d07b253abe">ASSOCIATED</a>
 <br />
  }</td></tr>
+<tr class="memdesc:acf30691814b49446635e3525f15e1f3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Association status of a device within the DECT-2020 NR network.  <a href="classns3_1_1Dect2020Mac.html#acf30691814b49446635e3525f15e1f3e">More...</a><br /></td></tr>
 <tr class="separator:acf30691814b49446635e3525f15e1f3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab57dc8784f9bcade1aa31f70a502a6b4" id="r_ab57dc8784f9bcade1aa31f70a502a6b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ab57dc8784f9bcade1aa31f70a502a6b4">Dect2020Mac</a> ()</td></tr>
+<tr class="memdesc:ab57dc8784f9bcade1aa31f70a502a6b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Initializes internal state and MAC structures.  <br /></td></tr>
 <tr class="separator:ab57dc8784f9bcade1aa31f70a502a6b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c14c217d59fe1f63a8c35d01361f97e" id="r_a1c14c217d59fe1f63a8c35d01361f97e"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a1c14c217d59fe1f63a8c35d01361f97e">~Dect2020Mac</a> ()</td></tr>
 <tr class="separator:a1c14c217d59fe1f63a8c35d01361f97e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46a0f01d6890c2782c247afd9e03d3a3" id="r_a46a0f01d6890c2782c247afd9e03d3a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a46a0f01d6890c2782c247afd9e03d3a3">Start</a> ()</td></tr>
+<tr class="memdesc:a46a0f01d6890c2782c247afd9e03d3a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the MAC operation based on the device role (FT or PT).  <br /></td></tr>
 <tr class="separator:a46a0f01d6890c2782c247afd9e03d3a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36c239034dfb7ecf13053446da830cca" id="r_a36c239034dfb7ecf13053446da830cca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a36c239034dfb7ecf13053446da830cca">InitializeNetwork</a> ()</td></tr>
+<tr class="memdesc:a36c239034dfb7ecf13053446da830cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new DECT-2020 network (FT only).  <br /></td></tr>
+<tr class="separator:a36c239034dfb7ecf13053446da830cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0a43e61de5976775531246105ef5f94" id="r_ab0a43e61de5976775531246105ef5f94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ab0a43e61de5976775531246105ef5f94">InitializeDevice</a> ()</td></tr>
+<tr class="memdesc:ab0a43e61de5976775531246105ef5f94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the device by assigning valid Long and Short RD IDs.  <br /></td></tr>
+<tr class="separator:ab0a43e61de5976775531246105ef5f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac0942ff5fdf363ceb262ba3d99ae1c83" id="r_ac0942ff5fdf363ceb262ba3d99ae1c83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ac0942ff5fdf363ceb262ba3d99ae1c83">SetNetDevice</a> (Ptr&lt; <a class="el" href="classns3_1_1Dect2020NetDevice.html">Dect2020NetDevice</a> &gt; device)</td></tr>
+<tr class="memdesc:ac0942ff5fdf363ceb262ba3d99ae1c83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the associated DECT NetDevice.  <br /></td></tr>
 <tr class="separator:ac0942ff5fdf363ceb262ba3d99ae1c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb36573ecf25b73a44bf187cc4899bfb" id="r_afb36573ecf25b73a44bf187cc4899bfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#afb36573ecf25b73a44bf187cc4899bfb">SetPhy</a> (Ptr&lt; <a class="el" href="classns3_1_1Dect2020Phy.html">Dect2020Phy</a> &gt; phy)</td></tr>
+<tr class="memdesc:afb36573ecf25b73a44bf187cc4899bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the associated PHY layer and connect receive callback for incoming packets from the physical layer.  <br /></td></tr>
 <tr class="separator:afb36573ecf25b73a44bf187cc4899bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a958672211af7dce119811ba1e90c01a6" id="r_a958672211af7dce119811ba1e90c01a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a958672211af7dce119811ba1e90c01a6">Send</a> (Ptr&lt; Packet &gt; packet, const Address &amp;dest, <a class="el" href="classns3_1_1Dect2020Mac.html#a0c758addacff7e621b44d50987dcc7d2">Dect2020PacketType</a> type)</td></tr>
-<tr class="separator:a958672211af7dce119811ba1e90c01a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33c8e4d4610fbaa917d91ddc72fb84e8" id="r_a33c8e4d4610fbaa917d91ddc72fb84e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a33c8e4d4610fbaa917d91ddc72fb84e8">ReceiveFromPhy</a> (Ptr&lt; Packet &gt; packet, double rssiDbm)</td></tr>
+<tr class="memdesc:a33c8e4d4610fbaa917d91ddc72fb84e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entry point for all packets received from the PHY layer.  <br /></td></tr>
 <tr class="separator:a33c8e4d4610fbaa917d91ddc72fb84e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcaf418f1a1c474c468ef4ebd0472182" id="r_adcaf418f1a1c474c468ef4ebd0472182"><td class="memItemLeft" align="right" valign="top">Mac48Address&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#adcaf418f1a1c474c468ef4ebd0472182">GetAddress</a> (void) const</td></tr>
-<tr class="separator:adcaf418f1a1c474c468ef4ebd0472182"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d0d1e0db1839e55787a88876aca429f" id="r_a9d0d1e0db1839e55787a88876aca429f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a9d0d1e0db1839e55787a88876aca429f">SetCurrentChannelId</a> (uint32_t channelId)</td></tr>
-<tr class="separator:a9d0d1e0db1839e55787a88876aca429f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acff913ff839025f5d69c21ca0a1387aa" id="r_acff913ff839025f5d69c21ca0a1387aa"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#acff913ff839025f5d69c21ca0a1387aa">GetCurrentChannelId</a> () const</td></tr>
-<tr class="separator:acff913ff839025f5d69c21ca0a1387aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36c239034dfb7ecf13053446da830cca" id="r_a36c239034dfb7ecf13053446da830cca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a36c239034dfb7ecf13053446da830cca">InitializeNetwork</a> ()</td></tr>
-<tr class="separator:a36c239034dfb7ecf13053446da830cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0884b0fc0b6329a47bdd09dc4fdd569" id="r_ad0884b0fc0b6329a47bdd09dc4fdd569"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ad0884b0fc0b6329a47bdd09dc4fdd569">GenerateValidNetworkId</a> ()</td></tr>
-<tr class="separator:ad0884b0fc0b6329a47bdd09dc4fdd569"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6759fbb033aed3afd7bc3090b597864e" id="r_a6759fbb033aed3afd7bc3090b597864e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a6759fbb033aed3afd7bc3090b597864e">JoinNetwork</a> (uint32_t networkId)</td></tr>
-<tr class="separator:a6759fbb033aed3afd7bc3090b597864e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf8424b1e657622d75687b24d274dff7" id="r_abf8424b1e657622d75687b24d274dff7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#abf8424b1e657622d75687b24d274dff7">SetNetworkId</a> (uint32_t networkId)</td></tr>
-<tr class="separator:abf8424b1e657622d75687b24d274dff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5950b89914e0028083ba1cfc8ee4c494" id="r_a5950b89914e0028083ba1cfc8ee4c494"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a5950b89914e0028083ba1cfc8ee4c494">GetNetworkId</a> () const</td></tr>
-<tr class="separator:a5950b89914e0028083ba1cfc8ee4c494"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae50d4d70cb6a5967078ae2b57139418c" id="r_ae50d4d70cb6a5967078ae2b57139418c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ae50d4d70cb6a5967078ae2b57139418c">StartBeaconTransmission</a> ()</td></tr>
+<tr class="memdesc:ae50d4d70cb6a5967078ae2b57139418c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts both Cluster and Network Beacon transmissions.  <br /></td></tr>
 <tr class="separator:ae50d4d70cb6a5967078ae2b57139418c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab624190de7a3ae79d00b012abb19eb59" id="r_ab624190de7a3ae79d00b012abb19eb59"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ab624190de7a3ae79d00b012abb19eb59">GenerateLongRadioDeviceId</a> ()</td></tr>
-<tr class="separator:ab624190de7a3ae79d00b012abb19eb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b6f825b11086ac76d08f88d02e99596" id="r_a9b6f825b11086ac76d08f88d02e99596"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a9b6f825b11086ac76d08f88d02e99596">SetLongRadioDeviceId</a> (uint32_t rdId)</td></tr>
-<tr class="separator:a9b6f825b11086ac76d08f88d02e99596"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cd71882a73de1a39c97bf5659b7187f" id="r_a0cd71882a73de1a39c97bf5659b7187f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a0cd71882a73de1a39c97bf5659b7187f">GetLongRadioDeviceId</a> () const</td></tr>
-<tr class="separator:a0cd71882a73de1a39c97bf5659b7187f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a563a578c7a5b9fd6a9e4cc2876a1a5" id="r_a3a563a578c7a5b9fd6a9e4cc2876a1a5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a3a563a578c7a5b9fd6a9e4cc2876a1a5">GenerateShortRadioDeviceId</a> ()</td></tr>
-<tr class="separator:a3a563a578c7a5b9fd6a9e4cc2876a1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dc71f1ac27006d4c932d0ffb7fe3996" id="r_a1dc71f1ac27006d4c932d0ffb7fe3996"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a1dc71f1ac27006d4c932d0ffb7fe3996">SetShortRadioDeviceId</a> (uint16_t rdId)</td></tr>
-<tr class="separator:a1dc71f1ac27006d4c932d0ffb7fe3996"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a992eec6593c57cac2b25088819adca0f" id="r_a992eec6593c57cac2b25088819adca0f"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a992eec6593c57cac2b25088819adca0f">GetShortRadioDeviceId</a> () const</td></tr>
-<tr class="separator:a992eec6593c57cac2b25088819adca0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0a43e61de5976775531246105ef5f94" id="r_ab0a43e61de5976775531246105ef5f94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ab0a43e61de5976775531246105ef5f94">InitializeDevice</a> ()</td></tr>
-<tr class="separator:ab0a43e61de5976775531246105ef5f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61a54f3b6af87a202fcfa4b1e9587381" id="r_a61a54f3b6af87a202fcfa4b1e9587381"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a61a54f3b6af87a202fcfa4b1e9587381">OperatingChannelSelection</a> ()</td></tr>
-<tr class="separator:a61a54f3b6af87a202fcfa4b1e9587381"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2ab41546a10f85cd14db62d4c67ef8e" id="r_ad2ab41546a10f85cd14db62d4c67ef8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ad2ab41546a10f85cd14db62d4c67ef8e">EvaluateAllChannels</a> ()</td></tr>
-<tr class="separator:ad2ab41546a10f85cd14db62d4c67ef8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4140324572b6872fdb33605dfb0ffdd5" id="r_a4140324572b6872fdb33605dfb0ffdd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a4140324572b6872fdb33605dfb0ffdd5">StartNetworkBeaconSweep</a> ()</td></tr>
+<tr class="memdesc:a4140324572b6872fdb33605dfb0ffdd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a cyclic sweep to transmit Network Beacons on adjacent channels.  <br /></td></tr>
 <tr class="separator:a4140324572b6872fdb33605dfb0ffdd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25bbd22c04b77bc9da82544c8d6a074f" id="r_a25bbd22c04b77bc9da82544c8d6a074f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a25bbd22c04b77bc9da82544c8d6a074f">StartClusterBeaconTransmission</a> ()</td></tr>
+<tr class="memdesc:a25bbd22c04b77bc9da82544c8d6a074f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts and schedules periodic Cluster Beacon transmissions (FT only).  <br /></td></tr>
 <tr class="separator:a25bbd22c04b77bc9da82544c8d6a074f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5e0ab65f4c5cf110e6d4c2a5b18f995" id="r_ac5e0ab65f4c5cf110e6d4c2a5b18f995"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020RandomAccessResourceIE.html">Dect2020RandomAccessResourceIE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ac5e0ab65f4c5cf110e6d4c2a5b18f995">BuildRandomAccessResourceIE</a> ()</td></tr>
-<tr class="separator:ac5e0ab65f4c5cf110e6d4c2a5b18f995"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0441196225d968f4d2d89ec1f5f8d19d" id="r_a0441196225d968f4d2d89ec1f5f8d19d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a0441196225d968f4d2d89ec1f5f8d19d">CalculateAbsoluteStartSubslot</a> ()</td></tr>
-<tr class="separator:a0441196225d968f4d2d89ec1f5f8d19d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af95aec82f14db6ad1e989395292c4d57" id="r_af95aec82f14db6ad1e989395292c4d57"><td class="memItemLeft" align="right" valign="top">Ptr&lt; Packet &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#af95aec82f14db6ad1e989395292c4d57">BuildBeacon</a> (bool isCluster, uint16_t networkBeaconTransmissionChannelId)</td></tr>
-<tr class="separator:af95aec82f14db6ad1e989395292c4d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e679793d4dcad6bf112d157bb10c664" id="r_a6e679793d4dcad6bf112d157bb10c664"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a6e679793d4dcad6bf112d157bb10c664">ReturnToOperatingChannel</a> ()</td></tr>
-<tr class="separator:a6e679793d4dcad6bf112d157bb10c664"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2ad6de504bcda0de2c170652fd9d363" id="r_ac2ad6de504bcda0de2c170652fd9d363"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ac2ad6de504bcda0de2c170652fd9d363">HandleBeaconPacket</a> (Ptr&lt; Packet &gt; packet, <a class="el" href="structns3_1_1FtCandidateInfo.html">FtCandidateInfo</a> *ft)</td></tr>
+<tr class="memdesc:ac2ad6de504bcda0de2c170652fd9d363"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles incoming beacon packets (Network or Cluster Beacons).  <br /></td></tr>
 <tr class="separator:ac2ad6de504bcda0de2c170652fd9d363"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71d25d793e468510365ea1c6ce75053d" id="r_a71d25d793e468510365ea1c6ce75053d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a71d25d793e468510365ea1c6ce75053d">HandleUnicastPacket</a> (Ptr&lt; Packet &gt; packet)</td></tr>
+<tr class="memdesc:a71d25d793e468510365ea1c6ce75053d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles incoming unicast MAC packets.  <br /></td></tr>
 <tr class="separator:a71d25d793e468510365ea1c6ce75053d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab764c72a42f5f6ea870b1bef0eb62947" id="r_ab764c72a42f5f6ea870b1bef0eb62947"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ab764c72a42f5f6ea870b1bef0eb62947">HandleNetworkBeacon</a> (<a class="el" href="classns3_1_1Dect2020BeaconHeader.html">Dect2020BeaconHeader</a> beaconHeader, <a class="el" href="classns3_1_1Dect2020NetworkBeaconMessage.html">Dect2020NetworkBeaconMessage</a> networkBeaconMsg, <a class="el" href="structns3_1_1FtCandidateInfo.html">FtCandidateInfo</a> *ft)</td></tr>
-<tr class="separator:ab764c72a42f5f6ea870b1bef0eb62947"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a958672211af7dce119811ba1e90c01a6" id="r_a958672211af7dce119811ba1e90c01a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a958672211af7dce119811ba1e90c01a6">Send</a> (Ptr&lt; Packet &gt; packet, const Address &amp;dest, <a class="el" href="classns3_1_1Dect2020Mac.html#a0c758addacff7e621b44d50987dcc7d2">Dect2020PacketType</a> type)</td></tr>
+<tr class="memdesc:a958672211af7dce119811ba1e90c01a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Placeholder for application-layer packet transmission.  <br /></td></tr>
+<tr class="separator:a958672211af7dce119811ba1e90c01a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d0d1e0db1839e55787a88876aca429f" id="r_a9d0d1e0db1839e55787a88876aca429f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a9d0d1e0db1839e55787a88876aca429f">SetCurrentChannelId</a> (uint32_t channelId)</td></tr>
+<tr class="memdesc:a9d0d1e0db1839e55787a88876aca429f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the current channel ID.  <br /></td></tr>
+<tr class="separator:a9d0d1e0db1839e55787a88876aca429f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acff913ff839025f5d69c21ca0a1387aa" id="r_acff913ff839025f5d69c21ca0a1387aa"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#acff913ff839025f5d69c21ca0a1387aa">GetCurrentChannelId</a> () const</td></tr>
+<tr class="memdesc:acff913ff839025f5d69c21ca0a1387aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current operating channel ID.  <br /></td></tr>
+<tr class="separator:acff913ff839025f5d69c21ca0a1387aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0884b0fc0b6329a47bdd09dc4fdd569" id="r_ad0884b0fc0b6329a47bdd09dc4fdd569"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ad0884b0fc0b6329a47bdd09dc4fdd569">GenerateValidNetworkId</a> ()</td></tr>
+<tr class="memdesc:ad0884b0fc0b6329a47bdd09dc4fdd569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a valid 32-bit DECT network ID as described in ETSI 103 636-04 4.2.3.1.  <br /></td></tr>
+<tr class="separator:ad0884b0fc0b6329a47bdd09dc4fdd569"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf8424b1e657622d75687b24d274dff7" id="r_abf8424b1e657622d75687b24d274dff7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#abf8424b1e657622d75687b24d274dff7">SetNetworkId</a> (uint32_t networkId)</td></tr>
+<tr class="memdesc:abf8424b1e657622d75687b24d274dff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the DECT Network ID for this device.  <br /></td></tr>
+<tr class="separator:abf8424b1e657622d75687b24d274dff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5950b89914e0028083ba1cfc8ee4c494" id="r_a5950b89914e0028083ba1cfc8ee4c494"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a5950b89914e0028083ba1cfc8ee4c494">GetNetworkId</a> () const</td></tr>
+<tr class="memdesc:a5950b89914e0028083ba1cfc8ee4c494"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the currently assigned network ID.  <br /></td></tr>
+<tr class="separator:a5950b89914e0028083ba1cfc8ee4c494"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab624190de7a3ae79d00b012abb19eb59" id="r_ab624190de7a3ae79d00b012abb19eb59"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ab624190de7a3ae79d00b012abb19eb59">GenerateLongRadioDeviceId</a> ()</td></tr>
+<tr class="memdesc:ab624190de7a3ae79d00b012abb19eb59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a valid 32-bit Long Radio Device ID as described in ETSI 103 636-04 Section 4.2.2.3.  <br /></td></tr>
+<tr class="separator:ab624190de7a3ae79d00b012abb19eb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b6f825b11086ac76d08f88d02e99596" id="r_a9b6f825b11086ac76d08f88d02e99596"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a9b6f825b11086ac76d08f88d02e99596">SetLongRadioDeviceId</a> (uint32_t rdId)</td></tr>
+<tr class="memdesc:a9b6f825b11086ac76d08f88d02e99596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the long RD ID for this device.  <br /></td></tr>
+<tr class="separator:a9b6f825b11086ac76d08f88d02e99596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cd71882a73de1a39c97bf5659b7187f" id="r_a0cd71882a73de1a39c97bf5659b7187f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a0cd71882a73de1a39c97bf5659b7187f">GetLongRadioDeviceId</a> () const</td></tr>
+<tr class="memdesc:a0cd71882a73de1a39c97bf5659b7187f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the long RD ID of this device.  <br /></td></tr>
+<tr class="separator:a0cd71882a73de1a39c97bf5659b7187f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a563a578c7a5b9fd6a9e4cc2876a1a5" id="r_a3a563a578c7a5b9fd6a9e4cc2876a1a5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a3a563a578c7a5b9fd6a9e4cc2876a1a5">GenerateShortRadioDeviceId</a> ()</td></tr>
+<tr class="memdesc:a3a563a578c7a5b9fd6a9e4cc2876a1a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a valid 16-bit Short Radio Device ID as described in ETSI 103 636-04 Section 4.2.3.3.  <br /></td></tr>
+<tr class="separator:a3a563a578c7a5b9fd6a9e4cc2876a1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc71f1ac27006d4c932d0ffb7fe3996" id="r_a1dc71f1ac27006d4c932d0ffb7fe3996"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a1dc71f1ac27006d4c932d0ffb7fe3996">SetShortRadioDeviceId</a> (uint16_t rdId)</td></tr>
+<tr class="memdesc:a1dc71f1ac27006d4c932d0ffb7fe3996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the short RD ID for this device.  <br /></td></tr>
+<tr class="separator:a1dc71f1ac27006d4c932d0ffb7fe3996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a992eec6593c57cac2b25088819adca0f" id="r_a992eec6593c57cac2b25088819adca0f"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a992eec6593c57cac2b25088819adca0f">GetShortRadioDeviceId</a> () const</td></tr>
+<tr class="memdesc:a992eec6593c57cac2b25088819adca0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the short RD ID assigned to this device.  <br /></td></tr>
+<tr class="separator:a992eec6593c57cac2b25088819adca0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61a54f3b6af87a202fcfa4b1e9587381" id="r_a61a54f3b6af87a202fcfa4b1e9587381"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a61a54f3b6af87a202fcfa4b1e9587381">OperatingChannelSelection</a> ()</td></tr>
+<tr class="memdesc:a61a54f3b6af87a202fcfa4b1e9587381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts subslot-wise RSSI scans on all valid channels to select the operating channel.  <br /></td></tr>
+<tr class="separator:a61a54f3b6af87a202fcfa4b1e9587381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2ab41546a10f85cd14db62d4c67ef8e" id="r_ad2ab41546a10f85cd14db62d4c67ef8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ad2ab41546a10f85cd14db62d4c67ef8e">EvaluateAllChannels</a> ()</td></tr>
+<tr class="memdesc:ad2ab41546a10f85cd14db62d4c67ef8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates all scanned channels and selects the best operating channel.  <br /></td></tr>
+<tr class="separator:ad2ab41546a10f85cd14db62d4c67ef8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5e0ab65f4c5cf110e6d4c2a5b18f995" id="r_ac5e0ab65f4c5cf110e6d4c2a5b18f995"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020RandomAccessResourceIE.html">Dect2020RandomAccessResourceIE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ac5e0ab65f4c5cf110e6d4c2a5b18f995">BuildRandomAccessResourceIE</a> ()</td></tr>
+<tr class="memdesc:ac5e0ab65f4c5cf110e6d4c2a5b18f995"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a Random Access Resource Information Element for the Cluster Beacon.  <br /></td></tr>
+<tr class="separator:ac5e0ab65f4c5cf110e6d4c2a5b18f995"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af95aec82f14db6ad1e989395292c4d57" id="r_af95aec82f14db6ad1e989395292c4d57"><td class="memItemLeft" align="right" valign="top">Ptr&lt; Packet &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#af95aec82f14db6ad1e989395292c4d57">BuildBeacon</a> (bool isCluster, uint16_t networkBeaconTransmissionChannelId)</td></tr>
+<tr class="memdesc:af95aec82f14db6ad1e989395292c4d57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a Network Beacon on the specified channel.  <br /></td></tr>
+<tr class="separator:af95aec82f14db6ad1e989395292c4d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ee98014abebe1b7f7656a7184068d8d" id="r_a0ee98014abebe1b7f7656a7184068d8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a0ee98014abebe1b7f7656a7184068d8d">EvaluateClusterBeacon</a> (const <a class="el" href="classns3_1_1Dect2020ClusterBeaconMessage.html">Dect2020ClusterBeaconMessage</a> &amp;clusterBeaconMsg, const <a class="el" href="classns3_1_1Dect2020RandomAccessResourceIE.html">Dect2020RandomAccessResourceIE</a> &amp;rarIe, <a class="el" href="structns3_1_1FtCandidateInfo.html">FtCandidateInfo</a> *ft)</td></tr>
+<tr class="memdesc:a0ee98014abebe1b7f7656a7184068d8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates a received Cluster Beacon and prepares association if applicable.  <br /></td></tr>
 <tr class="separator:a0ee98014abebe1b7f7656a7184068d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ecabbef93d233d31d3ebf93d050635a" id="r_a7ecabbef93d233d31d3ebf93d050635a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a7ecabbef93d233d31d3ebf93d050635a">ProcessAssociationRequest</a> (<a class="el" href="classns3_1_1Dect2020AssociationRequestMessage.html">Dect2020AssociationRequestMessage</a> assoReqMsg, <a class="el" href="classns3_1_1Dect2020RdCapabilityIE.html">Dect2020RdCapabilityIE</a> rdCapabilityIe, <a class="el" href="classns3_1_1Dect2020AssociationControlIE.html">Dect2020AssociationControlIE</a> assoControlIe, uint32_t assoInitiatorLongRdId)</td></tr>
+<tr class="memdesc:a7ecabbef93d233d31d3ebf93d050635a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes an Association Request received from a PT.  <br /></td></tr>
 <tr class="separator:a7ecabbef93d233d31d3ebf93d050635a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7786573bc1b70411d5ba7cde926c5c1e" id="r_a7786573bc1b70411d5ba7cde926c5c1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a7786573bc1b70411d5ba7cde926c5c1e">ProcessAssociationResponse</a> (<a class="el" href="classns3_1_1Dect2020AssociationResponseMessage.html">Dect2020AssociationResponseMessage</a> assoRespMsg, <a class="el" href="classns3_1_1Dect2020RdCapabilityIE.html">Dect2020RdCapabilityIE</a> rdCapabilityIe, uint32_t ftLongRdId)</td></tr>
+<tr class="memdesc:a7786573bc1b70411d5ba7cde926c5c1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes an Association Response received from an FT.  <br /></td></tr>
 <tr class="separator:a7786573bc1b70411d5ba7cde926c5c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae66d28447fcbffb68ec3a01c96de6db5" id="r_ae66d28447fcbffb68ec3a01c96de6db5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020PHYControlFieldType1.html">Dect2020PHYControlFieldType1</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ae66d28447fcbffb68ec3a01c96de6db5">CreatePhysicalHeaderField</a> ()</td></tr>
-<tr class="separator:ae66d28447fcbffb68ec3a01c96de6db5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe6e3b248a12851fa764bbf4fa4cccd0" id="r_afe6e3b248a12851fa764bbf4fa4cccd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#afe6e3b248a12851fa764bbf4fa4cccd0">StartSubslotScan</a> (uint32_t channelId, uint32_t numSubslots, std::function&lt; void(const <a class="el" href="structns3_1_1ChannelEvaluation.html">ChannelEvaluation</a> &amp;)&gt; onComplete)</td></tr>
+<tr class="memdesc:afe6e3b248a12851fa764bbf4fa4cccd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initiates a subslot-wise RSSI scan on a specific channel.  <br /></td></tr>
 <tr class="separator:afe6e3b248a12851fa764bbf4fa4cccd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6472a4bf3eacdc19fce0226eb7658be" id="r_af6472a4bf3eacdc19fce0226eb7658be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#af6472a4bf3eacdc19fce0226eb7658be">MeasureAndScheduleNextSubslot</a> (std::shared_ptr&lt; <a class="el" href="structns3_1_1SubslotScanContext.html">SubslotScanContext</a> &gt; context, uint32_t numSubslots)</td></tr>
+<tr class="memdesc:af6472a4bf3eacdc19fce0226eb7658be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measures RSSI for one subslot and schedules the next scan step.  <br /></td></tr>
 <tr class="separator:af6472a4bf3eacdc19fce0226eb7658be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a78bc1d0ad224da3bbec4c466c28bb6f8" id="r_a78bc1d0ad224da3bbec4c466c28bb6f8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a78bc1d0ad224da3bbec4c466c28bb6f8">GetSubslotsPerSlot</a> ()</td></tr>
-<tr class="separator:a78bc1d0ad224da3bbec4c466c28bb6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c0535091681f7aee8dca77b53cc13b0" id="r_a6c0535091681f7aee8dca77b53cc13b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structns3_1_1FtCandidateInfo.html">FtCandidateInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a6c0535091681f7aee8dca77b53cc13b0">FindOrCreateFtCandidate</a> (uint16_t shortFtId)</td></tr>
+<tr class="memdesc:a6c0535091681f7aee8dca77b53cc13b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an FT candidate by its short ID or creates a new entry.  <br /></td></tr>
 <tr class="separator:a6c0535091681f7aee8dca77b53cc13b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec51c276e2243c231bd8b8faacee8deb" id="r_aec51c276e2243c231bd8b8faacee8deb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structns3_1_1FtCandidateInfo.html">FtCandidateInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#aec51c276e2243c231bd8b8faacee8deb">FindFtCandidateByLongId</a> (uint32_t longFtId)</td></tr>
+<tr class="memdesc:aec51c276e2243c231bd8b8faacee8deb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an FT candidate by its long RD ID or creates a new entry.  <br /></td></tr>
 <tr class="separator:aec51c276e2243c231bd8b8faacee8deb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8ec652a6047bff8e3fcdb57ad9dec25" id="r_ad8ec652a6047bff8e3fcdb57ad9dec25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ad8ec652a6047bff8e3fcdb57ad9dec25">SendAssociationRequest</a> (<a class="el" href="structns3_1_1FtCandidateInfo.html">FtCandidateInfo</a> *ft)</td></tr>
+<tr class="memdesc:ad8ec652a6047bff8e3fcdb57ad9dec25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs and sends an Association Request to a selected FT.  <br /></td></tr>
 <tr class="separator:ad8ec652a6047bff8e3fcdb57ad9dec25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5825940d27c043d18da396c84cb51bf4" id="r_a5825940d27c043d18da396c84cb51bf4"><td class="memItemLeft" align="right" valign="top">Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a5825940d27c043d18da396c84cb51bf4">CalculcateTimeOffsetFromCurrentSubslot</a> (uint32_t delayInSubslots)</td></tr>
-<tr class="separator:a5825940d27c043d18da396c84cb51bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a522481f55f283f28ae6d83d3e1b98e90" id="r_a522481f55f283f28ae6d83d3e1b98e90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a522481f55f283f28ae6d83d3e1b98e90">SendAssociationResponse</a> (<a class="el" href="structns3_1_1AssociatedPtInfo.html">AssociatedPtInfo</a> ptInfo)</td></tr>
+<tr class="memdesc:a522481f55f283f28ae6d83d3e1b98e90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs and sends an Association Response to a requesting PT.  <br /></td></tr>
 <tr class="separator:a522481f55f283f28ae6d83d3e1b98e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5406babc8913eddbb1c97351374da4ba" id="r_a5406babc8913eddbb1c97351374da4ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a5406babc8913eddbb1c97351374da4ba">VerifyPendingAssociationStatus</a> ()</td></tr>
+<tr class="memdesc:a5406babc8913eddbb1c97351374da4ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets association status if still pending.  <br /></td></tr>
 <tr class="separator:a5406babc8913eddbb1c97351374da4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46a785e3b014179e789194f2c9a2b5fa" id="r_a46a785e3b014179e789194f2c9a2b5fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a46a785e3b014179e789194f2c9a2b5fa">VerifyWaitingForSelectedFtAssociationStatus</a> ()</td></tr>
+<tr class="memdesc:a46a785e3b014179e789194f2c9a2b5fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fallback if no Cluster Beacon was received after FT selection.  <br /></td></tr>
 <tr class="separator:a46a785e3b014179e789194f2c9a2b5fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92c6f09d3582cd7fc21324286426a6e9" id="r_a92c6f09d3582cd7fc21324286426a6e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a92c6f09d3582cd7fc21324286426a6e9">VerifyAssociatedStatus</a> ()</td></tr>
+<tr class="memdesc:a92c6f09d3582cd7fc21324286426a6e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodically verifies that the associated FT is still active.  <br /></td></tr>
 <tr class="separator:a92c6f09d3582cd7fc21324286426a6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ac90e0de42a9fefbbddf7f8ab962c3d" id="r_a1ac90e0de42a9fefbbddf7f8ab962c3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a1ac90e0de42a9fefbbddf7f8ab962c3d">SelectBestFtCandidate</a> ()</td></tr>
+<tr class="memdesc:a1ac90e0de42a9fefbbddf7f8ab962c3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects the best FT candidate based on RSSI and switches to its channel.  <br /></td></tr>
 <tr class="separator:a1ac90e0de42a9fefbbddf7f8ab962c3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae088171c630b2c831f00093565f3df57" id="r_ae088171c630b2c831f00093565f3df57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020Mac.html#acf30691814b49446635e3525f15e1f3e">AssociationStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ae088171c630b2c831f00093565f3df57">GetAssociationStatus</a> () const</td></tr>
+<tr class="memdesc:ae088171c630b2c831f00093565f3df57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current MAC association status.  <br /></td></tr>
 <tr class="separator:ae088171c630b2c831f00093565f3df57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78bc1d0ad224da3bbec4c466c28bb6f8" id="r_a78bc1d0ad224da3bbec4c466c28bb6f8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a78bc1d0ad224da3bbec4c466c28bb6f8">GetSubslotsPerSlot</a> ()</td></tr>
+<tr class="memdesc:a78bc1d0ad224da3bbec4c466c28bb6f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of subslots per slot based on the subcarrier scaling factor.  <br /></td></tr>
+<tr class="separator:a78bc1d0ad224da3bbec4c466c28bb6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5825940d27c043d18da396c84cb51bf4" id="r_a5825940d27c043d18da396c84cb51bf4"><td class="memItemLeft" align="right" valign="top">Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a5825940d27c043d18da396c84cb51bf4">CalculcateTimeOffsetFromCurrentSubslot</a> (uint32_t delayInSubslots)</td></tr>
+<tr class="memdesc:a5825940d27c043d18da396c84cb51bf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the simulation time offset for a future subslot.  <br /></td></tr>
+<tr class="separator:a5825940d27c043d18da396c84cb51bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afcf20a2066b4e091071ce60155f397ed" id="r_afcf20a2066b4e091071ce60155f397ed"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#afcf20a2066b4e091071ce60155f397ed">GetRxGainFromIndex</a> (uint8_t index) const</td></tr>
+<tr class="memdesc:afcf20a2066b4e091071ce60155f397ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts RX gain index (0–8) to dB gain value.  <br /></td></tr>
 <tr class="separator:afcf20a2066b4e091071ce60155f397ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abeeb4e0295228973afeb871a18d9d7dd" id="r_abeeb4e0295228973afeb871a18d9d7dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#abeeb4e0295228973afeb871a18d9d7dd">ResetIsWaitingForClusterBeaconFlag</a> ()</td></tr>
-<tr class="separator:abeeb4e0295228973afeb871a18d9d7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -308,38 +332,18 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a927f8098d8352eadb661ac97cde832d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a436f091885622fb5e71cae139760b480" id="r_a436f091885622fb5e71cae139760b480"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacens3.html#add18c6731b9c3700a0db065064931adb">ClusterBeaconPeriod</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a436f091885622fb5e71cae139760b480">m_clusterBeaconPeriod</a></td></tr>
 <tr class="separator:a436f091885622fb5e71cae139760b480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7bf40fd3faf9a726e0afe18efaafca3" id="r_af7bf40fd3faf9a726e0afe18efaafca3"><td class="memItemLeft" align="right" valign="top">Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#af7bf40fd3faf9a726e0afe18efaafca3">m_networkBeaconPeriodTime</a> = MilliSeconds(100)</td></tr>
+<tr class="separator:af7bf40fd3faf9a726e0afe18efaafca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86342c8b5e36e544050a80cf19709219" id="r_a86342c8b5e36e544050a80cf19709219"><td class="memItemLeft" align="right" valign="top">Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a86342c8b5e36e544050a80cf19709219">m_clusterBeaconPeriodTime</a> = MilliSeconds(100)</td></tr>
+<tr class="separator:a86342c8b5e36e544050a80cf19709219"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2e136c9f18c513b1f41d8834ddc6a87" id="r_ac2e136c9f18c513b1f41d8834ddc6a87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020Mac.html#acf30691814b49446635e3525f15e1f3e">AssociationStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ac2e136c9f18c513b1f41d8834ddc6a87">m_associationStatus</a> = <a class="el" href="classns3_1_1Dect2020Mac.html#acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b">NOT_ASSOCIATED</a></td></tr>
 <tr class="separator:ac2e136c9f18c513b1f41d8834ddc6a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd748536ec7e82bbdf5ffa5e138d5098" id="r_acd748536ec7e82bbdf5ffa5e138d5098"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structns3_1_1FtCandidateInfo.html">FtCandidateInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#acd748536ec7e82bbdf5ffa5e138d5098">m_ftCandidates</a></td></tr>
 <tr class="separator:acd748536ec7e82bbdf5ffa5e138d5098"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4d22cb6932f276862b7dd2a4312711d" id="r_af4d22cb6932f276862b7dd2a4312711d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structns3_1_1AssociatedPtInfo.html">AssociatedPtInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#af4d22cb6932f276862b7dd2a4312711d">m_associatedPtDevices</a></td></tr>
 <tr class="separator:af4d22cb6932f276862b7dd2a4312711d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61c725c77b1acc4674ce7b3639bd62a9" id="r_a61c725c77b1acc4674ce7b3639bd62a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020PHYControlFieldType1.html">Dect2020PHYControlFieldType1</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a61c725c77b1acc4674ce7b3639bd62a9">m_lastFtPhyHeaderField</a></td></tr>
-<tr class="separator:a61c725c77b1acc4674ce7b3639bd62a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad63c740b041cee64b51c63a80d258f67" id="r_ad63c740b041cee64b51c63a80d258f67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020MacHeaderType.html">Dect2020MacHeaderType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ad63c740b041cee64b51c63a80d258f67">m_lastFtMacHeaderType</a></td></tr>
-<tr class="separator:ad63c740b041cee64b51c63a80d258f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac827427170e5d1c4c78f732fb9d16e67" id="r_ac827427170e5d1c4c78f732fb9d16e67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020BeaconHeader.html">Dect2020BeaconHeader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ac827427170e5d1c4c78f732fb9d16e67">m_lastFtBeaconHeader</a></td></tr>
-<tr class="separator:ac827427170e5d1c4c78f732fb9d16e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41f21d8830f234a9eafa5174c67a5fa7" id="r_a41f21d8830f234a9eafa5174c67a5fa7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020UnicastHeader.html">Dect2020UnicastHeader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a41f21d8830f234a9eafa5174c67a5fa7">m_lastFtUnicastHeader</a></td></tr>
-<tr class="separator:a41f21d8830f234a9eafa5174c67a5fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaae6ddc12910cf9a2750c6e9005dd48" id="r_abaae6ddc12910cf9a2750c6e9005dd48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020NetworkBeaconMessage.html">Dect2020NetworkBeaconMessage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#abaae6ddc12910cf9a2750c6e9005dd48">m_lastFtNetworkBeaconMessage</a></td></tr>
-<tr class="separator:abaae6ddc12910cf9a2750c6e9005dd48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a03a29a5557cf0c6df63d65fed1b225" id="r_a3a03a29a5557cf0c6df63d65fed1b225"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020ClusterBeaconMessage.html">Dect2020ClusterBeaconMessage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a3a03a29a5557cf0c6df63d65fed1b225">m_lastFtClusterBeaconMessage</a></td></tr>
-<tr class="separator:a3a03a29a5557cf0c6df63d65fed1b225"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8958551360839815f0908b4b1817b1f2" id="r_a8958551360839815f0908b4b1817b1f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020RandomAccessResourceIE.html">Dect2020RandomAccessResourceIE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a8958551360839815f0908b4b1817b1f2">m_lastFtRandomAccessResourceIE</a></td></tr>
-<tr class="separator:a8958551360839815f0908b4b1817b1f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0ac94ca964c4ed678725a9e39249469" id="r_ad0ac94ca964c4ed678725a9e39249469"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload.html">Dect2020MacMuxHeaderShortSduNoPayload</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ad0ac94ca964c4ed678725a9e39249469">m_lastFtMacMuxHeader</a></td></tr>
 <tr class="separator:ad0ac94ca964c4ed678725a9e39249469"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51185f30aec01dcaee491e5fcdad2447" id="r_a51185f30aec01dcaee491e5fcdad2447"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a51185f30aec01dcaee491e5fcdad2447">RSSI_THRESHOLD_MIN</a> = -85</td></tr>
-<tr class="separator:a51185f30aec01dcaee491e5fcdad2447"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9ec967e134fb9468d7950fe00b69c4a" id="r_af9ec967e134fb9468d7950fe00b69c4a"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#af9ec967e134fb9468d7950fe00b69c4a">RSSI_THRESHOLD_MAX</a> = -50</td></tr>
-<tr class="separator:af9ec967e134fb9468d7950fe00b69c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30265385ad912fe025f7ed41fcf171ea" id="r_a30265385ad912fe025f7ed41fcf171ea"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a30265385ad912fe025f7ed41fcf171ea">SCAN_MEAS_DURATION</a> = 24</td></tr>
-<tr class="separator:a30265385ad912fe025f7ed41fcf171ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28d45a6d5c60d241587b935f1237d449" id="r_a28d45a6d5c60d241587b935f1237d449"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a28d45a6d5c60d241587b935f1237d449">SCAN_SUITABLE</a> = 0.75</td></tr>
-<tr class="separator:a28d45a6d5c60d241587b935f1237d449"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19add43b45b9f0add1b71c65dca1df03" id="r_a19add43b45b9f0add1b71c65dca1df03"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a19add43b45b9f0add1b71c65dca1df03">SCAN_STATUS_VALID</a> = 300</td></tr>
-<tr class="separator:a19add43b45b9f0add1b71c65dca1df03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c19c0b8f32ea6b118f24dfd1fb4ce2f" id="r_a1c19c0b8f32ea6b118f24dfd1fb4ce2f"><td class="memItemLeft" align="right" valign="top">std::map&lt; uint32_t, <a class="el" href="structns3_1_1ChannelEvaluation.html">ChannelEvaluation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a1c19c0b8f32ea6b118f24dfd1fb4ce2f">m_scanEvaluations</a></td></tr>
 <tr class="separator:a1c19c0b8f32ea6b118f24dfd1fb4ce2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad186c22792c2708220865422ed9ed895" id="r_ad186c22792c2708220865422ed9ed895"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#ad186c22792c2708220865422ed9ed895">m_completedScans</a> = 0</td></tr>
@@ -352,18 +356,26 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a42ac312e05bba9f11d59f416181e44a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3119509eac739917b6d8be51c86ce9e9" id="r_a3119509eac739917b6d8be51c86ce9e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structns3_1_1FtCandidateInfo.html">FtCandidateInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a3119509eac739917b6d8be51c86ce9e9">m_selectedFtCandidate</a></td></tr>
 <tr class="separator:a3119509eac739917b6d8be51c86ce9e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3da2beef2e5a4fffa7d3a708bc5332b0" id="r_a3da2beef2e5a4fffa7d3a708bc5332b0"><td class="memItemLeft" align="right" valign="top">EventId&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a3da2beef2e5a4fffa7d3a708bc5332b0">m_discoverNetworksEvent</a></td></tr>
-<tr class="separator:a3da2beef2e5a4fffa7d3a708bc5332b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a78a4bf1f32535e129029693feb14dc" id="r_a1a78a4bf1f32535e129029693feb14dc"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a1a78a4bf1f32535e129029693feb14dc">m_associatedFTNetDeviceLongRdId</a> = 0</td></tr>
 <tr class="separator:a1a78a4bf1f32535e129029693feb14dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc082a9aec63303821366a84956c5071" id="r_afc082a9aec63303821366a84956c5071"><td class="memItemLeft" align="right" valign="top">Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#afc082a9aec63303821366a84956c5071">m_deviceStartTime</a></td></tr>
 <tr class="separator:afc082a9aec63303821366a84956c5071"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bcdfd4b64448eaaf60e84b9407aa754" id="r_a7bcdfd4b64448eaaf60e84b9407aa754"><td class="memItemLeft" align="right" valign="top">Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a7bcdfd4b64448eaaf60e84b9407aa754">m_successfulAssociationTime</a></td></tr>
 <tr class="separator:a7bcdfd4b64448eaaf60e84b9407aa754"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51185f30aec01dcaee491e5fcdad2447" id="r_a51185f30aec01dcaee491e5fcdad2447"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a51185f30aec01dcaee491e5fcdad2447">RSSI_THRESHOLD_MIN</a> = -85</td></tr>
+<tr class="separator:a51185f30aec01dcaee491e5fcdad2447"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9ec967e134fb9468d7950fe00b69c4a" id="r_af9ec967e134fb9468d7950fe00b69c4a"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#af9ec967e134fb9468d7950fe00b69c4a">RSSI_THRESHOLD_MAX</a> = -50</td></tr>
+<tr class="separator:af9ec967e134fb9468d7950fe00b69c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30265385ad912fe025f7ed41fcf171ea" id="r_a30265385ad912fe025f7ed41fcf171ea"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a30265385ad912fe025f7ed41fcf171ea">SCAN_MEAS_DURATION</a> = 24</td></tr>
+<tr class="separator:a30265385ad912fe025f7ed41fcf171ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28d45a6d5c60d241587b935f1237d449" id="r_a28d45a6d5c60d241587b935f1237d449"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a28d45a6d5c60d241587b935f1237d449">SCAN_SUITABLE</a> = 0.75</td></tr>
+<tr class="separator:a28d45a6d5c60d241587b935f1237d449"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19add43b45b9f0add1b71c65dca1df03" id="r_a19add43b45b9f0add1b71c65dca1df03"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Mac.html#a19add43b45b9f0add1b71c65dca1df03">SCAN_STATUS_VALID</a> = 300</td></tr>
+<tr class="separator:a19add43b45b9f0add1b71c65dca1df03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>DECT2020 MAC Klasse. </p>
-<p>Diese Klasse implementiert die grundlegende MAC-Schichtfunktionalität für das DECT2020 Modul. </p>
+<div class="textblock"><p>DECT-2020 NR MAC layer implementation. </p>
+<p>Represents the Medium Access Control layer for a DECT-2020 NR node. Manages transmission/reception of MAC PDUs, beaconing, association, and MAC-PHY interaction. </p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="acf30691814b49446635e3525f15e1f3e" name="acf30691814b49446635e3525f15e1f3e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acf30691814b49446635e3525f15e1f3e">&#9670;&#160;</a></span>AssociationStatus</h2>
@@ -376,6 +388,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Association status of a device within the DECT-2020 NR network. </p>
+<p>These states define the current association state of a Radio Device (RD), such as a Portable Termination (PT), with respect to a Fixed Termination (FT). </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b" name="acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b"></a>NOT_ASSOCIATED&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="acf30691814b49446635e3525f15e1f3ea0da00aaf3e48b310241005828be7f225" name="acf30691814b49446635e3525f15e1f3ea0da00aaf3e48b310241005828be7f225"></a>ASSOCIATION_PREPARING&#160;</td><td class="fielddoc"></td></tr>
@@ -397,6 +412,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Packet types used in DECT-2020 NR. </p>
+<p>This enumeration defines the logical classification of packet types that can be transmitted or received within the MAC layer. ETSI 103 636-4 Section 6.3.3 </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0c758addacff7e621b44d50987dcc7d2a97fa82dad0076ca5e8282eab9e18a47a" name="a0c758addacff7e621b44d50987dcc7d2a97fa82dad0076ca5e8282eab9e18a47a"></a>DATA&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a0c758addacff7e621b44d50987dcc7d2a380b94c95bb3a36466bfcf8426f9bc1a" name="a0c758addacff7e621b44d50987dcc7d2a380b94c95bb3a36466bfcf8426f9bc1a"></a>BEACON&#160;</td><td class="fielddoc"></td></tr>
@@ -421,6 +439,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructor: Initializes internal state and MAC structures. </p>
 
 </div>
 </div>
@@ -476,6 +496,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sends a Network Beacon on the specified channel. </p>
+<p>Used in the channel sweep to advertise the presence of the FT to PTs scanning nearby channels.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">isCluster</td><td>Indicates if the wanted beacon is a Cluster Beacon (true) or a Network Beacon (false). </td></tr>
+    <tr><td class="paramname">channelId</td><td>Channel ID on which the Network Beacon is transmitted. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ac5e0ab65f4c5cf110e6d4c2a5b18f995" name="ac5e0ab65f4c5cf110e6d4c2a5b18f995"></a>
@@ -493,22 +523,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a0441196225d968f4d2d89ec1f5f8d19d" name="a0441196225d968f4d2d89ec1f5f8d19d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0441196225d968f4d2d89ec1f5f8d19d">&#9670;&#160;</a></span>CalculateAbsoluteStartSubslot()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint8_t ns3::Dect2020Mac::CalculateAbsoluteStartSubslot </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Builds a Random Access Resource Information Element for the Cluster Beacon. </p>
+<p>Specifies timing and access parameters for PTs wishing to associate. Most control fields are currently set to fixed values.</p>
+<dl class="section return"><dt>Returns</dt><dd>Configured <a class="el" href="classns3_1_1Dect2020RandomAccessResourceIE.html" title="MAC Random Access Resource IE (ETSI TS 103 636-4 6.4.3.4).">Dect2020RandomAccessResourceIE</a>. </dd></dl>
 
 </div>
 </div>
@@ -528,22 +545,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="ae66d28447fcbffb68ec3a01c96de6db5" name="ae66d28447fcbffb68ec3a01c96de6db5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae66d28447fcbffb68ec3a01c96de6db5">&#9670;&#160;</a></span>CreatePhysicalHeaderField()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classns3_1_1Dect2020PHYControlFieldType1.html">Dect2020PHYControlFieldType1</a> ns3::Dect2020Mac::CreatePhysicalHeaderField </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Calculates the simulation time offset for a future subslot. </p>
+<p>Converts a relative subslot delay into an absolute simulation Time, using the current System Frame Number (SFN), slot, and subslot index.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delayInSubslots</td><td>Delay in absolute subslots from the current position. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Simulation time offset from now until the target subslot. </dd></dl>
 
 </div>
 </div>
@@ -561,6 +571,14 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Evaluates all scanned channels and selects the best operating channel. </p>
+<p>Selection strategy from ETSI 103 636 04 5.1.2:</p><ol type="1">
+<li>Prefer channels that are completely free.</li>
+<li>If none, select a channel with &gt;= SCAN_SUITABLE threshold of usable subslots.</li>
+<li>Otherwise, pick the channel with the least busy and possible subslots.</li>
+</ol>
+<p>After selection, starts beacon transmission and schedules next scan. </p>
 
 </div>
 </div>
@@ -596,6 +614,17 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Evaluates a received Cluster Beacon and prepares association if applicable. </p>
+<p>Updates the FT candidate with timing info from the beacon. If the device is not associated, it enters PREPARING_SELECTION mode. If the selected FT is identified, schedules the transmission of an Association Request using randomized timing from the Random Access Resource IE.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clusterBeaconMsg</td><td>Received Cluster Beacon message. </td></tr>
+    <tr><td class="paramname">rarIe</td><td>Random Access Resource IE containing timing allocation. </td></tr>
+    <tr><td class="paramname">ft</td><td>Pointer to the corresponding FT candidate. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aec51c276e2243c231bd8b8faacee8deb" name="aec51c276e2243c231bd8b8faacee8deb"></a>
@@ -613,6 +642,16 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Retrieves an FT candidate by its long RD ID or creates a new entry. </p>
+<p>Typically used after association to track beacon reception from the selected FT.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">longFtId</td><td>The 32-bit long RD ID of the FT. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the matching or newly created <a class="el" href="structns3_1_1FtCandidateInfo.html" title="Stores information about a potential Fixed Termination (FT) candidate discovered during beacon recept...">FtCandidateInfo</a>. </dd></dl>
 
 </div>
 </div>
@@ -632,6 +671,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Retrieves an FT candidate by its short ID or creates a new entry. </p>
+<p>Used when processing beacons to store RSSI, headers, and channel information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shortFtId</td><td>The 16-bit short ID of the FT candidate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the matching or newly created <a class="el" href="structns3_1_1FtCandidateInfo.html" title="Stores information about a potential Fixed Termination (FT) candidate discovered during beacon recept...">FtCandidateInfo</a>. </dd></dl>
+
 </div>
 </div>
 <a id="ab624190de7a3ae79d00b012abb19eb59" name="ab624190de7a3ae79d00b012abb19eb59"></a>
@@ -648,7 +697,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Generate the Long Radio Device ID as described in ETSI TS 103 636-4 V 1.51 #4.2.3.2 </p><dl class="section return"><dt>Returns</dt><dd>32 Bit Radio Device ID </dd></dl>
+
+<p>Generates a valid 32-bit Long Radio Device ID as described in ETSI 103 636-04 Section 4.2.2.3. </p>
+<p>Ensures the ID is within the allowed DECT NR range (1 to 0xFFFFFFFD), excluding reserved values like 0x00000000, 0xFFFFFFFE, and 0xFFFFFFFF.</p>
+<dl class="section return"><dt>Returns</dt><dd>A valid long RD ID </dd></dl>
 
 </div>
 </div>
@@ -666,7 +718,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Generate the Short Radio Device ID as described in ETSI TS 103 636-4 V 1.51 #4.2.3.3 </p><dl class="section return"><dt>Returns</dt><dd>16 Bit Radio Device ID </dd></dl>
+
+<p>Generates a valid 16-bit Short Radio Device ID as described in ETSI 103 636-04 Section 4.2.3.3. </p>
+<p>The ID is chosen randomly in the valid DECT NR range [0x0001, 0xFFFE], excluding reserved values like 0x0000 and 0xFFFF.</p>
+<dl class="section return"><dt>Returns</dt><dd>A valid short RD ID </dd></dl>
 
 </div>
 </div>
@@ -684,25 +739,13 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Join a existing Network Generate a valid Network ID. </p>
 
-</div>
-</div>
-<a id="adcaf418f1a1c474c468ef4ebd0472182" name="adcaf418f1a1c474c468ef4ebd0472182"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adcaf418f1a1c474c468ef4ebd0472182">&#9670;&#160;</a></span>GetAddress()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Mac48Address ns3::Dect2020Mac::GetAddress </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Generates a valid 32-bit DECT network ID as described in ETSI 103 636-04 4.2.3.1. </p>
+<p>Ensures that:</p><ul>
+<li>the 8 LSBs (used as short network ID) are not 0x00</li>
+<li>the remaining 24 MSBs are not all zero</li>
+</ul>
+<dl class="section return"><dt>Returns</dt><dd>A valid non-zero network ID </dd></dl>
 
 </div>
 </div>
@@ -721,6 +764,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the current MAC association status. </p>
+<dl class="section return"><dt>Returns</dt><dd>Current AssociationStatus of the device (e.g. NOT_ASSOCIATED, ASSOCIATED). </dd></dl>
+
 </div>
 </div>
 <a id="acff913ff839025f5d69c21ca0a1387aa" name="acff913ff839025f5d69c21ca0a1387aa"></a>
@@ -738,6 +784,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the current operating channel ID. </p>
+<dl class="section return"><dt>Returns</dt><dd>The current channel ID used by the device </dd></dl>
+
 </div>
 </div>
 <a id="a0cd71882a73de1a39c97bf5659b7187f" name="a0cd71882a73de1a39c97bf5659b7187f"></a>
@@ -754,7 +803,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get the Long Radio Device ID. </p>
+
+<p>Returns the long RD ID of this device. </p>
+<dl class="section return"><dt>Returns</dt><dd>The 32-bit long RD ID </dd></dl>
 
 </div>
 </div>
@@ -772,7 +823,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get the Network ID. </p><dl class="section return"><dt>Returns</dt><dd>the 32 Bit Network ID. </dd></dl>
+
+<p>Returns the currently assigned network ID. </p>
+<dl class="section return"><dt>Returns</dt><dd>32-bit DECT network ID </dd></dl>
 
 </div>
 </div>
@@ -792,6 +845,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Converts RX gain index (0–8) to dB gain value. </p>
+<p>Index is mapped linearly to range −10 dB to +6 dB as defined in ETSI TS 103 636-4 Table 6.4.3.5-1. Returns 0 dB if the index is invalid (&gt; 8).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>RX gain index (0 to 8) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>RX gain in dB </dd></dl>
+
 </div>
 </div>
 <a id="a992eec6593c57cac2b25088819adca0f" name="a992eec6593c57cac2b25088819adca0f"></a>
@@ -808,7 +871,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get the Short Radio Device ID. </p>
+
+<p>Returns the short RD ID assigned to this device. </p>
+<dl class="section return"><dt>Returns</dt><dd>16-bit Short Radio Device ID </dd></dl>
 
 </div>
 </div>
@@ -826,6 +891,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the number of subslots per slot based on the subcarrier scaling factor. </p>
+<p>Used to determine subslot resolution for scheduling and channel access.</p>
+<dl class="section return"><dt>Returns</dt><dd>Number of subslots per slot (2, 4, 8, or 16). </dd></dl>
 
 </div>
 </div>
@@ -881,39 +950,20 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="ab764c72a42f5f6ea870b1bef0eb62947" name="ab764c72a42f5f6ea870b1bef0eb62947"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab764c72a42f5f6ea870b1bef0eb62947">&#9670;&#160;</a></span>HandleNetworkBeacon()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ns3::Dect2020Mac::HandleNetworkBeacon </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classns3_1_1Dect2020BeaconHeader.html">Dect2020BeaconHeader</a>&#160;</td>
-          <td class="paramname"><em>beaconHeader</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classns3_1_1Dect2020NetworkBeaconMessage.html">Dect2020NetworkBeaconMessage</a>&#160;</td>
-          <td class="paramname"><em>networkBeaconMsg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structns3_1_1FtCandidateInfo.html">FtCandidateInfo</a> *&#160;</td>
-          <td class="paramname"><em>ft</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Handles incoming beacon packets (Network or Cluster Beacons). </p>
+<p>Extracts the beacon header and MAC multiplexing header. Depending on the beacon message type (network or cluster), the FT candidate information is updated and channel switching may be triggered.</p>
+<ul>
+<li>Stores metadata in the FT candidate structure</li>
+<li>Triggers channel switch to cluster channel if required</li>
+<li>Updates internal state flags and statistics</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet</td><td>The beacon packet with remaining headers. </td></tr>
+    <tr><td class="paramname">ft</td><td>Pointer to the FT candidate this beacon came from. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -933,6 +983,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Handles incoming unicast MAC packets. </p>
+<p>Parses the unicast header and checks whether the message is addressed to this device. If so, the message is further parsed based on its type. Supports Association Request and Association Response messages.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet</td><td>The received unicast packet. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ab0a43e61de5976775531246105ef5f94" name="ab0a43e61de5976775531246105ef5f94"></a>
@@ -950,6 +1009,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initializes the device by assigning valid Long and Short RD IDs. </p>
+<p>This function is called during MAC initialization to ensure each device has unique DECT-2020 NR identifiers. </p>
+
 </div>
 </div>
 <a id="a36c239034dfb7ecf13053446da830cca" name="a36c239034dfb7ecf13053446da830cca"></a>
@@ -966,26 +1028,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Initialize a new Network </p>
 
-</div>
-</div>
-<a id="a6759fbb033aed3afd7bc3090b597864e" name="a6759fbb033aed3afd7bc3090b597864e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6759fbb033aed3afd7bc3090b597864e">&#9670;&#160;</a></span>JoinNetwork()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ns3::Dect2020Mac::JoinNetwork </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>networkId</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Join an existing Network. </p>
+<p>Initializes a new DECT-2020 network (FT only). </p>
+<p>Generates a valid network ID and schedules the channel selection process. Called when the device operates as a Fixed Termination (FT). </p>
 
 </div>
 </div>
@@ -1015,6 +1060,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Measures RSSI for one subslot and schedules the next scan step. </p>
+<p>Categorizes the subslot as FREE, POSSIBLE, or BUSY based on RSSI thresholds like described in the specification 106 636 4 5.1.2. Recursively schedules itself until the configured number of subslots is scanned. Once complete, invokes the callback with the aggregated result.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">context</td><td>Shared scan state (channel ID, counters, result storage). </td></tr>
+    <tr><td class="paramname">numSubslots</td><td>Total number of subslots to evaluate. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a61a54f3b6af87a202fcfa4b1e9587381" name="a61a54f3b6af87a202fcfa4b1e9587381"></a>
@@ -1031,6 +1086,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Starts subslot-wise RSSI scans on all valid channels to select the operating channel. </p>
+<p>Each scan is scheduled with an offset to avoid overlapping measurements. Once all channels are scanned, triggers <a class="el" href="classns3_1_1Dect2020Mac.html#ad2ab41546a10f85cd14db62d4c67ef8e" title="Evaluates all scanned channels and selects the best operating channel.">EvaluateAllChannels()</a> to select the best one. </p>
 
 </div>
 </div>
@@ -1072,6 +1130,19 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Processes an Association Request received from a PT. </p>
+<p>Extracts and stores the PT's capabilities and requested flow parameters. Schedules an Association Response based on HARQ timing requirements.</p>
+<p>Currently accepts all incoming requests without filtering.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assoReqMsg</td><td>Association Request message from the PT. </td></tr>
+    <tr><td class="paramname">rdCapabilityIe</td><td>Reported capabilities of the PT. </td></tr>
+    <tr><td class="paramname">assoControlIe</td><td>Association control settings (e.g. CB monitoring). </td></tr>
+    <tr><td class="paramname">assoInitiatorLongRdId</td><td>Long RDID of the requesting PT. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a7786573bc1b70411d5ba7cde926c5c1e" name="a7786573bc1b70411d5ba7cde926c5c1e"></a>
@@ -1106,6 +1177,17 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Processes an Association Response received from an FT. </p>
+<p>If the device is in ASSOCIATION_PENDING state and the response is accepted, the MAC transitions to ASSOCIATED and stores the FT's identity. Also sets a timer to verify association continuity.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">assoRespMsg</td><td>The received Association Response message. </td></tr>
+    <tr><td class="paramname">rdCapabilityIe</td><td>Reported FT capabilities. </td></tr>
+    <tr><td class="paramname">ftLongRdId</td><td>Long RDID of the FT that sent the response. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a33c8e4d4610fbaa917d91ddc72fb84e8" name="a33c8e4d4610fbaa917d91ddc72fb84e8"></a>
@@ -1134,39 +1216,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="abeeb4e0295228973afeb871a18d9d7dd" name="abeeb4e0295228973afeb871a18d9d7dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abeeb4e0295228973afeb871a18d9d7dd">&#9670;&#160;</a></span>ResetIsWaitingForClusterBeaconFlag()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ns3::Dect2020Mac::ResetIsWaitingForClusterBeaconFlag </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6e679793d4dcad6bf112d157bb10c664" name="a6e679793d4dcad6bf112d157bb10c664"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e679793d4dcad6bf112d157bb10c664">&#9670;&#160;</a></span>ReturnToOperatingChannel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ns3::Dect2020Mac::ReturnToOperatingChannel </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Entry point for all packets received from the PHY layer. </p>
+<p>This method handles incoming packets by parsing the PHY and MAC headers. Based on the MAC header type, the packet is dispatched to the appropriate handler (e.g. beacon, unicast). RSSI and PHY metadata are stored for further use.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet</td><td>The received packet. </td></tr>
+    <tr><td class="paramname">rssiDbm</td><td>The received signal strength in dBm. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1184,6 +1242,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Selects the best FT candidate based on RSSI and switches to its channel. </p>
+<p>Iterates through all discovered FT candidates and selects the one with the highest RSSI. Updates internal state, switches to the candidate's cluster channel, and sets the MAC status to WAITING_FOR_SELECTED_FT.</p>
+<p>Triggers a follow-up check after 2 seconds via <a class="el" href="classns3_1_1Dect2020Mac.html#a46a785e3b014179e789194f2c9a2b5fa" title="Fallback if no Cluster Beacon was received after FT selection.">VerifyWaitingForSelectedFtAssociationStatus()</a>. </p>
 
 </div>
 </div>
@@ -1219,6 +1281,17 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Placeholder for application-layer packet transmission. </p>
+<p>Currently unused. Intended to forward packets from the application layer to the MAC for transmission via the PHY layer.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet</td><td>The packet to send. </td></tr>
+    <tr><td class="paramname">receiverLongRdId</td><td>Destination Long RD ID. </td></tr>
+    <tr><td class="paramname">type</td><td>DECT packet type (e.g. BEACON, UNICAST). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ad8ec652a6047bff8e3fcdb57ad9dec25" name="ad8ec652a6047bff8e3fcdb57ad9dec25"></a>
@@ -1236,6 +1309,15 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Constructs and sends an Association Request to a selected FT. </p>
+<p>Assembles a complete unicast packet with PHY/MAC headers, RD Capability IE, and the Association Request message. Sets the association status to pending and schedules a fallback if no response is received.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ft</td><td>Pointer to the selected FT candidate. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1255,6 +1337,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructs and sends an Association Response to a requesting PT. </p>
+<p>Builds the complete response packet, including PHY and MAC headers, the RD Capability IE, and the Association Response message. The response is transmitted via the PHY to the specified PT.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ptInfo</td><td>Information about the PT that initiated the association. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a9d0d1e0db1839e55787a88876aca429f" name="a9d0d1e0db1839e55787a88876aca429f"></a>
@@ -1273,6 +1364,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Updates the current channel ID. </p>
+<p>Avoids redundant changes and initializes the cluster channel ID if not yet set.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channelId</td><td>The channel to switch to </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a9b6f825b11086ac76d08f88d02e99596" name="a9b6f825b11086ac76d08f88d02e99596"></a>
@@ -1290,7 +1390,15 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the Long Radio Device ID. </p>
+
+<p>Sets the long RD ID for this device. </p>
+<p>If an invalid value (0x00000000) is provided, a new valid ID is generated instead.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rdId</td><td>The 32-bit RD ID to assign </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1310,6 +1418,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Set the associated DECT NetDevice. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">device</td><td>Pointer to the DECT NetDevice. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="abf8424b1e657622d75687b24d274dff7" name="abf8424b1e657622d75687b24d274dff7"></a>
@@ -1327,7 +1443,15 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the Network ID. </p>
+
+<p>Sets the DECT Network ID for this device. </p>
+<p>Verifies that the short network ID (LSB) and the globally unique part (MSB) are valid. Logs an error if either part is zero, as per ETSI TS 103 636-4 Section 4.2.3.1.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">networkId</td><td>32-bit network identifier to assign </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1347,6 +1471,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Set the associated PHY layer and connect receive callback for incoming packets from the physical layer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">phy</td><td>Pointer to the DECT PHY object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a1dc71f1ac27006d4c932d0ffb7fe3996" name="a1dc71f1ac27006d4c932d0ffb7fe3996"></a>
@@ -1364,7 +1496,15 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the Short Radio Device ID. </p>
+
+<p>Sets the short RD ID for this device. </p>
+<p>If an invalid value (0x0000) is provided, a new valid ID is generated automatically.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rdId</td><td>The 16-bit RD ID to assign </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1382,7 +1522,12 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Starts the MAC-Layer </p>
+
+<p>Starts the MAC operation based on the device role (FT or PT). </p>
+<ul>
+<li>FT devices initialize their own network (e.g. begin beaconing).</li>
+<li>PT devices begin network discovery after a short delay. </li>
+</ul>
 
 </div>
 </div>
@@ -1400,7 +1545,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Start sending a beacon periodically. </p>
+
+<p>Starts both Cluster and Network Beacon transmissions. </p>
+<p>Called during FT initialization to begin beaconing on all relevant channels. </p>
 
 </div>
 </div>
@@ -1419,6 +1566,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Starts and schedules periodic Cluster Beacon transmissions (FT only). </p>
+<p>Sends a Cluster Beacon on the current cluster channel and reschedules the next transmission. </p>
+
 </div>
 </div>
 <a id="a4140324572b6872fdb33605dfb0ffdd5" name="a4140324572b6872fdb33605dfb0ffdd5"></a>
@@ -1435,6 +1585,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Starts a cyclic sweep to transmit Network Beacons on adjacent channels. </p>
+<p>Selects a set of valid channels spaced at fixed offsets (±2, ±4, ...) relative to the cluster channel. Schedules beacon transmissions on each channel with time gaps in between, then returns to the operating channel.</p>
+<p>This method reschedules itself for continuous sweeping. </p>
 
 </div>
 </div>
@@ -1470,6 +1624,17 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initiates a subslot-wise RSSI scan on a specific channel. </p>
+<p>Measures channel power over multiple subslots and invokes a callback with the aggregated result.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channelId</td><td>Channel to scan. </td></tr>
+    <tr><td class="paramname">numSubslots</td><td>Number of subslots / slot in the current configuration. </td></tr>
+    <tr><td class="paramname">onComplete</td><td>Callback that receives the aggregated <a class="el" href="structns3_1_1ChannelEvaluation.html" title="Stores subslot occupancy statistics for a single channel.">ChannelEvaluation</a> result. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a92c6f09d3582cd7fc21324286426a6e9" name="a92c6f09d3582cd7fc21324286426a6e9"></a>
@@ -1486,6 +1651,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Periodically verifies that the associated FT is still active. </p>
+<p>If no Cluster Beacon from the associated FT was received within the last 60 seconds, the device resets its association status to NOT_ASSOCIATED. Otherwise, the check is scheduled again. </p>
 
 </div>
 </div>
@@ -1504,6 +1672,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Resets association status if still pending. </p>
+<p>If the device is still in ASSOCIATION_PENDING, switches back to NOT_ASSOCIATED. This prevents getting stuck in a pending state. </p>
+
 </div>
 </div>
 <a id="a46a785e3b014179e789194f2c9a2b5fa" name="a46a785e3b014179e789194f2c9a2b5fa"></a>
@@ -1520,6 +1691,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Fallback if no Cluster Beacon was received after FT selection. </p>
+<p>If the device is still waiting for the selected FT after a timeout, the association status is reset to NOT_ASSOCIATED. </p>
 
 </div>
 </div>
@@ -1593,8 +1767,22 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">        <a class="code hl_enumvalue" href="namespacens3.html#add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6">ClusterBeaconPeriod::CLUSTER_PERIOD_100MS</a></div>
-<div class="ttc" id="anamespacens3_html_add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6"><div class="ttname"><a href="namespacens3.html#add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6">ns3::CLUSTER_PERIOD_100MS</a></div><div class="ttdeci">@ CLUSTER_PERIOD_100MS</div><div class="ttdef"><b>Definition</b> dect2020-mac-messages.h:28</div></div>
+<div class="ttc" id="anamespacens3_html_add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6"><div class="ttname"><a href="namespacens3.html#add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6">ns3::CLUSTER_PERIOD_100MS</a></div><div class="ttdeci">@ CLUSTER_PERIOD_100MS</div><div class="ttdef"><b>Definition</b> dect2020-mac-messages.h:36</div></div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="a86342c8b5e36e544050a80cf19709219" name="a86342c8b5e36e544050a80cf19709219"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86342c8b5e36e544050a80cf19709219">&#9670;&#160;</a></span>m_clusterBeaconPeriodTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Time ns3::Dect2020Mac::m_clusterBeaconPeriodTime = MilliSeconds(100)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
 </div>
 </div>
 <a id="a8da2320becc93d1e30d20a730b39b207" name="a8da2320becc93d1e30d20a730b39b207"></a>
@@ -1667,20 +1855,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a3da2beef2e5a4fffa7d3a708bc5332b0" name="a3da2beef2e5a4fffa7d3a708bc5332b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3da2beef2e5a4fffa7d3a708bc5332b0">&#9670;&#160;</a></span>m_discoverNetworksEvent</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">EventId ns3::Dect2020Mac::m_discoverNetworksEvent</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a8796ed8f35d73fa02272e789d38bfc5c" name="a8796ed8f35d73fa02272e789d38bfc5c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8796ed8f35d73fa02272e789d38bfc5c">&#9670;&#160;</a></span>m_fourierTransformScalingFactor</h2>
 
@@ -1709,48 +1883,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ac827427170e5d1c4c78f732fb9d16e67" name="ac827427170e5d1c4c78f732fb9d16e67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac827427170e5d1c4c78f732fb9d16e67">&#9670;&#160;</a></span>m_lastFtBeaconHeader</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classns3_1_1Dect2020BeaconHeader.html">Dect2020BeaconHeader</a> ns3::Dect2020Mac::m_lastFtBeaconHeader</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3a03a29a5557cf0c6df63d65fed1b225" name="a3a03a29a5557cf0c6df63d65fed1b225"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a03a29a5557cf0c6df63d65fed1b225">&#9670;&#160;</a></span>m_lastFtClusterBeaconMessage</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classns3_1_1Dect2020ClusterBeaconMessage.html">Dect2020ClusterBeaconMessage</a> ns3::Dect2020Mac::m_lastFtClusterBeaconMessage</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad63c740b041cee64b51c63a80d258f67" name="ad63c740b041cee64b51c63a80d258f67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad63c740b041cee64b51c63a80d258f67">&#9670;&#160;</a></span>m_lastFtMacHeaderType</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classns3_1_1Dect2020MacHeaderType.html">Dect2020MacHeaderType</a> ns3::Dect2020Mac::m_lastFtMacHeaderType</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ad0ac94ca964c4ed678725a9e39249469" name="ad0ac94ca964c4ed678725a9e39249469"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad0ac94ca964c4ed678725a9e39249469">&#9670;&#160;</a></span>m_lastFtMacMuxHeader</h2>
 
@@ -1759,62 +1891,6 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload.html">Dect2020MacMuxHeaderShortSduNoPayload</a> ns3::Dect2020Mac::m_lastFtMacMuxHeader</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="abaae6ddc12910cf9a2750c6e9005dd48" name="abaae6ddc12910cf9a2750c6e9005dd48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abaae6ddc12910cf9a2750c6e9005dd48">&#9670;&#160;</a></span>m_lastFtNetworkBeaconMessage</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classns3_1_1Dect2020NetworkBeaconMessage.html">Dect2020NetworkBeaconMessage</a> ns3::Dect2020Mac::m_lastFtNetworkBeaconMessage</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a61c725c77b1acc4674ce7b3639bd62a9" name="a61c725c77b1acc4674ce7b3639bd62a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61c725c77b1acc4674ce7b3639bd62a9">&#9670;&#160;</a></span>m_lastFtPhyHeaderField</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classns3_1_1Dect2020PHYControlFieldType1.html">Dect2020PHYControlFieldType1</a> ns3::Dect2020Mac::m_lastFtPhyHeaderField</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8958551360839815f0908b4b1817b1f2" name="a8958551360839815f0908b4b1817b1f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8958551360839815f0908b4b1817b1f2">&#9670;&#160;</a></span>m_lastFtRandomAccessResourceIE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classns3_1_1Dect2020RandomAccessResourceIE.html">Dect2020RandomAccessResourceIE</a> ns3::Dect2020Mac::m_lastFtRandomAccessResourceIE</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a41f21d8830f234a9eafa5174c67a5fa7" name="a41f21d8830f234a9eafa5174c67a5fa7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41f21d8830f234a9eafa5174c67a5fa7">&#9670;&#160;</a></span>m_lastFtUnicastHeader</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classns3_1_1Dect2020UnicastHeader.html">Dect2020UnicastHeader</a> ns3::Dect2020Mac::m_lastFtUnicastHeader</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1848,8 +1924,22 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">        <a class="code hl_enumvalue" href="namespacens3.html#a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5">NetworkBeaconPeriod::NETWORK_PERIOD_50MS</a></div>
-<div class="ttc" id="anamespacens3_html_a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5"><div class="ttname"><a href="namespacens3.html#a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5">ns3::NETWORK_PERIOD_50MS</a></div><div class="ttdeci">@ NETWORK_PERIOD_50MS</div><div class="ttdef"><b>Definition</b> dect2020-mac-messages.h:15</div></div>
+<div class="ttc" id="anamespacens3_html_a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5"><div class="ttname"><a href="namespacens3.html#a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5">ns3::NETWORK_PERIOD_50MS</a></div><div class="ttdeci">@ NETWORK_PERIOD_50MS</div><div class="ttdef"><b>Definition</b> dect2020-mac-messages.h:23</div></div>
 </div><!-- fragment -->
+</div>
+</div>
+<a id="af7bf40fd3faf9a726e0afe18efaafca3" name="af7bf40fd3faf9a726e0afe18efaafca3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7bf40fd3faf9a726e0afe18efaafca3">&#9670;&#160;</a></span>m_networkBeaconPeriodTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Time ns3::Dect2020Mac::m_networkBeaconPeriodTime = MilliSeconds(100)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
 </div>
 </div>
 <a id="abb08d42dc9b4e31b34e004713929feee" name="abb08d42dc9b4e31b34e004713929feee"></a>

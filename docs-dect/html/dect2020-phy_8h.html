@@ -96,6 +96,9 @@ $(document).ready(function(){initNavTree('dect2020-phy_8h.html',''); initResizab
   <div class="headertitle"><div class="title">dect2020-phy.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implements the Phy layer functionality for DECT-2020 NR.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="dect2020-physical-header-field_8h_source.html">dect2020-physical-header-field.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="dect2020-spectrum-signal-parameters_8h_source.html">dect2020-spectrum-signal-parameters.h</a>&quot;</code><br />
 <code>#include &quot;ns3/mobility-model.h&quot;</code><br />
@@ -111,12 +114,12 @@ Include dependency graph for dect2020-phy.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="dect2020-phy_8h__incl.png" border="0" usemap="#acontrib_2dect-nr_2model_2dect2020-phy_8h" alt=""/></div>
 <map name="acontrib_2dect-nr_2model_2dect2020-phy_8h" id="acontrib_2dect-nr_2model_2dect2020-phy_8h">
-<area shape="rect" title=" " alt="" coords="720,5,883,45"/>
-<area shape="rect" href="dect2020-physical-header-field_8h.html" title=" " alt="" coords="129,93,319,133"/>
+<area shape="rect" title="Implements the Phy layer functionality for DECT&#45;2020 NR." alt="" coords="720,5,883,45"/>
+<area shape="rect" href="dect2020-physical-header-field_8h.html" title="Definition of physical layer control field headers (Type 1 and Type 2) for DECT&#45;2020 NR." alt="" coords="129,93,319,133"/>
 <area shape="poly" title=" " alt="" coords="720,41,333,99,333,93,719,36"/>
 <area shape="rect" title=" " alt="" coords="271,189,377,214"/>
 <area shape="poly" title=" " alt="" coords="720,36,599,55,533,72,469,96,434,115,400,137,347,181,344,177,397,133,431,110,467,91,531,67,598,50,719,30"/>
-<area shape="rect" href="dect2020-spectrum-signal-parameters_8h.html" title=" " alt="" coords="513,93,705,133"/>
+<area shape="rect" href="dect2020-spectrum-signal-parameters_8h.html" title="Defines signal parameter structure for DECT&#45;2020 NR PHY layer transmissions." alt="" coords="513,93,705,133"/>
 <area shape="poly" title=" " alt="" coords="760,48,665,90,663,85,758,43"/>
 <area shape="rect" title=" " alt="" coords="401,189,505,214"/>
 <area shape="poly" title=" " alt="" coords="720,39,595,61,540,77,503,95,487,113,475,134,460,176,455,175,470,132,482,110,500,91,538,72,593,56,719,34"/>
@@ -152,7 +155,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="dect2020-phy_8h__dep__incl.png" border="0" usemap="#acontrib_2dect-nr_2model_2dect2020-phy_8hdep" alt=""/></div>
 <map name="acontrib_2dect-nr_2model_2dect2020-phy_8hdep" id="acontrib_2dect-nr_2model_2dect2020-phy_8hdep">
-<area shape="rect" title=" " alt="" coords="237,5,400,45"/>
+<area shape="rect" title="Implements the Phy layer functionality for DECT&#45;2020 NR." alt="" coords="237,5,400,45"/>
 <area shape="rect" href="dect2020-channel_8cc.html" title=" " alt="" coords="5,181,168,221"/>
 <area shape="poly" title=" " alt="" coords="277,55,216,95,109,183,106,179,213,91,274,50"/>
 <area shape="rect" href="dect2020-channel_8h.html" title=" " alt="" coords="237,93,400,133"/>
@@ -174,7 +177,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html">ns3::Dect2020Phy</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">DECT2020 PHY Klasse.  <a href="classns3_1_1Dect2020Phy.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">DECT-2020 NR PHY layer implementation.  <a href="classns3_1_1Dect2020Phy.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -187,7 +190,10 @@ Typedefs</h2></td></tr>
 <tr class="memitem:abd6d4ba79253871c9fb42dce4850bbe7" id="r_abd6d4ba79253871c9fb42dce4850bbe7"><td class="memItemLeft" align="right" valign="top">typedef Callback&lt; void, Ptr&lt; Packet &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacens3.html#abd6d4ba79253871c9fb42dce4850bbe7">ns3::RxReceivedCallback</a></td></tr>
 <tr class="separator:abd6d4ba79253871c9fb42dce4850bbe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implements the Phy layer functionality for DECT-2020 NR. </p>
+<p>Handles PHY procedures such Frame/Slot/Subslot Management, packet transmission and reception, and interaction with the MAC layer. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -2,11 +2,17 @@
 \hypertarget{classns3_1_1Dect2020PHYControlFieldType1}{}\label{classns3_1_1Dect2020PHYControlFieldType1}\index{ns3::Dect2020PHYControlFieldType1@{ns3::Dect2020PHYControlFieldType1}}
 
 
+Represents the PHY Control Field Type 1 (Format 000) for DECT-\/2020 NR.  
+
+
+
+
 {\ttfamily \#include $<$dect2020-\/physical-\/header-\/field.\+h$>$}
 
 
 
-Inheritance diagram for ns3\+::Dect2020\+PHYControl\+Field\+Type1\+:\nopagebreak
+Inheritance diagram for ns3\+::Dect2020\+PHYControl\+Field\+Type1\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,7 +21,8 @@ Inheritance diagram for ns3\+::Dect2020\+PHYControl\+Field\+Type1\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for ns3\+::Dect2020\+PHYControl\+Field\+Type1\+:\nopagebreak
+Collaboration diagram for ns3\+::Dect2020\+PHYControl\+Field\+Type1\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -71,6 +78,22 @@ uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1_a605a839f
 static Type\+Id \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1_af51e890cf0728d953f504001ce9ebab7}{Get\+Type\+Id}} (void)
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Represents the PHY Control Field Type 1 (Format 000) for DECT-\/2020 NR. 
+
+This header includes minimal PHY control information such as\+:
+\begin{DoxyItemize}
+\item Packet length (slots or subslots)
+\item Short network ID (last 8 bits of full Network ID)
+\item Transmitter identity
+\item Transmit power
+\item MCS (Modulation and Coding Scheme)
+\end{DoxyItemize}
+
+Based on ETSI TS 103 636-\/4 Table 6.\+2.\+1-\/1.
+
+This control field is used in basic unicast or broadcast transmissions where feedback or spatial stream details are not required. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classns3_1_1Dect2020PHYControlFieldType1_a7a324fe4296844bef6290eb6868d3560}\label{classns3_1_1Dect2020PHYControlFieldType1_a7a324fe4296844bef6290eb6868d3560} 

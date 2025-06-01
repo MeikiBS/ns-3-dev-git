@@ -1,5 +1,5 @@
 <map id="ns3::Dect2020AssociationResponseMessage" name="ns3::Dect2020AssociationResponseMessage">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,196,119"/>
+<area shape="rect" id="Node000001" title="MAC Association Response Message ETSI TS 103 636&#45;4 V2.1.1 6.4.2.5." alt="" coords="5,79,196,119"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="66,5,135,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,44,103,79,98,79,98,44"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="ns3::SubslotScanContext" name="ns3::SubslotScanContext">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,93,188,119"/>
-<area shape="rect" id="Node000002" href="$structns3_1_1ChannelEvaluation.html" title=" " alt="" coords="9,5,184,31"/>
+<area shape="rect" id="Node000001" title="Context structure used during subslot&#45;based RSSI scanning." alt="" coords="5,93,188,119"/>
+<area shape="rect" id="Node000002" href="$structns3_1_1ChannelEvaluation.html" title="Stores subslot occupancy statistics for a single channel." alt="" coords="9,5,184,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,45,99,93,94,93,94,45"/>
 </map>

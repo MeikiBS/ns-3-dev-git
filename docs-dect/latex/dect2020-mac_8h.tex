@@ -1,5 +1,10 @@
 \doxysection{contrib/dect-\/nr/model/dect2020-\/mac.h File Reference}
 \hypertarget{dect2020-mac_8h}{}\label{dect2020-mac_8h}\index{contrib/dect-\/nr/model/dect2020-\/mac.h@{contrib/dect-\/nr/model/dect2020-\/mac.h}}
+
+
+Implements the MAC layer functionality for DECT-\/2020 NR.  
+
+
 {\ttfamily \#include "{}dect2020-\/mac-\/common-\/header.\+h"{}}\newline
 {\ttfamily \#include "{}dect2020-\/mac-\/header-\/type.\+h"{}}\newline
 {\ttfamily \#include "{}dect2020-\/mac-\/information-\/elements.\+h"{}}\newline
@@ -32,17 +37,23 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{structns3_1_1ChannelEvaluation}{ns3\+::\+Channel\+Evaluation}}
-\item 
+\begin{DoxyCompactList}\small\item\em Stores subslot occupancy statistics for a single channel. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{ns3\+::\+Ft\+Candidate\+Info}}
-\item 
+\begin{DoxyCompactList}\small\item\em Stores information about a potential Fixed Termination (FT) candidate discovered during beacon reception. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structns3_1_1AssociatedPtInfo}{ns3\+::\+Associated\+Pt\+Info}}
-\item 
+\begin{DoxyCompactList}\small\item\em Stores association state and capabilities of an associated Portable Termination (PT). \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structns3_1_1SubslotScanContext}{ns3\+::\+Subslot\+Scan\+Context}}
-\item 
+\begin{DoxyCompactList}\small\item\em Context structure used during subslot-\/based RSSI scanning. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classns3_1_1Dect2020Mac}{ns3\+::\+Dect2020\+Mac}}
-\begin{DoxyCompactList}\small\item\em DECT2020 MAC Klasse. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em DECT-\/2020 NR MAC layer implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespacens3}{ns3}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements the MAC layer functionality for DECT-\/2020 NR. 
+
+Handles MAC procedures such as beacon transmission, association, header creation, and MAC state machine logic based on ETSI TS 103 636-\/4. 

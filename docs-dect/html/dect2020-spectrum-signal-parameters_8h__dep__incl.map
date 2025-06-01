@@ -1,6 +1,6 @@
 <map id="contrib/dect&#45;nr/model/dect2020&#45;spectrum&#45;signal&#45;parameters.h" name="contrib/dect&#45;nr/model/dect2020&#45;spectrum&#45;signal&#45;parameters.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="322,5,518,60"/>
-<area shape="rect" id="Node000002" href="$dect2020-phy_8h.html" title=" " alt="" coords="237,115,400,155"/>
+<area shape="rect" id="Node000001" title="Defines signal parameter structure for DECT&#45;2020 NR PHY layer transmissions." alt="" coords="322,5,518,60"/>
+<area shape="rect" id="Node000002" href="$dect2020-phy_8h.html" title="Implements the Phy layer functionality for DECT&#45;2020 NR." alt="" coords="237,115,400,155"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="385,72,340,117,336,113,382,68"/>
 <area shape="rect" id="Node000008" href="$dect2020-spectrum-signal-parameters_8cc.html" title=" " alt="" coords="425,108,621,163"/>
 <area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="458,68,498,106,494,110,455,72"/>

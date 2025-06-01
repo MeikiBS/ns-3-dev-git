@@ -1,16 +1,6 @@
 #ifndef DECT2020_MAC_H
 #define DECT2020_MAC_H
 
-/**
- * \file dect2020-mac.h
- * \ingroup Dect2020Mac
- * \brief Implements the MAC layer functionality for DECT-2020 NR.
- *
- * Handles MAC procedures such as beacon transmission, association,
- * header creation, and MAC state machine logic based on ETSI TS 103 636-4.
- */
-
-
 #include "dect2020-mac-common-header.h"
 #include "dect2020-mac-header-type.h"
 #include "dect2020-mac-information-elements.h"
@@ -33,6 +23,20 @@ namespace ns3
 class Dect2020NetDevice;
 class Dect2020Phy;
 
+/**
+ * \file dect2020-mac.h
+ * \ingroup Dect2020Mac
+ * \brief Implements the MAC layer functionality for DECT-2020 NR.
+ *
+ * Handles MAC procedures such as beacon transmission, association,
+ * header creation, and MAC state machine logic based on ETSI TS 103 636-4.
+ */
+
+/**
+ * \brief Stores subslot occupancy statistics for a single channel.
+ *
+ * Used during the Operating Channel Selection procedure to assess how busy a channel is.
+ */
 struct ChannelEvaluation
 {
     uint16_t channelId;
@@ -46,6 +50,13 @@ struct ChannelEvaluation
     }
 };
 
+/**
+ * \brief Stores information about a potential Fixed Termination (FT) candidate discovered during
+ * beacon reception.
+ *
+ * Contains the latest headers and IEs received from the FT as well as signal-related metadata
+ * such as RSSI and channel information.
+ */
 struct FtCandidateInfo
 {
     uint8_t shortNetworkId; // Short Network ID of the FT candidate
@@ -58,7 +69,7 @@ struct FtCandidateInfo
     Time receptionTime;
     double rssiDbm;
 
-    Dect2020PHYControlFieldType1 ftPhyHeaderField; // Last received Physical Header Field
+    Dect2020PHYControlFieldType1 ftPhyHeaderField;       // Last received Physical Header Field
     Dect2020BeaconHeader ftBeaconHeader;                 // Last received Beacon Header
     Dect2020UnicastHeader ftUnicastHeader;               // Last received Unicast Header
     Dect2020NetworkBeaconMessage ftNetworkBeaconMessage; // Last received Network Beacon Message
@@ -67,6 +78,11 @@ struct FtCandidateInfo
         ftRandomAccessResourceIE; // Last received Random Access Resource IE
 };
 
+/**
+ * \brief Stores association state and capabilities of an associated Portable Termination (PT).
+ *
+ * Used by an FT to manage all currently associated PTs and their supported features.
+ */
 struct AssociatedPtInfo
 {
     Time associationEstablished;
@@ -85,7 +101,13 @@ struct AssociatedPtInfo
     double lastRssi;
 };
 
-// Structure to hold the context for subslot scanning
+/**
+ * \brief Context structure used during subslot-based RSSI scanning.
+ *
+ * This struct is used to keep track of scanning progress during subslot measurements
+ * on a specific channel. It accumulates the evaluation result and triggers a callback
+ * once the scan is complete.
+ */
 struct SubslotScanContext
 {
     uint32_t channelId;
@@ -107,6 +129,12 @@ struct SubslotScanContext
 class Dect2020Mac : public Object
 {
   public:
+    /**
+     * \brief Packet types used in DECT-2020 NR.
+     *
+     * This enumeration defines the logical classification of packet types
+     * that can be transmitted or received within the MAC layer. ETSI 103 636-4 Section 6.3.3
+     */
     enum Dect2020PacketType
     {
         DATA = 0,
@@ -115,6 +143,12 @@ class Dect2020Mac : public Object
         RD_BROADCAST = 3
     };
 
+    /**
+     * \brief Association status of a device within the DECT-2020 NR network.
+     *
+     * These states define the current association state of a Radio Device (RD),
+     * such as a Portable Termination (PT), with respect to a Fixed Termination (FT).
+     */
     enum AssociationStatus
     {
         NOT_ASSOCIATED,
@@ -129,96 +163,66 @@ class Dect2020Mac : public Object
     Dect2020Mac();
     virtual ~Dect2020Mac();
 
-    /**
-     * Starts the MAC-Layer
-     */
+    // Starts the MAC Layer
     void Start();
 
-    // Methoden zum Setzen der NetDevice und Phy
+    // Initializes the Network (FT only)
+    void InitializeNetwork();
+
+    // Initialize the MAC-Layer of the Device
+    void InitializeDevice();
+
+    // Set the NetDevice and PHY for this MAC
     void SetNetDevice(Ptr<Dect2020NetDevice> device);
     void SetPhy(Ptr<Dect2020Phy> phy);
 
-    // Send a MAC PDU
-    void Send(Ptr<Packet> packet, const uint32_t receiverLongRdIf, Dect2020PacketType type);
-
-    // Empfang von Paketen von der PHY-Schicht
+    // Receive a packet from the PHY layer
     void ReceiveFromPhy(Ptr<Packet> packet, double rssiDbm);
 
-    // Zugriff auf die Mac-Adresse des NetDevice
-    Mac48Address GetAddress(void) const;
-
-    void SetCurrentChannelId(uint32_t channelId);
-    uint32_t GetCurrentChannelId() const;
-
-    /**
-     * Initialize a new Network
-     */
-    void InitializeNetwork();
-    /**
-     * Join a existing Network
-     */
-    /**
-     * Generate a valid Network ID.
-     */
-    uint32_t GenerateValidNetworkId();
-
-    /**
-     * Set the Network ID.
-     */
-    void SetNetworkId(uint32_t networkId);
-    /**
-     * Get the Network ID.
-     * \return the 32 Bit Network ID.
-     */
-    uint32_t GetNetworkId() const;
-    /**
-     * Start sending a beacon periodically.
-     */
+    // Starts the Network- and Cluster Beacon TX
     void StartBeaconTransmission();
-    /**
-     * Generate the Long Radio Device ID as described in
-     * ETSI TS 103 636-4 V 1.51 #4.2.3.2
-     * \return 32 Bit Radio Device ID
-     */
-    uint32_t GenerateLongRadioDeviceId();
-    /**
-     * Set the Long Radio Device ID.
-     */
-    void SetLongRadioDeviceId(uint32_t rdId);
-    /**
-     * Get the Long Radio Device ID.
-     */
-    uint32_t GetLongRadioDeviceId() const;
-    /**
-     * Generate the Short Radio Device ID as described in
-     * ETSI TS 103 636-4 V 1.51 #4.2.3.3
-     * \return 16 Bit Radio Device ID
-     */
-    uint16_t GenerateShortRadioDeviceId();
-    /**
-     * Set the Short Radio Device ID.
-     */
-    void SetShortRadioDeviceId(uint16_t rdId);
-    /**
-     * Get the Short Radio Device ID.
-     */
-    uint16_t GetShortRadioDeviceId() const;
-    /*
-     * Initialize the MAC-Layer of the Device
-     */
-    void InitializeDevice();
 
-    void OperatingChannelSelection();
-    void EvaluateAllChannels();
+    // Starts the Network Beacon TX
     void StartNetworkBeaconSweep();
+
+    // Starts the Cluster Beacon TX
     void StartClusterBeaconTransmission();
-    Dect2020RandomAccessResourceIE BuildRandomAccessResourceIE();
-    uint8_t CalculateAbsoluteStartSubslot();
-    Ptr<Packet> BuildBeacon(bool isCluster, uint16_t networkBeaconTransmissionChannelId);
-    void ReturnToOperatingChannel();
+
+    // Handle incoming Beacon and Unicast Messages
     void HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft);
     void HandleUnicastPacket(Ptr<Packet> packet);
 
+    // Send a MAC PDU
+    void Send(Ptr<Packet> packet, const Address& dest, Dect2020PacketType type);
+
+    // Set/Get of channel ID (in DECT notation, n)
+    void SetCurrentChannelId(uint32_t channelId);
+    uint32_t GetCurrentChannelId() const;
+
+    // Network ID Management
+    uint32_t GenerateValidNetworkId();
+    void SetNetworkId(uint32_t networkId);
+    uint32_t GetNetworkId() const;
+
+    // Long Radio Device ID Management
+    uint32_t GenerateLongRadioDeviceId();
+    void SetLongRadioDeviceId(uint32_t rdId);
+    uint32_t GetLongRadioDeviceId() const;
+
+    // Short Radio Device ID Management
+    uint16_t GenerateShortRadioDeviceId();
+    void SetShortRadioDeviceId(uint16_t rdId);
+    uint16_t GetShortRadioDeviceId() const;
+
+    // Operating Channel Selection
+    void OperatingChannelSelection();
+    void EvaluateAllChannels();
+
+    // Build Messages
+    Dect2020RandomAccessResourceIE BuildRandomAccessResourceIE();
+    Ptr<Packet> BuildBeacon(bool isCluster, uint16_t networkBeaconTransmissionChannelId);
+
+    // Association Procedure Management
     void EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBeaconMsg,
                                const Dect2020RandomAccessResourceIE& rarIe,
                                FtCandidateInfo* ft);
@@ -233,46 +237,103 @@ class Dect2020Mac : public Object
                                     Dect2020RdCapabilityIE rdCapabilityIe,
                                     uint32_t ftLongRdId);
 
-
     void StartSubslotScan(uint32_t channelId,
                           uint32_t numSubslots,
                           std::function<void(const ChannelEvaluation&)> onComplete);
     void MeasureAndScheduleNextSubslot(std::shared_ptr<SubslotScanContext> context,
-                                        uint32_t numSubslots);
-
-    uint8_t GetSubslotsPerSlot();
+                                       uint32_t numSubslots);
     FtCandidateInfo* FindOrCreateFtCandidate(uint16_t shortFtId);
     FtCandidateInfo* FindFtCandidateByLongId(uint32_t longFtId);
     void SendAssociationRequest(FtCandidateInfo* ft);
-    Time CalculcateTimeOffsetFromCurrentSubslot(uint32_t delayInSubslots);
     void SendAssociationResponse(AssociatedPtInfo ptInfo);
     void VerifyPendingAssociationStatus();
     void VerifyWaitingForSelectedFtAssociationStatus();
     void VerifyAssociatedStatus();
     void SelectBestFtCandidate();
     AssociationStatus GetAssociationStatus() const;
+
+    // Helper
+    uint8_t GetSubslotsPerSlot();
+    Time CalculcateTimeOffsetFromCurrentSubslot(uint32_t delayInSubslots);
     double GetRxGainFromIndex(uint8_t index) const;
+
+    // ####################
+    // ##### Variables ####
+    // ####################
+
+    // Waiting Flag when RD received a Network Beacon and is waiting for the Cluster Beacon
     bool isWaitingForClusterBeacon = false;
 
-    uint32_t m_clusterChannelId = 0; // Number of the Channel that is currently the cluster Channel
-    uint32_t m_currentChannelId = 0; // Number of the Channel that the RD is currently connected
-                                     // with (e.g. for scanning/Beacon tx)
+    // Number of the Channel that is currently the cluster Channel
+    uint32_t m_clusterChannelId = 0;
 
-    uint8_t m_subcarrierScalingFactor = 1;       // Subcarrier Scaling Factor
-    uint8_t m_fourierTransformScalingFactor = 1; // Fourier Transform Scaling Factor
-    bool m_dectDelay = false; // DECT Delay
+    // Number of the Channel that the RD is currently connected with (e.g. for scanning/Beacon tx)
+    uint32_t m_currentChannelId = 0;
 
+    // Subcarrier Scaling Factor (mu)
+    uint8_t m_subcarrierScalingFactor = 1;
+
+    // Fourier Transform Scaling Factor (beta)
+    uint8_t m_fourierTransformScalingFactor = 1;
+
+    // DECT Delay
+    bool m_dectDelay = false;
+
+    // Network and Cluster Beacon Periods
     NetworkBeaconPeriod m_networkBeaconPeriod =
         NetworkBeaconPeriod::NETWORK_PERIOD_50MS; // Network Beacon Period
     ClusterBeaconPeriod m_clusterBeaconPeriod =
         ClusterBeaconPeriod::CLUSTER_PERIOD_100MS; // Cluster Beacon Period
 
+    // Network and Cluster Beacon Periods as Time Objects --> TODO: Only use the upper ones and use
+    // de "Dect2020NetworkBeaconMessage::GetNetworkBeaconPeriodTime()" Function
+    Time m_networkBeaconPeriodTime = MilliSeconds(100); // Network Beacon Period
+    Time m_clusterBeaconPeriodTime = MilliSeconds(100); // Cluster Beacon Period
+
+    // Association Status of the Device
     AssociationStatus m_associationStatus = NOT_ASSOCIATED;
+
+    // List of all FT candidates discovered during the association procedure
     std::vector<FtCandidateInfo> m_ftCandidates;
+
+    // List of all associated Portable Termination (PT) devices. TODO: Implement logic to determine
+    // whether the PT is really connected after the association process
     std::vector<AssociatedPtInfo> m_associatedPtDevices;
 
-    Dect2020MacMuxHeaderShortSduNoPayload
-        m_lastFtMacMuxHeader; // Last received MAC Multiplexing Header
+    // Last received MAC Multiplexing Header
+    Dect2020MacMuxHeaderShortSduNoPayload m_lastFtMacMuxHeader;
+
+    // Evaluations from the Operating Channel Selection procedure
+    std::map<uint32_t, ChannelEvaluation> m_scanEvaluations;
+
+    // Number of completed scans from the Operating Channel Selection procedure
+    uint32_t m_completedScans = 0;
+
+    // First subslot to be used by RD is 2 --> Subslot 0 and 1 are reserved for the cluster beacon
+    // transmission
+    uint8_t m_nextAvailableSubslot = 2;
+
+    // Last System Frame Number (SFN) received from Cluster Beacon. TODO: This is not used yet, but
+    // it should be used to synchronize the PT and FT Frame/Slot/Subslot Timer
+    uint8_t m_lastSfn;
+
+    // Short Network ID of the current FT candidate in the Association Procedure used in the PHY
+    // Header
+    uint8_t m_potentialShortNetworkId;
+
+    // The selected FT candidate for association
+    FtCandidateInfo m_selectedFtCandidate;
+
+    // The associated FT NetDevice Long RD ID
+    uint32_t m_associatedFTNetDeviceLongRdId = 0;
+
+    // Statistic Variables
+    Time m_deviceStartTime;           // Start time of the device
+    Time m_successfulAssociationTime; // Time of the last successful association
+
+    // ####################
+    // ##### Constants ####
+    // ####################
 
     // ETSI TS 103 636-4 V2.1.1 #7.2-1
     const double RSSI_THRESHOLD_MIN = -85; // dBm
@@ -282,37 +343,19 @@ class Dect2020Mac : public Object
                                            // fulfilling the operating conditions.
     const int SCAN_STATUS_VALID = 300;     // seconds
 
-    std::map<uint32_t, ChannelEvaluation> m_scanEvaluations;
-    uint32_t m_completedScans = 0;
-    uint8_t m_nextAvailableSubslot = 2; // First subslot to be used by RD is 2 --> Subslot 0 and 1
-                                        // are reserved for the cluster beacon transmission
-    uint8_t m_lastSfn;
-    uint8_t m_potentialShortNetworkId; // Short Network ID of the current FT candidate in the
-                                       // Association Procedure
-    FtCandidateInfo m_selectedFtCandidate; // The selected FT candidate for association
-    EventId m_discoverNetworksEvent;
-    uint32_t m_associatedFTNetDeviceLongRdId = 0; // Variable to store the associated FT NetDevices Long RD ID
-
-
-    // Statistic Variables
-    Time m_deviceStartTime; // Start time of the device
-    Time m_successfulAssociationTime; // Time of the last successful association
-
   private:
     Dect2020PHYControlFieldType1 CreatePhysicalHeaderField(uint8_t packetLengthType,
                                                            uint32_t packetLength);
 
     void DiscoverNetworks();
     void SendNetworkBeaconOnChannel(uint16_t channelId);
+    void ReturnToOperatingChannel();
+    uint8_t CalculateAbsoluteStartSubslot();
 
     // Membervariablen
     Ptr<Dect2020NetDevice> m_device;
     std::vector<Dect2020NetDevice> m_associatedNetDevices; // List of associated NetDevices
     Ptr<Dect2020Phy> m_phy;
-    // Mac48Address m_address;
-
-    // Sendewarteschlange (für zukünftige Erweiterungen)
-    // std::queue<Ptr<Packet>> m_txQueue;
 
     // Trace-Quellen
     TracedCallback<Ptr<const Packet>> m_txPacketTrace;

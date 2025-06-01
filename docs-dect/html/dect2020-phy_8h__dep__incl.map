@@ -1,5 +1,5 @@
 <map id="contrib/dect&#45;nr/model/dect2020&#45;phy.h" name="contrib/dect&#45;nr/model/dect2020&#45;phy.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="237,5,400,45"/>
+<area shape="rect" id="Node000001" title="Implements the Phy layer functionality for DECT&#45;2020 NR." alt="" coords="237,5,400,45"/>
 <area shape="rect" id="Node000002" href="$dect2020-channel_8cc.html" title=" " alt="" coords="5,181,168,221"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="277,55,216,95,109,183,106,179,213,91,274,50"/>
 <area shape="rect" id="Node000003" href="$dect2020-channel_8h.html" title=" " alt="" coords="237,93,400,133"/>

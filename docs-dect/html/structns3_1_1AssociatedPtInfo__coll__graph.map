@@ -1,6 +1,6 @@
 <map id="ns3::AssociatedPtInfo" name="ns3::AssociatedPtInfo">
-<area shape="rect" id="Node000001" title=" " alt="" coords="29,168,192,193"/>
-<area shape="rect" id="Node000002" href="$classns3_1_1Dect2020RdCapabilityIE.html" title=" " alt="" coords="5,80,216,105"/>
+<area shape="rect" id="Node000001" title="Stores association state and capabilities of an associated Portable Termination (PT)." alt="" coords="29,168,192,193"/>
+<area shape="rect" id="Node000002" href="$classns3_1_1Dect2020RdCapabilityIE.html" title="MAC RD Capability IE (ETSI TS 103 636&#45;4 6.4.3.5)." alt="" coords="5,80,216,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,119,113,167,108,167,108,119"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="76,5,145,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="113,45,113,80,108,80,108,45"/>

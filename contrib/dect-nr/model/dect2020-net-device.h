@@ -17,15 +17,28 @@ class Dect2020Mac;
 class Dect2020Phy;
 
 /**
- * \brief DECT2020 NetDevice Klasse
+ * \file dect2020-net-device.h
+ * \brief DECT-2020 NetDevice implementation for ns-3.
  *
- * Diese Klasse repräsentiert ein DECT2020 Netzwerkgerät in ns-3.
+ * This file contains the implementation of the ns-3 NetDevice abstraction
+ * for DECT-2020 NR. The class encapsulates MAC and PHY components, and provides
+ * bootstrapping capabilities and core NetDevice API functionality.
+ */
+
+/**
+ * \class Dect2020NetDevice
+ * \brief Represents a DECT-2020 NR NetDevice in ns-3.
+ *
+ * This class models a DECT-2020 radio device and connects it to the ns-3
+ * simulation framework via the NetDevice abstraction. It integrates
+ * MAC and PHY layers, manages device configuration, and facilitates
+ * simulation of both Portable Terminations (PT) and Fixed Terminations (FT).
  */
 class Dect2020NetDevice : public NetDevice
 {
   public:
     /**
-     * The possible Termination Point Types (PT or FT)
+     * \brief Termination point type of the DECT device.
      */
     enum TerminationPointType
     {
@@ -41,12 +54,8 @@ class Dect2020NetDevice : public NetDevice
     // Spezielle DECT 2020 Methoden
 
     /**
-     * \brief Sets the termination point type of the device.
-     *
-     * Note: In typical DECT implementations, the termination point type
-     * (PT or FT) would be dynamically determined by the device. However,
-     * for simplicity and initial testing purposes, the type is set manually
-     * during device creation in this simulation.
+     * \brief Set the termination point type (PT or FT).
+     * \param tpm The termination point type.
      */
     void SetTerminationPointType(TerminationPointType tpm);
     /**
@@ -55,7 +64,8 @@ class Dect2020NetDevice : public NetDevice
      */
     TerminationPointType GetTerminationPointType();
 
-    // Vererbte Methoden von NetDevice
+    // Inherited Methods
+    // Note: Most of these methods are currently not used
     virtual void SetIfIndex(const uint32_t index) override;
     virtual uint32_t GetIfIndex(void) const override;
 
@@ -96,8 +106,8 @@ class Dect2020NetDevice : public NetDevice
     virtual bool SupportsSendFrom(void) const override;
 
     virtual bool IsBridge(void) const override;
-
-    // DECT2020-spezifische Methoden
+    
+    // --- DECT2020-specific methods ---
     void SetMac(Ptr<Dect2020Mac> mac);
     Ptr<Dect2020Mac> GetMac(void) const;
 

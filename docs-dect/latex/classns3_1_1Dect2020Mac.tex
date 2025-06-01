@@ -2,7 +2,7 @@
 \hypertarget{classns3_1_1Dect2020Mac}{}\label{classns3_1_1Dect2020Mac}\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 
 
-DECT2020 MAC Klasse.  
+DECT-\/2020 NR MAC layer implementation.  
 
 
 
@@ -36,7 +36,7 @@ enum \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2}
 , \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a07e8c8e80b3af845b0f734c9484b30e0}{UNICAST}} = 2
 , \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a5a7b619d68022a12f5843578eacc3afc}{RD\+\_\+\+BROADCAST}} = 3
  \}
-\item 
+\begin{DoxyCompactList}\small\item\em Packet types used in DECT-\/2020 NR. \end{DoxyCompactList}\item 
 enum \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}{Association\+Status}} \{ \newline
 \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b}{NOT\+\_\+\+ASSOCIATED}}
 , \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea0da00aaf3e48b310241005828be7f225}{ASSOCIATION\+\_\+\+PREPARING}}
@@ -45,116 +45,102 @@ enum \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}
 , \newline
 \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea37a70b2bd43071e43ce1f6d07b253abe}{ASSOCIATED}}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Association status of a device within the DECT-\/2020 NR network. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab57dc8784f9bcade1aa31f70a502a6b4}{Dect2020\+Mac}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor\+: Initializes internal state and MAC structures. \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1c14c217d59fe1f63a8c35d01361f97e}{\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Mac}} ()
 \item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a46a0f01d6890c2782c247afd9e03d3a3}{Start}} ()
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac0942ff5fdf363ceb262ba3d99ae1c83}{Set\+Net\+Device}} (Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice}{Dect2020\+Net\+Device}} $>$ device)
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_afb36573ecf25b73a44bf187cc4899bfb}{Set\+Phy}} (Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020\+Phy}} $>$ phy)
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a958672211af7dce119811ba1e90c01a6}{Send}} (Ptr$<$ Packet $>$ packet, const Address \&dest, \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2}{Dect2020\+Packet\+Type}} type)
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a33c8e4d4610fbaa917d91ddc72fb84e8}{Receive\+From\+Phy}} (Ptr$<$ Packet $>$ packet, double rssi\+Dbm)
-\item 
-Mac48\+Address \mbox{\hyperlink{classns3_1_1Dect2020Mac_adcaf418f1a1c474c468ef4ebd0472182}{Get\+Address}} (void) const
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a9d0d1e0db1839e55787a88876aca429f}{Set\+Current\+Channel\+Id}} (uint32\+\_\+t channel\+Id)
-\item 
-uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_acff913ff839025f5d69c21ca0a1387aa}{Get\+Current\+Channel\+Id}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Starts the MAC operation based on the device role (FT or PT). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a36c239034dfb7ecf13053446da830cca}{Initialize\+Network}} ()
-\item 
-uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad0884b0fc0b6329a47bdd09dc4fdd569}{Generate\+Valid\+Network\+Id}} ()
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a6759fbb033aed3afd7bc3090b597864e}{Join\+Network}} (uint32\+\_\+t network\+Id)
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_abf8424b1e657622d75687b24d274dff7}{Set\+Network\+Id}} (uint32\+\_\+t network\+Id)
-\item 
-uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5950b89914e0028083ba1cfc8ee4c494}{Get\+Network\+Id}} () const
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_ae50d4d70cb6a5967078ae2b57139418c}{Start\+Beacon\+Transmission}} ()
-\item 
-uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab624190de7a3ae79d00b012abb19eb59}{Generate\+Long\+Radio\+Device\+Id}} ()
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a9b6f825b11086ac76d08f88d02e99596}{Set\+Long\+Radio\+Device\+Id}} (uint32\+\_\+t rd\+Id)
-\item 
-uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0cd71882a73de1a39c97bf5659b7187f}{Get\+Long\+Radio\+Device\+Id}} () const
-\item 
-uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a3a563a578c7a5b9fd6a9e4cc2876a1a5}{Generate\+Short\+Radio\+Device\+Id}} ()
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1dc71f1ac27006d4c932d0ffb7fe3996}{Set\+Short\+Radio\+Device\+Id}} (uint16\+\_\+t rd\+Id)
-\item 
-uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a992eec6593c57cac2b25088819adca0f}{Get\+Short\+Radio\+Device\+Id}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes a new DECT-\/2020 network (FT only). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab0a43e61de5976775531246105ef5f94}{Initialize\+Device}} ()
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a61a54f3b6af87a202fcfa4b1e9587381}{Operating\+Channel\+Selection}} ()
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad2ab41546a10f85cd14db62d4c67ef8e}{Evaluate\+All\+Channels}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes the device by assigning valid Long and Short RD IDs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac0942ff5fdf363ceb262ba3d99ae1c83}{Set\+Net\+Device}} (Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice}{Dect2020\+Net\+Device}} $>$ device)
+\begin{DoxyCompactList}\small\item\em Set the associated DECT Net\+Device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Mac_afb36573ecf25b73a44bf187cc4899bfb}{Set\+Phy}} (Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020\+Phy}} $>$ phy)
+\begin{DoxyCompactList}\small\item\em Set the associated PHY layer and connect receive callback for incoming packets from the physical layer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a33c8e4d4610fbaa917d91ddc72fb84e8}{Receive\+From\+Phy}} (Ptr$<$ Packet $>$ packet, double rssi\+Dbm)
+\begin{DoxyCompactList}\small\item\em Entry point for all packets received from the PHY layer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Mac_ae50d4d70cb6a5967078ae2b57139418c}{Start\+Beacon\+Transmission}} ()
+\begin{DoxyCompactList}\small\item\em Starts both Cluster and Network Beacon transmissions. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a4140324572b6872fdb33605dfb0ffdd5}{Start\+Network\+Beacon\+Sweep}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Starts a cyclic sweep to transmit Network Beacons on adjacent channels. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a25bbd22c04b77bc9da82544c8d6a074f}{Start\+Cluster\+Beacon\+Transmission}} ()
-\item 
-\mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020\+Random\+Access\+Resource\+IE}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac5e0ab65f4c5cf110e6d4c2a5b18f995}{Build\+Random\+Access\+Resource\+IE}} ()
-\item 
-uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0441196225d968f4d2d89ec1f5f8d19d}{Calculate\+Absolute\+Start\+Subslot}} ()
-\item 
-Ptr$<$ Packet $>$ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af95aec82f14db6ad1e989395292c4d57}{Build\+Beacon}} (bool is\+Cluster, uint16\+\_\+t network\+Beacon\+Transmission\+Channel\+Id)
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a6e679793d4dcad6bf112d157bb10c664}{Return\+To\+Operating\+Channel}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Starts and schedules periodic Cluster Beacon transmissions (FT only). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac2ad6de504bcda0de2c170652fd9d363}{Handle\+Beacon\+Packet}} (Ptr$<$ Packet $>$ packet, \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*}ft)
-\item 
+\begin{DoxyCompactList}\small\item\em Handles incoming beacon packets (Network or Cluster Beacons). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a71d25d793e468510365ea1c6ce75053d}{Handle\+Unicast\+Packet}} (Ptr$<$ Packet $>$ packet)
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab764c72a42f5f6ea870b1bef0eb62947}{Handle\+Network\+Beacon}} (\mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020\+Beacon\+Header}} beacon\+Header, \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020\+Network\+Beacon\+Message}} network\+Beacon\+Msg, \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*}ft)
-\item 
+\begin{DoxyCompactList}\small\item\em Handles incoming unicast MAC packets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a958672211af7dce119811ba1e90c01a6}{Send}} (Ptr$<$ Packet $>$ packet, const Address \&dest, \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2}{Dect2020\+Packet\+Type}} type)
+\begin{DoxyCompactList}\small\item\em Placeholder for application-\/layer packet transmission. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a9d0d1e0db1839e55787a88876aca429f}{Set\+Current\+Channel\+Id}} (uint32\+\_\+t channel\+Id)
+\begin{DoxyCompactList}\small\item\em Updates the current channel ID. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_acff913ff839025f5d69c21ca0a1387aa}{Get\+Current\+Channel\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Returns the current operating channel ID. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad0884b0fc0b6329a47bdd09dc4fdd569}{Generate\+Valid\+Network\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Generates a valid 32-\/bit DECT network ID as described in ETSI 103 636-\/04 4.\+2.\+3.\+1. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Mac_abf8424b1e657622d75687b24d274dff7}{Set\+Network\+Id}} (uint32\+\_\+t network\+Id)
+\begin{DoxyCompactList}\small\item\em Sets the DECT Network ID for this device. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5950b89914e0028083ba1cfc8ee4c494}{Get\+Network\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Returns the currently assigned network ID. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab624190de7a3ae79d00b012abb19eb59}{Generate\+Long\+Radio\+Device\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Generates a valid 32-\/bit Long Radio Device ID as described in ETSI 103 636-\/04 Section 4.\+2.\+2.\+3. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a9b6f825b11086ac76d08f88d02e99596}{Set\+Long\+Radio\+Device\+Id}} (uint32\+\_\+t rd\+Id)
+\begin{DoxyCompactList}\small\item\em Sets the long RD ID for this device. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0cd71882a73de1a39c97bf5659b7187f}{Get\+Long\+Radio\+Device\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Returns the long RD ID of this device. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a3a563a578c7a5b9fd6a9e4cc2876a1a5}{Generate\+Short\+Radio\+Device\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Generates a valid 16-\/bit Short Radio Device ID as described in ETSI 103 636-\/04 Section 4.\+2.\+3.\+3. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1dc71f1ac27006d4c932d0ffb7fe3996}{Set\+Short\+Radio\+Device\+Id}} (uint16\+\_\+t rd\+Id)
+\begin{DoxyCompactList}\small\item\em Sets the short RD ID for this device. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a992eec6593c57cac2b25088819adca0f}{Get\+Short\+Radio\+Device\+Id}} () const
+\begin{DoxyCompactList}\small\item\em Returns the short RD ID assigned to this device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a61a54f3b6af87a202fcfa4b1e9587381}{Operating\+Channel\+Selection}} ()
+\begin{DoxyCompactList}\small\item\em Starts subslot-\/wise RSSI scans on all valid channels to select the operating channel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad2ab41546a10f85cd14db62d4c67ef8e}{Evaluate\+All\+Channels}} ()
+\begin{DoxyCompactList}\small\item\em Evaluates all scanned channels and selects the best operating channel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020\+Random\+Access\+Resource\+IE}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac5e0ab65f4c5cf110e6d4c2a5b18f995}{Build\+Random\+Access\+Resource\+IE}} ()
+\begin{DoxyCompactList}\small\item\em Builds a Random Access Resource Information Element for the Cluster Beacon. \end{DoxyCompactList}\item 
+Ptr$<$ Packet $>$ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af95aec82f14db6ad1e989395292c4d57}{Build\+Beacon}} (bool is\+Cluster, uint16\+\_\+t network\+Beacon\+Transmission\+Channel\+Id)
+\begin{DoxyCompactList}\small\item\em Sends a Network Beacon on the specified channel. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0ee98014abebe1b7f7656a7184068d8d}{Evaluate\+Cluster\+Beacon}} (const \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020\+Cluster\+Beacon\+Message}} \&cluster\+Beacon\+Msg, const \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020\+Random\+Access\+Resource\+IE}} \&rar\+Ie, \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*}ft)
-\item 
+\begin{DoxyCompactList}\small\item\em Evaluates a received Cluster Beacon and prepares association if applicable. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a7ecabbef93d233d31d3ebf93d050635a}{Process\+Association\+Request}} (\mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage}{Dect2020\+Association\+Request\+Message}} asso\+Req\+Msg, \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020\+Rd\+Capability\+IE}} rd\+Capability\+Ie, \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE}{Dect2020\+Association\+Control\+IE}} asso\+Control\+Ie, uint32\+\_\+t asso\+Initiator\+Long\+Rd\+Id)
-\item 
+\begin{DoxyCompactList}\small\item\em Processes an Association Request received from a PT. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a7786573bc1b70411d5ba7cde926c5c1e}{Process\+Association\+Response}} (\mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage}{Dect2020\+Association\+Response\+Message}} asso\+Resp\+Msg, \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020\+Rd\+Capability\+IE}} rd\+Capability\+Ie, uint32\+\_\+t ft\+Long\+Rd\+Id)
-\item 
-\mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_ae66d28447fcbffb68ec3a01c96de6db5}{Create\+Physical\+Header\+Field}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Processes an Association Response received from an FT. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_afe6e3b248a12851fa764bbf4fa4cccd0}{Start\+Subslot\+Scan}} (uint32\+\_\+t channel\+Id, uint32\+\_\+t num\+Subslots, std\+::function$<$ void(const \mbox{\hyperlink{structns3_1_1ChannelEvaluation}{Channel\+Evaluation}} \&)$>$ on\+Complete)
-\item 
+\begin{DoxyCompactList}\small\item\em Initiates a subslot-\/wise RSSI scan on a specific channel. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_af6472a4bf3eacdc19fce0226eb7658be}{Measure\+And\+Schedule\+Next\+Subslot}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structns3_1_1SubslotScanContext}{Subslot\+Scan\+Context}} $>$ context, uint32\+\_\+t num\+Subslots)
-\item 
-uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a78bc1d0ad224da3bbec4c466c28bb6f8}{Get\+Subslots\+Per\+Slot}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Measures RSSI for one subslot and schedules the next scan step. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classns3_1_1Dect2020Mac_a6c0535091681f7aee8dca77b53cc13b0}{Find\+Or\+Create\+Ft\+Candidate}} (uint16\+\_\+t short\+Ft\+Id)
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves an FT candidate by its short ID or creates a new entry. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classns3_1_1Dect2020Mac_aec51c276e2243c231bd8b8faacee8deb}{Find\+Ft\+Candidate\+By\+Long\+Id}} (uint32\+\_\+t long\+Ft\+Id)
-\item 
+\begin{DoxyCompactList}\small\item\em Retrieves an FT candidate by its long RD ID or creates a new entry. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad8ec652a6047bff8e3fcdb57ad9dec25}{Send\+Association\+Request}} (\mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*}ft)
-\item 
-Time \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5825940d27c043d18da396c84cb51bf4}{Calculcate\+Time\+Offset\+From\+Current\+Subslot}} (uint32\+\_\+t delay\+In\+Subslots)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructs and sends an Association Request to a selected FT. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a522481f55f283f28ae6d83d3e1b98e90}{Send\+Association\+Response}} (\mbox{\hyperlink{structns3_1_1AssociatedPtInfo}{Associated\+Pt\+Info}} pt\+Info)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructs and sends an Association Response to a requesting PT. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5406babc8913eddbb1c97351374da4ba}{Verify\+Pending\+Association\+Status}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Resets association status if still pending. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a46a785e3b014179e789194f2c9a2b5fa}{Verify\+Waiting\+For\+Selected\+Ft\+Association\+Status}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Fallback if no Cluster Beacon was received after FT selection. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a92c6f09d3582cd7fc21324286426a6e9}{Verify\+Associated\+Status}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Periodically verifies that the associated FT is still active. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1ac90e0de42a9fefbbddf7f8ab962c3d}{Select\+Best\+Ft\+Candidate}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Selects the best FT candidate based on RSSI and switches to its channel. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}{Association\+Status}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_ae088171c630b2c831f00093565f3df57}{Get\+Association\+Status}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Returns the current MAC association status. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a78bc1d0ad224da3bbec4c466c28bb6f8}{Get\+Subslots\+Per\+Slot}} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of subslots per slot based on the subcarrier scaling factor. \end{DoxyCompactList}\item 
+Time \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5825940d27c043d18da396c84cb51bf4}{Calculcate\+Time\+Offset\+From\+Current\+Subslot}} (uint32\+\_\+t delay\+In\+Subslots)
+\begin{DoxyCompactList}\small\item\em Calculates the simulation time offset for a future subslot. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classns3_1_1Dect2020Mac_afcf20a2066b4e091071ce60155f397ed}{Get\+Rx\+Gain\+From\+Index}} (uint8\+\_\+t index) const
-\item 
-void \mbox{\hyperlink{classns3_1_1Dect2020Mac_abeeb4e0295228973afeb871a18d9d7dd}{Reset\+Is\+Waiting\+For\+Cluster\+Beacon\+Flag}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Converts RX gain index (0–8) to dB gain value. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -179,37 +165,17 @@ bool \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5013ca9484c45d372ff2f313f02a3e3b}
 \item 
 \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{Cluster\+Beacon\+Period}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_a436f091885622fb5e71cae139760b480}{m\+\_\+cluster\+Beacon\+Period}}
 \item 
+Time \mbox{\hyperlink{classns3_1_1Dect2020Mac_af7bf40fd3faf9a726e0afe18efaafca3}{m\+\_\+network\+Beacon\+Period\+Time}} = Milli\+Seconds(100)
+\item 
+Time \mbox{\hyperlink{classns3_1_1Dect2020Mac_a86342c8b5e36e544050a80cf19709219}{m\+\_\+cluster\+Beacon\+Period\+Time}} = Milli\+Seconds(100)
+\item 
 \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}{Association\+Status}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac2e136c9f18c513b1f41d8834ddc6a87}{m\+\_\+association\+Status}} = \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b}{NOT\+\_\+\+ASSOCIATED}}
 \item 
 std\+::vector$<$ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} $>$ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acd748536ec7e82bbdf5ffa5e138d5098}{m\+\_\+ft\+Candidates}}
 \item 
 std\+::vector$<$ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo}{Associated\+Pt\+Info}} $>$ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af4d22cb6932f276862b7dd2a4312711d}{m\+\_\+associated\+Pt\+Devices}}
 \item 
-\mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_a61c725c77b1acc4674ce7b3639bd62a9}{m\+\_\+last\+Ft\+Phy\+Header\+Field}}
-\item 
-\mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType}{Dect2020\+Mac\+Header\+Type}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad63c740b041cee64b51c63a80d258f67}{m\+\_\+last\+Ft\+Mac\+Header\+Type}}
-\item 
-\mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020\+Beacon\+Header}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac827427170e5d1c4c78f732fb9d16e67}{m\+\_\+last\+Ft\+Beacon\+Header}}
-\item 
-\mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader}{Dect2020\+Unicast\+Header}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_a41f21d8830f234a9eafa5174c67a5fa7}{m\+\_\+last\+Ft\+Unicast\+Header}}
-\item 
-\mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020\+Network\+Beacon\+Message}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_abaae6ddc12910cf9a2750c6e9005dd48}{m\+\_\+last\+Ft\+Network\+Beacon\+Message}}
-\item 
-\mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020\+Cluster\+Beacon\+Message}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_a3a03a29a5557cf0c6df63d65fed1b225}{m\+\_\+last\+Ft\+Cluster\+Beacon\+Message}}
-\item 
-\mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020\+Random\+Access\+Resource\+IE}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_a8958551360839815f0908b4b1817b1f2}{m\+\_\+last\+Ft\+Random\+Access\+Resource\+IE}}
-\item 
 \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload}{Dect2020\+Mac\+Mux\+Header\+Short\+Sdu\+No\+Payload}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad0ac94ca964c4ed678725a9e39249469}{m\+\_\+last\+Ft\+Mac\+Mux\+Header}}
-\item 
-const double \mbox{\hyperlink{classns3_1_1Dect2020Mac_a51185f30aec01dcaee491e5fcdad2447}{RSSI\+\_\+\+THRESHOLD\+\_\+\+MIN}} = -\/85
-\item 
-const double \mbox{\hyperlink{classns3_1_1Dect2020Mac_af9ec967e134fb9468d7950fe00b69c4a}{RSSI\+\_\+\+THRESHOLD\+\_\+\+MAX}} = -\/50
-\item 
-const int \mbox{\hyperlink{classns3_1_1Dect2020Mac_a30265385ad912fe025f7ed41fcf171ea}{SCAN\+\_\+\+MEAS\+\_\+\+DURATION}} = 24
-\item 
-const double \mbox{\hyperlink{classns3_1_1Dect2020Mac_a28d45a6d5c60d241587b935f1237d449}{SCAN\+\_\+\+SUITABLE}} = 0.\+75
-\item 
-const int \mbox{\hyperlink{classns3_1_1Dect2020Mac_a19add43b45b9f0add1b71c65dca1df03}{SCAN\+\_\+\+STATUS\+\_\+\+VALID}} = 300
 \item 
 std\+::map$<$ uint32\+\_\+t, \mbox{\hyperlink{structns3_1_1ChannelEvaluation}{Channel\+Evaluation}} $>$ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1c19c0b8f32ea6b118f24dfd1fb4ce2f}{m\+\_\+scan\+Evaluations}}
 \item 
@@ -223,20 +189,28 @@ uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a42ac312e05bba9f11d59f4161
 \item 
 \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \mbox{\hyperlink{classns3_1_1Dect2020Mac_a3119509eac739917b6d8be51c86ce9e9}{m\+\_\+selected\+Ft\+Candidate}}
 \item 
-Event\+Id \mbox{\hyperlink{classns3_1_1Dect2020Mac_a3da2beef2e5a4fffa7d3a708bc5332b0}{m\+\_\+discover\+Networks\+Event}}
-\item 
 uint32\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1a78a4bf1f32535e129029693feb14dc}{m\+\_\+associated\+FTNet\+Device\+Long\+Rd\+Id}} = 0
 \item 
 Time \mbox{\hyperlink{classns3_1_1Dect2020Mac_afc082a9aec63303821366a84956c5071}{m\+\_\+device\+Start\+Time}}
 \item 
 Time \mbox{\hyperlink{classns3_1_1Dect2020Mac_a7bcdfd4b64448eaaf60e84b9407aa754}{m\+\_\+successful\+Association\+Time}}
+\item 
+const double \mbox{\hyperlink{classns3_1_1Dect2020Mac_a51185f30aec01dcaee491e5fcdad2447}{RSSI\+\_\+\+THRESHOLD\+\_\+\+MIN}} = -\/85
+\item 
+const double \mbox{\hyperlink{classns3_1_1Dect2020Mac_af9ec967e134fb9468d7950fe00b69c4a}{RSSI\+\_\+\+THRESHOLD\+\_\+\+MAX}} = -\/50
+\item 
+const int \mbox{\hyperlink{classns3_1_1Dect2020Mac_a30265385ad912fe025f7ed41fcf171ea}{SCAN\+\_\+\+MEAS\+\_\+\+DURATION}} = 24
+\item 
+const double \mbox{\hyperlink{classns3_1_1Dect2020Mac_a28d45a6d5c60d241587b935f1237d449}{SCAN\+\_\+\+SUITABLE}} = 0.\+75
+\item 
+const int \mbox{\hyperlink{classns3_1_1Dect2020Mac_a19add43b45b9f0add1b71c65dca1df03}{SCAN\+\_\+\+STATUS\+\_\+\+VALID}} = 300
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-DECT2020 MAC Klasse. 
+DECT-\/2020 NR MAC layer implementation. 
 
-Diese Klasse implementiert die grundlegende MAC-\/\+Schichtfunktionalität für das DECT2020 Modul. 
+Represents the Medium Access Control layer for a DECT-\/2020 NR node. Manages transmission/reception of MAC PDUs, beaconing, association, and MAC-\/\+PHY interaction. 
 
 \doxysubsection{Member Enumeration Documentation}
 \Hypertarget{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}\label{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e} 
@@ -245,7 +219,11 @@ Diese Klasse implementiert die grundlegende MAC-\/\+Schichtfunktionalität für 
 \doxysubsubsection{\texorpdfstring{AssociationStatus}{AssociationStatus}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}{ns3\+::\+Dect2020\+Mac\+::\+Association\+Status}}}
 
-\begin{DoxyEnumFields}{Enumerator}
+
+
+Association status of a device within the DECT-\/2020 NR network. 
+
+These states define the current association state of a Radio Device (RD), such as a Portable Termination (PT), with respect to a Fixed Termination (FT). \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{NOT\_ASSOCIATED@{NOT\_ASSOCIATED}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!NOT\_ASSOCIATED@{NOT\_ASSOCIATED}}}\Hypertarget{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b}\label{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b} 
 NOT\+\_\+\+ASSOCIATED&\\
 \hline
@@ -273,7 +251,11 @@ ASSOCIATED&\\
 \doxysubsubsection{\texorpdfstring{Dect2020PacketType}{Dect2020PacketType}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2}{ns3\+::\+Dect2020\+Mac\+::\+Dect2020\+Packet\+Type}}}
 
-\begin{DoxyEnumFields}{Enumerator}
+
+
+Packet types used in DECT-\/2020 NR. 
+
+This enumeration defines the logical classification of packet types that can be transmitted or received within the MAC layer. ETSI 103 636-\/4 Section 6.\+3.\+3 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{DATA@{DATA}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!DATA@{DATA}}}\Hypertarget{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a97fa82dad0076ca5e8282eab9e18a47a}\label{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a97fa82dad0076ca5e8282eab9e18a47a} 
 DATA&\\
 \hline
@@ -300,6 +282,10 @@ RD\+\_\+\+BROADCAST&\\
 \doxysubsubsection{\texorpdfstring{Dect2020Mac()}{Dect2020Mac()}}
 {\footnotesize\ttfamily ns3\+::\+Dect2020\+Mac\+::\+Dect2020\+Mac (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Constructor\+: Initializes internal state and MAC structures. 
+
 \Hypertarget{classns3_1_1Dect2020Mac_a1c14c217d59fe1f63a8c35d01361f97e}\label{classns3_1_1Dect2020Mac_a1c14c217d59fe1f63a8c35d01361f97e} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!````~Dect2020Mac@{\texorpdfstring{$\sim$}{\string~}Dect2020Mac}}
 \index{````~Dect2020Mac@{\texorpdfstring{$\sim$}{\string~}Dect2020Mac}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
@@ -315,62 +301,146 @@ RD\+\_\+\+BROADCAST&\\
 \doxysubsubsection{\texorpdfstring{BuildBeacon()}{BuildBeacon()}}
 {\footnotesize\ttfamily Ptr$<$ Packet $>$ ns3\+::\+Dect2020\+Mac\+::\+Build\+Beacon (\begin{DoxyParamCaption}\item[{bool}]{is\+Cluster,  }\item[{uint16\+\_\+t}]{network\+Beacon\+Transmission\+Channel\+Id }\end{DoxyParamCaption})}
 
+
+
+Sends a Network Beacon on the specified channel. 
+
+Used in the channel sweep to advertise the presence of the FT to PTs scanning nearby channels.
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Cluster} & Indicates if the wanted beacon is a Cluster Beacon (true) or a Network Beacon (false). \\
+\hline
+{\em channel\+Id} & Channel ID on which the Network Beacon is transmitted. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_ac5e0ab65f4c5cf110e6d4c2a5b18f995}\label{classns3_1_1Dect2020Mac_ac5e0ab65f4c5cf110e6d4c2a5b18f995} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!BuildRandomAccessResourceIE@{BuildRandomAccessResourceIE}}
 \index{BuildRandomAccessResourceIE@{BuildRandomAccessResourceIE}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{BuildRandomAccessResourceIE()}{BuildRandomAccessResourceIE()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020\+Random\+Access\+Resource\+IE}} ns3\+::\+Dect2020\+Mac\+::\+Build\+Random\+Access\+Resource\+IE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_a0441196225d968f4d2d89ec1f5f8d19d}\label{classns3_1_1Dect2020Mac_a0441196225d968f4d2d89ec1f5f8d19d} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!CalculateAbsoluteStartSubslot@{CalculateAbsoluteStartSubslot}}
-\index{CalculateAbsoluteStartSubslot@{CalculateAbsoluteStartSubslot}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{CalculateAbsoluteStartSubslot()}{CalculateAbsoluteStartSubslot()}}
-{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Mac\+::\+Calculate\+Absolute\+Start\+Subslot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+Builds a Random Access Resource Information Element for the Cluster Beacon. 
+
+Specifies timing and access parameters for PTs wishing to associate. Most control fields are currently set to fixed values.
+
+\begin{DoxyReturn}{Returns}
+Configured \doxylink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020\+Random\+Access\+Resource\+IE}. 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_a5825940d27c043d18da396c84cb51bf4}\label{classns3_1_1Dect2020Mac_a5825940d27c043d18da396c84cb51bf4} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!CalculcateTimeOffsetFromCurrentSubslot@{CalculcateTimeOffsetFromCurrentSubslot}}
 \index{CalculcateTimeOffsetFromCurrentSubslot@{CalculcateTimeOffsetFromCurrentSubslot}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{CalculcateTimeOffsetFromCurrentSubslot()}{CalculcateTimeOffsetFromCurrentSubslot()}}
 {\footnotesize\ttfamily Time ns3\+::\+Dect2020\+Mac\+::\+Calculcate\+Time\+Offset\+From\+Current\+Subslot (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{delay\+In\+Subslots }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_ae66d28447fcbffb68ec3a01c96de6db5}\label{classns3_1_1Dect2020Mac_ae66d28447fcbffb68ec3a01c96de6db5} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!CreatePhysicalHeaderField@{CreatePhysicalHeaderField}}
-\index{CreatePhysicalHeaderField@{CreatePhysicalHeaderField}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{CreatePhysicalHeaderField()}{CreatePhysicalHeaderField()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}} ns3\+::\+Dect2020\+Mac\+::\+Create\+Physical\+Header\+Field (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+Calculates the simulation time offset for a future subslot. 
+
+Converts a relative subslot delay into an absolute simulation Time, using the current System Frame Number (SFN), slot, and subslot index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em delay\+In\+Subslots} & Delay in absolute subslots from the current position. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Simulation time offset from now until the target subslot. 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_ad2ab41546a10f85cd14db62d4c67ef8e}\label{classns3_1_1Dect2020Mac_ad2ab41546a10f85cd14db62d4c67ef8e} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!EvaluateAllChannels@{EvaluateAllChannels}}
 \index{EvaluateAllChannels@{EvaluateAllChannels}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{EvaluateAllChannels()}{EvaluateAllChannels()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Evaluate\+All\+Channels (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_a0ee98014abebe1b7f7656a7184068d8d}\label{classns3_1_1Dect2020Mac_a0ee98014abebe1b7f7656a7184068d8d} 
+
+
+Evaluates all scanned channels and selects the best operating channel. 
+
+Selection strategy from ETSI 103 636 04 5.\+1.\+2\+:
+\begin{DoxyEnumerate}
+\item Prefer channels that are completely free.
+\item If none, select a channel with \texorpdfstring{$>$}{>}= SCAN\+\_\+\+SUITABLE threshold of usable subslots.
+\item Otherwise, pick the channel with the least busy and possible subslots.
+\end{DoxyEnumerate}
+
+After selection, starts beacon transmission and schedules next scan. \Hypertarget{classns3_1_1Dect2020Mac_a0ee98014abebe1b7f7656a7184068d8d}\label{classns3_1_1Dect2020Mac_a0ee98014abebe1b7f7656a7184068d8d} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!EvaluateClusterBeacon@{EvaluateClusterBeacon}}
 \index{EvaluateClusterBeacon@{EvaluateClusterBeacon}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{EvaluateClusterBeacon()}{EvaluateClusterBeacon()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Evaluate\+Cluster\+Beacon (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020\+Cluster\+Beacon\+Message}} \&}]{cluster\+Beacon\+Msg,  }\item[{const \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020\+Random\+Access\+Resource\+IE}} \&}]{rar\+Ie,  }\item[{\mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*}}]{ft }\end{DoxyParamCaption})}
 
+
+
+Evaluates a received Cluster Beacon and prepares association if applicable. 
+
+Updates the FT candidate with timing info from the beacon. If the device is not associated, it enters PREPARING\+\_\+\+SELECTION mode. If the selected FT is identified, schedules the transmission of an Association Request using randomized timing from the Random Access Resource IE.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cluster\+Beacon\+Msg} & Received Cluster Beacon message. \\
+\hline
+{\em rar\+Ie} & Random Access Resource IE containing timing allocation. \\
+\hline
+{\em ft} & Pointer to the corresponding FT candidate. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_aec51c276e2243c231bd8b8faacee8deb}\label{classns3_1_1Dect2020Mac_aec51c276e2243c231bd8b8faacee8deb} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!FindFtCandidateByLongId@{FindFtCandidateByLongId}}
 \index{FindFtCandidateByLongId@{FindFtCandidateByLongId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{FindFtCandidateByLongId()}{FindFtCandidateByLongId()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*} ns3\+::\+Dect2020\+Mac\+::\+Find\+Ft\+Candidate\+By\+Long\+Id (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{long\+Ft\+Id }\end{DoxyParamCaption})}
 
+
+
+Retrieves an FT candidate by its long RD ID or creates a new entry. 
+
+Typically used after association to track beacon reception from the selected FT.
+
+
+\begin{DoxyParams}{Parameters}
+{\em long\+Ft\+Id} & The 32-\/bit long RD ID of the FT. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the matching or newly created \doxylink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}. 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_a6c0535091681f7aee8dca77b53cc13b0}\label{classns3_1_1Dect2020Mac_a6c0535091681f7aee8dca77b53cc13b0} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!FindOrCreateFtCandidate@{FindOrCreateFtCandidate}}
 \index{FindOrCreateFtCandidate@{FindOrCreateFtCandidate}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{FindOrCreateFtCandidate()}{FindOrCreateFtCandidate()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*} ns3\+::\+Dect2020\+Mac\+::\+Find\+Or\+Create\+Ft\+Candidate (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{short\+Ft\+Id }\end{DoxyParamCaption})}
 
+
+
+Retrieves an FT candidate by its short ID or creates a new entry. 
+
+Used when processing beacons to store RSSI, headers, and channel information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em short\+Ft\+Id} & The 16-\/bit short ID of the FT candidate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the matching or newly created \doxylink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}. 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_ab624190de7a3ae79d00b012abb19eb59}\label{classns3_1_1Dect2020Mac_ab624190de7a3ae79d00b012abb19eb59} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GenerateLongRadioDeviceId@{GenerateLongRadioDeviceId}}
 \index{GenerateLongRadioDeviceId@{GenerateLongRadioDeviceId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{GenerateLongRadioDeviceId()}{GenerateLongRadioDeviceId()}}
 {\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Mac\+::\+Generate\+Long\+Radio\+Device\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Generate the Long Radio Device ID as described in ETSI TS 103 636-\/4 V 1.\+51 \#4.\+2.\+3.\+2 \begin{DoxyReturn}{Returns}
-32 Bit Radio Device ID 
+
+
+Generates a valid 32-\/bit Long Radio Device ID as described in ETSI 103 636-\/04 Section 4.\+2.\+2.\+3. 
+
+Ensures the ID is within the allowed DECT NR range (1 to 0x\+FFFFFFFD), excluding reserved values like 0x00000000, 0x\+FFFFFFFE, and 0x\+FFFFFFFF.
+
+\begin{DoxyReturn}{Returns}
+A valid long RD ID 
 \end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_a3a563a578c7a5b9fd6a9e4cc2876a1a5}\label{classns3_1_1Dect2020Mac_a3a563a578c7a5b9fd6a9e4cc2876a1a5} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GenerateShortRadioDeviceId@{GenerateShortRadioDeviceId}}
@@ -378,8 +448,14 @@ Generate the Long Radio Device ID as described in ETSI TS 103 636-\/4 V 1.\+51 \
 \doxysubsubsection{\texorpdfstring{GenerateShortRadioDeviceId()}{GenerateShortRadioDeviceId()}}
 {\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Mac\+::\+Generate\+Short\+Radio\+Device\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Generate the Short Radio Device ID as described in ETSI TS 103 636-\/4 V 1.\+51 \#4.\+2.\+3.\+3 \begin{DoxyReturn}{Returns}
-16 Bit Radio Device ID 
+
+
+Generates a valid 16-\/bit Short Radio Device ID as described in ETSI 103 636-\/04 Section 4.\+2.\+3.\+3. 
+
+The ID is chosen randomly in the valid DECT NR range \mbox{[}0x0001, 0x\+FFFE\mbox{]}, excluding reserved values like 0x0000 and 0x\+FFFF.
+
+\begin{DoxyReturn}{Returns}
+A valid short RD ID 
 \end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_ad0884b0fc0b6329a47bdd09dc4fdd569}\label{classns3_1_1Dect2020Mac_ad0884b0fc0b6329a47bdd09dc4fdd569} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GenerateValidNetworkId@{GenerateValidNetworkId}}
@@ -387,38 +463,70 @@ Generate the Short Radio Device ID as described in ETSI TS 103 636-\/4 V 1.\+51 
 \doxysubsubsection{\texorpdfstring{GenerateValidNetworkId()}{GenerateValidNetworkId()}}
 {\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Mac\+::\+Generate\+Valid\+Network\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Join a existing Network Generate a valid Network ID. \Hypertarget{classns3_1_1Dect2020Mac_adcaf418f1a1c474c468ef4ebd0472182}\label{classns3_1_1Dect2020Mac_adcaf418f1a1c474c468ef4ebd0472182} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GetAddress@{GetAddress}}
-\index{GetAddress@{GetAddress}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{GetAddress()}{GetAddress()}}
-{\footnotesize\ttfamily Mac48\+Address ns3\+::\+Dect2020\+Mac\+::\+Get\+Address (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
 
+
+Generates a valid 32-\/bit DECT network ID as described in ETSI 103 636-\/04 4.\+2.\+3.\+1. 
+
+Ensures that\+:
+\begin{DoxyItemize}
+\item the 8 LSBs (used as short network ID) are not 0x00
+\item the remaining 24 MSBs are not all zero
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+A valid non-\/zero network ID 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_ae088171c630b2c831f00093565f3df57}\label{classns3_1_1Dect2020Mac_ae088171c630b2c831f00093565f3df57} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GetAssociationStatus@{GetAssociationStatus}}
 \index{GetAssociationStatus@{GetAssociationStatus}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{GetAssociationStatus()}{GetAssociationStatus()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}{Dect2020\+Mac\+::\+Association\+Status}} ns3\+::\+Dect2020\+Mac\+::\+Get\+Association\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
+
+
+Returns the current MAC association status. 
+
+\begin{DoxyReturn}{Returns}
+Current Association\+Status of the device (e.\+g. NOT\+\_\+\+ASSOCIATED, ASSOCIATED). 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_acff913ff839025f5d69c21ca0a1387aa}\label{classns3_1_1Dect2020Mac_acff913ff839025f5d69c21ca0a1387aa} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GetCurrentChannelId@{GetCurrentChannelId}}
 \index{GetCurrentChannelId@{GetCurrentChannelId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{GetCurrentChannelId()}{GetCurrentChannelId()}}
 {\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Mac\+::\+Get\+Current\+Channel\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
+
+
+Returns the current operating channel ID. 
+
+\begin{DoxyReturn}{Returns}
+The current channel ID used by the device 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_a0cd71882a73de1a39c97bf5659b7187f}\label{classns3_1_1Dect2020Mac_a0cd71882a73de1a39c97bf5659b7187f} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GetLongRadioDeviceId@{GetLongRadioDeviceId}}
 \index{GetLongRadioDeviceId@{GetLongRadioDeviceId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{GetLongRadioDeviceId()}{GetLongRadioDeviceId()}}
 {\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Mac\+::\+Get\+Long\+Radio\+Device\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-Get the Long Radio Device ID. \Hypertarget{classns3_1_1Dect2020Mac_a5950b89914e0028083ba1cfc8ee4c494}\label{classns3_1_1Dect2020Mac_a5950b89914e0028083ba1cfc8ee4c494} 
+
+
+Returns the long RD ID of this device. 
+
+\begin{DoxyReturn}{Returns}
+The 32-\/bit long RD ID 
+\end{DoxyReturn}
+\Hypertarget{classns3_1_1Dect2020Mac_a5950b89914e0028083ba1cfc8ee4c494}\label{classns3_1_1Dect2020Mac_a5950b89914e0028083ba1cfc8ee4c494} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GetNetworkId@{GetNetworkId}}
 \index{GetNetworkId@{GetNetworkId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{GetNetworkId()}{GetNetworkId()}}
 {\footnotesize\ttfamily uint32\+\_\+t ns3\+::\+Dect2020\+Mac\+::\+Get\+Network\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-Get the Network ID. \begin{DoxyReturn}{Returns}
-the 32 Bit Network ID. 
+
+
+Returns the currently assigned network ID. 
+
+\begin{DoxyReturn}{Returns}
+32-\/bit DECT network ID 
 \end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_afcf20a2066b4e091071ce60155f397ed}\label{classns3_1_1Dect2020Mac_afcf20a2066b4e091071ce60155f397ed} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GetRxGainFromIndex@{GetRxGainFromIndex}}
@@ -426,18 +534,48 @@ the 32 Bit Network ID.
 \doxysubsubsection{\texorpdfstring{GetRxGainFromIndex()}{GetRxGainFromIndex()}}
 {\footnotesize\ttfamily double ns3\+::\+Dect2020\+Mac\+::\+Get\+Rx\+Gain\+From\+Index (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{index }\end{DoxyParamCaption}) const}
 
+
+
+Converts RX gain index (0–8) to dB gain value. 
+
+Index is mapped linearly to range −10 dB to +6 dB as defined in ETSI TS 103 636-\/4 Table 6.\+4.\+3.\+5-\/1. Returns 0 dB if the index is invalid (\texorpdfstring{$>$}{>} 8).
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & RX gain index (0 to 8) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RX gain in dB 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_a992eec6593c57cac2b25088819adca0f}\label{classns3_1_1Dect2020Mac_a992eec6593c57cac2b25088819adca0f} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GetShortRadioDeviceId@{GetShortRadioDeviceId}}
 \index{GetShortRadioDeviceId@{GetShortRadioDeviceId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{GetShortRadioDeviceId()}{GetShortRadioDeviceId()}}
 {\footnotesize\ttfamily uint16\+\_\+t ns3\+::\+Dect2020\+Mac\+::\+Get\+Short\+Radio\+Device\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
-Get the Short Radio Device ID. \Hypertarget{classns3_1_1Dect2020Mac_a78bc1d0ad224da3bbec4c466c28bb6f8}\label{classns3_1_1Dect2020Mac_a78bc1d0ad224da3bbec4c466c28bb6f8} 
+
+
+Returns the short RD ID assigned to this device. 
+
+\begin{DoxyReturn}{Returns}
+16-\/bit Short Radio Device ID 
+\end{DoxyReturn}
+\Hypertarget{classns3_1_1Dect2020Mac_a78bc1d0ad224da3bbec4c466c28bb6f8}\label{classns3_1_1Dect2020Mac_a78bc1d0ad224da3bbec4c466c28bb6f8} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GetSubslotsPerSlot@{GetSubslotsPerSlot}}
 \index{GetSubslotsPerSlot@{GetSubslotsPerSlot}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{GetSubslotsPerSlot()}{GetSubslotsPerSlot()}}
 {\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Mac\+::\+Get\+Subslots\+Per\+Slot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+Returns the number of subslots per slot based on the subcarrier scaling factor. 
+
+Used to determine subslot resolution for scheduling and channel access.
+
+\begin{DoxyReturn}{Returns}
+Number of subslots per slot (2, 4, 8, or 16). 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020Mac_a582836009dc68af32a41af41afef44e8}\label{classns3_1_1Dect2020Mac_a582836009dc68af32a41af41afef44e8} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!GetTypeId@{GetTypeId}}
 \index{GetTypeId@{GetTypeId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
@@ -450,187 +588,420 @@ Get the Short Radio Device ID. \Hypertarget{classns3_1_1Dect2020Mac_a78bc1d0ad22
 \doxysubsubsection{\texorpdfstring{HandleBeaconPacket()}{HandleBeaconPacket()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Handle\+Beacon\+Packet (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet,  }\item[{\mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*}}]{ft }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_ab764c72a42f5f6ea870b1bef0eb62947}\label{classns3_1_1Dect2020Mac_ab764c72a42f5f6ea870b1bef0eb62947} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!HandleNetworkBeacon@{HandleNetworkBeacon}}
-\index{HandleNetworkBeacon@{HandleNetworkBeacon}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{HandleNetworkBeacon()}{HandleNetworkBeacon()}}
-{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Handle\+Network\+Beacon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020\+Beacon\+Header}}}]{beacon\+Header,  }\item[{\mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020\+Network\+Beacon\+Message}}}]{network\+Beacon\+Msg,  }\item[{\mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*}}]{ft }\end{DoxyParamCaption})}
 
+
+Handles incoming beacon packets (Network or Cluster Beacons). 
+
+Extracts the beacon header and MAC multiplexing header. Depending on the beacon message type (network or cluster), the FT candidate information is updated and channel switching may be triggered.
+
+
+\begin{DoxyItemize}
+\item Stores metadata in the FT candidate structure
+\item Triggers channel switch to cluster channel if required
+\item Updates internal state flags and statistics
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The beacon packet with remaining headers. \\
+\hline
+{\em ft} & Pointer to the FT candidate this beacon came from. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_a71d25d793e468510365ea1c6ce75053d}\label{classns3_1_1Dect2020Mac_a71d25d793e468510365ea1c6ce75053d} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!HandleUnicastPacket@{HandleUnicastPacket}}
 \index{HandleUnicastPacket@{HandleUnicastPacket}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{HandleUnicastPacket()}{HandleUnicastPacket()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Handle\+Unicast\+Packet (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet }\end{DoxyParamCaption})}
 
+
+
+Handles incoming unicast MAC packets. 
+
+Parses the unicast header and checks whether the message is addressed to this device. If so, the message is further parsed based on its type. Supports Association Request and Association Response messages.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The received unicast packet. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_ab0a43e61de5976775531246105ef5f94}\label{classns3_1_1Dect2020Mac_ab0a43e61de5976775531246105ef5f94} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!InitializeDevice@{InitializeDevice}}
 \index{InitializeDevice@{InitializeDevice}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{InitializeDevice()}{InitializeDevice()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Initialize\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_a36c239034dfb7ecf13053446da830cca}\label{classns3_1_1Dect2020Mac_a36c239034dfb7ecf13053446da830cca} 
+
+
+Initializes the device by assigning valid Long and Short RD IDs. 
+
+This function is called during MAC initialization to ensure each device has unique DECT-\/2020 NR identifiers. \Hypertarget{classns3_1_1Dect2020Mac_a36c239034dfb7ecf13053446da830cca}\label{classns3_1_1Dect2020Mac_a36c239034dfb7ecf13053446da830cca} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!InitializeNetwork@{InitializeNetwork}}
 \index{InitializeNetwork@{InitializeNetwork}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{InitializeNetwork()}{InitializeNetwork()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Initialize\+Network (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Initialize a new Network \Hypertarget{classns3_1_1Dect2020Mac_a6759fbb033aed3afd7bc3090b597864e}\label{classns3_1_1Dect2020Mac_a6759fbb033aed3afd7bc3090b597864e} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!JoinNetwork@{JoinNetwork}}
-\index{JoinNetwork@{JoinNetwork}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{JoinNetwork()}{JoinNetwork()}}
-{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Join\+Network (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{network\+Id }\end{DoxyParamCaption})}
 
-Join an existing Network. \Hypertarget{classns3_1_1Dect2020Mac_af6472a4bf3eacdc19fce0226eb7658be}\label{classns3_1_1Dect2020Mac_af6472a4bf3eacdc19fce0226eb7658be} 
+
+Initializes a new DECT-\/2020 network (FT only). 
+
+Generates a valid network ID and schedules the channel selection process. Called when the device operates as a Fixed Termination (FT). \Hypertarget{classns3_1_1Dect2020Mac_af6472a4bf3eacdc19fce0226eb7658be}\label{classns3_1_1Dect2020Mac_af6472a4bf3eacdc19fce0226eb7658be} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!MeasureAndScheduleNextSubslot@{MeasureAndScheduleNextSubslot}}
 \index{MeasureAndScheduleNextSubslot@{MeasureAndScheduleNextSubslot}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{MeasureAndScheduleNextSubslot()}{MeasureAndScheduleNextSubslot()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Measure\+And\+Schedule\+Next\+Subslot (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structns3_1_1SubslotScanContext}{Subslot\+Scan\+Context}} $>$}]{context,  }\item[{uint32\+\_\+t}]{num\+Subslots }\end{DoxyParamCaption})}
 
+
+
+Measures RSSI for one subslot and schedules the next scan step. 
+
+Categorizes the subslot as FREE, POSSIBLE, or BUSY based on RSSI thresholds like described in the specification 106 636 4 5.\+1.\+2. Recursively schedules itself until the configured number of subslots is scanned. Once complete, invokes the callback with the aggregated result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & Shared scan state (channel ID, counters, result storage). \\
+\hline
+{\em num\+Subslots} & Total number of subslots to evaluate. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_a61a54f3b6af87a202fcfa4b1e9587381}\label{classns3_1_1Dect2020Mac_a61a54f3b6af87a202fcfa4b1e9587381} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!OperatingChannelSelection@{OperatingChannelSelection}}
 \index{OperatingChannelSelection@{OperatingChannelSelection}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{OperatingChannelSelection()}{OperatingChannelSelection()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Operating\+Channel\+Selection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_a7ecabbef93d233d31d3ebf93d050635a}\label{classns3_1_1Dect2020Mac_a7ecabbef93d233d31d3ebf93d050635a} 
+
+
+Starts subslot-\/wise RSSI scans on all valid channels to select the operating channel. 
+
+Each scan is scheduled with an offset to avoid overlapping measurements. Once all channels are scanned, triggers \doxylink{classns3_1_1Dect2020Mac_ad2ab41546a10f85cd14db62d4c67ef8e}{Evaluate\+All\+Channels()} to select the best one. \Hypertarget{classns3_1_1Dect2020Mac_a7ecabbef93d233d31d3ebf93d050635a}\label{classns3_1_1Dect2020Mac_a7ecabbef93d233d31d3ebf93d050635a} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!ProcessAssociationRequest@{ProcessAssociationRequest}}
 \index{ProcessAssociationRequest@{ProcessAssociationRequest}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{ProcessAssociationRequest()}{ProcessAssociationRequest()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Process\+Association\+Request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage}{Dect2020\+Association\+Request\+Message}}}]{asso\+Req\+Msg,  }\item[{\mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020\+Rd\+Capability\+IE}}}]{rd\+Capability\+Ie,  }\item[{\mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE}{Dect2020\+Association\+Control\+IE}}}]{asso\+Control\+Ie,  }\item[{uint32\+\_\+t}]{asso\+Initiator\+Long\+Rd\+Id }\end{DoxyParamCaption})}
 
+
+
+Processes an Association Request received from a PT. 
+
+Extracts and stores the PT\textquotesingle{}s capabilities and requested flow parameters. Schedules an Association Response based on HARQ timing requirements.
+
+Currently accepts all incoming requests without filtering.
+
+
+\begin{DoxyParams}{Parameters}
+{\em asso\+Req\+Msg} & Association Request message from the PT. \\
+\hline
+{\em rd\+Capability\+Ie} & Reported capabilities of the PT. \\
+\hline
+{\em asso\+Control\+Ie} & Association control settings (e.\+g. CB monitoring). \\
+\hline
+{\em asso\+Initiator\+Long\+Rd\+Id} & Long RDID of the requesting PT. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_a7786573bc1b70411d5ba7cde926c5c1e}\label{classns3_1_1Dect2020Mac_a7786573bc1b70411d5ba7cde926c5c1e} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!ProcessAssociationResponse@{ProcessAssociationResponse}}
 \index{ProcessAssociationResponse@{ProcessAssociationResponse}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{ProcessAssociationResponse()}{ProcessAssociationResponse()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Process\+Association\+Response (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage}{Dect2020\+Association\+Response\+Message}}}]{asso\+Resp\+Msg,  }\item[{\mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020\+Rd\+Capability\+IE}}}]{rd\+Capability\+Ie,  }\item[{uint32\+\_\+t}]{ft\+Long\+Rd\+Id }\end{DoxyParamCaption})}
 
+
+
+Processes an Association Response received from an FT. 
+
+If the device is in ASSOCIATION\+\_\+\+PENDING state and the response is accepted, the MAC transitions to ASSOCIATED and stores the FT\textquotesingle{}s identity. Also sets a timer to verify association continuity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em asso\+Resp\+Msg} & The received Association Response message. \\
+\hline
+{\em rd\+Capability\+Ie} & Reported FT capabilities. \\
+\hline
+{\em ft\+Long\+Rd\+Id} & Long RDID of the FT that sent the response. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_a33c8e4d4610fbaa917d91ddc72fb84e8}\label{classns3_1_1Dect2020Mac_a33c8e4d4610fbaa917d91ddc72fb84e8} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!ReceiveFromPhy@{ReceiveFromPhy}}
 \index{ReceiveFromPhy@{ReceiveFromPhy}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{ReceiveFromPhy()}{ReceiveFromPhy()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Receive\+From\+Phy (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet,  }\item[{double}]{rssi\+Dbm }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_abeeb4e0295228973afeb871a18d9d7dd}\label{classns3_1_1Dect2020Mac_abeeb4e0295228973afeb871a18d9d7dd} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!ResetIsWaitingForClusterBeaconFlag@{ResetIsWaitingForClusterBeaconFlag}}
-\index{ResetIsWaitingForClusterBeaconFlag@{ResetIsWaitingForClusterBeaconFlag}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{ResetIsWaitingForClusterBeaconFlag()}{ResetIsWaitingForClusterBeaconFlag()}}
-{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Reset\+Is\+Waiting\+For\+Cluster\+Beacon\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_a6e679793d4dcad6bf112d157bb10c664}\label{classns3_1_1Dect2020Mac_a6e679793d4dcad6bf112d157bb10c664} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!ReturnToOperatingChannel@{ReturnToOperatingChannel}}
-\index{ReturnToOperatingChannel@{ReturnToOperatingChannel}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{ReturnToOperatingChannel()}{ReturnToOperatingChannel()}}
-{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Return\+To\+Operating\+Channel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Entry point for all packets received from the PHY layer. 
+
+This method handles incoming packets by parsing the PHY and MAC headers. Based on the MAC header type, the packet is dispatched to the appropriate handler (e.\+g. beacon, unicast). RSSI and PHY metadata are stored for further use.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The received packet. \\
+\hline
+{\em rssi\+Dbm} & The received signal strength in d\+Bm. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_a1ac90e0de42a9fefbbddf7f8ab962c3d}\label{classns3_1_1Dect2020Mac_a1ac90e0de42a9fefbbddf7f8ab962c3d} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!SelectBestFtCandidate@{SelectBestFtCandidate}}
 \index{SelectBestFtCandidate@{SelectBestFtCandidate}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{SelectBestFtCandidate()}{SelectBestFtCandidate()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Select\+Best\+Ft\+Candidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_a958672211af7dce119811ba1e90c01a6}\label{classns3_1_1Dect2020Mac_a958672211af7dce119811ba1e90c01a6} 
+
+
+Selects the best FT candidate based on RSSI and switches to its channel. 
+
+Iterates through all discovered FT candidates and selects the one with the highest RSSI. Updates internal state, switches to the candidate\textquotesingle{}s cluster channel, and sets the MAC status to WAITING\+\_\+\+FOR\+\_\+\+SELECTED\+\_\+\+FT.
+
+Triggers a follow-\/up check after 2 seconds via \doxylink{classns3_1_1Dect2020Mac_a46a785e3b014179e789194f2c9a2b5fa}{Verify\+Waiting\+For\+Selected\+Ft\+Association\+Status()}. \Hypertarget{classns3_1_1Dect2020Mac_a958672211af7dce119811ba1e90c01a6}\label{classns3_1_1Dect2020Mac_a958672211af7dce119811ba1e90c01a6} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!Send@{Send}}
 \index{Send@{Send}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{Send()}{Send()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Send (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet,  }\item[{const Address \&}]{dest,  }\item[{\mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2}{Dect2020\+Packet\+Type}}}]{type }\end{DoxyParamCaption})}
 
+
+
+Placeholder for application-\/layer packet transmission. 
+
+Currently unused. Intended to forward packets from the application layer to the MAC for transmission via the PHY layer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em packet} & The packet to send. \\
+\hline
+{\em receiver\+Long\+Rd\+Id} & Destination Long RD ID. \\
+\hline
+{\em type} & DECT packet type (e.\+g. BEACON, UNICAST). \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_ad8ec652a6047bff8e3fcdb57ad9dec25}\label{classns3_1_1Dect2020Mac_ad8ec652a6047bff8e3fcdb57ad9dec25} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!SendAssociationRequest@{SendAssociationRequest}}
 \index{SendAssociationRequest@{SendAssociationRequest}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{SendAssociationRequest()}{SendAssociationRequest()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Send\+Association\+Request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}} \texorpdfstring{$\ast$}{*}}]{ft }\end{DoxyParamCaption})}
 
+
+
+Constructs and sends an Association Request to a selected FT. 
+
+Assembles a complete unicast packet with PHY/\+MAC headers, RD Capability IE, and the Association Request message. Sets the association status to pending and schedules a fallback if no response is received.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ft} & Pointer to the selected FT candidate. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_a522481f55f283f28ae6d83d3e1b98e90}\label{classns3_1_1Dect2020Mac_a522481f55f283f28ae6d83d3e1b98e90} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!SendAssociationResponse@{SendAssociationResponse}}
 \index{SendAssociationResponse@{SendAssociationResponse}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{SendAssociationResponse()}{SendAssociationResponse()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Send\+Association\+Response (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structns3_1_1AssociatedPtInfo}{Associated\+Pt\+Info}}}]{pt\+Info }\end{DoxyParamCaption})}
 
+
+
+Constructs and sends an Association Response to a requesting PT. 
+
+Builds the complete response packet, including PHY and MAC headers, the RD Capability IE, and the Association Response message. The response is transmitted via the PHY to the specified PT.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pt\+Info} & Information about the PT that initiated the association. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_a9d0d1e0db1839e55787a88876aca429f}\label{classns3_1_1Dect2020Mac_a9d0d1e0db1839e55787a88876aca429f} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!SetCurrentChannelId@{SetCurrentChannelId}}
 \index{SetCurrentChannelId@{SetCurrentChannelId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{SetCurrentChannelId()}{SetCurrentChannelId()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Set\+Current\+Channel\+Id (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{channel\+Id }\end{DoxyParamCaption})}
 
+
+
+Updates the current channel ID. 
+
+Avoids redundant changes and initializes the cluster channel ID if not yet set.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Id} & The channel to switch to \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_a9b6f825b11086ac76d08f88d02e99596}\label{classns3_1_1Dect2020Mac_a9b6f825b11086ac76d08f88d02e99596} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!SetLongRadioDeviceId@{SetLongRadioDeviceId}}
 \index{SetLongRadioDeviceId@{SetLongRadioDeviceId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{SetLongRadioDeviceId()}{SetLongRadioDeviceId()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Set\+Long\+Radio\+Device\+Id (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{rd\+Id }\end{DoxyParamCaption})}
 
-Set the Long Radio Device ID. \Hypertarget{classns3_1_1Dect2020Mac_ac0942ff5fdf363ceb262ba3d99ae1c83}\label{classns3_1_1Dect2020Mac_ac0942ff5fdf363ceb262ba3d99ae1c83} 
+
+
+Sets the long RD ID for this device. 
+
+If an invalid value (0x00000000) is provided, a new valid ID is generated instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rd\+Id} & The 32-\/bit RD ID to assign \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classns3_1_1Dect2020Mac_ac0942ff5fdf363ceb262ba3d99ae1c83}\label{classns3_1_1Dect2020Mac_ac0942ff5fdf363ceb262ba3d99ae1c83} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!SetNetDevice@{SetNetDevice}}
 \index{SetNetDevice@{SetNetDevice}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{SetNetDevice()}{SetNetDevice()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Set\+Net\+Device (\begin{DoxyParamCaption}\item[{Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice}{Dect2020\+Net\+Device}} $>$}]{device }\end{DoxyParamCaption})}
 
+
+
+Set the associated DECT Net\+Device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & Pointer to the DECT Net\+Device. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_abf8424b1e657622d75687b24d274dff7}\label{classns3_1_1Dect2020Mac_abf8424b1e657622d75687b24d274dff7} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!SetNetworkId@{SetNetworkId}}
 \index{SetNetworkId@{SetNetworkId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{SetNetworkId()}{SetNetworkId()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Set\+Network\+Id (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{network\+Id }\end{DoxyParamCaption})}
 
-Set the Network ID. \Hypertarget{classns3_1_1Dect2020Mac_afb36573ecf25b73a44bf187cc4899bfb}\label{classns3_1_1Dect2020Mac_afb36573ecf25b73a44bf187cc4899bfb} 
+
+
+Sets the DECT Network ID for this device. 
+
+Verifies that the short network ID (LSB) and the globally unique part (MSB) are valid. Logs an error if either part is zero, as per ETSI TS 103 636-\/4 Section 4.\+2.\+3.\+1.
+
+
+\begin{DoxyParams}{Parameters}
+{\em network\+Id} & 32-\/bit network identifier to assign \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classns3_1_1Dect2020Mac_afb36573ecf25b73a44bf187cc4899bfb}\label{classns3_1_1Dect2020Mac_afb36573ecf25b73a44bf187cc4899bfb} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!SetPhy@{SetPhy}}
 \index{SetPhy@{SetPhy}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{SetPhy()}{SetPhy()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Set\+Phy (\begin{DoxyParamCaption}\item[{Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020\+Phy}} $>$}]{phy }\end{DoxyParamCaption})}
 
+
+
+Set the associated PHY layer and connect receive callback for incoming packets from the physical layer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em phy} & Pointer to the DECT PHY object. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_a1dc71f1ac27006d4c932d0ffb7fe3996}\label{classns3_1_1Dect2020Mac_a1dc71f1ac27006d4c932d0ffb7fe3996} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!SetShortRadioDeviceId@{SetShortRadioDeviceId}}
 \index{SetShortRadioDeviceId@{SetShortRadioDeviceId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{SetShortRadioDeviceId()}{SetShortRadioDeviceId()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Set\+Short\+Radio\+Device\+Id (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{rd\+Id }\end{DoxyParamCaption})}
 
-Set the Short Radio Device ID. \Hypertarget{classns3_1_1Dect2020Mac_a46a0f01d6890c2782c247afd9e03d3a3}\label{classns3_1_1Dect2020Mac_a46a0f01d6890c2782c247afd9e03d3a3} 
+
+
+Sets the short RD ID for this device. 
+
+If an invalid value (0x0000) is provided, a new valid ID is generated automatically.
+
+
+\begin{DoxyParams}{Parameters}
+{\em rd\+Id} & The 16-\/bit RD ID to assign \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classns3_1_1Dect2020Mac_a46a0f01d6890c2782c247afd9e03d3a3}\label{classns3_1_1Dect2020Mac_a46a0f01d6890c2782c247afd9e03d3a3} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!Start@{Start}}
 \index{Start@{Start}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{Start()}{Start()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Starts the MAC-\/\+Layer \Hypertarget{classns3_1_1Dect2020Mac_ae50d4d70cb6a5967078ae2b57139418c}\label{classns3_1_1Dect2020Mac_ae50d4d70cb6a5967078ae2b57139418c} 
+
+
+Starts the MAC operation based on the device role (FT or PT). 
+
+
+\begin{DoxyItemize}
+\item FT devices initialize their own network (e.\+g. begin beaconing).
+\item PT devices begin network discovery after a short delay. 
+\end{DoxyItemize}\Hypertarget{classns3_1_1Dect2020Mac_ae50d4d70cb6a5967078ae2b57139418c}\label{classns3_1_1Dect2020Mac_ae50d4d70cb6a5967078ae2b57139418c} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!StartBeaconTransmission@{StartBeaconTransmission}}
 \index{StartBeaconTransmission@{StartBeaconTransmission}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{StartBeaconTransmission()}{StartBeaconTransmission()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Start\+Beacon\+Transmission (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Start sending a beacon periodically. \Hypertarget{classns3_1_1Dect2020Mac_a25bbd22c04b77bc9da82544c8d6a074f}\label{classns3_1_1Dect2020Mac_a25bbd22c04b77bc9da82544c8d6a074f} 
+
+
+Starts both Cluster and Network Beacon transmissions. 
+
+Called during FT initialization to begin beaconing on all relevant channels. \Hypertarget{classns3_1_1Dect2020Mac_a25bbd22c04b77bc9da82544c8d6a074f}\label{classns3_1_1Dect2020Mac_a25bbd22c04b77bc9da82544c8d6a074f} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!StartClusterBeaconTransmission@{StartClusterBeaconTransmission}}
 \index{StartClusterBeaconTransmission@{StartClusterBeaconTransmission}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{StartClusterBeaconTransmission()}{StartClusterBeaconTransmission()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Start\+Cluster\+Beacon\+Transmission (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_a4140324572b6872fdb33605dfb0ffdd5}\label{classns3_1_1Dect2020Mac_a4140324572b6872fdb33605dfb0ffdd5} 
+
+
+Starts and schedules periodic Cluster Beacon transmissions (FT only). 
+
+Sends a Cluster Beacon on the current cluster channel and reschedules the next transmission. \Hypertarget{classns3_1_1Dect2020Mac_a4140324572b6872fdb33605dfb0ffdd5}\label{classns3_1_1Dect2020Mac_a4140324572b6872fdb33605dfb0ffdd5} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!StartNetworkBeaconSweep@{StartNetworkBeaconSweep}}
 \index{StartNetworkBeaconSweep@{StartNetworkBeaconSweep}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{StartNetworkBeaconSweep()}{StartNetworkBeaconSweep()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Start\+Network\+Beacon\+Sweep (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_afe6e3b248a12851fa764bbf4fa4cccd0}\label{classns3_1_1Dect2020Mac_afe6e3b248a12851fa764bbf4fa4cccd0} 
+
+
+Starts a cyclic sweep to transmit Network Beacons on adjacent channels. 
+
+Selects a set of valid channels spaced at fixed offsets (±2, ±4, ...) relative to the cluster channel. Schedules beacon transmissions on each channel with time gaps in between, then returns to the operating channel.
+
+This method reschedules itself for continuous sweeping. \Hypertarget{classns3_1_1Dect2020Mac_afe6e3b248a12851fa764bbf4fa4cccd0}\label{classns3_1_1Dect2020Mac_afe6e3b248a12851fa764bbf4fa4cccd0} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!StartSubslotScan@{StartSubslotScan}}
 \index{StartSubslotScan@{StartSubslotScan}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{StartSubslotScan()}{StartSubslotScan()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Start\+Subslot\+Scan (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{channel\+Id,  }\item[{uint32\+\_\+t}]{num\+Subslots,  }\item[{std\+::function$<$ void(const \mbox{\hyperlink{structns3_1_1ChannelEvaluation}{Channel\+Evaluation}} \&)$>$}]{on\+Complete }\end{DoxyParamCaption})}
 
+
+
+Initiates a subslot-\/wise RSSI scan on a specific channel. 
+
+Measures channel power over multiple subslots and invokes a callback with the aggregated result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em channel\+Id} & Channel to scan. \\
+\hline
+{\em num\+Subslots} & Number of subslots / slot in the current configuration. \\
+\hline
+{\em on\+Complete} & Callback that receives the aggregated \doxylink{structns3_1_1ChannelEvaluation}{Channel\+Evaluation} result. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020Mac_a92c6f09d3582cd7fc21324286426a6e9}\label{classns3_1_1Dect2020Mac_a92c6f09d3582cd7fc21324286426a6e9} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!VerifyAssociatedStatus@{VerifyAssociatedStatus}}
 \index{VerifyAssociatedStatus@{VerifyAssociatedStatus}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{VerifyAssociatedStatus()}{VerifyAssociatedStatus()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Verify\+Associated\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_a5406babc8913eddbb1c97351374da4ba}\label{classns3_1_1Dect2020Mac_a5406babc8913eddbb1c97351374da4ba} 
+
+
+Periodically verifies that the associated FT is still active. 
+
+If no Cluster Beacon from the associated FT was received within the last 60 seconds, the device resets its association status to NOT\+\_\+\+ASSOCIATED. Otherwise, the check is scheduled again. \Hypertarget{classns3_1_1Dect2020Mac_a5406babc8913eddbb1c97351374da4ba}\label{classns3_1_1Dect2020Mac_a5406babc8913eddbb1c97351374da4ba} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!VerifyPendingAssociationStatus@{VerifyPendingAssociationStatus}}
 \index{VerifyPendingAssociationStatus@{VerifyPendingAssociationStatus}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{VerifyPendingAssociationStatus()}{VerifyPendingAssociationStatus()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Verify\+Pending\+Association\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\Hypertarget{classns3_1_1Dect2020Mac_a46a785e3b014179e789194f2c9a2b5fa}\label{classns3_1_1Dect2020Mac_a46a785e3b014179e789194f2c9a2b5fa} 
+
+
+Resets association status if still pending. 
+
+If the device is still in ASSOCIATION\+\_\+\+PENDING, switches back to NOT\+\_\+\+ASSOCIATED. This prevents getting stuck in a pending state. \Hypertarget{classns3_1_1Dect2020Mac_a46a785e3b014179e789194f2c9a2b5fa}\label{classns3_1_1Dect2020Mac_a46a785e3b014179e789194f2c9a2b5fa} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!VerifyWaitingForSelectedFtAssociationStatus@{VerifyWaitingForSelectedFtAssociationStatus}}
 \index{VerifyWaitingForSelectedFtAssociationStatus@{VerifyWaitingForSelectedFtAssociationStatus}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{VerifyWaitingForSelectedFtAssociationStatus()}{VerifyWaitingForSelectedFtAssociationStatus()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Mac\+::\+Verify\+Waiting\+For\+Selected\+Ft\+Association\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
+
+Fallback if no Cluster Beacon was received after FT selection. 
+
+If the device is still waiting for the selected FT after a timeout, the association status is reset to NOT\+\_\+\+ASSOCIATED. 
 
 \doxysubsection{Member Data Documentation}
 \Hypertarget{classns3_1_1Dect2020Mac_ab3a191cfbca5efa0dec192edcd42340b}\label{classns3_1_1Dect2020Mac_ab3a191cfbca5efa0dec192edcd42340b} 
@@ -669,6 +1040,12 @@ Start sending a beacon periodically. \Hypertarget{classns3_1_1Dect2020Mac_a25bbd
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6}{ClusterBeaconPeriod::CLUSTER\_PERIOD\_100MS}}}
 
 \end{DoxyCode}
+\Hypertarget{classns3_1_1Dect2020Mac_a86342c8b5e36e544050a80cf19709219}\label{classns3_1_1Dect2020Mac_a86342c8b5e36e544050a80cf19709219} 
+\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_clusterBeaconPeriodTime@{m\_clusterBeaconPeriodTime}}
+\index{m\_clusterBeaconPeriodTime@{m\_clusterBeaconPeriodTime}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
+\doxysubsubsection{\texorpdfstring{m\_clusterBeaconPeriodTime}{m\_clusterBeaconPeriodTime}}
+{\footnotesize\ttfamily Time ns3\+::\+Dect2020\+Mac\+::m\+\_\+cluster\+Beacon\+Period\+Time = Milli\+Seconds(100)}
+
 \Hypertarget{classns3_1_1Dect2020Mac_a8da2320becc93d1e30d20a730b39b207}\label{classns3_1_1Dect2020Mac_a8da2320becc93d1e30d20a730b39b207} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_clusterChannelId@{m\_clusterChannelId}}
 \index{m\_clusterChannelId@{m\_clusterChannelId}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
@@ -699,12 +1076,6 @@ Start sending a beacon periodically. \Hypertarget{classns3_1_1Dect2020Mac_a25bbd
 \doxysubsubsection{\texorpdfstring{m\_deviceStartTime}{m\_deviceStartTime}}
 {\footnotesize\ttfamily Time ns3\+::\+Dect2020\+Mac\+::m\+\_\+device\+Start\+Time}
 
-\Hypertarget{classns3_1_1Dect2020Mac_a3da2beef2e5a4fffa7d3a708bc5332b0}\label{classns3_1_1Dect2020Mac_a3da2beef2e5a4fffa7d3a708bc5332b0} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_discoverNetworksEvent@{m\_discoverNetworksEvent}}
-\index{m\_discoverNetworksEvent@{m\_discoverNetworksEvent}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{m\_discoverNetworksEvent}{m\_discoverNetworksEvent}}
-{\footnotesize\ttfamily Event\+Id ns3\+::\+Dect2020\+Mac\+::m\+\_\+discover\+Networks\+Event}
-
 \Hypertarget{classns3_1_1Dect2020Mac_a8796ed8f35d73fa02272e789d38bfc5c}\label{classns3_1_1Dect2020Mac_a8796ed8f35d73fa02272e789d38bfc5c} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_fourierTransformScalingFactor@{m\_fourierTransformScalingFactor}}
 \index{m\_fourierTransformScalingFactor@{m\_fourierTransformScalingFactor}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
@@ -717,53 +1088,11 @@ Start sending a beacon periodically. \Hypertarget{classns3_1_1Dect2020Mac_a25bbd
 \doxysubsubsection{\texorpdfstring{m\_ftCandidates}{m\_ftCandidates}}
 {\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{structns3_1_1FtCandidateInfo}{Ft\+Candidate\+Info}}$>$ ns3\+::\+Dect2020\+Mac\+::m\+\_\+ft\+Candidates}
 
-\Hypertarget{classns3_1_1Dect2020Mac_ac827427170e5d1c4c78f732fb9d16e67}\label{classns3_1_1Dect2020Mac_ac827427170e5d1c4c78f732fb9d16e67} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_lastFtBeaconHeader@{m\_lastFtBeaconHeader}}
-\index{m\_lastFtBeaconHeader@{m\_lastFtBeaconHeader}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{m\_lastFtBeaconHeader}{m\_lastFtBeaconHeader}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020\+Beacon\+Header}} ns3\+::\+Dect2020\+Mac\+::m\+\_\+last\+Ft\+Beacon\+Header}
-
-\Hypertarget{classns3_1_1Dect2020Mac_a3a03a29a5557cf0c6df63d65fed1b225}\label{classns3_1_1Dect2020Mac_a3a03a29a5557cf0c6df63d65fed1b225} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_lastFtClusterBeaconMessage@{m\_lastFtClusterBeaconMessage}}
-\index{m\_lastFtClusterBeaconMessage@{m\_lastFtClusterBeaconMessage}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{m\_lastFtClusterBeaconMessage}{m\_lastFtClusterBeaconMessage}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020\+Cluster\+Beacon\+Message}} ns3\+::\+Dect2020\+Mac\+::m\+\_\+last\+Ft\+Cluster\+Beacon\+Message}
-
-\Hypertarget{classns3_1_1Dect2020Mac_ad63c740b041cee64b51c63a80d258f67}\label{classns3_1_1Dect2020Mac_ad63c740b041cee64b51c63a80d258f67} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_lastFtMacHeaderType@{m\_lastFtMacHeaderType}}
-\index{m\_lastFtMacHeaderType@{m\_lastFtMacHeaderType}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{m\_lastFtMacHeaderType}{m\_lastFtMacHeaderType}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType}{Dect2020\+Mac\+Header\+Type}} ns3\+::\+Dect2020\+Mac\+::m\+\_\+last\+Ft\+Mac\+Header\+Type}
-
 \Hypertarget{classns3_1_1Dect2020Mac_ad0ac94ca964c4ed678725a9e39249469}\label{classns3_1_1Dect2020Mac_ad0ac94ca964c4ed678725a9e39249469} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_lastFtMacMuxHeader@{m\_lastFtMacMuxHeader}}
 \index{m\_lastFtMacMuxHeader@{m\_lastFtMacMuxHeader}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
 \doxysubsubsection{\texorpdfstring{m\_lastFtMacMuxHeader}{m\_lastFtMacMuxHeader}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload}{Dect2020\+Mac\+Mux\+Header\+Short\+Sdu\+No\+Payload}} ns3\+::\+Dect2020\+Mac\+::m\+\_\+last\+Ft\+Mac\+Mux\+Header}
-
-\Hypertarget{classns3_1_1Dect2020Mac_abaae6ddc12910cf9a2750c6e9005dd48}\label{classns3_1_1Dect2020Mac_abaae6ddc12910cf9a2750c6e9005dd48} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_lastFtNetworkBeaconMessage@{m\_lastFtNetworkBeaconMessage}}
-\index{m\_lastFtNetworkBeaconMessage@{m\_lastFtNetworkBeaconMessage}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{m\_lastFtNetworkBeaconMessage}{m\_lastFtNetworkBeaconMessage}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020\+Network\+Beacon\+Message}} ns3\+::\+Dect2020\+Mac\+::m\+\_\+last\+Ft\+Network\+Beacon\+Message}
-
-\Hypertarget{classns3_1_1Dect2020Mac_a61c725c77b1acc4674ce7b3639bd62a9}\label{classns3_1_1Dect2020Mac_a61c725c77b1acc4674ce7b3639bd62a9} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_lastFtPhyHeaderField@{m\_lastFtPhyHeaderField}}
-\index{m\_lastFtPhyHeaderField@{m\_lastFtPhyHeaderField}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{m\_lastFtPhyHeaderField}{m\_lastFtPhyHeaderField}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020\+PHYControl\+Field\+Type1}} ns3\+::\+Dect2020\+Mac\+::m\+\_\+last\+Ft\+Phy\+Header\+Field}
-
-\Hypertarget{classns3_1_1Dect2020Mac_a8958551360839815f0908b4b1817b1f2}\label{classns3_1_1Dect2020Mac_a8958551360839815f0908b4b1817b1f2} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_lastFtRandomAccessResourceIE@{m\_lastFtRandomAccessResourceIE}}
-\index{m\_lastFtRandomAccessResourceIE@{m\_lastFtRandomAccessResourceIE}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{m\_lastFtRandomAccessResourceIE}{m\_lastFtRandomAccessResourceIE}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020\+Random\+Access\+Resource\+IE}} ns3\+::\+Dect2020\+Mac\+::m\+\_\+last\+Ft\+Random\+Access\+Resource\+IE}
-
-\Hypertarget{classns3_1_1Dect2020Mac_a41f21d8830f234a9eafa5174c67a5fa7}\label{classns3_1_1Dect2020Mac_a41f21d8830f234a9eafa5174c67a5fa7} 
-\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_lastFtUnicastHeader@{m\_lastFtUnicastHeader}}
-\index{m\_lastFtUnicastHeader@{m\_lastFtUnicastHeader}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
-\doxysubsubsection{\texorpdfstring{m\_lastFtUnicastHeader}{m\_lastFtUnicastHeader}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader}{Dect2020\+Unicast\+Header}} ns3\+::\+Dect2020\+Mac\+::m\+\_\+last\+Ft\+Unicast\+Header}
 
 \Hypertarget{classns3_1_1Dect2020Mac_a239f0613c320bf36d7eca4026bb57ffb}\label{classns3_1_1Dect2020Mac_a239f0613c320bf36d7eca4026bb57ffb} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_lastSfn@{m\_lastSfn}}
@@ -783,6 +1112,12 @@ Start sending a beacon periodically. \Hypertarget{classns3_1_1Dect2020Mac_a25bbd
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5}{NetworkBeaconPeriod::NETWORK\_PERIOD\_50MS}}}
 
 \end{DoxyCode}
+\Hypertarget{classns3_1_1Dect2020Mac_af7bf40fd3faf9a726e0afe18efaafca3}\label{classns3_1_1Dect2020Mac_af7bf40fd3faf9a726e0afe18efaafca3} 
+\index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_networkBeaconPeriodTime@{m\_networkBeaconPeriodTime}}
+\index{m\_networkBeaconPeriodTime@{m\_networkBeaconPeriodTime}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}
+\doxysubsubsection{\texorpdfstring{m\_networkBeaconPeriodTime}{m\_networkBeaconPeriodTime}}
+{\footnotesize\ttfamily Time ns3\+::\+Dect2020\+Mac\+::m\+\_\+network\+Beacon\+Period\+Time = Milli\+Seconds(100)}
+
 \Hypertarget{classns3_1_1Dect2020Mac_abb08d42dc9b4e31b34e004713929feee}\label{classns3_1_1Dect2020Mac_abb08d42dc9b4e31b34e004713929feee} 
 \index{ns3::Dect2020Mac@{ns3::Dect2020Mac}!m\_nextAvailableSubslot@{m\_nextAvailableSubslot}}
 \index{m\_nextAvailableSubslot@{m\_nextAvailableSubslot}!ns3::Dect2020Mac@{ns3::Dect2020Mac}}

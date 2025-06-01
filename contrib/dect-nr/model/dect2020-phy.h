@@ -27,10 +27,19 @@ struct Subslot;
 typedef Callback<void, Ptr<Packet>> RxReceivedCallback;
 
 /**
- * \brief DECT2020 PHY Klasse
+ * \file dect2020-phy.h
+ * \ingroup Dect2020Phy
+ * \brief Implements the Phy layer functionality for DECT-2020 NR.
  *
- * Diese Klasse implementiert die grundlegende PHY-Schichtfunktionalität
- * für das DECT2020 Modul.
+ * Handles PHY procedures such Frame/Slot/Subslot Management, packet transmission and reception,
+ * and interaction with the MAC layer.
+ */
+
+/**
+ * \class Dect2020Phy
+ * \brief DECT-2020 NR PHY layer implementation.
+ *
+ * Represents the Phyical Layer for a DECT-2020 NR node.
  */
 class Dect2020Phy : public SpectrumPhy
 {
@@ -48,22 +57,30 @@ class Dect2020Phy : public SpectrumPhy
     void Send(Ptr<Packet> packet, Dect2020PHYControlFieldType1 physicalHeader);
     void Receive(Ptr<Packet> packet);
 
+    // Starts the PHY Layer
     void Start();
 
-    // Kanalverwaltung
+    // Set/Get Channel
     void SetChannel(Ptr<SpectrumChannel> channel);
     Ptr<SpectrumChannel> GetChannel() const;
 
+    // Get Device
     Ptr<NetDevice> GetDevice() const;
 
+    // Frame/Slot/Subslot Management
     void StartFrameTimer();
     void ProcessSlot(uint32_t slot, double slotStartTime);
     void ProcessSubslot(uint32_t slotId, uint32_t subslotId);
     Slot* GetCurrentSlot(uint32_t channelId);
     Subslot* GetCurrentSubslot(uint32_t channelId);
     void SetReceiveCallback(Callback<void, Ptr<Packet>, double> cb);
-    // static const std::vector<Channel>& GetChannels();
     uint16_t GetCurrentAbsoluteSubslot() const;
+    uint16_t GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex); // In bits
+    double CalculateTxDurationNs(Dect2020PHYControlFieldType1 physicalHeaderField);
+    Time GetAbsoluteSubslotTime(uint8_t targetSfn, uint8_t slot, uint8_t subslot) const;
+    Time GetTimeUntilSubslot(uint8_t targetSfn, uint8_t targetSlot, uint8_t targetSubslot) const;
+    int GetAbsoluteSubslotIndex(uint8_t slot, uint8_t subslot) const;
+    Time GetTimeToNextAbsoluteSubslot(uint8_t targetSfn, uint8_t slot, uint8_t subslot) const;
 
     // Inherited Methods
     void SetMobility(Ptr<MobilityModel> m);
@@ -75,16 +92,16 @@ class Dect2020Phy : public SpectrumPhy
     void StartRx(Ptr<SpectrumSignalParameters> params);
     void EndRx(Ptr<SpectrumSignalParameters> params);
 
+    // The currently connected channel
     Ptr<Dect2020Channel> m_dect2020Channel;
-    uint16_t GetMcsTransportBlockSize(uint8_t mu, uint8_t beta, uint8_t mcsIndex); // In bits
-    double CalculateTxDurationNs(Dect2020PHYControlFieldType1 physicalHeaderField);
-    Time GetAbsoluteSubslotTime(uint8_t targetSfn, uint8_t slot, uint8_t subslot) const;
-    Time GetTimeUntilSubslot(uint8_t targetSfn, uint8_t targetSlot, uint8_t targetSubslot) const;
-    int GetAbsoluteSubslotIndex(uint8_t slot, uint8_t subslot) const;
-    Time GetTimeToNextAbsoluteSubslot(uint8_t targetSfn, uint8_t slot, uint8_t subslot) const;
 
+    // Current System Frame Number
     uint8_t m_currentSfn = 0;
-    uint16_t m_currentAbsoluteSubslot = 0; // The absolute subslot number in the frame
+
+    // The absolute subslot number in the frame
+    uint16_t m_currentAbsoluteSubslot = 0;
+
+    // The current frame start time in simulation time
     Time m_frameStartTime;
 
   private:

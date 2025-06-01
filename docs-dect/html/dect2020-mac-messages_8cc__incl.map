@@ -1,6 +1,6 @@
 <map id="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;messages.cc" name="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;messages.cc">
 <area shape="rect" id="Node000001" title=" " alt="" coords="357,5,565,45"/>
-<area shape="rect" id="Node000002" href="$dect2020-mac-messages_8h.html" title=" " alt="" coords="149,101,348,126"/>
+<area shape="rect" id="Node000002" href="$dect2020-mac-messages_8h.html" title="Defines MAC Messages used in DECT&#45;2020 NR MAC PDUs." alt="" coords="149,101,348,126"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="415,48,291,98,289,93,413,43"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="5,181,87,207"/>
 <area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="357,34,304,42,247,53,191,71,138,96,115,112,94,132,62,172,58,168,90,128,111,108,135,91,189,66,246,48,303,36,356,29"/>

@@ -140,45 +140,6 @@ plt.show()
 void
 EvaluateAssociationTimes(NetDeviceContainer devices)
 {
-    // std::ofstream out("association_distance_time.csv");
-    // out << "DeviceId,DistanceToAssociatedFT,AssociationTimeSeconds\n";
-
-    // for (uint32_t i = 0; i < devices.GetN(); ++i)
-    // {
-    //     Ptr<Dect2020NetDevice> dev = DynamicCast<Dect2020NetDevice>(devices.Get(i));
-    //     Ptr<Dect2020Mac> mac = dev->GetMac();
-    //     Ptr<MobilityModel> ptMob = dev->GetNode()->GetObject<MobilityModel>();
-
-    //     if (mac->GetAssociationStatus() == Dect2020Mac::ASSOCIATED)
-    //     {
-    //         Time associationTime = mac->m_successfulAssociationTime - mac->m_deviceStartTime;
-
-    //         // Hole FT-Position
-    //         uint64_t ftId = mac->m_associatedFTNetDeviceLongRdId;
-    //         Vector ftPos;
-    //         bool found = false;
-    //         for (uint32_t j = 0; j < devices.GetN(); ++j)
-    //         {
-    //             Ptr<Dect2020NetDevice> d = DynamicCast<Dect2020NetDevice>(devices.Get(j));
-    //             if (d->GetTerminationPointType() == TermPointType::FT &&
-    //                 d->GetMac()->GetLongRadioDeviceId() == ftId)
-    //             {
-    //                 ftPos = d->GetNode()->GetObject<MobilityModel>()->GetPosition();
-    //                 found = true;
-    //                 break;
-    //             }
-    //         }
-
-    //         if (found)
-    //         {
-    //             Vector ptPos = ptMob->GetPosition();
-    //             double distance = CalculateDistance(ptPos, ftPos);
-    //             out << mac->GetLongRadioDeviceId() << "," << distance << ","
-    //                 << associationTime.GetSeconds() << "\n";
-    //         }
-    //     }
-    // }
-
     std::string filename = "";
     uint32_t numberOfDevices = devices.GetN();
     filename = "association_times_" + std::to_string(numberOfDevices) + "_devices.csv";

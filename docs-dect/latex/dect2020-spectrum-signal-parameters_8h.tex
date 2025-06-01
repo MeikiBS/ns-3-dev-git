@@ -1,18 +1,25 @@
 \doxysection{contrib/dect-\/nr/model/dect2020-\/spectrum-\/signal-\/parameters.h File Reference}
 \hypertarget{dect2020-spectrum-signal-parameters_8h}{}\label{dect2020-spectrum-signal-parameters_8h}\index{contrib/dect-\/nr/model/dect2020-\/spectrum-\/signal-\/parameters.h@{contrib/dect-\/nr/model/dect2020-\/spectrum-\/signal-\/parameters.h}}
+
+
+Defines signal parameter structure for DECT-\/2020 NR PHY layer transmissions.  
+
+
 {\ttfamily \#include "{}ns3/antenna-\/model.\+h"{}}\newline
 {\ttfamily \#include "{}ns3/packet.\+h"{}}\newline
 {\ttfamily \#include "{}ns3/spectrum-\/phy.\+h"{}}\newline
 {\ttfamily \#include "{}ns3/spectrum-\/signal-\/parameters.\+h"{}}\newline
 {\ttfamily \#include "{}ns3/spectrum-\/value.\+h"{}}\newline
-Include dependency graph for dect2020-\/spectrum-\/signal-\/parameters.h\+:\nopagebreak
+Include dependency graph for dect2020-\/spectrum-\/signal-\/parameters.h\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{dect2020-spectrum-signal-parameters_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -23,9 +30,17 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classns3_1_1Dect2020SpectrumSignalParameters}{ns3\+::\+Dect2020\+Spectrum\+Signal\+Parameters}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Signal parameters used by the DECT-\/2020 PHY layer in Spectrum\+Channel transmissions. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespacens3}{ns3}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines signal parameter structure for DECT-\/2020 NR PHY layer transmissions. 
+
+This header extends ns-\/3\textquotesingle{}s Spectrum\+Signal\+Parameters to include DECT-\/specific transmission attributes such as the currently used channel ID and the pointer to the transmitted packet.
+
+It is used by the Dect2020\+Phy layer to transmit packets via ns-\/3\textquotesingle{}s Spectrum\+Channel framework. 

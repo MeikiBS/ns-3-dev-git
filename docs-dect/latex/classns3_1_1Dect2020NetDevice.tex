@@ -2,7 +2,7 @@
 \hypertarget{classns3_1_1Dect2020NetDevice}{}\label{classns3_1_1Dect2020NetDevice}\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
 
 
-DECT2020 Net\+Device Klasse.  
+Represents a DECT-\/2020 NR Net\+Device in ns-\/3.  
 
 
 
@@ -33,7 +33,7 @@ Collaboration diagram for ns3\+::Dect2020\+Net\+Device\+:\nopagebreak
 enum \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}} \{ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a57e3b3dc7019eb213bb23c9f87444842}{PT}}
 , \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a4c46711cf18c3bbfa6c933d6935ed5f6}{FT}}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Termination point type of the DECT device. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -42,7 +42,7 @@ enum \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e524315560
 virtual \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a7ce30bc25af7c757f03c67bac4dc67c0}{\texorpdfstring{$\sim$}{\string~}\+Dect2020\+Net\+Device}} ()
 \item 
 void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_abf9d8e29f49e0b5f3f79c8a9326e8e31}{Set\+Termination\+Point\+Type}} (\mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}} tpm)
-\begin{DoxyCompactList}\small\item\em Sets the termination point type of the device. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Set the termination point type (PT or FT). \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}} \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a740875741e82ba2d1a2dba1696820458}{Get\+Termination\+Point\+Type}} ()
 \begin{DoxyCompactList}\small\item\em Gets the termination point type of the device. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a544900bdb5d6c03b9b5c0568f968c233}{Set\+If\+Index}} (const uint32\+\_\+t index) override
@@ -76,9 +76,9 @@ virtual Address \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aa23d3724cabec3f6
 virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a3595545196154c18d586289cb6bf4b84}{Is\+Point\+To\+Point}} (void) const override
 \item 
 virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a56815b0c672e1682d6d663e01117185e}{Send}} (Ptr$<$ Packet $>$ packet, const Address \&dest, uint16\+\_\+t protocol\+Number) override
-\item 
+\begin{DoxyCompactList}\small\item\em Dect\+Net\+Device Send Method. Currently not used. \end{DoxyCompactList}\item 
 virtual bool \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_abac503b5be2830db2cc782b6f8252968}{Send\+From}} (Ptr$<$ Packet $>$ packet, const Address \&source, const Address \&dest, uint16\+\_\+t protocol\+Number) override
-\item 
+\begin{DoxyCompactList}\small\item\em Dect\+Net\+Device Send\+From Method. Currently not used. \end{DoxyCompactList}\item 
 virtual Ptr$<$ Node $>$ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a399fc544c2d0d5b6c9dbf59e55368e3d}{Get\+Node}} (void) const override
 \item 
 virtual void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a1101386767c493f8e4c16603ac57a553}{Set\+Node}} (Ptr$<$ Node $>$ node) override
@@ -102,17 +102,17 @@ void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a25bfbde6d3df4db34ea4d2caff0
 Ptr$<$ \mbox{\hyperlink{classns3_1_1Dect2020Phy}{Dect2020\+Phy}} $>$ \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_afe44a222d46200cbc0702177bc47ad9f}{Get\+Phy}} (void) const
 \item 
 void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a4a9cd416891c68946f4cb5d1e836f855}{Receive}} (Ptr$<$ Packet $>$ packet)
-\item 
+\begin{DoxyCompactList}\small\item\em Dect\+Net\+Device Receive Method. Currently not used. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad65be437745e8255de887455db30c77a}{Set\+Link\+Up}} (void)
 \item 
 void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ad30f8b0b6cc35caa6a947cb62a789e83}{Set\+Link\+Down}} (void)
 \item 
 void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ab357fc0ef9ab439544c4d066bce4be95}{Set\+Band\+Number}} (uint8\+\_\+t band\+Number)
-\item 
+\begin{DoxyCompactList}\small\item\em Set the operating band number (1–22). \end{DoxyCompactList}\item 
 uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a2eefa88119653f835a7684cda74d822d}{Get\+Band\+Number}} (void) const
-\item 
+\begin{DoxyCompactList}\small\item\em Get the configured band number. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_aae4bb66f382b834b849a2d12dcdae922}{Set\+Bootstrapping\+Variables}} (bool is\+FT)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Initialize bootstrapping parameters for FT/\+PT. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -122,6 +122,8 @@ static Type\+Id \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_afe9bcae03d13a1c5
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}} \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a13d886e2e77bce4aa7fde44adda49890}{m\+\_\+termination\+Point\+Type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a4b9702aab766926bcb11a2a9d93ea45d}{m\+\_\+random\+Access\+Resource\+Length}}
 \item 
 uint8\+\_\+t \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_ab163903c3692b590ff393d53fb816c2b}{m\+\_\+num\+Of\+PHYCapabilities}}
 \item 
@@ -166,9 +168,9 @@ double \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a5089c1e2107fe8550c89fec78
 
 
 \doxysubsection{Detailed Description}
-DECT2020 Net\+Device Klasse. 
+Represents a DECT-\/2020 NR Net\+Device in ns-\/3. 
 
-Diese Klasse repräsentiert ein DECT2020 Netzwerkgerät in ns-\/3. 
+This class models a DECT-\/2020 radio device and connects it to the ns-\/3 simulation framework via the Net\+Device abstraction. It integrates MAC and PHY layers, manages device configuration, and facilitates simulation of both Portable Terminations (PT) and Fixed Terminations (FT). 
 
 \doxysubsection{Member Enumeration Documentation}
 \Hypertarget{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}\label{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17} 
@@ -177,7 +179,11 @@ Diese Klasse repräsentiert ein DECT2020 Netzwerkgerät in ns-\/3.
 \doxysubsubsection{\texorpdfstring{TerminationPointType}{TerminationPointType}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{ns3\+::\+Dect2020\+Net\+Device\+::\+Termination\+Point\+Type}}}
 
-The possible Termination Point Types (PT or FT) \begin{DoxyEnumFields}{Enumerator}
+
+
+Termination point type of the DECT device. 
+
+\begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{PT@{PT}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!PT@{PT}}}\Hypertarget{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a57e3b3dc7019eb213bb23c9f87444842}\label{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17a57e3b3dc7019eb213bb23c9f87444842} 
 PT&\\
 \hline
@@ -223,6 +229,13 @@ FT&\\
 \doxysubsubsection{\texorpdfstring{GetBandNumber()}{GetBandNumber()}}
 {\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::\+Get\+Band\+Number (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
 
+
+
+Get the configured band number. 
+
+\begin{DoxyReturn}{Returns}
+Band number. 
+\end{DoxyReturn}
 \Hypertarget{classns3_1_1Dect2020NetDevice_a0c0e4907062f3fd3a9db198568d123ee}\label{classns3_1_1Dect2020NetDevice_a0c0e4907062f3fd3a9db198568d123ee} 
 \index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!GetBroadcast@{GetBroadcast}}
 \index{GetBroadcast@{GetBroadcast}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
@@ -338,17 +351,29 @@ The termination point type of the device (PT or FT)
 \doxysubsubsection{\texorpdfstring{Receive()}{Receive()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Receive (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet }\end{DoxyParamCaption})}
 
+
+
+Dect\+Net\+Device Receive Method. Currently not used. 
+
 \Hypertarget{classns3_1_1Dect2020NetDevice_a56815b0c672e1682d6d663e01117185e}\label{classns3_1_1Dect2020NetDevice_a56815b0c672e1682d6d663e01117185e} 
 \index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!Send@{Send}}
 \index{Send@{Send}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
 \doxysubsubsection{\texorpdfstring{Send()}{Send()}}
 {\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Send (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet,  }\item[{const Address \&}]{dest,  }\item[{uint16\+\_\+t}]{protocol\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
+
+
+Dect\+Net\+Device Send Method. Currently not used. 
+
 \Hypertarget{classns3_1_1Dect2020NetDevice_abac503b5be2830db2cc782b6f8252968}\label{classns3_1_1Dect2020NetDevice_abac503b5be2830db2cc782b6f8252968} 
 \index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SendFrom@{SendFrom}}
 \index{SendFrom@{SendFrom}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
 \doxysubsubsection{\texorpdfstring{SendFrom()}{SendFrom()}}
 {\footnotesize\ttfamily bool ns3\+::\+Dect2020\+Net\+Device\+::\+Send\+From (\begin{DoxyParamCaption}\item[{Ptr$<$ Packet $>$}]{packet,  }\item[{const Address \&}]{source,  }\item[{const Address \&}]{dest,  }\item[{uint16\+\_\+t}]{protocol\+Number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Dect\+Net\+Device Send\+From Method. Currently not used. 
 
 \Hypertarget{classns3_1_1Dect2020NetDevice_adebf86a43236c7df1b4462e59ea35ee1}\label{classns3_1_1Dect2020NetDevice_adebf86a43236c7df1b4462e59ea35ee1} 
 \index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetAddress@{SetAddress}}
@@ -362,12 +387,30 @@ The termination point type of the device (PT or FT)
 \doxysubsubsection{\texorpdfstring{SetBandNumber()}{SetBandNumber()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Band\+Number (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{band\+Number }\end{DoxyParamCaption})}
 
+
+
+Set the operating band number (1–22). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em band\+Number} & Band number. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020NetDevice_aae4bb66f382b834b849a2d12dcdae922}\label{classns3_1_1Dect2020NetDevice_aae4bb66f382b834b849a2d12dcdae922} 
 \index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetBootstrappingVariables@{SetBootstrappingVariables}}
 \index{SetBootstrappingVariables@{SetBootstrappingVariables}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
 \doxysubsubsection{\texorpdfstring{SetBootstrappingVariables()}{SetBootstrappingVariables()}}
 {\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Bootstrapping\+Variables (\begin{DoxyParamCaption}\item[{bool}]{is\+FT }\end{DoxyParamCaption})}
 
+
+
+Initialize bootstrapping parameters for FT/\+PT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+FT} & Whether this device is FT (true) or PT (false). \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classns3_1_1Dect2020NetDevice_a544900bdb5d6c03b9b5c0568f968c233}\label{classns3_1_1Dect2020NetDevice_a544900bdb5d6c03b9b5c0568f968c233} 
 \index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetIfIndex@{SetIfIndex}}
 \index{SetIfIndex@{SetIfIndex}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
@@ -426,13 +469,20 @@ The termination point type of the device (PT or FT)
 \index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SetTerminationPointType@{SetTerminationPointType}}
 \index{SetTerminationPointType@{SetTerminationPointType}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
 \doxysubsubsection{\texorpdfstring{SetTerminationPointType()}{SetTerminationPointType()}}
-{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Termination\+Point\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}}}]{tpm }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void ns3\+::\+Dect2020\+Net\+Device\+::\+Set\+Termination\+Point\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classns3_1_1Dect2020NetDevice_a62671099630224850e52431556031d17}{Termination\+Point\+Type}}}]{tpt }\end{DoxyParamCaption})}
 
 
 
-Sets the termination point type of the device. 
+Set the termination point type (PT or FT). 
 
-Note\+: In typical DECT implementations, the termination point type (PT or FT) would be dynamically determined by the device. However, for simplicity and initial testing purposes, the type is set manually during device creation in this simulation. \Hypertarget{classns3_1_1Dect2020NetDevice_a053867be483f4736c98fc9dff8cf1084}\label{classns3_1_1Dect2020NetDevice_a053867be483f4736c98fc9dff8cf1084} 
+
+\begin{DoxyParams}{Parameters}
+{\em tpm} & The termination point type.\\
+\hline
+{\em tpt} & The termination point type to set. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classns3_1_1Dect2020NetDevice_a053867be483f4736c98fc9dff8cf1084}\label{classns3_1_1Dect2020NetDevice_a053867be483f4736c98fc9dff8cf1084} 
 \index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!SupportsSendFrom@{SupportsSendFrom}}
 \index{SupportsSendFrom@{SupportsSendFrom}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
 \doxysubsubsection{\texorpdfstring{SupportsSendFrom()}{SupportsSendFrom()}}
@@ -506,6 +556,12 @@ Note\+: In typical DECT implementations, the termination point type (PT or FT) w
 \index{m\_operatingModes@{m\_operatingModes}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
 \doxysubsubsection{\texorpdfstring{m\_operatingModes}{m\_operatingModes}}
 {\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+operating\+Modes}
+
+\Hypertarget{classns3_1_1Dect2020NetDevice_a4b9702aab766926bcb11a2a9d93ea45d}\label{classns3_1_1Dect2020NetDevice_a4b9702aab766926bcb11a2a9d93ea45d} 
+\index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_randomAccessResourceLength@{m\_randomAccessResourceLength}}
+\index{m\_randomAccessResourceLength@{m\_randomAccessResourceLength}!ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}}
+\doxysubsubsection{\texorpdfstring{m\_randomAccessResourceLength}{m\_randomAccessResourceLength}}
+{\footnotesize\ttfamily uint8\+\_\+t ns3\+::\+Dect2020\+Net\+Device\+::m\+\_\+random\+Access\+Resource\+Length}
 
 \Hypertarget{classns3_1_1Dect2020NetDevice_ad31824b78655dc671e90b4547500ca69}\label{classns3_1_1Dect2020NetDevice_ad31824b78655dc671e90b4547500ca69} 
 \index{ns3::Dect2020NetDevice@{ns3::Dect2020NetDevice}!m\_rdPowerClass@{m\_rdPowerClass}}

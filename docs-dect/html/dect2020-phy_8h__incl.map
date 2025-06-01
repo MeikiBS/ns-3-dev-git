@@ -1,10 +1,10 @@
 <map id="contrib/dect&#45;nr/model/dect2020&#45;phy.h" name="contrib/dect&#45;nr/model/dect2020&#45;phy.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="720,5,883,45"/>
-<area shape="rect" id="Node000002" href="$dect2020-physical-header-field_8h.html" title=" " alt="" coords="129,93,319,133"/>
+<area shape="rect" id="Node000001" title="Implements the Phy layer functionality for DECT&#45;2020 NR." alt="" coords="720,5,883,45"/>
+<area shape="rect" id="Node000002" href="$dect2020-physical-header-field_8h.html" title="Definition of physical layer control field headers (Type 1 and Type 2) for DECT&#45;2020 NR." alt="" coords="129,93,319,133"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="720,41,333,99,333,93,719,36"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="271,189,377,214"/>
 <area shape="poly" id="edge12_Node000001_Node000005" title=" " alt="" coords="720,36,599,55,533,72,469,96,434,115,400,137,347,181,344,177,397,133,431,110,467,91,531,67,598,50,719,30"/>
-<area shape="rect" id="Node000006" href="$dect2020-spectrum-signal-parameters_8h.html" title=" " alt="" coords="513,93,705,133"/>
+<area shape="rect" id="Node000006" href="$dect2020-spectrum-signal-parameters_8h.html" title="Defines signal parameter structure for DECT&#45;2020 NR PHY layer transmissions." alt="" coords="513,93,705,133"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="760,48,665,90,663,85,758,43"/>
 <area shape="rect" id="Node000008" title=" " alt="" coords="401,189,505,214"/>
 <area shape="poly" id="edge14_Node000001_Node000008" title=" " alt="" coords="720,39,595,61,540,77,503,95,487,113,475,134,460,176,455,175,470,132,482,110,500,91,538,72,593,56,719,34"/>

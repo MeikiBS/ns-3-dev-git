@@ -27,266 +27,300 @@
 \DoxyCodeLine{00023\ \textcolor{keyword}{class\ }Dect2020NetDevice;}
 \DoxyCodeLine{00024\ \textcolor{keyword}{class\ }Dect2020Phy;}
 \DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structns3_1_1ChannelEvaluation}{ChannelEvaluation}}}
-\DoxyCodeLine{00027\ \{}
-\DoxyCodeLine{00028\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a45d60bd13f7810e64f2cc0ea46c582b6}{channelId}};}
-\DoxyCodeLine{00029\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a92220209528ccf9eea572151d5179c96}{free}}\ =\ 0;}
-\DoxyCodeLine{00030\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a5a5871c4a70652ec6f462086203db624}{possible}}\ =\ 0;}
-\DoxyCodeLine{00031\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a196e542664350af0516ea7e321f1957d}{busy}}\ =\ 0;}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a14b0d7712ecbe34ae0ae3ff6b768caea}{Total}}()\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00034\ \textcolor{keyword}{\ \ \ \ }\{}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a92220209528ccf9eea572151d5179c96}{free}}\ +\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a5a5871c4a70652ec6f462086203db624}{possible}}\ +\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a196e542664350af0516ea7e321f1957d}{busy}};}
-\DoxyCodeLine{00036\ \ \ \ \ \}}
-\DoxyCodeLine{00037\ \};}
-\DoxyCodeLine{00038\ }
-\DoxyCodeLine{00039\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}}
-\DoxyCodeLine{00040\ \{}
-\DoxyCodeLine{00041\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a1d72c813e25da035f58ca8f07af3951d}{shortNetworkId}};\ \textcolor{comment}{//\ Short\ Network\ ID\ of\ the\ FT\ candidate}}
-\DoxyCodeLine{00042\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ae0cdb5563aaceb625357dd6a21c3b27d}{networkId}};\ \ \ \ \ \textcolor{comment}{//\ Network\ ID\ of\ the\ FT\ candidate}}
-\DoxyCodeLine{00043\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a7fe702c304965a2e3ac8128eb73d4b40}{shortFtId}};\ \ \ \ \ \textcolor{comment}{//\ Short\ RD\ ID\ of\ the\ FT\ candidate}}
-\DoxyCodeLine{00044\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ad35cc729a6c2ea8cd1b7e0b5cf987e3d}{longFtId}};\ \ \ \ \ \ \textcolor{comment}{//\ Long\ RD\ ID\ of\ the\ FT\ candidate}}
-\DoxyCodeLine{00045\ }
-\DoxyCodeLine{00046\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a28618169d4020465a899c7926b7f576f}{clusterChannelId}};}
-\DoxyCodeLine{00047\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ae7f876a79010583df9800a9a2095ae05}{sfn}};}
-\DoxyCodeLine{00048\ \ \ \ \ Time\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a662739d332433bb59c98b375bdb9fef8}{receptionTime}};}
-\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a2803526a436e553655859ebbf2cb506c}{rssiDbm}};}
-\DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020PHYControlFieldType1}}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ab318c7681b24517ff25bdbb9f5a8cde9}{ftPhyHeaderField}};\ \textcolor{comment}{//\ Last\ received\ Physical\ Header\ Field}}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Dect2020MacHeaderType\ ftMacHeaderType;\ \ \ \ \ \ \ \ //\ Last\ received\ MAC\ Header\ Type}}
-\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020BeaconHeader}}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a53c238185a6de0acd1871386eba1e375}{ftBeaconHeader}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Last\ received\ Beacon\ Header}}
-\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader}{Dect2020UnicastHeader}}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ab95886724b2713ca8153b83a031e1bcb}{ftUnicastHeader}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Last\ received\ Unicast\ Header}}
-\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020NetworkBeaconMessage}}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_aaaaf3a5abe5d97c9af775b1bfeb5d629}{ftNetworkBeaconMessage}};\ \textcolor{comment}{//\ Last\ received\ Network\ Beacon\ Message}}
-\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020ClusterBeaconMessage}}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ade3d5109d9175961822e7adc7e632b6d}{ftClusterBeaconMessage}};\ \textcolor{comment}{//\ Last\ received\ Cluster\ Beacon\ Message}}
-\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020RandomAccessResourceIE}}}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a5583ab5305bbab3c5436a1783b84f808}{ftRandomAccessResourceIE}};\ \textcolor{comment}{//\ Last\ received\ Random\ Access\ Resource\ IE}}
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ Dect2020MacMuxHeaderShortSduNoPayload}}
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ mftMacMuxHeader;\ //\ Last\ received\ MAC\ Multiplexing\ Header}}
-\DoxyCodeLine{00061\ \};}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structns3_1_1AssociatedPtInfo}{AssociatedPtInfo}}}
-\DoxyCodeLine{00064\ \{}
-\DoxyCodeLine{00065\ \ \ \ \ Time\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_abe8ca17d0d4d2874a0fc95d3f083f75f}{associationEstablished}};}
-\DoxyCodeLine{00066\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a2b329d8e96afed379a337f27c46c8e25}{longRdId}};\ \textcolor{comment}{//\ Long\ Radio\ Device\ ID\ of\ the\ PT}}
-\DoxyCodeLine{00067\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a36375443d75023046dd7eec40c413dc6}{numberOfFlows}};}
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_ac4a7d73bf7bb7145fca73c06ef2d5cb2}{powerConstraints}};}
-\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a31d1e5292b35586ede4226c4834750b6}{ftMode}};}
-\DoxyCodeLine{00070\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a5f68affb7a569ca3698fb30b16f13b22}{harqProcessesTx}};}
-\DoxyCodeLine{00071\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_af68bf6b01fd78338b6959741b3b788ab}{maxHarqReTxDelay}};}
-\DoxyCodeLine{00072\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_afc7d6eaa354ef581d42af37e19cb81d2}{harqProcessesRx}};}
-\DoxyCodeLine{00073\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a3194d63fd55cbeb554b9c998a3e23717}{maxHarqReRxDelay}};}
-\DoxyCodeLine{00074\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a1f7788cbc17434ee7875358346d4dbc3}{flowId}};}
-\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_aae111a692cfde53bee0535c7ff8a7dec}{cb\_m}};}
-\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020RdCapabilityIE}}\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a9eef5b788eb088b8c2c4ac2f0843b9af}{rdCapabilityIe}};}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a6bae373d267005b20ced324f94bf6e69}{lastRssi}};}
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structns3_1_1ChannelEvaluation}{ChannelEvaluation}}}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a45d60bd13f7810e64f2cc0ea46c582b6}{channelId}};}
+\DoxyCodeLine{00043\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a92220209528ccf9eea572151d5179c96}{free}}\ =\ 0;}
+\DoxyCodeLine{00044\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a5a5871c4a70652ec6f462086203db624}{possible}}\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a196e542664350af0516ea7e321f1957d}{busy}}\ =\ 0;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a14b0d7712ecbe34ae0ae3ff6b768caea}{Total}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00048\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a92220209528ccf9eea572151d5179c96}{free}}\ +\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a5a5871c4a70652ec6f462086203db624}{possible}}\ +\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation_a196e542664350af0516ea7e321f1957d}{busy}};}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a1d72c813e25da035f58ca8f07af3951d}{shortNetworkId}};\ \textcolor{comment}{//\ Short\ Network\ ID\ of\ the\ FT\ candidate}}
+\DoxyCodeLine{00063\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ae0cdb5563aaceb625357dd6a21c3b27d}{networkId}};\ \ \ \ \ \textcolor{comment}{//\ Network\ ID\ of\ the\ FT\ candidate}}
+\DoxyCodeLine{00064\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a7fe702c304965a2e3ac8128eb73d4b40}{shortFtId}};\ \ \ \ \ \textcolor{comment}{//\ Short\ RD\ ID\ of\ the\ FT\ candidate}}
+\DoxyCodeLine{00065\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ad35cc729a6c2ea8cd1b7e0b5cf987e3d}{longFtId}};\ \ \ \ \ \ \textcolor{comment}{//\ Long\ RD\ ID\ of\ the\ FT\ candidate}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a28618169d4020465a899c7926b7f576f}{clusterChannelId}};}
+\DoxyCodeLine{00068\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ae7f876a79010583df9800a9a2095ae05}{sfn}};}
+\DoxyCodeLine{00069\ \ \ \ \ Time\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a662739d332433bb59c98b375bdb9fef8}{receptionTime}};}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a2803526a436e553655859ebbf2cb506c}{rssiDbm}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020PHYControlFieldType1}}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ab318c7681b24517ff25bdbb9f5a8cde9}{ftPhyHeaderField}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Last\ received\ Physical\ Header\ Field}}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020BeaconHeader}}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a53c238185a6de0acd1871386eba1e375}{ftBeaconHeader}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Last\ received\ Beacon\ Header}}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader}{Dect2020UnicastHeader}}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ab95886724b2713ca8153b83a031e1bcb}{ftUnicastHeader}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Last\ received\ Unicast\ Header}}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020NetworkBeaconMessage}}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_aaaaf3a5abe5d97c9af775b1bfeb5d629}{ftNetworkBeaconMessage}};\ \textcolor{comment}{//\ Last\ received\ Network\ Beacon\ Message}}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020ClusterBeaconMessage}}\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_ade3d5109d9175961822e7adc7e632b6d}{ftClusterBeaconMessage}};\ \textcolor{comment}{//\ Last\ received\ Cluster\ Beacon\ Message}}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020RandomAccessResourceIE}}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structns3_1_1FtCandidateInfo_a5583ab5305bbab3c5436a1783b84f808}{ftRandomAccessResourceIE}};\ \textcolor{comment}{//\ Last\ received\ Random\ Access\ Resource\ IE}}
 \DoxyCodeLine{00079\ \};}
 \DoxyCodeLine{00080\ }
-\DoxyCodeLine{00081\ \textcolor{comment}{//\ Structure\ to\ hold\ the\ context\ for\ subslot\ scanning}}
-\DoxyCodeLine{00082\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structns3_1_1SubslotScanContext}{SubslotScanContext}}}
-\DoxyCodeLine{00083\ \{}
-\DoxyCodeLine{00084\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1SubslotScanContext_ae645a2b31b24b11a266acfc9586f3bc6}{channelId}};}
-\DoxyCodeLine{00085\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1SubslotScanContext_aa8f2af8964b40da85286a6539720ddae}{subslotCount}};\ \textcolor{comment}{//\ Counter\ for\ how\ many\ Subslots\ have\ been\ measured}}
-\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{structns3_1_1ChannelEvaluation}{ChannelEvaluation}}\ \mbox{\hyperlink{structns3_1_1SubslotScanContext_a6beb8f92d986ad7e305c10a554129deb}{evaluation}};}
-\DoxyCodeLine{00087\ \ \ \ \ std::function<void(\textcolor{keyword}{const}\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation}{ChannelEvaluation}}\&)>}
-\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structns3_1_1SubslotScanContext_aa6d87605801abec69fead83150e4c95f}{onComplete}};\ \textcolor{comment}{//\ Callback\ to\ be\ called\ when\ the\ scan\ is\ complete\ (OperatingChannelSelection,}}
-\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ LBT,\ ...)}}
-\DoxyCodeLine{00090\ \};}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00098\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020Mac}}\ :\ \textcolor{keyword}{public}\ Object}
-\DoxyCodeLine{00099\ \{}
-\DoxyCodeLine{00100\ \ \ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2}{Dect2020PacketType}}}
-\DoxyCodeLine{00102\ \ \ \ \ \{}
-\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a97fa82dad0076ca5e8282eab9e18a47a}{DATA}}\ =\ 0,}
-\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a380b94c95bb3a36466bfcf8426f9bc1a}{BEACON}}\ =\ 1,}
-\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a07e8c8e80b3af845b0f734c9484b30e0}{UNICAST}}\ =\ 2,}
-\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a5a7b619d68022a12f5843578eacc3afc}{RD\_BROADCAST}}\ =\ 3}
-\DoxyCodeLine{00107\ \ \ \ \ \};}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}{AssociationStatus}}}
-\DoxyCodeLine{00110\ \ \ \ \ \{}
-\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b}{NOT\_ASSOCIATED}},}
-\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea0da00aaf3e48b310241005828be7f225}{ASSOCIATION\_PREPARING}},}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea5ad820a1305ae0cfc52578c42343cd22}{WAITING\_FOR\_SELECTED\_FT}},}
-\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea84a5180ab171557f37aec8be90f37a16}{ASSOCIATION\_PENDING}},}
-\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea37a70b2bd43071e43ce1f6d07b253abe}{ASSOCIATED}}}
-\DoxyCodeLine{00116\ \ \ \ \ \};}
-\DoxyCodeLine{00117\ }
-\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a582836009dc68af32a41af41afef44e8}{GetTypeId}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00119\ }
-\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab57dc8784f9bcade1aa31f70a502a6b4}{Dect2020Mac}}();}
-\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1c14c217d59fe1f63a8c35d01361f97e}{\string~Dect2020Mac}}();}
-\DoxyCodeLine{00122\ }
-\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a46a0f01d6890c2782c247afd9e03d3a3}{Start}}();}
-\DoxyCodeLine{00127\ }
-\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//\ Methoden\ zum\ Setzen\ der\ NetDevice\ und\ Phy}}
-\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac0942ff5fdf363ceb262ba3d99ae1c83}{SetNetDevice}}(Ptr<Dect2020NetDevice>\ device);}
-\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_afb36573ecf25b73a44bf187cc4899bfb}{SetPhy}}(Ptr<Dect2020Phy>\ phy);}
-\DoxyCodeLine{00131\ }
-\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ Send\ a\ MAC\ PDU}}
-\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a958672211af7dce119811ba1e90c01a6}{Send}}(Ptr<Packet>\ packet,\ \textcolor{keyword}{const}\ Address\&\ dest,\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2}{Dect2020PacketType}}\ type);}
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ Empfang\ von\ Paketen\ von\ der\ PHY-\/Schicht}}
-\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a33c8e4d4610fbaa917d91ddc72fb84e8}{ReceiveFromPhy}}(Ptr<Packet>\ packet,\ \textcolor{keywordtype}{double}\ rssiDbm);}
-\DoxyCodeLine{00137\ }
-\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ Zugriff\ auf\ die\ Mac-\/Adresse\ des\ NetDevice}}
-\DoxyCodeLine{00139\ \ \ \ \ Mac48Address\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_adcaf418f1a1c474c468ef4ebd0472182}{GetAddress}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00140\ }
-\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a9d0d1e0db1839e55787a88876aca429f}{SetCurrentChannelId}}(uint32\_t\ channelId);}
-\DoxyCodeLine{00142\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acff913ff839025f5d69c21ca0a1387aa}{GetCurrentChannelId}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00143\ }
-\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a36c239034dfb7ecf13053446da830cca}{InitializeNetwork}}();}
-\DoxyCodeLine{00154\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad0884b0fc0b6329a47bdd09dc4fdd569}{GenerateValidNetworkId}}();}
-\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a6759fbb033aed3afd7bc3090b597864e}{JoinNetwork}}(uint32\_t\ networkId);}
-\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_abf8424b1e657622d75687b24d274dff7}{SetNetworkId}}(uint32\_t\ networkId);}
-\DoxyCodeLine{00167\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5950b89914e0028083ba1cfc8ee4c494}{GetNetworkId}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ae50d4d70cb6a5967078ae2b57139418c}{StartBeaconTransmission}}();}
-\DoxyCodeLine{00177\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab624190de7a3ae79d00b012abb19eb59}{GenerateLongRadioDeviceId}}();}
-\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a9b6f825b11086ac76d08f88d02e99596}{SetLongRadioDeviceId}}(uint32\_t\ rdId);}
-\DoxyCodeLine{00185\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0cd71882a73de1a39c97bf5659b7187f}{GetLongRadioDeviceId}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00191\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a3a563a578c7a5b9fd6a9e4cc2876a1a5}{GenerateShortRadioDeviceId}}();}
-\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1dc71f1ac27006d4c932d0ffb7fe3996}{SetShortRadioDeviceId}}(uint16\_t\ rdId);}
-\DoxyCodeLine{00199\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a992eec6593c57cac2b25088819adca0f}{GetShortRadioDeviceId}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00200\ \ \ \ \ \textcolor{comment}{/*}}
-\DoxyCodeLine{00201\ \textcolor{comment}{\ \ \ \ \ *\ Initialize\ the\ MAC-\/Layer\ of\ the\ Device}}
-\DoxyCodeLine{00202\ \textcolor{comment}{\ \ \ \ \ */}}
-\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab0a43e61de5976775531246105ef5f94}{InitializeDevice}}();}
-\DoxyCodeLine{00204\ }
-\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a61a54f3b6af87a202fcfa4b1e9587381}{OperatingChannelSelection}}();}
-\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad2ab41546a10f85cd14db62d4c67ef8e}{EvaluateAllChannels}}();}
-\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a4140324572b6872fdb33605dfb0ffdd5}{StartNetworkBeaconSweep}}();}
-\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a25bbd22c04b77bc9da82544c8d6a074f}{StartClusterBeaconTransmission}}();}
-\DoxyCodeLine{00209\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020RandomAccessResourceIE}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac5e0ab65f4c5cf110e6d4c2a5b18f995}{BuildRandomAccessResourceIE}}();}
-\DoxyCodeLine{00210\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0441196225d968f4d2d89ec1f5f8d19d}{CalculateAbsoluteStartSubslot}}();}
-\DoxyCodeLine{00211\ \ \ \ \ Ptr<Packet>\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af95aec82f14db6ad1e989395292c4d57}{BuildBeacon}}(\textcolor{keywordtype}{bool}\ isCluster,\ uint16\_t\ networkBeaconTransmissionChannelId);}
-\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a6e679793d4dcad6bf112d157bb10c664}{ReturnToOperatingChannel}}();}
-\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac2ad6de504bcda0de2c170652fd9d363}{HandleBeaconPacket}}(Ptr<Packet>\ packet,\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}*\ ft);}
-\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a71d25d793e468510365ea1c6ce75053d}{HandleUnicastPacket}}(Ptr<Packet>\ packet);}
-\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab764c72a42f5f6ea870b1bef0eb62947}{HandleNetworkBeacon}}(\mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020BeaconHeader}}\ beaconHeader,}
-\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020NetworkBeaconMessage}}\ networkBeaconMsg,}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}*\ ft);}
-\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0ee98014abebe1b7f7656a7184068d8d}{EvaluateClusterBeacon}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020ClusterBeaconMessage}}\&\ clusterBeaconMsg,}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020RandomAccessResourceIE}}\&\ rarIe,}
-\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}*\ ft);}
-\DoxyCodeLine{00221\ }
-\DoxyCodeLine{00222\ \ \ \ \ \textcolor{comment}{//\ assoInitiatorLongRdId\ is\ the\ long\ radio\ device\ id\ of\ the\ RD\ which\ has\ sent\ the\ Association}}
-\DoxyCodeLine{00223\ \ \ \ \ \textcolor{comment}{//\ Request}}
-\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a7ecabbef93d233d31d3ebf93d050635a}{ProcessAssociationRequest}}(\mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage}{Dect2020AssociationRequestMessage}}\ assoReqMsg,}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020RdCapabilityIE}}\ rdCapabilityIe,}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE}{Dect2020AssociationControlIE}}\ assoControlIe,}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ assoInitiatorLongRdId);}
-\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a7786573bc1b70411d5ba7cde926c5c1e}{ProcessAssociationResponse}}(\mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage}{Dect2020AssociationResponseMessage}}\ assoRespMsg,}
-\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020RdCapabilityIE}}\ rdCapabilityIe,}
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ ftLongRdId);}
-\DoxyCodeLine{00231\ }
-\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020PHYControlFieldType1}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ae66d28447fcbffb68ec3a01c96de6db5}{CreatePhysicalHeaderField}}();}
-\DoxyCodeLine{00233\ }
-\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_afe6e3b248a12851fa764bbf4fa4cccd0}{StartSubslotScan}}(uint32\_t\ channelId,}
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ numSubslots,}
-\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation}{ChannelEvaluation}}\&)>\ onComplete);}
-\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af6472a4bf3eacdc19fce0226eb7658be}{MeasureAndScheduleNextSubslot}}(std::shared\_ptr<SubslotScanContext>\ context,}
-\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ numSubslots);}
+\DoxyCodeLine{00086\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structns3_1_1AssociatedPtInfo}{AssociatedPtInfo}}}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ Time\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_abe8ca17d0d4d2874a0fc95d3f083f75f}{associationEstablished}};}
+\DoxyCodeLine{00089\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a2b329d8e96afed379a337f27c46c8e25}{longRdId}};\ \textcolor{comment}{//\ Long\ Radio\ Device\ ID\ of\ the\ PT}}
+\DoxyCodeLine{00090\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a36375443d75023046dd7eec40c413dc6}{numberOfFlows}};}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_ac4a7d73bf7bb7145fca73c06ef2d5cb2}{powerConstraints}};}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a31d1e5292b35586ede4226c4834750b6}{ftMode}};}
+\DoxyCodeLine{00093\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a5f68affb7a569ca3698fb30b16f13b22}{harqProcessesTx}};}
+\DoxyCodeLine{00094\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_af68bf6b01fd78338b6959741b3b788ab}{maxHarqReTxDelay}};}
+\DoxyCodeLine{00095\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_afc7d6eaa354ef581d42af37e19cb81d2}{harqProcessesRx}};}
+\DoxyCodeLine{00096\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a3194d63fd55cbeb554b9c998a3e23717}{maxHarqReRxDelay}};}
+\DoxyCodeLine{00097\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a1f7788cbc17434ee7875358346d4dbc3}{flowId}};}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_aae111a692cfde53bee0535c7ff8a7dec}{cb\_m}};}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020RdCapabilityIE}}\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a9eef5b788eb088b8c2c4ac2f0843b9af}{rdCapabilityIe}};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structns3_1_1AssociatedPtInfo_a6bae373d267005b20ced324f94bf6e69}{lastRssi}};}
+\DoxyCodeLine{00102\ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structns3_1_1SubslotScanContext}{SubslotScanContext}}}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1SubslotScanContext_ae645a2b31b24b11a266acfc9586f3bc6}{channelId}};}
+\DoxyCodeLine{00114\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structns3_1_1SubslotScanContext_aa8f2af8964b40da85286a6539720ddae}{subslotCount}};\ \textcolor{comment}{//\ Counter\ for\ how\ many\ Subslots\ have\ been\ measured}}
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{structns3_1_1ChannelEvaluation}{ChannelEvaluation}}\ \mbox{\hyperlink{structns3_1_1SubslotScanContext_a6beb8f92d986ad7e305c10a554129deb}{evaluation}};}
+\DoxyCodeLine{00116\ \ \ \ \ std::function<void(\textcolor{keyword}{const}\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation}{ChannelEvaluation}}\&)>}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structns3_1_1SubslotScanContext_aa6d87605801abec69fead83150e4c95f}{onComplete}};\ \textcolor{comment}{//\ Callback\ to\ be\ called\ when\ the\ scan\ is\ complete\ (OperatingChannelSelection,}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ LBT,\ ...)}}
+\DoxyCodeLine{00119\ \};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classns3_1_1Dect2020Mac}{Dect2020Mac}}\ :\ \textcolor{keyword}{public}\ Object}
+\DoxyCodeLine{00130\ \{}
+\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2}{Dect2020PacketType}}}
+\DoxyCodeLine{00139\ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a97fa82dad0076ca5e8282eab9e18a47a}{DATA}}\ =\ 0,}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a380b94c95bb3a36466bfcf8426f9bc1a}{BEACON}}\ =\ 1,}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a07e8c8e80b3af845b0f734c9484b30e0}{UNICAST}}\ =\ 2,}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2a5a7b619d68022a12f5843578eacc3afc}{RD\_BROADCAST}}\ =\ 3}
+\DoxyCodeLine{00144\ \ \ \ \ \};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}{AssociationStatus}}}
+\DoxyCodeLine{00153\ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b}{NOT\_ASSOCIATED}},}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea0da00aaf3e48b310241005828be7f225}{ASSOCIATION\_PREPARING}},}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea5ad820a1305ae0cfc52578c42343cd22}{WAITING\_FOR\_SELECTED\_FT}},}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea84a5180ab171557f37aec8be90f37a16}{ASSOCIATION\_PENDING}},}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea37a70b2bd43071e43ce1f6d07b253abe}{ASSOCIATED}}}
+\DoxyCodeLine{00159\ \ \ \ \ \};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{static}\ TypeId\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a582836009dc68af32a41af41afef44e8}{GetTypeId}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab57dc8784f9bcade1aa31f70a502a6b4}{Dect2020Mac}}();}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1c14c217d59fe1f63a8c35d01361f97e}{\string~Dect2020Mac}}();}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{//\ Starts\ the\ MAC\ Layer}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a46a0f01d6890c2782c247afd9e03d3a3}{Start}}();}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{comment}{//\ Initializes\ the\ Network\ (FT\ only)}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a36c239034dfb7ecf13053446da830cca}{InitializeNetwork}}();}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ MAC-\/Layer\ of\ the\ Device}}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab0a43e61de5976775531246105ef5f94}{InitializeDevice}}();}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ Set\ the\ NetDevice\ and\ PHY\ for\ this\ MAC}}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac0942ff5fdf363ceb262ba3d99ae1c83}{SetNetDevice}}(Ptr<Dect2020NetDevice>\ device);}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_afb36573ecf25b73a44bf187cc4899bfb}{SetPhy}}(Ptr<Dect2020Phy>\ phy);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//\ Receive\ a\ packet\ from\ the\ PHY\ layer}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a33c8e4d4610fbaa917d91ddc72fb84e8}{ReceiveFromPhy}}(Ptr<Packet>\ packet,\ \textcolor{keywordtype}{double}\ rssiDbm);}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{comment}{//\ Starts\ the\ Network-\/\ and\ Cluster\ Beacon\ TX}}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ae50d4d70cb6a5967078ae2b57139418c}{StartBeaconTransmission}}();}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{//\ Starts\ the\ Network\ Beacon\ TX}}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a4140324572b6872fdb33605dfb0ffdd5}{StartNetworkBeaconSweep}}();}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{comment}{//\ Starts\ the\ Cluster\ Beacon\ TX}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a25bbd22c04b77bc9da82544c8d6a074f}{StartClusterBeaconTransmission}}();}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{comment}{//\ Handle\ incoming\ Beacon\ and\ Unicast\ Messages}}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac2ad6de504bcda0de2c170652fd9d363}{HandleBeaconPacket}}(Ptr<Packet>\ packet,\ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}*\ ft);}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a71d25d793e468510365ea1c6ce75053d}{HandleUnicastPacket}}(Ptr<Packet>\ packet);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{comment}{//\ Send\ a\ MAC\ PDU}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a958672211af7dce119811ba1e90c01a6}{Send}}(Ptr<Packet>\ packet,\ \textcolor{keyword}{const}\ Address\&\ dest,\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0c758addacff7e621b44d50987dcc7d2}{Dect2020PacketType}}\ type);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//\ Set/Get\ of\ channel\ ID\ (in\ DECT\ notation,\ n)}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a9d0d1e0db1839e55787a88876aca429f}{SetCurrentChannelId}}(uint32\_t\ channelId);}
+\DoxyCodeLine{00200\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acff913ff839025f5d69c21ca0a1387aa}{GetCurrentChannelId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{comment}{//\ Network\ ID\ Management}}
+\DoxyCodeLine{00203\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad0884b0fc0b6329a47bdd09dc4fdd569}{GenerateValidNetworkId}}();}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_abf8424b1e657622d75687b24d274dff7}{SetNetworkId}}(uint32\_t\ networkId);}
+\DoxyCodeLine{00205\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5950b89914e0028083ba1cfc8ee4c494}{GetNetworkId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{comment}{//\ Long\ Radio\ Device\ ID\ Management}}
+\DoxyCodeLine{00208\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab624190de7a3ae79d00b012abb19eb59}{GenerateLongRadioDeviceId}}();}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a9b6f825b11086ac76d08f88d02e99596}{SetLongRadioDeviceId}}(uint32\_t\ rdId);}
+\DoxyCodeLine{00210\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0cd71882a73de1a39c97bf5659b7187f}{GetLongRadioDeviceId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{//\ Short\ Radio\ Device\ ID\ Management}}
+\DoxyCodeLine{00213\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a3a563a578c7a5b9fd6a9e4cc2876a1a5}{GenerateShortRadioDeviceId}}();}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1dc71f1ac27006d4c932d0ffb7fe3996}{SetShortRadioDeviceId}}(uint16\_t\ rdId);}
+\DoxyCodeLine{00215\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a992eec6593c57cac2b25088819adca0f}{GetShortRadioDeviceId}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{comment}{//\ Operating\ Channel\ Selection}}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a61a54f3b6af87a202fcfa4b1e9587381}{OperatingChannelSelection}}();}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad2ab41546a10f85cd14db62d4c67ef8e}{EvaluateAllChannels}}();}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{comment}{//\ Build\ Messages}}
+\DoxyCodeLine{00222\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020RandomAccessResourceIE}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac5e0ab65f4c5cf110e6d4c2a5b18f995}{BuildRandomAccessResourceIE}}();}
+\DoxyCodeLine{00223\ \ \ \ \ Ptr<Packet>\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af95aec82f14db6ad1e989395292c4d57}{BuildBeacon}}(\textcolor{keywordtype}{bool}\ isCluster,\ uint16\_t\ networkBeaconTransmissionChannelId);}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{comment}{//\ Association\ Procedure\ Management}}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a0ee98014abebe1b7f7656a7184068d8d}{EvaluateClusterBeacon}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020ClusterBeaconMessage}}\&\ clusterBeaconMsg,}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020RandomAccessResourceIE}}\&\ rarIe,}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}*\ ft);}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{//\ assoInitiatorLongRdId\ is\ the\ long\ radio\ device\ id\ of\ the\ RD\ which\ has\ sent\ the\ Association}}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{comment}{//\ Request}}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a7ecabbef93d233d31d3ebf93d050635a}{ProcessAssociationRequest}}(\mbox{\hyperlink{classns3_1_1Dect2020AssociationRequestMessage}{Dect2020AssociationRequestMessage}}\ assoReqMsg,}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020RdCapabilityIE}}\ rdCapabilityIe,}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020AssociationControlIE}{Dect2020AssociationControlIE}}\ assoControlIe,}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ assoInitiatorLongRdId);}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a7786573bc1b70411d5ba7cde926c5c1e}{ProcessAssociationResponse}}(\mbox{\hyperlink{classns3_1_1Dect2020AssociationResponseMessage}{Dect2020AssociationResponseMessage}}\ assoRespMsg,}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RdCapabilityIE}{Dect2020RdCapabilityIE}}\ rdCapabilityIe,}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ ftLongRdId);}
 \DoxyCodeLine{00239\ }
-\DoxyCodeLine{00240\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a78bc1d0ad224da3bbec4c466c28bb6f8}{GetSubslotsPerSlot}}();}
-\DoxyCodeLine{00241\ \ \ \ \ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}*\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a6c0535091681f7aee8dca77b53cc13b0}{FindOrCreateFtCandidate}}(uint16\_t\ shortFtId);}
-\DoxyCodeLine{00242\ \ \ \ \ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}*\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_aec51c276e2243c231bd8b8faacee8deb}{FindFtCandidateByLongId}}(uint32\_t\ longFtId);}
-\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad8ec652a6047bff8e3fcdb57ad9dec25}{SendAssociationRequest}}(\mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}*\ ft);}
-\DoxyCodeLine{00244\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5825940d27c043d18da396c84cb51bf4}{CalculcateTimeOffsetFromCurrentSubslot}}(uint32\_t\ delayInSubslots);}
-\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a522481f55f283f28ae6d83d3e1b98e90}{SendAssociationResponse}}(\mbox{\hyperlink{structns3_1_1AssociatedPtInfo}{AssociatedPtInfo}}\ ptInfo);}
-\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5406babc8913eddbb1c97351374da4ba}{VerifyPendingAssociationStatus}}();}
-\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a46a785e3b014179e789194f2c9a2b5fa}{VerifyWaitingForSelectedFtAssociationStatus}}();}
-\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a92c6f09d3582cd7fc21324286426a6e9}{VerifyAssociatedStatus}}();}
-\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1ac90e0de42a9fefbbddf7f8ab962c3d}{SelectBestFtCandidate}}();}
-\DoxyCodeLine{00250\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}{AssociationStatus}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ae088171c630b2c831f00093565f3df57}{GetAssociationStatus}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_afcf20a2066b4e091071ce60155f397ed}{GetRxGainFromIndex}}(uint8\_t\ index)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab3a191cfbca5efa0dec192edcd42340b}{isWaitingForClusterBeacon}}\ =\ \textcolor{keyword}{false};}
-\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_abeeb4e0295228973afeb871a18d9d7dd}{ResetIsWaitingForClusterBeaconFlag}}();}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_afe6e3b248a12851fa764bbf4fa4cccd0}{StartSubslotScan}}(uint32\_t\ channelId,}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ numSubslots,}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structns3_1_1ChannelEvaluation}{ChannelEvaluation}}\&)>\ onComplete);}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af6472a4bf3eacdc19fce0226eb7658be}{MeasureAndScheduleNextSubslot}}(std::shared\_ptr<SubslotScanContext>\ context,}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ numSubslots);}
+\DoxyCodeLine{00245\ \ \ \ \ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}*\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a6c0535091681f7aee8dca77b53cc13b0}{FindOrCreateFtCandidate}}(uint16\_t\ shortFtId);}
+\DoxyCodeLine{00246\ \ \ \ \ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}*\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_aec51c276e2243c231bd8b8faacee8deb}{FindFtCandidateByLongId}}(uint32\_t\ longFtId);}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad8ec652a6047bff8e3fcdb57ad9dec25}{SendAssociationRequest}}(\mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}*\ ft);}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a522481f55f283f28ae6d83d3e1b98e90}{SendAssociationResponse}}(\mbox{\hyperlink{structns3_1_1AssociatedPtInfo}{AssociatedPtInfo}}\ ptInfo);}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5406babc8913eddbb1c97351374da4ba}{VerifyPendingAssociationStatus}}();}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a46a785e3b014179e789194f2c9a2b5fa}{VerifyWaitingForSelectedFtAssociationStatus}}();}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a92c6f09d3582cd7fc21324286426a6e9}{VerifyAssociatedStatus}}();}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1ac90e0de42a9fefbbddf7f8ab962c3d}{SelectBestFtCandidate}}();}
+\DoxyCodeLine{00253\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}{AssociationStatus}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ae088171c630b2c831f00093565f3df57}{GetAssociationStatus}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00254\ }
-\DoxyCodeLine{00255\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a8da2320becc93d1e30d20a730b39b207}{m\_clusterChannelId}}\ =\ 0;\ \textcolor{comment}{//\ Number\ of\ the\ Channel\ that\ is\ currently\ the\ cluster\ Channel}}
-\DoxyCodeLine{00256\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_abf78265340f8845cda3832eb07602c0b}{m\_currentChannelId}}\ =\ 0;\ \textcolor{comment}{//\ Number\ of\ the\ Channel\ that\ the\ RD\ is\ currently\ connected}}
-\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ with\ (e.g.\ for\ scanning/Beacon\ tx)}}
-\DoxyCodeLine{00258\ }
-\DoxyCodeLine{00259\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a9ef1718320360740be71cab2b56917ce}{m\_subcarrierScalingFactor}}\ =\ 1;\ \ \ \ \ \ \ \textcolor{comment}{//\ Subcarrier\ Scaling\ Factor}}
-\DoxyCodeLine{00260\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a8796ed8f35d73fa02272e789d38bfc5c}{m\_fourierTransformScalingFactor}}\ =\ 1;\ \textcolor{comment}{//\ Fourier\ Transform\ Scaling\ Factor}}
-\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5013ca9484c45d372ff2f313f02a3e3b}{m\_dectDelay}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ DECT\ Delay}}
-\DoxyCodeLine{00262\ }
-\DoxyCodeLine{00263\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a927f8098d8352eadb661ac97cde832d7}{m\_networkBeaconPeriod}}\ =}
-\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5}{NetworkBeaconPeriod::NETWORK\_PERIOD\_50MS}};\ \textcolor{comment}{//\ Network\ Beacon\ Period}}
-\DoxyCodeLine{00265\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a436f091885622fb5e71cae139760b480}{m\_clusterBeaconPeriod}}\ =}
-\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6}{ClusterBeaconPeriod::CLUSTER\_PERIOD\_100MS}};\ \textcolor{comment}{//\ Cluster\ Beacon\ Period}}
-\DoxyCodeLine{00267\ }
-\DoxyCodeLine{00268\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}{AssociationStatus}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac2e136c9f18c513b1f41d8834ddc6a87}{m\_associationStatus}}\ =\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b}{NOT\_ASSOCIATED}};}
-\DoxyCodeLine{00269\ \ \ \ \ std::vector<FtCandidateInfo>\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acd748536ec7e82bbdf5ffa5e138d5098}{m\_ftCandidates}};}
-\DoxyCodeLine{00270\ \ \ \ \ std::vector<AssociatedPtInfo>\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af4d22cb6932f276862b7dd2a4312711d}{m\_associatedPtDevices}};}
-\DoxyCodeLine{00271\ }
-\DoxyCodeLine{00272\ \ \ \ \ \textcolor{comment}{//\ Last\ received\ header\ fields}}
-\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020PHYControlFieldType1}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a61c725c77b1acc4674ce7b3639bd62a9}{m\_lastFtPhyHeaderField}};\ \textcolor{comment}{//\ Last\ received\ Physical\ Header\ Field}}
-\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020MacHeaderType}{Dect2020MacHeaderType}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad63c740b041cee64b51c63a80d258f67}{m\_lastFtMacHeaderType}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Last\ received\ MAC\ Header\ Type}}
-\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020BeaconHeader}{Dect2020BeaconHeader}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac827427170e5d1c4c78f732fb9d16e67}{m\_lastFtBeaconHeader}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Last\ received\ Beacon\ Header}}
-\DoxyCodeLine{00276\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020UnicastHeader}{Dect2020UnicastHeader}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a41f21d8830f234a9eafa5174c67a5fa7}{m\_lastFtUnicastHeader}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Last\ received\ Unicast\ Header}}
-\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020NetworkBeaconMessage}{Dect2020NetworkBeaconMessage}}}
-\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_abaae6ddc12910cf9a2750c6e9005dd48}{m\_lastFtNetworkBeaconMessage}};\ \textcolor{comment}{//\ Last\ received\ Network\ Beacon\ Message}}
-\DoxyCodeLine{00279\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020ClusterBeaconMessage}{Dect2020ClusterBeaconMessage}}}
-\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a3a03a29a5557cf0c6df63d65fed1b225}{m\_lastFtClusterBeaconMessage}};\ \textcolor{comment}{//\ Last\ received\ Cluster\ Beacon\ Message}}
-\DoxyCodeLine{00281\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020RandomAccessResourceIE}{Dect2020RandomAccessResourceIE}}}
-\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a8958551360839815f0908b4b1817b1f2}{m\_lastFtRandomAccessResourceIE}};\ \textcolor{comment}{//\ Last\ received\ Random\ Access\ Resource\ IE}}
-\DoxyCodeLine{00283\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload}{Dect2020MacMuxHeaderShortSduNoPayload}}}
-\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad0ac94ca964c4ed678725a9e39249469}{m\_lastFtMacMuxHeader}};\ \textcolor{comment}{//\ Last\ received\ MAC\ Multiplexing\ Header}}
-\DoxyCodeLine{00285\ }
-\DoxyCodeLine{00286\ \ \ \ \ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ \#7.2-\/1}}
-\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a51185f30aec01dcaee491e5fcdad2447}{RSSI\_THRESHOLD\_MIN}}\ =\ -\/85;\ \textcolor{comment}{//\ dBm}}
-\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af9ec967e134fb9468d7950fe00b69c4a}{RSSI\_THRESHOLD\_MAX}}\ =\ -\/50;\ \textcolor{comment}{//\ dBm\ TODO:\ RSSI\_THRESHOLDMAX\ =\ -\/52\ -\/\ max\ TX\ Power\ of\ RD}}
-\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a30265385ad912fe025f7ed41fcf171ea}{SCAN\_MEAS\_DURATION}}\ =\ 24;\ \ \ \ \ \textcolor{comment}{//\ slots}}
-\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a28d45a6d5c60d241587b935f1237d449}{SCAN\_SUITABLE}}\ =\ 0.75;\ \ \ \ \ \textcolor{comment}{//\ Threshold\ when\ an\ operating\ channel\ can\ be\ considered}}
-\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ fulfilling\ the\ operating\ conditions.}}
-\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a19add43b45b9f0add1b71c65dca1df03}{SCAN\_STATUS\_VALID}}\ =\ 300;\ \ \ \ \ \textcolor{comment}{//\ seconds}}
-\DoxyCodeLine{00293\ }
-\DoxyCodeLine{00294\ \ \ \ \ std::map<uint32\_t,\ ChannelEvaluation>\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1c19c0b8f32ea6b118f24dfd1fb4ce2f}{m\_scanEvaluations}};}
-\DoxyCodeLine{00295\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad186c22792c2708220865422ed9ed895}{m\_completedScans}}\ =\ 0;}
-\DoxyCodeLine{00296\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_abb08d42dc9b4e31b34e004713929feee}{m\_nextAvailableSubslot}}\ =\ 2;\ \textcolor{comment}{//\ First\ subslot\ to\ be\ used\ by\ RD\ is\ 2\ -\/-\/>\ Subslot\ 0\ and\ 1}}
-\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ are\ reserved\ for\ the\ cluster\ beacon\ transmission}}
-\DoxyCodeLine{00298\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a239f0613c320bf36d7eca4026bb57ffb}{m\_lastSfn}};}
-\DoxyCodeLine{00299\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a42ac312e05bba9f11d59f416181e44a4}{m\_potentialShortNetworkId}};\ \textcolor{comment}{//\ Short\ Network\ ID\ of\ the\ current\ FT\ candidate\ in\ the}}
-\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Association\ Procedure}}
-\DoxyCodeLine{00301\ \ \ \ \ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a3119509eac739917b6d8be51c86ce9e9}{m\_selectedFtCandidate}};\ \textcolor{comment}{//\ The\ selected\ FT\ candidate\ for\ association}}
-\DoxyCodeLine{00302\ \ \ \ \ EventId\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a3da2beef2e5a4fffa7d3a708bc5332b0}{m\_discoverNetworksEvent}};}
-\DoxyCodeLine{00303\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1a78a4bf1f32535e129029693feb14dc}{m\_associatedFTNetDeviceLongRdId}}\ =\ 0;\ \textcolor{comment}{//\ Variable\ to\ store\ the\ associated\ FT\ NetDevices\ Long\ RD\ ID}}
-\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{comment}{//\ Helper}}
+\DoxyCodeLine{00256\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a78bc1d0ad224da3bbec4c466c28bb6f8}{GetSubslotsPerSlot}}();}
+\DoxyCodeLine{00257\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5825940d27c043d18da396c84cb51bf4}{CalculcateTimeOffsetFromCurrentSubslot}}(uint32\_t\ delayInSubslots);}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_afcf20a2066b4e091071ce60155f397ed}{GetRxGainFromIndex}}(uint8\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{comment}{//\ \#\#\#\#\#\ Variables\ \#\#\#\#}}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{comment}{//\ Waiting\ Flag\ when\ RD\ received\ a\ Network\ Beacon\ and\ is\ waiting\ for\ the\ Cluster\ Beacon}}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ab3a191cfbca5efa0dec192edcd42340b}{isWaitingForClusterBeacon}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{comment}{//\ Number\ of\ the\ Channel\ that\ is\ currently\ the\ cluster\ Channel}}
+\DoxyCodeLine{00268\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a8da2320becc93d1e30d20a730b39b207}{m\_clusterChannelId}}\ =\ 0;}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{comment}{//\ Number\ of\ the\ Channel\ that\ the\ RD\ is\ currently\ connected\ with\ (e.g.\ for\ scanning/Beacon\ tx)}}
+\DoxyCodeLine{00271\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_abf78265340f8845cda3832eb07602c0b}{m\_currentChannelId}}\ =\ 0;}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{comment}{//\ Subcarrier\ Scaling\ Factor\ (mu)}}
+\DoxyCodeLine{00274\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a9ef1718320360740be71cab2b56917ce}{m\_subcarrierScalingFactor}}\ =\ 1;}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{comment}{//\ Fourier\ Transform\ Scaling\ Factor\ (beta)}}
+\DoxyCodeLine{00277\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a8796ed8f35d73fa02272e789d38bfc5c}{m\_fourierTransformScalingFactor}}\ =\ 1;}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{comment}{//\ DECT\ Delay}}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a5013ca9484c45d372ff2f313f02a3e3b}{m\_dectDelay}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{comment}{//\ Network\ and\ Cluster\ Beacon\ Periods}}
+\DoxyCodeLine{00283\ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21ca}{NetworkBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a927f8098d8352eadb661ac97cde832d7}{m\_networkBeaconPeriod}}\ =}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacens3_a4c44e91ac40693704e0d8a4ab7ae21caa8e9cafd085a6c29045c92b0dbd41a0c5}{NetworkBeaconPeriod::NETWORK\_PERIOD\_50MS}};\ \textcolor{comment}{//\ Network\ Beacon\ Period}}
+\DoxyCodeLine{00285\ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adb}{ClusterBeaconPeriod}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a436f091885622fb5e71cae139760b480}{m\_clusterBeaconPeriod}}\ =}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacens3_add18c6731b9c3700a0db065064931adba9335203dca390d2c75097ffeedb197a6}{ClusterBeaconPeriod::CLUSTER\_PERIOD\_100MS}};\ \textcolor{comment}{//\ Cluster\ Beacon\ Period}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{comment}{//\ Network\ and\ Cluster\ Beacon\ Periods\ as\ Time\ Objects\ -\/-\/>\ TODO:\ Only\ use\ the\ upper\ ones\ and\ use}}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{comment}{//\ de\ "{}Dect2020NetworkBeaconMessage::GetNetworkBeaconPeriodTime()"{}\ Function}}
+\DoxyCodeLine{00290\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af7bf40fd3faf9a726e0afe18efaafca3}{m\_networkBeaconPeriodTime}}\ =\ MilliSeconds(100);\ \textcolor{comment}{//\ Network\ Beacon\ Period}}
+\DoxyCodeLine{00291\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a86342c8b5e36e544050a80cf19709219}{m\_clusterBeaconPeriodTime}}\ =\ MilliSeconds(100);\ \textcolor{comment}{//\ Cluster\ Beacon\ Period}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{comment}{//\ Association\ Status\ of\ the\ Device}}
+\DoxyCodeLine{00294\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3e}{AssociationStatus}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ac2e136c9f18c513b1f41d8834ddc6a87}{m\_associationStatus}}\ =\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acf30691814b49446635e3525f15e1f3ea401ec1c138926bd97a05b05bcf8e6b2b}{NOT\_ASSOCIATED}};}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{comment}{//\ List\ of\ all\ FT\ candidates\ discovered\ during\ the\ association\ procedure}}
+\DoxyCodeLine{00297\ \ \ \ \ std::vector<FtCandidateInfo>\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_acd748536ec7e82bbdf5ffa5e138d5098}{m\_ftCandidates}};}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{comment}{//\ List\ of\ all\ associated\ Portable\ Termination\ (PT)\ devices.\ TODO:\ Implement\ logic\ to\ determine}}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{comment}{//\ whether\ the\ PT\ is\ really\ connected\ after\ the\ association\ process}}
+\DoxyCodeLine{00301\ \ \ \ \ std::vector<AssociatedPtInfo>\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af4d22cb6932f276862b7dd2a4312711d}{m\_associatedPtDevices}};}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{comment}{//\ Last\ received\ MAC\ Multiplexing\ Header}}
+\DoxyCodeLine{00304\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020MacMuxHeaderShortSduNoPayload}{Dect2020MacMuxHeaderShortSduNoPayload}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad0ac94ca964c4ed678725a9e39249469}{m\_lastFtMacMuxHeader}};}
 \DoxyCodeLine{00305\ }
-\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{//\ Statistic\ Variables}}
-\DoxyCodeLine{00307\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_afc082a9aec63303821366a84956c5071}{m\_deviceStartTime}};\ \textcolor{comment}{//\ Start\ time\ of\ the\ device}}
-\DoxyCodeLine{00308\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a7bcdfd4b64448eaaf60e84b9407aa754}{m\_successfulAssociationTime}};\ \textcolor{comment}{//\ Time\ of\ the\ last\ successful\ association}}
-\DoxyCodeLine{00309\ }
-\DoxyCodeLine{00310\ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00311\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020PHYControlFieldType1}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ae66d28447fcbffb68ec3a01c96de6db5}{CreatePhysicalHeaderField}}(uint8\_t\ packetLengthType,}
-\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ packetLength);}
-\DoxyCodeLine{00313\ }
-\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keywordtype}{void}\ DiscoverNetworks();}
-\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordtype}{void}\ SendNetworkBeaconOnChannel(uint16\_t\ channelId);}
-\DoxyCodeLine{00316\ }
-\DoxyCodeLine{00317\ \ \ \ \ \textcolor{comment}{//\ Membervariablen}}
-\DoxyCodeLine{00318\ \ \ \ \ Ptr<Dect2020NetDevice>\ m\_device;}
-\DoxyCodeLine{00319\ \ \ \ \ std::vector<Dect2020NetDevice>\ m\_associatedNetDevices;\ \textcolor{comment}{//\ List\ of\ associated\ NetDevices}}
-\DoxyCodeLine{00320\ \ \ \ \ Ptr<Dect2020Phy>\ m\_phy;}
-\DoxyCodeLine{00321\ \ \ \ \ Mac48Address\ m\_address;}
-\DoxyCodeLine{00322\ }
-\DoxyCodeLine{00323\ \ \ \ \ \textcolor{comment}{//\ Sendewarteschlange\ (für\ zukünftige\ Erweiterungen)}}
-\DoxyCodeLine{00324\ \ \ \ \ \textcolor{comment}{//\ std::queue<Ptr<Packet>>\ m\_txQueue;}}
-\DoxyCodeLine{00325\ }
-\DoxyCodeLine{00326\ \ \ \ \ \textcolor{comment}{//\ Trace-\/Quellen}}
-\DoxyCodeLine{00327\ \ \ \ \ TracedCallback<Ptr<const\ Packet>>\ m\_txPacketTrace;}
-\DoxyCodeLine{00328\ \ \ \ \ TracedCallback<Ptr<const\ Packet>>\ m\_rxPacketTrace;}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{//\ Evaluations\ from\ the\ Operating\ Channel\ Selection\ procedure}}
+\DoxyCodeLine{00307\ \ \ \ \ std::map<uint32\_t,\ ChannelEvaluation>\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1c19c0b8f32ea6b118f24dfd1fb4ce2f}{m\_scanEvaluations}};}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{comment}{//\ Number\ of\ completed\ scans\ from\ the\ Operating\ Channel\ Selection\ procedure}}
+\DoxyCodeLine{00310\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_ad186c22792c2708220865422ed9ed895}{m\_completedScans}}\ =\ 0;}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{comment}{//\ First\ subslot\ to\ be\ used\ by\ RD\ is\ 2\ -\/-\/>\ Subslot\ 0\ and\ 1\ are\ reserved\ for\ the\ cluster\ beacon}}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{comment}{//\ transmission}}
+\DoxyCodeLine{00314\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_abb08d42dc9b4e31b34e004713929feee}{m\_nextAvailableSubslot}}\ =\ 2;}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{comment}{//\ Last\ System\ Frame\ Number\ (SFN)\ received\ from\ Cluster\ Beacon.\ TODO:\ This\ is\ not\ used\ yet,\ but}}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{comment}{//\ it\ should\ be\ used\ to\ synchronize\ the\ PT\ and\ FT\ Frame/Slot/Subslot\ Timer}}
+\DoxyCodeLine{00318\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a239f0613c320bf36d7eca4026bb57ffb}{m\_lastSfn}};}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{comment}{//\ Short\ Network\ ID\ of\ the\ current\ FT\ candidate\ in\ the\ Association\ Procedure\ used\ in\ the\ PHY}}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{comment}{//\ Header}}
+\DoxyCodeLine{00322\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a42ac312e05bba9f11d59f416181e44a4}{m\_potentialShortNetworkId}};}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{comment}{//\ The\ selected\ FT\ candidate\ for\ association}}
+\DoxyCodeLine{00325\ \ \ \ \ \mbox{\hyperlink{structns3_1_1FtCandidateInfo}{FtCandidateInfo}}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a3119509eac739917b6d8be51c86ce9e9}{m\_selectedFtCandidate}};}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{comment}{//\ The\ associated\ FT\ NetDevice\ Long\ RD\ ID}}
+\DoxyCodeLine{00328\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a1a78a4bf1f32535e129029693feb14dc}{m\_associatedFTNetDeviceLongRdId}}\ =\ 0;}
 \DoxyCodeLine{00329\ }
-\DoxyCodeLine{00330\ \ \ \ \ uint32\_t\ m\_networkId;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#4.2.3.1}}
-\DoxyCodeLine{00331\ \ \ \ \ uint32\_t\ m\_longRadioDeviceId;\ \ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#4.2.3.2}}
-\DoxyCodeLine{00332\ \ \ \ \ uint16\_t\ m\_shortRadioDeviceId;\ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#4.2.3.3}}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{comment}{//\ Statistic\ Variables}}
+\DoxyCodeLine{00331\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_afc082a9aec63303821366a84956c5071}{m\_deviceStartTime}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ time\ of\ the\ device}}
+\DoxyCodeLine{00332\ \ \ \ \ Time\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a7bcdfd4b64448eaaf60e84b9407aa754}{m\_successfulAssociationTime}};\ \textcolor{comment}{//\ Time\ of\ the\ last\ successful\ association}}
 \DoxyCodeLine{00333\ }
-\DoxyCodeLine{00334\ \ \ \ \ uint8\_t\ m\_mcs\ =\ 0;\ \textcolor{comment}{//\ Modulation\ and\ Coding\ Scheme}}
-\DoxyCodeLine{00335\ \};}
-\DoxyCodeLine{00336\ }
-\DoxyCodeLine{00337\ \}\ \textcolor{comment}{//\ namespace\ ns3}}
-\DoxyCodeLine{00338\ }
-\DoxyCodeLine{00339\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ DECT2020\_MAC\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{comment}{//\ \#\#\#\#\#\ Constants\ \#\#\#\#}}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V2.1.1\ \#7.2-\/1}}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a51185f30aec01dcaee491e5fcdad2447}{RSSI\_THRESHOLD\_MIN}}\ =\ -\/85;\ \textcolor{comment}{//\ dBm}}
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_af9ec967e134fb9468d7950fe00b69c4a}{RSSI\_THRESHOLD\_MAX}}\ =\ -\/50;\ \textcolor{comment}{//\ dBm\ TODO:\ RSSI\_THRESHOLDMAX\ =\ -\/52\ -\/\ max\ TX\ Power\ of\ RD}}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a30265385ad912fe025f7ed41fcf171ea}{SCAN\_MEAS\_DURATION}}\ =\ 24;\ \ \ \ \ \textcolor{comment}{//\ slots}}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a28d45a6d5c60d241587b935f1237d449}{SCAN\_SUITABLE}}\ =\ 0.75;\ \ \ \ \ \textcolor{comment}{//\ Threshold\ when\ an\ operating\ channel\ can\ be\ considered}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ fulfilling\ the\ operating\ conditions.}}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classns3_1_1Dect2020Mac_a19add43b45b9f0add1b71c65dca1df03}{SCAN\_STATUS\_VALID}}\ =\ 300;\ \ \ \ \ \textcolor{comment}{//\ seconds}}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00347\ \ \ \ \ \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{Dect2020PHYControlFieldType1}}\ CreatePhysicalHeaderField(uint8\_t\ packetLengthType,}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ packetLength);}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordtype}{void}\ DiscoverNetworks();}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keywordtype}{void}\ SendNetworkBeaconOnChannel(uint16\_t\ channelId);}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordtype}{void}\ ReturnToOperatingChannel();}
+\DoxyCodeLine{00353\ \ \ \ \ uint8\_t\ CalculateAbsoluteStartSubslot();}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{comment}{//\ Membervariablen}}
+\DoxyCodeLine{00356\ \ \ \ \ Ptr<Dect2020NetDevice>\ m\_device;}
+\DoxyCodeLine{00357\ \ \ \ \ std::vector<Dect2020NetDevice>\ m\_associatedNetDevices;\ \textcolor{comment}{//\ List\ of\ associated\ NetDevices}}
+\DoxyCodeLine{00358\ \ \ \ \ Ptr<Dect2020Phy>\ m\_phy;}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{comment}{//\ Trace-\/Quellen}}
+\DoxyCodeLine{00361\ \ \ \ \ TracedCallback<Ptr<const\ Packet>>\ m\_txPacketTrace;}
+\DoxyCodeLine{00362\ \ \ \ \ TracedCallback<Ptr<const\ Packet>>\ m\_rxPacketTrace;}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ \ \ uint32\_t\ m\_networkId;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#4.2.3.1}}
+\DoxyCodeLine{00365\ \ \ \ \ uint32\_t\ m\_longRadioDeviceId;\ \ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#4.2.3.2}}
+\DoxyCodeLine{00366\ \ \ \ \ uint16\_t\ m\_shortRadioDeviceId;\ \textcolor{comment}{//\ ETSI\ TS\ 103\ 636-\/4\ V\ 1.51\ \#4.2.3.3}}
+\DoxyCodeLine{00367\ }
+\DoxyCodeLine{00368\ \ \ \ \ uint8\_t\ m\_mcs\ =\ 0;\ \textcolor{comment}{//\ Modulation\ and\ Coding\ Scheme}}
+\DoxyCodeLine{00369\ \};}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \}\ \textcolor{comment}{//\ namespace\ ns3}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ DECT2020\_MAC\_H\ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

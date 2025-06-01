@@ -1,5 +1,5 @@
 <map id="contrib/dect&#45;nr/model/dect2020&#45;mac.h" name="contrib/dect&#45;nr/model/dect2020&#45;mac.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="200,5,363,45"/>
+<area shape="rect" id="Node000001" title="Implements the MAC layer functionality for DECT&#45;2020 NR." alt="" coords="200,5,363,45"/>
 <area shape="rect" id="Node000002" href="$dect2020-mac_8cc.html" title=" " alt="" coords="5,93,168,133"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,53,130,96,128,91,225,48"/>
 <area shape="rect" id="Node000003" href="$dect2020-net-device_8cc.html" title=" " alt="" coords="192,93,371,133"/>

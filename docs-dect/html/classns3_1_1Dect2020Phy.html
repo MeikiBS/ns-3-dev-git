@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('classns3_1_1Dect2020Phy.html',''); ini
 </div><!--header-->
 <div class="contents">
 
-<p>DECT2020 PHY Klasse.  
+<p>DECT-2020 NR PHY layer implementation.  
  <a href="classns3_1_1Dect2020Phy.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="dect2020-phy_8h_source.html">dect2020-phy.h</a>&gt;</code></p>
@@ -107,7 +107,7 @@ Inheritance diagram for ns3::Dect2020Phy:</div>
 <div class="dyncontent">
 <div class="center"><img src="classns3_1_1Dect2020Phy__inherit__graph.png" border="0" usemap="#ans3_1_1Dect2020Phy_inherit__map" alt="Inheritance graph"/></div>
 <map name="ans3_1_1Dect2020Phy_inherit__map" id="ans3_1_1Dect2020Phy_inherit__map">
-<area shape="rect" title="DECT2020 PHY Klasse." alt="" coords="5,79,144,104"/>
+<area shape="rect" title="DECT&#45;2020 NR PHY layer implementation." alt="" coords="5,79,144,104"/>
 <area shape="rect" title=" " alt="" coords="21,5,129,31"/>
 <area shape="poly" title=" " alt="" coords="77,44,77,79,72,79,72,44"/>
 </map>
@@ -117,7 +117,7 @@ Collaboration diagram for ns3::Dect2020Phy:</div>
 <div class="dyncontent">
 <div class="center"><img src="classns3_1_1Dect2020Phy__coll__graph.png" border="0" usemap="#ans3_1_1Dect2020Phy_coll__map" alt="Collaboration graph"/></div>
 <map name="ans3_1_1Dect2020Phy_coll__map" id="ans3_1_1Dect2020Phy_coll__map">
-<area shape="rect" title="DECT2020 PHY Klasse." alt="" coords="5,79,144,104"/>
+<area shape="rect" title="DECT&#45;2020 NR PHY layer implementation." alt="" coords="5,79,144,104"/>
 <area shape="rect" title=" " alt="" coords="21,5,129,31"/>
 <area shape="poly" title=" " alt="" coords="77,44,77,79,72,79,72,44"/>
 </map>
@@ -130,61 +130,85 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6ddcf2c91996c1dae954520d15bd2185" id="r_a6ddcf2c91996c1dae954520d15bd2185"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a6ddcf2c91996c1dae954520d15bd2185">~Dect2020Phy</a> ()</td></tr>
 <tr class="separator:a6ddcf2c91996c1dae954520d15bd2185"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6532b8cdeecabf0305fe334d14a3bcd" id="r_ad6532b8cdeecabf0305fe334d14a3bcd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#ad6532b8cdeecabf0305fe334d14a3bcd">SetMac</a> (Ptr&lt; <a class="el" href="classns3_1_1Dect2020Mac.html">Dect2020Mac</a> &gt; mac)</td></tr>
+<tr class="memdesc:ad6532b8cdeecabf0305fe334d14a3bcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the MAC layer instance connected to this PHY.  <br /></td></tr>
 <tr class="separator:ad6532b8cdeecabf0305fe334d14a3bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22880d34557b18732721e3c751c88383" id="r_a22880d34557b18732721e3c751c88383"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a22880d34557b18732721e3c751c88383">SetDevice</a> (Ptr&lt; NetDevice &gt; device) override</td></tr>
+<tr class="memdesc:a22880d34557b18732721e3c751c88383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the network device associated with this PHY.  <br /></td></tr>
 <tr class="separator:a22880d34557b18732721e3c751c88383"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29df95614e9b784f468a99485be4585e" id="r_a29df95614e9b784f468a99485be4585e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a29df95614e9b784f468a99485be4585e">Send</a> (Ptr&lt; Packet &gt; packet, <a class="el" href="classns3_1_1Dect2020PHYControlFieldType1.html">Dect2020PHYControlFieldType1</a> physicalHeader)</td></tr>
+<tr class="memdesc:a29df95614e9b784f468a99485be4585e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a packet from the PHY layer to the SpectrumChannel.  <br /></td></tr>
 <tr class="separator:a29df95614e9b784f468a99485be4585e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22e13661d3abf55a69ce8e0a3911898a" id="r_a22e13661d3abf55a69ce8e0a3911898a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a22e13661d3abf55a69ce8e0a3911898a">Receive</a> (Ptr&lt; Packet &gt; packet)</td></tr>
 <tr class="separator:a22e13661d3abf55a69ce8e0a3911898a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa28c543e61bf5fba7343245e4b05f919" id="r_aa28c543e61bf5fba7343245e4b05f919"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#aa28c543e61bf5fba7343245e4b05f919">Start</a> ()</td></tr>
+<tr class="memdesc:aa28c543e61bf5fba7343245e4b05f919"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the PHY layer and starts the frame timer.  <br /></td></tr>
 <tr class="separator:aa28c543e61bf5fba7343245e4b05f919"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85b05d253891ef63a9c7019b20ab6536" id="r_a85b05d253891ef63a9c7019b20ab6536"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a85b05d253891ef63a9c7019b20ab6536">SetChannel</a> (Ptr&lt; SpectrumChannel &gt; channel)</td></tr>
+<tr class="memdesc:a85b05d253891ef63a9c7019b20ab6536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the SpectrumChannel used by this PHY and registers this PHY as receiver.  <br /></td></tr>
 <tr class="separator:a85b05d253891ef63a9c7019b20ab6536"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76a3e82cc386ee3d09d5fb7fbd956aff" id="r_a76a3e82cc386ee3d09d5fb7fbd956aff"><td class="memItemLeft" align="right" valign="top">Ptr&lt; SpectrumChannel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a76a3e82cc386ee3d09d5fb7fbd956aff">GetChannel</a> () const</td></tr>
+<tr class="memdesc:a76a3e82cc386ee3d09d5fb7fbd956aff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the associated SpectrumChannel.  <br /></td></tr>
 <tr class="separator:a76a3e82cc386ee3d09d5fb7fbd956aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb6198c9bbc5223f52f6b1aa54dfb9e4" id="r_adb6198c9bbc5223f52f6b1aa54dfb9e4"><td class="memItemLeft" align="right" valign="top">Ptr&lt; NetDevice &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#adb6198c9bbc5223f52f6b1aa54dfb9e4">GetDevice</a> () const</td></tr>
+<tr class="memdesc:adb6198c9bbc5223f52f6b1aa54dfb9e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the associated network device.  <br /></td></tr>
 <tr class="separator:adb6198c9bbc5223f52f6b1aa54dfb9e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb752cef6dbff6bafe6acecc0bf78228" id="r_aeb752cef6dbff6bafe6acecc0bf78228"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#aeb752cef6dbff6bafe6acecc0bf78228">StartFrameTimer</a> ()</td></tr>
+<tr class="memdesc:aeb752cef6dbff6bafe6acecc0bf78228"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a periodic frame timer to simulate DECT-2020 NR slot-based timing.  <br /></td></tr>
 <tr class="separator:aeb752cef6dbff6bafe6acecc0bf78228"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58126991798cb41adf89d82a1170d83d" id="r_a58126991798cb41adf89d82a1170d83d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a58126991798cb41adf89d82a1170d83d">ProcessSlot</a> (uint32_t slot, double slotStartTime)</td></tr>
+<tr class="memdesc:a58126991798cb41adf89d82a1170d83d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes a single slot within a DECT-2020 NR frame.  <br /></td></tr>
 <tr class="separator:a58126991798cb41adf89d82a1170d83d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65e93626418605661a7c34c77bc4519e" id="r_a65e93626418605661a7c34c77bc4519e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a65e93626418605661a7c34c77bc4519e">ProcessSubslot</a> (uint32_t slotId, uint32_t subslotId)</td></tr>
+<tr class="memdesc:a65e93626418605661a7c34c77bc4519e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes an individual subslot within a slot.  <br /></td></tr>
 <tr class="separator:a65e93626418605661a7c34c77bc4519e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1624ecb6efc7dd3ee2a2cc8702d1e24" id="r_ae1624ecb6efc7dd3ee2a2cc8702d1e24"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structns3_1_1Slot.html">Slot</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#ae1624ecb6efc7dd3ee2a2cc8702d1e24">GetCurrentSlot</a> (uint32_t channelId)</td></tr>
+<tr class="memdesc:ae1624ecb6efc7dd3ee2a2cc8702d1e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the current <a class="el" href="structns3_1_1Slot.html">Slot</a> object.  <br /></td></tr>
 <tr class="separator:ae1624ecb6efc7dd3ee2a2cc8702d1e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a430092b767cb9bd0ba054a55df2600" id="r_a8a430092b767cb9bd0ba054a55df2600"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structns3_1_1Subslot.html">Subslot</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a8a430092b767cb9bd0ba054a55df2600">GetCurrentSubslot</a> (uint32_t channelId)</td></tr>
+<tr class="memdesc:a8a430092b767cb9bd0ba054a55df2600"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the current <a class="el" href="structns3_1_1Subslot.html">Subslot</a> object.  <br /></td></tr>
 <tr class="separator:a8a430092b767cb9bd0ba054a55df2600"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af01685784c0a9286c994d479553414ce" id="r_af01685784c0a9286c994d479553414ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#af01685784c0a9286c994d479553414ce">SetReceiveCallback</a> (Callback&lt; void, Ptr&lt; Packet &gt;, double &gt; cb)</td></tr>
+<tr class="memdesc:af01685784c0a9286c994d479553414ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback to be invoked when a packet is received.  <br /></td></tr>
 <tr class="separator:af01685784c0a9286c994d479553414ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0eb87a27bded3d641dd7418b0000c889" id="r_a0eb87a27bded3d641dd7418b0000c889"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a0eb87a27bded3d641dd7418b0000c889">GetCurrentAbsoluteSubslot</a> () const</td></tr>
+<tr class="memdesc:a0eb87a27bded3d641dd7418b0000c889"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current absolute subslot index.  <br /></td></tr>
 <tr class="separator:a0eb87a27bded3d641dd7418b0000c889"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add82b42094d6eb8d4f08092303d45932" id="r_add82b42094d6eb8d4f08092303d45932"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#add82b42094d6eb8d4f08092303d45932">SetMobility</a> (Ptr&lt; MobilityModel &gt; m)</td></tr>
-<tr class="separator:add82b42094d6eb8d4f08092303d45932"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c4aa0976778baad8e4adf8702fbaf94" id="r_a5c4aa0976778baad8e4adf8702fbaf94"><td class="memItemLeft" align="right" valign="top">Ptr&lt; MobilityModel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a5c4aa0976778baad8e4adf8702fbaf94">GetMobility</a> () const override</td></tr>
-<tr class="separator:a5c4aa0976778baad8e4adf8702fbaf94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11429ee94110918b8a8610376ef011e7" id="r_a11429ee94110918b8a8610376ef011e7"><td class="memItemLeft" align="right" valign="top">Ptr&lt; const SpectrumModel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a11429ee94110918b8a8610376ef011e7">GetRxSpectrumModel</a> () const override</td></tr>
-<tr class="separator:a11429ee94110918b8a8610376ef011e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acee95993c5d992680d15568dc4e70848" id="r_acee95993c5d992680d15568dc4e70848"><td class="memItemLeft" align="right" valign="top">Ptr&lt; Object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#acee95993c5d992680d15568dc4e70848">GetAntenna</a> () const override</td></tr>
-<tr class="separator:acee95993c5d992680d15568dc4e70848"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4534477687a8a45b5e4a64b0c688eddb" id="r_a4534477687a8a45b5e4a64b0c688eddb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a4534477687a8a45b5e4a64b0c688eddb">SetAntenna</a> (Ptr&lt; Object &gt; antenna)</td></tr>
-<tr class="separator:a4534477687a8a45b5e4a64b0c688eddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21ce125c89846fff563d72afc15f9582" id="r_a21ce125c89846fff563d72afc15f9582"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a21ce125c89846fff563d72afc15f9582">StartRx</a> (Ptr&lt; SpectrumSignalParameters &gt; params)</td></tr>
-<tr class="separator:a21ce125c89846fff563d72afc15f9582"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85ebc584263e4d68d74253f39f5aad52" id="r_a85ebc584263e4d68d74253f39f5aad52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a85ebc584263e4d68d74253f39f5aad52">EndRx</a> (Ptr&lt; SpectrumSignalParameters &gt; params)</td></tr>
-<tr class="separator:a85ebc584263e4d68d74253f39f5aad52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa56bdf0b3cfeb443cef81c0fcbceff45" id="r_aa56bdf0b3cfeb443cef81c0fcbceff45"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#aa56bdf0b3cfeb443cef81c0fcbceff45">GetMcsTransportBlockSize</a> (uint8_t mu, uint8_t beta, uint8_t mcsIndex)</td></tr>
+<tr class="memdesc:aa56bdf0b3cfeb443cef81c0fcbceff45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the transport block size in bits for a given MCS index.  <br /></td></tr>
 <tr class="separator:aa56bdf0b3cfeb443cef81c0fcbceff45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16f7d546aa47c9dec445049729d9df5a" id="r_a16f7d546aa47c9dec445049729d9df5a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a16f7d546aa47c9dec445049729d9df5a">CalculateTxDurationNs</a> (<a class="el" href="classns3_1_1Dect2020PHYControlFieldType1.html">Dect2020PHYControlFieldType1</a> physicalHeaderField)</td></tr>
+<tr class="memdesc:a16f7d546aa47c9dec445049729d9df5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the transmission duration in nanoseconds for a given packet.  <br /></td></tr>
 <tr class="separator:a16f7d546aa47c9dec445049729d9df5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a789b8e301e483d132f9fd3fd6a7d9dd0" id="r_a789b8e301e483d132f9fd3fd6a7d9dd0"><td class="memItemLeft" align="right" valign="top">Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a789b8e301e483d132f9fd3fd6a7d9dd0">GetAbsoluteSubslotTime</a> (uint8_t targetSfn, uint8_t slot, uint8_t subslot) const</td></tr>
 <tr class="separator:a789b8e301e483d132f9fd3fd6a7d9dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26bd51be0fb8ddca4a231c22addee177" id="r_a26bd51be0fb8ddca4a231c22addee177"><td class="memItemLeft" align="right" valign="top">Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a26bd51be0fb8ddca4a231c22addee177">GetTimeUntilSubslot</a> (uint8_t targetSfn, uint8_t targetSlot, uint8_t targetSubslot) const</td></tr>
 <tr class="separator:a26bd51be0fb8ddca4a231c22addee177"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7ebc15953167ad8851d5a45d5503b3d" id="r_af7ebc15953167ad8851d5a45d5503b3d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#af7ebc15953167ad8851d5a45d5503b3d">GetAbsoluteSubslotIndex</a> (uint8_t slot, uint8_t subslot) const</td></tr>
+<tr class="memdesc:af7ebc15953167ad8851d5a45d5503b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a slot and subslot index into an absolute subslot index within a frame.  <br /></td></tr>
 <tr class="separator:af7ebc15953167ad8851d5a45d5503b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af84a0ebfea03afa6202a0e151724b64f" id="r_af84a0ebfea03afa6202a0e151724b64f"><td class="memItemLeft" align="right" valign="top">Time&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#af84a0ebfea03afa6202a0e151724b64f">GetTimeToNextAbsoluteSubslot</a> (uint8_t targetSfn, uint8_t slot, uint8_t subslot) const</td></tr>
+<tr class="memdesc:af84a0ebfea03afa6202a0e151724b64f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the time offset from the current subslot to a target subslot.  <br /></td></tr>
 <tr class="separator:af84a0ebfea03afa6202a0e151724b64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add82b42094d6eb8d4f08092303d45932" id="r_add82b42094d6eb8d4f08092303d45932"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#add82b42094d6eb8d4f08092303d45932">SetMobility</a> (Ptr&lt; MobilityModel &gt; m)</td></tr>
+<tr class="memdesc:add82b42094d6eb8d4f08092303d45932"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the mobility model for this PHY layer.  <br /></td></tr>
+<tr class="separator:add82b42094d6eb8d4f08092303d45932"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c4aa0976778baad8e4adf8702fbaf94" id="r_a5c4aa0976778baad8e4adf8702fbaf94"><td class="memItemLeft" align="right" valign="top">Ptr&lt; MobilityModel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a5c4aa0976778baad8e4adf8702fbaf94">GetMobility</a> () const override</td></tr>
+<tr class="memdesc:a5c4aa0976778baad8e4adf8702fbaf94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the associated mobility model.  <br /></td></tr>
+<tr class="separator:a5c4aa0976778baad8e4adf8702fbaf94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11429ee94110918b8a8610376ef011e7" id="r_a11429ee94110918b8a8610376ef011e7"><td class="memItemLeft" align="right" valign="top">Ptr&lt; const SpectrumModel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a11429ee94110918b8a8610376ef011e7">GetRxSpectrumModel</a> () const override</td></tr>
+<tr class="memdesc:a11429ee94110918b8a8610376ef011e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the spectrum model used for reception.  <br /></td></tr>
+<tr class="separator:a11429ee94110918b8a8610376ef011e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acee95993c5d992680d15568dc4e70848" id="r_acee95993c5d992680d15568dc4e70848"><td class="memItemLeft" align="right" valign="top">Ptr&lt; Object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#acee95993c5d992680d15568dc4e70848">GetAntenna</a> () const override</td></tr>
+<tr class="memdesc:acee95993c5d992680d15568dc4e70848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the antenna object associated with this PHY.  <br /></td></tr>
+<tr class="separator:acee95993c5d992680d15568dc4e70848"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4534477687a8a45b5e4a64b0c688eddb" id="r_a4534477687a8a45b5e4a64b0c688eddb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a4534477687a8a45b5e4a64b0c688eddb">SetAntenna</a> (Ptr&lt; Object &gt; antenna)</td></tr>
+<tr class="memdesc:a4534477687a8a45b5e4a64b0c688eddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the antenna object for this PHY.  <br /></td></tr>
+<tr class="separator:a4534477687a8a45b5e4a64b0c688eddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21ce125c89846fff563d72afc15f9582" id="r_a21ce125c89846fff563d72afc15f9582"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a21ce125c89846fff563d72afc15f9582">StartRx</a> (Ptr&lt; SpectrumSignalParameters &gt; params)</td></tr>
+<tr class="memdesc:a21ce125c89846fff563d72afc15f9582"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins the reception process of a DECT-2020 NR packet.  <br /></td></tr>
+<tr class="separator:a21ce125c89846fff563d72afc15f9582"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85ebc584263e4d68d74253f39f5aad52" id="r_a85ebc584263e4d68d74253f39f5aad52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020Phy.html#a85ebc584263e4d68d74253f39f5aad52">EndRx</a> (Ptr&lt; SpectrumSignalParameters &gt; params)</td></tr>
+<tr class="separator:a85ebc584263e4d68d74253f39f5aad52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -203,8 +227,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a4a1d289c4c16c3cca3a48412d7f547d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>DECT2020 PHY Klasse. </p>
-<p>Diese Klasse implementiert die grundlegende PHY-Schichtfunktionalität für das DECT2020 Modul. </p>
+<div class="textblock"><p>DECT-2020 NR PHY layer implementation. </p>
+<p>Represents the Phyical Layer for a DECT-2020 NR node. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2a80d65af0b9a2faf2b06f25f7940cbe" name="a2a80d65af0b9a2faf2b06f25f7940cbe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2a80d65af0b9a2faf2b06f25f7940cbe">&#9670;&#160;</a></span>Dect2020Phy()</h2>
@@ -265,6 +289,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Calculates the transmission duration in nanoseconds for a given packet. </p>
+<p>Uses the packet length and its type (slot or subslot based) to compute the duration. Currently only slot-based duration is supported.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">physicalHeaderField</td><td>PHY control field containing length and type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Transmission duration in nanoseconds </dd></dl>
+
 </div>
 </div>
 <a id="a85ebc584263e4d68d74253f39f5aad52" name="a85ebc584263e4d68d74253f39f5aad52"></a>
@@ -310,6 +344,16 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Converts a slot and subslot index into an absolute subslot index within a frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">slot</td><td><a class="el" href="structns3_1_1Slot.html">Slot</a> index (0–23) </td></tr>
+    <tr><td class="paramname">subslot</td><td><a class="el" href="structns3_1_1Subslot.html">Subslot</a> index within the slot </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Absolute subslot index (0–N), where N = 24 * subslotsPerSlot - 1 </dd></dl>
 
 </div>
 </div>
@@ -370,6 +414,9 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Get the antenna object associated with this PHY. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the antenna (can be IsotropicAntennaModel or custom model) </dd></dl>
+
 </div>
 </div>
 <a id="a76a3e82cc386ee3d09d5fb7fbd956aff" name="a76a3e82cc386ee3d09d5fb7fbd956aff"></a>
@@ -388,6 +435,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the associated SpectrumChannel. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the SpectrumChannel. </dd></dl>
+
 </div>
 </div>
 <a id="a0eb87a27bded3d641dd7418b0000c889" name="a0eb87a27bded3d641dd7418b0000c889"></a>
@@ -404,6 +454,10 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the current absolute subslot index. </p>
+<p>This value increases continuously with time and wraps around after a full frame.</p>
+<dl class="section return"><dt>Returns</dt><dd>Absolute subslot index as uint16_t </dd></dl>
 
 </div>
 </div>
@@ -423,6 +477,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a pointer to the current <a class="el" href="structns3_1_1Slot.html">Slot</a> object. </p>
+<p>Searches the internal slot list for the slot matching m_currentSlot and returns a pointer to it.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channelId</td><td>The ID of the channel (not used yet, for future extension). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the current <a class="el" href="structns3_1_1Slot.html">Slot</a>, or nullptr if not found. </dd></dl>
+
 </div>
 </div>
 <a id="a8a430092b767cb9bd0ba054a55df2600" name="a8a430092b767cb9bd0ba054a55df2600"></a>
@@ -441,6 +505,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a pointer to the current <a class="el" href="structns3_1_1Subslot.html">Subslot</a> object. </p>
+<p>Iterates through the subslots of the current slot and returns the matching one.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channelId</td><td>The ID of the channel (not used yet, for future extension). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the current <a class="el" href="structns3_1_1Subslot.html">Subslot</a>, or nullptr if not found. </dd></dl>
+
 </div>
 </div>
 <a id="adb6198c9bbc5223f52f6b1aa54dfb9e4" name="adb6198c9bbc5223f52f6b1aa54dfb9e4"></a>
@@ -458,6 +532,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the associated network device. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the NetDevice. </dd></dl>
 
 </div>
 </div>
@@ -493,6 +570,18 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the transport block size in bits for a given MCS index. </p>
+<p>Currently only supports single slot, single stream with mu = 1 and beta = 1.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mu</td><td>Subcarrier spacing scaling factor (currently only mu = 1 supported) </td></tr>
+    <tr><td class="paramname">beta</td><td>Time domain scaling factor (currently only beta = 1 supported) </td></tr>
+    <tr><td class="paramname">mcsIndex</td><td>Modulation and Coding Scheme index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Transport block size in bits, or 0 if parameters are unsupported </dd></dl>
+
 </div>
 </div>
 <a id="a5c4aa0976778baad8e4adf8702fbaf94" name="a5c4aa0976778baad8e4adf8702fbaf94"></a>
@@ -517,6 +606,9 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Get the associated mobility model. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the MobilityModel </dd></dl>
 
 </div>
 </div>
@@ -543,6 +635,9 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Get the spectrum model used for reception. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the SpectrumModel </dd></dl>
+
 </div>
 </div>
 <a id="af84a0ebfea03afa6202a0e151724b64f" name="af84a0ebfea03afa6202a0e151724b64f"></a>
@@ -561,13 +656,13 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>slot</em>, </td>
+          <td class="paramname"><em>targetSlot</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>subslot</em>&#160;</td>
+          <td class="paramname"><em>targetSubslot</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -576,6 +671,18 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Calculates the time offset from the current subslot to a target subslot. </p>
+<p>This method computes the time required to reach a specified subslot (defined by SFN, slot, and subslot) starting from the current PHY state. It assumes that the target subslot lies within the same or next frame.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetSfn</td><td>The System Frame Number (not yet used, currently only for consistency) </td></tr>
+    <tr><td class="paramname">targetSlot</td><td>The slot index within the frame (0–23) </td></tr>
+    <tr><td class="paramname">targetSubslot</td><td>The subslot index within the slot </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Time duration until the target subslot (relative to current time) </dd></dl>
 
 </div>
 </div>
@@ -665,6 +772,20 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Processes a single slot within a DECT-2020 NR frame. </p>
+<p>This method is triggered once per slot (24 per frame) and performs the following actions:</p><ul>
+<li>Increments the System Frame Number (SFN) at the beginning of each new frame.</li>
+<li>Updates the internal slot counter.</li>
+<li>Schedules subslot processing based on the subcarrier scaling factor.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">slot</td><td>The slot index within the current frame (0–23). </td></tr>
+    <tr><td class="paramname">slotStartTime</td><td>The relative start time of the slot in nanoseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a65e93626418605661a7c34c77bc4519e" name="a65e93626418605661a7c34c77bc4519e"></a>
@@ -692,6 +813,16 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Processes an individual subslot within a slot. </p>
+<p>Updates internal state for the currently active subslot and resets the RSSI value for the subslot on the currently used cluster channel.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">slotId</td><td>The slot index this subslot belongs to (0–23). </td></tr>
+    <tr><td class="paramname">subslotId</td><td>The subslot index within the slot (0–1/3/7/15 depending on scaling). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -739,6 +870,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Send a packet from the PHY layer to the SpectrumChannel. </p>
+<p>This function prepares and transmits a packet by creating the necessary transmission parameters, including power spectral density (PSD), transmission duration, and channel information. It also updates the channel occupancy state to allow RSSI-based collision detection and schedules the transmission on the SpectrumChannel.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">packet</td><td>The packet to send </td></tr>
+    <tr><td class="paramname">physicalHeader</td><td>The DECT2020 PHY control header Field Type 1 </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a4534477687a8a45b5e4a64b0c688eddb" name="a4534477687a8a45b5e4a64b0c688eddb"></a>
@@ -757,6 +898,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Set the antenna object for this PHY. </p>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the antenna object </dd></dl>
+
 </div>
 </div>
 <a id="a85b05d253891ef63a9c7019b20ab6536" name="a85b05d253891ef63a9c7019b20ab6536"></a>
@@ -774,6 +918,14 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the SpectrumChannel used by this PHY and registers this PHY as receiver. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Pointer to the SpectrumChannel. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -801,6 +953,14 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Sets the network device associated with this PHY. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">device</td><td>Pointer to the NetDevice. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ad6532b8cdeecabf0305fe334d14a3bcd" name="ad6532b8cdeecabf0305fe334d14a3bcd"></a>
@@ -818,6 +978,14 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the MAC layer instance connected to this PHY. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mac</td><td>Pointer to the MAC layer. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -837,6 +1005,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Set the mobility model for this PHY layer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>Pointer to a MobilityModel representing the device's position and movement </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="af01685784c0a9286c994d479553414ce" name="af01685784c0a9286c994d479553414ce"></a>
@@ -855,6 +1031,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Set the callback to be invoked when a packet is received. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cb</td><td>Callback function with parameters: received packet and received power in dBm </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aa28c543e61bf5fba7343245e4b05f919" name="aa28c543e61bf5fba7343245e4b05f919"></a>
@@ -871,6 +1055,17 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initializes the PHY layer and starts the frame timer. </p>
+<p>This method sets the initial DECT channel for the device and starts the PHY frame timer if it is not already running.</p>
+<p>Specifically, it:</p><ul>
+<li>Retrieves the first valid DECT channel based on the configured band number.</li>
+<li>Assigns this channel to <code>m_dect2020Channel</code>.</li>
+<li>Generates a pseudo-random initial channel ID (currently hardcoded with seed 13).</li>
+<li>Informs the MAC layer of the initial channel via <code>SetCurrentChannelId</code>.</li>
+<li>Starts the internal frame timer to drive PHY time structure (frame/slot/subslot).</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>The random channel selection is currently deterministic (seed = 13). </dd></dl>
 
 </div>
 </div>
@@ -889,6 +1084,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Starts a periodic frame timer to simulate DECT-2020 NR slot-based timing. </p>
+<p>This method initializes the start of a new frame (10 ms duration) and schedules the processing of each of the 24 slots within the frame. Each slot has a duration of approximately 0.41667 ms. At the end of the frame, the timer is recursively scheduled again to simulate the next frame.</p>
+<p>This mechanism provides the PHY with a slot-aligned time base for:</p><ul>
+<li>Frame/slot synchronization</li>
+<li>Slot-specific operations (e.g., transmission or sensing)</li>
+<li>Interfacing with the MAC layer for subslot timing </li>
+</ul>
+
 </div>
 </div>
 <a id="a21ce125c89846fff563d72afc15f9582" name="a21ce125c89846fff563d72afc15f9582"></a>
@@ -906,6 +1109,24 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Begins the reception process of a DECT-2020 NR packet. </p>
+<p>This method is called by the SpectrumChannel when a transmission is received on the currently tuned channel. It performs the following steps:</p><ul>
+<li>Verifies if the packet was sent on the same channel the PHY is listening to.</li>
+<li>Converts the received power into dBm and compares it with the minimum RX sensitivity, adjusted by the device's RX gain index.</li>
+<li>Checks the overall channel RSSI to estimate potential collisions:<ul>
+<li>If RSSI is moderately high, a packet drop is determined probabilistically.</li>
+<li>If RSSI is very high, a packet drop is assumed due to collision.</li>
+</ul>
+</li>
+<li>If no drop condition is met, the packet is handed over to the MAC layer through a callback.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">params</td><td>Parameters of the received signal, including power spectral density (PSD), channel ID, and the actual packet. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

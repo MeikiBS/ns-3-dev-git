@@ -587,7 +587,7 @@ Static Public Attributes</h2></td></tr>
 <p>If no SpectrumModel exists yet for the given band, it is created based on the center frequencies of the band's channels as defined in <a class="el" href="classns3_1_1Dect2020ChannelManager.html#ab5ee634a28f4b07492aac137418b59ff">GetBandParameters</a>.</p>
 <p>Additionally, this method initializes the corresponding SpectrumValue (PSD) representing the baseline channel occupancy (e.g., thermal noise floor) and stores it for later access.</p>
 <dl class="section note"><dt>Note</dt><dd>The noise floor is initialized with −111 dBm per channel, corresponding to a 1.728 MHz DECT channel bandwidth (thermal noise approximation).</dd></dl>
-<dl class="section remark"><dt>Remarks</dt><dd>This method is primarily used by <a class="el" href="classns3_1_1Dect2020Phy.html" title="DECT2020 PHY Klasse.">Dect2020Phy</a> and <a class="el" href="classns3_1_1Dect2020SpectrumSignalParameters.html">Dect2020SpectrumSignalParameters</a> to:<ul>
+<dl class="section remark"><dt>Remarks</dt><dd>This method is primarily used by <a class="el" href="classns3_1_1Dect2020Phy.html" title="DECT-2020 NR PHY layer implementation.">Dect2020Phy</a> and <a class="el" href="classns3_1_1Dect2020SpectrumSignalParameters.html" title="Signal parameters used by the DECT-2020 PHY layer in SpectrumChannel transmissions.">Dect2020SpectrumSignalParameters</a> to:<ul>
 <li>allocate transmit PSDs during StartTx,</li>
 <li>evaluate received power levels (RSSI) during StartRx,</li>
 </ul>

@@ -31,7 +31,6 @@ Dect2020NetDevice::Dect2020NetDevice()
       m_ifIndex(0),
       m_mtu(1500),
       m_linkUp(false)
-//   m_terminationPointType(PT)
 {
     NS_LOG_FUNCTION(this);
 }
@@ -41,6 +40,10 @@ Dect2020NetDevice::~Dect2020NetDevice()
     NS_LOG_FUNCTION(this);
 }
 
+/**
+ * \brief Set the termination point type (PT or FT).
+ * \param tpt The termination point type to set.
+ */
 void
 Dect2020NetDevice::SetTerminationPointType(TerminationPointType tpt)
 {
@@ -56,7 +59,6 @@ Dect2020NetDevice::SetTerminationPointType(TerminationPointType tpt)
                 << "Set TerminationPointType to: " << (tpt == PT ? "PT" : "FT"));
 
     SetBootstrappingVariables((tpt == FT) ? true : false);
-
 
     m_terminationPointType = tpt;
 }
@@ -179,13 +181,13 @@ Dect2020NetDevice::IsPointToPoint(void) const
     return false;
 }
 
+/**
+ * \brief DectNetDevice Send Method. Currently not used
+ */
 bool
 Dect2020NetDevice::Send(Ptr<Packet> packet, const Address& dest, uint16_t protocolNumber)
 {
     NS_LOG_FUNCTION(this << packet << dest << protocolNumber);
-
-    // TEST
-    NS_LOG_INFO("Dect2020NetDevice::Send aufgerufen");
 
     if (!m_linkUp)
     {
@@ -215,6 +217,9 @@ Dect2020NetDevice::Send(Ptr<Packet> packet, const Address& dest, uint16_t protoc
     return true;
 }
 
+/**
+ * \brief DectNetDevice SendFrom Method. Currently not used
+ */
 bool
 Dect2020NetDevice::SendFrom(Ptr<Packet> packet,
                             const Address& source,
@@ -229,7 +234,6 @@ Dect2020NetDevice::SendFrom(Ptr<Packet> packet,
         return false;
     }
 
-    // Für die minimale Implementierung ignorieren wir die Quelladresse
     return Send(packet, dest, protocolNumber);
 }
 
@@ -295,6 +299,9 @@ Dect2020NetDevice::GetPhy(void) const
     return m_phy;
 }
 
+/**
+ * \brief DectNetDevice Receive Method. Currently not used
+ */
 void
 Dect2020NetDevice::Receive(Ptr<Packet> packet)
 {
@@ -344,6 +351,10 @@ Dect2020NetDevice::SetLinkDown(void)
     }
 }
 
+/**
+ * \brief Set the operating band number (1–22).
+ * \param bandNumber Band number.
+ */
 void
 Dect2020NetDevice::SetBandNumber(uint8_t bandNumber)
 {
@@ -357,12 +368,19 @@ Dect2020NetDevice::SetBandNumber(uint8_t bandNumber)
     }
 }
 
+/**
+ * \brief Get the configured band number.
+ * \return Band number.
+ */
 uint8_t
 Dect2020NetDevice::GetBandNumber(void) const
 {
     return m_bandNumber;
 }
-
+    /**
+     * \brief Initialize bootstrapping parameters for FT/PT.
+     * \param isFT Whether this device is FT (true) or PT (false).
+     */
 void
 Dect2020NetDevice::SetBootstrappingVariables(bool isFT)
 {
@@ -372,16 +390,16 @@ Dect2020NetDevice::SetBootstrappingVariables(bool isFT)
     m_supportPaging = false;
     m_operatingModes = (isFT ? 1 : 0);
     m_mesh = false;
-    m_scheduledAccessDataTransfer = false;              
-    m_macSecurity = false;             
-    m_dlcServiceType = 0;          
-    m_rdPowerClass = 0;            
-    m_maxNssFoRx = 0;         
-    m_rxForTxDiversity = 0;   
-    m_rxGain = 5;   // 0 dB             
-    m_maxMcs = 11;             
-    m_softBufferSize = 0;     
-    m_numOfHarqProcesses = 2; 
+    m_scheduledAccessDataTransfer = false;
+    m_macSecurity = false;
+    m_dlcServiceType = 0;
+    m_rdPowerClass = 0;
+    m_maxNssFoRx = 0;
+    m_rxForTxDiversity = 0;
+    m_rxGain = 5; // 0 dB
+    m_maxMcs = 11;
+    m_softBufferSize = 0;
+    m_numOfHarqProcesses = 2;
     m_harqFeedbackDelay = 2;
     m_dDelay = true;
     m_halfDulp = false;

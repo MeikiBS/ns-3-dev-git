@@ -1,8 +1,8 @@
 <map id="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;multiplexing&#45;header.h" name="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;multiplexing&#45;header.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="109,5,316,60"/>
+<area shape="rect" id="Node000001" title="Defines the MAC Multiplexing Header." alt="" coords="109,5,316,60"/>
 <area shape="rect" id="Node000002" href="$dect2020-mac-multiplexing-header_8cc.html" title=" " alt="" coords="5,108,212,163"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,72,138,110,134,106,174,68"/>
-<area shape="rect" id="Node000003" href="$dect2020-mac_8h.html" title=" " alt="" coords="237,115,399,155"/>
+<area shape="rect" id="Node000003" href="$dect2020-mac_8h.html" title="Implements the MAC layer functionality for DECT&#45;2020 NR." alt="" coords="237,115,399,155"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="252,68,300,113,296,117,248,71"/>
 <area shape="rect" id="Node000004" href="$dect2020-mac_8cc.html" title=" " alt="" coords="42,211,205,251"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="267,164,164,213,162,208,265,159"/>

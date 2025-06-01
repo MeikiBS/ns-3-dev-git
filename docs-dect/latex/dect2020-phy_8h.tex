@@ -1,5 +1,10 @@
 \doxysection{contrib/dect-\/nr/model/dect2020-\/phy.h File Reference}
 \hypertarget{dect2020-phy_8h}{}\label{dect2020-phy_8h}\index{contrib/dect-\/nr/model/dect2020-\/phy.h@{contrib/dect-\/nr/model/dect2020-\/phy.h}}
+
+
+Implements the Phy layer functionality for DECT-\/2020 NR.  
+
+
 {\ttfamily \#include "{}dect2020-\/physical-\/header-\/field.\+h"{}}\newline
 {\ttfamily \#include "{}dect2020-\/spectrum-\/signal-\/parameters.\+h"{}}\newline
 {\ttfamily \#include "{}ns3/mobility-\/model.\+h"{}}\newline
@@ -10,7 +15,8 @@
 {\ttfamily \#include "{}ns3/spectrum-\/model.\+h"{}}\newline
 {\ttfamily \#include "{}ns3/spectrum-\/phy.\+h"{}}\newline
 {\ttfamily \#include "{}ns3/traced-\/callback.\+h"{}}\newline
-Include dependency graph for dect2020-\/phy.h\+:\nopagebreak
+Include dependency graph for dect2020-\/phy.h\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -28,7 +34,7 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classns3_1_1Dect2020Phy}{ns3\+::\+Dect2020\+Phy}}
-\begin{DoxyCompactList}\small\item\em DECT2020 PHY Klasse. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em DECT-\/2020 NR PHY layer implementation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -39,3 +45,9 @@ namespace \mbox{\hyperlink{namespacens3}{ns3}}
 \item 
 typedef Callback$<$ void, Ptr$<$ Packet $>$ $>$ \mbox{\hyperlink{namespacens3_abd6d4ba79253871c9fb42dce4850bbe7}{ns3\+::\+Rx\+Received\+Callback}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements the Phy layer functionality for DECT-\/2020 NR. 
+
+Handles PHY procedures such Frame/\+Slot/\+Subslot Management, packet transmission and reception, and interaction with the MAC layer. 

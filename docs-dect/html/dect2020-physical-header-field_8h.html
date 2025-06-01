@@ -95,6 +95,9 @@ $(document).ready(function(){initNavTree('dect2020-physical-header-field_8h.html
   <div class="headertitle"><div class="title">dect2020-physical-header-field.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Definition of physical layer control field headers (Type 1 and Type 2) for DECT-2020 NR.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;ns3/address.h&quot;</code><br />
 <code>#include &quot;ns3/header.h&quot;</code><br />
 <code>#include &quot;ns3/nstime.h&quot;</code><br />
@@ -103,7 +106,7 @@ Include dependency graph for dect2020-physical-header-field.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="dect2020-physical-header-field_8h__incl.png" border="0" usemap="#acontrib_2dect-nr_2model_2dect2020-physical-header-field_8h" alt=""/></div>
 <map name="acontrib_2dect-nr_2model_2dect2020-physical-header-field_8h" id="acontrib_2dect-nr_2model_2dect2020-physical-header-field_8h">
-<area shape="rect" title=" " alt="" coords="96,5,291,60"/>
+<area shape="rect" title="Definition of physical layer control field headers (Type 1 and Type 2) for DECT&#45;2020 NR." alt="" coords="96,5,291,60"/>
 <area shape="rect" title=" " alt="" coords="5,108,117,133"/>
 <area shape="poly" title=" " alt="" coords="154,62,92,103,89,98,152,58"/>
 <area shape="rect" title=" " alt="" coords="141,108,246,133"/>
@@ -117,10 +120,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="dect2020-physical-header-field_8h__dep__incl.png" border="0" usemap="#acontrib_2dect-nr_2model_2dect2020-physical-header-field_8hdep" alt=""/></div>
 <map name="acontrib_2dect-nr_2model_2dect2020-physical-header-field_8hdep" id="acontrib_2dect-nr_2model_2dect2020-physical-header-field_8hdep">
-<area shape="rect" title=" " alt="" coords="218,5,412,60"/>
-<area shape="rect" href="dect2020-mac_8h.html" title=" " alt="" coords="22,115,184,155"/>
+<area shape="rect" title="Definition of physical layer control field headers (Type 1 and Type 2) for DECT&#45;2020 NR." alt="" coords="218,5,412,60"/>
+<area shape="rect" href="dect2020-mac_8h.html" title="Implements the MAC layer functionality for DECT&#45;2020 NR." alt="" coords="22,115,184,155"/>
 <area shape="poly" title=" " alt="" coords="249,68,144,117,142,113,246,63"/>
-<area shape="rect" href="dect2020-phy_8h.html" title=" " alt="" coords="234,115,396,155"/>
+<area shape="rect" href="dect2020-phy_8h.html" title="Implements the Phy layer functionality for DECT&#45;2020 NR." alt="" coords="234,115,396,155"/>
 <area shape="poly" title=" " alt="" coords="318,74,318,115,312,115,312,74"/>
 <area shape="rect" href="dect2020-physical-header-field_8cc.html" title=" " alt="" coords="420,108,615,163"/>
 <area shape="poly" title=" " alt="" coords="381,64,466,106,464,110,379,68"/>
@@ -148,8 +151,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020PHYControlFieldType1.html">ns3::Dect2020PHYControlFieldType1</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the PHY Control Field Type 1 (Format 000) for DECT-2020 NR.  <a href="classns3_1_1Dect2020PHYControlFieldType1.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classns3_1_1Dect2020PHYControlFieldType2.html">ns3::Dect2020PHYControlFieldType2</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents the PHY Control Field Type 2 (Format 001) for DECT-2020 NR.  <a href="classns3_1_1Dect2020PHYControlFieldType2.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -157,7 +162,14 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacens3" id="r_namespacens3"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacens3.html">ns3</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Definition of physical layer control field headers (Type 1 and Type 2) for DECT-2020 NR. </p>
+<p>This header defines two classes that represent the physical layer control fields used in DECT-2020 NR, based on ETSI TS 103 636-4 Section 6.2.1:</p><ul>
+<li>Dect2020PHYControlFieldType1: for basic one-way transmissions (Format 000)</li>
+<li>Dect2020PHYControlFieldType2: for enhanced transmissions with feedback and spatial streams (Format 001)</li>
+</ul>
+<p>These headers are serialized and prepended to PHY layer packets for transmission via SpectrumChannel. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

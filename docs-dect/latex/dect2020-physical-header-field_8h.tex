@@ -1,5 +1,10 @@
 \doxysection{contrib/dect-\/nr/model/dect2020-\/physical-\/header-\/field.h File Reference}
 \hypertarget{dect2020-physical-header-field_8h}{}\label{dect2020-physical-header-field_8h}\index{contrib/dect-\/nr/model/dect2020-\/physical-\/header-\/field.h@{contrib/dect-\/nr/model/dect2020-\/physical-\/header-\/field.h}}
+
+
+Definition of physical layer control field headers (Type 1 and Type 2) for DECT-\/2020 NR.  
+
+
 {\ttfamily \#include "{}ns3/address.\+h"{}}\newline
 {\ttfamily \#include "{}ns3/header.\+h"{}}\newline
 {\ttfamily \#include "{}ns3/nstime.\+h"{}}\newline
@@ -21,11 +26,23 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType1}{ns3\+::\+Dect2020\+PHYControl\+Field\+Type1}}
-\item 
+\begin{DoxyCompactList}\small\item\em Represents the PHY Control Field Type 1 (Format 000) for DECT-\/2020 NR. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classns3_1_1Dect2020PHYControlFieldType2}{ns3\+::\+Dect2020\+PHYControl\+Field\+Type2}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Represents the PHY Control Field Type 2 (Format 001) for DECT-\/2020 NR. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespacens3}{ns3}}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Definition of physical layer control field headers (Type 1 and Type 2) for DECT-\/2020 NR. 
+
+This header defines two classes that represent the physical layer control fields used in DECT-\/2020 NR, based on ETSI TS 103 636-\/4 Section 6.\+2.\+1\+:
+\begin{DoxyItemize}
+\item Dect2020\+PHYControl\+Field\+Type1\+: for basic one-\/way transmissions (Format 000)
+\item Dect2020\+PHYControl\+Field\+Type2\+: for enhanced transmissions with feedback and spatial streams (Format 001)
+\end{DoxyItemize}
+
+These headers are serialized and prepended to PHY layer packets for transmission via Spectrum\+Channel. 

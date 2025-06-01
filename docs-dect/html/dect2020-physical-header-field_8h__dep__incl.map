@@ -1,8 +1,8 @@
 <map id="contrib/dect&#45;nr/model/dect2020&#45;physical&#45;header&#45;field.h" name="contrib/dect&#45;nr/model/dect2020&#45;physical&#45;header&#45;field.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="218,5,412,60"/>
-<area shape="rect" id="Node000002" href="$dect2020-mac_8h.html" title=" " alt="" coords="22,115,184,155"/>
+<area shape="rect" id="Node000001" title="Definition of physical layer control field headers (Type 1 and Type 2) for DECT&#45;2020 NR." alt="" coords="218,5,412,60"/>
+<area shape="rect" id="Node000002" href="$dect2020-mac_8h.html" title="Implements the MAC layer functionality for DECT&#45;2020 NR." alt="" coords="22,115,184,155"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="249,68,144,117,142,113,246,63"/>
-<area shape="rect" id="Node000006" href="$dect2020-phy_8h.html" title=" " alt="" coords="234,115,396,155"/>
+<area shape="rect" id="Node000006" href="$dect2020-phy_8h.html" title="Implements the Phy layer functionality for DECT&#45;2020 NR." alt="" coords="234,115,396,155"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="318,74,318,115,312,115,312,74"/>
 <area shape="rect" id="Node000009" href="$dect2020-physical-header-field_8cc.html" title=" " alt="" coords="420,108,615,163"/>
 <area shape="poly" id="edge14_Node000001_Node000009" title=" " alt="" coords="381,64,466,106,464,110,379,68"/>

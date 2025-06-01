@@ -1,8 +1,8 @@
 <map id="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;information&#45;elements.h" name="contrib/dect&#45;nr/model/dect2020&#45;mac&#45;information&#45;elements.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="108,5,308,60"/>
+<area shape="rect" id="Node000001" title="Defines MAC Information Elements (IEs) used in DECT&#45;2020 NR MAC PDUs." alt="" coords="108,5,308,60"/>
 <area shape="rect" id="Node000002" href="$dect2020-mac-information-elements_8cc.html" title=" " alt="" coords="5,108,205,163"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,72,134,110,130,106,170,68"/>
-<area shape="rect" id="Node000003" href="$dect2020-mac_8h.html" title=" " alt="" coords="229,115,392,155"/>
+<area shape="rect" id="Node000003" href="$dect2020-mac_8h.html" title="Implements the MAC layer functionality for DECT&#45;2020 NR." alt="" coords="229,115,392,155"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="247,68,293,113,289,117,243,72"/>
 <area shape="rect" id="Node000004" href="$dect2020-mac_8cc.html" title=" " alt="" coords="35,211,197,251"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="260,164,156,213,154,208,258,159"/>

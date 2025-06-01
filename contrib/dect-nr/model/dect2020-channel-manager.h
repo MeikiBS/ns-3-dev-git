@@ -5,6 +5,15 @@
 
 #include <cstdint>
 #include <vector>
+/**
+ * @file dect2020-channel-manager.h
+ * @brief Channel manager for DECT-2020 NR bands and logical channel IDs.
+ *
+ * This file defines the Dect2020ChannelManager class, which handles the management of logical
+ * DECT channels, their spectrum models, RSSI monitoring, and power tracking. It is based on the
+ * ETSI TS 103 636-2 specification and is used to abstract band-specific frequency planning,
+ * channel ID mapping, and signal power tracking for simulation purposes.
+ */
 
 namespace ns3
 {
@@ -35,7 +44,22 @@ public:
   uint16_t nEnd;          ///< Logical channel number for stop frequency
 };
 
-
+/**
+ * @class Dect2020ChannelManager
+ * @brief Centralized channel management class for DECT-2020 NR simulations.
+ *
+ * This class is responsible for:
+ * - Initializing DECT-2020 NR bands and their logical channels
+ * - Providing access to valid channels based on the selected band
+ * - Mapping between channel numbers and center frequencies
+ * - Maintaining spectrum models and power usage for each band
+ * - Supporting RSSI calculations and channel occupancy tracking
+ *
+ * Each DECT band (1–22) is defined by parameters such as start/stop frequency and channel raster.
+ * These are used to compute logical channels and their corresponding SpectrumModel.
+ *
+ * Key ETSI reference: ETSI TS 103 636-2 V1.5.1, Table 5.4.2-1 and 5.3.2.1.
+ */
 class Dect2020ChannelManager
 {
   public:
