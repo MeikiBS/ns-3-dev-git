@@ -30,7 +30,10 @@ CreateConnectionMapPythonSkript(NetDeviceContainer devices)
     std::map<std::string, uint32_t> statusCounter;
     std::map<uint64_t, std::string> longRdidToName;
 
-    std::ofstream topo("networkx_topology.py");
+    uint16_t numDevices = devices.GetN();
+    std::ostringstream path;
+    path << "contrib/dect-nr/evaluations/scenario3/scenario3_topology_" << numDevices << "_devices.py";
+    std::ofstream topo(path.str());
     topo << "import networkx as nx\n";
     topo << "import matplotlib.pyplot as plt\n";
     topo << "nodes = []\n";
@@ -176,9 +179,10 @@ main(int argc, char* argv[])
 {
     Simulator::Stop(Seconds(120));
 
-    LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
-    LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
-    LogComponentEnable("Dect2020Phy", LOG_LEVEL_INFO);
+    // LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
+    // LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
+    // LogComponentEnable("Dect2020Phy", LOG_LEVEL_INFO);
+    LogComponentEnable("Dect2020Statistics", LOG_LEVEL_INFO);
 
     Dect2020ChannelManager channelManager;
     channelManager.InitializeChannels(1, 1); // Band 1, Scaling Factor 1
@@ -320,7 +324,7 @@ main(int argc, char* argv[])
     Simulator::Run();
 
     CreateConnectionMapPythonSkript(devices);
-    EvaluateAssociationTimes(devices);
+    // EvaluateAssociationTimes(devices);
 
     NS_LOG_UNCOND("Simulation finished. Evaluating successfull sent Packets");
     NS_LOG_UNCOND("All Packets sent Count: " << Dect2020Statistics::GetSumOfAllPacketsSent());

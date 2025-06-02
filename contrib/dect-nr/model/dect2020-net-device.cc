@@ -196,7 +196,7 @@ Dect2020NetDevice::Send(Ptr<Packet> packet, const Address& dest, uint16_t protoc
     }
 
     // Übergabe an die MAC-Schicht
-    Dect2020Mac::Dect2020PacketType packetType;
+    Dect2020Mac::Dect2020PacketType packetType = Dect2020Mac::Dect2020PacketType::UNKNOWN;
     switch (protocolNumber)
     {
     case 0:

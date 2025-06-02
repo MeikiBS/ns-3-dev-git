@@ -29,8 +29,10 @@ CreateConnectionMapPythonSkript(NetDeviceContainer devices)
 {
     std::map<std::string, uint32_t> statusCounter;
     std::map<uint64_t, std::string> longRdidToName;
-
-    std::ofstream topo("networkx_topology.py");
+    uint16_t numDevices = devices.GetN();
+    std::ostringstream path;
+    path << "contrib/dect-nr/evaluations/scenario1/scenario1_topology_" << numDevices << "_devices.py";
+    std::ofstream topo(path.str());
     topo << "import networkx as nx\n";
     topo << "import matplotlib.pyplot as plt\n";
     topo << "nodes = []\n";
@@ -189,13 +191,11 @@ main(int argc, char* argv[])
 {
     Simulator::Stop(Seconds(10));
 
-    LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
-    LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
-    LogComponentEnable("Dect2020Phy", LOG_LEVEL_INFO);
-    LogComponentEnable("Dect2020ChannelManager", LOG_LEVEL_INFO);
+    LogComponentEnable("Dect2020Statistics", LOG_LEVEL_INFO);
+    uint8_t bandNumber = 1;
 
     Dect2020ChannelManager channelManager;
-    channelManager.InitializeChannels(1, 1); // Band 1, Scaling Factor 1
+    channelManager.InitializeChannels(bandNumber, 1); // Band 1, Scaling Factor 1
 
     // 1 FT and 1 PT
     NodeContainer ftNodes;
@@ -232,7 +232,7 @@ main(int argc, char* argv[])
     for (uint32_t i = 0; i < ftNodes.GetN(); ++i)
     {
         Ptr<Dect2020NetDevice> dev = CreateObject<Dect2020NetDevice>();
-        dev->SetBandNumber(1);
+        dev->SetBandNumber(bandNumber);
         dev->SetTerminationPointType(TermPointType::FT);
 
         Ptr<Dect2020Mac> mac = CreateObject<Dect2020Mac>();
@@ -266,7 +266,7 @@ main(int argc, char* argv[])
     for (uint32_t i = 0; i < ptNodes.GetN(); ++i)
     {
         Ptr<Dect2020NetDevice> dev = CreateObject<Dect2020NetDevice>();
-        dev->SetBandNumber(1);
+        dev->SetBandNumber(bandNumber);
         dev->SetTerminationPointType(TermPointType::PT);
 
         Ptr<Dect2020Mac> mac = CreateObject<Dect2020Mac>();
@@ -299,7 +299,7 @@ main(int argc, char* argv[])
     Simulator::Run();
 
     CreateConnectionMapPythonSkript(devices);
-    EvaluateAssociationTimes(devices);
+    // EvaluateAssociationTimes(devices);
 
     NS_LOG_UNCOND("Simulation finished. Evaluating successfull sent Packets");
     NS_LOG_UNCOND("All Packets sent Count: " << Dect2020Statistics::GetSumOfAllPacketsSent());

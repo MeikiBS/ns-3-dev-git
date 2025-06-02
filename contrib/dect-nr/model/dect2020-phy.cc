@@ -368,6 +368,13 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
     {
         // Statistics
         Dect2020Statistics::IncrementPacketsDroppedLowRssi();
+        std::string packetType = Dect2020Statistics::GetPacketType(dectParams->txPacket->GetUid());
+        std::ostringstream oss;
+        oss << "0x" << std::hex << m_mac->GetLongRadioDeviceId() << std::dec << " dropped a "
+            << packetType << " with the Packet UID " << dectParams->txPacket->GetUid()
+            << " due to low RSSI";
+        std::string message = oss.str();
+        Dect2020Statistics::LogToConsole(message);
         return;
     }
 
@@ -381,16 +388,31 @@ Dect2020Phy::StartRx(Ptr<SpectrumSignalParameters> params)
         double rand = randVar->GetValue(0.0, 1.0);
         if (rand > 0.5)
         {
-            // Statistics
+            // Statistics and Logging
             Dect2020Statistics::IncrementPacketsDroppedCollision();
+            std::string packetType =
+                Dect2020Statistics::GetPacketType(dectParams->txPacket->GetUid());
+            std::ostringstream oss;
+            oss << "0x" << std::hex << m_mac->GetLongRadioDeviceId() << std::dec << " dropped a "
+                << packetType << " with the Packet UID " << dectParams->txPacket->GetUid()
+                << " due to collision";
+            std::string message = oss.str();
+            Dect2020Statistics::LogToConsole(message);
             return;
         }
     }
     // If RSSI clearly indicates collision, drop packet
     else if (rssiChannelDbm > 13.1)
     {
-        // Statistics
+        // Statistics and Logging
         Dect2020Statistics::IncrementPacketsDroppedCollision();
+        std::string packetType = Dect2020Statistics::GetPacketType(dectParams->txPacket->GetUid());
+        std::ostringstream oss;
+        oss << "0x" << std::hex << m_mac->GetLongRadioDeviceId() << std::dec << " dropped a "
+            << packetType << " with the Packet UID " << dectParams->txPacket->GetUid()
+            << " due to collision";
+        std::string message = oss.str();
+        Dect2020Statistics::LogToConsole(message);
         return;
     }
 
@@ -607,12 +629,12 @@ Dect2020Phy::CalculateTxDurationNs(Dect2020PHYControlFieldType1 physicalHeaderFi
     return 0;
 }
 
-
 /**
  * @brief Calculates the time offset from the current subslot to a target subslot.
  *
- * This method computes the time required to reach a specified subslot (defined by SFN, slot, and subslot)
- * starting from the current PHY state. It assumes that the target subslot lies within the same or next frame.
+ * This method computes the time required to reach a specified subslot (defined by SFN, slot, and
+ * subslot) starting from the current PHY state. It assumes that the target subslot lies within the
+ * same or next frame.
  *
  * @param targetSfn The System Frame Number (not yet used, currently only for consistency)
  * @param targetSlot The slot index within the frame (0–23)

@@ -104,14 +104,6 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet, double rssiDbm)
 {
     NS_LOG_FUNCTION(this << packet);
 
-    NS_LOG_INFO(Simulator::Now().GetMicroSeconds()
-                << ": Dect2020Mac::ReceiveFromPhy: 0x" << std::hex << this->GetLongRadioDeviceId()
-                << std::dec << " received a Packet with UID " << packet->GetUid());
-
-    if (packet->GetUid() == 164)
-    {
-        NS_LOG_INFO("FUCK");
-    }
     // --- Physical Header Field ---
     Dect2020PHYControlFieldType1 physicalHeaderField;
     packet->RemoveHeader(physicalHeaderField);
@@ -150,6 +142,16 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet, double rssiDbm)
 
     // Trace-Aufruf
     m_rxPacketTrace(packet);
+
+    // Statistics and Logging
+    Dect2020Statistics::IncrementNetworkBeaconReceptionCount();
+
+    std::string packetType = Dect2020Statistics::GetPacketType(packet->GetUid());
+    std::ostringstream oss;
+    oss << "0x" << std::hex << GetLongRadioDeviceId() << std::dec << " received a " << packetType
+        << " on Channel " << GetCurrentChannelId() <<" with the Packet UID " << packet->GetUid();
+    std::string message = oss.str();
+    Dect2020Statistics::LogToConsole(message);
 }
 
 /**
@@ -169,10 +171,6 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet, double rssiDbm)
 void
 Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
 {
-    if (packet->GetUid() == 164)
-    {
-        NS_LOG_INFO("FUCK");
-    }
     // --- Beacon Header ---
     Dect2020BeaconHeader beaconHeader;
     packet->RemoveHeader(beaconHeader);
@@ -209,9 +207,6 @@ Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
 
             SetCurrentChannelId(ftBeaconNextClusterChannel);
         }
-
-        // Statistics
-        Dect2020Statistics::IncrementNetworkBeaconReceptionCount();
     }
     // --- Cluster Beacon Message ---
     else if (ieType == IETypeFieldEncoding::CLUSTER_BEACON_MESSAGE)
@@ -525,8 +520,17 @@ Dect2020Mac::SendAssociationResponse(AssociatedPtInfo ptInfo)
     // Send the packet to the PHY
     m_phy->Send(packet, physicalHeaderField); // Send the packet to the PHY
 
-    // Statistics
+    // Statistics and Logging
     Dect2020Statistics::IncrementAssociationResponseTransmissionCount();
+
+    Dect2020Statistics::RegisterPacket(packet->GetUid(), "Association Response");
+
+    std::ostringstream oss;
+    oss << ": 0x" << std::hex << GetLongRadioDeviceId() << std::dec
+        << " sent a Association Response to 0x" << std::hex << ptInfo.longRdId << std::dec
+        << " with the Packet UID " << packet->GetUid();
+    std::string message = oss.str();
+    Dect2020Statistics::LogToConsole(message);
 }
 
 /**
@@ -546,10 +550,6 @@ Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBe
                                    const Dect2020RandomAccessResourceIE& rarIe,
                                    FtCandidateInfo* ft)
 {
-    if(clusterBeaconMsg.GetSystemFrameNumber() == 135)
-    {
-        NS_LOG_INFO("FUCK");
-    }
     ft->sfn = clusterBeaconMsg.GetSystemFrameNumber();
 
     m_lastSfn = clusterBeaconMsg.GetSystemFrameNumber();
@@ -575,7 +575,7 @@ Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBe
         m_selectedFtCandidate.longFtId == ft->longFtId)
     {
         // Calculate the time from the Random Access Resource IE to send the association request
-        uint16_t txSubslot;
+        uint16_t txSubslot = 0;
         uint16_t startSubslot = rarIe.GetStartSubslot();
         bool lengthInSubslots = !rarIe.GetLengthType();
         uint8_t length = rarIe.GetRaraLength();
@@ -839,8 +839,17 @@ Dect2020Mac::SendAssociationRequest(FtCandidateInfo* ft)
 
     m_phy->Send(packet, physicalHeaderField); // Send the packet to the PHY
 
-    // Statistics
+    // Statistics and Logging
     Dect2020Statistics::IncrementAssociationRequestTransmissionCount();
+
+    Dect2020Statistics::RegisterPacket(packet->GetUid(), "Association Request");
+
+    std::ostringstream oss;
+    oss << ": 0x" << std::hex << GetLongRadioDeviceId() << std::dec
+        << " sent a Association Request to 0x" << std::hex << ft->longFtId << std::dec
+        << " with the Packet UID " << packet->GetUid();
+    std::string message = oss.str();
+    Dect2020Statistics::LogToConsole(message);
 }
 
 /**
@@ -994,8 +1003,16 @@ Dect2020Mac::StartClusterBeaconTransmission()
                         &Dect2020Mac::StartClusterBeaconTransmission,
                         this);
 
-    // Statistics
+    // Statistics and Logging
     Dect2020Statistics::IncrementClusterBeaconTransmission();
+    Dect2020Statistics::RegisterPacket(clusterBeacon->GetUid(), "Cluster Beacon");
+
+    std::ostringstream oss;
+    oss << "0x" << std::hex << GetLongRadioDeviceId() << std::dec
+        << " sent a Cluster Beacon on channel " << m_clusterChannelId << " with the Packet UID "
+        << clusterBeacon->GetUid();
+    std::string message = oss.str();
+    Dect2020Statistics::LogToConsole(message);
 }
 
 /**
@@ -1098,22 +1115,22 @@ Dect2020Mac::StartNetworkBeaconSweep()
     // Schedule the network beacon transmission on the selected channels
     // Time beaconDuration = MicroSeconds(833);              // duration of the beacon transmission
     Time networkBeaconPeriod = m_networkBeaconPeriodTime; // gap between each transmission
-    Time base = MilliSeconds(25); // Little offset to avoid dual TX Situations
+    Time base = MilliSeconds(25);                         // Offset to avoid dual TX Situations
 
     for (auto& channelId : networkBeaconChannels)
     {
         Simulator::Schedule(base, &Dect2020Mac::SendNetworkBeaconOnChannel, this, channelId);
 
         // Go back to the operating channel after beacon transmission
-        // Simulator::Schedule(base + beaconDuration, &Dect2020Mac::ReturnToOperatingChannel, this);
         Simulator::Schedule(base, &Dect2020Mac::ReturnToOperatingChannel, this);
 
         base += networkBeaconPeriod;
     }
 
     // Schedule the next sweep
-    // Simulator::Schedule(base + beaconDuration, &Dect2020Mac::StartNetworkBeaconSweep, this);
-    Simulator::Schedule(base, &Dect2020Mac::StartNetworkBeaconSweep, this);
+    static uint32_t sweepCount = 0;
+    Time dynamicOffset = MilliSeconds(25 + (sweepCount++ % 3) * 2);
+    Simulator::Schedule(base + dynamicOffset, &Dect2020Mac::StartNetworkBeaconSweep, this);
 }
 
 /**
@@ -1134,8 +1151,16 @@ Dect2020Mac::SendNetworkBeaconOnChannel(uint16_t channelId)
 
     m_phy->Send(networkBeacon, CreatePhysicalHeaderField(1, networkBeacon->GetSize()));
 
-    // Statistics
+    // Statistics and Logging
     Dect2020Statistics::IncrementNetworkBeaconTransmissionCount();
+    Dect2020Statistics::RegisterPacket(networkBeacon->GetUid(), "Network Beacon");
+
+    std::ostringstream oss;
+    oss << "0x" << std::hex << GetLongRadioDeviceId() << std::dec
+        << " sent a Network Beacon on channel " << channelId << " with the Packet UID "
+        << networkBeacon->GetUid();
+    std::string message = oss.str();
+    Dect2020Statistics::LogToConsole(message);
 }
 
 /**

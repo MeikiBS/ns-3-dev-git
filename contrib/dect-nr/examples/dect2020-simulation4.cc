@@ -30,7 +30,10 @@ CreateConnectionMapPythonSkript(NetDeviceContainer devices)
     std::map<std::string, uint32_t> statusCounter;
     std::map<uint64_t, std::string> longRdidToName;
 
-    std::ofstream topo("networkx_topology.py");
+    uint16_t numDevices = devices.GetN();
+    std::ostringstream path;
+    path << "contrib/dect-nr/evaluations/scenario4/scenario4_topology_" << numDevices << "_devices.py";
+    std::ofstream topo(path.str());
     topo << "import networkx as nx\n";
     topo << "import matplotlib.pyplot as plt\n";
     topo << "nodes = []\n";

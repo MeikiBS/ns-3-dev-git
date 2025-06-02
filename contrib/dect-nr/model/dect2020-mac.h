@@ -140,7 +140,8 @@ class Dect2020Mac : public Object
         DATA = 0,
         BEACON = 1,
         UNICAST = 2,
-        RD_BROADCAST = 3
+        RD_BROADCAST = 3,
+        UNKNOWN = 4
     };
 
     /**

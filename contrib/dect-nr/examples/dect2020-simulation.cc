@@ -20,6 +20,19 @@
 // using Dect2020NetDevice::TerminationPointType::FT;
 // using Dect2020NetDevice::TerminationPointType::PT;
 
+/**
+ * NOTE: This file contains a collection of early test code and debugging routines.
+ * It was primarily used during the development phase to experiment with different
+ * aspects of the DECT-2020 NR implementation in ns-3.
+ *
+ * The structure is not clean or modular, and this is NOT intended to be used
+ * as a standard simulation script.
+ *
+ * I’m keeping it in the repository in case someone finds a useful snippet or
+ * needs a quick playground to test small changes without touching the actual
+ * example scenarios.
+ */
+
 using namespace ns3;
 using TermPointType = Dect2020NetDevice::TerminationPointType;
 

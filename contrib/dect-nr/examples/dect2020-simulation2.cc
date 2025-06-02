@@ -30,7 +30,10 @@ CreateConnectionMapPythonSkript(NetDeviceContainer devices)
     std::map<std::string, uint32_t> statusCounter;
     std::map<uint64_t, std::string> longRdidToName;
 
-    std::ofstream topo("networkx_topology.py");
+    uint16_t numDevices = devices.GetN();
+    std::ostringstream path;
+    path << "contrib/dect-nr/evaluations/scenario2/scenario2_topology_" << numDevices << "_devices.py";
+    std::ofstream topo(path.str());
     topo << "import networkx as nx\n";
     topo << "import matplotlib.pyplot as plt\n";
     topo << "nodes = []\n";
@@ -175,20 +178,19 @@ EvaluateAssociationTimes(NetDeviceContainer devices)
 int
 main(int argc, char* argv[])
 {
-    Simulator::Stop(Seconds(30));
+    Simulator::Stop(Seconds(60));
 
-    LogComponentEnable("Dect2020NetDevice", LOG_LEVEL_INFO);
-    LogComponentEnable("Dect2020Mac", LOG_LEVEL_INFO);
-    LogComponentEnable("Dect2020Phy", LOG_LEVEL_INFO);
+
+    LogComponentEnable("Dect2020Statistics", LOG_LEVEL_INFO);
 
     Dect2020ChannelManager channelManager;
     channelManager.InitializeChannels(1, 1); // Band 1, Scaling Factor 1
 
-    // 1 FTs + 10 PTs
+    // 1 FTs + 100 PTs
     NodeContainer ftNodes;
     ftNodes.Create(1);
     NodeContainer ptNodes;
-    ptNodes.Create(30);
+    ptNodes.Create(100);
 
     MobilityHelper ftMobility;
     Ptr<ListPositionAllocator> ftPos = CreateObject<ListPositionAllocator>();
