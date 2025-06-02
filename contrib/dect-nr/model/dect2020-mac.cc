@@ -108,6 +108,10 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet, double rssiDbm)
                 << ": Dect2020Mac::ReceiveFromPhy: 0x" << std::hex << this->GetLongRadioDeviceId()
                 << std::dec << " received a Packet with UID " << packet->GetUid());
 
+    if (packet->GetUid() == 164)
+    {
+        NS_LOG_INFO("FUCK");
+    }
     // --- Physical Header Field ---
     Dect2020PHYControlFieldType1 physicalHeaderField;
     packet->RemoveHeader(physicalHeaderField);
@@ -165,6 +169,10 @@ Dect2020Mac::ReceiveFromPhy(Ptr<Packet> packet, double rssiDbm)
 void
 Dect2020Mac::HandleBeaconPacket(Ptr<Packet> packet, FtCandidateInfo* ft)
 {
+    if (packet->GetUid() == 164)
+    {
+        NS_LOG_INFO("FUCK");
+    }
     // --- Beacon Header ---
     Dect2020BeaconHeader beaconHeader;
     packet->RemoveHeader(beaconHeader);
@@ -538,6 +546,10 @@ Dect2020Mac::EvaluateClusterBeacon(const Dect2020ClusterBeaconMessage& clusterBe
                                    const Dect2020RandomAccessResourceIE& rarIe,
                                    FtCandidateInfo* ft)
 {
+    if(clusterBeaconMsg.GetSystemFrameNumber() == 135)
+    {
+        NS_LOG_INFO("FUCK");
+    }
     ft->sfn = clusterBeaconMsg.GetSystemFrameNumber();
 
     m_lastSfn = clusterBeaconMsg.GetSystemFrameNumber();
@@ -1084,22 +1096,24 @@ Dect2020Mac::StartNetworkBeaconSweep()
     }
 
     // Schedule the network beacon transmission on the selected channels
-    Time beaconDuration = MicroSeconds(833);              // duration of the beacon transmission
+    // Time beaconDuration = MicroSeconds(833);              // duration of the beacon transmission
     Time networkBeaconPeriod = m_networkBeaconPeriodTime; // gap between each transmission
-    Time base = Seconds(0);
+    Time base = MilliSeconds(25); // Little offset to avoid dual TX Situations
 
     for (auto& channelId : networkBeaconChannels)
     {
         Simulator::Schedule(base, &Dect2020Mac::SendNetworkBeaconOnChannel, this, channelId);
 
         // Go back to the operating channel after beacon transmission
-        Simulator::Schedule(base + beaconDuration, &Dect2020Mac::ReturnToOperatingChannel, this);
+        // Simulator::Schedule(base + beaconDuration, &Dect2020Mac::ReturnToOperatingChannel, this);
+        Simulator::Schedule(base, &Dect2020Mac::ReturnToOperatingChannel, this);
 
         base += networkBeaconPeriod;
     }
 
     // Schedule the next sweep
-    Simulator::Schedule(base + beaconDuration, &Dect2020Mac::StartNetworkBeaconSweep, this);
+    // Simulator::Schedule(base + beaconDuration, &Dect2020Mac::StartNetworkBeaconSweep, this);
+    Simulator::Schedule(base, &Dect2020Mac::StartNetworkBeaconSweep, this);
 }
 
 /**

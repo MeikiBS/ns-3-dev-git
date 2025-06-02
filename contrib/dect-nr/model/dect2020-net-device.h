@@ -106,7 +106,7 @@ class Dect2020NetDevice : public NetDevice
     virtual bool SupportsSendFrom(void) const override;
 
     virtual bool IsBridge(void) const override;
-    
+
     // --- DECT2020-specific methods ---
     void SetMac(Ptr<Dect2020Mac> mac);
     Ptr<Dect2020Mac> GetMac(void) const;
@@ -129,7 +129,7 @@ class Dect2020NetDevice : public NetDevice
     // --- Bootstrapping variables ---
 
     // Random Access Resoure IE Values --> ETSI TS 103636 4 V 2.1.1 Table 6.4.3.4
-    uint8_t m_randomAccessResourceLength;
+    uint8_t m_randomAccessResourceLength = 10;
 
     // RD Capability Values --> ETSI TS 103636 4 V 2.1.1 Table 6.4.3.5-1
     uint8_t m_numOfPHYCapabilities;
